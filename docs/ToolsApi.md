@@ -915,6 +915,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **404** | No transcript available |  -  |
+| **503** | Transcript service temporarily unavailable |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
