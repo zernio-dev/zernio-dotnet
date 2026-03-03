@@ -228,6 +228,31 @@ namespace Late.Api
         /// <returns>ApiResponse of GetLinkedInPostAnalytics200Response</returns>
         ApiResponse<GetLinkedInPostAnalytics200Response> GetLinkedInPostAnalyticsWithHttpInfo(string accountId, string urn);
         /// <summary>
+        /// Get post analytics timeline
+        /// </summary>
+        /// <remarks>
+        /// Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Late posts, returns separate rows for each platform. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID. </param>
+        /// <param name="fromDate">Start of date range (ISO 8601). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (ISO 8601). Defaults to now. (optional)</param>
+        /// <returns>GetPostTimeline200Response</returns>
+        GetPostTimeline200Response GetPostTimeline(string postId, DateTime? fromDate = default, DateTime? toDate = default);
+
+        /// <summary>
+        /// Get post analytics timeline
+        /// </summary>
+        /// <remarks>
+        /// Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Late posts, returns separate rows for each platform. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID. </param>
+        /// <param name="fromDate">Start of date range (ISO 8601). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (ISO 8601). Defaults to now. (optional)</param>
+        /// <returns>ApiResponse of GetPostTimeline200Response</returns>
+        ApiResponse<GetPostTimeline200Response> GetPostTimelineWithHttpInfo(string postId, DateTime? fromDate = default, DateTime? toDate = default);
+        /// <summary>
         /// Get posting frequency vs engagement
         /// </summary>
         /// <remarks>
@@ -501,6 +526,33 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetLinkedInPostAnalytics200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetLinkedInPostAnalytics200Response>> GetLinkedInPostAnalyticsWithHttpInfoAsync(string accountId, string urn, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get post analytics timeline
+        /// </summary>
+        /// <remarks>
+        /// Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Late posts, returns separate rows for each platform. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID. </param>
+        /// <param name="fromDate">Start of date range (ISO 8601). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (ISO 8601). Defaults to now. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetPostTimeline200Response</returns>
+        System.Threading.Tasks.Task<GetPostTimeline200Response> GetPostTimelineAsync(string postId, DateTime? fromDate = default, DateTime? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get post analytics timeline
+        /// </summary>
+        /// <remarks>
+        /// Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Late posts, returns separate rows for each platform. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID. </param>
+        /// <param name="fromDate">Start of date range (ISO 8601). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (ISO 8601). Defaults to now. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetPostTimeline200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetPostTimeline200Response>> GetPostTimelineWithHttpInfoAsync(string postId, DateTime? fromDate = default, DateTime? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get posting frequency vs engagement
         /// </summary>
@@ -1957,6 +2009,157 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetLinkedInPostAnalytics", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get post analytics timeline Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Late posts, returns separate rows for each platform. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID. </param>
+        /// <param name="fromDate">Start of date range (ISO 8601). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (ISO 8601). Defaults to now. (optional)</param>
+        /// <returns>GetPostTimeline200Response</returns>
+        public GetPostTimeline200Response GetPostTimeline(string postId, DateTime? fromDate = default, DateTime? toDate = default)
+        {
+            Late.Client.ApiResponse<GetPostTimeline200Response> localVarResponse = GetPostTimelineWithHttpInfo(postId, fromDate, toDate);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get post analytics timeline Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Late posts, returns separate rows for each platform. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID. </param>
+        /// <param name="fromDate">Start of date range (ISO 8601). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (ISO 8601). Defaults to now. (optional)</param>
+        /// <returns>ApiResponse of GetPostTimeline200Response</returns>
+        public Late.Client.ApiResponse<GetPostTimeline200Response> GetPostTimelineWithHttpInfo(string postId, DateTime? fromDate = default, DateTime? toDate = default)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'postId' when calling AnalyticsApi->GetPostTimeline");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "postId", postId));
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetPostTimeline200Response>("/v1/analytics/post-timeline", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetPostTimeline", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get post analytics timeline Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Late posts, returns separate rows for each platform. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID. </param>
+        /// <param name="fromDate">Start of date range (ISO 8601). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (ISO 8601). Defaults to now. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetPostTimeline200Response</returns>
+        public async System.Threading.Tasks.Task<GetPostTimeline200Response> GetPostTimelineAsync(string postId, DateTime? fromDate = default, DateTime? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<GetPostTimeline200Response> localVarResponse = await GetPostTimelineWithHttpInfoAsync(postId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get post analytics timeline Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Late posts, returns separate rows for each platform. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId">The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID. </param>
+        /// <param name="fromDate">Start of date range (ISO 8601). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (ISO 8601). Defaults to now. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetPostTimeline200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetPostTimeline200Response>> GetPostTimelineWithHttpInfoAsync(string postId, DateTime? fromDate = default, DateTime? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'postId' when calling AnalyticsApi->GetPostTimeline");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "postId", postId));
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetPostTimeline200Response>("/v1/analytics/post-timeline", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetPostTimeline", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

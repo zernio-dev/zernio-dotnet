@@ -11,6 +11,7 @@ All URIs are relative to *https://getlate.dev/api*
 | [**GetFollowerStats**](AnalyticsApi.md#getfollowerstats) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**GetLinkedInAggregateAnalytics**](AnalyticsApi.md#getlinkedinaggregateanalytics) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats |
 | [**GetLinkedInPostAnalytics**](AnalyticsApi.md#getlinkedinpostanalytics) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats |
+| [**GetPostTimeline**](AnalyticsApi.md#getposttimeline) | **GET** /v1/analytics/post-timeline | Get post analytics timeline |
 | [**GetPostingFrequency**](AnalyticsApi.md#getpostingfrequency) | **GET** /v1/analytics/posting-frequency | Get posting frequency vs engagement |
 | [**GetYouTubeDailyViews**](AnalyticsApi.md#getyoutubedailyviews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views |
 
@@ -771,6 +772,113 @@ catch (ApiException e)
 | **402** | Analytics add-on required |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account or post not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getposttimeline"></a>
+# **GetPostTimeline**
+> GetPostTimeline200Response GetPostTimeline (string postId, DateTime? fromDate = null, DateTime? toDate = null)
+
+Get post analytics timeline
+
+Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Late posts, returns separate rows for each platform. Requires the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class GetPostTimelineExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://getlate.dev/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var postId = "postId_example";  // string | The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID. 
+            var fromDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Start of date range (ISO 8601). Defaults to 90 days ago. (optional) 
+            var toDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | End of date range (ISO 8601). Defaults to now. (optional) 
+
+            try
+            {
+                // Get post analytics timeline
+                GetPostTimeline200Response result = apiInstance.GetPostTimeline(postId, fromDate, toDate);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetPostTimeline: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetPostTimelineWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get post analytics timeline
+    ApiResponse<GetPostTimeline200Response> response = apiInstance.GetPostTimelineWithHttpInfo(postId, fromDate, toDate);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetPostTimelineWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **postId** | **string** | The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID.  |  |
+| **fromDate** | **DateTime?** | Start of date range (ISO 8601). Defaults to 90 days ago. | [optional]  |
+| **toDate** | **DateTime?** | End of date range (ISO 8601). Defaults to now. | [optional]  |
+
+### Return type
+
+[**GetPostTimeline200Response**](GetPostTimeline200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Daily analytics timeline |  -  |
+| **400** | Missing required postId parameter |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics add-on required |  -  |
+| **403** | Forbidden (post belongs to another user or API key scope violation) |  -  |
+| **404** | Post not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
