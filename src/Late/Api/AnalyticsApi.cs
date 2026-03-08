@@ -228,6 +228,33 @@ namespace Late.Api
         /// <returns>ApiResponse of GetLinkedInPostAnalytics200Response</returns>
         ApiResponse<GetLinkedInPostAnalytics200Response> GetLinkedInPostAnalyticsWithHttpInfo(string accountId, string urn);
         /// <summary>
+        /// Get LinkedIn post reactions (who reacted)
+        /// </summary>
+        /// <remarks>
+        /// Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the LinkedIn organization account</param>
+        /// <param name="urn">The LinkedIn post URN</param>
+        /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <returns>GetLinkedInPostReactions200Response</returns>
+        GetLinkedInPostReactions200Response GetLinkedInPostReactions(string accountId, string urn, int? limit = default, string? cursor = default);
+
+        /// <summary>
+        /// Get LinkedIn post reactions (who reacted)
+        /// </summary>
+        /// <remarks>
+        /// Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the LinkedIn organization account</param>
+        /// <param name="urn">The LinkedIn post URN</param>
+        /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <returns>ApiResponse of GetLinkedInPostReactions200Response</returns>
+        ApiResponse<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsWithHttpInfo(string accountId, string urn, int? limit = default, string? cursor = default);
+        /// <summary>
         /// Get post analytics timeline
         /// </summary>
         /// <remarks>
@@ -526,6 +553,35 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetLinkedInPostAnalytics200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetLinkedInPostAnalytics200Response>> GetLinkedInPostAnalyticsWithHttpInfoAsync(string accountId, string urn, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get LinkedIn post reactions (who reacted)
+        /// </summary>
+        /// <remarks>
+        /// Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the LinkedIn organization account</param>
+        /// <param name="urn">The LinkedIn post URN</param>
+        /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetLinkedInPostReactions200Response</returns>
+        System.Threading.Tasks.Task<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsAsync(string accountId, string urn, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get LinkedIn post reactions (who reacted)
+        /// </summary>
+        /// <remarks>
+        /// Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the LinkedIn organization account</param>
+        /// <param name="urn">The LinkedIn post URN</param>
+        /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetLinkedInPostReactions200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetLinkedInPostReactions200Response>> GetLinkedInPostReactionsWithHttpInfoAsync(string accountId, string urn, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get post analytics timeline
         /// </summary>
@@ -2009,6 +2065,171 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetLinkedInPostAnalytics", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get LinkedIn post reactions (who reacted) Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the LinkedIn organization account</param>
+        /// <param name="urn">The LinkedIn post URN</param>
+        /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <returns>GetLinkedInPostReactions200Response</returns>
+        public GetLinkedInPostReactions200Response GetLinkedInPostReactions(string accountId, string urn, int? limit = default, string? cursor = default)
+        {
+            Late.Client.ApiResponse<GetLinkedInPostReactions200Response> localVarResponse = GetLinkedInPostReactionsWithHttpInfo(accountId, urn, limit, cursor);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get LinkedIn post reactions (who reacted) Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the LinkedIn organization account</param>
+        /// <param name="urn">The LinkedIn post URN</param>
+        /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <returns>ApiResponse of GetLinkedInPostReactions200Response</returns>
+        public Late.Client.ApiResponse<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsWithHttpInfo(string accountId, string urn, int? limit = default, string? cursor = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetLinkedInPostReactions");
+
+            // verify the required parameter 'urn' is set
+            if (urn == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'urn' when calling AnalyticsApi->GetLinkedInPostReactions");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "urn", urn));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetLinkedInPostReactions200Response>("/v1/accounts/{accountId}/linkedin-post-reactions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetLinkedInPostReactions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get LinkedIn post reactions (who reacted) Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the LinkedIn organization account</param>
+        /// <param name="urn">The LinkedIn post URN</param>
+        /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetLinkedInPostReactions200Response</returns>
+        public async System.Threading.Tasks.Task<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsAsync(string accountId, string urn, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<GetLinkedInPostReactions200Response> localVarResponse = await GetLinkedInPostReactionsWithHttpInfoAsync(accountId, urn, limit, cursor, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get LinkedIn post reactions (who reacted) Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the LinkedIn organization account</param>
+        /// <param name="urn">The LinkedIn post URN</param>
+        /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetLinkedInPostReactions200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetLinkedInPostReactions200Response>> GetLinkedInPostReactionsWithHttpInfoAsync(string accountId, string urn, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetLinkedInPostReactions");
+
+            // verify the required parameter 'urn' is set
+            if (urn == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'urn' when calling AnalyticsApi->GetLinkedInPostReactions");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "urn", urn));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetLinkedInPostReactions200Response>("/v1/accounts/{accountId}/linkedin-post-reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetLinkedInPostReactions", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

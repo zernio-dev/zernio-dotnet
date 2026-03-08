@@ -6,7 +6,6 @@ All URIs are relative to *https://getlate.dev/api*
 |--------|--------------|-------------|
 | [**DeleteInboxComment**](CommentsApi.md#deleteinboxcomment) | **DELETE** /v1/inbox/comments/{postId} | Delete comment |
 | [**GetInboxPostComments**](CommentsApi.md#getinboxpostcomments) | **GET** /v1/inbox/comments/{postId} | Get post comments |
-| [**GetPostReactions**](CommentsApi.md#getpostreactions) | **GET** /v1/inbox/reactions/{postId} | Get post reactions (who reacted) |
 | [**HideInboxComment**](CommentsApi.md#hideinboxcomment) | **POST** /v1/inbox/comments/{postId}/{commentId}/hide | Hide comment |
 | [**LikeInboxComment**](CommentsApi.md#likeinboxcomment) | **POST** /v1/inbox/comments/{postId}/{commentId}/like | Like comment |
 | [**ListInboxComments**](CommentsApi.md#listinboxcomments) | **GET** /v1/inbox/comments | List commented posts |
@@ -225,113 +224,6 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comments for the post |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Inbox addon required |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="getpostreactions"></a>
-# **GetPostReactions**
-> GetPostReactions200Response GetPostReactions (string postId, string accountId, int? limit = null, string? cursor = null)
-
-Get post reactions (who reacted)
-
-Fetch individual reactions for a post, including reactor profiles (name, headline/title, picture, profile URL). Currently only supported for **LinkedIn organization/company page** posts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using Late.Api;
-using Late.Client;
-using Late.Model;
-
-namespace Example
-{
-    public class GetPostReactionsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://getlate.dev/api";
-            // Configure Bearer token for authorization: bearerAuth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new CommentsApi(httpClient, config, httpClientHandler);
-            var postId = "postId_example";  // string | Late post ID or platform-specific post ID (LinkedIn activity URN or numeric ID).
-            var accountId = "accountId_example";  // string | The social account ID (must be a LinkedIn organization account).
-            var limit = 25;  // int? | Maximum number of reactions to return per page. (optional)  (default to 25)
-            var cursor = "cursor_example";  // string? | Offset-based pagination start index. (optional) 
-
-            try
-            {
-                // Get post reactions (who reacted)
-                GetPostReactions200Response result = apiInstance.GetPostReactions(postId, accountId, limit, cursor);
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling CommentsApi.GetPostReactions: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the GetPostReactionsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Get post reactions (who reacted)
-    ApiResponse<GetPostReactions200Response> response = apiInstance.GetPostReactionsWithHttpInfo(postId, accountId, limit, cursor);
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling CommentsApi.GetPostReactionsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-|------|------|-------------|-------|
-| **postId** | **string** | Late post ID or platform-specific post ID (LinkedIn activity URN or numeric ID). |  |
-| **accountId** | **string** | The social account ID (must be a LinkedIn organization account). |  |
-| **limit** | **int?** | Maximum number of reactions to return per page. | [optional] [default to 25] |
-| **cursor** | **string?** | Offset-based pagination start index. | [optional]  |
-
-### Return type
-
-[**GetPostReactions200Response**](GetPostReactions200Response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Reactions for the post with reactor profiles |  -  |
-| **400** | Platform limitation or invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 

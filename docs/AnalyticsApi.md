@@ -11,6 +11,7 @@ All URIs are relative to *https://getlate.dev/api*
 | [**GetFollowerStats**](AnalyticsApi.md#getfollowerstats) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**GetLinkedInAggregateAnalytics**](AnalyticsApi.md#getlinkedinaggregateanalytics) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats |
 | [**GetLinkedInPostAnalytics**](AnalyticsApi.md#getlinkedinpostanalytics) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats |
+| [**GetLinkedInPostReactions**](AnalyticsApi.md#getlinkedinpostreactions) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions (who reacted) |
 | [**GetPostTimeline**](AnalyticsApi.md#getposttimeline) | **GET** /v1/analytics/post-timeline | Get post analytics timeline |
 | [**GetPostingFrequency**](AnalyticsApi.md#getpostingfrequency) | **GET** /v1/analytics/posting-frequency | Get posting frequency vs engagement |
 | [**GetYouTubeDailyViews**](AnalyticsApi.md#getyoutubedailyviews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views |
@@ -768,6 +769,115 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Post analytics data |  -  |
 | **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics add-on required |  -  |
+| **403** | Missing required LinkedIn scope |  -  |
+| **404** | Account or post not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getlinkedinpostreactions"></a>
+# **GetLinkedInPostReactions**
+> GetLinkedInPostReactions200Response GetLinkedInPostReactions (string accountId, string urn, int? limit = null, string? cursor = null)
+
+Get LinkedIn post reactions (who reacted)
+
+Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class GetLinkedInPostReactionsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://getlate.dev/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The ID of the LinkedIn organization account
+            var urn = urn:li:share:7123456789012345678;  // string | The LinkedIn post URN
+            var limit = 25;  // int? | Maximum number of reactions to return per page (optional)  (default to 25)
+            var cursor = "cursor_example";  // string? | Offset-based pagination start index (optional) 
+
+            try
+            {
+                // Get LinkedIn post reactions (who reacted)
+                GetLinkedInPostReactions200Response result = apiInstance.GetLinkedInPostReactions(accountId, urn, limit, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetLinkedInPostReactions: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetLinkedInPostReactionsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get LinkedIn post reactions (who reacted)
+    ApiResponse<GetLinkedInPostReactions200Response> response = apiInstance.GetLinkedInPostReactionsWithHttpInfo(accountId, urn, limit, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetLinkedInPostReactionsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The ID of the LinkedIn organization account |  |
+| **urn** | **string** | The LinkedIn post URN |  |
+| **limit** | **int?** | Maximum number of reactions to return per page | [optional] [default to 25] |
+| **cursor** | **string?** | Offset-based pagination start index | [optional]  |
+
+### Return type
+
+[**GetLinkedInPostReactions200Response**](GetLinkedInPostReactions200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reactions with reactor profiles |  -  |
+| **400** | Invalid request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | Analytics add-on required |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
