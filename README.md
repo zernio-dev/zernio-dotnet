@@ -179,6 +179,7 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**GetYouTubeDailyViews**](docs/AnalyticsApi.md#getyoutubedailyviews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views
 *CommentsApi* | [**DeleteInboxComment**](docs/CommentsApi.md#deleteinboxcomment) | **DELETE** /v1/inbox/comments/{postId} | Delete comment
 *CommentsApi* | [**GetInboxPostComments**](docs/CommentsApi.md#getinboxpostcomments) | **GET** /v1/inbox/comments/{postId} | Get post comments
+*CommentsApi* | [**GetPostReactions**](docs/CommentsApi.md#getpostreactions) | **GET** /v1/inbox/reactions/{postId} | Get post reactions (who reacted)
 *CommentsApi* | [**HideInboxComment**](docs/CommentsApi.md#hideinboxcomment) | **POST** /v1/inbox/comments/{postId}/{commentId}/hide | Hide comment
 *CommentsApi* | [**LikeInboxComment**](docs/CommentsApi.md#likeinboxcomment) | **POST** /v1/inbox/comments/{postId}/{commentId}/like | Like comment
 *CommentsApi* | [**ListInboxComments**](docs/CommentsApi.md#listinboxcomments) | **GET** /v1/inbox/comments | List commented posts
@@ -442,6 +443,11 @@ Class | Method | HTTP request | Description
  - [Model.GetPinterestBoards200Response](docs/GetPinterestBoards200Response.md)
  - [Model.GetPinterestBoards200ResponseBoardsInner](docs/GetPinterestBoards200ResponseBoardsInner.md)
  - [Model.GetPostLogs200Response](docs/GetPostLogs200Response.md)
+ - [Model.GetPostReactions200Response](docs/GetPostReactions200Response.md)
+ - [Model.GetPostReactions200ResponseMeta](docs/GetPostReactions200ResponseMeta.md)
+ - [Model.GetPostReactions200ResponsePagination](docs/GetPostReactions200ResponsePagination.md)
+ - [Model.GetPostReactions200ResponseReactionsInner](docs/GetPostReactions200ResponseReactionsInner.md)
+ - [Model.GetPostReactions200ResponseReactionsInnerFrom](docs/GetPostReactions200ResponseReactionsInnerFrom.md)
  - [Model.GetPostTimeline200Response](docs/GetPostTimeline200Response.md)
  - [Model.GetPostTimeline200ResponseTimelineInner](docs/GetPostTimeline200ResponseTimelineInner.md)
  - [Model.GetPostTimeline400Response](docs/GetPostTimeline400Response.md)
