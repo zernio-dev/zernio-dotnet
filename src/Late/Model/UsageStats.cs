@@ -64,13 +64,15 @@ namespace Late.Model
         /// <param name="planName">planName.</param>
         /// <param name="billingPeriod">billingPeriod.</param>
         /// <param name="signupDate">signupDate.</param>
+        /// <param name="billingAnchorDay">Day of month (1-31) when the billing cycle resets.</param>
         /// <param name="limits">limits.</param>
         /// <param name="usage">usage.</param>
-        public UsageStats(string planName = default, BillingPeriodEnum? billingPeriod = default, DateTime signupDate = default, UsageStatsLimits limits = default, UsageStatsUsage usage = default)
+        public UsageStats(string planName = default, BillingPeriodEnum? billingPeriod = default, DateTime signupDate = default, int billingAnchorDay = default, UsageStatsLimits limits = default, UsageStatsUsage usage = default)
         {
             this.PlanName = planName;
             this.BillingPeriod = billingPeriod;
             this.SignupDate = signupDate;
+            this.BillingAnchorDay = billingAnchorDay;
             this.Limits = limits;
             this.Usage = usage;
         }
@@ -86,6 +88,13 @@ namespace Late.Model
         /// </summary>
         [DataMember(Name = "signupDate", EmitDefaultValue = false)]
         public DateTime SignupDate { get; set; }
+
+        /// <summary>
+        /// Day of month (1-31) when the billing cycle resets
+        /// </summary>
+        /// <value>Day of month (1-31) when the billing cycle resets</value>
+        [DataMember(Name = "billingAnchorDay", EmitDefaultValue = false)]
+        public int BillingAnchorDay { get; set; }
 
         /// <summary>
         /// Gets or Sets Limits
@@ -110,6 +119,7 @@ namespace Late.Model
             sb.Append("  PlanName: ").Append(PlanName).Append("\n");
             sb.Append("  BillingPeriod: ").Append(BillingPeriod).Append("\n");
             sb.Append("  SignupDate: ").Append(SignupDate).Append("\n");
+            sb.Append("  BillingAnchorDay: ").Append(BillingAnchorDay).Append("\n");
             sb.Append("  Limits: ").Append(Limits).Append("\n");
             sb.Append("  Usage: ").Append(Usage).Append("\n");
             sb.Append("}\n");
