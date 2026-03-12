@@ -414,6 +414,27 @@ namespace Late.Api
         /// <returns>ApiResponse of GetWhatsAppContacts200Response</returns>
         ApiResponse<GetWhatsAppContacts200Response> GetWhatsAppContactsWithHttpInfo(string accountId, string? search = default, string? tag = default, string? group = default, string? optedIn = default, int? limit = default, int? skip = default);
         /// <summary>
+        /// Get display name and review status
+        /// </summary>
+        /// <remarks>
+        /// Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>GetWhatsAppDisplayName200Response</returns>
+        GetWhatsAppDisplayName200Response GetWhatsAppDisplayName(string accountId);
+
+        /// <summary>
+        /// Get display name and review status
+        /// </summary>
+        /// <remarks>
+        /// Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ApiResponse of GetWhatsAppDisplayName200Response</returns>
+        ApiResponse<GetWhatsAppDisplayName200Response> GetWhatsAppDisplayNameWithHttpInfo(string accountId);
+        /// <summary>
         /// List contact groups
         /// </summary>
         /// <remarks>
@@ -653,6 +674,27 @@ namespace Late.Api
         /// <returns>ApiResponse of UpdateWhatsAppContact200Response</returns>
         ApiResponse<UpdateWhatsAppContact200Response> UpdateWhatsAppContactWithHttpInfo(string contactId, UpdateWhatsAppContactRequest updateWhatsAppContactRequest);
         /// <summary>
+        /// Request display name change
+        /// </summary>
+        /// <remarks>
+        /// Submit a display name change request for the WhatsApp Business account. The new name must follow WhatsApp naming guidelines (3-512 characters, must represent your business). Changes require Meta review and approval, which typically takes 1-3 business days. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateWhatsAppDisplayNameRequest"></param>
+        /// <returns>UpdateWhatsAppDisplayName200Response</returns>
+        UpdateWhatsAppDisplayName200Response UpdateWhatsAppDisplayName(UpdateWhatsAppDisplayNameRequest updateWhatsAppDisplayNameRequest);
+
+        /// <summary>
+        /// Request display name change
+        /// </summary>
+        /// <remarks>
+        /// Submit a display name change request for the WhatsApp Business account. The new name must follow WhatsApp naming guidelines (3-512 characters, must represent your business). Changes require Meta review and approval, which typically takes 1-3 business days. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateWhatsAppDisplayNameRequest"></param>
+        /// <returns>ApiResponse of UpdateWhatsAppDisplayName200Response</returns>
+        ApiResponse<UpdateWhatsAppDisplayName200Response> UpdateWhatsAppDisplayNameWithHttpInfo(UpdateWhatsAppDisplayNameRequest updateWhatsAppDisplayNameRequest);
+        /// <summary>
         /// Update template
         /// </summary>
         /// <remarks>
@@ -675,6 +717,29 @@ namespace Late.Api
         /// <param name="updateWhatsAppTemplateRequest"></param>
         /// <returns>ApiResponse of UpdateWhatsAppTemplate200Response</returns>
         ApiResponse<UpdateWhatsAppTemplate200Response> UpdateWhatsAppTemplateWithHttpInfo(string templateName, UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest);
+        /// <summary>
+        /// Upload profile picture
+        /// </summary>
+        /// <remarks>
+        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
+        /// <returns>UnpublishPost200Response</returns>
+        UnpublishPost200Response UploadWhatsAppProfilePhoto(string accountId, FileParameter file);
+
+        /// <summary>
+        /// Upload profile picture
+        /// </summary>
+        /// <remarks>
+        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
+        /// <returns>ApiResponse of UnpublishPost200Response</returns>
+        ApiResponse<UnpublishPost200Response> UploadWhatsAppProfilePhotoWithHttpInfo(string accountId, FileParameter file);
         #endregion Synchronous Operations
     }
 
@@ -1104,6 +1169,29 @@ namespace Late.Api
         /// <returns>Task of ApiResponse (GetWhatsAppContacts200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppContacts200Response>> GetWhatsAppContactsWithHttpInfoAsync(string accountId, string? search = default, string? tag = default, string? group = default, string? optedIn = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get display name and review status
+        /// </summary>
+        /// <remarks>
+        /// Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppDisplayName200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsAppDisplayName200Response> GetWhatsAppDisplayNameAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get display name and review status
+        /// </summary>
+        /// <remarks>
+        /// Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppDisplayName200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppDisplayName200Response>> GetWhatsAppDisplayNameWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List contact groups
         /// </summary>
         /// <remarks>
@@ -1365,6 +1453,29 @@ namespace Late.Api
         /// <returns>Task of ApiResponse (UpdateWhatsAppContact200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateWhatsAppContact200Response>> UpdateWhatsAppContactWithHttpInfoAsync(string contactId, UpdateWhatsAppContactRequest updateWhatsAppContactRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Request display name change
+        /// </summary>
+        /// <remarks>
+        /// Submit a display name change request for the WhatsApp Business account. The new name must follow WhatsApp naming guidelines (3-512 characters, must represent your business). Changes require Meta review and approval, which typically takes 1-3 business days. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateWhatsAppDisplayNameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateWhatsAppDisplayName200Response</returns>
+        System.Threading.Tasks.Task<UpdateWhatsAppDisplayName200Response> UpdateWhatsAppDisplayNameAsync(UpdateWhatsAppDisplayNameRequest updateWhatsAppDisplayNameRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Request display name change
+        /// </summary>
+        /// <remarks>
+        /// Submit a display name change request for the WhatsApp Business account. The new name must follow WhatsApp naming guidelines (3-512 characters, must represent your business). Changes require Meta review and approval, which typically takes 1-3 business days. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateWhatsAppDisplayNameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateWhatsAppDisplayName200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateWhatsAppDisplayName200Response>> UpdateWhatsAppDisplayNameWithHttpInfoAsync(UpdateWhatsAppDisplayNameRequest updateWhatsAppDisplayNameRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Update template
         /// </summary>
         /// <remarks>
@@ -1389,6 +1500,31 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateWhatsAppTemplate200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateWhatsAppTemplate200Response>> UpdateWhatsAppTemplateWithHttpInfoAsync(string templateName, UpdateWhatsAppTemplateRequest updateWhatsAppTemplateRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Upload profile picture
+        /// </summary>
+        /// <remarks>
+        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UnpublishPost200Response</returns>
+        System.Threading.Tasks.Task<UnpublishPost200Response> UploadWhatsAppProfilePhotoAsync(string accountId, FileParameter file, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Upload profile picture
+        /// </summary>
+        /// <remarks>
+        /// Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UnpublishPost200Response>> UploadWhatsAppProfilePhotoWithHttpInfoAsync(string accountId, FileParameter file, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -3948,6 +4084,133 @@ namespace Late.Api
         }
 
         /// <summary>
+        /// Get display name and review status Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>GetWhatsAppDisplayName200Response</returns>
+        public GetWhatsAppDisplayName200Response GetWhatsAppDisplayName(string accountId)
+        {
+            Late.Client.ApiResponse<GetWhatsAppDisplayName200Response> localVarResponse = GetWhatsAppDisplayNameWithHttpInfo(accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get display name and review status Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ApiResponse of GetWhatsAppDisplayName200Response</returns>
+        public Late.Client.ApiResponse<GetWhatsAppDisplayName200Response> GetWhatsAppDisplayNameWithHttpInfo(string accountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsAppDisplayName");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsAppDisplayName200Response>("/v1/whatsapp/business-profile/display-name", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppDisplayName", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get display name and review status Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppDisplayName200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsAppDisplayName200Response> GetWhatsAppDisplayNameAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<GetWhatsAppDisplayName200Response> localVarResponse = await GetWhatsAppDisplayNameWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get display name and review status Fetch the current display name and its Meta review status for a WhatsApp Business account. Display name changes require Meta approval and can take 1-3 business days. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppDisplayName200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetWhatsAppDisplayName200Response>> GetWhatsAppDisplayNameWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsAppDisplayName");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppDisplayName200Response>("/v1/whatsapp/business-profile/display-name", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppDisplayName", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// List contact groups List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5415,6 +5678,135 @@ namespace Late.Api
         }
 
         /// <summary>
+        /// Request display name change Submit a display name change request for the WhatsApp Business account. The new name must follow WhatsApp naming guidelines (3-512 characters, must represent your business). Changes require Meta review and approval, which typically takes 1-3 business days. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateWhatsAppDisplayNameRequest"></param>
+        /// <returns>UpdateWhatsAppDisplayName200Response</returns>
+        public UpdateWhatsAppDisplayName200Response UpdateWhatsAppDisplayName(UpdateWhatsAppDisplayNameRequest updateWhatsAppDisplayNameRequest)
+        {
+            Late.Client.ApiResponse<UpdateWhatsAppDisplayName200Response> localVarResponse = UpdateWhatsAppDisplayNameWithHttpInfo(updateWhatsAppDisplayNameRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Request display name change Submit a display name change request for the WhatsApp Business account. The new name must follow WhatsApp naming guidelines (3-512 characters, must represent your business). Changes require Meta review and approval, which typically takes 1-3 business days. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateWhatsAppDisplayNameRequest"></param>
+        /// <returns>ApiResponse of UpdateWhatsAppDisplayName200Response</returns>
+        public Late.Client.ApiResponse<UpdateWhatsAppDisplayName200Response> UpdateWhatsAppDisplayNameWithHttpInfo(UpdateWhatsAppDisplayNameRequest updateWhatsAppDisplayNameRequest)
+        {
+            // verify the required parameter 'updateWhatsAppDisplayNameRequest' is set
+            if (updateWhatsAppDisplayNameRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateWhatsAppDisplayNameRequest' when calling WhatsAppApi->UpdateWhatsAppDisplayName");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = updateWhatsAppDisplayNameRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UpdateWhatsAppDisplayName200Response>("/v1/whatsapp/business-profile/display-name", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateWhatsAppDisplayName", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Request display name change Submit a display name change request for the WhatsApp Business account. The new name must follow WhatsApp naming guidelines (3-512 characters, must represent your business). Changes require Meta review and approval, which typically takes 1-3 business days. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateWhatsAppDisplayNameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateWhatsAppDisplayName200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateWhatsAppDisplayName200Response> UpdateWhatsAppDisplayNameAsync(UpdateWhatsAppDisplayNameRequest updateWhatsAppDisplayNameRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UpdateWhatsAppDisplayName200Response> localVarResponse = await UpdateWhatsAppDisplayNameWithHttpInfoAsync(updateWhatsAppDisplayNameRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Request display name change Submit a display name change request for the WhatsApp Business account. The new name must follow WhatsApp naming guidelines (3-512 characters, must represent your business). Changes require Meta review and approval, which typically takes 1-3 business days. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateWhatsAppDisplayNameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateWhatsAppDisplayName200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateWhatsAppDisplayName200Response>> UpdateWhatsAppDisplayNameWithHttpInfoAsync(UpdateWhatsAppDisplayNameRequest updateWhatsAppDisplayNameRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'updateWhatsAppDisplayNameRequest' is set
+            if (updateWhatsAppDisplayNameRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateWhatsAppDisplayNameRequest' when calling WhatsAppApi->UpdateWhatsAppDisplayName");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = updateWhatsAppDisplayNameRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateWhatsAppDisplayName200Response>("/v1/whatsapp/business-profile/display-name", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateWhatsAppDisplayName", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Update template Update a message template&#39;s components. Only certain fields can be updated depending on the template&#39;s current approval state. Approved templates can only have components updated. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5551,6 +5943,149 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateWhatsAppTemplate", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
+        /// <returns>UnpublishPost200Response</returns>
+        public UnpublishPost200Response UploadWhatsAppProfilePhoto(string accountId, FileParameter file)
+        {
+            Late.Client.ApiResponse<UnpublishPost200Response> localVarResponse = UploadWhatsAppProfilePhotoWithHttpInfo(accountId, file);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
+        /// <returns>ApiResponse of UnpublishPost200Response</returns>
+        public Late.Client.ApiResponse<UnpublishPost200Response> UploadWhatsAppProfilePhotoWithHttpInfo(string accountId, FileParameter file)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->UploadWhatsAppProfilePhoto");
+
+            // verify the required parameter 'file' is set
+            if (file == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'file' when calling WhatsAppApi->UploadWhatsAppProfilePhoto");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.FormParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // form parameter
+            localVarRequestOptions.FileParameters.Add("file", file);
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UnpublishPost200Response>("/v1/whatsapp/business-profile/photo", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UploadWhatsAppProfilePhoto", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UnpublishPost200Response</returns>
+        public async System.Threading.Tasks.Task<UnpublishPost200Response> UploadWhatsAppProfilePhotoAsync(string accountId, FileParameter file, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UnpublishPost200Response> localVarResponse = await UploadWhatsAppProfilePhotoWithHttpInfoAsync(accountId, file, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload profile picture Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="file">Image file (JPEG or PNG, max 5MB, recommended 640x640)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UnpublishPost200Response>> UploadWhatsAppProfilePhotoWithHttpInfoAsync(string accountId, FileParameter file, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->UploadWhatsAppProfilePhoto");
+
+            // verify the required parameter 'file' is set
+            if (file == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'file' when calling WhatsAppApi->UploadWhatsAppProfilePhoto");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.FormParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // form parameter
+            localVarRequestOptions.FileParameters.Add("file", file);
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UnpublishPost200Response>("/v1/whatsapp/business-profile/photo", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UploadWhatsAppProfilePhoto", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

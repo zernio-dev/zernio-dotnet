@@ -8,6 +8,7 @@ docs/AccountGetResponse.md
 docs/AccountGroupsApi.md
 docs/AccountSettingsApi.md
 docs/AccountWithFollowerStats.md
+docs/AccountWithFollowerStatsAllOfAccountStats.md
 docs/AccountsApi.md
 docs/AccountsListResponse.md
 docs/AddWhatsAppBroadcastRecipients200Response.md
@@ -234,6 +235,8 @@ docs/GetWhatsAppContacts200Response.md
 docs/GetWhatsAppContacts200ResponseContactsInner.md
 docs/GetWhatsAppContacts200ResponseFilters.md
 docs/GetWhatsAppContacts200ResponsePagination.md
+docs/GetWhatsAppDisplayName200Response.md
+docs/GetWhatsAppDisplayName200ResponseDisplayName.md
 docs/GetWhatsAppGroups200Response.md
 docs/GetWhatsAppGroups200ResponseGroupsInner.md
 docs/GetWhatsAppGroups200ResponseSummary.md
@@ -489,6 +492,9 @@ docs/UpdateWhatsAppBusinessProfileRequest.md
 docs/UpdateWhatsAppContact200Response.md
 docs/UpdateWhatsAppContact200ResponseContact.md
 docs/UpdateWhatsAppContactRequest.md
+docs/UpdateWhatsAppDisplayName200Response.md
+docs/UpdateWhatsAppDisplayName200ResponseDisplayName.md
+docs/UpdateWhatsAppDisplayNameRequest.md
 docs/UpdateWhatsAppTemplate200Response.md
 docs/UpdateWhatsAppTemplate200ResponseTemplate.md
 docs/UpdateWhatsAppTemplateRequest.md
@@ -557,6 +563,12 @@ docs/YouTubeScopeMissingResponse.md
 docs/YouTubeScopeMissingResponseScopeStatus.md
 git_push.sh
 src/Late.Test/Late.Test.csproj
+src/Late.Test/Model/AccountWithFollowerStatsAllOfAccountStatsTests.cs
+src/Late.Test/Model/GetWhatsAppDisplayName200ResponseDisplayNameTests.cs
+src/Late.Test/Model/GetWhatsAppDisplayName200ResponseTests.cs
+src/Late.Test/Model/UpdateWhatsAppDisplayName200ResponseDisplayNameTests.cs
+src/Late.Test/Model/UpdateWhatsAppDisplayName200ResponseTests.cs
+src/Late.Test/Model/UpdateWhatsAppDisplayNameRequestTests.cs
 src/Late/Api/APIKeysApi.cs
 src/Late/Api/AccountGroupsApi.cs
 src/Late/Api/AccountSettingsApi.cs
@@ -608,6 +620,7 @@ src/Late/Late.csproj
 src/Late/Model/AbstractOpenAPISchema.cs
 src/Late/Model/AccountGetResponse.cs
 src/Late/Model/AccountWithFollowerStats.cs
+src/Late/Model/AccountWithFollowerStatsAllOfAccountStats.cs
 src/Late/Model/AccountsListResponse.cs
 src/Late/Model/AddWhatsAppBroadcastRecipients200Response.cs
 src/Late/Model/AddWhatsAppBroadcastRecipientsRequest.cs
@@ -824,6 +837,8 @@ src/Late/Model/GetWhatsAppContacts200Response.cs
 src/Late/Model/GetWhatsAppContacts200ResponseContactsInner.cs
 src/Late/Model/GetWhatsAppContacts200ResponseFilters.cs
 src/Late/Model/GetWhatsAppContacts200ResponsePagination.cs
+src/Late/Model/GetWhatsAppDisplayName200Response.cs
+src/Late/Model/GetWhatsAppDisplayName200ResponseDisplayName.cs
 src/Late/Model/GetWhatsAppGroups200Response.cs
 src/Late/Model/GetWhatsAppGroups200ResponseGroupsInner.cs
 src/Late/Model/GetWhatsAppGroups200ResponseSummary.cs
@@ -1068,6 +1083,9 @@ src/Late/Model/UpdateWhatsAppBusinessProfileRequest.cs
 src/Late/Model/UpdateWhatsAppContact200Response.cs
 src/Late/Model/UpdateWhatsAppContact200ResponseContact.cs
 src/Late/Model/UpdateWhatsAppContactRequest.cs
+src/Late/Model/UpdateWhatsAppDisplayName200Response.cs
+src/Late/Model/UpdateWhatsAppDisplayName200ResponseDisplayName.cs
+src/Late/Model/UpdateWhatsAppDisplayNameRequest.cs
 src/Late/Model/UpdateWhatsAppTemplate200Response.cs
 src/Late/Model/UpdateWhatsAppTemplate200ResponseTemplate.cs
 src/Late/Model/UpdateWhatsAppTemplateRequest.cs

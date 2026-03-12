@@ -51,7 +51,8 @@ namespace Late.Model
         /// <param name="growth">Follower change over period.</param>
         /// <param name="growthPercentage">Percentage growth.</param>
         /// <param name="dataPoints">Number of historical snapshots.</param>
-        public AccountWithFollowerStats(string id = default, string platform = default, SocialAccountProfileId profileId = default, string username = default, string displayName = default, string profileUrl = default, bool isActive = default, decimal followersCount = default, DateTime followersLastUpdated = default, string profilePicture = default, decimal currentFollowers = default, DateTime lastUpdated = default, decimal growth = default, decimal growthPercentage = default, decimal dataPoints = default)
+        /// <param name="accountStats">accountStats.</param>
+        public AccountWithFollowerStats(string id = default, string platform = default, SocialAccountProfileId profileId = default, string username = default, string displayName = default, string profileUrl = default, bool isActive = default, decimal followersCount = default, DateTime followersLastUpdated = default, string profilePicture = default, decimal currentFollowers = default, DateTime lastUpdated = default, decimal growth = default, decimal growthPercentage = default, decimal dataPoints = default, AccountWithFollowerStatsAllOfAccountStats accountStats = default)
         {
             this.Id = id;
             this.Platform = platform;
@@ -68,6 +69,7 @@ namespace Late.Model
             this.Growth = growth;
             this.GrowthPercentage = growthPercentage;
             this.DataPoints = dataPoints;
+            this.AccountStats = accountStats;
         }
 
         /// <summary>
@@ -168,6 +170,12 @@ namespace Late.Model
         public decimal DataPoints { get; set; }
 
         /// <summary>
+        /// Gets or Sets AccountStats
+        /// </summary>
+        [DataMember(Name = "accountStats", EmitDefaultValue = false)]
+        public AccountWithFollowerStatsAllOfAccountStats AccountStats { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -190,6 +198,7 @@ namespace Late.Model
             sb.Append("  Growth: ").Append(Growth).Append("\n");
             sb.Append("  GrowthPercentage: ").Append(GrowthPercentage).Append("\n");
             sb.Append("  DataPoints: ").Append(DataPoints).Append("\n");
+            sb.Append("  AccountStats: ").Append(AccountStats).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

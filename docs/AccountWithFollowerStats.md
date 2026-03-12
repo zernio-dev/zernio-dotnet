@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Growth** | **decimal** | Follower change over period | [optional] 
 **GrowthPercentage** | **decimal** | Percentage growth | [optional] 
 **DataPoints** | **decimal** | Number of historical snapshots | [optional] 
+**AccountStats** | [**AccountWithFollowerStatsAllOfAccountStats**](AccountWithFollowerStatsAllOfAccountStats.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
