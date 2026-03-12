@@ -41,13 +41,15 @@ namespace Late.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateGoogleBusinessLocationDetailsRequest" /> class.
         /// </summary>
-        /// <param name="updateMask">Required. Comma-separated fields to update (e.g. &#39;regularHours&#39;, &#39;specialHours&#39;, &#39;profile.description&#39;) (required).</param>
+        /// <param name="updateMask">Required. Comma-separated fields to update (e.g. &#39;regularHours&#39;, &#39;specialHours&#39;, &#39;profile.description&#39;, &#39;categories&#39;, &#39;serviceItems&#39;). Any valid Google Business Information API updateMask field is supported. (required).</param>
         /// <param name="regularHours">regularHours.</param>
         /// <param name="specialHours">specialHours.</param>
         /// <param name="profile">profile.</param>
         /// <param name="websiteUri">websiteUri.</param>
         /// <param name="phoneNumbers">phoneNumbers.</param>
-        public UpdateGoogleBusinessLocationDetailsRequest(string updateMask = default, UpdateGoogleBusinessLocationDetailsRequestRegularHours regularHours = default, GetGoogleBusinessLocationDetails200ResponseSpecialHours specialHours = default, UpdateGoogleBusinessLocationDetailsRequestProfile profile = default, string websiteUri = default, GetGoogleBusinessLocationDetails200ResponsePhoneNumbers phoneNumbers = default)
+        /// <param name="categories">categories.</param>
+        /// <param name="serviceItems">Services offered by the business. Use updateMask&#x3D;&#39;serviceItems&#39; to update..</param>
+        public UpdateGoogleBusinessLocationDetailsRequest(string updateMask = default, UpdateGoogleBusinessLocationDetailsRequestRegularHours regularHours = default, GetGoogleBusinessLocationDetails200ResponseSpecialHours specialHours = default, UpdateGoogleBusinessLocationDetailsRequestProfile profile = default, string websiteUri = default, GetGoogleBusinessLocationDetails200ResponsePhoneNumbers phoneNumbers = default, UpdateGoogleBusinessLocationDetailsRequestCategories categories = default, List<UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner> serviceItems = default)
         {
             // to ensure "updateMask" is required (not null)
             if (updateMask == null)
@@ -60,12 +62,14 @@ namespace Late.Model
             this.Profile = profile;
             this.WebsiteUri = websiteUri;
             this.PhoneNumbers = phoneNumbers;
+            this.Categories = categories;
+            this.ServiceItems = serviceItems;
         }
 
         /// <summary>
-        /// Required. Comma-separated fields to update (e.g. &#39;regularHours&#39;, &#39;specialHours&#39;, &#39;profile.description&#39;)
+        /// Required. Comma-separated fields to update (e.g. &#39;regularHours&#39;, &#39;specialHours&#39;, &#39;profile.description&#39;, &#39;categories&#39;, &#39;serviceItems&#39;). Any valid Google Business Information API updateMask field is supported.
         /// </summary>
-        /// <value>Required. Comma-separated fields to update (e.g. &#39;regularHours&#39;, &#39;specialHours&#39;, &#39;profile.description&#39;)</value>
+        /// <value>Required. Comma-separated fields to update (e.g. &#39;regularHours&#39;, &#39;specialHours&#39;, &#39;profile.description&#39;, &#39;categories&#39;, &#39;serviceItems&#39;). Any valid Google Business Information API updateMask field is supported.</value>
         [DataMember(Name = "updateMask", IsRequired = true, EmitDefaultValue = true)]
         public string UpdateMask { get; set; }
 
@@ -100,6 +104,19 @@ namespace Late.Model
         public GetGoogleBusinessLocationDetails200ResponsePhoneNumbers PhoneNumbers { get; set; }
 
         /// <summary>
+        /// Gets or Sets Categories
+        /// </summary>
+        [DataMember(Name = "categories", EmitDefaultValue = false)]
+        public UpdateGoogleBusinessLocationDetailsRequestCategories Categories { get; set; }
+
+        /// <summary>
+        /// Services offered by the business. Use updateMask&#x3D;&#39;serviceItems&#39; to update.
+        /// </summary>
+        /// <value>Services offered by the business. Use updateMask&#x3D;&#39;serviceItems&#39; to update.</value>
+        [DataMember(Name = "serviceItems", EmitDefaultValue = false)]
+        public List<UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner> ServiceItems { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -113,6 +130,8 @@ namespace Late.Model
             sb.Append("  Profile: ").Append(Profile).Append("\n");
             sb.Append("  WebsiteUri: ").Append(WebsiteUri).Append("\n");
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
+            sb.Append("  Categories: ").Append(Categories).Append("\n");
+            sb.Append("  ServiceItems: ").Append(ServiceItems).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

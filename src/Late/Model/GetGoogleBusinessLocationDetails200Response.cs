@@ -45,7 +45,9 @@ namespace Late.Model
         /// <param name="profile">profile.</param>
         /// <param name="websiteUri">websiteUri.</param>
         /// <param name="phoneNumbers">phoneNumbers.</param>
-        public GetGoogleBusinessLocationDetails200Response(bool success = default, string accountId = default, string locationId = default, string title = default, GetGoogleBusinessLocationDetails200ResponseRegularHours regularHours = default, GetGoogleBusinessLocationDetails200ResponseSpecialHours specialHours = default, GetGoogleBusinessLocationDetails200ResponseProfile profile = default, string websiteUri = default, GetGoogleBusinessLocationDetails200ResponsePhoneNumbers phoneNumbers = default)
+        /// <param name="categories">categories.</param>
+        /// <param name="serviceItems">Services offered (returned when readMask includes &#39;serviceItems&#39;).</param>
+        public GetGoogleBusinessLocationDetails200Response(bool success = default, string accountId = default, string locationId = default, string title = default, GetGoogleBusinessLocationDetails200ResponseRegularHours regularHours = default, GetGoogleBusinessLocationDetails200ResponseSpecialHours specialHours = default, GetGoogleBusinessLocationDetails200ResponseProfile profile = default, string websiteUri = default, GetGoogleBusinessLocationDetails200ResponsePhoneNumbers phoneNumbers = default, GetGoogleBusinessLocationDetails200ResponseCategories categories = default, List<GetGoogleBusinessLocationDetails200ResponseServiceItemsInner> serviceItems = default)
         {
             this.Success = success;
             this.AccountId = accountId;
@@ -56,6 +58,8 @@ namespace Late.Model
             this.Profile = profile;
             this.WebsiteUri = websiteUri;
             this.PhoneNumbers = phoneNumbers;
+            this.Categories = categories;
+            this.ServiceItems = serviceItems;
         }
 
         /// <summary>
@@ -114,6 +118,19 @@ namespace Late.Model
         public GetGoogleBusinessLocationDetails200ResponsePhoneNumbers PhoneNumbers { get; set; }
 
         /// <summary>
+        /// Gets or Sets Categories
+        /// </summary>
+        [DataMember(Name = "categories", EmitDefaultValue = false)]
+        public GetGoogleBusinessLocationDetails200ResponseCategories Categories { get; set; }
+
+        /// <summary>
+        /// Services offered (returned when readMask includes &#39;serviceItems&#39;)
+        /// </summary>
+        /// <value>Services offered (returned when readMask includes &#39;serviceItems&#39;)</value>
+        [DataMember(Name = "serviceItems", EmitDefaultValue = false)]
+        public List<GetGoogleBusinessLocationDetails200ResponseServiceItemsInner> ServiceItems { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -130,6 +147,8 @@ namespace Late.Model
             sb.Append("  Profile: ").Append(Profile).Append("\n");
             sb.Append("  WebsiteUri: ").Append(WebsiteUri).Append("\n");
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
+            sb.Append("  Categories: ").Append(Categories).Append("\n");
+            sb.Append("  ServiceItems: ").Append(ServiceItems).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
