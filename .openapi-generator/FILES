@@ -40,6 +40,9 @@ docs/CompleteTelegramConnect200Response.md
 docs/ConnectApi.md
 docs/ConnectBlueskyCredentials200Response.md
 docs/ConnectBlueskyCredentialsRequest.md
+docs/ConnectWhatsAppCredentials200Response.md
+docs/ConnectWhatsAppCredentials200ResponseAccount.md
+docs/ConnectWhatsAppCredentialsRequest.md
 docs/Connected.md
 docs/ConnectedAccount.md
 docs/ConnectionLog.md
@@ -77,6 +80,8 @@ docs/CreateWhatsAppContactRequest.md
 docs/CreateWhatsAppTemplate200Response.md
 docs/CreateWhatsAppTemplate200ResponseTemplate.md
 docs/CreateWhatsAppTemplateRequest.md
+docs/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInner.md
+docs/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUrl.md
 docs/DeleteAccountGroup200Response.md
 docs/DeleteGoogleBusinessMedia200Response.md
 docs/DeleteGoogleBusinessPlaceAction200Response.md
@@ -552,6 +557,11 @@ docs/YouTubeScopeMissingResponse.md
 docs/YouTubeScopeMissingResponseScopeStatus.md
 git_push.sh
 src/Late.Test/Late.Test.csproj
+src/Late.Test/Model/ConnectWhatsAppCredentials200ResponseAccountTests.cs
+src/Late.Test/Model/ConnectWhatsAppCredentials200ResponseTests.cs
+src/Late.Test/Model/ConnectWhatsAppCredentialsRequestTests.cs
+src/Late.Test/Model/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerTests.cs
+src/Late.Test/Model/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUrlTests.cs
 src/Late/Api/APIKeysApi.cs
 src/Late/Api/AccountGroupsApi.cs
 src/Late/Api/AccountSettingsApi.cs
@@ -631,6 +641,9 @@ src/Late/Model/CheckInstagramHashtagsRequest.cs
 src/Late/Model/CompleteTelegramConnect200Response.cs
 src/Late/Model/ConnectBlueskyCredentials200Response.cs
 src/Late/Model/ConnectBlueskyCredentialsRequest.cs
+src/Late/Model/ConnectWhatsAppCredentials200Response.cs
+src/Late/Model/ConnectWhatsAppCredentials200ResponseAccount.cs
+src/Late/Model/ConnectWhatsAppCredentialsRequest.cs
 src/Late/Model/Connected.cs
 src/Late/Model/ConnectedAccount.cs
 src/Late/Model/ConnectionLog.cs
@@ -668,6 +681,8 @@ src/Late/Model/CreateWhatsAppContactRequest.cs
 src/Late/Model/CreateWhatsAppTemplate200Response.cs
 src/Late/Model/CreateWhatsAppTemplate200ResponseTemplate.cs
 src/Late/Model/CreateWhatsAppTemplateRequest.cs
+src/Late/Model/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInner.cs
+src/Late/Model/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUrl.cs
 src/Late/Model/DeleteAccountGroup200Response.cs
 src/Late/Model/DeleteGoogleBusinessMedia200Response.cs
 src/Late/Model/DeleteGoogleBusinessPlaceAction200Response.cs

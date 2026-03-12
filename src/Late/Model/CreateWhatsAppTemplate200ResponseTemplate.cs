@@ -38,7 +38,7 @@ namespace Late.Model
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="name">name.</param>
-        /// <param name="status">status.</param>
+        /// <param name="status">APPROVED for library templates, PENDING for custom.</param>
         /// <param name="category">category.</param>
         /// <param name="language">language.</param>
         public CreateWhatsAppTemplate200ResponseTemplate(string id = default, string name = default, string status = default, string category = default, string language = default)
@@ -63,8 +63,9 @@ namespace Late.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// APPROVED for library templates, PENDING for custom
         /// </summary>
+        /// <value>APPROVED for library templates, PENDING for custom</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 

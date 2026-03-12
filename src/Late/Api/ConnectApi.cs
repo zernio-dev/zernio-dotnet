@@ -71,6 +71,27 @@ namespace Late.Api
         /// <returns>ApiResponse of ConnectBlueskyCredentials200Response</returns>
         ApiResponse<ConnectBlueskyCredentials200Response> ConnectBlueskyCredentialsWithHttpInfo(ConnectBlueskyCredentialsRequest connectBlueskyCredentialsRequest);
         /// <summary>
+        /// Connect WhatsApp via credentials
+        /// </summary>
+        /// <remarks>
+        /// Connect a WhatsApp Business Account by providing Meta credentials directly. This is the headless alternative to the Embedded Signup browser flow.  To get the required credentials: 1. Go to Meta Business Suite (business.facebook.com) 2. Create or select a WhatsApp Business Account 3. In Business Settings &gt; System Users, create a System User 4. Assign it the &#x60;whatsapp_business_management&#x60; and &#x60;whatsapp_business_messaging&#x60; permissions 5. Generate a permanent access token 6. Get the WABA ID from WhatsApp Manager &gt; Account Tools &gt; Phone Numbers 7. Get the Phone Number ID from the same page (click on the number) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppCredentialsRequest"></param>
+        /// <returns>ConnectWhatsAppCredentials200Response</returns>
+        ConnectWhatsAppCredentials200Response ConnectWhatsAppCredentials(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest);
+
+        /// <summary>
+        /// Connect WhatsApp via credentials
+        /// </summary>
+        /// <remarks>
+        /// Connect a WhatsApp Business Account by providing Meta credentials directly. This is the headless alternative to the Embedded Signup browser flow.  To get the required credentials: 1. Go to Meta Business Suite (business.facebook.com) 2. Create or select a WhatsApp Business Account 3. In Business Settings &gt; System Users, create a System User 4. Assign it the &#x60;whatsapp_business_management&#x60; and &#x60;whatsapp_business_messaging&#x60; permissions 5. Generate a permanent access token 6. Get the WABA ID from WhatsApp Manager &gt; Account Tools &gt; Phone Numbers 7. Get the Phone Number ID from the same page (click on the number) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppCredentialsRequest"></param>
+        /// <returns>ApiResponse of ConnectWhatsAppCredentials200Response</returns>
+        ApiResponse<ConnectWhatsAppCredentials200Response> ConnectWhatsAppCredentialsWithHttpInfo(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest);
+        /// <summary>
         /// Get OAuth connect URL
         /// </summary>
         /// <remarks>
@@ -707,6 +728,29 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConnectBlueskyCredentials200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ConnectBlueskyCredentials200Response>> ConnectBlueskyCredentialsWithHttpInfoAsync(ConnectBlueskyCredentialsRequest connectBlueskyCredentialsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Connect WhatsApp via credentials
+        /// </summary>
+        /// <remarks>
+        /// Connect a WhatsApp Business Account by providing Meta credentials directly. This is the headless alternative to the Embedded Signup browser flow.  To get the required credentials: 1. Go to Meta Business Suite (business.facebook.com) 2. Create or select a WhatsApp Business Account 3. In Business Settings &gt; System Users, create a System User 4. Assign it the &#x60;whatsapp_business_management&#x60; and &#x60;whatsapp_business_messaging&#x60; permissions 5. Generate a permanent access token 6. Get the WABA ID from WhatsApp Manager &gt; Account Tools &gt; Phone Numbers 7. Get the Phone Number ID from the same page (click on the number) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ConnectWhatsAppCredentials200Response</returns>
+        System.Threading.Tasks.Task<ConnectWhatsAppCredentials200Response> ConnectWhatsAppCredentialsAsync(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Connect WhatsApp via credentials
+        /// </summary>
+        /// <remarks>
+        /// Connect a WhatsApp Business Account by providing Meta credentials directly. This is the headless alternative to the Embedded Signup browser flow.  To get the required credentials: 1. Go to Meta Business Suite (business.facebook.com) 2. Create or select a WhatsApp Business Account 3. In Business Settings &gt; System Users, create a System User 4. Assign it the &#x60;whatsapp_business_management&#x60; and &#x60;whatsapp_business_messaging&#x60; permissions 5. Generate a permanent access token 6. Get the WABA ID from WhatsApp Manager &gt; Account Tools &gt; Phone Numbers 7. Get the Phone Number ID from the same page (click on the number) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ConnectWhatsAppCredentials200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ConnectWhatsAppCredentials200Response>> ConnectWhatsAppCredentialsWithHttpInfoAsync(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get OAuth connect URL
         /// </summary>
@@ -1804,6 +1848,135 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ConnectBlueskyCredentials", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Connect WhatsApp via credentials Connect a WhatsApp Business Account by providing Meta credentials directly. This is the headless alternative to the Embedded Signup browser flow.  To get the required credentials: 1. Go to Meta Business Suite (business.facebook.com) 2. Create or select a WhatsApp Business Account 3. In Business Settings &gt; System Users, create a System User 4. Assign it the &#x60;whatsapp_business_management&#x60; and &#x60;whatsapp_business_messaging&#x60; permissions 5. Generate a permanent access token 6. Get the WABA ID from WhatsApp Manager &gt; Account Tools &gt; Phone Numbers 7. Get the Phone Number ID from the same page (click on the number) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppCredentialsRequest"></param>
+        /// <returns>ConnectWhatsAppCredentials200Response</returns>
+        public ConnectWhatsAppCredentials200Response ConnectWhatsAppCredentials(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest)
+        {
+            Late.Client.ApiResponse<ConnectWhatsAppCredentials200Response> localVarResponse = ConnectWhatsAppCredentialsWithHttpInfo(connectWhatsAppCredentialsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Connect WhatsApp via credentials Connect a WhatsApp Business Account by providing Meta credentials directly. This is the headless alternative to the Embedded Signup browser flow.  To get the required credentials: 1. Go to Meta Business Suite (business.facebook.com) 2. Create or select a WhatsApp Business Account 3. In Business Settings &gt; System Users, create a System User 4. Assign it the &#x60;whatsapp_business_management&#x60; and &#x60;whatsapp_business_messaging&#x60; permissions 5. Generate a permanent access token 6. Get the WABA ID from WhatsApp Manager &gt; Account Tools &gt; Phone Numbers 7. Get the Phone Number ID from the same page (click on the number) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppCredentialsRequest"></param>
+        /// <returns>ApiResponse of ConnectWhatsAppCredentials200Response</returns>
+        public Late.Client.ApiResponse<ConnectWhatsAppCredentials200Response> ConnectWhatsAppCredentialsWithHttpInfo(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest)
+        {
+            // verify the required parameter 'connectWhatsAppCredentialsRequest' is set
+            if (connectWhatsAppCredentialsRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'connectWhatsAppCredentialsRequest' when calling ConnectApi->ConnectWhatsAppCredentials");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectWhatsAppCredentialsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ConnectWhatsAppCredentials200Response>("/v1/connect/whatsapp/credentials", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectWhatsAppCredentials", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Connect WhatsApp via credentials Connect a WhatsApp Business Account by providing Meta credentials directly. This is the headless alternative to the Embedded Signup browser flow.  To get the required credentials: 1. Go to Meta Business Suite (business.facebook.com) 2. Create or select a WhatsApp Business Account 3. In Business Settings &gt; System Users, create a System User 4. Assign it the &#x60;whatsapp_business_management&#x60; and &#x60;whatsapp_business_messaging&#x60; permissions 5. Generate a permanent access token 6. Get the WABA ID from WhatsApp Manager &gt; Account Tools &gt; Phone Numbers 7. Get the Phone Number ID from the same page (click on the number) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ConnectWhatsAppCredentials200Response</returns>
+        public async System.Threading.Tasks.Task<ConnectWhatsAppCredentials200Response> ConnectWhatsAppCredentialsAsync(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<ConnectWhatsAppCredentials200Response> localVarResponse = await ConnectWhatsAppCredentialsWithHttpInfoAsync(connectWhatsAppCredentialsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Connect WhatsApp via credentials Connect a WhatsApp Business Account by providing Meta credentials directly. This is the headless alternative to the Embedded Signup browser flow.  To get the required credentials: 1. Go to Meta Business Suite (business.facebook.com) 2. Create or select a WhatsApp Business Account 3. In Business Settings &gt; System Users, create a System User 4. Assign it the &#x60;whatsapp_business_management&#x60; and &#x60;whatsapp_business_messaging&#x60; permissions 5. Generate a permanent access token 6. Get the WABA ID from WhatsApp Manager &gt; Account Tools &gt; Phone Numbers 7. Get the Phone Number ID from the same page (click on the number) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectWhatsAppCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ConnectWhatsAppCredentials200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ConnectWhatsAppCredentials200Response>> ConnectWhatsAppCredentialsWithHttpInfoAsync(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'connectWhatsAppCredentialsRequest' is set
+            if (connectWhatsAppCredentialsRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'connectWhatsAppCredentialsRequest' when calling ConnectApi->ConnectWhatsAppCredentials");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectWhatsAppCredentialsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ConnectWhatsAppCredentials200Response>("/v1/connect/whatsapp/credentials", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectWhatsAppCredentials", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
