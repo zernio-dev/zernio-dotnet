@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Filename** | **string** |  | [optional] 
 **Size** | **int** | Optional file size in bytes | [optional] 
 **MimeType** | **string** | Optional MIME type (e.g. image/jpeg, video/mp4) | [optional] 
-**Thumbnail** | **string** | Optional thumbnail image URL for videos | [optional] 
+**Thumbnail** | **string** | Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, and regular video uploads. Max 10MB, JPG/PNG recommended. | [optional] 
 **InstagramThumbnail** | **string** | Optional custom cover image URL for Instagram Reels | [optional] 
 **TiktokProcessed** | **bool** | Internal flag indicating the image was resized for TikTok | [optional] 
 
