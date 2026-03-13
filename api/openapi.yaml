@@ -758,6 +758,12 @@ paths:
                     platform: twitter
                     platformPostUrl: https://twitter.com/acmecorp/status/123456789
                     isExternal: false
+                    thumbnailUrl: https://storage.example.com/image.jpg
+                    mediaType: image
+                    mediaItems:
+                    - type: image
+                      url: https://storage.example.com/image.jpg
+                      thumbnail: https://storage.example.com/image.jpg
                 postList:
                   description: "Note: The list endpoint returns External Post IDs.\
                     \ Posts originally \nscheduled via Late will have isExternal:\
@@ -794,7 +800,14 @@ paths:
                       platformPostUrl: https://www.instagram.com/reel/ABC123xyz/
                       isExternal: true
                       thumbnailUrl: https://storage.example.com/thumb.jpg
-                      mediaType: video
+                      mediaType: carousel
+                      mediaItems:
+                      - type: image
+                        url: https://storage.example.com/slide1.jpg
+                        thumbnail: https://storage.example.com/slide1.jpg
+                      - type: image
+                        url: https://storage.example.com/slide2.jpg
+                        thumbnail: https://storage.example.com/slide2.jpg
                     pagination:
                       page: 1
                       limit: 50
@@ -12658,21 +12671,9 @@ components:
           type: string
     AnalyticsSinglePostResponse:
       example:
-        analytics:
-          shares: 0
-          engagementRate: 0
-          lastUpdated: 2000-01-23T04:56:07.000+00:00
-          comments: 0
-          saves: 0
-          reach: 0
-          clicks: 0
-          impressions: 0
-          views: 0
-          likes: 0
         isExternal: true
         publishedAt: 2000-01-23T04:56:07.000+00:00
-        scheduledFor: 2000-01-23T04:56:07.000+00:00
-        platformPostUrl: https://openapi-generator.tech
+        mediaType: image
         postId: postId
         platformAnalytics:
         - analytics:
@@ -12715,7 +12716,28 @@ components:
           status: status
         content: content
         platform: platform
+        analytics:
+          shares: 0
+          engagementRate: 0
+          lastUpdated: 2000-01-23T04:56:07.000+00:00
+          comments: 0
+          saves: 0
+          reach: 0
+          clicks: 0
+          impressions: 0
+          views: 0
+          likes: 0
+        mediaItems:
+        - thumbnail: https://openapi-generator.tech
+          type: image
+          url: https://openapi-generator.tech
+        - thumbnail: https://openapi-generator.tech
+          type: image
+          url: https://openapi-generator.tech
+        scheduledFor: 2000-01-23T04:56:07.000+00:00
+        platformPostUrl: https://openapi-generator.tech
         status: status
+        thumbnailUrl: https://openapi-generator.tech
       properties:
         postId:
           type: string
@@ -12742,6 +12764,24 @@ components:
           type: string
         isExternal:
           type: boolean
+        thumbnailUrl:
+          format: uri
+          type: string
+          nullable: true
+        mediaType:
+          enum:
+          - image
+          - video
+          - carousel
+          - text
+          type: string
+          nullable: true
+        mediaItems:
+          description: All media items for this post. Carousel posts contain one entry
+            per slide.
+          items:
+            $ref: "#/components/schemas/AnalyticsSinglePostResponse_mediaItems_inner"
+          type: array
     AnalyticsListResponse:
       properties:
         overview:
@@ -25929,6 +25969,25 @@ components:
           type: string
           nullable: true
       nullable: true
+    AnalyticsSinglePostResponse_mediaItems_inner:
+      example:
+        thumbnail: https://openapi-generator.tech
+        type: image
+        url: https://openapi-generator.tech
+      properties:
+        type:
+          enum:
+          - image
+          - video
+          type: string
+        url:
+          description: Direct URL to the media
+          format: uri
+          type: string
+        thumbnail:
+          description: Thumbnail URL (same as url for images)
+          format: uri
+          type: string
     AnalyticsListResponse_posts_inner:
       properties:
         _id:
@@ -25965,10 +26024,14 @@ components:
           - video
           - gif
           - document
+          - carousel
+          - text
           type: string
         mediaItems:
+          description: All media items for this post. Carousel posts contain one entry
+            per slide.
           items:
-            $ref: "#/components/schemas/MediaItem"
+            $ref: "#/components/schemas/AnalyticsSinglePostResponse_mediaItems_inner"
           type: array
     LinkedInAggregateAnalyticsTotalResponse_dateRange:
       example:
@@ -26158,5 +26221,5 @@ x-documentation:
 
     ## SDKs
 
-    Official SDKs available for: [Node.js](https://www.npmjs.com/package/late), [Python](https://pypi.org/project/late), Go, Ruby, Java, PHP, .NET, and Rust.
+    Official SDKs available for: [Node.js](https://www.npmjs.com/package/@getlatedev/node), [Python](https://pypi.org/project/late-sdk), Go, Ruby, Java, PHP, .NET, and Rust.
 

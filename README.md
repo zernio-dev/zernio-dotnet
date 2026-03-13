@@ -334,6 +334,7 @@ Class | Method | HTTP request | Description
  - [Model.AnalyticsListResponsePostsInner](docs/AnalyticsListResponsePostsInner.md)
  - [Model.AnalyticsOverview](docs/AnalyticsOverview.md)
  - [Model.AnalyticsSinglePostResponse](docs/AnalyticsSinglePostResponse.md)
+ - [Model.AnalyticsSinglePostResponseMediaItemsInner](docs/AnalyticsSinglePostResponseMediaItemsInner.md)
  - [Model.ApiKey](docs/ApiKey.md)
  - [Model.ApiKeyProfileIdsInner](docs/ApiKeyProfileIdsInner.md)
  - [Model.BlueskyPlatformData](docs/BlueskyPlatformData.md)

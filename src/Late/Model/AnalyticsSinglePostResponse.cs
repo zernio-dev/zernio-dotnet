@@ -34,6 +34,43 @@ namespace Late.Model
     public partial class AnalyticsSinglePostResponse : IValidatableObject
     {
         /// <summary>
+        /// Defines MediaType
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum MediaTypeEnum
+        {
+            /// <summary>
+            /// Enum Image for value: image
+            /// </summary>
+            [EnumMember(Value = "image")]
+            Image = 1,
+
+            /// <summary>
+            /// Enum Video for value: video
+            /// </summary>
+            [EnumMember(Value = "video")]
+            Video = 2,
+
+            /// <summary>
+            /// Enum Carousel for value: carousel
+            /// </summary>
+            [EnumMember(Value = "carousel")]
+            Carousel = 3,
+
+            /// <summary>
+            /// Enum Text for value: text
+            /// </summary>
+            [EnumMember(Value = "text")]
+            Text = 4
+        }
+
+
+        /// <summary>
+        /// Gets or Sets MediaType
+        /// </summary>
+        [DataMember(Name = "mediaType", EmitDefaultValue = false)]
+        public MediaTypeEnum? MediaType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="AnalyticsSinglePostResponse" /> class.
         /// </summary>
         /// <param name="postId">postId.</param>
@@ -46,7 +83,10 @@ namespace Late.Model
         /// <param name="platform">platform.</param>
         /// <param name="platformPostUrl">platformPostUrl.</param>
         /// <param name="isExternal">isExternal.</param>
-        public AnalyticsSinglePostResponse(string postId = default, string status = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, PostAnalytics analytics = default, List<PlatformAnalytics> platformAnalytics = default, string platform = default, string platformPostUrl = default, bool isExternal = default)
+        /// <param name="thumbnailUrl">thumbnailUrl.</param>
+        /// <param name="mediaType">mediaType.</param>
+        /// <param name="mediaItems">All media items for this post. Carousel posts contain one entry per slide..</param>
+        public AnalyticsSinglePostResponse(string postId = default, string status = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, PostAnalytics analytics = default, List<PlatformAnalytics> platformAnalytics = default, string platform = default, string platformPostUrl = default, bool isExternal = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = default)
         {
             this.PostId = postId;
             this.Status = status;
@@ -58,6 +98,9 @@ namespace Late.Model
             this.Platform = platform;
             this.PlatformPostUrl = platformPostUrl;
             this.IsExternal = isExternal;
+            this.ThumbnailUrl = thumbnailUrl;
+            this.MediaType = mediaType;
+            this.MediaItems = mediaItems;
         }
 
         /// <summary>
@@ -121,6 +164,19 @@ namespace Late.Model
         public bool IsExternal { get; set; }
 
         /// <summary>
+        /// Gets or Sets ThumbnailUrl
+        /// </summary>
+        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
+        public string ThumbnailUrl { get; set; }
+
+        /// <summary>
+        /// All media items for this post. Carousel posts contain one entry per slide.
+        /// </summary>
+        /// <value>All media items for this post. Carousel posts contain one entry per slide.</value>
+        [DataMember(Name = "mediaItems", EmitDefaultValue = false)]
+        public List<AnalyticsSinglePostResponseMediaItemsInner> MediaItems { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -138,6 +194,9 @@ namespace Late.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  PlatformPostUrl: ").Append(PlatformPostUrl).Append("\n");
             sb.Append("  IsExternal: ").Append(IsExternal).Append("\n");
+            sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
+            sb.Append("  MediaType: ").Append(MediaType).Append("\n");
+            sb.Append("  MediaItems: ").Append(MediaItems).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

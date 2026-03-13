@@ -61,7 +61,19 @@ namespace Late.Model
             /// Enum Document for value: document
             /// </summary>
             [EnumMember(Value = "document")]
-            Document = 4
+            Document = 4,
+
+            /// <summary>
+            /// Enum Carousel for value: carousel
+            /// </summary>
+            [EnumMember(Value = "carousel")]
+            Carousel = 5,
+
+            /// <summary>
+            /// Enum Text for value: text
+            /// </summary>
+            [EnumMember(Value = "text")]
+            Text = 6
         }
 
 
@@ -85,8 +97,8 @@ namespace Late.Model
         /// <param name="isExternal">isExternal.</param>
         /// <param name="thumbnailUrl">thumbnailUrl.</param>
         /// <param name="mediaType">mediaType.</param>
-        /// <param name="mediaItems">mediaItems.</param>
-        public AnalyticsListResponsePostsInner(string id = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, string status = default, PostAnalytics analytics = default, List<PlatformAnalytics> platforms = default, string platform = default, string platformPostUrl = default, bool isExternal = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<MediaItem> mediaItems = default)
+        /// <param name="mediaItems">All media items for this post. Carousel posts contain one entry per slide..</param>
+        public AnalyticsListResponsePostsInner(string id = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, string status = default, PostAnalytics analytics = default, List<PlatformAnalytics> platforms = default, string platform = default, string platformPostUrl = default, bool isExternal = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = default)
         {
             this.Id = id;
             this.Content = content;
@@ -170,10 +182,11 @@ namespace Late.Model
         public string ThumbnailUrl { get; set; }
 
         /// <summary>
-        /// Gets or Sets MediaItems
+        /// All media items for this post. Carousel posts contain one entry per slide.
         /// </summary>
+        /// <value>All media items for this post. Carousel posts contain one entry per slide.</value>
         [DataMember(Name = "mediaItems", EmitDefaultValue = false)]
-        public List<MediaItem> MediaItems { get; set; }
+        public List<AnalyticsSinglePostResponseMediaItemsInner> MediaItems { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
