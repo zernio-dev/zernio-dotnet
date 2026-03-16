@@ -42,7 +42,7 @@ namespace Late.Model
         /// <param name="platforms">platforms.</param>
         /// <param name="scheduledFor">scheduledFor.</param>
         /// <param name="publishNow">publishNow (default to false).</param>
-        /// <param name="isDraft">isDraft (default to false).</param>
+        /// <param name="isDraft">When true, saves the post as a draft. When none of scheduledFor, publishNow, or queuedFromProfile are provided, the post defaults to draft automatically. (default to false).</param>
         /// <param name="timezone">timezone (default to &quot;UTC&quot;).</param>
         /// <param name="tags">Tags/keywords. YouTube constraints: each tag max 100 chars, combined max 500 chars, duplicates auto-removed..</param>
         /// <param name="hashtags">hashtags.</param>
@@ -113,8 +113,9 @@ namespace Late.Model
         public bool PublishNow { get; set; }
 
         /// <summary>
-        /// Gets or Sets IsDraft
+        /// When true, saves the post as a draft. When none of scheduledFor, publishNow, or queuedFromProfile are provided, the post defaults to draft automatically.
         /// </summary>
+        /// <value>When true, saves the post as a draft. When none of scheduledFor, publishNow, or queuedFromProfile are provided, the post defaults to draft automatically.</value>
         [DataMember(Name = "isDraft", EmitDefaultValue = true)]
         public bool IsDraft { get; set; }
 
