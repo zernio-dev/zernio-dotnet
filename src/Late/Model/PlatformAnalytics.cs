@@ -34,6 +34,64 @@ namespace Late.Model
     public partial class PlatformAnalytics : IValidatableObject
     {
         /// <summary>
+        /// Defines Status
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            /// <summary>
+            /// Enum Published for value: published
+            /// </summary>
+            [EnumMember(Value = "published")]
+            Published = 1,
+
+            /// <summary>
+            /// Enum Failed for value: failed
+            /// </summary>
+            [EnumMember(Value = "failed")]
+            Failed = 2
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Status
+        /// </summary>
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public StatusEnum? Status { get; set; }
+        /// <summary>
+        /// Sync state of analytics for this platform
+        /// </summary>
+        /// <value>Sync state of analytics for this platform</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SyncStatusEnum
+        {
+            /// <summary>
+            /// Enum Synced for value: synced
+            /// </summary>
+            [EnumMember(Value = "synced")]
+            Synced = 1,
+
+            /// <summary>
+            /// Enum Pending for value: pending
+            /// </summary>
+            [EnumMember(Value = "pending")]
+            Pending = 2,
+
+            /// <summary>
+            /// Enum Unavailable for value: unavailable
+            /// </summary>
+            [EnumMember(Value = "unavailable")]
+            Unavailable = 3
+        }
+
+
+        /// <summary>
+        /// Sync state of analytics for this platform
+        /// </summary>
+        /// <value>Sync state of analytics for this platform</value>
+        [DataMember(Name = "syncStatus", EmitDefaultValue = false)]
+        public SyncStatusEnum? SyncStatus { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="PlatformAnalytics" /> class.
         /// </summary>
         /// <param name="platform">platform.</param>
@@ -41,15 +99,19 @@ namespace Late.Model
         /// <param name="accountId">accountId.</param>
         /// <param name="accountUsername">accountUsername.</param>
         /// <param name="analytics">analytics.</param>
-        /// <param name="accountMetrics">accountMetrics.</param>
-        public PlatformAnalytics(string platform = default, string status = default, string accountId = default, string accountUsername = default, PostAnalytics analytics = default, PlatformAnalyticsAccountMetrics accountMetrics = default)
+        /// <param name="syncStatus">Sync state of analytics for this platform.</param>
+        /// <param name="platformPostUrl">platformPostUrl.</param>
+        /// <param name="errorMessage">Error details when status is failed.</param>
+        public PlatformAnalytics(string platform = default, StatusEnum? status = default, string accountId = default, string accountUsername = default, PostAnalytics analytics = default, SyncStatusEnum? syncStatus = default, string platformPostUrl = default, string errorMessage = default)
         {
             this.Platform = platform;
             this.Status = status;
             this.AccountId = accountId;
             this.AccountUsername = accountUsername;
             this.Analytics = analytics;
-            this.AccountMetrics = accountMetrics;
+            this.SyncStatus = syncStatus;
+            this.PlatformPostUrl = platformPostUrl;
+            this.ErrorMessage = errorMessage;
         }
 
         /// <summary>
@@ -57,12 +119,6 @@ namespace Late.Model
         /// </summary>
         [DataMember(Name = "platform", EmitDefaultValue = false)]
         public string Platform { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Status
-        /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public string Status { get; set; }
 
         /// <summary>
         /// Gets or Sets AccountId
@@ -83,10 +139,17 @@ namespace Late.Model
         public PostAnalytics Analytics { get; set; }
 
         /// <summary>
-        /// Gets or Sets AccountMetrics
+        /// Gets or Sets PlatformPostUrl
         /// </summary>
-        [DataMember(Name = "accountMetrics", EmitDefaultValue = false)]
-        public PlatformAnalyticsAccountMetrics AccountMetrics { get; set; }
+        [DataMember(Name = "platformPostUrl", EmitDefaultValue = false)]
+        public string PlatformPostUrl { get; set; }
+
+        /// <summary>
+        /// Error details when status is failed
+        /// </summary>
+        /// <value>Error details when status is failed</value>
+        [DataMember(Name = "errorMessage", EmitDefaultValue = false)]
+        public string ErrorMessage { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -101,7 +164,9 @@ namespace Late.Model
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  AccountUsername: ").Append(AccountUsername).Append("\n");
             sb.Append("  Analytics: ").Append(Analytics).Append("\n");
-            sb.Append("  AccountMetrics: ").Append(AccountMetrics).Append("\n");
+            sb.Append("  SyncStatus: ").Append(SyncStatus).Append("\n");
+            sb.Append("  PlatformPostUrl: ").Append(PlatformPostUrl).Append("\n");
+            sb.Append("  ErrorMessage: ").Append(ErrorMessage).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

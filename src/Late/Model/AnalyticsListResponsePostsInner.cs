@@ -86,6 +86,7 @@ namespace Late.Model
         /// Initializes a new instance of the <see cref="AnalyticsListResponsePostsInner" /> class.
         /// </summary>
         /// <param name="id">id.</param>
+        /// <param name="latePostId">Original Late post ID if scheduled via Late.</param>
         /// <param name="content">content.</param>
         /// <param name="scheduledFor">scheduledFor.</param>
         /// <param name="publishedAt">publishedAt.</param>
@@ -95,12 +96,14 @@ namespace Late.Model
         /// <param name="platform">platform.</param>
         /// <param name="platformPostUrl">platformPostUrl.</param>
         /// <param name="isExternal">isExternal.</param>
+        /// <param name="profileId">profileId.</param>
         /// <param name="thumbnailUrl">thumbnailUrl.</param>
         /// <param name="mediaType">mediaType.</param>
         /// <param name="mediaItems">All media items for this post. Carousel posts contain one entry per slide..</param>
-        public AnalyticsListResponsePostsInner(string id = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, string status = default, PostAnalytics analytics = default, List<PlatformAnalytics> platforms = default, string platform = default, string platformPostUrl = default, bool isExternal = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = default)
+        public AnalyticsListResponsePostsInner(string id = default, string latePostId = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, string status = default, PostAnalytics analytics = default, List<PlatformAnalytics> platforms = default, string platform = default, string platformPostUrl = default, bool isExternal = default, string profileId = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = default)
         {
             this.Id = id;
+            this.LatePostId = latePostId;
             this.Content = content;
             this.ScheduledFor = scheduledFor;
             this.PublishedAt = publishedAt;
@@ -110,6 +113,7 @@ namespace Late.Model
             this.Platform = platform;
             this.PlatformPostUrl = platformPostUrl;
             this.IsExternal = isExternal;
+            this.ProfileId = profileId;
             this.ThumbnailUrl = thumbnailUrl;
             this.MediaType = mediaType;
             this.MediaItems = mediaItems;
@@ -120,6 +124,13 @@ namespace Late.Model
         /// </summary>
         [DataMember(Name = "_id", EmitDefaultValue = false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Original Late post ID if scheduled via Late
+        /// </summary>
+        /// <value>Original Late post ID if scheduled via Late</value>
+        [DataMember(Name = "latePostId", EmitDefaultValue = false)]
+        public string LatePostId { get; set; }
 
         /// <summary>
         /// Gets or Sets Content
@@ -176,6 +187,12 @@ namespace Late.Model
         public bool IsExternal { get; set; }
 
         /// <summary>
+        /// Gets or Sets ProfileId
+        /// </summary>
+        [DataMember(Name = "profileId", EmitDefaultValue = false)]
+        public string ProfileId { get; set; }
+
+        /// <summary>
         /// Gets or Sets ThumbnailUrl
         /// </summary>
         [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
@@ -197,6 +214,7 @@ namespace Late.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AnalyticsListResponsePostsInner {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  LatePostId: ").Append(LatePostId).Append("\n");
             sb.Append("  Content: ").Append(Content).Append("\n");
             sb.Append("  ScheduledFor: ").Append(ScheduledFor).Append("\n");
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
@@ -206,6 +224,7 @@ namespace Late.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  PlatformPostUrl: ").Append(PlatformPostUrl).Append("\n");
             sb.Append("  IsExternal: ").Append(IsExternal).Append("\n");
+            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
             sb.Append("  MediaType: ").Append(MediaType).Append("\n");
             sb.Append("  MediaItems: ").Append(MediaItems).Append("\n");

@@ -40,12 +40,14 @@ namespace Late.Model
         /// <param name="publishedPosts">publishedPosts.</param>
         /// <param name="scheduledPosts">scheduledPosts.</param>
         /// <param name="lastSync">lastSync.</param>
-        public AnalyticsOverview(int totalPosts = default, int publishedPosts = default, int scheduledPosts = default, DateTime lastSync = default)
+        /// <param name="dataStaleness">dataStaleness.</param>
+        public AnalyticsOverview(int totalPosts = default, int publishedPosts = default, int scheduledPosts = default, DateTime lastSync = default, AnalyticsOverviewDataStaleness dataStaleness = default)
         {
             this.TotalPosts = totalPosts;
             this.PublishedPosts = publishedPosts;
             this.ScheduledPosts = scheduledPosts;
             this.LastSync = lastSync;
+            this.DataStaleness = dataStaleness;
         }
 
         /// <summary>
@@ -73,6 +75,12 @@ namespace Late.Model
         public DateTime LastSync { get; set; }
 
         /// <summary>
+        /// Gets or Sets DataStaleness
+        /// </summary>
+        [DataMember(Name = "dataStaleness", EmitDefaultValue = false)]
+        public AnalyticsOverviewDataStaleness DataStaleness { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -84,6 +92,7 @@ namespace Late.Model
             sb.Append("  PublishedPosts: ").Append(PublishedPosts).Append("\n");
             sb.Append("  ScheduledPosts: ").Append(ScheduledPosts).Append("\n");
             sb.Append("  LastSync: ").Append(LastSync).Append("\n");
+            sb.Append("  DataStaleness: ").Append(DataStaleness).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -22,7 +22,7 @@ All URIs are relative to *https://getlate.dev/api*
 
 Get post analytics
 
-Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). Data is cached and refreshed at most once per hour. For follower stats, use /v1/accounts/follower-stats. 
+Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
 
 ### Example
 ```csharp
@@ -52,11 +52,11 @@ namespace Example
             var platform = "platform_example";  // string? | Filter by platform (default \"all\") (optional) 
             var profileId = "profileId_example";  // string? | Filter by profile ID (default \"all\") (optional) 
             var source = "all";  // string? | Filter by post source: late (posted via Late API), external (synced from platform), all (default) (optional)  (default to all)
-            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive lower bound (optional) 
-            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive upper bound (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional) 
             var limit = 50;  // int? | Page size (default 50) (optional)  (default to 50)
             var page = 1;  // int? | Page number (default 1) (optional)  (default to 1)
-            var sortBy = "date";  // string? | Sort by date or engagement (optional)  (default to date)
+            var sortBy = "date";  // string? | Sort by date, engagement, or a specific metric (optional)  (default to date)
             var order = "asc";  // string? | Sort order (optional)  (default to desc)
 
             try
@@ -104,11 +104,11 @@ catch (ApiException e)
 | **platform** | **string?** | Filter by platform (default \&quot;all\&quot;) | [optional]  |
 | **profileId** | **string?** | Filter by profile ID (default \&quot;all\&quot;) | [optional]  |
 | **source** | **string?** | Filter by post source: late (posted via Late API), external (synced from platform), all (default) | [optional] [default to all] |
-| **fromDate** | **DateOnly?** | Inclusive lower bound | [optional]  |
-| **toDate** | **DateOnly?** | Inclusive upper bound | [optional]  |
+| **fromDate** | **DateOnly?** | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. | [optional]  |
+| **toDate** | **DateOnly?** | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional]  |
 | **limit** | **int?** | Page size (default 50) | [optional] [default to 50] |
 | **page** | **int?** | Page number (default 1) | [optional] [default to 1] |
-| **sortBy** | **string?** | Sort by date or engagement | [optional] [default to date] |
+| **sortBy** | **string?** | Sort by date, engagement, or a specific metric | [optional] [default to date] |
 | **order** | **string?** | Sort order | [optional] [default to desc] |
 
 ### Return type
@@ -129,9 +129,12 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Analytics result |  -  |
+| **202** | Analytics are being synced from the platform (single post lookup only). The response body matches AnalyticsSinglePostResponse with syncStatus \&quot;pending\&quot; and a message. |  -  |
+| **400** | Validation error |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | Analytics add-on required |  -  |
 | **404** | Resource not found |  -  |
+| **424** | Post failed to publish on all platforms. Analytics are unavailable. (single post lookup only) |  -  |
 | **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

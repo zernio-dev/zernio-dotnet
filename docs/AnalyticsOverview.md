@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **PublishedPosts** | **int** |  | [optional] 
 **ScheduledPosts** | **int** |  | [optional] 
 **LastSync** | **DateTime** |  | [optional] 
+**DataStaleness** | [**AnalyticsOverviewDataStaleness**](AnalyticsOverviewDataStaleness.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

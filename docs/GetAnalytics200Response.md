@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PostId** | **string** |  | [optional] 
-**Status** | **string** |  | [optional] 
+**LatePostId** | **string** | Original Late post ID if scheduled via Late | [optional] 
+**Status** | **string** | Overall post status. \&quot;partial\&quot; when some platforms published and others failed. | [optional] 
 **Content** | **string** |  | [optional] 
 **ScheduledFor** | **DateTime** |  | [optional] 
 **PublishedAt** | **DateTime** |  | [optional] 
@@ -14,6 +15,8 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | [optional] 
 **PlatformPostUrl** | **string** |  | [optional] 
 **IsExternal** | **bool** |  | [optional] 
+**SyncStatus** | **string** | Overall sync state across all platforms | [optional] 
+**Message** | **string** | Human-readable status message for pending, partial, or failed states | [optional] 
 **ThumbnailUrl** | **string** |  | [optional] 
 **MediaType** | **string** |  | [optional] 
 **MediaItems** | [**List&lt;AnalyticsSinglePostResponseMediaItemsInner&gt;**](AnalyticsSinglePostResponseMediaItemsInner.md) | All media items for this post. Carousel posts contain one entry per slide. | [optional] 

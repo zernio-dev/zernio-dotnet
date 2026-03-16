@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | [optional] 
+**LatePostId** | **string** | Original Late post ID if scheduled via Late | [optional] 
 **Content** | **string** |  | [optional] 
 **ScheduledFor** | **DateTime** |  | [optional] 
 **PublishedAt** | **DateTime** |  | [optional] 
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | [optional] 
 **PlatformPostUrl** | **string** |  | [optional] 
 **IsExternal** | **bool** |  | [optional] 
+**ProfileId** | **string** |  | [optional] 
 **ThumbnailUrl** | **string** |  | [optional] 
 **MediaType** | **string** |  | [optional] 
 **MediaItems** | [**List&lt;AnalyticsSinglePostResponseMediaItemsInner&gt;**](AnalyticsSinglePostResponseMediaItemsInner.md) | All media items for this post. Carousel posts contain one entry per slide. | [optional] 

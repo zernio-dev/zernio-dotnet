@@ -34,6 +34,78 @@ namespace Late.Model
     public partial class AnalyticsSinglePostResponse : IValidatableObject
     {
         /// <summary>
+        /// Overall post status. \&quot;partial\&quot; when some platforms published and others failed.
+        /// </summary>
+        /// <value>Overall post status. \&quot;partial\&quot; when some platforms published and others failed.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusEnum
+        {
+            /// <summary>
+            /// Enum Published for value: published
+            /// </summary>
+            [EnumMember(Value = "published")]
+            Published = 1,
+
+            /// <summary>
+            /// Enum Failed for value: failed
+            /// </summary>
+            [EnumMember(Value = "failed")]
+            Failed = 2,
+
+            /// <summary>
+            /// Enum Partial for value: partial
+            /// </summary>
+            [EnumMember(Value = "partial")]
+            Partial = 3
+        }
+
+
+        /// <summary>
+        /// Overall post status. \&quot;partial\&quot; when some platforms published and others failed.
+        /// </summary>
+        /// <value>Overall post status. \&quot;partial\&quot; when some platforms published and others failed.</value>
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public StatusEnum? Status { get; set; }
+        /// <summary>
+        /// Overall sync state across all platforms
+        /// </summary>
+        /// <value>Overall sync state across all platforms</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SyncStatusEnum
+        {
+            /// <summary>
+            /// Enum Synced for value: synced
+            /// </summary>
+            [EnumMember(Value = "synced")]
+            Synced = 1,
+
+            /// <summary>
+            /// Enum Pending for value: pending
+            /// </summary>
+            [EnumMember(Value = "pending")]
+            Pending = 2,
+
+            /// <summary>
+            /// Enum Partial for value: partial
+            /// </summary>
+            [EnumMember(Value = "partial")]
+            Partial = 3,
+
+            /// <summary>
+            /// Enum Unavailable for value: unavailable
+            /// </summary>
+            [EnumMember(Value = "unavailable")]
+            Unavailable = 4
+        }
+
+
+        /// <summary>
+        /// Overall sync state across all platforms
+        /// </summary>
+        /// <value>Overall sync state across all platforms</value>
+        [DataMember(Name = "syncStatus", EmitDefaultValue = false)]
+        public SyncStatusEnum? SyncStatus { get; set; }
+        /// <summary>
         /// Defines MediaType
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -74,7 +146,8 @@ namespace Late.Model
         /// Initializes a new instance of the <see cref="AnalyticsSinglePostResponse" /> class.
         /// </summary>
         /// <param name="postId">postId.</param>
-        /// <param name="status">status.</param>
+        /// <param name="latePostId">Original Late post ID if scheduled via Late.</param>
+        /// <param name="status">Overall post status. \&quot;partial\&quot; when some platforms published and others failed..</param>
         /// <param name="content">content.</param>
         /// <param name="scheduledFor">scheduledFor.</param>
         /// <param name="publishedAt">publishedAt.</param>
@@ -83,12 +156,15 @@ namespace Late.Model
         /// <param name="platform">platform.</param>
         /// <param name="platformPostUrl">platformPostUrl.</param>
         /// <param name="isExternal">isExternal.</param>
+        /// <param name="syncStatus">Overall sync state across all platforms.</param>
+        /// <param name="message">Human-readable status message for pending, partial, or failed states.</param>
         /// <param name="thumbnailUrl">thumbnailUrl.</param>
         /// <param name="mediaType">mediaType.</param>
         /// <param name="mediaItems">All media items for this post. Carousel posts contain one entry per slide..</param>
-        public AnalyticsSinglePostResponse(string postId = default, string status = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, PostAnalytics analytics = default, List<PlatformAnalytics> platformAnalytics = default, string platform = default, string platformPostUrl = default, bool isExternal = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = default)
+        public AnalyticsSinglePostResponse(string postId = default, string latePostId = default, StatusEnum? status = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, PostAnalytics analytics = default, List<PlatformAnalytics> platformAnalytics = default, string platform = default, string platformPostUrl = default, bool isExternal = default, SyncStatusEnum? syncStatus = default, string message = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = default)
         {
             this.PostId = postId;
+            this.LatePostId = latePostId;
             this.Status = status;
             this.Content = content;
             this.ScheduledFor = scheduledFor;
@@ -98,6 +174,8 @@ namespace Late.Model
             this.Platform = platform;
             this.PlatformPostUrl = platformPostUrl;
             this.IsExternal = isExternal;
+            this.SyncStatus = syncStatus;
+            this.Message = message;
             this.ThumbnailUrl = thumbnailUrl;
             this.MediaType = mediaType;
             this.MediaItems = mediaItems;
@@ -110,10 +188,11 @@ namespace Late.Model
         public string PostId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// Original Late post ID if scheduled via Late
         /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public string Status { get; set; }
+        /// <value>Original Late post ID if scheduled via Late</value>
+        [DataMember(Name = "latePostId", EmitDefaultValue = false)]
+        public string LatePostId { get; set; }
 
         /// <summary>
         /// Gets or Sets Content
@@ -164,6 +243,13 @@ namespace Late.Model
         public bool IsExternal { get; set; }
 
         /// <summary>
+        /// Human-readable status message for pending, partial, or failed states
+        /// </summary>
+        /// <value>Human-readable status message for pending, partial, or failed states</value>
+        [DataMember(Name = "message", EmitDefaultValue = false)]
+        public string Message { get; set; }
+
+        /// <summary>
         /// Gets or Sets ThumbnailUrl
         /// </summary>
         [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
@@ -185,6 +271,7 @@ namespace Late.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AnalyticsSinglePostResponse {\n");
             sb.Append("  PostId: ").Append(PostId).Append("\n");
+            sb.Append("  LatePostId: ").Append(LatePostId).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Content: ").Append(Content).Append("\n");
             sb.Append("  ScheduledFor: ").Append(ScheduledFor).Append("\n");
@@ -194,6 +281,8 @@ namespace Late.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  PlatformPostUrl: ").Append(PlatformPostUrl).Append("\n");
             sb.Append("  IsExternal: ").Append(IsExternal).Append("\n");
+            sb.Append("  SyncStatus: ").Append(SyncStatus).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
             sb.Append("  MediaType: ").Append(MediaType).Append("\n");
             sb.Append("  MediaItems: ").Append(MediaItems).Append("\n");

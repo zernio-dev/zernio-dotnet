@@ -32,18 +32,18 @@ namespace Late.Api
         /// Get post analytics
         /// </summary>
         /// <remarks>
-        /// Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). Data is cached and refreshed at most once per hour. For follower stats, use /v1/accounts/follower-stats. 
+        /// Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics. (optional)</param>
         /// <param name="platform">Filter by platform (default \&quot;all\&quot;) (optional)</param>
         /// <param name="profileId">Filter by profile ID (default \&quot;all\&quot;) (optional)</param>
         /// <param name="source">Filter by post source: late (posted via Late API), external (synced from platform), all (default) (optional, default to all)</param>
-        /// <param name="fromDate">Inclusive lower bound (optional)</param>
-        /// <param name="toDate">Inclusive upper bound (optional)</param>
+        /// <param name="fromDate">Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)</param>
+        /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date or engagement (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <returns>GetAnalytics200Response</returns>
         GetAnalytics200Response GetAnalytics(string? postId = default, string? platform = default, string? profileId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default);
@@ -52,18 +52,18 @@ namespace Late.Api
         /// Get post analytics
         /// </summary>
         /// <remarks>
-        /// Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). Data is cached and refreshed at most once per hour. For follower stats, use /v1/accounts/follower-stats. 
+        /// Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics. (optional)</param>
         /// <param name="platform">Filter by platform (default \&quot;all\&quot;) (optional)</param>
         /// <param name="profileId">Filter by profile ID (default \&quot;all\&quot;) (optional)</param>
         /// <param name="source">Filter by post source: late (posted via Late API), external (synced from platform), all (default) (optional, default to all)</param>
-        /// <param name="fromDate">Inclusive lower bound (optional)</param>
-        /// <param name="toDate">Inclusive upper bound (optional)</param>
+        /// <param name="fromDate">Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)</param>
+        /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date or engagement (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <returns>ApiResponse of GetAnalytics200Response</returns>
         ApiResponse<GetAnalytics200Response> GetAnalyticsWithHttpInfo(string? postId = default, string? platform = default, string? profileId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default);
@@ -344,18 +344,18 @@ namespace Late.Api
         /// Get post analytics
         /// </summary>
         /// <remarks>
-        /// Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). Data is cached and refreshed at most once per hour. For follower stats, use /v1/accounts/follower-stats. 
+        /// Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics. (optional)</param>
         /// <param name="platform">Filter by platform (default \&quot;all\&quot;) (optional)</param>
         /// <param name="profileId">Filter by profile ID (default \&quot;all\&quot;) (optional)</param>
         /// <param name="source">Filter by post source: late (posted via Late API), external (synced from platform), all (default) (optional, default to all)</param>
-        /// <param name="fromDate">Inclusive lower bound (optional)</param>
-        /// <param name="toDate">Inclusive upper bound (optional)</param>
+        /// <param name="fromDate">Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)</param>
+        /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date or engagement (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAnalytics200Response</returns>
@@ -365,18 +365,18 @@ namespace Late.Api
         /// Get post analytics
         /// </summary>
         /// <remarks>
-        /// Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). Data is cached and refreshed at most once per hour. For follower stats, use /v1/accounts/follower-stats. 
+        /// Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics. (optional)</param>
         /// <param name="platform">Filter by platform (default \&quot;all\&quot;) (optional)</param>
         /// <param name="profileId">Filter by profile ID (default \&quot;all\&quot;) (optional)</param>
         /// <param name="source">Filter by post source: late (posted via Late API), external (synced from platform), all (default) (optional, default to all)</param>
-        /// <param name="fromDate">Inclusive lower bound (optional)</param>
-        /// <param name="toDate">Inclusive upper bound (optional)</param>
+        /// <param name="fromDate">Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)</param>
+        /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date or engagement (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAnalytics200Response)</returns>
@@ -879,18 +879,18 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get post analytics Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). Data is cached and refreshed at most once per hour. For follower stats, use /v1/accounts/follower-stats. 
+        /// Get post analytics Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics. (optional)</param>
         /// <param name="platform">Filter by platform (default \&quot;all\&quot;) (optional)</param>
         /// <param name="profileId">Filter by profile ID (default \&quot;all\&quot;) (optional)</param>
         /// <param name="source">Filter by post source: late (posted via Late API), external (synced from platform), all (default) (optional, default to all)</param>
-        /// <param name="fromDate">Inclusive lower bound (optional)</param>
-        /// <param name="toDate">Inclusive upper bound (optional)</param>
+        /// <param name="fromDate">Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)</param>
+        /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date or engagement (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <returns>GetAnalytics200Response</returns>
         public GetAnalytics200Response GetAnalytics(string? postId = default, string? platform = default, string? profileId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default)
@@ -900,18 +900,18 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get post analytics Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). Data is cached and refreshed at most once per hour. For follower stats, use /v1/accounts/follower-stats. 
+        /// Get post analytics Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics. (optional)</param>
         /// <param name="platform">Filter by platform (default \&quot;all\&quot;) (optional)</param>
         /// <param name="profileId">Filter by profile ID (default \&quot;all\&quot;) (optional)</param>
         /// <param name="source">Filter by post source: late (posted via Late API), external (synced from platform), all (default) (optional, default to all)</param>
-        /// <param name="fromDate">Inclusive lower bound (optional)</param>
-        /// <param name="toDate">Inclusive upper bound (optional)</param>
+        /// <param name="fromDate">Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)</param>
+        /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date or engagement (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <returns>ApiResponse of GetAnalytics200Response</returns>
         public Late.Client.ApiResponse<GetAnalytics200Response> GetAnalyticsWithHttpInfo(string? postId = default, string? platform = default, string? profileId = default, string? source = default, DateOnly? fromDate = default, DateOnly? toDate = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default)
@@ -993,18 +993,18 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get post analytics Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). Data is cached and refreshed at most once per hour. For follower stats, use /v1/accounts/follower-stats. 
+        /// Get post analytics Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics. (optional)</param>
         /// <param name="platform">Filter by platform (default \&quot;all\&quot;) (optional)</param>
         /// <param name="profileId">Filter by profile ID (default \&quot;all\&quot;) (optional)</param>
         /// <param name="source">Filter by post source: late (posted via Late API), external (synced from platform), all (default) (optional, default to all)</param>
-        /// <param name="fromDate">Inclusive lower bound (optional)</param>
-        /// <param name="toDate">Inclusive upper bound (optional)</param>
+        /// <param name="fromDate">Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)</param>
+        /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date or engagement (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAnalytics200Response</returns>
@@ -1015,18 +1015,18 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get post analytics Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). Data is cached and refreshed at most once per hour. For follower stats, use /v1/accounts/follower-stats. 
+        /// Get post analytics Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics. (optional)</param>
         /// <param name="platform">Filter by platform (default \&quot;all\&quot;) (optional)</param>
         /// <param name="profileId">Filter by profile ID (default \&quot;all\&quot;) (optional)</param>
         /// <param name="source">Filter by post source: late (posted via Late API), external (synced from platform), all (default) (optional, default to all)</param>
-        /// <param name="fromDate">Inclusive lower bound (optional)</param>
-        /// <param name="toDate">Inclusive upper bound (optional)</param>
+        /// <param name="fromDate">Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)</param>
+        /// <param name="toDate">Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)</param>
         /// <param name="limit">Page size (default 50) (optional, default to 50)</param>
         /// <param name="page">Page number (default 1) (optional, default to 1)</param>
-        /// <param name="sortBy">Sort by date or engagement (optional, default to date)</param>
+        /// <param name="sortBy">Sort by date, engagement, or a specific metric (optional, default to date)</param>
         /// <param name="order">Sort order (optional, default to desc)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAnalytics200Response)</returns>
