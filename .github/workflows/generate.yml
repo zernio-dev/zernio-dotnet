@@ -46,8 +46,8 @@ jobs:
             -o . \
             --skip-validate-spec \
             --additional-properties=packageName=Late,targetFramework=net8.0,library=httpclient \
-            --git-user-id=getlate-dev \
-            --git-repo-id=late-dotnet
+            --git-user-id=zernio-dev \
+            --git-repo-id=zernio-dotnet
 
       - name: Patch README install instructions
         run: |
