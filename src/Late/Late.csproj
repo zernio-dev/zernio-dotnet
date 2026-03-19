@@ -6,11 +6,11 @@
     <AssemblyName>Late</AssemblyName>
     <PackageId>Late</PackageId>
     <OutputType>Library</OutputType>
-    <Authors>OpenAPI</Authors>
-    <Company>OpenAPI</Company>
-    <AssemblyTitle>OpenAPI Library</AssemblyTitle>
-    <Description>A library generated from a OpenAPI doc</Description>
-    <Copyright>No Copyright</Copyright>
+    <Authors>Zernio</Authors>
+    <Company>Zernio</Company>
+    <AssemblyTitle>Zernio .NET SDK</AssemblyTitle>
+    <Description>Official .NET SDK for the Zernio API. Schedule and manage social media posts programmatically. https://zernio.com</Description>
+    <Copyright>Copyright (c) Zernio</Copyright>
     <RootNamespace>Late</RootNamespace>
     <Version>0.0.68</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Late.xml</DocumentationFile>
