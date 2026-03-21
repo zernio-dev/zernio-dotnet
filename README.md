@@ -160,6 +160,7 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**GetAccountHealth**](docs/AccountsApi.md#getaccounthealth) | **GET** /v1/accounts/{accountId}/health | Check account health
 *AccountsApi* | [**GetAllAccountsHealth**](docs/AccountsApi.md#getallaccountshealth) | **GET** /v1/accounts/health | Check accounts health
 *AccountsApi* | [**GetFollowerStats**](docs/AccountsApi.md#getfollowerstats) | **GET** /v1/accounts/follower-stats | Get follower stats
+*AccountsApi* | [**GetTikTokCreatorInfo**](docs/AccountsApi.md#gettiktokcreatorinfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**ListAccounts**](docs/AccountsApi.md#listaccounts) | **GET** /v1/accounts | List accounts
 *AccountsApi* | [**UpdateAccount**](docs/AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account
 *AnalyticsApi* | [**GetAnalytics**](docs/AnalyticsApi.md#getanalytics) | **GET** /v1/analytics | Get post analytics
@@ -543,6 +544,11 @@ Class | Method | HTTP request | Description
  - [Model.GetTelegramCommands200Response](docs/GetTelegramCommands200Response.md)
  - [Model.GetTelegramCommands200ResponseDataInner](docs/GetTelegramCommands200ResponseDataInner.md)
  - [Model.GetTelegramConnectStatus200Response](docs/GetTelegramConnectStatus200Response.md)
+ - [Model.GetTikTokCreatorInfo200Response](docs/GetTikTokCreatorInfo200Response.md)
+ - [Model.GetTikTokCreatorInfo200ResponseCommercialContentTypesInner](docs/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.md)
+ - [Model.GetTikTokCreatorInfo200ResponseCreator](docs/GetTikTokCreatorInfo200ResponseCreator.md)
+ - [Model.GetTikTokCreatorInfo200ResponsePostingLimits](docs/GetTikTokCreatorInfo200ResponsePostingLimits.md)
+ - [Model.GetTikTokCreatorInfo200ResponsePrivacyLevelsInner](docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md)
  - [Model.GetUser200Response](docs/GetUser200Response.md)
  - [Model.GetUser200ResponseUser](docs/GetUser200ResponseUser.md)
  - [Model.GetWebhookLogs200Response](docs/GetWebhookLogs200Response.md)

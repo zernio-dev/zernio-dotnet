@@ -125,6 +125,29 @@ namespace Late.Api
         /// <returns>ApiResponse of GetFollowerStats200Response</returns>
         ApiResponse<GetFollowerStats200Response> GetFollowerStatsWithHttpInfo(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default);
         /// <summary>
+        /// Get TikTok creator info
+        /// </summary>
+        /// <remarks>
+        /// Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="mediaType">The media type to get creator info for (affects available interaction settings) (optional, default to video)</param>
+        /// <returns>GetTikTokCreatorInfo200Response</returns>
+        GetTikTokCreatorInfo200Response GetTikTokCreatorInfo(string accountId, string? mediaType = default);
+
+        /// <summary>
+        /// Get TikTok creator info
+        /// </summary>
+        /// <remarks>
+        /// Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="mediaType">The media type to get creator info for (affects available interaction settings) (optional, default to video)</param>
+        /// <returns>ApiResponse of GetTikTokCreatorInfo200Response</returns>
+        ApiResponse<GetTikTokCreatorInfo200Response> GetTikTokCreatorInfoWithHttpInfo(string accountId, string? mediaType = default);
+        /// <summary>
         /// List accounts
         /// </summary>
         /// <remarks>
@@ -285,6 +308,31 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetFollowerStats200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetFollowerStats200Response>> GetFollowerStatsWithHttpInfoAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get TikTok creator info
+        /// </summary>
+        /// <remarks>
+        /// Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="mediaType">The media type to get creator info for (affects available interaction settings) (optional, default to video)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetTikTokCreatorInfo200Response</returns>
+        System.Threading.Tasks.Task<GetTikTokCreatorInfo200Response> GetTikTokCreatorInfoAsync(string accountId, string? mediaType = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get TikTok creator info
+        /// </summary>
+        /// <remarks>
+        /// Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="mediaType">The media type to get creator info for (affects available interaction settings) (optional, default to video)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetTikTokCreatorInfo200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetTikTokCreatorInfo200Response>> GetTikTokCreatorInfoWithHttpInfoAsync(string accountId, string? mediaType = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List accounts
         /// </summary>
@@ -1120,6 +1168,145 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetFollowerStats", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get TikTok creator info Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="mediaType">The media type to get creator info for (affects available interaction settings) (optional, default to video)</param>
+        /// <returns>GetTikTokCreatorInfo200Response</returns>
+        public GetTikTokCreatorInfo200Response GetTikTokCreatorInfo(string accountId, string? mediaType = default)
+        {
+            Late.Client.ApiResponse<GetTikTokCreatorInfo200Response> localVarResponse = GetTikTokCreatorInfoWithHttpInfo(accountId, mediaType);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get TikTok creator info Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="mediaType">The media type to get creator info for (affects available interaction settings) (optional, default to video)</param>
+        /// <returns>ApiResponse of GetTikTokCreatorInfo200Response</returns>
+        public Late.Client.ApiResponse<GetTikTokCreatorInfo200Response> GetTikTokCreatorInfoWithHttpInfo(string accountId, string? mediaType = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetTikTokCreatorInfo");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (mediaType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "mediaType", mediaType));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetTikTokCreatorInfo200Response>("/v1/accounts/{accountId}/tiktok/creator-info", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetTikTokCreatorInfo", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get TikTok creator info Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="mediaType">The media type to get creator info for (affects available interaction settings) (optional, default to video)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetTikTokCreatorInfo200Response</returns>
+        public async System.Threading.Tasks.Task<GetTikTokCreatorInfo200Response> GetTikTokCreatorInfoAsync(string accountId, string? mediaType = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<GetTikTokCreatorInfo200Response> localVarResponse = await GetTikTokCreatorInfoWithHttpInfoAsync(accountId, mediaType, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get TikTok creator info Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The TikTok account ID</param>
+        /// <param name="mediaType">The media type to get creator info for (affects available interaction settings) (optional, default to video)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetTikTokCreatorInfo200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetTikTokCreatorInfo200Response>> GetTikTokCreatorInfoWithHttpInfoAsync(string accountId, string? mediaType = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetTikTokCreatorInfo");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (mediaType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "mediaType", mediaType));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetTikTokCreatorInfo200Response>("/v1/accounts/{accountId}/tiktok/creator-info", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetTikTokCreatorInfo", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

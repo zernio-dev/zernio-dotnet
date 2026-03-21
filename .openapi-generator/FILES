@@ -230,6 +230,11 @@ docs/GetRedditSubreddits200ResponseSubredditsInner.md
 docs/GetTelegramCommands200Response.md
 docs/GetTelegramCommands200ResponseDataInner.md
 docs/GetTelegramConnectStatus200Response.md
+docs/GetTikTokCreatorInfo200Response.md
+docs/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.md
+docs/GetTikTokCreatorInfo200ResponseCreator.md
+docs/GetTikTokCreatorInfo200ResponsePostingLimits.md
+docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md
 docs/GetUser200Response.md
 docs/GetUser200ResponseUser.md
 docs/GetWebhookLogs200Response.md
@@ -591,6 +596,11 @@ docs/YouTubeScopeMissingResponse.md
 docs/YouTubeScopeMissingResponseScopeStatus.md
 git_push.sh
 src/Late.Test/Late.Test.csproj
+src/Late.Test/Model/GetTikTokCreatorInfo200ResponseCommercialContentTypesInnerTests.cs
+src/Late.Test/Model/GetTikTokCreatorInfo200ResponseCreatorTests.cs
+src/Late.Test/Model/GetTikTokCreatorInfo200ResponsePostingLimitsTests.cs
+src/Late.Test/Model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInnerTests.cs
+src/Late.Test/Model/GetTikTokCreatorInfo200ResponseTests.cs
 src/Late/Api/APIKeysApi.cs
 src/Late/Api/AccountGroupsApi.cs
 src/Late/Api/AccountSettingsApi.cs
@@ -855,6 +865,11 @@ src/Late/Model/GetRedditSubreddits200ResponseSubredditsInner.cs
 src/Late/Model/GetTelegramCommands200Response.cs
 src/Late/Model/GetTelegramCommands200ResponseDataInner.cs
 src/Late/Model/GetTelegramConnectStatus200Response.cs
+src/Late/Model/GetTikTokCreatorInfo200Response.cs
+src/Late/Model/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.cs
+src/Late/Model/GetTikTokCreatorInfo200ResponseCreator.cs
+src/Late/Model/GetTikTokCreatorInfo200ResponsePostingLimits.cs
+src/Late/Model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.cs
 src/Late/Model/GetUser200Response.cs
 src/Late/Model/GetUser200ResponseUser.cs
 src/Late/Model/GetWebhookLogs200Response.cs
