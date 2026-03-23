@@ -589,7 +589,7 @@ void (empty response body)
 
 <a id="listsequences"></a>
 # **ListSequences**
-> void ListSequences (string? profileId = null, string? status = null, int? limit = null, int? skip = null)
+> ListSequences200Response ListSequences (string? profileId = null, string? status = null, int? limit = null, int? skip = null)
 
 List sequences
 
@@ -625,7 +625,8 @@ namespace Example
             try
             {
                 // List sequences
-                apiInstance.ListSequences(profileId, status, limit, skip);
+                ListSequences200Response result = apiInstance.ListSequences(profileId, status, limit, skip);
+                Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
@@ -645,7 +646,10 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List sequences
-    apiInstance.ListSequencesWithHttpInfo(profileId, status, limit, skip);
+    ApiResponse<ListSequences200Response> response = apiInstance.ListSequencesWithHttpInfo(profileId, status, limit, skip);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
@@ -666,7 +670,7 @@ catch (ApiException e)
 
 ### Return type
 
-void (empty response body)
+[**ListSequences200Response**](ListSequences200Response.md)
 
 ### Authorization
 

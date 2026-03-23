@@ -152,8 +152,8 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
-        /// <returns></returns>
-        void ListSequences(string? profileId = default, string? status = default, int? limit = default, int? skip = default);
+        /// <returns>ListSequences200Response</returns>
+        ListSequences200Response ListSequences(string? profileId = default, string? status = default, int? limit = default, int? skip = default);
 
         /// <summary>
         /// List sequences
@@ -166,8 +166,8 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> ListSequencesWithHttpInfo(string? profileId = default, string? status = default, int? limit = default, int? skip = default);
+        /// <returns>ApiResponse of ListSequences200Response</returns>
+        ApiResponse<ListSequences200Response> ListSequencesWithHttpInfo(string? profileId = default, string? status = default, int? limit = default, int? skip = default);
         /// <summary>
         /// Pause a sequence
         /// </summary>
@@ -391,8 +391,8 @@ namespace Late.Api
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task ListSequencesAsync(string? profileId = default, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ListSequences200Response</returns>
+        System.Threading.Tasks.Task<ListSequences200Response> ListSequencesAsync(string? profileId = default, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List sequences
@@ -406,8 +406,8 @@ namespace Late.Api
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> ListSequencesWithHttpInfoAsync(string? profileId = default, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ListSequences200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListSequences200Response>> ListSequencesWithHttpInfoAsync(string? profileId = default, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Pause a sequence
         /// </summary>
@@ -1504,10 +1504,11 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
-        /// <returns></returns>
-        public void ListSequences(string? profileId = default, string? status = default, int? limit = default, int? skip = default)
+        /// <returns>ListSequences200Response</returns>
+        public ListSequences200Response ListSequences(string? profileId = default, string? status = default, int? limit = default, int? skip = default)
         {
-            ListSequencesWithHttpInfo(profileId, status, limit, skip);
+            Late.Client.ApiResponse<ListSequences200Response> localVarResponse = ListSequencesWithHttpInfo(profileId, status, limit, skip);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1518,8 +1519,8 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Late.Client.ApiResponse<Object> ListSequencesWithHttpInfo(string? profileId = default, string? status = default, int? limit = default, int? skip = default)
+        /// <returns>ApiResponse of ListSequences200Response</returns>
+        public Late.Client.ApiResponse<ListSequences200Response> ListSequencesWithHttpInfo(string? profileId = default, string? status = default, int? limit = default, int? skip = default)
         {
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
 
@@ -1562,7 +1563,7 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<Object>("/v1/sequences", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ListSequences200Response>("/v1/sequences", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1582,10 +1583,11 @@ namespace Late.Api
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task ListSequencesAsync(string? profileId = default, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ListSequences200Response</returns>
+        public async System.Threading.Tasks.Task<ListSequences200Response> ListSequencesAsync(string? profileId = default, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            await ListSequencesWithHttpInfoAsync(profileId, status, limit, skip, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<ListSequences200Response> localVarResponse = await ListSequencesWithHttpInfoAsync(profileId, status, limit, skip, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1597,8 +1599,8 @@ namespace Late.Api
         /// <param name="limit"> (optional, default to 50)</param>
         /// <param name="skip"> (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<Object>> ListSequencesWithHttpInfoAsync(string? profileId = default, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ListSequences200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ListSequences200Response>> ListSequencesWithHttpInfoAsync(string? profileId = default, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
@@ -1644,7 +1646,7 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<Object>("/v1/sequences", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListSequences200Response>("/v1/sequences", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

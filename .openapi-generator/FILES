@@ -337,6 +337,8 @@ docs/ListAccountGroups200Response.md
 docs/ListAccountGroups200ResponseGroupsInner.md
 docs/ListAccounts200Response.md
 docs/ListApiKeys200Response.md
+docs/ListBroadcasts200Response.md
+docs/ListBroadcasts200ResponseBroadcastsInner.md
 docs/ListCommentAutomations200Response.md
 docs/ListCommentAutomations200ResponseAutomationsInner.md
 docs/ListCommentAutomations200ResponseAutomationsInnerStats.md
@@ -372,6 +374,8 @@ docs/ListPostsLogs200ResponsePagination.md
 docs/ListQueueSlots200Response.md
 docs/ListQueueSlots200ResponseOneOf.md
 docs/ListQueueSlots200ResponseOneOf1.md
+docs/ListSequences200Response.md
+docs/ListSequences200ResponseSequencesInner.md
 docs/ListSnapchatProfiles200Response.md
 docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md
 docs/ListUsers200Response.md
@@ -470,6 +474,7 @@ docs/SelectSnapchatProfile200Response.md
 docs/SelectSnapchatProfile200ResponseAccount.md
 docs/SelectSnapchatProfileRequest.md
 docs/SelectSnapchatProfileRequestSelectedPublicProfile.md
+docs/SendBroadcast200Response.md
 docs/SendInboxMessage200Response.md
 docs/SendInboxMessage200ResponseData.md
 docs/SendInboxMessage400Response.md
@@ -635,6 +640,11 @@ docs/YouTubeScopeMissingResponse.md
 docs/YouTubeScopeMissingResponseScopeStatus.md
 git_push.sh
 src/Late.Test/Late.Test.csproj
+src/Late.Test/Model/ListBroadcasts200ResponseBroadcastsInnerTests.cs
+src/Late.Test/Model/ListBroadcasts200ResponseTests.cs
+src/Late.Test/Model/ListSequences200ResponseSequencesInnerTests.cs
+src/Late.Test/Model/ListSequences200ResponseTests.cs
+src/Late.Test/Model/SendBroadcast200ResponseTests.cs
 src/Late/Api/APIKeysApi.cs
 src/Late/Api/AccountGroupsApi.cs
 src/Late/Api/AccountSettingsApi.cs
@@ -1005,6 +1015,8 @@ src/Late/Model/ListAccountGroups200Response.cs
 src/Late/Model/ListAccountGroups200ResponseGroupsInner.cs
 src/Late/Model/ListAccounts200Response.cs
 src/Late/Model/ListApiKeys200Response.cs
+src/Late/Model/ListBroadcasts200Response.cs
+src/Late/Model/ListBroadcasts200ResponseBroadcastsInner.cs
 src/Late/Model/ListCommentAutomations200Response.cs
 src/Late/Model/ListCommentAutomations200ResponseAutomationsInner.cs
 src/Late/Model/ListCommentAutomations200ResponseAutomationsInnerStats.cs
@@ -1040,6 +1052,8 @@ src/Late/Model/ListPostsLogs200ResponsePagination.cs
 src/Late/Model/ListQueueSlots200Response.cs
 src/Late/Model/ListQueueSlots200ResponseOneOf.cs
 src/Late/Model/ListQueueSlots200ResponseOneOf1.cs
+src/Late/Model/ListSequences200Response.cs
+src/Late/Model/ListSequences200ResponseSequencesInner.cs
 src/Late/Model/ListSnapchatProfiles200Response.cs
 src/Late/Model/ListSnapchatProfiles200ResponsePublicProfilesInner.cs
 src/Late/Model/ListUsers200Response.cs
@@ -1130,6 +1144,7 @@ src/Late/Model/SelectSnapchatProfile200Response.cs
 src/Late/Model/SelectSnapchatProfile200ResponseAccount.cs
 src/Late/Model/SelectSnapchatProfileRequest.cs
 src/Late/Model/SelectSnapchatProfileRequestSelectedPublicProfile.cs
+src/Late/Model/SendBroadcast200Response.cs
 src/Late/Model/SendInboxMessage200Response.cs
 src/Late/Model/SendInboxMessage200ResponseData.cs
 src/Late/Model/SendInboxMessage400Response.cs

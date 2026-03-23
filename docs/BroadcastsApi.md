@@ -589,7 +589,7 @@ void (empty response body)
 
 <a id="listbroadcasts"></a>
 # **ListBroadcasts**
-> void ListBroadcasts (string? profileId = null, string? status = null, string? platform = null, int? limit = null, int? skip = null)
+> ListBroadcasts200Response ListBroadcasts (string? profileId = null, string? status = null, string? platform = null, int? limit = null, int? skip = null)
 
 List broadcasts
 
@@ -626,7 +626,8 @@ namespace Example
             try
             {
                 // List broadcasts
-                apiInstance.ListBroadcasts(profileId, status, platform, limit, skip);
+                ListBroadcasts200Response result = apiInstance.ListBroadcasts(profileId, status, platform, limit, skip);
+                Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
@@ -646,7 +647,10 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List broadcasts
-    apiInstance.ListBroadcastsWithHttpInfo(profileId, status, platform, limit, skip);
+    ApiResponse<ListBroadcasts200Response> response = apiInstance.ListBroadcastsWithHttpInfo(profileId, status, platform, limit, skip);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
@@ -668,7 +672,7 @@ catch (ApiException e)
 
 ### Return type
 
-void (empty response body)
+[**ListBroadcasts200Response**](ListBroadcasts200Response.md)
 
 ### Authorization
 
@@ -787,7 +791,7 @@ void (empty response body)
 
 <a id="sendbroadcast"></a>
 # **SendBroadcast**
-> void SendBroadcast (string broadcastId)
+> SendBroadcast200Response SendBroadcast (string broadcastId)
 
 Trigger immediate send
 
@@ -820,7 +824,8 @@ namespace Example
             try
             {
                 // Trigger immediate send
-                apiInstance.SendBroadcast(broadcastId);
+                SendBroadcast200Response result = apiInstance.SendBroadcast(broadcastId);
+                Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
@@ -840,7 +845,10 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Trigger immediate send
-    apiInstance.SendBroadcastWithHttpInfo(broadcastId);
+    ApiResponse<SendBroadcast200Response> response = apiInstance.SendBroadcastWithHttpInfo(broadcastId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
@@ -858,7 +866,7 @@ catch (ApiException e)
 
 ### Return type
 
-void (empty response body)
+[**SendBroadcast200Response**](SendBroadcast200Response.md)
 
 ### Authorization
 
