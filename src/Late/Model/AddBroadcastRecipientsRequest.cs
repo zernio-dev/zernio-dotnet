@@ -37,10 +37,12 @@ namespace Late.Model
         /// Initializes a new instance of the <see cref="AddBroadcastRecipientsRequest" /> class.
         /// </summary>
         /// <param name="contactIds">Specific contact IDs to add.</param>
+        /// <param name="phones">Raw phone numbers (auto-creates contacts). Useful for WhatsApp/Telegram manual entry.</param>
         /// <param name="useSegment">Auto-populate from broadcast segment filters.</param>
-        public AddBroadcastRecipientsRequest(List<string> contactIds = default, bool useSegment = default)
+        public AddBroadcastRecipientsRequest(List<string> contactIds = default, List<string> phones = default, bool useSegment = default)
         {
             this.ContactIds = contactIds;
+            this.Phones = phones;
             this.UseSegment = useSegment;
         }
 
@@ -50,6 +52,13 @@ namespace Late.Model
         /// <value>Specific contact IDs to add</value>
         [DataMember(Name = "contactIds", EmitDefaultValue = false)]
         public List<string> ContactIds { get; set; }
+
+        /// <summary>
+        /// Raw phone numbers (auto-creates contacts). Useful for WhatsApp/Telegram manual entry
+        /// </summary>
+        /// <value>Raw phone numbers (auto-creates contacts). Useful for WhatsApp/Telegram manual entry</value>
+        [DataMember(Name = "phones", EmitDefaultValue = false)]
+        public List<string> Phones { get; set; }
 
         /// <summary>
         /// Auto-populate from broadcast segment filters
@@ -67,6 +76,7 @@ namespace Late.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AddBroadcastRecipientsRequest {\n");
             sb.Append("  ContactIds: ").Append(ContactIds).Append("\n");
+            sb.Append("  Phones: ").Append(Phones).Append("\n");
             sb.Append("  UseSegment: ").Append(UseSegment).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
