@@ -39,7 +39,7 @@ namespace Late.Model
         /// <param name="title">title.</param>
         /// <param name="content">Post caption/text. Optional when media is attached or all platforms have customContent. Required for text-only posts..</param>
         /// <param name="mediaItems">mediaItems.</param>
-        /// <param name="platforms">platforms.</param>
+        /// <param name="platforms">Target platforms and accounts for this post. Required for non-draft posts (returns 400 if empty). Drafts can omit platforms..</param>
         /// <param name="scheduledFor">scheduledFor.</param>
         /// <param name="publishNow">publishNow (default to false).</param>
         /// <param name="isDraft">When true, saves the post as a draft. When none of scheduledFor, publishNow, or queuedFromProfile are provided, the post defaults to draft automatically. (default to false).</param>
@@ -95,8 +95,9 @@ namespace Late.Model
         public List<CreatePostRequestMediaItemsInner> MediaItems { get; set; }
 
         /// <summary>
-        /// Gets or Sets Platforms
+        /// Target platforms and accounts for this post. Required for non-draft posts (returns 400 if empty). Drafts can omit platforms.
         /// </summary>
+        /// <value>Target platforms and accounts for this post. Required for non-draft posts (returns 400 if empty). Drafts can omit platforms.</value>
         [DataMember(Name = "platforms", EmitDefaultValue = false)]
         public List<CreatePostRequestPlatformsInner> Platforms { get; set; }
 
