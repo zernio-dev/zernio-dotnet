@@ -32,129 +32,141 @@ namespace Late.Api
         /// Add recipients
         /// </summary>
         /// <remarks>
-        /// Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; instead. Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="addWhatsAppBroadcastRecipientsRequest"></param>
         /// <returns>AddWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         AddWhatsAppBroadcastRecipients200Response AddWhatsAppBroadcastRecipients(string broadcastId, AddWhatsAppBroadcastRecipientsRequest addWhatsAppBroadcastRecipientsRequest);
 
         /// <summary>
         /// Add recipients
         /// </summary>
         /// <remarks>
-        /// Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; instead. Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="addWhatsAppBroadcastRecipientsRequest"></param>
         /// <returns>ApiResponse of AddWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         ApiResponse<AddWhatsAppBroadcastRecipients200Response> AddWhatsAppBroadcastRecipientsWithHttpInfo(string broadcastId, AddWhatsAppBroadcastRecipientsRequest addWhatsAppBroadcastRecipientsRequest);
         /// <summary>
         /// Bulk delete contacts
         /// </summary>
         /// <remarks>
-        /// Permanently delete multiple contacts at once (max 500 per request).
+        /// **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; for individual deletes instead. Permanently delete multiple contacts at once (max 500 per request). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkDeleteWhatsAppContactsRequest"></param>
         /// <returns>BulkDeleteWhatsAppContacts200Response</returns>
+        [Obsolete]
         BulkDeleteWhatsAppContacts200Response BulkDeleteWhatsAppContacts(BulkDeleteWhatsAppContactsRequest bulkDeleteWhatsAppContactsRequest);
 
         /// <summary>
         /// Bulk delete contacts
         /// </summary>
         /// <remarks>
-        /// Permanently delete multiple contacts at once (max 500 per request).
+        /// **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; for individual deletes instead. Permanently delete multiple contacts at once (max 500 per request). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkDeleteWhatsAppContactsRequest"></param>
         /// <returns>ApiResponse of BulkDeleteWhatsAppContacts200Response</returns>
+        [Obsolete]
         ApiResponse<BulkDeleteWhatsAppContacts200Response> BulkDeleteWhatsAppContactsWithHttpInfo(BulkDeleteWhatsAppContactsRequest bulkDeleteWhatsAppContactsRequest);
         /// <summary>
         /// Bulk update contacts
         /// </summary>
         /// <remarks>
-        /// Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
+        /// **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; for individual updates instead. Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpdateWhatsAppContactsRequest"></param>
         /// <returns>BulkUpdateWhatsAppContacts200Response</returns>
+        [Obsolete]
         BulkUpdateWhatsAppContacts200Response BulkUpdateWhatsAppContacts(BulkUpdateWhatsAppContactsRequest bulkUpdateWhatsAppContactsRequest);
 
         /// <summary>
         /// Bulk update contacts
         /// </summary>
         /// <remarks>
-        /// Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
+        /// **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; for individual updates instead. Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpdateWhatsAppContactsRequest"></param>
         /// <returns>ApiResponse of BulkUpdateWhatsAppContacts200Response</returns>
+        [Obsolete]
         ApiResponse<BulkUpdateWhatsAppContacts200Response> BulkUpdateWhatsAppContactsWithHttpInfo(BulkUpdateWhatsAppContactsRequest bulkUpdateWhatsAppContactsRequest);
         /// <summary>
         /// Cancel scheduled broadcast
         /// </summary>
         /// <remarks>
-        /// Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/cancel&#x60; instead. Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>CancelWhatsAppBroadcastSchedule200Response</returns>
+        [Obsolete]
         CancelWhatsAppBroadcastSchedule200Response CancelWhatsAppBroadcastSchedule(string broadcastId);
 
         /// <summary>
         /// Cancel scheduled broadcast
         /// </summary>
         /// <remarks>
-        /// Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/cancel&#x60; instead. Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>ApiResponse of CancelWhatsAppBroadcastSchedule200Response</returns>
+        [Obsolete]
         ApiResponse<CancelWhatsAppBroadcastSchedule200Response> CancelWhatsAppBroadcastScheduleWithHttpInfo(string broadcastId);
         /// <summary>
         /// Create broadcast
         /// </summary>
         /// <remarks>
-        /// Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; instead. Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppBroadcastRequest"></param>
         /// <returns>CreateWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         CreateWhatsAppBroadcast200Response CreateWhatsAppBroadcast(CreateWhatsAppBroadcastRequest createWhatsAppBroadcastRequest);
 
         /// <summary>
         /// Create broadcast
         /// </summary>
         /// <remarks>
-        /// Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; instead. Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppBroadcastRequest"></param>
         /// <returns>ApiResponse of CreateWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         ApiResponse<CreateWhatsAppBroadcast200Response> CreateWhatsAppBroadcastWithHttpInfo(CreateWhatsAppBroadcastRequest createWhatsAppBroadcastRequest);
         /// <summary>
         /// Create contact
         /// </summary>
         /// <remarks>
-        /// Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
+        /// **Deprecated.** Use &#x60;POST /v1/contacts&#x60; instead. Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppContactRequest"></param>
         /// <returns>CreateWhatsAppContact200Response</returns>
+        [Obsolete]
         CreateWhatsAppContact200Response CreateWhatsAppContact(CreateWhatsAppContactRequest createWhatsAppContactRequest);
 
         /// <summary>
         /// Create contact
         /// </summary>
         /// <remarks>
-        /// Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
+        /// **Deprecated.** Use &#x60;POST /v1/contacts&#x60; instead. Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppContactRequest"></param>
         /// <returns>ApiResponse of CreateWhatsAppContact200Response</returns>
+        [Obsolete]
         ApiResponse<CreateWhatsAppContact200Response> CreateWhatsAppContactWithHttpInfo(CreateWhatsAppContactRequest createWhatsAppContactRequest);
         /// <summary>
         /// Create template
@@ -181,70 +193,76 @@ namespace Late.Api
         /// Delete broadcast
         /// </summary>
         /// <remarks>
-        /// Delete a broadcast. Only draft or cancelled broadcasts can be deleted.
+        /// **Deprecated.** Use &#x60;DELETE /v1/broadcasts/{id}&#x60; instead. Delete a broadcast. Only draft or cancelled broadcasts can be deleted. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>UnpublishPost200Response</returns>
+        [Obsolete]
         UnpublishPost200Response DeleteWhatsAppBroadcast(string broadcastId);
 
         /// <summary>
         /// Delete broadcast
         /// </summary>
         /// <remarks>
-        /// Delete a broadcast. Only draft or cancelled broadcasts can be deleted.
+        /// **Deprecated.** Use &#x60;DELETE /v1/broadcasts/{id}&#x60; instead. Delete a broadcast. Only draft or cancelled broadcasts can be deleted. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
+        [Obsolete]
         ApiResponse<UnpublishPost200Response> DeleteWhatsAppBroadcastWithHttpInfo(string broadcastId);
         /// <summary>
         /// Delete contact
         /// </summary>
         /// <remarks>
-        /// Permanently delete a WhatsApp contact.
+        /// **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; instead. Permanently delete a WhatsApp contact. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <returns>UnpublishPost200Response</returns>
+        [Obsolete]
         UnpublishPost200Response DeleteWhatsAppContact(string contactId);
 
         /// <summary>
         /// Delete contact
         /// </summary>
         /// <remarks>
-        /// Permanently delete a WhatsApp contact.
+        /// **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; instead. Permanently delete a WhatsApp contact. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
+        [Obsolete]
         ApiResponse<UnpublishPost200Response> DeleteWhatsAppContactWithHttpInfo(string contactId);
         /// <summary>
         /// Delete group
         /// </summary>
         /// <remarks>
-        /// Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves.
+        /// **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsAppGroupRequest"></param>
         /// <returns>RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         RenameWhatsAppGroup200Response DeleteWhatsAppGroup(DeleteWhatsAppGroupRequest deleteWhatsAppGroupRequest);
 
         /// <summary>
         /// Delete group
         /// </summary>
         /// <remarks>
-        /// Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves.
+        /// **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsAppGroupRequest"></param>
         /// <returns>ApiResponse of RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         ApiResponse<RenameWhatsAppGroup200Response> DeleteWhatsAppGroupWithHttpInfo(DeleteWhatsAppGroupRequest deleteWhatsAppGroupRequest);
         /// <summary>
         /// Delete template
         /// </summary>
         /// <remarks>
-        /// Permanently delete a message template by name.
+        /// Permanently delete a message template by name. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -256,7 +274,7 @@ namespace Late.Api
         /// Delete template
         /// </summary>
         /// <remarks>
-        /// Permanently delete a message template by name.
+        /// Permanently delete a message template by name. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -267,28 +285,30 @@ namespace Late.Api
         /// Get broadcast
         /// </summary>
         /// <remarks>
-        /// Retrieve detailed information about a single broadcast including delivery statistics.
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}&#x60; instead. Retrieve detailed information about a single broadcast including delivery statistics. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>GetWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         GetWhatsAppBroadcast200Response GetWhatsAppBroadcast(string broadcastId);
 
         /// <summary>
         /// Get broadcast
         /// </summary>
         /// <remarks>
-        /// Retrieve detailed information about a single broadcast including delivery statistics.
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}&#x60; instead. Retrieve detailed information about a single broadcast including delivery statistics. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>ApiResponse of GetWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         ApiResponse<GetWhatsAppBroadcast200Response> GetWhatsAppBroadcastWithHttpInfo(string broadcastId);
         /// <summary>
         /// List recipients
         /// </summary>
         /// <remarks>
-        /// List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}/recipients&#x60; instead. List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
@@ -296,13 +316,14 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 100) (optional, default to 100)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>GetWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         GetWhatsAppBroadcastRecipients200Response GetWhatsAppBroadcastRecipients(string broadcastId, string? status = default, int? limit = default, int? skip = default);
 
         /// <summary>
         /// List recipients
         /// </summary>
         /// <remarks>
-        /// List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}/recipients&#x60; instead. List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
@@ -310,12 +331,13 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 100) (optional, default to 100)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>ApiResponse of GetWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         ApiResponse<GetWhatsAppBroadcastRecipients200Response> GetWhatsAppBroadcastRecipientsWithHttpInfo(string broadcastId, string? status = default, int? limit = default, int? skip = default);
         /// <summary>
         /// List broadcasts
         /// </summary>
         /// <remarks>
-        /// List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts?profileId&#x3D;{profileId}&#x60; instead. List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -323,13 +345,14 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 50) (optional, default to 50)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>GetWhatsAppBroadcasts200Response</returns>
+        [Obsolete]
         GetWhatsAppBroadcasts200Response GetWhatsAppBroadcasts(string accountId, string? status = default, int? limit = default, int? skip = default);
 
         /// <summary>
         /// List broadcasts
         /// </summary>
         /// <remarks>
-        /// List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts?profileId&#x3D;{profileId}&#x60; instead. List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -337,12 +360,13 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 50) (optional, default to 50)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>ApiResponse of GetWhatsAppBroadcasts200Response</returns>
+        [Obsolete]
         ApiResponse<GetWhatsAppBroadcasts200Response> GetWhatsAppBroadcastsWithHttpInfo(string accountId, string? status = default, int? limit = default, int? skip = default);
         /// <summary>
         /// Get business profile
         /// </summary>
         /// <remarks>
-        /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.).
+        /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -353,7 +377,7 @@ namespace Late.Api
         /// Get business profile
         /// </summary>
         /// <remarks>
-        /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.).
+        /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -363,28 +387,30 @@ namespace Late.Api
         /// Get contact
         /// </summary>
         /// <remarks>
-        /// Retrieve a single WhatsApp contact by ID with full details.
+        /// **Deprecated.** Use &#x60;GET /v1/contacts/{id}&#x60; instead. Retrieve a single WhatsApp contact by ID with full details. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <returns>GetWhatsAppContact200Response</returns>
+        [Obsolete]
         GetWhatsAppContact200Response GetWhatsAppContact(string contactId);
 
         /// <summary>
         /// Get contact
         /// </summary>
         /// <remarks>
-        /// Retrieve a single WhatsApp contact by ID with full details.
+        /// **Deprecated.** Use &#x60;GET /v1/contacts/{id}&#x60; instead. Retrieve a single WhatsApp contact by ID with full details. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <returns>ApiResponse of GetWhatsAppContact200Response</returns>
+        [Obsolete]
         ApiResponse<GetWhatsAppContact200Response> GetWhatsAppContactWithHttpInfo(string contactId);
         /// <summary>
         /// List contacts
         /// </summary>
         /// <remarks>
-        /// List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
+        /// **Deprecated.** Use &#x60;GET /v1/contacts?profileId&#x3D;{profileId}&#x60; instead. List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -395,13 +421,14 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 50) (optional, default to 50)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>GetWhatsAppContacts200Response</returns>
+        [Obsolete]
         GetWhatsAppContacts200Response GetWhatsAppContacts(string accountId, string? search = default, string? tag = default, string? group = default, string? optedIn = default, int? limit = default, int? skip = default);
 
         /// <summary>
         /// List contacts
         /// </summary>
         /// <remarks>
-        /// List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
+        /// **Deprecated.** Use &#x60;GET /v1/contacts?profileId&#x3D;{profileId}&#x60; instead. List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -412,6 +439,7 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 50) (optional, default to 50)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>ApiResponse of GetWhatsAppContacts200Response</returns>
+        [Obsolete]
         ApiResponse<GetWhatsAppContacts200Response> GetWhatsAppContactsWithHttpInfo(string accountId, string? search = default, string? tag = default, string? group = default, string? optedIn = default, int? limit = default, int? skip = default);
         /// <summary>
         /// Get display name and review status
@@ -438,28 +466,30 @@ namespace Late.Api
         /// List contact groups
         /// </summary>
         /// <remarks>
-        /// List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
+        /// **Deprecated.** Use contact tags via &#x60;GET /v1/contacts&#x60; for grouping instead. WhatsApp groups have no cross-platform equivalent. List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <returns>GetWhatsAppGroups200Response</returns>
+        [Obsolete]
         GetWhatsAppGroups200Response GetWhatsAppGroups(string accountId);
 
         /// <summary>
         /// List contact groups
         /// </summary>
         /// <remarks>
-        /// List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
+        /// **Deprecated.** Use contact tags via &#x60;GET /v1/contacts&#x60; for grouping instead. WhatsApp groups have no cross-platform equivalent. List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <returns>ApiResponse of GetWhatsAppGroups200Response</returns>
+        [Obsolete]
         ApiResponse<GetWhatsAppGroups200Response> GetWhatsAppGroupsWithHttpInfo(string accountId);
         /// <summary>
         /// Get template
         /// </summary>
         /// <remarks>
-        /// Retrieve a single message template by name.
+        /// Retrieve a single message template by name. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -471,7 +501,7 @@ namespace Late.Api
         /// Get template
         /// </summary>
         /// <remarks>
-        /// Retrieve a single message template by name.
+        /// Retrieve a single message template by name. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -503,131 +533,143 @@ namespace Late.Api
         /// Bulk import contacts
         /// </summary>
         /// <remarks>
-        /// Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
+        /// **Deprecated.** Use &#x60;POST /v1/contacts/bulk&#x60; instead. Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importWhatsAppContactsRequest"></param>
         /// <returns>ImportWhatsAppContacts200Response</returns>
+        [Obsolete]
         ImportWhatsAppContacts200Response ImportWhatsAppContacts(ImportWhatsAppContactsRequest importWhatsAppContactsRequest);
 
         /// <summary>
         /// Bulk import contacts
         /// </summary>
         /// <remarks>
-        /// Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
+        /// **Deprecated.** Use &#x60;POST /v1/contacts/bulk&#x60; instead. Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importWhatsAppContactsRequest"></param>
         /// <returns>ApiResponse of ImportWhatsAppContacts200Response</returns>
+        [Obsolete]
         ApiResponse<ImportWhatsAppContacts200Response> ImportWhatsAppContactsWithHttpInfo(ImportWhatsAppContactsRequest importWhatsAppContactsRequest);
         /// <summary>
         /// Remove recipients
         /// </summary>
         /// <remarks>
-        /// Remove recipients from a draft broadcast by phone number.
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; with removal flag instead. Remove recipients from a draft broadcast by phone number. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="removeWhatsAppBroadcastRecipientsRequest"></param>
         /// <returns>RemoveWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         RemoveWhatsAppBroadcastRecipients200Response RemoveWhatsAppBroadcastRecipients(string broadcastId, RemoveWhatsAppBroadcastRecipientsRequest removeWhatsAppBroadcastRecipientsRequest);
 
         /// <summary>
         /// Remove recipients
         /// </summary>
         /// <remarks>
-        /// Remove recipients from a draft broadcast by phone number.
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; with removal flag instead. Remove recipients from a draft broadcast by phone number. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="removeWhatsAppBroadcastRecipientsRequest"></param>
         /// <returns>ApiResponse of RemoveWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         ApiResponse<RemoveWhatsAppBroadcastRecipients200Response> RemoveWhatsAppBroadcastRecipientsWithHttpInfo(string broadcastId, RemoveWhatsAppBroadcastRecipientsRequest removeWhatsAppBroadcastRecipientsRequest);
         /// <summary>
         /// Rename group
         /// </summary>
         /// <remarks>
-        /// Rename a contact group. This updates the group name on all contacts that belong to the group.
+        /// **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Rename a contact group. This updates the group name on all contacts that belong to the group. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="renameWhatsAppGroupRequest"></param>
         /// <returns>RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         RenameWhatsAppGroup200Response RenameWhatsAppGroup(RenameWhatsAppGroupRequest renameWhatsAppGroupRequest);
 
         /// <summary>
         /// Rename group
         /// </summary>
         /// <remarks>
-        /// Rename a contact group. This updates the group name on all contacts that belong to the group.
+        /// **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Rename a contact group. This updates the group name on all contacts that belong to the group. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="renameWhatsAppGroupRequest"></param>
         /// <returns>ApiResponse of RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         ApiResponse<RenameWhatsAppGroup200Response> RenameWhatsAppGroupWithHttpInfo(RenameWhatsAppGroupRequest renameWhatsAppGroupRequest);
         /// <summary>
         /// Schedule broadcast
         /// </summary>
         /// <remarks>
-        /// Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/schedule&#x60; instead. Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="scheduleWhatsAppBroadcastRequest"></param>
         /// <returns>ScheduleWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         ScheduleWhatsAppBroadcast200Response ScheduleWhatsAppBroadcast(string broadcastId, ScheduleWhatsAppBroadcastRequest scheduleWhatsAppBroadcastRequest);
 
         /// <summary>
         /// Schedule broadcast
         /// </summary>
         /// <remarks>
-        /// Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/schedule&#x60; instead. Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="scheduleWhatsAppBroadcastRequest"></param>
         /// <returns>ApiResponse of ScheduleWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         ApiResponse<ScheduleWhatsAppBroadcast200Response> ScheduleWhatsAppBroadcastWithHttpInfo(string broadcastId, ScheduleWhatsAppBroadcastRequest scheduleWhatsAppBroadcastRequest);
         /// <summary>
         /// Send broadcast
         /// </summary>
         /// <remarks>
-        /// Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/send&#x60; instead. Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>SendWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         SendWhatsAppBroadcast200Response SendWhatsAppBroadcast(string broadcastId);
 
         /// <summary>
         /// Send broadcast
         /// </summary>
         /// <remarks>
-        /// Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/send&#x60; instead. Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>ApiResponse of SendWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         ApiResponse<SendWhatsAppBroadcast200Response> SendWhatsAppBroadcastWithHttpInfo(string broadcastId);
         /// <summary>
         /// Bulk send template messages
         /// </summary>
         /// <remarks>
-        /// Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; to create a broadcast, &#x60;POST /v1/broadcasts/{id}/recipients&#x60; to add recipients, then &#x60;POST /v1/broadcasts/{id}/send&#x60; to send. Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendWhatsAppBulkRequest"></param>
         /// <returns>SendWhatsAppBulk200Response</returns>
+        [Obsolete]
         SendWhatsAppBulk200Response SendWhatsAppBulk(SendWhatsAppBulkRequest sendWhatsAppBulkRequest);
 
         /// <summary>
         /// Bulk send template messages
         /// </summary>
         /// <remarks>
-        /// Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; to create a broadcast, &#x60;POST /v1/broadcasts/{id}/recipients&#x60; to add recipients, then &#x60;POST /v1/broadcasts/{id}/send&#x60; to send. Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendWhatsAppBulkRequest"></param>
         /// <returns>ApiResponse of SendWhatsAppBulk200Response</returns>
+        [Obsolete]
         ApiResponse<SendWhatsAppBulk200Response> SendWhatsAppBulkWithHttpInfo(SendWhatsAppBulkRequest sendWhatsAppBulkRequest);
         /// <summary>
         /// Update business profile
@@ -654,24 +696,26 @@ namespace Late.Api
         /// Update contact
         /// </summary>
         /// <remarks>
-        /// Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
+        /// **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; instead. Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="updateWhatsAppContactRequest"></param>
         /// <returns>UpdateWhatsAppContact200Response</returns>
+        [Obsolete]
         UpdateWhatsAppContact200Response UpdateWhatsAppContact(string contactId, UpdateWhatsAppContactRequest updateWhatsAppContactRequest);
 
         /// <summary>
         /// Update contact
         /// </summary>
         /// <remarks>
-        /// Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
+        /// **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; instead. Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="updateWhatsAppContactRequest"></param>
         /// <returns>ApiResponse of UpdateWhatsAppContact200Response</returns>
+        [Obsolete]
         ApiResponse<UpdateWhatsAppContact200Response> UpdateWhatsAppContactWithHttpInfo(string contactId, UpdateWhatsAppContactRequest updateWhatsAppContactRequest);
         /// <summary>
         /// Request display name change
@@ -753,141 +797,153 @@ namespace Late.Api
         /// Add recipients
         /// </summary>
         /// <remarks>
-        /// Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; instead. Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="addWhatsAppBroadcastRecipientsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AddWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<AddWhatsAppBroadcastRecipients200Response> AddWhatsAppBroadcastRecipientsAsync(string broadcastId, AddWhatsAppBroadcastRecipientsRequest addWhatsAppBroadcastRecipientsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Add recipients
         /// </summary>
         /// <remarks>
-        /// Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; instead. Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="addWhatsAppBroadcastRecipientsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AddWhatsAppBroadcastRecipients200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<AddWhatsAppBroadcastRecipients200Response>> AddWhatsAppBroadcastRecipientsWithHttpInfoAsync(string broadcastId, AddWhatsAppBroadcastRecipientsRequest addWhatsAppBroadcastRecipientsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Bulk delete contacts
         /// </summary>
         /// <remarks>
-        /// Permanently delete multiple contacts at once (max 500 per request).
+        /// **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; for individual deletes instead. Permanently delete multiple contacts at once (max 500 per request). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkDeleteWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BulkDeleteWhatsAppContacts200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<BulkDeleteWhatsAppContacts200Response> BulkDeleteWhatsAppContactsAsync(BulkDeleteWhatsAppContactsRequest bulkDeleteWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Bulk delete contacts
         /// </summary>
         /// <remarks>
-        /// Permanently delete multiple contacts at once (max 500 per request).
+        /// **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; for individual deletes instead. Permanently delete multiple contacts at once (max 500 per request). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkDeleteWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BulkDeleteWhatsAppContacts200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<BulkDeleteWhatsAppContacts200Response>> BulkDeleteWhatsAppContactsWithHttpInfoAsync(BulkDeleteWhatsAppContactsRequest bulkDeleteWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Bulk update contacts
         /// </summary>
         /// <remarks>
-        /// Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
+        /// **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; for individual updates instead. Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpdateWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BulkUpdateWhatsAppContacts200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<BulkUpdateWhatsAppContacts200Response> BulkUpdateWhatsAppContactsAsync(BulkUpdateWhatsAppContactsRequest bulkUpdateWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Bulk update contacts
         /// </summary>
         /// <remarks>
-        /// Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
+        /// **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; for individual updates instead. Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpdateWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BulkUpdateWhatsAppContacts200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<BulkUpdateWhatsAppContacts200Response>> BulkUpdateWhatsAppContactsWithHttpInfoAsync(BulkUpdateWhatsAppContactsRequest bulkUpdateWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Cancel scheduled broadcast
         /// </summary>
         /// <remarks>
-        /// Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/cancel&#x60; instead. Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CancelWhatsAppBroadcastSchedule200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<CancelWhatsAppBroadcastSchedule200Response> CancelWhatsAppBroadcastScheduleAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Cancel scheduled broadcast
         /// </summary>
         /// <remarks>
-        /// Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/cancel&#x60; instead. Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CancelWhatsAppBroadcastSchedule200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<CancelWhatsAppBroadcastSchedule200Response>> CancelWhatsAppBroadcastScheduleWithHttpInfoAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create broadcast
         /// </summary>
         /// <remarks>
-        /// Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; instead. Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<CreateWhatsAppBroadcast200Response> CreateWhatsAppBroadcastAsync(CreateWhatsAppBroadcastRequest createWhatsAppBroadcastRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create broadcast
         /// </summary>
         /// <remarks>
-        /// Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; instead. Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateWhatsAppBroadcast200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<CreateWhatsAppBroadcast200Response>> CreateWhatsAppBroadcastWithHttpInfoAsync(CreateWhatsAppBroadcastRequest createWhatsAppBroadcastRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create contact
         /// </summary>
         /// <remarks>
-        /// Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
+        /// **Deprecated.** Use &#x60;POST /v1/contacts&#x60; instead. Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppContactRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateWhatsAppContact200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<CreateWhatsAppContact200Response> CreateWhatsAppContactAsync(CreateWhatsAppContactRequest createWhatsAppContactRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create contact
         /// </summary>
         /// <remarks>
-        /// Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
+        /// **Deprecated.** Use &#x60;POST /v1/contacts&#x60; instead. Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppContactRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateWhatsAppContact200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<CreateWhatsAppContact200Response>> CreateWhatsAppContactWithHttpInfoAsync(CreateWhatsAppContactRequest createWhatsAppContactRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create template
@@ -916,76 +972,82 @@ namespace Late.Api
         /// Delete broadcast
         /// </summary>
         /// <remarks>
-        /// Delete a broadcast. Only draft or cancelled broadcasts can be deleted.
+        /// **Deprecated.** Use &#x60;DELETE /v1/broadcasts/{id}&#x60; instead. Delete a broadcast. Only draft or cancelled broadcasts can be deleted. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<UnpublishPost200Response> DeleteWhatsAppBroadcastAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete broadcast
         /// </summary>
         /// <remarks>
-        /// Delete a broadcast. Only draft or cancelled broadcasts can be deleted.
+        /// **Deprecated.** Use &#x60;DELETE /v1/broadcasts/{id}&#x60; instead. Delete a broadcast. Only draft or cancelled broadcasts can be deleted. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<UnpublishPost200Response>> DeleteWhatsAppBroadcastWithHttpInfoAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete contact
         /// </summary>
         /// <remarks>
-        /// Permanently delete a WhatsApp contact.
+        /// **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; instead. Permanently delete a WhatsApp contact. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<UnpublishPost200Response> DeleteWhatsAppContactAsync(string contactId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete contact
         /// </summary>
         /// <remarks>
-        /// Permanently delete a WhatsApp contact.
+        /// **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; instead. Permanently delete a WhatsApp contact. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<UnpublishPost200Response>> DeleteWhatsAppContactWithHttpInfoAsync(string contactId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete group
         /// </summary>
         /// <remarks>
-        /// Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves.
+        /// **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsAppGroupRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<RenameWhatsAppGroup200Response> DeleteWhatsAppGroupAsync(DeleteWhatsAppGroupRequest deleteWhatsAppGroupRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete group
         /// </summary>
         /// <remarks>
-        /// Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves.
+        /// **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsAppGroupRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RenameWhatsAppGroup200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<RenameWhatsAppGroup200Response>> DeleteWhatsAppGroupWithHttpInfoAsync(DeleteWhatsAppGroupRequest deleteWhatsAppGroupRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete template
         /// </summary>
         /// <remarks>
-        /// Permanently delete a message template by name.
+        /// Permanently delete a message template by name. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -998,7 +1060,7 @@ namespace Late.Api
         /// Delete template
         /// </summary>
         /// <remarks>
-        /// Permanently delete a message template by name.
+        /// Permanently delete a message template by name. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -1010,30 +1072,32 @@ namespace Late.Api
         /// Get broadcast
         /// </summary>
         /// <remarks>
-        /// Retrieve detailed information about a single broadcast including delivery statistics.
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}&#x60; instead. Retrieve detailed information about a single broadcast including delivery statistics. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<GetWhatsAppBroadcast200Response> GetWhatsAppBroadcastAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get broadcast
         /// </summary>
         /// <remarks>
-        /// Retrieve detailed information about a single broadcast including delivery statistics.
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}&#x60; instead. Retrieve detailed information about a single broadcast including delivery statistics. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppBroadcast200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppBroadcast200Response>> GetWhatsAppBroadcastWithHttpInfoAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List recipients
         /// </summary>
         /// <remarks>
-        /// List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}/recipients&#x60; instead. List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
@@ -1042,13 +1106,14 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<GetWhatsAppBroadcastRecipients200Response> GetWhatsAppBroadcastRecipientsAsync(string broadcastId, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List recipients
         /// </summary>
         /// <remarks>
-        /// List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}/recipients&#x60; instead. List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
@@ -1057,12 +1122,13 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppBroadcastRecipients200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppBroadcastRecipients200Response>> GetWhatsAppBroadcastRecipientsWithHttpInfoAsync(string broadcastId, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List broadcasts
         /// </summary>
         /// <remarks>
-        /// List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts?profileId&#x3D;{profileId}&#x60; instead. List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -1071,13 +1137,14 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppBroadcasts200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<GetWhatsAppBroadcasts200Response> GetWhatsAppBroadcastsAsync(string accountId, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List broadcasts
         /// </summary>
         /// <remarks>
-        /// List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
+        /// **Deprecated.** Use &#x60;GET /v1/broadcasts?profileId&#x3D;{profileId}&#x60; instead. List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -1086,12 +1153,13 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppBroadcasts200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppBroadcasts200Response>> GetWhatsAppBroadcastsWithHttpInfoAsync(string accountId, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get business profile
         /// </summary>
         /// <remarks>
-        /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.).
+        /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -1103,7 +1171,7 @@ namespace Late.Api
         /// Get business profile
         /// </summary>
         /// <remarks>
-        /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.).
+        /// Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -1114,30 +1182,32 @@ namespace Late.Api
         /// Get contact
         /// </summary>
         /// <remarks>
-        /// Retrieve a single WhatsApp contact by ID with full details.
+        /// **Deprecated.** Use &#x60;GET /v1/contacts/{id}&#x60; instead. Retrieve a single WhatsApp contact by ID with full details. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppContact200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<GetWhatsAppContact200Response> GetWhatsAppContactAsync(string contactId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get contact
         /// </summary>
         /// <remarks>
-        /// Retrieve a single WhatsApp contact by ID with full details.
+        /// **Deprecated.** Use &#x60;GET /v1/contacts/{id}&#x60; instead. Retrieve a single WhatsApp contact by ID with full details. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppContact200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppContact200Response>> GetWhatsAppContactWithHttpInfoAsync(string contactId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List contacts
         /// </summary>
         /// <remarks>
-        /// List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
+        /// **Deprecated.** Use &#x60;GET /v1/contacts?profileId&#x3D;{profileId}&#x60; instead. List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -1149,13 +1219,14 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppContacts200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<GetWhatsAppContacts200Response> GetWhatsAppContactsAsync(string accountId, string? search = default, string? tag = default, string? group = default, string? optedIn = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List contacts
         /// </summary>
         /// <remarks>
-        /// List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
+        /// **Deprecated.** Use &#x60;GET /v1/contacts?profileId&#x3D;{profileId}&#x60; instead. List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -1167,6 +1238,7 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppContacts200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppContacts200Response>> GetWhatsAppContactsWithHttpInfoAsync(string accountId, string? search = default, string? tag = default, string? group = default, string? optedIn = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get display name and review status
@@ -1195,30 +1267,32 @@ namespace Late.Api
         /// List contact groups
         /// </summary>
         /// <remarks>
-        /// List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
+        /// **Deprecated.** Use contact tags via &#x60;GET /v1/contacts&#x60; for grouping instead. WhatsApp groups have no cross-platform equivalent. List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppGroups200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<GetWhatsAppGroups200Response> GetWhatsAppGroupsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List contact groups
         /// </summary>
         /// <remarks>
-        /// List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
+        /// **Deprecated.** Use contact tags via &#x60;GET /v1/contacts&#x60; for grouping instead. WhatsApp groups have no cross-platform equivalent. List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppGroups200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppGroups200Response>> GetWhatsAppGroupsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get template
         /// </summary>
         /// <remarks>
-        /// Retrieve a single message template by name.
+        /// Retrieve a single message template by name. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -1231,7 +1305,7 @@ namespace Late.Api
         /// Get template
         /// </summary>
         /// <remarks>
-        /// Retrieve a single message template by name.
+        /// Retrieve a single message template by name. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -1266,143 +1340,155 @@ namespace Late.Api
         /// Bulk import contacts
         /// </summary>
         /// <remarks>
-        /// Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
+        /// **Deprecated.** Use &#x60;POST /v1/contacts/bulk&#x60; instead. Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ImportWhatsAppContacts200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ImportWhatsAppContacts200Response> ImportWhatsAppContactsAsync(ImportWhatsAppContactsRequest importWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Bulk import contacts
         /// </summary>
         /// <remarks>
-        /// Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
+        /// **Deprecated.** Use &#x60;POST /v1/contacts/bulk&#x60; instead. Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ImportWhatsAppContacts200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<ImportWhatsAppContacts200Response>> ImportWhatsAppContactsWithHttpInfoAsync(ImportWhatsAppContactsRequest importWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Remove recipients
         /// </summary>
         /// <remarks>
-        /// Remove recipients from a draft broadcast by phone number.
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; with removal flag instead. Remove recipients from a draft broadcast by phone number. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="removeWhatsAppBroadcastRecipientsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RemoveWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<RemoveWhatsAppBroadcastRecipients200Response> RemoveWhatsAppBroadcastRecipientsAsync(string broadcastId, RemoveWhatsAppBroadcastRecipientsRequest removeWhatsAppBroadcastRecipientsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Remove recipients
         /// </summary>
         /// <remarks>
-        /// Remove recipients from a draft broadcast by phone number.
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; with removal flag instead. Remove recipients from a draft broadcast by phone number. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="removeWhatsAppBroadcastRecipientsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RemoveWhatsAppBroadcastRecipients200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<RemoveWhatsAppBroadcastRecipients200Response>> RemoveWhatsAppBroadcastRecipientsWithHttpInfoAsync(string broadcastId, RemoveWhatsAppBroadcastRecipientsRequest removeWhatsAppBroadcastRecipientsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Rename group
         /// </summary>
         /// <remarks>
-        /// Rename a contact group. This updates the group name on all contacts that belong to the group.
+        /// **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Rename a contact group. This updates the group name on all contacts that belong to the group. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="renameWhatsAppGroupRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<RenameWhatsAppGroup200Response> RenameWhatsAppGroupAsync(RenameWhatsAppGroupRequest renameWhatsAppGroupRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Rename group
         /// </summary>
         /// <remarks>
-        /// Rename a contact group. This updates the group name on all contacts that belong to the group.
+        /// **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Rename a contact group. This updates the group name on all contacts that belong to the group. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="renameWhatsAppGroupRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RenameWhatsAppGroup200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<RenameWhatsAppGroup200Response>> RenameWhatsAppGroupWithHttpInfoAsync(RenameWhatsAppGroupRequest renameWhatsAppGroupRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Schedule broadcast
         /// </summary>
         /// <remarks>
-        /// Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/schedule&#x60; instead. Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="scheduleWhatsAppBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ScheduleWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ScheduleWhatsAppBroadcast200Response> ScheduleWhatsAppBroadcastAsync(string broadcastId, ScheduleWhatsAppBroadcastRequest scheduleWhatsAppBroadcastRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Schedule broadcast
         /// </summary>
         /// <remarks>
-        /// Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/schedule&#x60; instead. Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="scheduleWhatsAppBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ScheduleWhatsAppBroadcast200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<ScheduleWhatsAppBroadcast200Response>> ScheduleWhatsAppBroadcastWithHttpInfoAsync(string broadcastId, ScheduleWhatsAppBroadcastRequest scheduleWhatsAppBroadcastRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Send broadcast
         /// </summary>
         /// <remarks>
-        /// Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/send&#x60; instead. Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SendWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<SendWhatsAppBroadcast200Response> SendWhatsAppBroadcastAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Send broadcast
         /// </summary>
         /// <remarks>
-        /// Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/send&#x60; instead. Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SendWhatsAppBroadcast200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<SendWhatsAppBroadcast200Response>> SendWhatsAppBroadcastWithHttpInfoAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Bulk send template messages
         /// </summary>
         /// <remarks>
-        /// Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; to create a broadcast, &#x60;POST /v1/broadcasts/{id}/recipients&#x60; to add recipients, then &#x60;POST /v1/broadcasts/{id}/send&#x60; to send. Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendWhatsAppBulkRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SendWhatsAppBulk200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<SendWhatsAppBulk200Response> SendWhatsAppBulkAsync(SendWhatsAppBulkRequest sendWhatsAppBulkRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Bulk send template messages
         /// </summary>
         /// <remarks>
-        /// Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
+        /// **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; to create a broadcast, &#x60;POST /v1/broadcasts/{id}/recipients&#x60; to add recipients, then &#x60;POST /v1/broadcasts/{id}/send&#x60; to send. Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendWhatsAppBulkRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SendWhatsAppBulk200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<SendWhatsAppBulk200Response>> SendWhatsAppBulkWithHttpInfoAsync(SendWhatsAppBulkRequest sendWhatsAppBulkRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update business profile
@@ -1431,26 +1517,28 @@ namespace Late.Api
         /// Update contact
         /// </summary>
         /// <remarks>
-        /// Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
+        /// **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; instead. Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="updateWhatsAppContactRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateWhatsAppContact200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<UpdateWhatsAppContact200Response> UpdateWhatsAppContactAsync(string contactId, UpdateWhatsAppContactRequest updateWhatsAppContactRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update contact
         /// </summary>
         /// <remarks>
-        /// Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
+        /// **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; instead. Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="updateWhatsAppContactRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateWhatsAppContact200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<UpdateWhatsAppContact200Response>> UpdateWhatsAppContactWithHttpInfoAsync(string contactId, UpdateWhatsAppContactRequest updateWhatsAppContactRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Request display name change
@@ -1739,12 +1827,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Add recipients Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
+        /// Add recipients **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; instead. Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="addWhatsAppBroadcastRecipientsRequest"></param>
         /// <returns>AddWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         public AddWhatsAppBroadcastRecipients200Response AddWhatsAppBroadcastRecipients(string broadcastId, AddWhatsAppBroadcastRecipientsRequest addWhatsAppBroadcastRecipientsRequest)
         {
             Late.Client.ApiResponse<AddWhatsAppBroadcastRecipients200Response> localVarResponse = AddWhatsAppBroadcastRecipientsWithHttpInfo(broadcastId, addWhatsAppBroadcastRecipientsRequest);
@@ -1752,12 +1841,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Add recipients Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
+        /// Add recipients **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; instead. Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="addWhatsAppBroadcastRecipientsRequest"></param>
         /// <returns>ApiResponse of AddWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<AddWhatsAppBroadcastRecipients200Response> AddWhatsAppBroadcastRecipientsWithHttpInfo(string broadcastId, AddWhatsAppBroadcastRecipientsRequest addWhatsAppBroadcastRecipientsRequest)
         {
             // verify the required parameter 'broadcastId' is set
@@ -1808,13 +1898,14 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Add recipients Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
+        /// Add recipients **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; instead. Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="addWhatsAppBroadcastRecipientsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AddWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<AddWhatsAppBroadcastRecipients200Response> AddWhatsAppBroadcastRecipientsAsync(string broadcastId, AddWhatsAppBroadcastRecipientsRequest addWhatsAppBroadcastRecipientsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<AddWhatsAppBroadcastRecipients200Response> localVarResponse = await AddWhatsAppBroadcastRecipientsWithHttpInfoAsync(broadcastId, addWhatsAppBroadcastRecipientsRequest, cancellationToken).ConfigureAwait(false);
@@ -1822,13 +1913,14 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Add recipients Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
+        /// Add recipients **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; instead. Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplicate phone numbers are automatically skipped. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="addWhatsAppBroadcastRecipientsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AddWhatsAppBroadcastRecipients200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<AddWhatsAppBroadcastRecipients200Response>> AddWhatsAppBroadcastRecipientsWithHttpInfoAsync(string broadcastId, AddWhatsAppBroadcastRecipientsRequest addWhatsAppBroadcastRecipientsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'broadcastId' is set
@@ -1882,11 +1974,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk delete contacts Permanently delete multiple contacts at once (max 500 per request).
+        /// Bulk delete contacts **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; for individual deletes instead. Permanently delete multiple contacts at once (max 500 per request). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkDeleteWhatsAppContactsRequest"></param>
         /// <returns>BulkDeleteWhatsAppContacts200Response</returns>
+        [Obsolete]
         public BulkDeleteWhatsAppContacts200Response BulkDeleteWhatsAppContacts(BulkDeleteWhatsAppContactsRequest bulkDeleteWhatsAppContactsRequest)
         {
             Late.Client.ApiResponse<BulkDeleteWhatsAppContacts200Response> localVarResponse = BulkDeleteWhatsAppContactsWithHttpInfo(bulkDeleteWhatsAppContactsRequest);
@@ -1894,11 +1987,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk delete contacts Permanently delete multiple contacts at once (max 500 per request).
+        /// Bulk delete contacts **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; for individual deletes instead. Permanently delete multiple contacts at once (max 500 per request). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkDeleteWhatsAppContactsRequest"></param>
         /// <returns>ApiResponse of BulkDeleteWhatsAppContacts200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<BulkDeleteWhatsAppContacts200Response> BulkDeleteWhatsAppContactsWithHttpInfo(BulkDeleteWhatsAppContactsRequest bulkDeleteWhatsAppContactsRequest)
         {
             // verify the required parameter 'bulkDeleteWhatsAppContactsRequest' is set
@@ -1944,12 +2038,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk delete contacts Permanently delete multiple contacts at once (max 500 per request).
+        /// Bulk delete contacts **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; for individual deletes instead. Permanently delete multiple contacts at once (max 500 per request). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkDeleteWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BulkDeleteWhatsAppContacts200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<BulkDeleteWhatsAppContacts200Response> BulkDeleteWhatsAppContactsAsync(BulkDeleteWhatsAppContactsRequest bulkDeleteWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<BulkDeleteWhatsAppContacts200Response> localVarResponse = await BulkDeleteWhatsAppContactsWithHttpInfoAsync(bulkDeleteWhatsAppContactsRequest, cancellationToken).ConfigureAwait(false);
@@ -1957,12 +2052,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk delete contacts Permanently delete multiple contacts at once (max 500 per request).
+        /// Bulk delete contacts **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; for individual deletes instead. Permanently delete multiple contacts at once (max 500 per request). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkDeleteWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BulkDeleteWhatsAppContacts200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<BulkDeleteWhatsAppContacts200Response>> BulkDeleteWhatsAppContactsWithHttpInfoAsync(BulkDeleteWhatsAppContactsRequest bulkDeleteWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'bulkDeleteWhatsAppContactsRequest' is set
@@ -2011,11 +2107,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk update contacts Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
+        /// Bulk update contacts **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; for individual updates instead. Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpdateWhatsAppContactsRequest"></param>
         /// <returns>BulkUpdateWhatsAppContacts200Response</returns>
+        [Obsolete]
         public BulkUpdateWhatsAppContacts200Response BulkUpdateWhatsAppContacts(BulkUpdateWhatsAppContactsRequest bulkUpdateWhatsAppContactsRequest)
         {
             Late.Client.ApiResponse<BulkUpdateWhatsAppContacts200Response> localVarResponse = BulkUpdateWhatsAppContactsWithHttpInfo(bulkUpdateWhatsAppContactsRequest);
@@ -2023,11 +2120,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk update contacts Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
+        /// Bulk update contacts **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; for individual updates instead. Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpdateWhatsAppContactsRequest"></param>
         /// <returns>ApiResponse of BulkUpdateWhatsAppContacts200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<BulkUpdateWhatsAppContacts200Response> BulkUpdateWhatsAppContactsWithHttpInfo(BulkUpdateWhatsAppContactsRequest bulkUpdateWhatsAppContactsRequest)
         {
             // verify the required parameter 'bulkUpdateWhatsAppContactsRequest' is set
@@ -2073,12 +2171,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk update contacts Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
+        /// Bulk update contacts **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; for individual updates instead. Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpdateWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of BulkUpdateWhatsAppContacts200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<BulkUpdateWhatsAppContacts200Response> BulkUpdateWhatsAppContactsAsync(BulkUpdateWhatsAppContactsRequest bulkUpdateWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<BulkUpdateWhatsAppContacts200Response> localVarResponse = await BulkUpdateWhatsAppContactsWithHttpInfoAsync(bulkUpdateWhatsAppContactsRequest, cancellationToken).ConfigureAwait(false);
@@ -2086,12 +2185,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk update contacts Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
+        /// Bulk update contacts **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; for individual updates instead. Perform bulk operations on multiple contacts (max 500 per request). Supported actions: addTags, removeTags, addGroups, removeGroups, optIn, optOut, block, unblock. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkUpdateWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (BulkUpdateWhatsAppContacts200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<BulkUpdateWhatsAppContacts200Response>> BulkUpdateWhatsAppContactsWithHttpInfoAsync(BulkUpdateWhatsAppContactsRequest bulkUpdateWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'bulkUpdateWhatsAppContactsRequest' is set
@@ -2140,11 +2240,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Cancel scheduled broadcast Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
+        /// Cancel scheduled broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/cancel&#x60; instead. Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>CancelWhatsAppBroadcastSchedule200Response</returns>
+        [Obsolete]
         public CancelWhatsAppBroadcastSchedule200Response CancelWhatsAppBroadcastSchedule(string broadcastId)
         {
             Late.Client.ApiResponse<CancelWhatsAppBroadcastSchedule200Response> localVarResponse = CancelWhatsAppBroadcastScheduleWithHttpInfo(broadcastId);
@@ -2152,11 +2253,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Cancel scheduled broadcast Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
+        /// Cancel scheduled broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/cancel&#x60; instead. Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>ApiResponse of CancelWhatsAppBroadcastSchedule200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<CancelWhatsAppBroadcastSchedule200Response> CancelWhatsAppBroadcastScheduleWithHttpInfo(string broadcastId)
         {
             // verify the required parameter 'broadcastId' is set
@@ -2201,12 +2303,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Cancel scheduled broadcast Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
+        /// Cancel scheduled broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/cancel&#x60; instead. Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CancelWhatsAppBroadcastSchedule200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<CancelWhatsAppBroadcastSchedule200Response> CancelWhatsAppBroadcastScheduleAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<CancelWhatsAppBroadcastSchedule200Response> localVarResponse = await CancelWhatsAppBroadcastScheduleWithHttpInfoAsync(broadcastId, cancellationToken).ConfigureAwait(false);
@@ -2214,12 +2317,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Cancel scheduled broadcast Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
+        /// Cancel scheduled broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/cancel&#x60; instead. Cancel a scheduled broadcast and return it to draft status. Only broadcasts in scheduled status can be cancelled. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CancelWhatsAppBroadcastSchedule200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<CancelWhatsAppBroadcastSchedule200Response>> CancelWhatsAppBroadcastScheduleWithHttpInfoAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'broadcastId' is set
@@ -2267,11 +2371,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create broadcast Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
+        /// Create broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; instead. Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppBroadcastRequest"></param>
         /// <returns>CreateWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public CreateWhatsAppBroadcast200Response CreateWhatsAppBroadcast(CreateWhatsAppBroadcastRequest createWhatsAppBroadcastRequest)
         {
             Late.Client.ApiResponse<CreateWhatsAppBroadcast200Response> localVarResponse = CreateWhatsAppBroadcastWithHttpInfo(createWhatsAppBroadcastRequest);
@@ -2279,11 +2384,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create broadcast Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
+        /// Create broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; instead. Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppBroadcastRequest"></param>
         /// <returns>ApiResponse of CreateWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<CreateWhatsAppBroadcast200Response> CreateWhatsAppBroadcastWithHttpInfo(CreateWhatsAppBroadcastRequest createWhatsAppBroadcastRequest)
         {
             // verify the required parameter 'createWhatsAppBroadcastRequest' is set
@@ -2329,12 +2435,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create broadcast Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
+        /// Create broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; instead. Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<CreateWhatsAppBroadcast200Response> CreateWhatsAppBroadcastAsync(CreateWhatsAppBroadcastRequest createWhatsAppBroadcastRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<CreateWhatsAppBroadcast200Response> localVarResponse = await CreateWhatsAppBroadcastWithHttpInfoAsync(createWhatsAppBroadcastRequest, cancellationToken).ConfigureAwait(false);
@@ -2342,12 +2449,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create broadcast Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
+        /// Create broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; instead. Create a new draft broadcast. Optionally include initial recipients. After creation, add recipients and then send or schedule the broadcast. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateWhatsAppBroadcast200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<CreateWhatsAppBroadcast200Response>> CreateWhatsAppBroadcastWithHttpInfoAsync(CreateWhatsAppBroadcastRequest createWhatsAppBroadcastRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'createWhatsAppBroadcastRequest' is set
@@ -2396,11 +2504,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create contact Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
+        /// Create contact **Deprecated.** Use &#x60;POST /v1/contacts&#x60; instead. Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppContactRequest"></param>
         /// <returns>CreateWhatsAppContact200Response</returns>
+        [Obsolete]
         public CreateWhatsAppContact200Response CreateWhatsAppContact(CreateWhatsAppContactRequest createWhatsAppContactRequest)
         {
             Late.Client.ApiResponse<CreateWhatsAppContact200Response> localVarResponse = CreateWhatsAppContactWithHttpInfo(createWhatsAppContactRequest);
@@ -2408,11 +2517,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create contact Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
+        /// Create contact **Deprecated.** Use &#x60;POST /v1/contacts&#x60; instead. Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppContactRequest"></param>
         /// <returns>ApiResponse of CreateWhatsAppContact200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<CreateWhatsAppContact200Response> CreateWhatsAppContactWithHttpInfo(CreateWhatsAppContactRequest createWhatsAppContactRequest)
         {
             // verify the required parameter 'createWhatsAppContactRequest' is set
@@ -2458,12 +2568,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create contact Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
+        /// Create contact **Deprecated.** Use &#x60;POST /v1/contacts&#x60; instead. Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppContactRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateWhatsAppContact200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<CreateWhatsAppContact200Response> CreateWhatsAppContactAsync(CreateWhatsAppContactRequest createWhatsAppContactRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<CreateWhatsAppContact200Response> localVarResponse = await CreateWhatsAppContactWithHttpInfoAsync(createWhatsAppContactRequest, cancellationToken).ConfigureAwait(false);
@@ -2471,12 +2582,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create contact Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
+        /// Create contact **Deprecated.** Use &#x60;POST /v1/contacts&#x60; instead. Create a new WhatsApp contact. Phone number must be unique per account and in E.164 format (e.g., +1234567890). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppContactRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateWhatsAppContact200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<CreateWhatsAppContact200Response>> CreateWhatsAppContactWithHttpInfoAsync(CreateWhatsAppContactRequest createWhatsAppContactRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'createWhatsAppContactRequest' is set
@@ -2654,11 +2766,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete broadcast Delete a broadcast. Only draft or cancelled broadcasts can be deleted.
+        /// Delete broadcast **Deprecated.** Use &#x60;DELETE /v1/broadcasts/{id}&#x60; instead. Delete a broadcast. Only draft or cancelled broadcasts can be deleted. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>UnpublishPost200Response</returns>
+        [Obsolete]
         public UnpublishPost200Response DeleteWhatsAppBroadcast(string broadcastId)
         {
             Late.Client.ApiResponse<UnpublishPost200Response> localVarResponse = DeleteWhatsAppBroadcastWithHttpInfo(broadcastId);
@@ -2666,11 +2779,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete broadcast Delete a broadcast. Only draft or cancelled broadcasts can be deleted.
+        /// Delete broadcast **Deprecated.** Use &#x60;DELETE /v1/broadcasts/{id}&#x60; instead. Delete a broadcast. Only draft or cancelled broadcasts can be deleted. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<UnpublishPost200Response> DeleteWhatsAppBroadcastWithHttpInfo(string broadcastId)
         {
             // verify the required parameter 'broadcastId' is set
@@ -2715,12 +2829,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete broadcast Delete a broadcast. Only draft or cancelled broadcasts can be deleted.
+        /// Delete broadcast **Deprecated.** Use &#x60;DELETE /v1/broadcasts/{id}&#x60; instead. Delete a broadcast. Only draft or cancelled broadcasts can be deleted. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<UnpublishPost200Response> DeleteWhatsAppBroadcastAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<UnpublishPost200Response> localVarResponse = await DeleteWhatsAppBroadcastWithHttpInfoAsync(broadcastId, cancellationToken).ConfigureAwait(false);
@@ -2728,12 +2843,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete broadcast Delete a broadcast. Only draft or cancelled broadcasts can be deleted.
+        /// Delete broadcast **Deprecated.** Use &#x60;DELETE /v1/broadcasts/{id}&#x60; instead. Delete a broadcast. Only draft or cancelled broadcasts can be deleted. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UnpublishPost200Response>> DeleteWhatsAppBroadcastWithHttpInfoAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'broadcastId' is set
@@ -2781,11 +2897,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete contact Permanently delete a WhatsApp contact.
+        /// Delete contact **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; instead. Permanently delete a WhatsApp contact. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <returns>UnpublishPost200Response</returns>
+        [Obsolete]
         public UnpublishPost200Response DeleteWhatsAppContact(string contactId)
         {
             Late.Client.ApiResponse<UnpublishPost200Response> localVarResponse = DeleteWhatsAppContactWithHttpInfo(contactId);
@@ -2793,11 +2910,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete contact Permanently delete a WhatsApp contact.
+        /// Delete contact **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; instead. Permanently delete a WhatsApp contact. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<UnpublishPost200Response> DeleteWhatsAppContactWithHttpInfo(string contactId)
         {
             // verify the required parameter 'contactId' is set
@@ -2842,12 +2960,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete contact Permanently delete a WhatsApp contact.
+        /// Delete contact **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; instead. Permanently delete a WhatsApp contact. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UnpublishPost200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<UnpublishPost200Response> DeleteWhatsAppContactAsync(string contactId, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<UnpublishPost200Response> localVarResponse = await DeleteWhatsAppContactWithHttpInfoAsync(contactId, cancellationToken).ConfigureAwait(false);
@@ -2855,12 +2974,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete contact Permanently delete a WhatsApp contact.
+        /// Delete contact **Deprecated.** Use &#x60;DELETE /v1/contacts/{id}&#x60; instead. Permanently delete a WhatsApp contact. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UnpublishPost200Response>> DeleteWhatsAppContactWithHttpInfoAsync(string contactId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'contactId' is set
@@ -2908,11 +3028,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete group Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves.
+        /// Delete group **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsAppGroupRequest"></param>
         /// <returns>RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         public RenameWhatsAppGroup200Response DeleteWhatsAppGroup(DeleteWhatsAppGroupRequest deleteWhatsAppGroupRequest)
         {
             Late.Client.ApiResponse<RenameWhatsAppGroup200Response> localVarResponse = DeleteWhatsAppGroupWithHttpInfo(deleteWhatsAppGroupRequest);
@@ -2920,11 +3041,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete group Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves.
+        /// Delete group **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsAppGroupRequest"></param>
         /// <returns>ApiResponse of RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<RenameWhatsAppGroup200Response> DeleteWhatsAppGroupWithHttpInfo(DeleteWhatsAppGroupRequest deleteWhatsAppGroupRequest)
         {
             // verify the required parameter 'deleteWhatsAppGroupRequest' is set
@@ -2970,12 +3092,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete group Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves.
+        /// Delete group **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsAppGroupRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<RenameWhatsAppGroup200Response> DeleteWhatsAppGroupAsync(DeleteWhatsAppGroupRequest deleteWhatsAppGroupRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<RenameWhatsAppGroup200Response> localVarResponse = await DeleteWhatsAppGroupWithHttpInfoAsync(deleteWhatsAppGroupRequest, cancellationToken).ConfigureAwait(false);
@@ -2983,12 +3106,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete group Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves.
+        /// Delete group **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Delete a contact group. This removes the group from all contacts but does not delete the contacts themselves. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="deleteWhatsAppGroupRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RenameWhatsAppGroup200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<RenameWhatsAppGroup200Response>> DeleteWhatsAppGroupWithHttpInfoAsync(DeleteWhatsAppGroupRequest deleteWhatsAppGroupRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'deleteWhatsAppGroupRequest' is set
@@ -3037,7 +3161,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete template Permanently delete a message template by name.
+        /// Delete template Permanently delete a message template by name. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -3050,7 +3174,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete template Permanently delete a message template by name.
+        /// Delete template Permanently delete a message template by name. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -3105,7 +3229,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete template Permanently delete a message template by name.
+        /// Delete template Permanently delete a message template by name. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -3119,7 +3243,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete template Permanently delete a message template by name.
+        /// Delete template Permanently delete a message template by name. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -3178,11 +3302,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get broadcast Retrieve detailed information about a single broadcast including delivery statistics.
+        /// Get broadcast **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}&#x60; instead. Retrieve detailed information about a single broadcast including delivery statistics. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>GetWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public GetWhatsAppBroadcast200Response GetWhatsAppBroadcast(string broadcastId)
         {
             Late.Client.ApiResponse<GetWhatsAppBroadcast200Response> localVarResponse = GetWhatsAppBroadcastWithHttpInfo(broadcastId);
@@ -3190,11 +3315,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get broadcast Retrieve detailed information about a single broadcast including delivery statistics.
+        /// Get broadcast **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}&#x60; instead. Retrieve detailed information about a single broadcast including delivery statistics. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>ApiResponse of GetWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<GetWhatsAppBroadcast200Response> GetWhatsAppBroadcastWithHttpInfo(string broadcastId)
         {
             // verify the required parameter 'broadcastId' is set
@@ -3239,12 +3365,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get broadcast Retrieve detailed information about a single broadcast including delivery statistics.
+        /// Get broadcast **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}&#x60; instead. Retrieve detailed information about a single broadcast including delivery statistics. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<GetWhatsAppBroadcast200Response> GetWhatsAppBroadcastAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<GetWhatsAppBroadcast200Response> localVarResponse = await GetWhatsAppBroadcastWithHttpInfoAsync(broadcastId, cancellationToken).ConfigureAwait(false);
@@ -3252,12 +3379,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get broadcast Retrieve detailed information about a single broadcast including delivery statistics.
+        /// Get broadcast **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}&#x60; instead. Retrieve detailed information about a single broadcast including delivery statistics. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppBroadcast200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetWhatsAppBroadcast200Response>> GetWhatsAppBroadcastWithHttpInfoAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'broadcastId' is set
@@ -3305,7 +3433,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List recipients List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
+        /// List recipients **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}/recipients&#x60; instead. List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
@@ -3313,6 +3441,7 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 100) (optional, default to 100)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>GetWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         public GetWhatsAppBroadcastRecipients200Response GetWhatsAppBroadcastRecipients(string broadcastId, string? status = default, int? limit = default, int? skip = default)
         {
             Late.Client.ApiResponse<GetWhatsAppBroadcastRecipients200Response> localVarResponse = GetWhatsAppBroadcastRecipientsWithHttpInfo(broadcastId, status, limit, skip);
@@ -3320,7 +3449,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List recipients List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
+        /// List recipients **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}/recipients&#x60; instead. List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
@@ -3328,6 +3457,7 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 100) (optional, default to 100)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>ApiResponse of GetWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<GetWhatsAppBroadcastRecipients200Response> GetWhatsAppBroadcastRecipientsWithHttpInfo(string broadcastId, string? status = default, int? limit = default, int? skip = default)
         {
             // verify the required parameter 'broadcastId' is set
@@ -3384,7 +3514,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List recipients List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
+        /// List recipients **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}/recipients&#x60; instead. List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
@@ -3393,6 +3523,7 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<GetWhatsAppBroadcastRecipients200Response> GetWhatsAppBroadcastRecipientsAsync(string broadcastId, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<GetWhatsAppBroadcastRecipients200Response> localVarResponse = await GetWhatsAppBroadcastRecipientsWithHttpInfoAsync(broadcastId, status, limit, skip, cancellationToken).ConfigureAwait(false);
@@ -3400,7 +3531,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List recipients List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
+        /// List recipients **Deprecated.** Use &#x60;GET /v1/broadcasts/{id}/recipients&#x60; instead. List recipients of a broadcast with their delivery status. Supports filtering by delivery status and pagination. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
@@ -3409,6 +3540,7 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppBroadcastRecipients200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetWhatsAppBroadcastRecipients200Response>> GetWhatsAppBroadcastRecipientsWithHttpInfoAsync(string broadcastId, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'broadcastId' is set
@@ -3468,7 +3600,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcasts List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
+        /// List broadcasts **Deprecated.** Use &#x60;GET /v1/broadcasts?profileId&#x3D;{profileId}&#x60; instead. List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3476,6 +3608,7 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 50) (optional, default to 50)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>GetWhatsAppBroadcasts200Response</returns>
+        [Obsolete]
         public GetWhatsAppBroadcasts200Response GetWhatsAppBroadcasts(string accountId, string? status = default, int? limit = default, int? skip = default)
         {
             Late.Client.ApiResponse<GetWhatsAppBroadcasts200Response> localVarResponse = GetWhatsAppBroadcastsWithHttpInfo(accountId, status, limit, skip);
@@ -3483,7 +3616,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcasts List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
+        /// List broadcasts **Deprecated.** Use &#x60;GET /v1/broadcasts?profileId&#x3D;{profileId}&#x60; instead. List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3491,6 +3624,7 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 50) (optional, default to 50)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>ApiResponse of GetWhatsAppBroadcasts200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<GetWhatsAppBroadcasts200Response> GetWhatsAppBroadcastsWithHttpInfo(string accountId, string? status = default, int? limit = default, int? skip = default)
         {
             // verify the required parameter 'accountId' is set
@@ -3547,7 +3681,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcasts List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
+        /// List broadcasts **Deprecated.** Use &#x60;GET /v1/broadcasts?profileId&#x3D;{profileId}&#x60; instead. List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3556,6 +3690,7 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppBroadcasts200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<GetWhatsAppBroadcasts200Response> GetWhatsAppBroadcastsAsync(string accountId, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<GetWhatsAppBroadcasts200Response> localVarResponse = await GetWhatsAppBroadcastsWithHttpInfoAsync(accountId, status, limit, skip, cancellationToken).ConfigureAwait(false);
@@ -3563,7 +3698,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcasts List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
+        /// List broadcasts **Deprecated.** Use &#x60;GET /v1/broadcasts?profileId&#x3D;{profileId}&#x60; instead. List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creation date (newest first) without the full recipients list for performance. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3572,6 +3707,7 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppBroadcasts200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetWhatsAppBroadcasts200Response>> GetWhatsAppBroadcastsWithHttpInfoAsync(string accountId, string? status = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
@@ -3631,7 +3767,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.).
+        /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3643,7 +3779,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.).
+        /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3692,7 +3828,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.).
+        /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3705,7 +3841,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.).
+        /// Get business profile Retrieve the WhatsApp Business profile for the account (about, address, description, email, websites, etc.). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3758,11 +3894,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get contact Retrieve a single WhatsApp contact by ID with full details.
+        /// Get contact **Deprecated.** Use &#x60;GET /v1/contacts/{id}&#x60; instead. Retrieve a single WhatsApp contact by ID with full details. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <returns>GetWhatsAppContact200Response</returns>
+        [Obsolete]
         public GetWhatsAppContact200Response GetWhatsAppContact(string contactId)
         {
             Late.Client.ApiResponse<GetWhatsAppContact200Response> localVarResponse = GetWhatsAppContactWithHttpInfo(contactId);
@@ -3770,11 +3907,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get contact Retrieve a single WhatsApp contact by ID with full details.
+        /// Get contact **Deprecated.** Use &#x60;GET /v1/contacts/{id}&#x60; instead. Retrieve a single WhatsApp contact by ID with full details. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <returns>ApiResponse of GetWhatsAppContact200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<GetWhatsAppContact200Response> GetWhatsAppContactWithHttpInfo(string contactId)
         {
             // verify the required parameter 'contactId' is set
@@ -3819,12 +3957,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get contact Retrieve a single WhatsApp contact by ID with full details.
+        /// Get contact **Deprecated.** Use &#x60;GET /v1/contacts/{id}&#x60; instead. Retrieve a single WhatsApp contact by ID with full details. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppContact200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<GetWhatsAppContact200Response> GetWhatsAppContactAsync(string contactId, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<GetWhatsAppContact200Response> localVarResponse = await GetWhatsAppContactWithHttpInfoAsync(contactId, cancellationToken).ConfigureAwait(false);
@@ -3832,12 +3971,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get contact Retrieve a single WhatsApp contact by ID with full details.
+        /// Get contact **Deprecated.** Use &#x60;GET /v1/contacts/{id}&#x60; instead. Retrieve a single WhatsApp contact by ID with full details. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppContact200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetWhatsAppContact200Response>> GetWhatsAppContactWithHttpInfoAsync(string contactId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'contactId' is set
@@ -3885,7 +4025,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List contacts List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
+        /// List contacts **Deprecated.** Use &#x60;GET /v1/contacts?profileId&#x3D;{profileId}&#x60; instead. List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3896,6 +4036,7 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 50) (optional, default to 50)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>GetWhatsAppContacts200Response</returns>
+        [Obsolete]
         public GetWhatsAppContacts200Response GetWhatsAppContacts(string accountId, string? search = default, string? tag = default, string? group = default, string? optedIn = default, int? limit = default, int? skip = default)
         {
             Late.Client.ApiResponse<GetWhatsAppContacts200Response> localVarResponse = GetWhatsAppContactsWithHttpInfo(accountId, search, tag, group, optedIn, limit, skip);
@@ -3903,7 +4044,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List contacts List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
+        /// List contacts **Deprecated.** Use &#x60;GET /v1/contacts?profileId&#x3D;{profileId}&#x60; instead. List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3914,6 +4055,7 @@ namespace Late.Api
         /// <param name="limit">Maximum results (default 50) (optional, default to 50)</param>
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <returns>ApiResponse of GetWhatsAppContacts200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<GetWhatsAppContacts200Response> GetWhatsAppContactsWithHttpInfo(string accountId, string? search = default, string? tag = default, string? group = default, string? optedIn = default, int? limit = default, int? skip = default)
         {
             // verify the required parameter 'accountId' is set
@@ -3982,7 +4124,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List contacts List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
+        /// List contacts **Deprecated.** Use &#x60;GET /v1/contacts?profileId&#x3D;{profileId}&#x60; instead. List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3994,6 +4136,7 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppContacts200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<GetWhatsAppContacts200Response> GetWhatsAppContactsAsync(string accountId, string? search = default, string? tag = default, string? group = default, string? optedIn = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<GetWhatsAppContacts200Response> localVarResponse = await GetWhatsAppContactsWithHttpInfoAsync(accountId, search, tag, group, optedIn, limit, skip, cancellationToken).ConfigureAwait(false);
@@ -4001,7 +4144,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List contacts List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
+        /// List contacts **Deprecated.** Use &#x60;GET /v1/contacts?profileId&#x3D;{profileId}&#x60; instead. List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-in status, and text search. Returns contacts sorted by name with available filter options. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -4013,6 +4156,7 @@ namespace Late.Api
         /// <param name="skip">Offset for pagination (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppContacts200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetWhatsAppContacts200Response>> GetWhatsAppContactsWithHttpInfoAsync(string accountId, string? search = default, string? tag = default, string? group = default, string? optedIn = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
@@ -4211,11 +4355,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List contact groups List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
+        /// List contact groups **Deprecated.** Use contact tags via &#x60;GET /v1/contacts&#x60; for grouping instead. WhatsApp groups have no cross-platform equivalent. List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <returns>GetWhatsAppGroups200Response</returns>
+        [Obsolete]
         public GetWhatsAppGroups200Response GetWhatsAppGroups(string accountId)
         {
             Late.Client.ApiResponse<GetWhatsAppGroups200Response> localVarResponse = GetWhatsAppGroupsWithHttpInfo(accountId);
@@ -4223,11 +4368,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List contact groups List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
+        /// List contact groups **Deprecated.** Use contact tags via &#x60;GET /v1/contacts&#x60; for grouping instead. WhatsApp groups have no cross-platform equivalent. List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <returns>ApiResponse of GetWhatsAppGroups200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<GetWhatsAppGroups200Response> GetWhatsAppGroupsWithHttpInfo(string accountId)
         {
             // verify the required parameter 'accountId' is set
@@ -4272,12 +4418,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List contact groups List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
+        /// List contact groups **Deprecated.** Use contact tags via &#x60;GET /v1/contacts&#x60; for grouping instead. WhatsApp groups have no cross-platform equivalent. List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppGroups200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<GetWhatsAppGroups200Response> GetWhatsAppGroupsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<GetWhatsAppGroups200Response> localVarResponse = await GetWhatsAppGroupsWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
@@ -4285,12 +4432,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List contact groups List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
+        /// List contact groups **Deprecated.** Use contact tags via &#x60;GET /v1/contacts&#x60; for grouping instead. WhatsApp groups have no cross-platform equivalent. List all contact groups for a WhatsApp account with contact counts. Groups are derived from the groups field on contacts, not stored as separate documents. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppGroups200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetWhatsAppGroups200Response>> GetWhatsAppGroupsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
@@ -4338,7 +4486,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get template Retrieve a single message template by name.
+        /// Get template Retrieve a single message template by name. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -4351,7 +4499,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get template Retrieve a single message template by name.
+        /// Get template Retrieve a single message template by name. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -4406,7 +4554,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get template Retrieve a single message template by name.
+        /// Get template Retrieve a single message template by name. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -4420,7 +4568,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get template Retrieve a single message template by name.
+        /// Get template Retrieve a single message template by name. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateName">Template name</param>
@@ -4606,11 +4754,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk import contacts Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
+        /// Bulk import contacts **Deprecated.** Use &#x60;POST /v1/contacts/bulk&#x60; instead. Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importWhatsAppContactsRequest"></param>
         /// <returns>ImportWhatsAppContacts200Response</returns>
+        [Obsolete]
         public ImportWhatsAppContacts200Response ImportWhatsAppContacts(ImportWhatsAppContactsRequest importWhatsAppContactsRequest)
         {
             Late.Client.ApiResponse<ImportWhatsAppContacts200Response> localVarResponse = ImportWhatsAppContactsWithHttpInfo(importWhatsAppContactsRequest);
@@ -4618,11 +4767,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk import contacts Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
+        /// Bulk import contacts **Deprecated.** Use &#x60;POST /v1/contacts/bulk&#x60; instead. Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importWhatsAppContactsRequest"></param>
         /// <returns>ApiResponse of ImportWhatsAppContacts200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<ImportWhatsAppContacts200Response> ImportWhatsAppContactsWithHttpInfo(ImportWhatsAppContactsRequest importWhatsAppContactsRequest)
         {
             // verify the required parameter 'importWhatsAppContactsRequest' is set
@@ -4668,12 +4818,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk import contacts Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
+        /// Bulk import contacts **Deprecated.** Use &#x60;POST /v1/contacts/bulk&#x60; instead. Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ImportWhatsAppContacts200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<ImportWhatsAppContacts200Response> ImportWhatsAppContactsAsync(ImportWhatsAppContactsRequest importWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<ImportWhatsAppContacts200Response> localVarResponse = await ImportWhatsAppContactsWithHttpInfoAsync(importWhatsAppContactsRequest, cancellationToken).ConfigureAwait(false);
@@ -4681,12 +4832,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk import contacts Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
+        /// Bulk import contacts **Deprecated.** Use &#x60;POST /v1/contacts/bulk&#x60; instead. Import up to 1000 contacts at once. Each contact requires a phone number and name. Duplicates are skipped by default. Supports default tags and groups applied to all imported contacts. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="importWhatsAppContactsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ImportWhatsAppContacts200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ImportWhatsAppContacts200Response>> ImportWhatsAppContactsWithHttpInfoAsync(ImportWhatsAppContactsRequest importWhatsAppContactsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'importWhatsAppContactsRequest' is set
@@ -4735,12 +4887,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Remove recipients Remove recipients from a draft broadcast by phone number.
+        /// Remove recipients **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; with removal flag instead. Remove recipients from a draft broadcast by phone number. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="removeWhatsAppBroadcastRecipientsRequest"></param>
         /// <returns>RemoveWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         public RemoveWhatsAppBroadcastRecipients200Response RemoveWhatsAppBroadcastRecipients(string broadcastId, RemoveWhatsAppBroadcastRecipientsRequest removeWhatsAppBroadcastRecipientsRequest)
         {
             Late.Client.ApiResponse<RemoveWhatsAppBroadcastRecipients200Response> localVarResponse = RemoveWhatsAppBroadcastRecipientsWithHttpInfo(broadcastId, removeWhatsAppBroadcastRecipientsRequest);
@@ -4748,12 +4901,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Remove recipients Remove recipients from a draft broadcast by phone number.
+        /// Remove recipients **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; with removal flag instead. Remove recipients from a draft broadcast by phone number. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="removeWhatsAppBroadcastRecipientsRequest"></param>
         /// <returns>ApiResponse of RemoveWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<RemoveWhatsAppBroadcastRecipients200Response> RemoveWhatsAppBroadcastRecipientsWithHttpInfo(string broadcastId, RemoveWhatsAppBroadcastRecipientsRequest removeWhatsAppBroadcastRecipientsRequest)
         {
             // verify the required parameter 'broadcastId' is set
@@ -4804,13 +4958,14 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Remove recipients Remove recipients from a draft broadcast by phone number.
+        /// Remove recipients **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; with removal flag instead. Remove recipients from a draft broadcast by phone number. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="removeWhatsAppBroadcastRecipientsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RemoveWhatsAppBroadcastRecipients200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<RemoveWhatsAppBroadcastRecipients200Response> RemoveWhatsAppBroadcastRecipientsAsync(string broadcastId, RemoveWhatsAppBroadcastRecipientsRequest removeWhatsAppBroadcastRecipientsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<RemoveWhatsAppBroadcastRecipients200Response> localVarResponse = await RemoveWhatsAppBroadcastRecipientsWithHttpInfoAsync(broadcastId, removeWhatsAppBroadcastRecipientsRequest, cancellationToken).ConfigureAwait(false);
@@ -4818,13 +4973,14 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Remove recipients Remove recipients from a draft broadcast by phone number.
+        /// Remove recipients **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/recipients&#x60; with removal flag instead. Remove recipients from a draft broadcast by phone number. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="removeWhatsAppBroadcastRecipientsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RemoveWhatsAppBroadcastRecipients200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<RemoveWhatsAppBroadcastRecipients200Response>> RemoveWhatsAppBroadcastRecipientsWithHttpInfoAsync(string broadcastId, RemoveWhatsAppBroadcastRecipientsRequest removeWhatsAppBroadcastRecipientsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'broadcastId' is set
@@ -4878,11 +5034,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Rename group Rename a contact group. This updates the group name on all contacts that belong to the group.
+        /// Rename group **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Rename a contact group. This updates the group name on all contacts that belong to the group. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="renameWhatsAppGroupRequest"></param>
         /// <returns>RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         public RenameWhatsAppGroup200Response RenameWhatsAppGroup(RenameWhatsAppGroupRequest renameWhatsAppGroupRequest)
         {
             Late.Client.ApiResponse<RenameWhatsAppGroup200Response> localVarResponse = RenameWhatsAppGroupWithHttpInfo(renameWhatsAppGroupRequest);
@@ -4890,11 +5047,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Rename group Rename a contact group. This updates the group name on all contacts that belong to the group.
+        /// Rename group **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Rename a contact group. This updates the group name on all contacts that belong to the group. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="renameWhatsAppGroupRequest"></param>
         /// <returns>ApiResponse of RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<RenameWhatsAppGroup200Response> RenameWhatsAppGroupWithHttpInfo(RenameWhatsAppGroupRequest renameWhatsAppGroupRequest)
         {
             // verify the required parameter 'renameWhatsAppGroupRequest' is set
@@ -4940,12 +5098,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Rename group Rename a contact group. This updates the group name on all contacts that belong to the group.
+        /// Rename group **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Rename a contact group. This updates the group name on all contacts that belong to the group. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="renameWhatsAppGroupRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of RenameWhatsAppGroup200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<RenameWhatsAppGroup200Response> RenameWhatsAppGroupAsync(RenameWhatsAppGroupRequest renameWhatsAppGroupRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<RenameWhatsAppGroup200Response> localVarResponse = await RenameWhatsAppGroupWithHttpInfoAsync(renameWhatsAppGroupRequest, cancellationToken).ConfigureAwait(false);
@@ -4953,12 +5112,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Rename group Rename a contact group. This updates the group name on all contacts that belong to the group.
+        /// Rename group **Deprecated.** Use contact tags via &#x60;PATCH /v1/contacts/{id}&#x60; instead. Rename a contact group. This updates the group name on all contacts that belong to the group. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="renameWhatsAppGroupRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RenameWhatsAppGroup200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<RenameWhatsAppGroup200Response>> RenameWhatsAppGroupWithHttpInfoAsync(RenameWhatsAppGroupRequest renameWhatsAppGroupRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'renameWhatsAppGroupRequest' is set
@@ -5007,12 +5167,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Schedule broadcast Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
+        /// Schedule broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/schedule&#x60; instead. Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="scheduleWhatsAppBroadcastRequest"></param>
         /// <returns>ScheduleWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public ScheduleWhatsAppBroadcast200Response ScheduleWhatsAppBroadcast(string broadcastId, ScheduleWhatsAppBroadcastRequest scheduleWhatsAppBroadcastRequest)
         {
             Late.Client.ApiResponse<ScheduleWhatsAppBroadcast200Response> localVarResponse = ScheduleWhatsAppBroadcastWithHttpInfo(broadcastId, scheduleWhatsAppBroadcastRequest);
@@ -5020,12 +5181,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Schedule broadcast Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
+        /// Schedule broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/schedule&#x60; instead. Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="scheduleWhatsAppBroadcastRequest"></param>
         /// <returns>ApiResponse of ScheduleWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<ScheduleWhatsAppBroadcast200Response> ScheduleWhatsAppBroadcastWithHttpInfo(string broadcastId, ScheduleWhatsAppBroadcastRequest scheduleWhatsAppBroadcastRequest)
         {
             // verify the required parameter 'broadcastId' is set
@@ -5076,13 +5238,14 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Schedule broadcast Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
+        /// Schedule broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/schedule&#x60; instead. Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="scheduleWhatsAppBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ScheduleWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<ScheduleWhatsAppBroadcast200Response> ScheduleWhatsAppBroadcastAsync(string broadcastId, ScheduleWhatsAppBroadcastRequest scheduleWhatsAppBroadcastRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<ScheduleWhatsAppBroadcast200Response> localVarResponse = await ScheduleWhatsAppBroadcastWithHttpInfoAsync(broadcastId, scheduleWhatsAppBroadcastRequest, cancellationToken).ConfigureAwait(false);
@@ -5090,13 +5253,14 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Schedule broadcast Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
+        /// Schedule broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/schedule&#x60; instead. Schedule a draft broadcast for future sending. The scheduled time must be in the future and no more than 30 days in advance. The broadcast must be in draft status and have recipients. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="scheduleWhatsAppBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ScheduleWhatsAppBroadcast200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ScheduleWhatsAppBroadcast200Response>> ScheduleWhatsAppBroadcastWithHttpInfoAsync(string broadcastId, ScheduleWhatsAppBroadcastRequest scheduleWhatsAppBroadcastRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'broadcastId' is set
@@ -5150,11 +5314,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Send broadcast Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
+        /// Send broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/send&#x60; instead. Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>SendWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public SendWhatsAppBroadcast200Response SendWhatsAppBroadcast(string broadcastId)
         {
             Late.Client.ApiResponse<SendWhatsAppBroadcast200Response> localVarResponse = SendWhatsAppBroadcastWithHttpInfo(broadcastId);
@@ -5162,11 +5327,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Send broadcast Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
+        /// Send broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/send&#x60; instead. Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <returns>ApiResponse of SendWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<SendWhatsAppBroadcast200Response> SendWhatsAppBroadcastWithHttpInfo(string broadcastId)
         {
             // verify the required parameter 'broadcastId' is set
@@ -5211,12 +5377,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Send broadcast Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
+        /// Send broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/send&#x60; instead. Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SendWhatsAppBroadcast200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<SendWhatsAppBroadcast200Response> SendWhatsAppBroadcastAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<SendWhatsAppBroadcast200Response> localVarResponse = await SendWhatsAppBroadcastWithHttpInfoAsync(broadcastId, cancellationToken).ConfigureAwait(false);
@@ -5224,12 +5391,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Send broadcast Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
+        /// Send broadcast **Deprecated.** Use &#x60;POST /v1/broadcasts/{id}/send&#x60; instead. Start sending a broadcast immediately. The broadcast must be in draft or scheduled status and have at least one recipient. Messages are sent sequentially with rate limiting. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId">Broadcast ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SendWhatsAppBroadcast200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<SendWhatsAppBroadcast200Response>> SendWhatsAppBroadcastWithHttpInfoAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'broadcastId' is set
@@ -5277,11 +5445,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk send template messages Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
+        /// Bulk send template messages **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; to create a broadcast, &#x60;POST /v1/broadcasts/{id}/recipients&#x60; to add recipients, then &#x60;POST /v1/broadcasts/{id}/send&#x60; to send. Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendWhatsAppBulkRequest"></param>
         /// <returns>SendWhatsAppBulk200Response</returns>
+        [Obsolete]
         public SendWhatsAppBulk200Response SendWhatsAppBulk(SendWhatsAppBulkRequest sendWhatsAppBulkRequest)
         {
             Late.Client.ApiResponse<SendWhatsAppBulk200Response> localVarResponse = SendWhatsAppBulkWithHttpInfo(sendWhatsAppBulkRequest);
@@ -5289,11 +5458,12 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk send template messages Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
+        /// Bulk send template messages **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; to create a broadcast, &#x60;POST /v1/broadcasts/{id}/recipients&#x60; to add recipients, then &#x60;POST /v1/broadcasts/{id}/send&#x60; to send. Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendWhatsAppBulkRequest"></param>
         /// <returns>ApiResponse of SendWhatsAppBulk200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<SendWhatsAppBulk200Response> SendWhatsAppBulkWithHttpInfo(SendWhatsAppBulkRequest sendWhatsAppBulkRequest)
         {
             // verify the required parameter 'sendWhatsAppBulkRequest' is set
@@ -5339,12 +5509,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk send template messages Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
+        /// Bulk send template messages **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; to create a broadcast, &#x60;POST /v1/broadcasts/{id}/recipients&#x60; to add recipients, then &#x60;POST /v1/broadcasts/{id}/send&#x60; to send. Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendWhatsAppBulkRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SendWhatsAppBulk200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<SendWhatsAppBulk200Response> SendWhatsAppBulkAsync(SendWhatsAppBulkRequest sendWhatsAppBulkRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<SendWhatsAppBulk200Response> localVarResponse = await SendWhatsAppBulkWithHttpInfoAsync(sendWhatsAppBulkRequest, cancellationToken).ConfigureAwait(false);
@@ -5352,12 +5523,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Bulk send template messages Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
+        /// Bulk send template messages **Deprecated.** Use &#x60;POST /v1/broadcasts&#x60; to create a broadcast, &#x60;POST /v1/broadcasts/{id}/recipients&#x60; to add recipients, then &#x60;POST /v1/broadcasts/{id}/send&#x60; to send. Send a template message to multiple recipients in a single request. Maximum 100 recipients per request. Only template messages are supported for bulk sending (not free-form text).  Each recipient can have optional per-recipient template variables for personalization. Returns detailed results for each recipient. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendWhatsAppBulkRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SendWhatsAppBulk200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<SendWhatsAppBulk200Response>> SendWhatsAppBulkWithHttpInfoAsync(SendWhatsAppBulkRequest sendWhatsAppBulkRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'sendWhatsAppBulkRequest' is set
@@ -5535,12 +5707,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update contact Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
+        /// Update contact **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; instead. Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="updateWhatsAppContactRequest"></param>
         /// <returns>UpdateWhatsAppContact200Response</returns>
+        [Obsolete]
         public UpdateWhatsAppContact200Response UpdateWhatsAppContact(string contactId, UpdateWhatsAppContactRequest updateWhatsAppContactRequest)
         {
             Late.Client.ApiResponse<UpdateWhatsAppContact200Response> localVarResponse = UpdateWhatsAppContactWithHttpInfo(contactId, updateWhatsAppContactRequest);
@@ -5548,12 +5721,13 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update contact Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
+        /// Update contact **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; instead. Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="updateWhatsAppContactRequest"></param>
         /// <returns>ApiResponse of UpdateWhatsAppContact200Response</returns>
+        [Obsolete]
         public Late.Client.ApiResponse<UpdateWhatsAppContact200Response> UpdateWhatsAppContactWithHttpInfo(string contactId, UpdateWhatsAppContactRequest updateWhatsAppContactRequest)
         {
             // verify the required parameter 'contactId' is set
@@ -5604,13 +5778,14 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update contact Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
+        /// Update contact **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; instead. Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="updateWhatsAppContactRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateWhatsAppContact200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<UpdateWhatsAppContact200Response> UpdateWhatsAppContactAsync(string contactId, UpdateWhatsAppContactRequest updateWhatsAppContactRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Late.Client.ApiResponse<UpdateWhatsAppContact200Response> localVarResponse = await UpdateWhatsAppContactWithHttpInfoAsync(contactId, updateWhatsAppContactRequest, cancellationToken).ConfigureAwait(false);
@@ -5618,13 +5793,14 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update contact Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
+        /// Update contact **Deprecated.** Use &#x60;PATCH /v1/contacts/{id}&#x60; instead. Update an existing WhatsApp contact. All fields are optional; only provided fields will be updated. Custom fields are merged with existing values. Set a custom field to null to remove it. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId">Contact ID</param>
         /// <param name="updateWhatsAppContactRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateWhatsAppContact200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateWhatsAppContact200Response>> UpdateWhatsAppContactWithHttpInfoAsync(string contactId, UpdateWhatsAppContactRequest updateWhatsAppContactRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'contactId' is set

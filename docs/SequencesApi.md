@@ -1,0 +1,973 @@
+# Late.Api.SequencesApi
+
+All URIs are relative to *https://zernio.com/api*
+
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+| [**ActivateSequence**](SequencesApi.md#activatesequence) | **POST** /v1/sequences/{sequenceId}/activate | Activate a sequence |
+| [**CreateSequence**](SequencesApi.md#createsequence) | **POST** /v1/sequences | Create a sequence |
+| [**DeleteSequence**](SequencesApi.md#deletesequence) | **DELETE** /v1/sequences/{sequenceId} | Delete a sequence |
+| [**EnrollContacts**](SequencesApi.md#enrollcontacts) | **POST** /v1/sequences/{sequenceId}/enroll | Enroll contacts in a sequence |
+| [**GetSequence**](SequencesApi.md#getsequence) | **GET** /v1/sequences/{sequenceId} | Get sequence with steps |
+| [**ListSequenceEnrollments**](SequencesApi.md#listsequenceenrollments) | **GET** /v1/sequences/{sequenceId}/enrollments | List enrollments for a sequence |
+| [**ListSequences**](SequencesApi.md#listsequences) | **GET** /v1/sequences | List sequences |
+| [**PauseSequence**](SequencesApi.md#pausesequence) | **POST** /v1/sequences/{sequenceId}/pause | Pause a sequence |
+| [**UnenrollContact**](SequencesApi.md#unenrollcontact) | **DELETE** /v1/sequences/{sequenceId}/enroll/{contactId} | Unenroll a contact from a sequence |
+| [**UpdateSequence**](SequencesApi.md#updatesequence) | **PATCH** /v1/sequences/{sequenceId} | Update a sequence |
+
+<a id="activatesequence"></a>
+# **ActivateSequence**
+> void ActivateSequence (string sequenceId)
+
+Activate a sequence
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class ActivateSequenceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SequencesApi(httpClient, config, httpClientHandler);
+            var sequenceId = "sequenceId_example";  // string | 
+
+            try
+            {
+                // Activate a sequence
+                apiInstance.ActivateSequence(sequenceId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SequencesApi.ActivateSequence: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ActivateSequenceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Activate a sequence
+    apiInstance.ActivateSequenceWithHttpInfo(sequenceId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SequencesApi.ActivateSequenceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **sequenceId** | **string** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sequence activated |  -  |
+| **400** | Invalid status or no steps |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createsequence"></a>
+# **CreateSequence**
+> void CreateSequence (CreateSequenceRequest createSequenceRequest)
+
+Create a sequence
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class CreateSequenceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SequencesApi(httpClient, config, httpClientHandler);
+            var createSequenceRequest = new CreateSequenceRequest(); // CreateSequenceRequest | 
+
+            try
+            {
+                // Create a sequence
+                apiInstance.CreateSequence(createSequenceRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SequencesApi.CreateSequence: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateSequenceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a sequence
+    apiInstance.CreateSequenceWithHttpInfo(createSequenceRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SequencesApi.CreateSequenceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createSequenceRequest** | [**CreateSequenceRequest**](CreateSequenceRequest.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sequence created |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletesequence"></a>
+# **DeleteSequence**
+> void DeleteSequence (string sequenceId)
+
+Delete a sequence
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class DeleteSequenceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SequencesApi(httpClient, config, httpClientHandler);
+            var sequenceId = "sequenceId_example";  // string | 
+
+            try
+            {
+                // Delete a sequence
+                apiInstance.DeleteSequence(sequenceId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SequencesApi.DeleteSequence: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteSequenceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a sequence
+    apiInstance.DeleteSequenceWithHttpInfo(sequenceId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SequencesApi.DeleteSequenceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **sequenceId** | **string** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sequence deleted |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="enrollcontacts"></a>
+# **EnrollContacts**
+> void EnrollContacts (string sequenceId, EnrollContactsRequest enrollContactsRequest)
+
+Enroll contacts in a sequence
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class EnrollContactsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SequencesApi(httpClient, config, httpClientHandler);
+            var sequenceId = "sequenceId_example";  // string | 
+            var enrollContactsRequest = new EnrollContactsRequest(); // EnrollContactsRequest | 
+
+            try
+            {
+                // Enroll contacts in a sequence
+                apiInstance.EnrollContacts(sequenceId, enrollContactsRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SequencesApi.EnrollContacts: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the EnrollContactsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Enroll contacts in a sequence
+    apiInstance.EnrollContactsWithHttpInfo(sequenceId, enrollContactsRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SequencesApi.EnrollContactsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **sequenceId** | **string** |  |  |
+| **enrollContactsRequest** | [**EnrollContactsRequest**](EnrollContactsRequest.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Enrollment results |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getsequence"></a>
+# **GetSequence**
+> void GetSequence (string sequenceId)
+
+Get sequence with steps
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class GetSequenceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SequencesApi(httpClient, config, httpClientHandler);
+            var sequenceId = "sequenceId_example";  // string | 
+
+            try
+            {
+                // Get sequence with steps
+                apiInstance.GetSequence(sequenceId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SequencesApi.GetSequence: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetSequenceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get sequence with steps
+    apiInstance.GetSequenceWithHttpInfo(sequenceId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SequencesApi.GetSequenceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **sequenceId** | **string** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sequence details with steps |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listsequenceenrollments"></a>
+# **ListSequenceEnrollments**
+> void ListSequenceEnrollments (string sequenceId, string? status = null, int? limit = null, int? skip = null)
+
+List enrollments for a sequence
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class ListSequenceEnrollmentsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SequencesApi(httpClient, config, httpClientHandler);
+            var sequenceId = "sequenceId_example";  // string | 
+            var status = "active";  // string? |  (optional) 
+            var limit = 50;  // int? |  (optional)  (default to 50)
+            var skip = 0;  // int? |  (optional)  (default to 0)
+
+            try
+            {
+                // List enrollments for a sequence
+                apiInstance.ListSequenceEnrollments(sequenceId, status, limit, skip);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SequencesApi.ListSequenceEnrollments: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListSequenceEnrollmentsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List enrollments for a sequence
+    apiInstance.ListSequenceEnrollmentsWithHttpInfo(sequenceId, status, limit, skip);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SequencesApi.ListSequenceEnrollmentsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **sequenceId** | **string** |  |  |
+| **status** | **string?** |  | [optional]  |
+| **limit** | **int?** |  | [optional] [default to 50] |
+| **skip** | **int?** |  | [optional] [default to 0] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Enrollments list with progress |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listsequences"></a>
+# **ListSequences**
+> void ListSequences (string profileId, string? status = null, int? limit = null, int? skip = null)
+
+List sequences
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class ListSequencesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SequencesApi(httpClient, config, httpClientHandler);
+            var profileId = "profileId_example";  // string | 
+            var status = "draft";  // string? |  (optional) 
+            var limit = 50;  // int? |  (optional)  (default to 50)
+            var skip = 0;  // int? |  (optional)  (default to 0)
+
+            try
+            {
+                // List sequences
+                apiInstance.ListSequences(profileId, status, limit, skip);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SequencesApi.ListSequences: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListSequencesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List sequences
+    apiInstance.ListSequencesWithHttpInfo(profileId, status, limit, skip);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SequencesApi.ListSequencesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **profileId** | **string** |  |  |
+| **status** | **string?** |  | [optional]  |
+| **limit** | **int?** |  | [optional] [default to 50] |
+| **skip** | **int?** |  | [optional] [default to 0] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sequences list |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="pausesequence"></a>
+# **PauseSequence**
+> void PauseSequence (string sequenceId)
+
+Pause a sequence
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class PauseSequenceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SequencesApi(httpClient, config, httpClientHandler);
+            var sequenceId = "sequenceId_example";  // string | 
+
+            try
+            {
+                // Pause a sequence
+                apiInstance.PauseSequence(sequenceId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SequencesApi.PauseSequence: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PauseSequenceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Pause a sequence
+    apiInstance.PauseSequenceWithHttpInfo(sequenceId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SequencesApi.PauseSequenceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **sequenceId** | **string** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sequence paused |  -  |
+| **400** | Sequence is not active |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="unenrollcontact"></a>
+# **UnenrollContact**
+> void UnenrollContact (string sequenceId, string contactId)
+
+Unenroll a contact from a sequence
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class UnenrollContactExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SequencesApi(httpClient, config, httpClientHandler);
+            var sequenceId = "sequenceId_example";  // string | 
+            var contactId = "contactId_example";  // string | 
+
+            try
+            {
+                // Unenroll a contact from a sequence
+                apiInstance.UnenrollContact(sequenceId, contactId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SequencesApi.UnenrollContact: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UnenrollContactWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Unenroll a contact from a sequence
+    apiInstance.UnenrollContactWithHttpInfo(sequenceId, contactId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SequencesApi.UnenrollContactWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **sequenceId** | **string** |  |  |
+| **contactId** | **string** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Contact unenrolled |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updatesequence"></a>
+# **UpdateSequence**
+> void UpdateSequence (string sequenceId)
+
+Update a sequence
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class UpdateSequenceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SequencesApi(httpClient, config, httpClientHandler);
+            var sequenceId = "sequenceId_example";  // string | 
+
+            try
+            {
+                // Update a sequence
+                apiInstance.UpdateSequence(sequenceId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SequencesApi.UpdateSequence: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateSequenceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update a sequence
+    apiInstance.UpdateSequenceWithHttpInfo(sequenceId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SequencesApi.UpdateSequenceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **sequenceId** | **string** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sequence updated |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
