@@ -51,8 +51,8 @@ namespace Late.Api
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
-        /// <returns></returns>
-        void CreateSequence(CreateSequenceRequest createSequenceRequest);
+        /// <returns>CreateSequence200Response</returns>
+        CreateSequence200Response CreateSequence(CreateSequenceRequest createSequenceRequest);
 
         /// <summary>
         /// Create a sequence
@@ -62,8 +62,8 @@ namespace Late.Api
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CreateSequenceWithHttpInfo(CreateSequenceRequest createSequenceRequest);
+        /// <returns>ApiResponse of CreateSequence200Response</returns>
+        ApiResponse<CreateSequence200Response> CreateSequenceWithHttpInfo(CreateSequenceRequest createSequenceRequest);
         /// <summary>
         /// Delete a sequence
         /// </summary>
@@ -265,8 +265,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CreateSequenceAsync(CreateSequenceRequest createSequenceRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of CreateSequence200Response</returns>
+        System.Threading.Tasks.Task<CreateSequence200Response> CreateSequenceAsync(CreateSequenceRequest createSequenceRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a sequence
@@ -277,8 +277,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CreateSequenceWithHttpInfoAsync(CreateSequenceRequest createSequenceRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (CreateSequence200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateSequence200Response>> CreateSequenceWithHttpInfoAsync(CreateSequenceRequest createSequenceRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete a sequence
         /// </summary>
@@ -824,10 +824,11 @@ namespace Late.Api
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
-        /// <returns></returns>
-        public void CreateSequence(CreateSequenceRequest createSequenceRequest)
+        /// <returns>CreateSequence200Response</returns>
+        public CreateSequence200Response CreateSequence(CreateSequenceRequest createSequenceRequest)
         {
-            CreateSequenceWithHttpInfo(createSequenceRequest);
+            Late.Client.ApiResponse<CreateSequence200Response> localVarResponse = CreateSequenceWithHttpInfo(createSequenceRequest);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -835,8 +836,8 @@ namespace Late.Api
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Late.Client.ApiResponse<Object> CreateSequenceWithHttpInfo(CreateSequenceRequest createSequenceRequest)
+        /// <returns>ApiResponse of CreateSequence200Response</returns>
+        public Late.Client.ApiResponse<CreateSequence200Response> CreateSequenceWithHttpInfo(CreateSequenceRequest createSequenceRequest)
         {
             // verify the required parameter 'createSequenceRequest' is set
             if (createSequenceRequest == null)
@@ -869,7 +870,7 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/sequences", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CreateSequence200Response>("/v1/sequences", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -886,10 +887,11 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CreateSequenceAsync(CreateSequenceRequest createSequenceRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of CreateSequence200Response</returns>
+        public async System.Threading.Tasks.Task<CreateSequence200Response> CreateSequenceAsync(CreateSequenceRequest createSequenceRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            await CreateSequenceWithHttpInfoAsync(createSequenceRequest, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<CreateSequence200Response> localVarResponse = await CreateSequenceWithHttpInfoAsync(createSequenceRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -898,8 +900,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<Object>> CreateSequenceWithHttpInfoAsync(CreateSequenceRequest createSequenceRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (CreateSequence200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<CreateSequence200Response>> CreateSequenceWithHttpInfoAsync(CreateSequenceRequest createSequenceRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'createSequenceRequest' is set
             if (createSequenceRequest == null)
@@ -935,7 +937,7 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/sequences", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateSequence200Response>("/v1/sequences", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -71,8 +71,8 @@ namespace Late.Api
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
-        /// <returns></returns>
-        void CreateBroadcast(CreateBroadcastRequest createBroadcastRequest);
+        /// <returns>CreateBroadcast200Response</returns>
+        CreateBroadcast200Response CreateBroadcast(CreateBroadcastRequest createBroadcastRequest);
 
         /// <summary>
         /// Create a broadcast draft
@@ -82,8 +82,8 @@ namespace Late.Api
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CreateBroadcastWithHttpInfo(CreateBroadcastRequest createBroadcastRequest);
+        /// <returns>ApiResponse of CreateBroadcast200Response</returns>
+        ApiResponse<CreateBroadcast200Response> CreateBroadcastWithHttpInfo(CreateBroadcastRequest createBroadcastRequest);
         /// <summary>
         /// Delete a broadcast (draft only)
         /// </summary>
@@ -292,8 +292,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CreateBroadcastAsync(CreateBroadcastRequest createBroadcastRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of CreateBroadcast200Response</returns>
+        System.Threading.Tasks.Task<CreateBroadcast200Response> CreateBroadcastAsync(CreateBroadcastRequest createBroadcastRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a broadcast draft
@@ -304,8 +304,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CreateBroadcastWithHttpInfoAsync(CreateBroadcastRequest createBroadcastRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (CreateBroadcast200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateBroadcast200Response>> CreateBroadcastWithHttpInfoAsync(CreateBroadcastRequest createBroadcastRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete a broadcast (draft only)
         /// </summary>
@@ -971,10 +971,11 @@ namespace Late.Api
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
-        /// <returns></returns>
-        public void CreateBroadcast(CreateBroadcastRequest createBroadcastRequest)
+        /// <returns>CreateBroadcast200Response</returns>
+        public CreateBroadcast200Response CreateBroadcast(CreateBroadcastRequest createBroadcastRequest)
         {
-            CreateBroadcastWithHttpInfo(createBroadcastRequest);
+            Late.Client.ApiResponse<CreateBroadcast200Response> localVarResponse = CreateBroadcastWithHttpInfo(createBroadcastRequest);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -982,8 +983,8 @@ namespace Late.Api
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public Late.Client.ApiResponse<Object> CreateBroadcastWithHttpInfo(CreateBroadcastRequest createBroadcastRequest)
+        /// <returns>ApiResponse of CreateBroadcast200Response</returns>
+        public Late.Client.ApiResponse<CreateBroadcast200Response> CreateBroadcastWithHttpInfo(CreateBroadcastRequest createBroadcastRequest)
         {
             // verify the required parameter 'createBroadcastRequest' is set
             if (createBroadcastRequest == null)
@@ -1016,7 +1017,7 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<Object>("/v1/broadcasts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CreateBroadcast200Response>("/v1/broadcasts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1033,10 +1034,11 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CreateBroadcastAsync(CreateBroadcastRequest createBroadcastRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of CreateBroadcast200Response</returns>
+        public async System.Threading.Tasks.Task<CreateBroadcast200Response> CreateBroadcastAsync(CreateBroadcastRequest createBroadcastRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            await CreateBroadcastWithHttpInfoAsync(createBroadcastRequest, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<CreateBroadcast200Response> localVarResponse = await CreateBroadcastWithHttpInfoAsync(createBroadcastRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
         }
 
         /// <summary>
@@ -1045,8 +1047,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<Object>> CreateBroadcastWithHttpInfoAsync(CreateBroadcastRequest createBroadcastRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (CreateBroadcast200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<CreateBroadcast200Response>> CreateBroadcastWithHttpInfoAsync(CreateBroadcastRequest createBroadcastRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'createBroadcastRequest' is set
             if (createBroadcastRequest == null)
@@ -1082,7 +1084,7 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/broadcasts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateBroadcast200Response>("/v1/broadcasts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

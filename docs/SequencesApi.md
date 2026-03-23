@@ -116,7 +116,7 @@ catch (ApiException e)
 
 <a id="createsequence"></a>
 # **CreateSequence**
-> void CreateSequence (CreateSequenceRequest createSequenceRequest)
+> CreateSequence200Response CreateSequence (CreateSequenceRequest createSequenceRequest)
 
 Create a sequence
 
@@ -149,7 +149,8 @@ namespace Example
             try
             {
                 // Create a sequence
-                apiInstance.CreateSequence(createSequenceRequest);
+                CreateSequence200Response result = apiInstance.CreateSequence(createSequenceRequest);
+                Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
@@ -169,7 +170,10 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a sequence
-    apiInstance.CreateSequenceWithHttpInfo(createSequenceRequest);
+    ApiResponse<CreateSequence200Response> response = apiInstance.CreateSequenceWithHttpInfo(createSequenceRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
@@ -187,7 +191,7 @@ catch (ApiException e)
 
 ### Return type
 
-void (empty response body)
+[**CreateSequence200Response**](CreateSequence200Response.md)
 
 ### Authorization
 

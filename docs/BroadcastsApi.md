@@ -216,7 +216,7 @@ catch (ApiException e)
 
 <a id="createbroadcast"></a>
 # **CreateBroadcast**
-> void CreateBroadcast (CreateBroadcastRequest createBroadcastRequest)
+> CreateBroadcast200Response CreateBroadcast (CreateBroadcastRequest createBroadcastRequest)
 
 Create a broadcast draft
 
@@ -249,7 +249,8 @@ namespace Example
             try
             {
                 // Create a broadcast draft
-                apiInstance.CreateBroadcast(createBroadcastRequest);
+                CreateBroadcast200Response result = apiInstance.CreateBroadcast(createBroadcastRequest);
+                Debug.WriteLine(result);
             }
             catch (ApiException  e)
             {
@@ -269,7 +270,10 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create a broadcast draft
-    apiInstance.CreateBroadcastWithHttpInfo(createBroadcastRequest);
+    ApiResponse<CreateBroadcast200Response> response = apiInstance.CreateBroadcastWithHttpInfo(createBroadcastRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
 }
 catch (ApiException e)
 {
@@ -287,7 +291,7 @@ catch (ApiException e)
 
 ### Return type
 
-void (empty response body)
+[**CreateBroadcast200Response**](CreateBroadcast200Response.md)
 
 ### Authorization
 
