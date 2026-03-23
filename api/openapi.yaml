@@ -26773,6 +26773,7 @@ components:
         id: id
         scheduledAt: 2000-01-23T04:56:07.000+00:00
         status: draft
+        messagePreview: messagePreview
       properties:
         id:
           type: string
@@ -26790,6 +26791,9 @@ components:
           - completed
           - failed
           - cancelled
+          type: string
+        messagePreview:
+          description: Template name or message text snippet
           type: string
         recipientCount:
           type: integer
@@ -26838,6 +26842,7 @@ components:
           id: id
           scheduledAt: 2000-01-23T04:56:07.000+00:00
           status: draft
+          messagePreview: messagePreview
         - template:
             name: name
             language: language
@@ -26854,6 +26859,7 @@ components:
           id: id
           scheduledAt: 2000-01-23T04:56:07.000+00:00
           status: draft
+          messagePreview: messagePreview
       properties:
         success:
           type: boolean

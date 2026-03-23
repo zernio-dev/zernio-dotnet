@@ -90,6 +90,7 @@ namespace Late.Model
         /// <param name="description">description.</param>
         /// <param name="template">template.</param>
         /// <param name="status">status.</param>
+        /// <param name="messagePreview">Template name or message text snippet.</param>
         /// <param name="recipientCount">recipientCount.</param>
         /// <param name="scheduledAt">scheduledAt.</param>
         /// <param name="startedAt">startedAt.</param>
@@ -99,13 +100,14 @@ namespace Late.Model
         /// <param name="readCount">readCount.</param>
         /// <param name="failedCount">failedCount.</param>
         /// <param name="createdAt">createdAt.</param>
-        public GetWhatsAppBroadcasts200ResponseBroadcastsInner(string id = default, string name = default, string description = default, GetWhatsAppBroadcasts200ResponseBroadcastsInnerTemplate template = default, StatusEnum? status = default, int recipientCount = default, DateTime scheduledAt = default, DateTime startedAt = default, DateTime completedAt = default, int sentCount = default, int deliveredCount = default, int readCount = default, int failedCount = default, DateTime createdAt = default)
+        public GetWhatsAppBroadcasts200ResponseBroadcastsInner(string id = default, string name = default, string description = default, GetWhatsAppBroadcasts200ResponseBroadcastsInnerTemplate template = default, StatusEnum? status = default, string messagePreview = default, int recipientCount = default, DateTime scheduledAt = default, DateTime startedAt = default, DateTime completedAt = default, int sentCount = default, int deliveredCount = default, int readCount = default, int failedCount = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.Name = name;
             this.Description = description;
             this.Template = template;
             this.Status = status;
+            this.MessagePreview = messagePreview;
             this.RecipientCount = recipientCount;
             this.ScheduledAt = scheduledAt;
             this.StartedAt = startedAt;
@@ -140,6 +142,13 @@ namespace Late.Model
         /// </summary>
         [DataMember(Name = "template", EmitDefaultValue = false)]
         public GetWhatsAppBroadcasts200ResponseBroadcastsInnerTemplate Template { get; set; }
+
+        /// <summary>
+        /// Template name or message text snippet
+        /// </summary>
+        /// <value>Template name or message text snippet</value>
+        [DataMember(Name = "messagePreview", EmitDefaultValue = false)]
+        public string MessagePreview { get; set; }
 
         /// <summary>
         /// Gets or Sets RecipientCount
@@ -208,6 +217,7 @@ namespace Late.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Template: ").Append(Template).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  MessagePreview: ").Append(MessagePreview).Append("\n");
             sb.Append("  RecipientCount: ").Append(RecipientCount).Append("\n");
             sb.Append("  ScheduledAt: ").Append(ScheduledAt).Append("\n");
             sb.Append("  StartedAt: ").Append(StartedAt).Append("\n");

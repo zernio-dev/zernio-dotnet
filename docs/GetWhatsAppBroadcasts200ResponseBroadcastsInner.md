@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Description** | **string** |  | [optional] 
 **Template** | [**GetWhatsAppBroadcasts200ResponseBroadcastsInnerTemplate**](GetWhatsAppBroadcasts200ResponseBroadcastsInnerTemplate.md) |  | [optional] 
 **Status** | **string** |  | [optional] 
+**MessagePreview** | **string** | Template name or message text snippet | [optional] 
 **RecipientCount** | **int** |  | [optional] 
 **ScheduledAt** | **DateTime** |  | [optional] 
 **StartedAt** | **DateTime** |  | [optional] 
