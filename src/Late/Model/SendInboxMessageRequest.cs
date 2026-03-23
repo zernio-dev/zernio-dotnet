@@ -34,6 +34,45 @@ namespace Late.Model
     public partial class SendInboxMessageRequest : IValidatableObject
     {
         /// <summary>
+        /// Type of attachment. Defaults to file if not specified.
+        /// </summary>
+        /// <value>Type of attachment. Defaults to file if not specified.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum AttachmentTypeEnum
+        {
+            /// <summary>
+            /// Enum Image for value: image
+            /// </summary>
+            [EnumMember(Value = "image")]
+            Image = 1,
+
+            /// <summary>
+            /// Enum Video for value: video
+            /// </summary>
+            [EnumMember(Value = "video")]
+            Video = 2,
+
+            /// <summary>
+            /// Enum Audio for value: audio
+            /// </summary>
+            [EnumMember(Value = "audio")]
+            Audio = 3,
+
+            /// <summary>
+            /// Enum File for value: file
+            /// </summary>
+            [EnumMember(Value = "file")]
+            File = 4
+        }
+
+
+        /// <summary>
+        /// Type of attachment. Defaults to file if not specified.
+        /// </summary>
+        /// <value>Type of attachment. Defaults to file if not specified.</value>
+        [DataMember(Name = "attachmentType", EmitDefaultValue = false)]
+        public AttachmentTypeEnum? AttachmentType { get; set; }
+        /// <summary>
         /// Facebook messaging type. Required when using messageTag.
         /// </summary>
         /// <value>Facebook messaging type. Required when using messageTag.</value>
@@ -115,6 +154,8 @@ namespace Late.Model
         /// </summary>
         /// <param name="accountId">Social account ID (required).</param>
         /// <param name="message">Message text.</param>
+        /// <param name="attachmentUrl">URL of the attachment to send (image, video, audio, or file). The URL must be publicly accessible. For binary file uploads, use multipart/form-data instead..</param>
+        /// <param name="attachmentType">Type of attachment. Defaults to file if not specified..</param>
         /// <param name="quickReplies">Quick reply buttons. Mutually exclusive with buttons. Max 13 items..</param>
         /// <param name="buttons">Action buttons. Mutually exclusive with quickReplies. Max 3 items..</param>
         /// <param name="template">template.</param>
@@ -122,7 +163,7 @@ namespace Late.Model
         /// <param name="messagingType">Facebook messaging type. Required when using messageTag..</param>
         /// <param name="messageTag">Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT..</param>
         /// <param name="replyTo">Platform message ID to reply to (Telegram only)..</param>
-        public SendInboxMessageRequest(string accountId = default, string message = default, List<SendInboxMessageRequestQuickRepliesInner> quickReplies = default, List<SendInboxMessageRequestButtonsInner> buttons = default, SendInboxMessageRequestTemplate template = default, SendInboxMessageRequestReplyMarkup replyMarkup = default, MessagingTypeEnum? messagingType = default, MessageTagEnum? messageTag = default, string replyTo = default)
+        public SendInboxMessageRequest(string accountId = default, string message = default, string attachmentUrl = default, AttachmentTypeEnum? attachmentType = default, List<SendInboxMessageRequestQuickRepliesInner> quickReplies = default, List<SendInboxMessageRequestButtonsInner> buttons = default, SendInboxMessageRequestTemplate template = default, SendInboxMessageRequestReplyMarkup replyMarkup = default, MessagingTypeEnum? messagingType = default, MessageTagEnum? messageTag = default, string replyTo = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -131,6 +172,8 @@ namespace Late.Model
             }
             this.AccountId = accountId;
             this.Message = message;
+            this.AttachmentUrl = attachmentUrl;
+            this.AttachmentType = attachmentType;
             this.QuickReplies = quickReplies;
             this.Buttons = buttons;
             this.Template = template;
@@ -153,6 +196,13 @@ namespace Late.Model
         /// <value>Message text</value>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
+
+        /// <summary>
+        /// URL of the attachment to send (image, video, audio, or file). The URL must be publicly accessible. For binary file uploads, use multipart/form-data instead.
+        /// </summary>
+        /// <value>URL of the attachment to send (image, video, audio, or file). The URL must be publicly accessible. For binary file uploads, use multipart/form-data instead.</value>
+        [DataMember(Name = "attachmentUrl", EmitDefaultValue = false)]
+        public string AttachmentUrl { get; set; }
 
         /// <summary>
         /// Quick reply buttons. Mutually exclusive with buttons. Max 13 items.
@@ -197,6 +247,8 @@ namespace Late.Model
             sb.Append("class SendInboxMessageRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  AttachmentUrl: ").Append(AttachmentUrl).Append("\n");
+            sb.Append("  AttachmentType: ").Append(AttachmentType).Append("\n");
             sb.Append("  QuickReplies: ").Append(QuickReplies).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  Template: ").Append(Template).Append("\n");
