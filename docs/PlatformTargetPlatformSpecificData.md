@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ReplySettings** | **string** | Controls who can reply to the tweet. \&quot;following\&quot; allows only people you follow, \&quot;mentionedUsers\&quot; allows only mentioned users, \&quot;subscribers\&quot; allows only subscribers, \&quot;verified\&quot; allows only verified users. Omit for default (everyone can reply). For threads, applies to the first tweet only. Cannot be combined with replyToTweetId. | [optional] 
 **ThreadItems** | [**List&lt;TwitterPlatformDataThreadItemsInner&gt;**](TwitterPlatformDataThreadItemsInner.md) | Sequence of posts in a Bluesky thread (root then replies in order). | [optional] 
 **Poll** | [**TwitterPlatformDataPoll**](TwitterPlatformDataPoll.md) |  | [optional] 
+**TopicTag** | **string** | Topic tag for post categorization and discoverability on Threads. Must be 1-50 characters, cannot contain periods (.) or ampersands (&amp;). Overrides auto-extraction from content hashtags when provided. | [optional] 
 **ContentType** | **string** | Content type: story (ephemeral 24h, default), saved_story (permanent on Public Profile), spotlight (video feed) | [optional] [default to ContentTypeEnum.Story]
 **Title** | **string** | Post title. Defaults to the first line of content, truncated to 300 characters. | [optional] 
 **FirstComment** | **string** | Optional first comment to post immediately after video upload. Up to 10,000 characters (YouTube&#39;s comment limit). | [optional] 

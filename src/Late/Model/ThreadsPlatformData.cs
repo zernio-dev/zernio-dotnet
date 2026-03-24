@@ -36,11 +36,20 @@ namespace Late.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreadsPlatformData" /> class.
         /// </summary>
+        /// <param name="topicTag">Topic tag for post categorization and discoverability on Threads. Must be 1-50 characters, cannot contain periods (.) or ampersands (&amp;). Overrides auto-extraction from content hashtags when provided..</param>
         /// <param name="threadItems">Sequence of posts in a Threads thread (root then replies in order)..</param>
-        public ThreadsPlatformData(List<TwitterPlatformDataThreadItemsInner> threadItems = default)
+        public ThreadsPlatformData(string topicTag = default, List<TwitterPlatformDataThreadItemsInner> threadItems = default)
         {
+            this.TopicTag = topicTag;
             this.ThreadItems = threadItems;
         }
+
+        /// <summary>
+        /// Topic tag for post categorization and discoverability on Threads. Must be 1-50 characters, cannot contain periods (.) or ampersands (&amp;). Overrides auto-extraction from content hashtags when provided.
+        /// </summary>
+        /// <value>Topic tag for post categorization and discoverability on Threads. Must be 1-50 characters, cannot contain periods (.) or ampersands (&amp;). Overrides auto-extraction from content hashtags when provided.</value>
+        [DataMember(Name = "topic_tag", EmitDefaultValue = false)]
+        public string TopicTag { get; set; }
 
         /// <summary>
         /// Sequence of posts in a Threads thread (root then replies in order).
@@ -57,6 +66,7 @@ namespace Late.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ThreadsPlatformData {\n");
+            sb.Append("  TopicTag: ").Append(TopicTag).Append("\n");
             sb.Append("  ThreadItems: ").Append(ThreadItems).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -78,6 +88,18 @@ namespace Late.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // TopicTag (string) maxLength
+            if (this.TopicTag != null && this.TopicTag.Length > 50)
+            {
+                yield return new ValidationResult("Invalid value for TopicTag, length must be less than 50.", new [] { "TopicTag" });
+            }
+
+            // TopicTag (string) minLength
+            if (this.TopicTag != null && this.TopicTag.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for TopicTag, length must be greater than 1.", new [] { "TopicTag" });
+            }
+
             yield break;
         }
     }
