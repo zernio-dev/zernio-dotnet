@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PostId** | **string** |  | [optional] 
-**LatePostId** | **string** | Original Late post ID if scheduled via Late | [optional] 
+**LatePostId** | **string** | Original Zernio post ID if scheduled via Zernio | [optional] 
 **Status** | **string** | Overall post status. \&quot;partial\&quot; when some platforms published and others failed. | [optional] 
 **Content** | **string** |  | [optional] 
 **ScheduledFor** | **DateTime** |  | [optional] 

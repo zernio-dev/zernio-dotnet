@@ -41,7 +41,7 @@ namespace Late.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectWhatsAppCredentialsRequest" /> class.
         /// </summary>
-        /// <param name="profileId">Your Late profile ID (required).</param>
+        /// <param name="profileId">Your Zernio profile ID (required).</param>
         /// <param name="accessToken">Permanent System User access token from Meta Business Suite (required).</param>
         /// <param name="wabaId">WhatsApp Business Account ID from Meta (required).</param>
         /// <param name="phoneNumberId">Phone Number ID from Meta WhatsApp Manager (required).</param>
@@ -74,9 +74,9 @@ namespace Late.Model
         }
 
         /// <summary>
-        /// Your Late profile ID
+        /// Your Zernio profile ID
         /// </summary>
-        /// <value>Your Late profile ID</value>
+        /// <value>Your Zernio profile ID</value>
         [DataMember(Name = "profileId", IsRequired = true, EmitDefaultValue = true)]
         public string ProfileId { get; set; }
 

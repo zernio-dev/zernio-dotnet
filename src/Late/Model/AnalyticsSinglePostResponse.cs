@@ -146,7 +146,7 @@ namespace Late.Model
         /// Initializes a new instance of the <see cref="AnalyticsSinglePostResponse" /> class.
         /// </summary>
         /// <param name="postId">postId.</param>
-        /// <param name="latePostId">Original Late post ID if scheduled via Late.</param>
+        /// <param name="latePostId">Original Zernio post ID if scheduled via Zernio.</param>
         /// <param name="status">Overall post status. \&quot;partial\&quot; when some platforms published and others failed..</param>
         /// <param name="content">content.</param>
         /// <param name="scheduledFor">scheduledFor.</param>
@@ -188,9 +188,9 @@ namespace Late.Model
         public string PostId { get; set; }
 
         /// <summary>
-        /// Original Late post ID if scheduled via Late
+        /// Original Zernio post ID if scheduled via Zernio
         /// </summary>
-        /// <value>Original Late post ID if scheduled via Late</value>
+        /// <value>Original Zernio post ID if scheduled via Zernio</value>
         [DataMember(Name = "latePostId", EmitDefaultValue = false)]
         public string LatePostId { get; set; }
 

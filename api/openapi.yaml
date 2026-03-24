@@ -768,7 +768,7 @@ paths:
             application/json:
               examples:
                 singlePost:
-                  summary: Single post analytics (Late post with synced analytics)
+                  summary: Single post analytics (Zernio post with synced analytics)
                   value:
                     postId: 65f1c0a9e2b5af0012ab34cd
                     latePostId: null
@@ -14857,7 +14857,7 @@ components:
         postId:
           type: string
         latePostId:
-          description: Original Late post ID if scheduled via Late
+          description: Original Zernio post ID if scheduled via Zernio
           type: string
           nullable: true
         status:
@@ -22603,7 +22603,7 @@ components:
     connectWhatsAppCredentials_request:
       properties:
         profileId:
-          description: Your Late profile ID
+          description: Your Zernio profile ID
           type: string
         accessToken:
           description: Permanent System User access token from Meta Business Suite
@@ -31007,7 +31007,7 @@ components:
         _id:
           type: string
         latePostId:
-          description: Original Late post ID if scheduled via Late
+          description: Original Zernio post ID if scheduled via Zernio
           type: string
           nullable: true
         content:
