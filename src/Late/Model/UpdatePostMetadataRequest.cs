@@ -96,20 +96,38 @@ namespace Late.Model
         /// Initializes a new instance of the <see cref="UpdatePostMetadataRequest" /> class.
         /// </summary>
         /// <param name="platform">The platform to update metadata on (required).</param>
+        /// <param name="videoId">YouTube video ID (required for direct mode, ignored for post-based mode).</param>
+        /// <param name="accountId">Zernio social account ID (required for direct mode, ignored for post-based mode).</param>
         /// <param name="title">New video title (max 100 characters for YouTube).</param>
         /// <param name="description">New video description.</param>
         /// <param name="tags">Array of keyword tags (max 500 characters combined for YouTube).</param>
         /// <param name="categoryId">YouTube video category ID.</param>
         /// <param name="privacyStatus">Video privacy setting.</param>
-        public UpdatePostMetadataRequest(PlatformEnum platform = default, string title = default, string description = default, List<string> tags = default, string categoryId = default, PrivacyStatusEnum? privacyStatus = default)
+        public UpdatePostMetadataRequest(PlatformEnum platform = default, string videoId = default, string accountId = default, string title = default, string description = default, List<string> tags = default, string categoryId = default, PrivacyStatusEnum? privacyStatus = default)
         {
             this.Platform = platform;
+            this.VideoId = videoId;
+            this.AccountId = accountId;
             this.Title = title;
             this.Description = description;
             this.Tags = tags;
             this.CategoryId = categoryId;
             this.PrivacyStatus = privacyStatus;
         }
+
+        /// <summary>
+        /// YouTube video ID (required for direct mode, ignored for post-based mode)
+        /// </summary>
+        /// <value>YouTube video ID (required for direct mode, ignored for post-based mode)</value>
+        [DataMember(Name = "videoId", EmitDefaultValue = false)]
+        public string VideoId { get; set; }
+
+        /// <summary>
+        /// Zernio social account ID (required for direct mode, ignored for post-based mode)
+        /// </summary>
+        /// <value>Zernio social account ID (required for direct mode, ignored for post-based mode)</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// New video title (max 100 characters for YouTube)
@@ -148,6 +166,8 @@ namespace Late.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdatePostMetadataRequest {\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
+            sb.Append("  VideoId: ").Append(VideoId).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Tags: ").Append(Tags).Append("\n");

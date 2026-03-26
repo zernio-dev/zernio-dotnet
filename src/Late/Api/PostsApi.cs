@@ -226,10 +226,10 @@ namespace Late.Api
         /// Update post metadata
         /// </summary>
         /// <remarks>
-        /// Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+        /// Updates metadata of a published video on the specified platform without re-uploading. Currently only supported for YouTube. At least one updatable field is required.  **Two modes:**  1. **Post-based** (video published through Zernio): pass the Zernio postId in the URL and &#x60;platform&#x60; in the body. 2. **Direct video ID** (video uploaded outside Zernio, e.g. directly to YouTube): use &#x60;_&#x60; as the postId,    and pass &#x60;videoId&#x60; + &#x60;accountId&#x60; + &#x60;platform&#x60; in the body. The accountId is the Zernio social account ID    for the connected YouTube channel. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId"></param>
+        /// <param name="postId">Zernio post ID, or \&quot;_\&quot; when using direct video ID mode</param>
         /// <param name="updatePostMetadataRequest"></param>
         /// <returns>UpdatePostMetadata200Response</returns>
         UpdatePostMetadata200Response UpdatePostMetadata(string postId, UpdatePostMetadataRequest updatePostMetadataRequest);
@@ -238,10 +238,10 @@ namespace Late.Api
         /// Update post metadata
         /// </summary>
         /// <remarks>
-        /// Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+        /// Updates metadata of a published video on the specified platform without re-uploading. Currently only supported for YouTube. At least one updatable field is required.  **Two modes:**  1. **Post-based** (video published through Zernio): pass the Zernio postId in the URL and &#x60;platform&#x60; in the body. 2. **Direct video ID** (video uploaded outside Zernio, e.g. directly to YouTube): use &#x60;_&#x60; as the postId,    and pass &#x60;videoId&#x60; + &#x60;accountId&#x60; + &#x60;platform&#x60; in the body. The accountId is the Zernio social account ID    for the connected YouTube channel. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId"></param>
+        /// <param name="postId">Zernio post ID, or \&quot;_\&quot; when using direct video ID mode</param>
         /// <param name="updatePostMetadataRequest"></param>
         /// <returns>ApiResponse of UpdatePostMetadata200Response</returns>
         ApiResponse<UpdatePostMetadata200Response> UpdatePostMetadataWithHttpInfo(string postId, UpdatePostMetadataRequest updatePostMetadataRequest);
@@ -468,10 +468,10 @@ namespace Late.Api
         /// Update post metadata
         /// </summary>
         /// <remarks>
-        /// Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+        /// Updates metadata of a published video on the specified platform without re-uploading. Currently only supported for YouTube. At least one updatable field is required.  **Two modes:**  1. **Post-based** (video published through Zernio): pass the Zernio postId in the URL and &#x60;platform&#x60; in the body. 2. **Direct video ID** (video uploaded outside Zernio, e.g. directly to YouTube): use &#x60;_&#x60; as the postId,    and pass &#x60;videoId&#x60; + &#x60;accountId&#x60; + &#x60;platform&#x60; in the body. The accountId is the Zernio social account ID    for the connected YouTube channel. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId"></param>
+        /// <param name="postId">Zernio post ID, or \&quot;_\&quot; when using direct video ID mode</param>
         /// <param name="updatePostMetadataRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdatePostMetadata200Response</returns>
@@ -481,10 +481,10 @@ namespace Late.Api
         /// Update post metadata
         /// </summary>
         /// <remarks>
-        /// Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+        /// Updates metadata of a published video on the specified platform without re-uploading. Currently only supported for YouTube. At least one updatable field is required.  **Two modes:**  1. **Post-based** (video published through Zernio): pass the Zernio postId in the URL and &#x60;platform&#x60; in the body. 2. **Direct video ID** (video uploaded outside Zernio, e.g. directly to YouTube): use &#x60;_&#x60; as the postId,    and pass &#x60;videoId&#x60; + &#x60;accountId&#x60; + &#x60;platform&#x60; in the body. The accountId is the Zernio social account ID    for the connected YouTube channel. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId"></param>
+        /// <param name="postId">Zernio post ID, or \&quot;_\&quot; when using direct video ID mode</param>
         /// <param name="updatePostMetadataRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdatePostMetadata200Response)</returns>
@@ -1883,10 +1883,10 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update post metadata Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+        /// Update post metadata Updates metadata of a published video on the specified platform without re-uploading. Currently only supported for YouTube. At least one updatable field is required.  **Two modes:**  1. **Post-based** (video published through Zernio): pass the Zernio postId in the URL and &#x60;platform&#x60; in the body. 2. **Direct video ID** (video uploaded outside Zernio, e.g. directly to YouTube): use &#x60;_&#x60; as the postId,    and pass &#x60;videoId&#x60; + &#x60;accountId&#x60; + &#x60;platform&#x60; in the body. The accountId is the Zernio social account ID    for the connected YouTube channel. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId"></param>
+        /// <param name="postId">Zernio post ID, or \&quot;_\&quot; when using direct video ID mode</param>
         /// <param name="updatePostMetadataRequest"></param>
         /// <returns>UpdatePostMetadata200Response</returns>
         public UpdatePostMetadata200Response UpdatePostMetadata(string postId, UpdatePostMetadataRequest updatePostMetadataRequest)
@@ -1896,10 +1896,10 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update post metadata Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+        /// Update post metadata Updates metadata of a published video on the specified platform without re-uploading. Currently only supported for YouTube. At least one updatable field is required.  **Two modes:**  1. **Post-based** (video published through Zernio): pass the Zernio postId in the URL and &#x60;platform&#x60; in the body. 2. **Direct video ID** (video uploaded outside Zernio, e.g. directly to YouTube): use &#x60;_&#x60; as the postId,    and pass &#x60;videoId&#x60; + &#x60;accountId&#x60; + &#x60;platform&#x60; in the body. The accountId is the Zernio social account ID    for the connected YouTube channel. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId"></param>
+        /// <param name="postId">Zernio post ID, or \&quot;_\&quot; when using direct video ID mode</param>
         /// <param name="updatePostMetadataRequest"></param>
         /// <returns>ApiResponse of UpdatePostMetadata200Response</returns>
         public Late.Client.ApiResponse<UpdatePostMetadata200Response> UpdatePostMetadataWithHttpInfo(string postId, UpdatePostMetadataRequest updatePostMetadataRequest)
@@ -1952,10 +1952,10 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update post metadata Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+        /// Update post metadata Updates metadata of a published video on the specified platform without re-uploading. Currently only supported for YouTube. At least one updatable field is required.  **Two modes:**  1. **Post-based** (video published through Zernio): pass the Zernio postId in the URL and &#x60;platform&#x60; in the body. 2. **Direct video ID** (video uploaded outside Zernio, e.g. directly to YouTube): use &#x60;_&#x60; as the postId,    and pass &#x60;videoId&#x60; + &#x60;accountId&#x60; + &#x60;platform&#x60; in the body. The accountId is the Zernio social account ID    for the connected YouTube channel. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId"></param>
+        /// <param name="postId">Zernio post ID, or \&quot;_\&quot; when using direct video ID mode</param>
         /// <param name="updatePostMetadataRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdatePostMetadata200Response</returns>
@@ -1966,10 +1966,10 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update post metadata Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+        /// Update post metadata Updates metadata of a published video on the specified platform without re-uploading. Currently only supported for YouTube. At least one updatable field is required.  **Two modes:**  1. **Post-based** (video published through Zernio): pass the Zernio postId in the URL and &#x60;platform&#x60; in the body. 2. **Direct video ID** (video uploaded outside Zernio, e.g. directly to YouTube): use &#x60;_&#x60; as the postId,    and pass &#x60;videoId&#x60; + &#x60;accountId&#x60; + &#x60;platform&#x60; in the body. The accountId is the Zernio social account ID    for the connected YouTube channel. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="postId"></param>
+        /// <param name="postId">Zernio post ID, or \&quot;_\&quot; when using direct video ID mode</param>
         /// <param name="updatePostMetadataRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdatePostMetadata200Response)</returns>

@@ -38,11 +38,13 @@ namespace Late.Model
         /// </summary>
         /// <param name="success">success.</param>
         /// <param name="message">message.</param>
+        /// <param name="videoId">Only present in direct video ID mode.</param>
         /// <param name="updatedFields">updatedFields.</param>
-        public UpdatePostMetadata200Response(bool success = default, string message = default, List<string> updatedFields = default)
+        public UpdatePostMetadata200Response(bool success = default, string message = default, string videoId = default, List<string> updatedFields = default)
         {
             this.Success = success;
             this.Message = message;
+            this.VideoId = videoId;
             this.UpdatedFields = updatedFields;
         }
 
@@ -57,6 +59,13 @@ namespace Late.Model
         /// </summary>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
+
+        /// <summary>
+        /// Only present in direct video ID mode
+        /// </summary>
+        /// <value>Only present in direct video ID mode</value>
+        [DataMember(Name = "videoId", EmitDefaultValue = false)]
+        public string VideoId { get; set; }
 
         /// <summary>
         /// Gets or Sets UpdatedFields
@@ -74,6 +83,7 @@ namespace Late.Model
             sb.Append("class UpdatePostMetadata200Response {\n");
             sb.Append("  Success: ").Append(Success).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  VideoId: ").Append(VideoId).Append("\n");
             sb.Append("  UpdatedFields: ").Append(UpdatedFields).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
