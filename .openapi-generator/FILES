@@ -14,6 +14,7 @@ docs/AccountsListResponse.md
 docs/ActivateSequence200Response.md
 docs/AddBroadcastRecipients200Response.md
 docs/AddBroadcastRecipientsRequest.md
+docs/AddMessageReactionRequest.md
 docs/AddWhatsAppBroadcastRecipients200Response.md
 docs/AddWhatsAppBroadcastRecipientsRequest.md
 docs/AddWhatsAppBroadcastRecipientsRequestRecipientsInner.md
@@ -548,6 +549,7 @@ docs/SendInboxMessageRequestTemplateElementsInner.md
 docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md
 docs/SendPrivateReplyToComment200Response.md
 docs/SendPrivateReplyToCommentRequest.md
+docs/SendTypingIndicatorRequest.md
 docs/SendWhatsAppBroadcast200Response.md
 docs/SendWhatsAppBulk200Response.md
 docs/SendWhatsAppBulk200ResponseResultsInner.md
@@ -648,6 +650,7 @@ docs/UpdateWhatsAppGroupChatRequest.md
 docs/UpdateWhatsAppTemplate200Response.md
 docs/UpdateWhatsAppTemplate200ResponseTemplate.md
 docs/UpdateWhatsAppTemplateRequest.md
+docs/UploadMediaDirect200Response.md
 docs/UploadTokenResponse.md
 docs/UploadTokenStatusResponse.md
 docs/UploadedFile.md
@@ -715,6 +718,9 @@ docs/YouTubeScopeMissingResponse.md
 docs/YouTubeScopeMissingResponseScopeStatus.md
 git_push.sh
 src/Late.Test/Late.Test.csproj
+src/Late.Test/Model/AddMessageReactionRequestTests.cs
+src/Late.Test/Model/SendTypingIndicatorRequestTests.cs
+src/Late.Test/Model/UploadMediaDirect200ResponseTests.cs
 src/Late/Api/APIKeysApi.cs
 src/Late/Api/AccountGroupsApi.cs
 src/Late/Api/AccountSettingsApi.cs
@@ -778,6 +784,7 @@ src/Late/Model/AccountsListResponse.cs
 src/Late/Model/ActivateSequence200Response.cs
 src/Late/Model/AddBroadcastRecipients200Response.cs
 src/Late/Model/AddBroadcastRecipientsRequest.cs
+src/Late/Model/AddMessageReactionRequest.cs
 src/Late/Model/AddWhatsAppBroadcastRecipients200Response.cs
 src/Late/Model/AddWhatsAppBroadcastRecipientsRequest.cs
 src/Late/Model/AddWhatsAppBroadcastRecipientsRequestRecipientsInner.cs
@@ -1289,6 +1296,7 @@ src/Late/Model/SendInboxMessageRequestTemplateElementsInner.cs
 src/Late/Model/SendInboxMessageRequestTemplateElementsInnerButtonsInner.cs
 src/Late/Model/SendPrivateReplyToComment200Response.cs
 src/Late/Model/SendPrivateReplyToCommentRequest.cs
+src/Late/Model/SendTypingIndicatorRequest.cs
 src/Late/Model/SendWhatsAppBroadcast200Response.cs
 src/Late/Model/SendWhatsAppBulk200Response.cs
 src/Late/Model/SendWhatsAppBulk200ResponseResultsInner.cs
@@ -1386,6 +1394,7 @@ src/Late/Model/UpdateWhatsAppGroupChatRequest.cs
 src/Late/Model/UpdateWhatsAppTemplate200Response.cs
 src/Late/Model/UpdateWhatsAppTemplate200ResponseTemplate.cs
 src/Late/Model/UpdateWhatsAppTemplateRequest.cs
+src/Late/Model/UploadMediaDirect200Response.cs
 src/Late/Model/UploadTokenResponse.cs
 src/Late/Model/UploadTokenStatusResponse.cs
 src/Late/Model/UploadedFile.cs

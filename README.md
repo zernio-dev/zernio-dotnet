@@ -262,12 +262,17 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**ListConnectionLogs**](docs/LogsApi.md#listconnectionlogs) | **GET** /v1/connections/logs | List connection logs
 *LogsApi* | [**ListPostsLogs**](docs/LogsApi.md#listpostslogs) | **GET** /v1/posts/logs | List publishing logs
 *MediaApi* | [**GetMediaPresignedUrl**](docs/MediaApi.md#getmediapresignedurl) | **POST** /v1/media/presign | Get presigned upload URL
+*MessagesApi* | [**AddMessageReaction**](docs/MessagesApi.md#addmessagereaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
+*MessagesApi* | [**DeleteInboxMessage**](docs/MessagesApi.md#deleteinboxmessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**EditInboxMessage**](docs/MessagesApi.md#editinboxmessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message
 *MessagesApi* | [**GetInboxConversation**](docs/MessagesApi.md#getinboxconversation) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation
 *MessagesApi* | [**GetInboxConversationMessages**](docs/MessagesApi.md#getinboxconversationmessages) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages
 *MessagesApi* | [**ListInboxConversations**](docs/MessagesApi.md#listinboxconversations) | **GET** /v1/inbox/conversations | List conversations
+*MessagesApi* | [**RemoveMessageReaction**](docs/MessagesApi.md#removemessagereaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction
 *MessagesApi* | [**SendInboxMessage**](docs/MessagesApi.md#sendinboxmessage) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message
+*MessagesApi* | [**SendTypingIndicator**](docs/MessagesApi.md#sendtypingindicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator
 *MessagesApi* | [**UpdateInboxConversation**](docs/MessagesApi.md#updateinboxconversation) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status
+*MessagesApi* | [**UploadMediaDirect**](docs/MessagesApi.md#uploadmediadirect) | **POST** /v1/media/upload-direct | Upload media file
 *PostsApi* | [**BulkUploadPosts**](docs/PostsApi.md#bulkuploadposts) | **POST** /v1/posts/bulk-upload | Bulk upload from CSV
 *PostsApi* | [**CreatePost**](docs/PostsApi.md#createpost) | **POST** /v1/posts | Create post
 *PostsApi* | [**DeletePost**](docs/PostsApi.md#deletepost) | **DELETE** /v1/posts/{postId} | Delete post
@@ -390,6 +395,7 @@ Class | Method | HTTP request | Description
  - [Model.ActivateSequence200Response](docs/ActivateSequence200Response.md)
  - [Model.AddBroadcastRecipients200Response](docs/AddBroadcastRecipients200Response.md)
  - [Model.AddBroadcastRecipientsRequest](docs/AddBroadcastRecipientsRequest.md)
+ - [Model.AddMessageReactionRequest](docs/AddMessageReactionRequest.md)
  - [Model.AddWhatsAppBroadcastRecipients200Response](docs/AddWhatsAppBroadcastRecipients200Response.md)
  - [Model.AddWhatsAppBroadcastRecipientsRequest](docs/AddWhatsAppBroadcastRecipientsRequest.md)
  - [Model.AddWhatsAppBroadcastRecipientsRequestRecipientsInner](docs/AddWhatsAppBroadcastRecipientsRequestRecipientsInner.md)
@@ -901,6 +907,7 @@ Class | Method | HTTP request | Description
  - [Model.SendInboxMessageRequestTemplateElementsInnerButtonsInner](docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md)
  - [Model.SendPrivateReplyToComment200Response](docs/SendPrivateReplyToComment200Response.md)
  - [Model.SendPrivateReplyToCommentRequest](docs/SendPrivateReplyToCommentRequest.md)
+ - [Model.SendTypingIndicatorRequest](docs/SendTypingIndicatorRequest.md)
  - [Model.SendWhatsAppBroadcast200Response](docs/SendWhatsAppBroadcast200Response.md)
  - [Model.SendWhatsAppBulk200Response](docs/SendWhatsAppBulk200Response.md)
  - [Model.SendWhatsAppBulk200ResponseResultsInner](docs/SendWhatsAppBulk200ResponseResultsInner.md)
@@ -998,6 +1005,7 @@ Class | Method | HTTP request | Description
  - [Model.UpdateWhatsAppTemplate200Response](docs/UpdateWhatsAppTemplate200Response.md)
  - [Model.UpdateWhatsAppTemplate200ResponseTemplate](docs/UpdateWhatsAppTemplate200ResponseTemplate.md)
  - [Model.UpdateWhatsAppTemplateRequest](docs/UpdateWhatsAppTemplateRequest.md)
+ - [Model.UploadMediaDirect200Response](docs/UploadMediaDirect200Response.md)
  - [Model.UploadTokenResponse](docs/UploadTokenResponse.md)
  - [Model.UploadTokenStatusResponse](docs/UploadTokenStatusResponse.md)
  - [Model.UploadedFile](docs/UploadedFile.md)

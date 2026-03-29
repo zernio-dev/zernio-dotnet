@@ -29,6 +29,56 @@ namespace Late.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Add reaction
+        /// </summary>
+        /// <remarks>
+        /// Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="addMessageReactionRequest"></param>
+        /// <returns>UpdateRedditSubreddits200Response</returns>
+        UpdateRedditSubreddits200Response AddMessageReaction(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest);
+
+        /// <summary>
+        /// Add reaction
+        /// </summary>
+        /// <remarks>
+        /// Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="addMessageReactionRequest"></param>
+        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
+        ApiResponse<UpdateRedditSubreddits200Response> AddMessageReactionWithHttpInfo(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest);
+        /// <summary>
+        /// Delete message
+        /// </summary>
+        /// <remarks>
+        /// Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to delete</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <returns>UpdateRedditSubreddits200Response</returns>
+        UpdateRedditSubreddits200Response DeleteInboxMessage(string conversationId, string messageId, string accountId);
+
+        /// <summary>
+        /// Delete message
+        /// </summary>
+        /// <remarks>
+        /// Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to delete</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
+        ApiResponse<UpdateRedditSubreddits200Response> DeleteInboxMessageWithHttpInfo(string conversationId, string messageId, string accountId);
+        /// <summary>
         /// Edit message
         /// </summary>
         /// <remarks>
@@ -133,6 +183,31 @@ namespace Late.Api
         /// <returns>ApiResponse of ListInboxConversations200Response</returns>
         ApiResponse<ListInboxConversations200Response> ListInboxConversationsWithHttpInfo(string? profileId = default, string? platform = default, string? status = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default);
         /// <summary>
+        /// Remove reaction
+        /// </summary>
+        /// <remarks>
+        /// Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <returns>UpdateRedditSubreddits200Response</returns>
+        UpdateRedditSubreddits200Response RemoveMessageReaction(string conversationId, string messageId, string accountId);
+
+        /// <summary>
+        /// Remove reaction
+        /// </summary>
+        /// <remarks>
+        /// Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
+        ApiResponse<UpdateRedditSubreddits200Response> RemoveMessageReactionWithHttpInfo(string conversationId, string messageId, string accountId);
+        /// <summary>
         /// Send message
         /// </summary>
         /// <remarks>
@@ -156,6 +231,29 @@ namespace Late.Api
         /// <returns>ApiResponse of SendInboxMessage200Response</returns>
         ApiResponse<SendInboxMessage200Response> SendInboxMessageWithHttpInfo(string conversationId, SendInboxMessageRequest sendInboxMessageRequest);
         /// <summary>
+        /// Send typing indicator
+        /// </summary>
+        /// <remarks>
+        /// Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <returns>UpdateRedditSubreddits200Response</returns>
+        UpdateRedditSubreddits200Response SendTypingIndicator(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest);
+
+        /// <summary>
+        /// Send typing indicator
+        /// </summary>
+        /// <remarks>
+        /// Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
+        ApiResponse<UpdateRedditSubreddits200Response> SendTypingIndicatorWithHttpInfo(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest);
+        /// <summary>
         /// Update conversation status
         /// </summary>
         /// <remarks>
@@ -178,6 +276,29 @@ namespace Late.Api
         /// <param name="updateInboxConversationRequest"></param>
         /// <returns>ApiResponse of UpdateInboxConversation200Response</returns>
         ApiResponse<UpdateInboxConversation200Response> UpdateInboxConversationWithHttpInfo(string conversationId, UpdateInboxConversationRequest updateInboxConversationRequest);
+        /// <summary>
+        /// Upload media file
+        /// </summary>
+        /// <remarks>
+        /// Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">The file to upload (max 25MB)</param>
+        /// <param name="contentType">Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)</param>
+        /// <returns>UploadMediaDirect200Response</returns>
+        UploadMediaDirect200Response UploadMediaDirect(FileParameter file, string? contentType = default);
+
+        /// <summary>
+        /// Upload media file
+        /// </summary>
+        /// <remarks>
+        /// Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">The file to upload (max 25MB)</param>
+        /// <param name="contentType">Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)</param>
+        /// <returns>ApiResponse of UploadMediaDirect200Response</returns>
+        ApiResponse<UploadMediaDirect200Response> UploadMediaDirectWithHttpInfo(FileParameter file, string? contentType = default);
         #endregion Synchronous Operations
     }
 
@@ -187,6 +308,60 @@ namespace Late.Api
     public interface IMessagesApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Add reaction
+        /// </summary>
+        /// <remarks>
+        /// Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="addMessageReactionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
+        System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> AddMessageReactionAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Add reaction
+        /// </summary>
+        /// <remarks>
+        /// Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="addMessageReactionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateRedditSubreddits200Response>> AddMessageReactionWithHttpInfoAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete message
+        /// </summary>
+        /// <remarks>
+        /// Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to delete</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
+        System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> DeleteInboxMessageAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete message
+        /// </summary>
+        /// <remarks>
+        /// Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to delete</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateRedditSubreddits200Response>> DeleteInboxMessageWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Edit message
         /// </summary>
@@ -300,6 +475,33 @@ namespace Late.Api
         /// <returns>Task of ApiResponse (ListInboxConversations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListInboxConversations200Response>> ListInboxConversationsWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Remove reaction
+        /// </summary>
+        /// <remarks>
+        /// Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
+        System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> RemoveMessageReactionAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Remove reaction
+        /// </summary>
+        /// <remarks>
+        /// Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateRedditSubreddits200Response>> RemoveMessageReactionWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Send message
         /// </summary>
         /// <remarks>
@@ -325,6 +527,31 @@ namespace Late.Api
         /// <returns>Task of ApiResponse (SendInboxMessage200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SendInboxMessage200Response>> SendInboxMessageWithHttpInfoAsync(string conversationId, SendInboxMessageRequest sendInboxMessageRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Send typing indicator
+        /// </summary>
+        /// <remarks>
+        /// Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
+        System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> SendTypingIndicatorAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Send typing indicator
+        /// </summary>
+        /// <remarks>
+        /// Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateRedditSubreddits200Response>> SendTypingIndicatorWithHttpInfoAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Update conversation status
         /// </summary>
         /// <remarks>
@@ -349,6 +576,31 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateInboxConversation200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateInboxConversation200Response>> UpdateInboxConversationWithHttpInfoAsync(string conversationId, UpdateInboxConversationRequest updateInboxConversationRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Upload media file
+        /// </summary>
+        /// <remarks>
+        /// Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">The file to upload (max 25MB)</param>
+        /// <param name="contentType">Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UploadMediaDirect200Response</returns>
+        System.Threading.Tasks.Task<UploadMediaDirect200Response> UploadMediaDirectAsync(FileParameter file, string? contentType = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Upload media file
+        /// </summary>
+        /// <remarks>
+        /// Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">The file to upload (max 25MB)</param>
+        /// <param name="contentType">Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UploadMediaDirect200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UploadMediaDirect200Response>> UploadMediaDirectWithHttpInfoAsync(FileParameter file, string? contentType = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -560,6 +812,318 @@ namespace Late.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Add reaction Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="addMessageReactionRequest"></param>
+        /// <returns>UpdateRedditSubreddits200Response</returns>
+        public UpdateRedditSubreddits200Response AddMessageReaction(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
+        {
+            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = AddMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add reaction Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="addMessageReactionRequest"></param>
+        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
+        public Late.Client.ApiResponse<UpdateRedditSubreddits200Response> AddMessageReactionWithHttpInfo(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->AddMessageReaction");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'messageId' when calling MessagesApi->AddMessageReaction");
+
+            // verify the required parameter 'addMessageReactionRequest' is set
+            if (addMessageReactionRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'addMessageReactionRequest' when calling MessagesApi->AddMessageReaction");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Late.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Late.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.Data = addMessageReactionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddMessageReaction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Add reaction Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="addMessageReactionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> AddMessageReactionAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = await AddMessageReactionWithHttpInfoAsync(conversationId, messageId, addMessageReactionRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Add reaction Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to react to</param>
+        /// <param name="addMessageReactionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateRedditSubreddits200Response>> AddMessageReactionWithHttpInfoAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->AddMessageReaction");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'messageId' when calling MessagesApi->AddMessageReaction");
+
+            // verify the required parameter 'addMessageReactionRequest' is set
+            if (addMessageReactionRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'addMessageReactionRequest' when calling MessagesApi->AddMessageReaction");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Late.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Late.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.Data = addMessageReactionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddMessageReaction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete message Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to delete</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <returns>UpdateRedditSubreddits200Response</returns>
+        public UpdateRedditSubreddits200Response DeleteInboxMessage(string conversationId, string messageId, string accountId)
+        {
+            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = DeleteInboxMessageWithHttpInfo(conversationId, messageId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete message Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to delete</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
+        public Late.Client.ApiResponse<UpdateRedditSubreddits200Response> DeleteInboxMessageWithHttpInfo(string conversationId, string messageId, string accountId)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->DeleteInboxMessage");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'messageId' when calling MessagesApi->DeleteInboxMessage");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling MessagesApi->DeleteInboxMessage");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Late.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Late.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteInboxMessage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete message Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to delete</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> DeleteInboxMessageAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = await DeleteInboxMessageWithHttpInfoAsync(conversationId, messageId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete message Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID to delete</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateRedditSubreddits200Response>> DeleteInboxMessageWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->DeleteInboxMessage");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'messageId' when calling MessagesApi->DeleteInboxMessage");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling MessagesApi->DeleteInboxMessage");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Late.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Late.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteInboxMessage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
@@ -1199,6 +1763,161 @@ namespace Late.Api
         }
 
         /// <summary>
+        /// Remove reaction Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <returns>UpdateRedditSubreddits200Response</returns>
+        public UpdateRedditSubreddits200Response RemoveMessageReaction(string conversationId, string messageId, string accountId)
+        {
+            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = RemoveMessageReactionWithHttpInfo(conversationId, messageId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove reaction Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
+        public Late.Client.ApiResponse<UpdateRedditSubreddits200Response> RemoveMessageReactionWithHttpInfo(string conversationId, string messageId, string accountId)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->RemoveMessageReaction");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'messageId' when calling MessagesApi->RemoveMessageReaction");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling MessagesApi->RemoveMessageReaction");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Late.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Late.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveMessageReaction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove reaction Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> RemoveMessageReactionAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = await RemoveMessageReactionWithHttpInfoAsync(conversationId, messageId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove reaction Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="messageId">The platform message ID</param>
+        /// <param name="accountId">Social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateRedditSubreddits200Response>> RemoveMessageReactionWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->RemoveMessageReaction");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'messageId' when calling MessagesApi->RemoveMessageReaction");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling MessagesApi->RemoveMessageReaction");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Late.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Late.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveMessageReaction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Send message Send a message in a conversation. Supports text, attachments, quick replies, buttons, and message tags. Attachment and interactive message support varies by platform.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1344,6 +2063,149 @@ namespace Late.Api
         }
 
         /// <summary>
+        /// Send typing indicator Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <returns>UpdateRedditSubreddits200Response</returns>
+        public UpdateRedditSubreddits200Response SendTypingIndicator(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest)
+        {
+            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = SendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Send typing indicator Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
+        public Late.Client.ApiResponse<UpdateRedditSubreddits200Response> SendTypingIndicatorWithHttpInfo(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->SendTypingIndicator");
+
+            // verify the required parameter 'sendTypingIndicatorRequest' is set
+            if (sendTypingIndicatorRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'sendTypingIndicatorRequest' when calling MessagesApi->SendTypingIndicator");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Late.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.Data = sendTypingIndicatorRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/typing", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SendTypingIndicator", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Send typing indicator Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> SendTypingIndicatorAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = await SendTypingIndicatorWithHttpInfoAsync(conversationId, sendTypingIndicatorRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Send typing indicator Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateRedditSubreddits200Response>> SendTypingIndicatorWithHttpInfoAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->SendTypingIndicator");
+
+            // verify the required parameter 'sendTypingIndicatorRequest' is set
+            if (sendTypingIndicatorRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'sendTypingIndicatorRequest' when calling MessagesApi->SendTypingIndicator");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Late.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.Data = sendTypingIndicatorRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/typing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SendTypingIndicator", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Update conversation status Archive or activate a conversation. Requires accountId in request body.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1480,6 +2342,147 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateInboxConversation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Upload media file Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">The file to upload (max 25MB)</param>
+        /// <param name="contentType">Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)</param>
+        /// <returns>UploadMediaDirect200Response</returns>
+        public UploadMediaDirect200Response UploadMediaDirect(FileParameter file, string? contentType = default)
+        {
+            Late.Client.ApiResponse<UploadMediaDirect200Response> localVarResponse = UploadMediaDirectWithHttpInfo(file, contentType);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload media file Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">The file to upload (max 25MB)</param>
+        /// <param name="contentType">Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)</param>
+        /// <returns>ApiResponse of UploadMediaDirect200Response</returns>
+        public Late.Client.ApiResponse<UploadMediaDirect200Response> UploadMediaDirectWithHttpInfo(FileParameter file, string? contentType = default)
+        {
+            // verify the required parameter 'file' is set
+            if (file == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'file' when calling MessagesApi->UploadMediaDirect");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.FileParameters.Add("file", file);
+            if (contentType != null)
+            {
+                localVarRequestOptions.FormParameters.Add("contentType", Late.Client.ClientUtils.ParameterToString(contentType)); // form parameter
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UploadMediaDirect200Response>("/v1/media/upload-direct", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UploadMediaDirect", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Upload media file Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">The file to upload (max 25MB)</param>
+        /// <param name="contentType">Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UploadMediaDirect200Response</returns>
+        public async System.Threading.Tasks.Task<UploadMediaDirect200Response> UploadMediaDirectAsync(FileParameter file, string? contentType = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UploadMediaDirect200Response> localVarResponse = await UploadMediaDirectWithHttpInfoAsync(file, contentType, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload media file Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">The file to upload (max 25MB)</param>
+        /// <param name="contentType">Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UploadMediaDirect200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UploadMediaDirect200Response>> UploadMediaDirectWithHttpInfoAsync(FileParameter file, string? contentType = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'file' is set
+            if (file == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'file' when calling MessagesApi->UploadMediaDirect");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.FileParameters.Add("file", file);
+            if (contentType != null)
+            {
+                localVarRequestOptions.FormParameters.Add("contentType", Late.Client.ClientUtils.ParameterToString(contentType)); // form parameter
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UploadMediaDirect200Response>("/v1/media/upload-direct", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UploadMediaDirect", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
