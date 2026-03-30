@@ -57,8 +57,8 @@ namespace Late.Api
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Webhook ID to delete</param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        UpdateRedditSubreddits200Response DeleteWebhookSettings(string id);
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response DeleteWebhookSettings(string id);
 
         /// <summary>
         /// Delete webhook
@@ -68,8 +68,8 @@ namespace Late.Api
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Webhook ID to delete</param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        ApiResponse<UpdateRedditSubreddits200Response> DeleteWebhookSettingsWithHttpInfo(string id);
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteWebhookSettingsWithHttpInfo(string id);
         /// <summary>
         /// Get delivery logs
         /// </summary>
@@ -199,8 +199,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Webhook ID to delete</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> DeleteWebhookSettingsAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteWebhookSettingsAsync(string id, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete webhook
@@ -211,8 +211,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Webhook ID to delete</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateRedditSubreddits200Response>> DeleteWebhookSettingsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteWebhookSettingsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get delivery logs
         /// </summary>
@@ -656,10 +656,10 @@ namespace Late.Api
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Webhook ID to delete</param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        public UpdateRedditSubreddits200Response DeleteWebhookSettings(string id)
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response DeleteWebhookSettings(string id)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = DeleteWebhookSettingsWithHttpInfo(id);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = DeleteWebhookSettingsWithHttpInfo(id);
             return localVarResponse.Data;
         }
 
@@ -668,8 +668,8 @@ namespace Late.Api
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Webhook ID to delete</param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        public Late.Client.ApiResponse<UpdateRedditSubreddits200Response> DeleteWebhookSettingsWithHttpInfo(string id)
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteWebhookSettingsWithHttpInfo(string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -701,7 +701,7 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<UpdateRedditSubreddits200Response>("/v1/webhooks/settings", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<UpdateYoutubeDefaultPlaylist200Response>("/v1/webhooks/settings", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -718,10 +718,10 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Webhook ID to delete</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> DeleteWebhookSettingsAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteWebhookSettingsAsync(string id, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = await DeleteWebhookSettingsWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await DeleteWebhookSettingsWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -731,8 +731,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Webhook ID to delete</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateRedditSubreddits200Response>> DeleteWebhookSettingsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteWebhookSettingsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -767,7 +767,7 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateRedditSubreddits200Response>("/v1/webhooks/settings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/webhooks/settings", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

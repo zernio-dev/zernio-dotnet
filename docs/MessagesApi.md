@@ -18,7 +18,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="addmessagereaction"></a>
 # **AddMessageReaction**
-> UpdateRedditSubreddits200Response AddMessageReaction (string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
+> UpdateYoutubeDefaultPlaylist200Response AddMessageReaction (string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
 
 Add reaction
 
@@ -55,7 +55,7 @@ namespace Example
             try
             {
                 // Add reaction
-                UpdateRedditSubreddits200Response result = apiInstance.AddMessageReaction(conversationId, messageId, addMessageReactionRequest);
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.AddMessageReaction(conversationId, messageId, addMessageReactionRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -76,7 +76,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Add reaction
-    ApiResponse<UpdateRedditSubreddits200Response> response = apiInstance.AddMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.AddMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -99,7 +99,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 ### Authorization
 
@@ -124,7 +124,7 @@ catch (ApiException e)
 
 <a id="deleteinboxmessage"></a>
 # **DeleteInboxMessage**
-> UpdateRedditSubreddits200Response DeleteInboxMessage (string conversationId, string messageId, string accountId)
+> UpdateYoutubeDefaultPlaylist200Response DeleteInboxMessage (string conversationId, string messageId, string accountId)
 
 Delete message
 
@@ -161,7 +161,7 @@ namespace Example
             try
             {
                 // Delete message
-                UpdateRedditSubreddits200Response result = apiInstance.DeleteInboxMessage(conversationId, messageId, accountId);
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.DeleteInboxMessage(conversationId, messageId, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -182,7 +182,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete message
-    ApiResponse<UpdateRedditSubreddits200Response> response = apiInstance.DeleteInboxMessageWithHttpInfo(conversationId, messageId, accountId);
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.DeleteInboxMessageWithHttpInfo(conversationId, messageId, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -205,7 +205,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 ### Authorization
 
@@ -652,7 +652,7 @@ catch (ApiException e)
 
 <a id="removemessagereaction"></a>
 # **RemoveMessageReaction**
-> UpdateRedditSubreddits200Response RemoveMessageReaction (string conversationId, string messageId, string accountId)
+> UpdateYoutubeDefaultPlaylist200Response RemoveMessageReaction (string conversationId, string messageId, string accountId)
 
 Remove reaction
 
@@ -689,7 +689,7 @@ namespace Example
             try
             {
                 // Remove reaction
-                UpdateRedditSubreddits200Response result = apiInstance.RemoveMessageReaction(conversationId, messageId, accountId);
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.RemoveMessageReaction(conversationId, messageId, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -710,7 +710,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Remove reaction
-    ApiResponse<UpdateRedditSubreddits200Response> response = apiInstance.RemoveMessageReactionWithHttpInfo(conversationId, messageId, accountId);
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.RemoveMessageReactionWithHttpInfo(conversationId, messageId, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -733,7 +733,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 ### Authorization
 
@@ -861,7 +861,7 @@ catch (ApiException e)
 
 <a id="sendtypingindicator"></a>
 # **SendTypingIndicator**
-> UpdateRedditSubreddits200Response SendTypingIndicator (string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest)
+> UpdateYoutubeDefaultPlaylist200Response SendTypingIndicator (string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest)
 
 Send typing indicator
 
@@ -897,7 +897,7 @@ namespace Example
             try
             {
                 // Send typing indicator
-                UpdateRedditSubreddits200Response result = apiInstance.SendTypingIndicator(conversationId, sendTypingIndicatorRequest);
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.SendTypingIndicator(conversationId, sendTypingIndicatorRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -918,7 +918,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Send typing indicator
-    ApiResponse<UpdateRedditSubreddits200Response> response = apiInstance.SendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest);
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.SendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -940,7 +940,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 ### Authorization
 

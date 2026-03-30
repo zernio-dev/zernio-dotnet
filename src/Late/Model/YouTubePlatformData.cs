@@ -75,7 +75,8 @@ namespace Late.Model
         /// <param name="firstComment">Optional first comment to post immediately after video upload. Up to 10,000 characters (YouTube&#39;s comment limit)..</param>
         /// <param name="containsSyntheticMedia">AI-generated content disclosure. Set true if the video contains synthetic content that could be mistaken for real. YouTube may add a label. (default to false).</param>
         /// <param name="categoryId">YouTube video category ID. Defaults to 22 (People &amp; Blogs). Common: 1 (Film), 2 (Autos), 10 (Music), 15 (Pets), 17 (Sports), 20 (Gaming), 23 (Comedy), 24 (Entertainment), 25 (News), 26 (Howto), 27 (Education), 28 (Science &amp; Tech). (default to &quot;22&quot;).</param>
-        public YouTubePlatformData(string title = default, VisibilityEnum? visibility = VisibilityEnum.Public, bool madeForKids = false, string firstComment = default, bool containsSyntheticMedia = false, string categoryId = @"22")
+        /// <param name="playlistId">Optional YouTube playlist ID to add the video to after upload (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Works for both immediate and scheduled uploads. Quota cost: 50 YouTube API units per call..</param>
+        public YouTubePlatformData(string title = default, VisibilityEnum? visibility = VisibilityEnum.Public, bool madeForKids = false, string firstComment = default, bool containsSyntheticMedia = false, string categoryId = @"22", string playlistId = default)
         {
             this.Title = title;
             this.Visibility = visibility;
@@ -84,6 +85,7 @@ namespace Late.Model
             this.ContainsSyntheticMedia = containsSyntheticMedia;
             // use default value if no "categoryId" provided
             this.CategoryId = categoryId ?? @"22";
+            this.PlaylistId = playlistId;
         }
 
         /// <summary>
@@ -122,6 +124,13 @@ namespace Late.Model
         public string CategoryId { get; set; }
 
         /// <summary>
+        /// Optional YouTube playlist ID to add the video to after upload (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Works for both immediate and scheduled uploads. Quota cost: 50 YouTube API units per call.
+        /// </summary>
+        /// <value>Optional YouTube playlist ID to add the video to after upload (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Works for both immediate and scheduled uploads. Quota cost: 50 YouTube API units per call.</value>
+        [DataMember(Name = "playlistId", EmitDefaultValue = false)]
+        public string PlaylistId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -135,6 +144,7 @@ namespace Late.Model
             sb.Append("  FirstComment: ").Append(FirstComment).Append("\n");
             sb.Append("  ContainsSyntheticMedia: ").Append(ContainsSyntheticMedia).Append("\n");
             sb.Append("  CategoryId: ").Append(CategoryId).Append("\n");
+            sb.Append("  PlaylistId: ").Append(PlaylistId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -38,8 +38,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID to react to</param>
         /// <param name="addMessageReactionRequest"></param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        UpdateRedditSubreddits200Response AddMessageReaction(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest);
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response AddMessageReaction(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest);
 
         /// <summary>
         /// Add reaction
@@ -51,8 +51,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID to react to</param>
         /// <param name="addMessageReactionRequest"></param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        ApiResponse<UpdateRedditSubreddits200Response> AddMessageReactionWithHttpInfo(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest);
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> AddMessageReactionWithHttpInfo(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest);
         /// <summary>
         /// Delete message
         /// </summary>
@@ -63,8 +63,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID to delete</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        UpdateRedditSubreddits200Response DeleteInboxMessage(string conversationId, string messageId, string accountId);
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response DeleteInboxMessage(string conversationId, string messageId, string accountId);
 
         /// <summary>
         /// Delete message
@@ -76,8 +76,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID to delete</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        ApiResponse<UpdateRedditSubreddits200Response> DeleteInboxMessageWithHttpInfo(string conversationId, string messageId, string accountId);
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteInboxMessageWithHttpInfo(string conversationId, string messageId, string accountId);
         /// <summary>
         /// Edit message
         /// </summary>
@@ -192,8 +192,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        UpdateRedditSubreddits200Response RemoveMessageReaction(string conversationId, string messageId, string accountId);
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response RemoveMessageReaction(string conversationId, string messageId, string accountId);
 
         /// <summary>
         /// Remove reaction
@@ -205,8 +205,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        ApiResponse<UpdateRedditSubreddits200Response> RemoveMessageReactionWithHttpInfo(string conversationId, string messageId, string accountId);
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> RemoveMessageReactionWithHttpInfo(string conversationId, string messageId, string accountId);
         /// <summary>
         /// Send message
         /// </summary>
@@ -239,8 +239,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="sendTypingIndicatorRequest"></param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        UpdateRedditSubreddits200Response SendTypingIndicator(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest);
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response SendTypingIndicator(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest);
 
         /// <summary>
         /// Send typing indicator
@@ -251,8 +251,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="sendTypingIndicatorRequest"></param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        ApiResponse<UpdateRedditSubreddits200Response> SendTypingIndicatorWithHttpInfo(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest);
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> SendTypingIndicatorWithHttpInfo(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest);
         /// <summary>
         /// Update conversation status
         /// </summary>
@@ -319,8 +319,8 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID to react to</param>
         /// <param name="addMessageReactionRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> AddMessageReactionAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> AddMessageReactionAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Add reaction
@@ -333,8 +333,8 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID to react to</param>
         /// <param name="addMessageReactionRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateRedditSubreddits200Response>> AddMessageReactionWithHttpInfoAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> AddMessageReactionWithHttpInfoAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete message
         /// </summary>
@@ -346,8 +346,8 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID to delete</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> DeleteInboxMessageAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteInboxMessageAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete message
@@ -360,8 +360,8 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID to delete</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateRedditSubreddits200Response>> DeleteInboxMessageWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteInboxMessageWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Edit message
         /// </summary>
@@ -485,8 +485,8 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> RemoveMessageReactionAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> RemoveMessageReactionAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Remove reaction
@@ -499,8 +499,8 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateRedditSubreddits200Response>> RemoveMessageReactionWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> RemoveMessageReactionWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Send message
         /// </summary>
@@ -536,8 +536,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="sendTypingIndicatorRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> SendTypingIndicatorAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> SendTypingIndicatorAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Send typing indicator
@@ -549,8 +549,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="sendTypingIndicatorRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateRedditSubreddits200Response>> SendTypingIndicatorWithHttpInfoAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> SendTypingIndicatorWithHttpInfoAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update conversation status
         /// </summary>
@@ -821,10 +821,10 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID to react to</param>
         /// <param name="addMessageReactionRequest"></param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        public UpdateRedditSubreddits200Response AddMessageReaction(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response AddMessageReaction(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = AddMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = AddMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
             return localVarResponse.Data;
         }
 
@@ -835,8 +835,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID to react to</param>
         /// <param name="addMessageReactionRequest"></param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        public Late.Client.ApiResponse<UpdateRedditSubreddits200Response> AddMessageReactionWithHttpInfo(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> AddMessageReactionWithHttpInfo(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -879,7 +879,7 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -898,10 +898,10 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID to react to</param>
         /// <param name="addMessageReactionRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> AddMessageReactionAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> AddMessageReactionAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = await AddMessageReactionWithHttpInfoAsync(conversationId, messageId, addMessageReactionRequest, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await AddMessageReactionWithHttpInfoAsync(conversationId, messageId, addMessageReactionRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -913,8 +913,8 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID to react to</param>
         /// <param name="addMessageReactionRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateRedditSubreddits200Response>> AddMessageReactionWithHttpInfoAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> AddMessageReactionWithHttpInfoAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -960,7 +960,7 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -978,10 +978,10 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID to delete</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        public UpdateRedditSubreddits200Response DeleteInboxMessage(string conversationId, string messageId, string accountId)
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response DeleteInboxMessage(string conversationId, string messageId, string accountId)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = DeleteInboxMessageWithHttpInfo(conversationId, messageId, accountId);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = DeleteInboxMessageWithHttpInfo(conversationId, messageId, accountId);
             return localVarResponse.Data;
         }
 
@@ -992,8 +992,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID to delete</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        public Late.Client.ApiResponse<UpdateRedditSubreddits200Response> DeleteInboxMessageWithHttpInfo(string conversationId, string messageId, string accountId)
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteInboxMessageWithHttpInfo(string conversationId, string messageId, string accountId)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -1035,7 +1035,7 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1054,10 +1054,10 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID to delete</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> DeleteInboxMessageAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteInboxMessageAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = await DeleteInboxMessageWithHttpInfoAsync(conversationId, messageId, accountId, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await DeleteInboxMessageWithHttpInfoAsync(conversationId, messageId, accountId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1069,8 +1069,8 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID to delete</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateRedditSubreddits200Response>> DeleteInboxMessageWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteInboxMessageWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -1115,7 +1115,7 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1769,10 +1769,10 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        public UpdateRedditSubreddits200Response RemoveMessageReaction(string conversationId, string messageId, string accountId)
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response RemoveMessageReaction(string conversationId, string messageId, string accountId)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = RemoveMessageReactionWithHttpInfo(conversationId, messageId, accountId);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = RemoveMessageReactionWithHttpInfo(conversationId, messageId, accountId);
             return localVarResponse.Data;
         }
 
@@ -1783,8 +1783,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="messageId">The platform message ID</param>
         /// <param name="accountId">Social account ID</param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        public Late.Client.ApiResponse<UpdateRedditSubreddits200Response> RemoveMessageReactionWithHttpInfo(string conversationId, string messageId, string accountId)
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> RemoveMessageReactionWithHttpInfo(string conversationId, string messageId, string accountId)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -1826,7 +1826,7 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1845,10 +1845,10 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> RemoveMessageReactionAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> RemoveMessageReactionAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = await RemoveMessageReactionWithHttpInfoAsync(conversationId, messageId, accountId, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await RemoveMessageReactionWithHttpInfoAsync(conversationId, messageId, accountId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1860,8 +1860,8 @@ namespace Late.Api
         /// <param name="messageId">The platform message ID</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateRedditSubreddits200Response>> RemoveMessageReactionWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> RemoveMessageReactionWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -1906,7 +1906,7 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2068,10 +2068,10 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="sendTypingIndicatorRequest"></param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        public UpdateRedditSubreddits200Response SendTypingIndicator(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest)
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response SendTypingIndicator(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = SendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = SendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest);
             return localVarResponse.Data;
         }
 
@@ -2081,8 +2081,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="sendTypingIndicatorRequest"></param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        public Late.Client.ApiResponse<UpdateRedditSubreddits200Response> SendTypingIndicatorWithHttpInfo(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest)
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> SendTypingIndicatorWithHttpInfo(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -2120,7 +2120,7 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/typing", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/typing", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2138,10 +2138,10 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="sendTypingIndicatorRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> SendTypingIndicatorAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> SendTypingIndicatorAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = await SendTypingIndicatorWithHttpInfoAsync(conversationId, sendTypingIndicatorRequest, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await SendTypingIndicatorWithHttpInfoAsync(conversationId, sendTypingIndicatorRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2152,8 +2152,8 @@ namespace Late.Api
         /// <param name="conversationId">The conversation ID</param>
         /// <param name="sendTypingIndicatorRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateRedditSubreddits200Response>> SendTypingIndicatorWithHttpInfoAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> SendTypingIndicatorWithHttpInfoAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'conversationId' is set
             if (conversationId == null)
@@ -2194,7 +2194,7 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateRedditSubreddits200Response>("/v1/inbox/conversations/{conversationId}/typing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/conversations/{conversationId}/typing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -289,6 +289,27 @@ namespace Late.Api
         /// <returns>ApiResponse of GetTelegramConnectStatus200Response</returns>
         ApiResponse<GetTelegramConnectStatus200Response> GetTelegramConnectStatusWithHttpInfo(string profileId);
         /// <summary>
+        /// List YouTube playlists
+        /// </summary>
+        /// <remarks>
+        /// Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <returns>GetYoutubePlaylists200Response</returns>
+        GetYoutubePlaylists200Response GetYoutubePlaylists(string accountId);
+
+        /// <summary>
+        /// List YouTube playlists
+        /// </summary>
+        /// <remarks>
+        /// Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of GetYoutubePlaylists200Response</returns>
+        ApiResponse<GetYoutubePlaylists200Response> GetYoutubePlaylistsWithHttpInfo(string accountId);
+        /// <summary>
         /// Complete OAuth callback
         /// </summary>
         /// <remarks>
@@ -659,8 +680,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="updateRedditSubredditsRequest"></param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        UpdateRedditSubreddits200Response UpdateRedditSubreddits(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest);
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response UpdateRedditSubreddits(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest);
 
         /// <summary>
         /// Set default subreddit
@@ -671,8 +692,31 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="updateRedditSubredditsRequest"></param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        ApiResponse<UpdateRedditSubreddits200Response> UpdateRedditSubredditsWithHttpInfo(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest);
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> UpdateRedditSubredditsWithHttpInfo(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest);
+        /// <summary>
+        /// Set default YouTube playlist
+        /// </summary>
+        /// <remarks>
+        /// Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateYoutubeDefaultPlaylistRequest"></param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response UpdateYoutubeDefaultPlaylist(string accountId, UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest);
+
+        /// <summary>
+        /// Set default YouTube playlist
+        /// </summary>
+        /// <remarks>
+        /// Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateYoutubeDefaultPlaylistRequest"></param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> UpdateYoutubeDefaultPlaylistWithHttpInfo(string accountId, UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest);
         #endregion Synchronous Operations
     }
 
@@ -966,6 +1010,29 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetTelegramConnectStatus200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetTelegramConnectStatus200Response>> GetTelegramConnectStatusWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List YouTube playlists
+        /// </summary>
+        /// <remarks>
+        /// Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetYoutubePlaylists200Response</returns>
+        System.Threading.Tasks.Task<GetYoutubePlaylists200Response> GetYoutubePlaylistsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List YouTube playlists
+        /// </summary>
+        /// <remarks>
+        /// Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetYoutubePlaylists200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetYoutubePlaylists200Response>> GetYoutubePlaylistsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Complete OAuth callback
         /// </summary>
@@ -1370,8 +1437,8 @@ namespace Late.Api
         /// <param name="accountId"></param>
         /// <param name="updateRedditSubredditsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> UpdateRedditSubredditsAsync(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> UpdateRedditSubredditsAsync(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Set default subreddit
@@ -1383,8 +1450,33 @@ namespace Late.Api
         /// <param name="accountId"></param>
         /// <param name="updateRedditSubredditsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateRedditSubreddits200Response>> UpdateRedditSubredditsWithHttpInfoAsync(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> UpdateRedditSubredditsWithHttpInfoAsync(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Set default YouTube playlist
+        /// </summary>
+        /// <remarks>
+        /// Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateYoutubeDefaultPlaylistRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> UpdateYoutubeDefaultPlaylistAsync(string accountId, UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Set default YouTube playlist
+        /// </summary>
+        /// <remarks>
+        /// Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateYoutubeDefaultPlaylistRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> UpdateYoutubeDefaultPlaylistWithHttpInfoAsync(string accountId, UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -3172,6 +3264,133 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetTelegramConnectStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List YouTube playlists Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <returns>GetYoutubePlaylists200Response</returns>
+        public GetYoutubePlaylists200Response GetYoutubePlaylists(string accountId)
+        {
+            Late.Client.ApiResponse<GetYoutubePlaylists200Response> localVarResponse = GetYoutubePlaylistsWithHttpInfo(accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List YouTube playlists Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of GetYoutubePlaylists200Response</returns>
+        public Late.Client.ApiResponse<GetYoutubePlaylists200Response> GetYoutubePlaylistsWithHttpInfo(string accountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->GetYoutubePlaylists");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetYoutubePlaylists200Response>("/v1/accounts/{accountId}/youtube-playlists", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetYoutubePlaylists", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List YouTube playlists Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetYoutubePlaylists200Response</returns>
+        public async System.Threading.Tasks.Task<GetYoutubePlaylists200Response> GetYoutubePlaylistsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<GetYoutubePlaylists200Response> localVarResponse = await GetYoutubePlaylistsWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List YouTube playlists Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetYoutubePlaylists200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetYoutubePlaylists200Response>> GetYoutubePlaylistsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->GetYoutubePlaylists");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetYoutubePlaylists200Response>("/v1/accounts/{accountId}/youtube-playlists", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetYoutubePlaylists", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -5456,10 +5675,10 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="updateRedditSubredditsRequest"></param>
-        /// <returns>UpdateRedditSubreddits200Response</returns>
-        public UpdateRedditSubreddits200Response UpdateRedditSubreddits(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest)
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response UpdateRedditSubreddits(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = UpdateRedditSubredditsWithHttpInfo(accountId, updateRedditSubredditsRequest);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = UpdateRedditSubredditsWithHttpInfo(accountId, updateRedditSubredditsRequest);
             return localVarResponse.Data;
         }
 
@@ -5469,8 +5688,8 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="updateRedditSubredditsRequest"></param>
-        /// <returns>ApiResponse of UpdateRedditSubreddits200Response</returns>
-        public Late.Client.ApiResponse<UpdateRedditSubreddits200Response> UpdateRedditSubredditsWithHttpInfo(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest)
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> UpdateRedditSubredditsWithHttpInfo(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -5508,7 +5727,7 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<UpdateRedditSubreddits200Response>("/v1/accounts/{accountId}/reddit-subreddits", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Put<UpdateYoutubeDefaultPlaylist200Response>("/v1/accounts/{accountId}/reddit-subreddits", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -5526,10 +5745,10 @@ namespace Late.Api
         /// <param name="accountId"></param>
         /// <param name="updateRedditSubredditsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateRedditSubreddits200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateRedditSubreddits200Response> UpdateRedditSubredditsAsync(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> UpdateRedditSubredditsAsync(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = await UpdateRedditSubredditsWithHttpInfoAsync(accountId, updateRedditSubredditsRequest, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await UpdateRedditSubredditsWithHttpInfoAsync(accountId, updateRedditSubredditsRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -5540,8 +5759,8 @@ namespace Late.Api
         /// <param name="accountId"></param>
         /// <param name="updateRedditSubredditsRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateRedditSubreddits200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateRedditSubreddits200Response>> UpdateRedditSubredditsWithHttpInfoAsync(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> UpdateRedditSubredditsWithHttpInfoAsync(string accountId, UpdateRedditSubredditsRequest updateRedditSubredditsRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -5582,11 +5801,154 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateRedditSubreddits200Response>("/v1/accounts/{accountId}/reddit-subreddits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/accounts/{accountId}/reddit-subreddits", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateRedditSubreddits", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set default YouTube playlist Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateYoutubeDefaultPlaylistRequest"></param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response UpdateYoutubeDefaultPlaylist(string accountId, UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest)
+        {
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = UpdateYoutubeDefaultPlaylistWithHttpInfo(accountId, updateYoutubeDefaultPlaylistRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set default YouTube playlist Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateYoutubeDefaultPlaylistRequest"></param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> UpdateYoutubeDefaultPlaylistWithHttpInfo(string accountId, UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->UpdateYoutubeDefaultPlaylist");
+
+            // verify the required parameter 'updateYoutubeDefaultPlaylistRequest' is set
+            if (updateYoutubeDefaultPlaylistRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateYoutubeDefaultPlaylistRequest' when calling ConnectApi->UpdateYoutubeDefaultPlaylist");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = updateYoutubeDefaultPlaylistRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateYoutubeDefaultPlaylist200Response>("/v1/accounts/{accountId}/youtube-playlists", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateYoutubeDefaultPlaylist", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set default YouTube playlist Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateYoutubeDefaultPlaylistRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> UpdateYoutubeDefaultPlaylistAsync(string accountId, UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await UpdateYoutubeDefaultPlaylistWithHttpInfoAsync(accountId, updateYoutubeDefaultPlaylistRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set default YouTube playlist Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateYoutubeDefaultPlaylistRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> UpdateYoutubeDefaultPlaylistWithHttpInfoAsync(string accountId, UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->UpdateYoutubeDefaultPlaylist");
+
+            // verify the required parameter 'updateYoutubeDefaultPlaylistRequest' is set
+            if (updateYoutubeDefaultPlaylistRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateYoutubeDefaultPlaylistRequest' when calling ConnectApi->UpdateYoutubeDefaultPlaylist");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = updateYoutubeDefaultPlaylistRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/accounts/{accountId}/youtube-playlists", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateYoutubeDefaultPlaylist", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

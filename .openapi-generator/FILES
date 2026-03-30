@@ -336,6 +336,8 @@ docs/GetYouTubeDailyViews403Response.md
 docs/GetYouTubeDailyViews500Response.md
 docs/GetYouTubeTranscript200Response.md
 docs/GetYouTubeTranscript200ResponseSegmentsInner.md
+docs/GetYoutubePlaylists200Response.md
+docs/GetYoutubePlaylists200ResponsePlaylistsInner.md
 docs/GoogleBusinessPlatformData.md
 docs/GoogleBusinessPlatformDataCallToAction.md
 docs/HandleOAuthCallbackRequest.md
@@ -633,7 +635,6 @@ docs/UpdateProfile200Response.md
 docs/UpdateProfileRequest.md
 docs/UpdateQueueSlot200Response.md
 docs/UpdateQueueSlotRequest.md
-docs/UpdateRedditSubreddits200Response.md
 docs/UpdateRedditSubredditsRequest.md
 docs/UpdateSequence200Response.md
 docs/UpdateSequence200ResponseSequence.md
@@ -650,6 +651,8 @@ docs/UpdateWhatsAppGroupChatRequest.md
 docs/UpdateWhatsAppTemplate200Response.md
 docs/UpdateWhatsAppTemplate200ResponseTemplate.md
 docs/UpdateWhatsAppTemplateRequest.md
+docs/UpdateYoutubeDefaultPlaylist200Response.md
+docs/UpdateYoutubeDefaultPlaylistRequest.md
 docs/UploadMediaDirect200Response.md
 docs/UploadTokenResponse.md
 docs/UploadTokenStatusResponse.md
@@ -718,6 +721,10 @@ docs/YouTubeScopeMissingResponse.md
 docs/YouTubeScopeMissingResponseScopeStatus.md
 git_push.sh
 src/Late.Test/Late.Test.csproj
+src/Late.Test/Model/GetYoutubePlaylists200ResponsePlaylistsInnerTests.cs
+src/Late.Test/Model/GetYoutubePlaylists200ResponseTests.cs
+src/Late.Test/Model/UpdateYoutubeDefaultPlaylist200ResponseTests.cs
+src/Late.Test/Model/UpdateYoutubeDefaultPlaylistRequestTests.cs
 src/Late/Api/APIKeysApi.cs
 src/Late/Api/AccountGroupsApi.cs
 src/Late/Api/AccountSettingsApi.cs
@@ -1090,6 +1097,8 @@ src/Late/Model/GetYouTubeDailyViews403Response.cs
 src/Late/Model/GetYouTubeDailyViews500Response.cs
 src/Late/Model/GetYouTubeTranscript200Response.cs
 src/Late/Model/GetYouTubeTranscript200ResponseSegmentsInner.cs
+src/Late/Model/GetYoutubePlaylists200Response.cs
+src/Late/Model/GetYoutubePlaylists200ResponsePlaylistsInner.cs
 src/Late/Model/GoogleBusinessPlatformData.cs
 src/Late/Model/GoogleBusinessPlatformDataCallToAction.cs
 src/Late/Model/HandleOAuthCallbackRequest.cs
@@ -1374,7 +1383,6 @@ src/Late/Model/UpdateProfile200Response.cs
 src/Late/Model/UpdateProfileRequest.cs
 src/Late/Model/UpdateQueueSlot200Response.cs
 src/Late/Model/UpdateQueueSlotRequest.cs
-src/Late/Model/UpdateRedditSubreddits200Response.cs
 src/Late/Model/UpdateRedditSubredditsRequest.cs
 src/Late/Model/UpdateSequence200Response.cs
 src/Late/Model/UpdateSequence200ResponseSequence.cs
@@ -1391,6 +1399,8 @@ src/Late/Model/UpdateWhatsAppGroupChatRequest.cs
 src/Late/Model/UpdateWhatsAppTemplate200Response.cs
 src/Late/Model/UpdateWhatsAppTemplate200ResponseTemplate.cs
 src/Late/Model/UpdateWhatsAppTemplateRequest.cs
+src/Late/Model/UpdateYoutubeDefaultPlaylist200Response.cs
+src/Late/Model/UpdateYoutubeDefaultPlaylistRequest.cs
 src/Late/Model/UploadMediaDirect200Response.cs
 src/Late/Model/UploadTokenResponse.cs
 src/Late/Model/UploadTokenStatusResponse.cs

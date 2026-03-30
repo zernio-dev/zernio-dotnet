@@ -113,7 +113,7 @@ catch (ApiException e)
 
 <a id="deletewebhooksettings"></a>
 # **DeleteWebhookSettings**
-> UpdateRedditSubreddits200Response DeleteWebhookSettings (string id)
+> UpdateYoutubeDefaultPlaylist200Response DeleteWebhookSettings (string id)
 
 Delete webhook
 
@@ -148,7 +148,7 @@ namespace Example
             try
             {
                 // Delete webhook
-                UpdateRedditSubreddits200Response result = apiInstance.DeleteWebhookSettings(id);
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.DeleteWebhookSettings(id);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -169,7 +169,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete webhook
-    ApiResponse<UpdateRedditSubreddits200Response> response = apiInstance.DeleteWebhookSettingsWithHttpInfo(id);
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.DeleteWebhookSettingsWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -190,7 +190,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 ### Authorization
 
