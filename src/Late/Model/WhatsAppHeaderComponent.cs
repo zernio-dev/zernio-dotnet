@@ -40,10 +40,10 @@ namespace Late.Model
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum HEADER for value: HEADER
+            /// Enum Header for value: header
             /// </summary>
-            [EnumMember(Value = "HEADER")]
-            HEADER = 1
+            [EnumMember(Value = "header")]
+            Header = 1
         }
 
 
@@ -59,40 +59,40 @@ namespace Late.Model
         public enum FormatEnum
         {
             /// <summary>
-            /// Enum TEXT for value: TEXT
+            /// Enum Text for value: text
             /// </summary>
-            [EnumMember(Value = "TEXT")]
-            TEXT = 1,
+            [EnumMember(Value = "text")]
+            Text = 1,
 
             /// <summary>
-            /// Enum IMAGE for value: IMAGE
+            /// Enum Image for value: image
             /// </summary>
-            [EnumMember(Value = "IMAGE")]
-            IMAGE = 2,
+            [EnumMember(Value = "image")]
+            Image = 2,
 
             /// <summary>
-            /// Enum VIDEO for value: VIDEO
+            /// Enum Video for value: video
             /// </summary>
-            [EnumMember(Value = "VIDEO")]
-            VIDEO = 3,
+            [EnumMember(Value = "video")]
+            Video = 3,
 
             /// <summary>
-            /// Enum GIF for value: GIF
+            /// Enum Gif for value: gif
             /// </summary>
-            [EnumMember(Value = "GIF")]
-            GIF = 4,
+            [EnumMember(Value = "gif")]
+            Gif = 4,
 
             /// <summary>
-            /// Enum DOCUMENT for value: DOCUMENT
+            /// Enum Document for value: document
             /// </summary>
-            [EnumMember(Value = "DOCUMENT")]
-            DOCUMENT = 5,
+            [EnumMember(Value = "document")]
+            Document = 5,
 
             /// <summary>
-            /// Enum LOCATION for value: LOCATION
+            /// Enum Location for value: location
             /// </summary>
-            [EnumMember(Value = "LOCATION")]
-            LOCATION = 6
+            [EnumMember(Value = "location")]
+            Location = 6
         }
 
 

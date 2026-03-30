@@ -40,10 +40,10 @@ namespace Late.Model
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum FOOTER for value: FOOTER
+            /// Enum Footer for value: footer
             /// </summary>
-            [EnumMember(Value = "FOOTER")]
-            FOOTER = 1
+            [EnumMember(Value = "footer")]
+            Footer = 1
         }
 
 

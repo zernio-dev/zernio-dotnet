@@ -40,22 +40,22 @@ namespace Late.Model
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum QUICKREPLY for value: QUICK_REPLY
+            /// Enum QuickReply for value: quick_reply
             /// </summary>
-            [EnumMember(Value = "QUICK_REPLY")]
-            QUICKREPLY = 1,
+            [EnumMember(Value = "quick_reply")]
+            QuickReply = 1,
 
             /// <summary>
-            /// Enum URL for value: URL
+            /// Enum Url for value: url
             /// </summary>
-            [EnumMember(Value = "URL")]
-            URL = 2,
+            [EnumMember(Value = "url")]
+            Url = 2,
 
             /// <summary>
-            /// Enum PHONENUMBER for value: PHONE_NUMBER
+            /// Enum PhoneNumber for value: phone_number
             /// </summary>
-            [EnumMember(Value = "PHONE_NUMBER")]
-            PHONENUMBER = 3
+            [EnumMember(Value = "phone_number")]
+            PhoneNumber = 3
         }
 
 

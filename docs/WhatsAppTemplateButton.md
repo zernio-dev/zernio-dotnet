@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **Text** | **string** |  | 
 **Url** | **string** | Required when type is URL | [optional] 
 **Example** | **List&lt;string&gt;** | Example values for URL suffix variables | [optional] 
-**PhoneNumber** | **string** | Required when type is PHONE_NUMBER | [optional] 
-**OtpType** | **string** | Required when type is OTP | [optional] 
+**PhoneNumber** | **string** | Required when type is phone_number | [optional] 
+**OtpType** | **string** | Required when type is otp | [optional] 
 **AutofillText** | **string** |  | [optional] 
 **PackageName** | **string** |  | [optional] 
 **SignatureHash** | **string** |  | [optional] 

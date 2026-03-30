@@ -40,46 +40,46 @@ namespace Late.Model
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum QUICKREPLY for value: QUICK_REPLY
+            /// Enum QuickReply for value: quick_reply
             /// </summary>
-            [EnumMember(Value = "QUICK_REPLY")]
-            QUICKREPLY = 1,
+            [EnumMember(Value = "quick_reply")]
+            QuickReply = 1,
 
             /// <summary>
-            /// Enum URL for value: URL
+            /// Enum Url for value: url
             /// </summary>
-            [EnumMember(Value = "URL")]
-            URL = 2,
+            [EnumMember(Value = "url")]
+            Url = 2,
 
             /// <summary>
-            /// Enum PHONENUMBER for value: PHONE_NUMBER
+            /// Enum PhoneNumber for value: phone_number
             /// </summary>
-            [EnumMember(Value = "PHONE_NUMBER")]
-            PHONENUMBER = 3,
+            [EnumMember(Value = "phone_number")]
+            PhoneNumber = 3,
 
             /// <summary>
-            /// Enum OTP for value: OTP
+            /// Enum Otp for value: otp
             /// </summary>
-            [EnumMember(Value = "OTP")]
-            OTP = 4,
+            [EnumMember(Value = "otp")]
+            Otp = 4,
 
             /// <summary>
-            /// Enum FLOW for value: FLOW
+            /// Enum Flow for value: flow
             /// </summary>
-            [EnumMember(Value = "FLOW")]
-            FLOW = 5,
+            [EnumMember(Value = "flow")]
+            Flow = 5,
 
             /// <summary>
-            /// Enum MPM for value: MPM
+            /// Enum Mpm for value: mpm
             /// </summary>
-            [EnumMember(Value = "MPM")]
-            MPM = 6,
+            [EnumMember(Value = "mpm")]
+            Mpm = 6,
 
             /// <summary>
-            /// Enum CATALOG for value: CATALOG
+            /// Enum Catalog for value: catalog
             /// </summary>
-            [EnumMember(Value = "CATALOG")]
-            CATALOG = 7
+            [EnumMember(Value = "catalog")]
+            Catalog = 7
         }
 
 
@@ -89,36 +89,36 @@ namespace Late.Model
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public TypeEnum Type { get; set; }
         /// <summary>
-        /// Required when type is OTP
+        /// Required when type is otp
         /// </summary>
-        /// <value>Required when type is OTP</value>
+        /// <value>Required when type is otp</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OtpTypeEnum
         {
             /// <summary>
-            /// Enum COPYCODE for value: COPY_CODE
+            /// Enum CopyCode for value: copy_code
             /// </summary>
-            [EnumMember(Value = "COPY_CODE")]
-            COPYCODE = 1,
+            [EnumMember(Value = "copy_code")]
+            CopyCode = 1,
 
             /// <summary>
-            /// Enum ONETAP for value: ONE_TAP
+            /// Enum OneTap for value: one_tap
             /// </summary>
-            [EnumMember(Value = "ONE_TAP")]
-            ONETAP = 2,
+            [EnumMember(Value = "one_tap")]
+            OneTap = 2,
 
             /// <summary>
-            /// Enum ZEROTAP for value: ZERO_TAP
+            /// Enum ZeroTap for value: zero_tap
             /// </summary>
-            [EnumMember(Value = "ZERO_TAP")]
-            ZEROTAP = 3
+            [EnumMember(Value = "zero_tap")]
+            ZeroTap = 3
         }
 
 
         /// <summary>
-        /// Required when type is OTP
+        /// Required when type is otp
         /// </summary>
-        /// <value>Required when type is OTP</value>
+        /// <value>Required when type is otp</value>
         [DataMember(Name = "otp_type", EmitDefaultValue = false)]
         public OtpTypeEnum? OtpType { get; set; }
         /// <summary>
@@ -133,8 +133,8 @@ namespace Late.Model
         /// <param name="text">text (required).</param>
         /// <param name="url">Required when type is URL.</param>
         /// <param name="example">Example values for URL suffix variables.</param>
-        /// <param name="phoneNumber">Required when type is PHONE_NUMBER.</param>
-        /// <param name="otpType">Required when type is OTP.</param>
+        /// <param name="phoneNumber">Required when type is phone_number.</param>
+        /// <param name="otpType">Required when type is otp.</param>
         /// <param name="autofillText">autofillText.</param>
         /// <param name="packageName">packageName.</param>
         /// <param name="signatureHash">signatureHash.</param>
@@ -187,9 +187,9 @@ namespace Late.Model
         public List<string> Example { get; set; }
 
         /// <summary>
-        /// Required when type is PHONE_NUMBER
+        /// Required when type is phone_number
         /// </summary>
-        /// <value>Required when type is PHONE_NUMBER</value>
+        /// <value>Required when type is phone_number</value>
         [DataMember(Name = "phone_number", EmitDefaultValue = false)]
         public string PhoneNumber { get; set; }
 
