@@ -80,7 +80,7 @@ namespace Late.Model
         /// <param name="size">Optional file size in bytes.</param>
         /// <param name="mimeType">Optional MIME type (e.g. image/jpeg, video/mp4).</param>
         /// <param name="thumbnail">Optional custom thumbnail/cover image URL for videos. Supported for Facebook video posts, Facebook Reels, and regular video uploads. Max 10MB, JPG/PNG recommended..</param>
-        /// <param name="instagramThumbnail">Optional custom cover image URL for Instagram Reels.</param>
+        /// <param name="instagramThumbnail">Custom cover image URL for Instagram Reels. Can also be set via platformSpecificData.instagramThumbnail or platformSpecificData.reelCover. Resolution order: this field &gt; platformSpecificData.instagramThumbnail &gt; platformSpecificData.reelCover &gt; platformSpecificData.thumbnailUrl (legacy)..</param>
         /// <param name="tiktokProcessed">Internal flag indicating the image was resized for TikTok.</param>
         public MediaItem(TypeEnum? type = default, string url = default, string title = default, string filename = default, int size = default, string mimeType = default, string thumbnail = default, string instagramThumbnail = default, bool tiktokProcessed = default)
         {
@@ -136,9 +136,9 @@ namespace Late.Model
         public string Thumbnail { get; set; }
 
         /// <summary>
-        /// Optional custom cover image URL for Instagram Reels
+        /// Custom cover image URL for Instagram Reels. Can also be set via platformSpecificData.instagramThumbnail or platformSpecificData.reelCover. Resolution order: this field &gt; platformSpecificData.instagramThumbnail &gt; platformSpecificData.reelCover &gt; platformSpecificData.thumbnailUrl (legacy).
         /// </summary>
-        /// <value>Optional custom cover image URL for Instagram Reels</value>
+        /// <value>Custom cover image URL for Instagram Reels. Can also be set via platformSpecificData.instagramThumbnail or platformSpecificData.reelCover. Resolution order: this field &gt; platformSpecificData.instagramThumbnail &gt; platformSpecificData.reelCover &gt; platformSpecificData.thumbnailUrl (legacy).</value>
         [DataMember(Name = "instagramThumbnail", EmitDefaultValue = false)]
         public string InstagramThumbnail { get; set; }
 
