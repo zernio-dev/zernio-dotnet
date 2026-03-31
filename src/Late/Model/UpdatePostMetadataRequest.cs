@@ -103,7 +103,8 @@ namespace Late.Model
         /// <param name="tags">Array of keyword tags (max 500 characters combined for YouTube).</param>
         /// <param name="categoryId">YouTube video category ID.</param>
         /// <param name="privacyStatus">Video privacy setting.</param>
-        public UpdatePostMetadataRequest(PlatformEnum platform = default, string videoId = default, string accountId = default, string title = default, string description = default, List<string> tags = default, string categoryId = default, PrivacyStatusEnum? privacyStatus = default)
+        /// <param name="thumbnailUrl">Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 2 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails..</param>
+        public UpdatePostMetadataRequest(PlatformEnum platform = default, string videoId = default, string accountId = default, string title = default, string description = default, List<string> tags = default, string categoryId = default, PrivacyStatusEnum? privacyStatus = default, string thumbnailUrl = default)
         {
             this.Platform = platform;
             this.VideoId = videoId;
@@ -113,6 +114,7 @@ namespace Late.Model
             this.Tags = tags;
             this.CategoryId = categoryId;
             this.PrivacyStatus = privacyStatus;
+            this.ThumbnailUrl = thumbnailUrl;
         }
 
         /// <summary>
@@ -158,6 +160,13 @@ namespace Late.Model
         public string CategoryId { get; set; }
 
         /// <summary>
+        /// Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 2 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails.
+        /// </summary>
+        /// <value>Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 2 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails.</value>
+        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
+        public string ThumbnailUrl { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -173,6 +182,7 @@ namespace Late.Model
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  CategoryId: ").Append(CategoryId).Append("\n");
             sb.Append("  PrivacyStatus: ").Append(PrivacyStatus).Append("\n");
+            sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
