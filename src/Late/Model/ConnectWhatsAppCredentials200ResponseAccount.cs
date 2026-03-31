@@ -60,19 +60,15 @@ namespace Late.Model
         /// <param name="username">Display phone number.</param>
         /// <param name="displayName">Meta-verified business name.</param>
         /// <param name="isActive">isActive.</param>
-        /// <param name="phoneNumber">phoneNumber.</param>
-        /// <param name="verifiedName">verifiedName.</param>
-        /// <param name="qualityRating">GREEN, YELLOW, or RED.</param>
-        public ConnectWhatsAppCredentials200ResponseAccount(string accountId = default, PlatformEnum? platform = default, string username = default, string displayName = default, bool isActive = default, string phoneNumber = default, string verifiedName = default, string qualityRating = default)
+        /// <param name="selectedPhoneNumber">The connected phone number.</param>
+        public ConnectWhatsAppCredentials200ResponseAccount(string accountId = default, PlatformEnum? platform = default, string username = default, string displayName = default, bool isActive = default, string selectedPhoneNumber = default)
         {
             this.AccountId = accountId;
             this.Platform = platform;
             this.Username = username;
             this.DisplayName = displayName;
             this.IsActive = isActive;
-            this.PhoneNumber = phoneNumber;
-            this.VerifiedName = verifiedName;
-            this.QualityRating = qualityRating;
+            this.SelectedPhoneNumber = selectedPhoneNumber;
         }
 
         /// <summary>
@@ -102,23 +98,11 @@ namespace Late.Model
         public bool IsActive { get; set; }
 
         /// <summary>
-        /// Gets or Sets PhoneNumber
+        /// The connected phone number
         /// </summary>
-        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
-        public string PhoneNumber { get; set; }
-
-        /// <summary>
-        /// Gets or Sets VerifiedName
-        /// </summary>
-        [DataMember(Name = "verifiedName", EmitDefaultValue = false)]
-        public string VerifiedName { get; set; }
-
-        /// <summary>
-        /// GREEN, YELLOW, or RED
-        /// </summary>
-        /// <value>GREEN, YELLOW, or RED</value>
-        [DataMember(Name = "qualityRating", EmitDefaultValue = false)]
-        public string QualityRating { get; set; }
+        /// <value>The connected phone number</value>
+        [DataMember(Name = "selectedPhoneNumber", EmitDefaultValue = false)]
+        public string SelectedPhoneNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -133,9 +117,7 @@ namespace Late.Model
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
-            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("  VerifiedName: ").Append(VerifiedName).Append("\n");
-            sb.Append("  QualityRating: ").Append(QualityRating).Append("\n");
+            sb.Append("  SelectedPhoneNumber: ").Append(SelectedPhoneNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

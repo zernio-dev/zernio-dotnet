@@ -5839,9 +5839,7 @@ paths:
                   username: +1 555-123-4567
                   displayName: Acme Corp
                   isActive: true
-                  phoneNumber: +1 555-123-4567
-                  verifiedName: Acme Corp
-                  qualityRating: GREEN
+                  selectedPhoneNumber: +1 555-123-4567
               schema:
                 $ref: "#/components/schemas/connectWhatsAppCredentials_200_response"
           description: WhatsApp connected successfully
@@ -15744,6 +15742,7 @@ components:
     SocialAccount:
       example:
         profileUrl: profileUrl
+        metadata: "{}"
         followersLastUpdated: 2000-01-23T04:56:07.000+00:00
         profileId: SocialAccount_profileId
         displayName: displayName
@@ -15776,6 +15775,17 @@ components:
             has analytics add-on)
           format: date-time
           type: string
+        metadata:
+          description: |
+            Platform-specific metadata. Fields vary by platform. For WhatsApp accounts, includes:
+            - `qualityRating`: Phone number quality rating from Meta (`GREEN`, `YELLOW`, `RED`, or `UNKNOWN`)
+            - `nameStatus`: Display name review status (`APPROVED`, `PENDING_REVIEW`, `DECLINED`, or `NONE`). Messages cannot be sent until the display name is approved by Meta.
+            - `messagingLimitTier`: Maximum unique business-initiated conversations per 24h rolling window (`TIER_250`, `TIER_1K`, `TIER_10K`, `TIER_100K`, or `TIER_UNLIMITED`). Scales automatically as quality rating improves.
+            - `verifiedName`: Meta-verified business display name
+            - `displayPhoneNumber`: Formatted phone number (e.g., "+1 555-123-4567")
+            - `wabaId`: WhatsApp Business Account ID
+            - `phoneNumberId`: Meta phone number ID
+          type: object
     AccountWithFollowerStats:
       allOf:
       - $ref: "#/components/schemas/SocialAccount"
@@ -15801,6 +15811,7 @@ components:
             $ref: "#/components/schemas/AccountWithFollowerStats_allOf_accountStats"
       example:
         profileUrl: profileUrl
+        metadata: "{}"
         followersLastUpdated: 2000-01-23T04:56:07.000+00:00
         displayName: displayName
         isActive: true
@@ -20050,6 +20061,7 @@ components:
         hasAnalyticsAccess: true
         accounts:
         - profileUrl: profileUrl
+          metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           profileId: SocialAccount_profileId
           displayName: displayName
@@ -20059,6 +20071,7 @@ components:
           platform: platform
           username: username
         - profileUrl: profileUrl
+          metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           profileId: SocialAccount_profileId
           displayName: displayName
@@ -20110,6 +20123,7 @@ components:
         granularity: granularity
         accounts:
         - profileUrl: profileUrl
+          metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
           isActive: true
@@ -20137,6 +20151,7 @@ components:
           growthPercentage: 5.962133916683182
           username: username
         - profileUrl: profileUrl
+          metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
           isActive: true
@@ -23864,6 +23879,7 @@ components:
         message: message
         account:
           profileUrl: profileUrl
+          metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           profileId: SocialAccount_profileId
           displayName: displayName
@@ -23898,12 +23914,10 @@ components:
       - wabaId
     connectWhatsAppCredentials_200_response_account:
       example:
+        selectedPhoneNumber: selectedPhoneNumber
         accountId: accountId
-        phoneNumber: phoneNumber
         displayName: displayName
-        verifiedName: verifiedName
         isActive: true
-        qualityRating: qualityRating
         platform: whatsapp
         username: username
       properties:
@@ -23921,23 +23935,17 @@ components:
           type: string
         isActive:
           type: boolean
-        phoneNumber:
-          type: string
-        verifiedName:
-          type: string
-        qualityRating:
-          description: "GREEN, YELLOW, or RED"
+        selectedPhoneNumber:
+          description: The connected phone number
           type: string
     connectWhatsAppCredentials_200_response:
       example:
         message: message
         account:
+          selectedPhoneNumber: selectedPhoneNumber
           accountId: accountId
-          phoneNumber: phoneNumber
           displayName: displayName
-          verifiedName: verifiedName
           isActive: true
-          qualityRating: qualityRating
           platform: whatsapp
           username: username
       properties:
