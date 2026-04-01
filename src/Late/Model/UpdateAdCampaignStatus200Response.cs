@@ -39,11 +39,13 @@ namespace Late.Model
         /// <param name="updated">Number of ads updated.</param>
         /// <param name="skipped">Number of ads skipped.</param>
         /// <param name="skippedReasons">skippedReasons.</param>
-        public UpdateAdCampaignStatus200Response(int updated = default, int skipped = default, List<string> skippedReasons = default)
+        /// <param name="message">Human-readable summary (present when no ads were actionable).</param>
+        public UpdateAdCampaignStatus200Response(int updated = default, int skipped = default, List<string> skippedReasons = default, string message = default)
         {
             this.Updated = updated;
             this.Skipped = skipped;
             this.SkippedReasons = skippedReasons;
+            this.Message = message;
         }
 
         /// <summary>
@@ -67,6 +69,13 @@ namespace Late.Model
         public List<string> SkippedReasons { get; set; }
 
         /// <summary>
+        /// Human-readable summary (present when no ads were actionable)
+        /// </summary>
+        /// <value>Human-readable summary (present when no ads were actionable)</value>
+        [DataMember(Name = "message", EmitDefaultValue = false)]
+        public string Message { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -77,6 +86,7 @@ namespace Late.Model
             sb.Append("  Updated: ").Append(Updated).Append("\n");
             sb.Append("  Skipped: ").Append(Skipped).Append("\n");
             sb.Append("  SkippedReasons: ").Append(SkippedReasons).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

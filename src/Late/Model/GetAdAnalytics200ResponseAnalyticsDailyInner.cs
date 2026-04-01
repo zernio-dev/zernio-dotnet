@@ -44,7 +44,7 @@ namespace Late.Model
         /// <param name="cpc">Cost per click.</param>
         /// <param name="cpm">Cost per 1000 impressions.</param>
         /// <param name="engagement">engagement.</param>
-        /// <param name="lastSyncedAt">lastSyncedAt.</param>
+        /// <param name="lastSyncedAt">Present on individual ads only, not on campaign aggregations.</param>
         /// <param name="date">date.</param>
         public GetAdAnalytics200ResponseAnalyticsDailyInner(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, DateTime lastSyncedAt = default, DateOnly date = default)
         {
@@ -112,8 +112,9 @@ namespace Late.Model
         public int Engagement { get; set; }
 
         /// <summary>
-        /// Gets or Sets LastSyncedAt
+        /// Present on individual ads only, not on campaign aggregations
         /// </summary>
+        /// <value>Present on individual ads only, not on campaign aggregations</value>
         [DataMember(Name = "lastSyncedAt", EmitDefaultValue = false)]
         public DateTime LastSyncedAt { get; set; }
 

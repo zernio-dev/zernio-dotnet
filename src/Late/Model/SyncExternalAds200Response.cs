@@ -38,7 +38,7 @@ namespace Late.Model
         /// </summary>
         /// <param name="success">success.</param>
         /// <param name="synced">New ads imported.</param>
-        /// <param name="skipped">Already-synced ads updated.</param>
+        /// <param name="skipped">Already-known ads (skipped import.</param>
         /// <param name="errors">Failed ad imports.</param>
         public SyncExternalAds200Response(bool success = default, int synced = default, int skipped = default, int errors = default)
         {
@@ -62,9 +62,9 @@ namespace Late.Model
         public int Synced { get; set; }
 
         /// <summary>
-        /// Already-synced ads updated
+        /// Already-known ads (skipped import
         /// </summary>
-        /// <value>Already-synced ads updated</value>
+        /// <value>Already-known ads (skipped import</value>
         [DataMember(Name = "skipped", EmitDefaultValue = false)]
         public int Skipped { get; set; }
 
