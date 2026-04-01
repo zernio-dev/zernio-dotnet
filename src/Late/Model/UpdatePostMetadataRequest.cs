@@ -104,7 +104,10 @@ namespace Late.Model
         /// <param name="categoryId">YouTube video category ID.</param>
         /// <param name="privacyStatus">Video privacy setting.</param>
         /// <param name="thumbnailUrl">Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 2 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails..</param>
-        public UpdatePostMetadataRequest(PlatformEnum platform = default, string videoId = default, string accountId = default, string title = default, string description = default, List<string> tags = default, string categoryId = default, PrivacyStatusEnum? privacyStatus = default, string thumbnailUrl = default)
+        /// <param name="madeForKids">COPPA compliance flag. Set true for child-directed content (restricts comments, notifications, ad targeting)..</param>
+        /// <param name="containsSyntheticMedia">AI-generated content disclosure. Set true if the video contains synthetic content that could be mistaken for real. YouTube may add a label..</param>
+        /// <param name="playlistId">YouTube playlist ID to add the video to (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Only playlists owned by the channel are supported..</param>
+        public UpdatePostMetadataRequest(PlatformEnum platform = default, string videoId = default, string accountId = default, string title = default, string description = default, List<string> tags = default, string categoryId = default, PrivacyStatusEnum? privacyStatus = default, string thumbnailUrl = default, bool madeForKids = default, bool containsSyntheticMedia = default, string playlistId = default)
         {
             this.Platform = platform;
             this.VideoId = videoId;
@@ -115,6 +118,9 @@ namespace Late.Model
             this.CategoryId = categoryId;
             this.PrivacyStatus = privacyStatus;
             this.ThumbnailUrl = thumbnailUrl;
+            this.MadeForKids = madeForKids;
+            this.ContainsSyntheticMedia = containsSyntheticMedia;
+            this.PlaylistId = playlistId;
         }
 
         /// <summary>
@@ -167,6 +173,27 @@ namespace Late.Model
         public string ThumbnailUrl { get; set; }
 
         /// <summary>
+        /// COPPA compliance flag. Set true for child-directed content (restricts comments, notifications, ad targeting).
+        /// </summary>
+        /// <value>COPPA compliance flag. Set true for child-directed content (restricts comments, notifications, ad targeting).</value>
+        [DataMember(Name = "madeForKids", EmitDefaultValue = true)]
+        public bool MadeForKids { get; set; }
+
+        /// <summary>
+        /// AI-generated content disclosure. Set true if the video contains synthetic content that could be mistaken for real. YouTube may add a label.
+        /// </summary>
+        /// <value>AI-generated content disclosure. Set true if the video contains synthetic content that could be mistaken for real. YouTube may add a label.</value>
+        [DataMember(Name = "containsSyntheticMedia", EmitDefaultValue = true)]
+        public bool ContainsSyntheticMedia { get; set; }
+
+        /// <summary>
+        /// YouTube playlist ID to add the video to (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Only playlists owned by the channel are supported.
+        /// </summary>
+        /// <value>YouTube playlist ID to add the video to (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Only playlists owned by the channel are supported.</value>
+        [DataMember(Name = "playlistId", EmitDefaultValue = false)]
+        public string PlaylistId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -183,6 +210,9 @@ namespace Late.Model
             sb.Append("  CategoryId: ").Append(CategoryId).Append("\n");
             sb.Append("  PrivacyStatus: ").Append(PrivacyStatus).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
+            sb.Append("  MadeForKids: ").Append(MadeForKids).Append("\n");
+            sb.Append("  ContainsSyntheticMedia: ").Append(ContainsSyntheticMedia).Append("\n");
+            sb.Append("  PlaylistId: ").Append(PlaylistId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
