@@ -163,6 +163,23 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**GetTikTokCreatorInfo**](docs/AccountsApi.md#gettiktokcreatorinfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**ListAccounts**](docs/AccountsApi.md#listaccounts) | **GET** /v1/accounts | List accounts
 *AccountsApi* | [**UpdateAccount**](docs/AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account
+*AdAudiencesApi* | [**AddUsersToAdAudience**](docs/AdAudiencesApi.md#adduserstoadaudience) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to a customer list audience
+*AdAudiencesApi* | [**CreateAdAudience**](docs/AdAudiencesApi.md#createadaudience) | **POST** /v1/ads/audiences | Create a custom audience (Meta only)
+*AdAudiencesApi* | [**DeleteAdAudience**](docs/AdAudiencesApi.md#deleteadaudience) | **DELETE** /v1/ads/audiences/{audienceId} | Delete a custom audience
+*AdAudiencesApi* | [**GetAdAudience**](docs/AdAudiencesApi.md#getadaudience) | **GET** /v1/ads/audiences/{audienceId} | Get audience details
+*AdAudiencesApi* | [**ListAdAudiences**](docs/AdAudiencesApi.md#listadaudiences) | **GET** /v1/ads/audiences | List custom audiences
+*AdCampaignsApi* | [**ListAdCampaigns**](docs/AdCampaignsApi.md#listadcampaigns) | **GET** /v1/ads/campaigns | List campaigns with aggregate metrics
+*AdCampaignsApi* | [**UpdateAdCampaignStatus**](docs/AdCampaignsApi.md#updateadcampaignstatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign
+*AdsApi* | [**BoostPost**](docs/AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost an existing post as a paid ad
+*AdsApi* | [**CreateStandaloneAd**](docs/AdsApi.md#createstandalonead) | **POST** /v1/ads/create | Create a standalone ad with custom creative
+*AdsApi* | [**DeleteAd**](docs/AdsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad
+*AdsApi* | [**GetAd**](docs/AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details
+*AdsApi* | [**GetAdAnalytics**](docs/AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics with daily breakdown
+*AdsApi* | [**ListAdAccounts**](docs/AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts for a social account
+*AdsApi* | [**ListAds**](docs/AdsApi.md#listads) | **GET** /v1/ads | List ads
+*AdsApi* | [**SearchAdInterests**](docs/AdsApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests
+*AdsApi* | [**SyncExternalAds**](docs/AdsApi.md#syncexternalads) | **POST** /v1/ads/sync | Sync external ads from platform ad managers
+*AdsApi* | [**UpdateAd**](docs/AdsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad (pause/resume, budget, targeting, name)
 *AnalyticsApi* | [**GetAnalytics**](docs/AnalyticsApi.md#getanalytics) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**GetBestTimeToPost**](docs/AnalyticsApi.md#getbesttimetopost) | **GET** /v1/analytics/best-time | Get best times to post
 *AnalyticsApi* | [**GetContentDecay**](docs/AnalyticsApi.md#getcontentdecay) | **GET** /v1/analytics/content-decay | Get content performance decay
@@ -395,9 +412,17 @@ Class | Method | HTTP request | Description
  - [Model.AccountWithFollowerStatsAllOfAccountStats](docs/AccountWithFollowerStatsAllOfAccountStats.md)
  - [Model.AccountsListResponse](docs/AccountsListResponse.md)
  - [Model.ActivateSequence200Response](docs/ActivateSequence200Response.md)
+ - [Model.Ad](docs/Ad.md)
+ - [Model.AdBudget](docs/AdBudget.md)
+ - [Model.AdCampaign](docs/AdCampaign.md)
+ - [Model.AdMetrics](docs/AdMetrics.md)
+ - [Model.AdSchedule](docs/AdSchedule.md)
  - [Model.AddBroadcastRecipients200Response](docs/AddBroadcastRecipients200Response.md)
  - [Model.AddBroadcastRecipientsRequest](docs/AddBroadcastRecipientsRequest.md)
  - [Model.AddMessageReactionRequest](docs/AddMessageReactionRequest.md)
+ - [Model.AddUsersToAdAudience200Response](docs/AddUsersToAdAudience200Response.md)
+ - [Model.AddUsersToAdAudienceRequest](docs/AddUsersToAdAudienceRequest.md)
+ - [Model.AddUsersToAdAudienceRequestUsersInner](docs/AddUsersToAdAudienceRequestUsersInner.md)
  - [Model.AddWhatsAppBroadcastRecipients200Response](docs/AddWhatsAppBroadcastRecipients200Response.md)
  - [Model.AddWhatsAppBroadcastRecipientsRequest](docs/AddWhatsAppBroadcastRecipientsRequest.md)
  - [Model.AddWhatsAppBroadcastRecipientsRequestRecipientsInner](docs/AddWhatsAppBroadcastRecipientsRequestRecipientsInner.md)
@@ -414,6 +439,10 @@ Class | Method | HTTP request | Description
  - [Model.BlueskyPlatformData](docs/BlueskyPlatformData.md)
  - [Model.BookmarkPost200Response](docs/BookmarkPost200Response.md)
  - [Model.BookmarkPostRequest](docs/BookmarkPostRequest.md)
+ - [Model.BoostPostRequest](docs/BoostPostRequest.md)
+ - [Model.BoostPostRequestBudget](docs/BoostPostRequestBudget.md)
+ - [Model.BoostPostRequestSchedule](docs/BoostPostRequestSchedule.md)
+ - [Model.BoostPostRequestTargeting](docs/BoostPostRequestTargeting.md)
  - [Model.BulkCreateContacts200Response](docs/BulkCreateContacts200Response.md)
  - [Model.BulkCreateContactsRequest](docs/BulkCreateContactsRequest.md)
  - [Model.BulkCreateContactsRequestContactsInner](docs/BulkCreateContactsRequestContactsInner.md)
@@ -447,6 +476,8 @@ Class | Method | HTTP request | Description
  - [Model.ConnectionLogSuccess](docs/ConnectionLogSuccess.md)
  - [Model.CreateAccountGroup201Response](docs/CreateAccountGroup201Response.md)
  - [Model.CreateAccountGroupRequest](docs/CreateAccountGroupRequest.md)
+ - [Model.CreateAdAudience201Response](docs/CreateAdAudience201Response.md)
+ - [Model.CreateAdAudienceRequest](docs/CreateAdAudienceRequest.md)
  - [Model.CreateApiKey201Response](docs/CreateApiKey201Response.md)
  - [Model.CreateApiKeyRequest](docs/CreateApiKeyRequest.md)
  - [Model.CreateBroadcast200Response](docs/CreateBroadcast200Response.md)
@@ -488,6 +519,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateSequenceRequestStepsInner](docs/CreateSequenceRequestStepsInner.md)
  - [Model.CreateSequenceRequestStepsInnerTemplate](docs/CreateSequenceRequestStepsInnerTemplate.md)
  - [Model.CreateSequenceRequestStepsInnerTemplateVariableMappingValue](docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md)
+ - [Model.CreateStandaloneAdRequest](docs/CreateStandaloneAdRequest.md)
  - [Model.CreateWebhookSettingsRequest](docs/CreateWebhookSettingsRequest.md)
  - [Model.CreateWhatsAppBroadcast200Response](docs/CreateWhatsAppBroadcast200Response.md)
  - [Model.CreateWhatsAppBroadcast200ResponseBroadcast](docs/CreateWhatsAppBroadcast200ResponseBroadcast.md)
@@ -545,6 +577,12 @@ Class | Method | HTTP request | Description
  - [Model.GetAccountHealth200ResponsePermissions](docs/GetAccountHealth200ResponsePermissions.md)
  - [Model.GetAccountHealth200ResponsePermissionsPostingInner](docs/GetAccountHealth200ResponsePermissionsPostingInner.md)
  - [Model.GetAccountHealth200ResponseTokenStatus](docs/GetAccountHealth200ResponseTokenStatus.md)
+ - [Model.GetAd200Response](docs/GetAd200Response.md)
+ - [Model.GetAdAnalytics200Response](docs/GetAdAnalytics200Response.md)
+ - [Model.GetAdAnalytics200ResponseAd](docs/GetAdAnalytics200ResponseAd.md)
+ - [Model.GetAdAnalytics200ResponseAnalytics](docs/GetAdAnalytics200ResponseAnalytics.md)
+ - [Model.GetAdAnalytics200ResponseAnalyticsDailyInner](docs/GetAdAnalytics200ResponseAnalyticsDailyInner.md)
+ - [Model.GetAdAudience200Response](docs/GetAdAudience200Response.md)
  - [Model.GetAllAccountsHealth200Response](docs/GetAllAccountsHealth200Response.md)
  - [Model.GetAllAccountsHealth200ResponseAccountsInner](docs/GetAllAccountsHealth200ResponseAccountsInner.md)
  - [Model.GetAllAccountsHealth200ResponseSummary](docs/GetAllAccountsHealth200ResponseSummary.md)
@@ -747,6 +785,12 @@ Class | Method | HTTP request | Description
  - [Model.ListAccountGroups200Response](docs/ListAccountGroups200Response.md)
  - [Model.ListAccountGroups200ResponseGroupsInner](docs/ListAccountGroups200ResponseGroupsInner.md)
  - [Model.ListAccounts200Response](docs/ListAccounts200Response.md)
+ - [Model.ListAdAccounts200Response](docs/ListAdAccounts200Response.md)
+ - [Model.ListAdAccounts200ResponseAccountsInner](docs/ListAdAccounts200ResponseAccountsInner.md)
+ - [Model.ListAdAudiences200Response](docs/ListAdAudiences200Response.md)
+ - [Model.ListAdAudiences200ResponseAudiencesInner](docs/ListAdAudiences200ResponseAudiencesInner.md)
+ - [Model.ListAdCampaigns200Response](docs/ListAdCampaigns200Response.md)
+ - [Model.ListAds200Response](docs/ListAds200Response.md)
  - [Model.ListApiKeys200Response](docs/ListApiKeys200Response.md)
  - [Model.ListBroadcastRecipients200Response](docs/ListBroadcastRecipients200Response.md)
  - [Model.ListBroadcastRecipients200ResponseRecipientsInner](docs/ListBroadcastRecipients200ResponseRecipientsInner.md)
@@ -876,6 +920,8 @@ Class | Method | HTTP request | Description
  - [Model.ScheduleWhatsAppBroadcast200Response](docs/ScheduleWhatsAppBroadcast200Response.md)
  - [Model.ScheduleWhatsAppBroadcast200ResponseBroadcast](docs/ScheduleWhatsAppBroadcast200ResponseBroadcast.md)
  - [Model.ScheduleWhatsAppBroadcastRequest](docs/ScheduleWhatsAppBroadcastRequest.md)
+ - [Model.SearchAdInterests200Response](docs/SearchAdInterests200Response.md)
+ - [Model.SearchAdInterests200ResponseInterestsInner](docs/SearchAdInterests200ResponseInterestsInner.md)
  - [Model.SearchReddit200Response](docs/SearchReddit200Response.md)
  - [Model.SearchReddit200ResponsePostsInner](docs/SearchReddit200ResponsePostsInner.md)
  - [Model.SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
@@ -928,6 +974,7 @@ Class | Method | HTTP request | Description
  - [Model.SnapchatPlatformData](docs/SnapchatPlatformData.md)
  - [Model.SocialAccount](docs/SocialAccount.md)
  - [Model.SocialAccountProfileId](docs/SocialAccountProfileId.md)
+ - [Model.SyncExternalAds200Response](docs/SyncExternalAds200Response.md)
  - [Model.TelegramPlatformData](docs/TelegramPlatformData.md)
  - [Model.TestWebhookRequest](docs/TestWebhookRequest.md)
  - [Model.ThreadsPlatformData](docs/ThreadsPlatformData.md)
@@ -946,6 +993,12 @@ Class | Method | HTTP request | Description
  - [Model.UpdateAccountGroup200Response](docs/UpdateAccountGroup200Response.md)
  - [Model.UpdateAccountGroupRequest](docs/UpdateAccountGroupRequest.md)
  - [Model.UpdateAccountRequest](docs/UpdateAccountRequest.md)
+ - [Model.UpdateAd200Response](docs/UpdateAd200Response.md)
+ - [Model.UpdateAdCampaignStatus200Response](docs/UpdateAdCampaignStatus200Response.md)
+ - [Model.UpdateAdCampaignStatusRequest](docs/UpdateAdCampaignStatusRequest.md)
+ - [Model.UpdateAdRequest](docs/UpdateAdRequest.md)
+ - [Model.UpdateAdRequestBudget](docs/UpdateAdRequestBudget.md)
+ - [Model.UpdateAdRequestTargeting](docs/UpdateAdRequestTargeting.md)
  - [Model.UpdateBroadcast200Response](docs/UpdateBroadcast200Response.md)
  - [Model.UpdateBroadcast200ResponseBroadcast](docs/UpdateBroadcast200ResponseBroadcast.md)
  - [Model.UpdateCommentAutomation200Response](docs/UpdateCommentAutomation200Response.md)
