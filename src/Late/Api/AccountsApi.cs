@@ -151,27 +151,31 @@ namespace Late.Api
         /// List accounts
         /// </summary>
         /// <remarks>
-        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter accounts by profile ID (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
+        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
+        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <returns>ListAccounts200Response</returns>
-        ListAccounts200Response ListAccounts(string? profileId = default, string? platform = default, bool? includeOverLimit = default);
+        ListAccounts200Response ListAccounts(string? profileId = default, string? platform = default, bool? includeOverLimit = default, int? page = default, int? limit = default);
 
         /// <summary>
         /// List accounts
         /// </summary>
         /// <remarks>
-        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter accounts by profile ID (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
+        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
+        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <returns>ApiResponse of ListAccounts200Response</returns>
-        ApiResponse<ListAccounts200Response> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, bool? includeOverLimit = default);
+        ApiResponse<ListAccounts200Response> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, bool? includeOverLimit = default, int? page = default, int? limit = default);
         /// <summary>
         /// Update account
         /// </summary>
@@ -337,29 +341,33 @@ namespace Late.Api
         /// List accounts
         /// </summary>
         /// <remarks>
-        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter accounts by profile ID (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
+        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
+        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAccounts200Response</returns>
-        System.Threading.Tasks.Task<ListAccounts200Response> ListAccountsAsync(string? profileId = default, string? platform = default, bool? includeOverLimit = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAccounts200Response> ListAccountsAsync(string? profileId = default, string? platform = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List accounts
         /// </summary>
         /// <remarks>
-        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter accounts by profile ID (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
+        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
+        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAccounts200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAccounts200Response>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, bool? includeOverLimit = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAccounts200Response>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update account
         /// </summary>
@@ -1314,28 +1322,32 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter accounts by profile ID (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
+        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
+        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <returns>ListAccounts200Response</returns>
-        public ListAccounts200Response ListAccounts(string? profileId = default, string? platform = default, bool? includeOverLimit = default)
+        public ListAccounts200Response ListAccounts(string? profileId = default, string? platform = default, bool? includeOverLimit = default, int? page = default, int? limit = default)
         {
-            Late.Client.ApiResponse<ListAccounts200Response> localVarResponse = ListAccountsWithHttpInfo(profileId, platform, includeOverLimit);
+            Late.Client.ApiResponse<ListAccounts200Response> localVarResponse = ListAccountsWithHttpInfo(profileId, platform, includeOverLimit, page, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter accounts by profile ID (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
+        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
+        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <returns>ApiResponse of ListAccounts200Response</returns>
-        public Late.Client.ApiResponse<ListAccounts200Response> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, bool? includeOverLimit = default)
+        public Late.Client.ApiResponse<ListAccounts200Response> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, bool? includeOverLimit = default, int? page = default, int? limit = default)
         {
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
 
@@ -1364,6 +1376,14 @@ namespace Late.Api
             if (includeOverLimit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "includeOverLimit", includeOverLimit));
+            }
+            if (page != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
 
             // authentication (bearerAuth) required
@@ -1386,30 +1406,34 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter accounts by profile ID (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
+        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
+        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAccounts200Response</returns>
-        public async System.Threading.Tasks.Task<ListAccounts200Response> ListAccountsAsync(string? profileId = default, string? platform = default, bool? includeOverLimit = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAccounts200Response> ListAccountsAsync(string? profileId = default, string? platform = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<ListAccounts200Response> localVarResponse = await ListAccountsWithHttpInfoAsync(profileId, platform, includeOverLimit, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<ListAccounts200Response> localVarResponse = await ListAccountsWithHttpInfoAsync(profileId, platform, includeOverLimit, page, limit, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter accounts by profile ID (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
+        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
+        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAccounts200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ListAccounts200Response>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, bool? includeOverLimit = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ListAccounts200Response>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
@@ -1440,6 +1464,14 @@ namespace Late.Api
             if (includeOverLimit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "includeOverLimit", includeOverLimit));
+            }
+            if (page != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
 
             // authentication (bearerAuth) required

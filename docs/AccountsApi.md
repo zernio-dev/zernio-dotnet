@@ -529,11 +529,11 @@ catch (ApiException e)
 
 <a id="listaccounts"></a>
 # **ListAccounts**
-> ListAccounts200Response ListAccounts (string? profileId = null, string? platform = null, bool? includeOverLimit = null)
+> ListAccounts200Response ListAccounts (string? profileId = null, string? platform = null, bool? includeOverLimit = null, int? page = null, int? limit = null)
 
 List accounts
 
-Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
 
 ### Example
 ```csharp
@@ -562,11 +562,13 @@ namespace Example
             var profileId = "profileId_example";  // string? | Filter accounts by profile ID (optional) 
             var platform = "platform_example";  // string? | Filter accounts by platform (e.g. \"instagram\", \"twitter\"). (optional) 
             var includeOverLimit = false;  // bool? | When true, includes accounts from over-limit profiles. (optional)  (default to false)
+            var page = 56;  // int? | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional) 
+            var limit = 56;  // int? | Page size. Required alongside page for pagination. (optional) 
 
             try
             {
                 // List accounts
-                ListAccounts200Response result = apiInstance.ListAccounts(profileId, platform, includeOverLimit);
+                ListAccounts200Response result = apiInstance.ListAccounts(profileId, platform, includeOverLimit, page, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -587,7 +589,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List accounts
-    ApiResponse<ListAccounts200Response> response = apiInstance.ListAccountsWithHttpInfo(profileId, platform, includeOverLimit);
+    ApiResponse<ListAccounts200Response> response = apiInstance.ListAccountsWithHttpInfo(profileId, platform, includeOverLimit, page, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -607,6 +609,8 @@ catch (ApiException e)
 | **profileId** | **string?** | Filter accounts by profile ID | [optional]  |
 | **platform** | **string?** | Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional]  |
 | **includeOverLimit** | **bool?** | When true, includes accounts from over-limit profiles. | [optional] [default to false] |
+| **page** | **int?** | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. | [optional]  |
+| **limit** | **int?** | Page size. Required alongside page for pagination. | [optional]  |
 
 ### Return type
 
@@ -625,7 +629,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Accounts |  -  |
+| **200** | Accounts (with optional pagination) |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

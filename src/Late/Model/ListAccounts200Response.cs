@@ -38,10 +38,12 @@ namespace Late.Model
         /// </summary>
         /// <param name="accounts">accounts.</param>
         /// <param name="hasAnalyticsAccess">Whether user has analytics add-on access.</param>
-        public ListAccounts200Response(List<SocialAccount> accounts = default, bool hasAnalyticsAccess = default)
+        /// <param name="pagination">Only present when page/limit params are provided.</param>
+        public ListAccounts200Response(List<SocialAccount> accounts = default, bool hasAnalyticsAccess = default, Pagination pagination = default)
         {
             this.Accounts = accounts;
             this.HasAnalyticsAccess = hasAnalyticsAccess;
+            this.Pagination = pagination;
         }
 
         /// <summary>
@@ -58,6 +60,13 @@ namespace Late.Model
         public bool HasAnalyticsAccess { get; set; }
 
         /// <summary>
+        /// Only present when page/limit params are provided
+        /// </summary>
+        /// <value>Only present when page/limit params are provided</value>
+        [DataMember(Name = "pagination", EmitDefaultValue = false)]
+        public Pagination Pagination { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -67,6 +76,7 @@ namespace Late.Model
             sb.Append("class ListAccounts200Response {\n");
             sb.Append("  Accounts: ").Append(Accounts).Append("\n");
             sb.Append("  HasAnalyticsAccess: ").Append(HasAnalyticsAccess).Append("\n");
+            sb.Append("  Pagination: ").Append(Pagination).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
