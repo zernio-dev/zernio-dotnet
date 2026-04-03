@@ -393,6 +393,33 @@ namespace Late.Api
         /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
         /// <returns>ApiResponse of YouTubeDailyViewsResponse</returns>
         ApiResponse<YouTubeDailyViewsResponse> GetYouTubeDailyViewsWithHttpInfo(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default);
+        /// <summary>
+        /// Get YouTube audience demographics
+        /// </summary>
+        /// <remarks>
+        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <returns>YouTubeDemographicsResponse</returns>
+        YouTubeDemographicsResponse GetYouTubeDemographics(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default);
+
+        /// <summary>
+        /// Get YouTube audience demographics
+        /// </summary>
+        /// <remarks>
+        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <returns>ApiResponse of YouTubeDemographicsResponse</returns>
+        ApiResponse<YouTubeDemographicsResponse> GetYouTubeDemographicsWithHttpInfo(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default);
         #endregion Synchronous Operations
     }
 
@@ -793,6 +820,35 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (YouTubeDailyViewsResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<YouTubeDailyViewsResponse>> GetYouTubeDailyViewsWithHttpInfoAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get YouTube audience demographics
+        /// </summary>
+        /// <remarks>
+        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of YouTubeDemographicsResponse</returns>
+        System.Threading.Tasks.Task<YouTubeDemographicsResponse> GetYouTubeDemographicsAsync(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get YouTube audience demographics
+        /// </summary>
+        /// <remarks>
+        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (YouTubeDemographicsResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<YouTubeDemographicsResponse>> GetYouTubeDemographicsWithHttpInfoAsync(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -3197,6 +3253,169 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetYouTubeDailyViews", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get YouTube audience demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <returns>YouTubeDemographicsResponse</returns>
+        public YouTubeDemographicsResponse GetYouTubeDemographics(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default)
+        {
+            Late.Client.ApiResponse<YouTubeDemographicsResponse> localVarResponse = GetYouTubeDemographicsWithHttpInfo(accountId, breakdown, startDate, endDate);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get YouTube audience demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <returns>ApiResponse of YouTubeDemographicsResponse</returns>
+        public Late.Client.ApiResponse<YouTubeDemographicsResponse> GetYouTubeDemographicsWithHttpInfo(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetYouTubeDemographics");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (breakdown != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "breakdown", breakdown));
+            }
+            if (startDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate));
+            }
+            if (endDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<YouTubeDemographicsResponse>("/v1/analytics/youtube/demographics", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetYouTubeDemographics", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get YouTube audience demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of YouTubeDemographicsResponse</returns>
+        public async System.Threading.Tasks.Task<YouTubeDemographicsResponse> GetYouTubeDemographicsAsync(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<YouTubeDemographicsResponse> localVarResponse = await GetYouTubeDemographicsWithHttpInfoAsync(accountId, breakdown, startDate, endDate, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get YouTube audience demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (YouTubeDemographicsResponse)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<YouTubeDemographicsResponse>> GetYouTubeDemographicsWithHttpInfoAsync(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetYouTubeDemographics");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (breakdown != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "breakdown", breakdown));
+            }
+            if (startDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate));
+            }
+            if (endDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<YouTubeDemographicsResponse>("/v1/analytics/youtube/demographics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetYouTubeDemographics", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

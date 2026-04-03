@@ -17,6 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetPostTimeline**](AnalyticsApi.md#getposttimeline) | **GET** /v1/analytics/post-timeline | Get post analytics timeline |
 | [**GetPostingFrequency**](AnalyticsApi.md#getpostingfrequency) | **GET** /v1/analytics/posting-frequency | Get posting frequency vs engagement |
 | [**GetYouTubeDailyViews**](AnalyticsApi.md#getyoutubedailyviews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views |
+| [**GetYouTubeDemographics**](AnalyticsApi.md#getyoutubedemographics) | **GET** /v1/analytics/youtube/demographics | Get YouTube audience demographics |
 
 <a id="getanalytics"></a>
 # **GetAnalytics**
@@ -1434,6 +1435,116 @@ catch (ApiException e)
 | **403** | Access denied to this account |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
 | **500** | Internal server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getyoutubedemographics"></a>
+# **GetYouTubeDemographics**
+> YouTubeDemographicsResponse GetYouTubeDemographics (string accountId, string? breakdown = null, DateOnly? startDate = null, DateOnly? endDate = null)
+
+Get YouTube audience demographics
+
+Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class GetYouTubeDemographicsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the YouTube account
+            var breakdown = "breakdown_example";  // string? | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional) 
+            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional) 
+            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional) 
+
+            try
+            {
+                // Get YouTube audience demographics
+                YouTubeDemographicsResponse result = apiInstance.GetYouTubeDemographics(accountId, breakdown, startDate, endDate);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetYouTubeDemographics: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetYouTubeDemographicsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get YouTube audience demographics
+    ApiResponse<YouTubeDemographicsResponse> response = apiInstance.GetYouTubeDemographicsWithHttpInfo(accountId, breakdown, startDate, endDate);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetYouTubeDemographicsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The Zernio SocialAccount ID for the YouTube account |  |
+| **breakdown** | **string?** | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  | [optional]  |
+| **startDate** | **DateOnly?** | Start date in YYYY-MM-DD format. Defaults to 90 days ago.  | [optional]  |
+| **endDate** | **DateOnly?** | End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  | [optional]  |
+
+### Return type
+
+[**YouTubeDemographicsResponse**](YouTubeDemographicsResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Demographic insights data |  -  |
+| **400** | Bad request (invalid parameters or not a YouTube account) |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics add-on required |  -  |
+| **403** | Access denied to this account |  -  |
+| **404** | Account not found |  -  |
+| **412** | YouTube Analytics scope not granted |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

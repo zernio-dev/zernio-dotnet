@@ -194,6 +194,7 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**GetPostTimeline**](docs/AnalyticsApi.md#getposttimeline) | **GET** /v1/analytics/post-timeline | Get post analytics timeline
 *AnalyticsApi* | [**GetPostingFrequency**](docs/AnalyticsApi.md#getpostingfrequency) | **GET** /v1/analytics/posting-frequency | Get posting frequency vs engagement
 *AnalyticsApi* | [**GetYouTubeDailyViews**](docs/AnalyticsApi.md#getyoutubedailyviews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views
+*AnalyticsApi* | [**GetYouTubeDemographics**](docs/AnalyticsApi.md#getyoutubedemographics) | **GET** /v1/analytics/youtube/demographics | Get YouTube audience demographics
 *BroadcastsApi* | [**AddBroadcastRecipients**](docs/BroadcastsApi.md#addbroadcastrecipients) | **POST** /v1/broadcasts/{broadcastId}/recipients | Add recipients to a broadcast
 *BroadcastsApi* | [**CancelBroadcast**](docs/BroadcastsApi.md#cancelbroadcast) | **POST** /v1/broadcasts/{broadcastId}/cancel | Cancel a broadcast
 *BroadcastsApi* | [**CreateBroadcast**](docs/BroadcastsApi.md#createbroadcast) | **POST** /v1/broadcasts | Create a broadcast draft
@@ -390,6 +391,16 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**UpdateWhatsAppGroupChat**](docs/WhatsAppApi.md#updatewhatsappgroupchat) | **POST** /v1/whatsapp/wa-groups/{groupId} | Update group settings
 *WhatsAppApi* | [**UpdateWhatsAppTemplate**](docs/WhatsAppApi.md#updatewhatsapptemplate) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template
 *WhatsAppApi* | [**UploadWhatsAppProfilePhoto**](docs/WhatsAppApi.md#uploadwhatsappprofilephoto) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture
+*WhatsAppFlowsApi* | [**CreateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#createwhatsappflow) | **POST** /v1/whatsapp/flows | Create flow
+*WhatsAppFlowsApi* | [**DeleteWhatsAppFlow**](docs/WhatsAppFlowsApi.md#deletewhatsappflow) | **DELETE** /v1/whatsapp/flows/{flowId} | Delete flow
+*WhatsAppFlowsApi* | [**DeprecateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#deprecatewhatsappflow) | **POST** /v1/whatsapp/flows/{flowId}/deprecate | Deprecate flow
+*WhatsAppFlowsApi* | [**GetWhatsAppFlow**](docs/WhatsAppFlowsApi.md#getwhatsappflow) | **GET** /v1/whatsapp/flows/{flowId} | Get flow
+*WhatsAppFlowsApi* | [**GetWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#getwhatsappflowjson) | **GET** /v1/whatsapp/flows/{flowId}/json | Get flow JSON asset
+*WhatsAppFlowsApi* | [**ListWhatsAppFlows**](docs/WhatsAppFlowsApi.md#listwhatsappflows) | **GET** /v1/whatsapp/flows | List flows
+*WhatsAppFlowsApi* | [**PublishWhatsAppFlow**](docs/WhatsAppFlowsApi.md#publishwhatsappflow) | **POST** /v1/whatsapp/flows/{flowId}/publish | Publish flow
+*WhatsAppFlowsApi* | [**SendWhatsAppFlowMessage**](docs/WhatsAppFlowsApi.md#sendwhatsappflowmessage) | **POST** /v1/whatsapp/flows/send | Send flow message
+*WhatsAppFlowsApi* | [**UpdateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#updatewhatsappflow) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow
+*WhatsAppFlowsApi* | [**UploadWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#uploadwhatsappflowjson) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappphonenumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppPhoneNumbers**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappphonenumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers
 *WhatsAppPhoneNumbersApi* | [**PurchaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#purchasewhatsappphonenumber) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number
@@ -519,6 +530,9 @@ Class | Method | HTTP request | Description
  - [Model.CreateWhatsAppContact200Response](docs/CreateWhatsAppContact200Response.md)
  - [Model.CreateWhatsAppContact200ResponseContact](docs/CreateWhatsAppContact200ResponseContact.md)
  - [Model.CreateWhatsAppContactRequest](docs/CreateWhatsAppContactRequest.md)
+ - [Model.CreateWhatsAppFlow200Response](docs/CreateWhatsAppFlow200Response.md)
+ - [Model.CreateWhatsAppFlow200ResponseFlow](docs/CreateWhatsAppFlow200ResponseFlow.md)
+ - [Model.CreateWhatsAppFlowRequest](docs/CreateWhatsAppFlowRequest.md)
  - [Model.CreateWhatsAppGroupChat201Response](docs/CreateWhatsAppGroupChat201Response.md)
  - [Model.CreateWhatsAppGroupChat201ResponseGroup](docs/CreateWhatsAppGroupChat201ResponseGroup.md)
  - [Model.CreateWhatsAppGroupChatRequest](docs/CreateWhatsAppGroupChatRequest.md)
@@ -708,6 +722,11 @@ Class | Method | HTTP request | Description
  - [Model.GetWhatsAppContacts200ResponsePagination](docs/GetWhatsAppContacts200ResponsePagination.md)
  - [Model.GetWhatsAppDisplayName200Response](docs/GetWhatsAppDisplayName200Response.md)
  - [Model.GetWhatsAppDisplayName200ResponseDisplayName](docs/GetWhatsAppDisplayName200ResponseDisplayName.md)
+ - [Model.GetWhatsAppFlow200Response](docs/GetWhatsAppFlow200Response.md)
+ - [Model.GetWhatsAppFlow200ResponseFlow](docs/GetWhatsAppFlow200ResponseFlow.md)
+ - [Model.GetWhatsAppFlow200ResponseFlowPreview](docs/GetWhatsAppFlow200ResponseFlowPreview.md)
+ - [Model.GetWhatsAppFlowJson200Response](docs/GetWhatsAppFlowJson200Response.md)
+ - [Model.GetWhatsAppFlowJson200ResponseAssetsInner](docs/GetWhatsAppFlowJson200ResponseAssetsInner.md)
  - [Model.GetWhatsAppGroupChat200Response](docs/GetWhatsAppGroupChat200Response.md)
  - [Model.GetWhatsAppGroupChat200ResponseGroup](docs/GetWhatsAppGroupChat200ResponseGroup.md)
  - [Model.GetWhatsAppGroupChat200ResponseGroupParticipantsInner](docs/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.md)
@@ -725,6 +744,8 @@ Class | Method | HTTP request | Description
  - [Model.GetYouTubeDailyViews400Response](docs/GetYouTubeDailyViews400Response.md)
  - [Model.GetYouTubeDailyViews403Response](docs/GetYouTubeDailyViews403Response.md)
  - [Model.GetYouTubeDailyViews500Response](docs/GetYouTubeDailyViews500Response.md)
+ - [Model.GetYouTubeDemographics412Response](docs/GetYouTubeDemographics412Response.md)
+ - [Model.GetYouTubeDemographics412ResponseScopeStatus](docs/GetYouTubeDemographics412ResponseScopeStatus.md)
  - [Model.GetYoutubePlaylists200Response](docs/GetYoutubePlaylists200Response.md)
  - [Model.GetYoutubePlaylists200ResponsePlaylistsInner](docs/GetYoutubePlaylists200ResponsePlaylistsInner.md)
  - [Model.GoogleBusinessPlatformData](docs/GoogleBusinessPlatformData.md)
@@ -824,6 +845,8 @@ Class | Method | HTTP request | Description
  - [Model.ListSnapchatProfiles200ResponsePublicProfilesInner](docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md)
  - [Model.ListUsers200Response](docs/ListUsers200Response.md)
  - [Model.ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
+ - [Model.ListWhatsAppFlows200Response](docs/ListWhatsAppFlows200Response.md)
+ - [Model.ListWhatsAppFlows200ResponseFlowsInner](docs/ListWhatsAppFlows200ResponseFlowsInner.md)
  - [Model.ListWhatsAppGroupChats200Response](docs/ListWhatsAppGroupChats200Response.md)
  - [Model.ListWhatsAppGroupChats200ResponseGroupsInner](docs/ListWhatsAppGroupChats200ResponseGroupsInner.md)
  - [Model.ListWhatsAppGroupChats200ResponsePaging](docs/ListWhatsAppGroupChats200ResponsePaging.md)
@@ -861,6 +884,7 @@ Class | Method | HTTP request | Description
  - [Model.ProfileGetResponse](docs/ProfileGetResponse.md)
  - [Model.ProfileUpdateResponse](docs/ProfileUpdateResponse.md)
  - [Model.ProfilesListResponse](docs/ProfilesListResponse.md)
+ - [Model.PublishWhatsAppFlowRequest](docs/PublishWhatsAppFlowRequest.md)
  - [Model.PurchaseWhatsAppPhoneNumber200Response](docs/PurchaseWhatsAppPhoneNumber200Response.md)
  - [Model.PurchaseWhatsAppPhoneNumber200ResponseOneOf](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf.md)
  - [Model.PurchaseWhatsAppPhoneNumber200ResponseOneOf1](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.md)
@@ -944,6 +968,10 @@ Class | Method | HTTP request | Description
  - [Model.SendWhatsAppBulkRequest](docs/SendWhatsAppBulkRequest.md)
  - [Model.SendWhatsAppBulkRequestRecipientsInner](docs/SendWhatsAppBulkRequestRecipientsInner.md)
  - [Model.SendWhatsAppBulkRequestTemplate](docs/SendWhatsAppBulkRequestTemplate.md)
+ - [Model.SendWhatsAppFlowMessage200Response](docs/SendWhatsAppFlowMessage200Response.md)
+ - [Model.SendWhatsAppFlowMessageRequest](docs/SendWhatsAppFlowMessageRequest.md)
+ - [Model.SendWhatsAppFlowMessageRequestFlowActionPayload](docs/SendWhatsAppFlowMessageRequestFlowActionPayload.md)
+ - [Model.SendWhatsAppFlowMessageRequestHeader](docs/SendWhatsAppFlowMessageRequestHeader.md)
  - [Model.SetContactFieldValueRequest](docs/SetContactFieldValueRequest.md)
  - [Model.SetInstagramIceBreakersRequest](docs/SetInstagramIceBreakersRequest.md)
  - [Model.SetInstagramIceBreakersRequestIceBreakersInner](docs/SetInstagramIceBreakersRequestIceBreakersInner.md)
@@ -1034,6 +1062,7 @@ Class | Method | HTTP request | Description
  - [Model.UpdateWhatsAppDisplayName200Response](docs/UpdateWhatsAppDisplayName200Response.md)
  - [Model.UpdateWhatsAppDisplayName200ResponseDisplayName](docs/UpdateWhatsAppDisplayName200ResponseDisplayName.md)
  - [Model.UpdateWhatsAppDisplayNameRequest](docs/UpdateWhatsAppDisplayNameRequest.md)
+ - [Model.UpdateWhatsAppFlowRequest](docs/UpdateWhatsAppFlowRequest.md)
  - [Model.UpdateWhatsAppGroupChatRequest](docs/UpdateWhatsAppGroupChatRequest.md)
  - [Model.UpdateWhatsAppTemplate200Response](docs/UpdateWhatsAppTemplate200Response.md)
  - [Model.UpdateWhatsAppTemplate200ResponseTemplate](docs/UpdateWhatsAppTemplate200ResponseTemplate.md)
@@ -1043,6 +1072,10 @@ Class | Method | HTTP request | Description
  - [Model.UploadMediaDirect200Response](docs/UploadMediaDirect200Response.md)
  - [Model.UploadTokenResponse](docs/UploadTokenResponse.md)
  - [Model.UploadTokenStatusResponse](docs/UploadTokenStatusResponse.md)
+ - [Model.UploadWhatsAppFlowJson200Response](docs/UploadWhatsAppFlowJson200Response.md)
+ - [Model.UploadWhatsAppFlowJson200ResponseValidationErrorsInner](docs/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.md)
+ - [Model.UploadWhatsAppFlowJsonRequest](docs/UploadWhatsAppFlowJsonRequest.md)
+ - [Model.UploadWhatsAppFlowJsonRequestFlowJson](docs/UploadWhatsAppFlowJsonRequestFlowJson.md)
  - [Model.UploadedFile](docs/UploadedFile.md)
  - [Model.UsageStats](docs/UsageStats.md)
  - [Model.UsageStatsLimits](docs/UsageStatsLimits.md)
@@ -1104,6 +1137,9 @@ Class | Method | HTTP request | Description
  - [Model.YouTubeDailyViewsResponseDailyViewsInner](docs/YouTubeDailyViewsResponseDailyViewsInner.md)
  - [Model.YouTubeDailyViewsResponseDateRange](docs/YouTubeDailyViewsResponseDateRange.md)
  - [Model.YouTubeDailyViewsResponseScopeStatus](docs/YouTubeDailyViewsResponseScopeStatus.md)
+ - [Model.YouTubeDemographicsResponse](docs/YouTubeDemographicsResponse.md)
+ - [Model.YouTubeDemographicsResponseDateRange](docs/YouTubeDemographicsResponseDateRange.md)
+ - [Model.YouTubeDemographicsResponseDemographicsValueInner](docs/YouTubeDemographicsResponseDemographicsValueInner.md)
  - [Model.YouTubePlatformData](docs/YouTubePlatformData.md)
  - [Model.YouTubeScopeMissingResponse](docs/YouTubeScopeMissingResponse.md)
  - [Model.YouTubeScopeMissingResponseScopeStatus](docs/YouTubeScopeMissingResponseScopeStatus.md)
