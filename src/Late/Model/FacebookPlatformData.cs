@@ -63,17 +63,26 @@ namespace Late.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FacebookPlatformData" /> class.
         /// </summary>
+        /// <param name="draft">When true, creates the post as an unpublished draft visible in Facebook Publishing Tools instead of publishing immediately. Supported for feed posts (text, link, image, video) and reels. Not supported for stories. Drafts expire after ~30 days. (default to false).</param>
         /// <param name="contentType">Set to &#39;story&#39; for Page Stories (24h ephemeral) or &#39;reel&#39; for Reels (short vertical video). Defaults to feed post if omitted..</param>
         /// <param name="title">Reel title (only for contentType&#x3D;reel). Separate from the caption/content field..</param>
-        /// <param name="firstComment">Optional first comment to post immediately after publishing (feed posts only, not stories or reels).</param>
+        /// <param name="firstComment">Optional first comment to post immediately after publishing (feed posts only, not stories or reels). Skipped when draft is true..</param>
         /// <param name="pageId">Target Facebook Page ID for multi-page posting. If omitted, uses the default page. Use GET /v1/accounts/{id}/facebook-page to list pages..</param>
-        public FacebookPlatformData(ContentTypeEnum? contentType = default, string title = default, string firstComment = default, string pageId = default)
+        public FacebookPlatformData(bool draft = false, ContentTypeEnum? contentType = default, string title = default, string firstComment = default, string pageId = default)
         {
+            this.Draft = draft;
             this.ContentType = contentType;
             this.Title = title;
             this.FirstComment = firstComment;
             this.PageId = pageId;
         }
+
+        /// <summary>
+        /// When true, creates the post as an unpublished draft visible in Facebook Publishing Tools instead of publishing immediately. Supported for feed posts (text, link, image, video) and reels. Not supported for stories. Drafts expire after ~30 days.
+        /// </summary>
+        /// <value>When true, creates the post as an unpublished draft visible in Facebook Publishing Tools instead of publishing immediately. Supported for feed posts (text, link, image, video) and reels. Not supported for stories. Drafts expire after ~30 days.</value>
+        [DataMember(Name = "draft", EmitDefaultValue = true)]
+        public bool Draft { get; set; }
 
         /// <summary>
         /// Reel title (only for contentType&#x3D;reel). Separate from the caption/content field.
@@ -83,9 +92,9 @@ namespace Late.Model
         public string Title { get; set; }
 
         /// <summary>
-        /// Optional first comment to post immediately after publishing (feed posts only, not stories or reels)
+        /// Optional first comment to post immediately after publishing (feed posts only, not stories or reels). Skipped when draft is true.
         /// </summary>
-        /// <value>Optional first comment to post immediately after publishing (feed posts only, not stories or reels)</value>
+        /// <value>Optional first comment to post immediately after publishing (feed posts only, not stories or reels). Skipped when draft is true.</value>
         [DataMember(Name = "firstComment", EmitDefaultValue = false)]
         public string FirstComment { get; set; }
 
@@ -104,6 +113,7 @@ namespace Late.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class FacebookPlatformData {\n");
+            sb.Append("  Draft: ").Append(Draft).Append("\n");
             sb.Append("  ContentType: ").Append(ContentType).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  FirstComment: ").Append(FirstComment).Append("\n");

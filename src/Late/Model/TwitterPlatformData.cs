@@ -79,12 +79,14 @@ namespace Late.Model
         /// <param name="replySettings">Controls who can reply to the tweet. \&quot;following\&quot; allows only people you follow, \&quot;mentionedUsers\&quot; allows only mentioned users, \&quot;subscribers\&quot; allows only subscribers, \&quot;verified\&quot; allows only verified users. Omit for default (everyone can reply). For threads, applies to the first tweet only. Cannot be combined with replyToTweetId..</param>
         /// <param name="threadItems">Sequence of tweets in a thread. First item is the root tweet..</param>
         /// <param name="poll">poll.</param>
-        public TwitterPlatformData(string replyToTweetId = default, ReplySettingsEnum? replySettings = default, List<TwitterPlatformDataThreadItemsInner> threadItems = default, TwitterPlatformDataPoll poll = default)
+        /// <param name="longVideo">Enable long video uploads (over 140 seconds) using amplify_video media category. Requires the connected X account to have an active X Premium subscription. When true, videos are uploaded with the amplify_video category which supports longer durations (up to 10 minutes via API). When false or omitted, the standard tweet_video category is used (140 second limit). Note that not all Premium accounts have API long-video access, as X may require separate allowlisting. (default to false).</param>
+        public TwitterPlatformData(string replyToTweetId = default, ReplySettingsEnum? replySettings = default, List<TwitterPlatformDataThreadItemsInner> threadItems = default, TwitterPlatformDataPoll poll = default, bool longVideo = false)
         {
             this.ReplyToTweetId = replyToTweetId;
             this.ReplySettings = replySettings;
             this.ThreadItems = threadItems;
             this.Poll = poll;
+            this.LongVideo = longVideo;
         }
 
         /// <summary>
@@ -108,6 +110,13 @@ namespace Late.Model
         public TwitterPlatformDataPoll Poll { get; set; }
 
         /// <summary>
+        /// Enable long video uploads (over 140 seconds) using amplify_video media category. Requires the connected X account to have an active X Premium subscription. When true, videos are uploaded with the amplify_video category which supports longer durations (up to 10 minutes via API). When false or omitted, the standard tweet_video category is used (140 second limit). Note that not all Premium accounts have API long-video access, as X may require separate allowlisting.
+        /// </summary>
+        /// <value>Enable long video uploads (over 140 seconds) using amplify_video media category. Requires the connected X account to have an active X Premium subscription. When true, videos are uploaded with the amplify_video category which supports longer durations (up to 10 minutes via API). When false or omitted, the standard tweet_video category is used (140 second limit). Note that not all Premium accounts have API long-video access, as X may require separate allowlisting.</value>
+        [DataMember(Name = "longVideo", EmitDefaultValue = true)]
+        public bool LongVideo { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -119,6 +128,7 @@ namespace Late.Model
             sb.Append("  ReplySettings: ").Append(ReplySettings).Append("\n");
             sb.Append("  ThreadItems: ").Append(ThreadItems).Append("\n");
             sb.Append("  Poll: ").Append(Poll).Append("\n");
+            sb.Append("  LongVideo: ").Append(LongVideo).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

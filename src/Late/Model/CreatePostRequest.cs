@@ -50,10 +50,11 @@ namespace Late.Model
         /// <param name="crosspostingEnabled">crosspostingEnabled (default to true).</param>
         /// <param name="metadata">metadata.</param>
         /// <param name="tiktokSettings">Root-level TikTok settings applied to all TikTok platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence..</param>
+        /// <param name="facebookSettings">Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence..</param>
         /// <param name="recycling">recycling.</param>
         /// <param name="queuedFromProfile">Profile ID to schedule via queue. When provided without scheduledFor, the post is auto-assigned to the next available slot. Do not call /v1/queue/next-slot and use that time in scheduledFor, as that bypasses queue locking..</param>
         /// <param name="queueId">Specific queue ID to use when scheduling via queue. Only used when queuedFromProfile is also provided. If omitted, uses the profile&#39;s default queue. .</param>
-        public CreatePostRequest(string title = default, string content = default, List<CreatePostRequestMediaItemsInner> mediaItems = default, List<CreatePostRequestPlatformsInner> platforms = default, DateTime scheduledFor = default, bool publishNow = false, bool isDraft = false, string timezone = @"UTC", List<string> tags = default, List<string> hashtags = default, List<string> mentions = default, bool crosspostingEnabled = true, Dictionary<string, Object> metadata = default, TikTokPlatformData tiktokSettings = default, RecyclingConfig recycling = default, string queuedFromProfile = default, string queueId = default)
+        public CreatePostRequest(string title = default, string content = default, List<CreatePostRequestMediaItemsInner> mediaItems = default, List<CreatePostRequestPlatformsInner> platforms = default, DateTime scheduledFor = default, bool publishNow = false, bool isDraft = false, string timezone = @"UTC", List<string> tags = default, List<string> hashtags = default, List<string> mentions = default, bool crosspostingEnabled = true, Dictionary<string, Object> metadata = default, TikTokPlatformData tiktokSettings = default, FacebookPlatformData facebookSettings = default, RecyclingConfig recycling = default, string queuedFromProfile = default, string queueId = default)
         {
             this.Title = title;
             this.Content = content;
@@ -70,6 +71,7 @@ namespace Late.Model
             this.CrosspostingEnabled = crosspostingEnabled;
             this.Metadata = metadata;
             this.TiktokSettings = tiktokSettings;
+            this.FacebookSettings = facebookSettings;
             this.Recycling = recycling;
             this.QueuedFromProfile = queuedFromProfile;
             this.QueueId = queueId;
@@ -166,6 +168,13 @@ namespace Late.Model
         public TikTokPlatformData TiktokSettings { get; set; }
 
         /// <summary>
+        /// Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.
+        /// </summary>
+        /// <value>Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.</value>
+        [DataMember(Name = "facebookSettings", EmitDefaultValue = false)]
+        public FacebookPlatformData FacebookSettings { get; set; }
+
+        /// <summary>
         /// Gets or Sets Recycling
         /// </summary>
         [DataMember(Name = "recycling", EmitDefaultValue = false)]
@@ -207,6 +216,7 @@ namespace Late.Model
             sb.Append("  CrosspostingEnabled: ").Append(CrosspostingEnabled).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  TiktokSettings: ").Append(TiktokSettings).Append("\n");
+            sb.Append("  FacebookSettings: ").Append(FacebookSettings).Append("\n");
             sb.Append("  Recycling: ").Append(Recycling).Append("\n");
             sb.Append("  QueuedFromProfile: ").Append(QueuedFromProfile).Append("\n");
             sb.Append("  QueueId: ").Append(QueueId).Append("\n");

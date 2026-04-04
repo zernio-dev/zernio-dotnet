@@ -54,6 +54,27 @@ namespace Late.Api
         /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
         ApiResponse<UpdateYoutubeDefaultPlaylist200Response> AddMessageReactionWithHttpInfo(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest);
         /// <summary>
+        /// Create conversation
+        /// </summary>
+        /// <remarks>
+        /// Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxConversationRequest"></param>
+        /// <returns>CreateInboxConversation201Response</returns>
+        CreateInboxConversation201Response CreateInboxConversation(CreateInboxConversationRequest createInboxConversationRequest);
+
+        /// <summary>
+        /// Create conversation
+        /// </summary>
+        /// <remarks>
+        /// Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxConversationRequest"></param>
+        /// <returns>ApiResponse of CreateInboxConversation201Response</returns>
+        ApiResponse<CreateInboxConversation201Response> CreateInboxConversationWithHttpInfo(CreateInboxConversationRequest createInboxConversationRequest);
+        /// <summary>
         /// Delete message
         /// </summary>
         /// <remarks>
@@ -335,6 +356,29 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> AddMessageReactionWithHttpInfoAsync(string conversationId, string messageId, AddMessageReactionRequest addMessageReactionRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create conversation
+        /// </summary>
+        /// <remarks>
+        /// Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxConversationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateInboxConversation201Response</returns>
+        System.Threading.Tasks.Task<CreateInboxConversation201Response> CreateInboxConversationAsync(CreateInboxConversationRequest createInboxConversationRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create conversation
+        /// </summary>
+        /// <remarks>
+        /// Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxConversationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateInboxConversation201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateInboxConversation201Response>> CreateInboxConversationWithHttpInfoAsync(CreateInboxConversationRequest createInboxConversationRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete message
         /// </summary>
@@ -965,6 +1009,137 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("AddMessageReaction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create conversation Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxConversationRequest"></param>
+        /// <returns>CreateInboxConversation201Response</returns>
+        public CreateInboxConversation201Response CreateInboxConversation(CreateInboxConversationRequest createInboxConversationRequest)
+        {
+            Late.Client.ApiResponse<CreateInboxConversation201Response> localVarResponse = CreateInboxConversationWithHttpInfo(createInboxConversationRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create conversation Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxConversationRequest"></param>
+        /// <returns>ApiResponse of CreateInboxConversation201Response</returns>
+        public Late.Client.ApiResponse<CreateInboxConversation201Response> CreateInboxConversationWithHttpInfo(CreateInboxConversationRequest createInboxConversationRequest)
+        {
+            // verify the required parameter 'createInboxConversationRequest' is set
+            if (createInboxConversationRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'createInboxConversationRequest' when calling MessagesApi->CreateInboxConversation");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json",
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createInboxConversationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateInboxConversation201Response>("/v1/inbox/conversations", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateInboxConversation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create conversation Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxConversationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateInboxConversation201Response</returns>
+        public async System.Threading.Tasks.Task<CreateInboxConversation201Response> CreateInboxConversationAsync(CreateInboxConversationRequest createInboxConversationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<CreateInboxConversation201Response> localVarResponse = await CreateInboxConversationWithHttpInfoAsync(createInboxConversationRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create conversation Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createInboxConversationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateInboxConversation201Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<CreateInboxConversation201Response>> CreateInboxConversationWithHttpInfoAsync(CreateInboxConversationRequest createInboxConversationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createInboxConversationRequest' is set
+            if (createInboxConversationRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'createInboxConversationRequest' when calling MessagesApi->CreateInboxConversation");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json", 
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createInboxConversationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateInboxConversation201Response>("/v1/inbox/conversations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateInboxConversation", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

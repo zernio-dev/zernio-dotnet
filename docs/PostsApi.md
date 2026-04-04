@@ -7,6 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**BulkUploadPosts**](PostsApi.md#bulkuploadposts) | **POST** /v1/posts/bulk-upload | Bulk upload from CSV |
 | [**CreatePost**](PostsApi.md#createpost) | **POST** /v1/posts | Create post |
 | [**DeletePost**](PostsApi.md#deletepost) | **DELETE** /v1/posts/{postId} | Delete post |
+| [**EditPost**](PostsApi.md#editpost) | **POST** /v1/posts/{postId}/edit | Edit published post |
 | [**GetPost**](PostsApi.md#getpost) | **GET** /v1/posts/{postId} | Get post |
 | [**ListPosts**](PostsApi.md#listposts) | **GET** /v1/posts | List posts |
 | [**RetryPost**](PostsApi.md#retrypost) | **POST** /v1/posts/{postId}/retry | Retry failed post |
@@ -320,6 +321,111 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="editpost"></a>
+# **EditPost**
+> EditPost200Response EditPost (string postId, EditPostRequest editPostRequest)
+
+Edit published post
+
+Edit a published post on a social media platform. Currently only supported for X (Twitter).  **Requirements:** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class EditPostExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PostsApi(httpClient, config, httpClientHandler);
+            var postId = "postId_example";  // string | 
+            var editPostRequest = new EditPostRequest(); // EditPostRequest | 
+
+            try
+            {
+                // Edit published post
+                EditPost200Response result = apiInstance.EditPost(postId, editPostRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PostsApi.EditPost: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the EditPostWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Edit published post
+    ApiResponse<EditPost200Response> response = apiInstance.EditPostWithHttpInfo(postId, editPostRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PostsApi.EditPostWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **postId** | **string** |  |  |
+| **editPostRequest** | [**EditPostRequest**](EditPostRequest.md) |  |  |
+
+### Return type
+
+[**EditPost200Response**](EditPost200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Post edited successfully |  -  |
+| **400** | Invalid request: platform not supported, post not published, edit window expired, not Premium, or missing content. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **500** | Platform API edit failed |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -39,12 +39,14 @@ namespace Late.Model
         /// <param name="content">content.</param>
         /// <param name="scheduledFor">scheduledFor.</param>
         /// <param name="tiktokSettings">Root-level TikTok settings applied to all TikTok platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence..</param>
+        /// <param name="facebookSettings">Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence..</param>
         /// <param name="recycling">recycling.</param>
-        public UpdatePostRequest(string content = default, DateTime scheduledFor = default, TikTokPlatformData tiktokSettings = default, RecyclingConfig recycling = default)
+        public UpdatePostRequest(string content = default, DateTime scheduledFor = default, TikTokPlatformData tiktokSettings = default, FacebookPlatformData facebookSettings = default, RecyclingConfig recycling = default)
         {
             this.Content = content;
             this.ScheduledFor = scheduledFor;
             this.TiktokSettings = tiktokSettings;
+            this.FacebookSettings = facebookSettings;
             this.Recycling = recycling;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
@@ -69,6 +71,13 @@ namespace Late.Model
         public TikTokPlatformData TiktokSettings { get; set; }
 
         /// <summary>
+        /// Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.
+        /// </summary>
+        /// <value>Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.</value>
+        [DataMember(Name = "facebookSettings", EmitDefaultValue = false)]
+        public FacebookPlatformData FacebookSettings { get; set; }
+
+        /// <summary>
         /// Gets or Sets Recycling
         /// </summary>
         [DataMember(Name = "recycling", EmitDefaultValue = false)]
@@ -91,6 +100,7 @@ namespace Late.Model
             sb.Append("  Content: ").Append(Content).Append("\n");
             sb.Append("  ScheduledFor: ").Append(ScheduledFor).Append("\n");
             sb.Append("  TiktokSettings: ").Append(TiktokSettings).Append("\n");
+            sb.Append("  FacebookSettings: ").Append(FacebookSettings).Append("\n");
             sb.Append("  Recycling: ").Append(Recycling).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");

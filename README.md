@@ -286,6 +286,7 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**ListPostsLogs**](docs/LogsApi.md#listpostslogs) | **GET** /v1/posts/logs | List publishing logs
 *MediaApi* | [**GetMediaPresignedUrl**](docs/MediaApi.md#getmediapresignedurl) | **POST** /v1/media/presign | Get presigned upload URL
 *MessagesApi* | [**AddMessageReaction**](docs/MessagesApi.md#addmessagereaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
+*MessagesApi* | [**CreateInboxConversation**](docs/MessagesApi.md#createinboxconversation) | **POST** /v1/inbox/conversations | Create conversation
 *MessagesApi* | [**DeleteInboxMessage**](docs/MessagesApi.md#deleteinboxmessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**EditInboxMessage**](docs/MessagesApi.md#editinboxmessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message
 *MessagesApi* | [**GetInboxConversation**](docs/MessagesApi.md#getinboxconversation) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation
@@ -299,6 +300,7 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**BulkUploadPosts**](docs/PostsApi.md#bulkuploadposts) | **POST** /v1/posts/bulk-upload | Bulk upload from CSV
 *PostsApi* | [**CreatePost**](docs/PostsApi.md#createpost) | **POST** /v1/posts | Create post
 *PostsApi* | [**DeletePost**](docs/PostsApi.md#deletepost) | **DELETE** /v1/posts/{postId} | Delete post
+*PostsApi* | [**EditPost**](docs/PostsApi.md#editpost) | **POST** /v1/posts/{postId}/edit | Edit published post
 *PostsApi* | [**GetPost**](docs/PostsApi.md#getpost) | **GET** /v1/posts/{postId} | Get post
 *PostsApi* | [**ListPosts**](docs/PostsApi.md#listposts) | **GET** /v1/posts | List posts
 *PostsApi* | [**RetryPost**](docs/PostsApi.md#retrypost) | **POST** /v1/posts/{postId}/retry | Retry failed post
@@ -505,6 +507,11 @@ Class | Method | HTTP request | Description
  - [Model.CreateGoogleBusinessMediaRequest](docs/CreateGoogleBusinessMediaRequest.md)
  - [Model.CreateGoogleBusinessPlaceAction200Response](docs/CreateGoogleBusinessPlaceAction200Response.md)
  - [Model.CreateGoogleBusinessPlaceActionRequest](docs/CreateGoogleBusinessPlaceActionRequest.md)
+ - [Model.CreateInboxConversation201Response](docs/CreateInboxConversation201Response.md)
+ - [Model.CreateInboxConversation201ResponseData](docs/CreateInboxConversation201ResponseData.md)
+ - [Model.CreateInboxConversation400Response](docs/CreateInboxConversation400Response.md)
+ - [Model.CreateInboxConversation422Response](docs/CreateInboxConversation422Response.md)
+ - [Model.CreateInboxConversationRequest](docs/CreateInboxConversationRequest.md)
  - [Model.CreateInviteToken201Response](docs/CreateInviteToken201Response.md)
  - [Model.CreateInviteTokenRequest](docs/CreateInviteTokenRequest.md)
  - [Model.CreatePost409Response](docs/CreatePost409Response.md)
@@ -557,6 +564,8 @@ Class | Method | HTTP request | Description
  - [Model.EditInboxMessageRequest](docs/EditInboxMessageRequest.md)
  - [Model.EditInboxMessageRequestReplyMarkup](docs/EditInboxMessageRequestReplyMarkup.md)
  - [Model.EditInboxMessageRequestReplyMarkupKeyboardInnerInner](docs/EditInboxMessageRequestReplyMarkupKeyboardInnerInner.md)
+ - [Model.EditPost200Response](docs/EditPost200Response.md)
+ - [Model.EditPostRequest](docs/EditPostRequest.md)
  - [Model.EnrollContacts200Response](docs/EnrollContacts200Response.md)
  - [Model.EnrollContactsRequest](docs/EnrollContactsRequest.md)
  - [Model.ErrorResponse](docs/ErrorResponse.md)
