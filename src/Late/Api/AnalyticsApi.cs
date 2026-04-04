@@ -180,6 +180,58 @@ namespace Late.Api
         /// <returns>ApiResponse of GetFollowerStats200Response</returns>
         ApiResponse<GetFollowerStats200Response> GetFollowerStatsWithHttpInfo(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default);
         /// <summary>
+        /// Get Google Business Profile performance metrics
+        /// </summary>
+        /// <remarks>
+        /// Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="metrics">Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to today. (optional)</param>
+        /// <returns>GetGoogleBusinessPerformance200Response</returns>
+        GetGoogleBusinessPerformance200Response GetGoogleBusinessPerformance(string accountId, string? metrics = default, DateOnly? startDate = default, DateOnly? endDate = default);
+
+        /// <summary>
+        /// Get Google Business Profile performance metrics
+        /// </summary>
+        /// <remarks>
+        /// Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="metrics">Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to today. (optional)</param>
+        /// <returns>ApiResponse of GetGoogleBusinessPerformance200Response</returns>
+        ApiResponse<GetGoogleBusinessPerformance200Response> GetGoogleBusinessPerformanceWithHttpInfo(string accountId, string? metrics = default, DateOnly? startDate = default, DateOnly? endDate = default);
+        /// <summary>
+        /// Get Google Business Profile search keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="startMonth">Start month (YYYY-MM). Defaults to 3 months ago. (optional)</param>
+        /// <param name="endMonth">End month (YYYY-MM). Defaults to current month. (optional)</param>
+        /// <returns>GetGoogleBusinessSearchKeywords200Response</returns>
+        GetGoogleBusinessSearchKeywords200Response GetGoogleBusinessSearchKeywords(string accountId, string? startMonth = default, string? endMonth = default);
+
+        /// <summary>
+        /// Get Google Business Profile search keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="startMonth">Start month (YYYY-MM). Defaults to 3 months ago. (optional)</param>
+        /// <param name="endMonth">End month (YYYY-MM). Defaults to current month. (optional)</param>
+        /// <returns>ApiResponse of GetGoogleBusinessSearchKeywords200Response</returns>
+        ApiResponse<GetGoogleBusinessSearchKeywords200Response> GetGoogleBusinessSearchKeywordsWithHttpInfo(string accountId, string? startMonth = default, string? endMonth = default);
+        /// <summary>
         /// Get Instagram account-level insights
         /// </summary>
         /// <remarks>
@@ -590,6 +642,62 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetFollowerStats200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetFollowerStats200Response>> GetFollowerStatsWithHttpInfoAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get Google Business Profile performance metrics
+        /// </summary>
+        /// <remarks>
+        /// Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="metrics">Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to today. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetGoogleBusinessPerformance200Response</returns>
+        System.Threading.Tasks.Task<GetGoogleBusinessPerformance200Response> GetGoogleBusinessPerformanceAsync(string accountId, string? metrics = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get Google Business Profile performance metrics
+        /// </summary>
+        /// <remarks>
+        /// Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="metrics">Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to today. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetGoogleBusinessPerformance200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetGoogleBusinessPerformance200Response>> GetGoogleBusinessPerformanceWithHttpInfoAsync(string accountId, string? metrics = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get Google Business Profile search keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="startMonth">Start month (YYYY-MM). Defaults to 3 months ago. (optional)</param>
+        /// <param name="endMonth">End month (YYYY-MM). Defaults to current month. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetGoogleBusinessSearchKeywords200Response</returns>
+        System.Threading.Tasks.Task<GetGoogleBusinessSearchKeywords200Response> GetGoogleBusinessSearchKeywordsAsync(string accountId, string? startMonth = default, string? endMonth = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get Google Business Profile search keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="startMonth">Start month (YYYY-MM). Defaults to 3 months ago. (optional)</param>
+        /// <param name="endMonth">End month (YYYY-MM). Defaults to current month. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetGoogleBusinessSearchKeywords200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetGoogleBusinessSearchKeywords200Response>> GetGoogleBusinessSearchKeywordsWithHttpInfoAsync(string accountId, string? startMonth = default, string? endMonth = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get Instagram account-level insights
         /// </summary>
@@ -1957,6 +2065,320 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetFollowerStats", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Google Business Profile performance metrics Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="metrics">Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to today. (optional)</param>
+        /// <returns>GetGoogleBusinessPerformance200Response</returns>
+        public GetGoogleBusinessPerformance200Response GetGoogleBusinessPerformance(string accountId, string? metrics = default, DateOnly? startDate = default, DateOnly? endDate = default)
+        {
+            Late.Client.ApiResponse<GetGoogleBusinessPerformance200Response> localVarResponse = GetGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, startDate, endDate);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Google Business Profile performance metrics Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="metrics">Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to today. (optional)</param>
+        /// <returns>ApiResponse of GetGoogleBusinessPerformance200Response</returns>
+        public Late.Client.ApiResponse<GetGoogleBusinessPerformance200Response> GetGoogleBusinessPerformanceWithHttpInfo(string accountId, string? metrics = default, DateOnly? startDate = default, DateOnly? endDate = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetGoogleBusinessPerformance");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (metrics != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "metrics", metrics));
+            }
+            if (startDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate));
+            }
+            if (endDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetGoogleBusinessPerformance200Response>("/v1/analytics/googlebusiness/performance", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetGoogleBusinessPerformance", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Google Business Profile performance metrics Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="metrics">Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to today. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetGoogleBusinessPerformance200Response</returns>
+        public async System.Threading.Tasks.Task<GetGoogleBusinessPerformance200Response> GetGoogleBusinessPerformanceAsync(string accountId, string? metrics = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<GetGoogleBusinessPerformance200Response> localVarResponse = await GetGoogleBusinessPerformanceWithHttpInfoAsync(accountId, metrics, startDate, endDate, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Google Business Profile performance metrics Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="metrics">Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to today. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetGoogleBusinessPerformance200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetGoogleBusinessPerformance200Response>> GetGoogleBusinessPerformanceWithHttpInfoAsync(string accountId, string? metrics = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetGoogleBusinessPerformance");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (metrics != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "metrics", metrics));
+            }
+            if (startDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate));
+            }
+            if (endDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetGoogleBusinessPerformance200Response>("/v1/analytics/googlebusiness/performance", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetGoogleBusinessPerformance", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Google Business Profile search keywords Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="startMonth">Start month (YYYY-MM). Defaults to 3 months ago. (optional)</param>
+        /// <param name="endMonth">End month (YYYY-MM). Defaults to current month. (optional)</param>
+        /// <returns>GetGoogleBusinessSearchKeywords200Response</returns>
+        public GetGoogleBusinessSearchKeywords200Response GetGoogleBusinessSearchKeywords(string accountId, string? startMonth = default, string? endMonth = default)
+        {
+            Late.Client.ApiResponse<GetGoogleBusinessSearchKeywords200Response> localVarResponse = GetGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Google Business Profile search keywords Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="startMonth">Start month (YYYY-MM). Defaults to 3 months ago. (optional)</param>
+        /// <param name="endMonth">End month (YYYY-MM). Defaults to current month. (optional)</param>
+        /// <returns>ApiResponse of GetGoogleBusinessSearchKeywords200Response</returns>
+        public Late.Client.ApiResponse<GetGoogleBusinessSearchKeywords200Response> GetGoogleBusinessSearchKeywordsWithHttpInfo(string accountId, string? startMonth = default, string? endMonth = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetGoogleBusinessSearchKeywords");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (startMonth != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "startMonth", startMonth));
+            }
+            if (endMonth != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "endMonth", endMonth));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetGoogleBusinessSearchKeywords200Response>("/v1/analytics/googlebusiness/search-keywords", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetGoogleBusinessSearchKeywords", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Google Business Profile search keywords Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="startMonth">Start month (YYYY-MM). Defaults to 3 months ago. (optional)</param>
+        /// <param name="endMonth">End month (YYYY-MM). Defaults to current month. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetGoogleBusinessSearchKeywords200Response</returns>
+        public async System.Threading.Tasks.Task<GetGoogleBusinessSearchKeywords200Response> GetGoogleBusinessSearchKeywordsAsync(string accountId, string? startMonth = default, string? endMonth = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<GetGoogleBusinessSearchKeywords200Response> localVarResponse = await GetGoogleBusinessSearchKeywordsWithHttpInfoAsync(accountId, startMonth, endMonth, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Google Business Profile search keywords Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio SocialAccount ID for the Google Business Profile account.</param>
+        /// <param name="startMonth">Start month (YYYY-MM). Defaults to 3 months ago. (optional)</param>
+        /// <param name="endMonth">End month (YYYY-MM). Defaults to current month. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetGoogleBusinessSearchKeywords200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetGoogleBusinessSearchKeywords200Response>> GetGoogleBusinessSearchKeywordsWithHttpInfoAsync(string accountId, string? startMonth = default, string? endMonth = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetGoogleBusinessSearchKeywords");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (startMonth != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "startMonth", startMonth));
+            }
+            if (endMonth != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "endMonth", endMonth));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetGoogleBusinessSearchKeywords200Response>("/v1/analytics/googlebusiness/search-keywords", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetGoogleBusinessSearchKeywords", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
