@@ -36,25 +36,33 @@ namespace Late.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchReddit200Response" /> class.
         /// </summary>
-        /// <param name="posts">posts.</param>
+        /// <param name="items">items.</param>
         /// <param name="after">after.</param>
-        public SearchReddit200Response(List<SearchReddit200ResponsePostsInner> posts = default, string after = default)
+        /// <param name="before">before.</param>
+        public SearchReddit200Response(List<RedditPost> items = default, string after = default, string before = default)
         {
-            this.Posts = posts;
+            this.Items = items;
             this.After = after;
+            this.Before = before;
         }
 
         /// <summary>
-        /// Gets or Sets Posts
+        /// Gets or Sets Items
         /// </summary>
-        [DataMember(Name = "posts", EmitDefaultValue = false)]
-        public List<SearchReddit200ResponsePostsInner> Posts { get; set; }
+        [DataMember(Name = "items", EmitDefaultValue = false)]
+        public List<RedditPost> Items { get; set; }
 
         /// <summary>
         /// Gets or Sets After
         /// </summary>
         [DataMember(Name = "after", EmitDefaultValue = false)]
         public string After { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Before
+        /// </summary>
+        [DataMember(Name = "before", EmitDefaultValue = false)]
+        public string Before { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,8 +72,9 @@ namespace Late.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SearchReddit200Response {\n");
-            sb.Append("  Posts: ").Append(Posts).Append("\n");
+            sb.Append("  Items: ").Append(Items).Append("\n");
             sb.Append("  After: ").Append(After).Append("\n");
+            sb.Append("  Before: ").Append(Before).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

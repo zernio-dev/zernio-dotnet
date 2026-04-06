@@ -312,7 +312,6 @@ docs/GetPostTimeline404Response.md
 docs/GetPostingFrequency200Response.md
 docs/GetPostingFrequency200ResponseFrequencyInner.md
 docs/GetProfile200Response.md
-docs/GetRedditFeed200Response.md
 docs/GetRedditFlairs200Response.md
 docs/GetRedditFlairs200ResponseFlairsInner.md
 docs/GetRedditSubreddits200Response.md
@@ -537,6 +536,7 @@ docs/QueueUpdateResponse.md
 docs/RecyclingConfig.md
 docs/RecyclingState.md
 docs/RedditPlatformData.md
+docs/RedditPost.md
 docs/RedditSearchApi.md
 docs/RejectWhatsAppGroupJoinRequestsRequest.md
 docs/ReleaseWhatsAppPhoneNumber200Response.md
@@ -565,7 +565,6 @@ docs/ScheduleWhatsAppBroadcastRequest.md
 docs/SearchAdInterests200Response.md
 docs/SearchAdInterests200ResponseInterestsInner.md
 docs/SearchReddit200Response.md
-docs/SearchReddit200ResponsePostsInner.md
 docs/SelectFacebookPage200Response.md
 docs/SelectFacebookPage200ResponseAccount.md
 docs/SelectFacebookPageRequest.md
@@ -794,6 +793,7 @@ docs/YouTubeScopeMissingResponse.md
 docs/YouTubeScopeMissingResponseScopeStatus.md
 git_push.sh
 src/Late.Test/Late.Test.csproj
+src/Late.Test/Model/RedditPostTests.cs
 src/Late/Api/APIKeysApi.cs
 src/Late/Api/AccountGroupsApi.cs
 src/Late/Api/AccountSettingsApi.cs
@@ -1142,7 +1142,6 @@ src/Late/Model/GetPostTimeline404Response.cs
 src/Late/Model/GetPostingFrequency200Response.cs
 src/Late/Model/GetPostingFrequency200ResponseFrequencyInner.cs
 src/Late/Model/GetProfile200Response.cs
-src/Late/Model/GetRedditFeed200Response.cs
 src/Late/Model/GetRedditFlairs200Response.cs
 src/Late/Model/GetRedditFlairs200ResponseFlairsInner.cs
 src/Late/Model/GetRedditSubreddits200Response.cs
@@ -1359,6 +1358,7 @@ src/Late/Model/QueueUpdateResponse.cs
 src/Late/Model/RecyclingConfig.cs
 src/Late/Model/RecyclingState.cs
 src/Late/Model/RedditPlatformData.cs
+src/Late/Model/RedditPost.cs
 src/Late/Model/RejectWhatsAppGroupJoinRequestsRequest.cs
 src/Late/Model/ReleaseWhatsAppPhoneNumber200Response.cs
 src/Late/Model/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.cs
@@ -1385,7 +1385,6 @@ src/Late/Model/ScheduleWhatsAppBroadcastRequest.cs
 src/Late/Model/SearchAdInterests200Response.cs
 src/Late/Model/SearchAdInterests200ResponseInterestsInner.cs
 src/Late/Model/SearchReddit200Response.cs
-src/Late/Model/SearchReddit200ResponsePostsInner.cs
 src/Late/Model/SelectFacebookPage200Response.cs
 src/Late/Model/SelectFacebookPage200ResponseAccount.cs
 src/Late/Model/SelectFacebookPageRequest.cs

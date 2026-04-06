@@ -9,7 +9,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="getredditfeed"></a>
 # **GetRedditFeed**
-> GetRedditFeed200Response GetRedditFeed (string accountId, string? subreddit = null, string? sort = null, int? limit = null, string? after = null, string? t = null)
+> SearchReddit200Response GetRedditFeed (string accountId, string? subreddit = null, string? sort = null, int? limit = null, string? after = null, string? t = null)
 
 Get subreddit feed
 
@@ -49,7 +49,7 @@ namespace Example
             try
             {
                 // Get subreddit feed
-                GetRedditFeed200Response result = apiInstance.GetRedditFeed(accountId, subreddit, sort, limit, after, t);
+                SearchReddit200Response result = apiInstance.GetRedditFeed(accountId, subreddit, sort, limit, after, t);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -70,7 +70,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get subreddit feed
-    ApiResponse<GetRedditFeed200Response> response = apiInstance.GetRedditFeedWithHttpInfo(accountId, subreddit, sort, limit, after, t);
+    ApiResponse<SearchReddit200Response> response = apiInstance.GetRedditFeedWithHttpInfo(accountId, subreddit, sort, limit, after, t);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -96,7 +96,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**GetRedditFeed200Response**](GetRedditFeed200Response.md)
+[**SearchReddit200Response**](SearchReddit200Response.md)
 
 ### Authorization
 

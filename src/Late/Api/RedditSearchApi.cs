@@ -41,8 +41,8 @@ namespace Late.Api
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="t"> (optional)</param>
-        /// <returns>GetRedditFeed200Response</returns>
-        GetRedditFeed200Response GetRedditFeed(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default);
+        /// <returns>SearchReddit200Response</returns>
+        SearchReddit200Response GetRedditFeed(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default);
 
         /// <summary>
         /// Get subreddit feed
@@ -57,8 +57,8 @@ namespace Late.Api
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="t"> (optional)</param>
-        /// <returns>ApiResponse of GetRedditFeed200Response</returns>
-        ApiResponse<GetRedditFeed200Response> GetRedditFeedWithHttpInfo(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default);
+        /// <returns>ApiResponse of SearchReddit200Response</returns>
+        ApiResponse<SearchReddit200Response> GetRedditFeedWithHttpInfo(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default);
         /// <summary>
         /// Search posts
         /// </summary>
@@ -115,8 +115,8 @@ namespace Late.Api
         /// <param name="after"> (optional)</param>
         /// <param name="t"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetRedditFeed200Response</returns>
-        System.Threading.Tasks.Task<GetRedditFeed200Response> GetRedditFeedAsync(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of SearchReddit200Response</returns>
+        System.Threading.Tasks.Task<SearchReddit200Response> GetRedditFeedAsync(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get subreddit feed
@@ -132,8 +132,8 @@ namespace Late.Api
         /// <param name="after"> (optional)</param>
         /// <param name="t"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetRedditFeed200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetRedditFeed200Response>> GetRedditFeedWithHttpInfoAsync(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (SearchReddit200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SearchReddit200Response>> GetRedditFeedWithHttpInfoAsync(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Search posts
         /// </summary>
@@ -392,10 +392,10 @@ namespace Late.Api
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="t"> (optional)</param>
-        /// <returns>GetRedditFeed200Response</returns>
-        public GetRedditFeed200Response GetRedditFeed(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default)
+        /// <returns>SearchReddit200Response</returns>
+        public SearchReddit200Response GetRedditFeed(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default)
         {
-            Late.Client.ApiResponse<GetRedditFeed200Response> localVarResponse = GetRedditFeedWithHttpInfo(accountId, subreddit, sort, limit, after, t);
+            Late.Client.ApiResponse<SearchReddit200Response> localVarResponse = GetRedditFeedWithHttpInfo(accountId, subreddit, sort, limit, after, t);
             return localVarResponse.Data;
         }
 
@@ -409,8 +409,8 @@ namespace Late.Api
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="after"> (optional)</param>
         /// <param name="t"> (optional)</param>
-        /// <returns>ApiResponse of GetRedditFeed200Response</returns>
-        public Late.Client.ApiResponse<GetRedditFeed200Response> GetRedditFeedWithHttpInfo(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default)
+        /// <returns>ApiResponse of SearchReddit200Response</returns>
+        public Late.Client.ApiResponse<SearchReddit200Response> GetRedditFeedWithHttpInfo(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -462,7 +462,7 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetRedditFeed200Response>("/v1/reddit/feed", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SearchReddit200Response>("/v1/reddit/feed", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -484,10 +484,10 @@ namespace Late.Api
         /// <param name="after"> (optional)</param>
         /// <param name="t"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetRedditFeed200Response</returns>
-        public async System.Threading.Tasks.Task<GetRedditFeed200Response> GetRedditFeedAsync(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of SearchReddit200Response</returns>
+        public async System.Threading.Tasks.Task<SearchReddit200Response> GetRedditFeedAsync(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<GetRedditFeed200Response> localVarResponse = await GetRedditFeedWithHttpInfoAsync(accountId, subreddit, sort, limit, after, t, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<SearchReddit200Response> localVarResponse = await GetRedditFeedWithHttpInfoAsync(accountId, subreddit, sort, limit, after, t, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -502,8 +502,8 @@ namespace Late.Api
         /// <param name="after"> (optional)</param>
         /// <param name="t"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetRedditFeed200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetRedditFeed200Response>> GetRedditFeedWithHttpInfoAsync(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (SearchReddit200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<SearchReddit200Response>> GetRedditFeedWithHttpInfoAsync(string accountId, string? subreddit = default, string? sort = default, int? limit = default, string? after = default, string? t = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -558,7 +558,7 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetRedditFeed200Response>("/v1/reddit/feed", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SearchReddit200Response>("/v1/reddit/feed", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -95,23 +95,25 @@ namespace Late.Api
         /// Check subreddit existence
         /// </summary>
         /// <remarks>
-        /// Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+        /// Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Subreddit name (with or without \&quot;r/\&quot; prefix)</param>
+        /// <param name="accountId">Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)</param>
         /// <returns>ValidateSubreddit200Response</returns>
-        ValidateSubreddit200Response ValidateSubreddit(string name);
+        ValidateSubreddit200Response ValidateSubreddit(string name, string? accountId = default);
 
         /// <summary>
         /// Check subreddit existence
         /// </summary>
         /// <remarks>
-        /// Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+        /// Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Subreddit name (with or without \&quot;r/\&quot; prefix)</param>
+        /// <param name="accountId">Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)</param>
         /// <returns>ApiResponse of ValidateSubreddit200Response</returns>
-        ApiResponse<ValidateSubreddit200Response> ValidateSubredditWithHttpInfo(string name);
+        ApiResponse<ValidateSubreddit200Response> ValidateSubredditWithHttpInfo(string name, string? accountId = default);
         #endregion Synchronous Operations
     }
 
@@ -194,25 +196,27 @@ namespace Late.Api
         /// Check subreddit existence
         /// </summary>
         /// <remarks>
-        /// Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+        /// Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Subreddit name (with or without \&quot;r/\&quot; prefix)</param>
+        /// <param name="accountId">Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ValidateSubreddit200Response</returns>
-        System.Threading.Tasks.Task<ValidateSubreddit200Response> ValidateSubredditAsync(string name, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ValidateSubreddit200Response> ValidateSubredditAsync(string name, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Check subreddit existence
         /// </summary>
         /// <remarks>
-        /// Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+        /// Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Subreddit name (with or without \&quot;r/\&quot; prefix)</param>
+        /// <param name="accountId">Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ValidateSubreddit200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ValidateSubreddit200Response>> ValidateSubredditWithHttpInfoAsync(string name, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ValidateSubreddit200Response>> ValidateSubredditWithHttpInfoAsync(string name, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -814,24 +818,26 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Check subreddit existence Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+        /// Check subreddit existence Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Subreddit name (with or without \&quot;r/\&quot; prefix)</param>
+        /// <param name="accountId">Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)</param>
         /// <returns>ValidateSubreddit200Response</returns>
-        public ValidateSubreddit200Response ValidateSubreddit(string name)
+        public ValidateSubreddit200Response ValidateSubreddit(string name, string? accountId = default)
         {
-            Late.Client.ApiResponse<ValidateSubreddit200Response> localVarResponse = ValidateSubredditWithHttpInfo(name);
+            Late.Client.ApiResponse<ValidateSubreddit200Response> localVarResponse = ValidateSubredditWithHttpInfo(name, accountId);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Check subreddit existence Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+        /// Check subreddit existence Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Subreddit name (with or without \&quot;r/\&quot; prefix)</param>
+        /// <param name="accountId">Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)</param>
         /// <returns>ApiResponse of ValidateSubreddit200Response</returns>
-        public Late.Client.ApiResponse<ValidateSubreddit200Response> ValidateSubredditWithHttpInfo(string name)
+        public Late.Client.ApiResponse<ValidateSubreddit200Response> ValidateSubredditWithHttpInfo(string name, string? accountId = default)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -854,6 +860,10 @@ namespace Late.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -875,26 +885,28 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Check subreddit existence Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+        /// Check subreddit existence Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Subreddit name (with or without \&quot;r/\&quot; prefix)</param>
+        /// <param name="accountId">Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ValidateSubreddit200Response</returns>
-        public async System.Threading.Tasks.Task<ValidateSubreddit200Response> ValidateSubredditAsync(string name, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ValidateSubreddit200Response> ValidateSubredditAsync(string name, string? accountId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<ValidateSubreddit200Response> localVarResponse = await ValidateSubredditWithHttpInfoAsync(name, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<ValidateSubreddit200Response> localVarResponse = await ValidateSubredditWithHttpInfoAsync(name, accountId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Check subreddit existence Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+        /// Check subreddit existence Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="name">Subreddit name (with or without \&quot;r/\&quot; prefix)</param>
+        /// <param name="accountId">Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ValidateSubreddit200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ValidateSubreddit200Response>> ValidateSubredditWithHttpInfoAsync(string name, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ValidateSubreddit200Response>> ValidateSubredditWithHttpInfoAsync(string name, string? accountId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'name' is set
             if (name == null)
@@ -919,6 +931,10 @@ namespace Late.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required

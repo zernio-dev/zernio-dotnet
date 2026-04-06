@@ -305,11 +305,11 @@ catch (ApiException e)
 
 <a id="validatesubreddit"></a>
 # **ValidateSubreddit**
-> ValidateSubreddit200Response ValidateSubreddit (string name)
+> ValidateSubreddit200Response ValidateSubreddit (string name, string? accountId = null)
 
 Check subreddit existence
 
-Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit's public JSON API (no Reddit auth needed). Returns `exists: false` for private, banned, or nonexistent subreddits. 
+Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit's public JSON API, which may be unreliable from server IPs. Returns `exists: false` for private, banned, or nonexistent subreddits. 
 
 ### Example
 ```csharp
@@ -336,11 +336,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ValidateApi(httpClient, config, httpClientHandler);
             var name = programming;  // string | Subreddit name (with or without \"r/\" prefix)
+            var accountId = "accountId_example";  // string? | Reddit social account ID for authenticated lookup (recommended for reliable results) (optional) 
 
             try
             {
                 // Check subreddit existence
-                ValidateSubreddit200Response result = apiInstance.ValidateSubreddit(name);
+                ValidateSubreddit200Response result = apiInstance.ValidateSubreddit(name, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -361,7 +362,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Check subreddit existence
-    ApiResponse<ValidateSubreddit200Response> response = apiInstance.ValidateSubredditWithHttpInfo(name);
+    ApiResponse<ValidateSubreddit200Response> response = apiInstance.ValidateSubredditWithHttpInfo(name, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -379,6 +380,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **name** | **string** | Subreddit name (with or without \&quot;r/\&quot; prefix) |  |
+| **accountId** | **string?** | Reddit social account ID for authenticated lookup (recommended for reliable results) | [optional]  |
 
 ### Return type
 
