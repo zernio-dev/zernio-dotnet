@@ -157,6 +157,7 @@ Class | Method | HTTP request | Description
 *AccountSettingsApi* | [**SetMessengerMenu**](docs/AccountSettingsApi.md#setmessengermenu) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set FB persistent menu
 *AccountSettingsApi* | [**SetTelegramCommands**](docs/AccountSettingsApi.md#settelegramcommands) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands
 *AccountsApi* | [**DeleteAccount**](docs/AccountsApi.md#deleteaccount) | **DELETE** /v1/accounts/{accountId} | Disconnect account
+*AccountsApi* | [**DisconnectAds**](docs/AccountsApi.md#disconnectads) | **POST** /v1/accounts/{accountId}/disconnect-ads | Disconnect ads from an account
 *AccountsApi* | [**GetAccountHealth**](docs/AccountsApi.md#getaccounthealth) | **GET** /v1/accounts/{accountId}/health | Check account health
 *AccountsApi* | [**GetAllAccountsHealth**](docs/AccountsApi.md#getallaccountshealth) | **GET** /v1/accounts/health | Check accounts health
 *AccountsApi* | [**GetFollowerStats**](docs/AccountsApi.md#getfollowerstats) | **GET** /v1/accounts/follower-stats | Get follower stats
@@ -563,6 +564,7 @@ Class | Method | HTTP request | Description
  - [Model.DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
  - [Model.DeleteQueueSlot200Response](docs/DeleteQueueSlot200Response.md)
  - [Model.DeleteWhatsAppGroupRequest](docs/DeleteWhatsAppGroupRequest.md)
+ - [Model.DisconnectAdsRequest](docs/DisconnectAdsRequest.md)
  - [Model.EditInboxMessage200Response](docs/EditInboxMessage200Response.md)
  - [Model.EditInboxMessage200ResponseData](docs/EditInboxMessage200ResponseData.md)
  - [Model.EditInboxMessageRequest](docs/EditInboxMessageRequest.md)

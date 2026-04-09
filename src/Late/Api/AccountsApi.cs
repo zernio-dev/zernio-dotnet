@@ -50,6 +50,29 @@ namespace Late.Api
         /// <returns>ApiResponse of DeleteAccountGroup200Response</returns>
         ApiResponse<DeleteAccountGroup200Response> DeleteAccountWithHttpInfo(string accountId);
         /// <summary>
+        /// Disconnect ads from an account
+        /// </summary>
+        /// <remarks>
+        /// Disconnects ads from a social account without removing the posting connection.  **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an &#x60;adsOptOut&#x60; flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.  **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.  **Standalone platforms** (googleads): Do not use this endpoint. Use &#x60;DELETE /v1/accounts/{accountId}&#x60; instead, since Google Ads accounts are standalone. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The SocialAccount ID (parent posting account for same-token/separate-token platforms)</param>
+        /// <param name="disconnectAdsRequest"></param>
+        /// <returns>DeleteAccountGroup200Response</returns>
+        DeleteAccountGroup200Response DisconnectAds(string accountId, DisconnectAdsRequest disconnectAdsRequest);
+
+        /// <summary>
+        /// Disconnect ads from an account
+        /// </summary>
+        /// <remarks>
+        /// Disconnects ads from a social account without removing the posting connection.  **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an &#x60;adsOptOut&#x60; flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.  **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.  **Standalone platforms** (googleads): Do not use this endpoint. Use &#x60;DELETE /v1/accounts/{accountId}&#x60; instead, since Google Ads accounts are standalone. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The SocialAccount ID (parent posting account for same-token/separate-token platforms)</param>
+        /// <param name="disconnectAdsRequest"></param>
+        /// <returns>ApiResponse of DeleteAccountGroup200Response</returns>
+        ApiResponse<DeleteAccountGroup200Response> DisconnectAdsWithHttpInfo(string accountId, DisconnectAdsRequest disconnectAdsRequest);
+        /// <summary>
         /// Check account health
         /// </summary>
         /// <remarks>
@@ -231,6 +254,31 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteAccountGroup200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteAccountGroup200Response>> DeleteAccountWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Disconnect ads from an account
+        /// </summary>
+        /// <remarks>
+        /// Disconnects ads from a social account without removing the posting connection.  **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an &#x60;adsOptOut&#x60; flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.  **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.  **Standalone platforms** (googleads): Do not use this endpoint. Use &#x60;DELETE /v1/accounts/{accountId}&#x60; instead, since Google Ads accounts are standalone. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The SocialAccount ID (parent posting account for same-token/separate-token platforms)</param>
+        /// <param name="disconnectAdsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteAccountGroup200Response</returns>
+        System.Threading.Tasks.Task<DeleteAccountGroup200Response> DisconnectAdsAsync(string accountId, DisconnectAdsRequest disconnectAdsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Disconnect ads from an account
+        /// </summary>
+        /// <remarks>
+        /// Disconnects ads from a social account without removing the posting connection.  **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an &#x60;adsOptOut&#x60; flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.  **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.  **Standalone platforms** (googleads): Do not use this endpoint. Use &#x60;DELETE /v1/accounts/{accountId}&#x60; instead, since Google Ads accounts are standalone. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The SocialAccount ID (parent posting account for same-token/separate-token platforms)</param>
+        /// <param name="disconnectAdsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteAccountGroup200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteAccountGroup200Response>> DisconnectAdsWithHttpInfoAsync(string accountId, DisconnectAdsRequest disconnectAdsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Check account health
         /// </summary>
@@ -727,6 +775,149 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Disconnect ads from an account Disconnects ads from a social account without removing the posting connection.  **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an &#x60;adsOptOut&#x60; flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.  **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.  **Standalone platforms** (googleads): Do not use this endpoint. Use &#x60;DELETE /v1/accounts/{accountId}&#x60; instead, since Google Ads accounts are standalone. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The SocialAccount ID (parent posting account for same-token/separate-token platforms)</param>
+        /// <param name="disconnectAdsRequest"></param>
+        /// <returns>DeleteAccountGroup200Response</returns>
+        public DeleteAccountGroup200Response DisconnectAds(string accountId, DisconnectAdsRequest disconnectAdsRequest)
+        {
+            Late.Client.ApiResponse<DeleteAccountGroup200Response> localVarResponse = DisconnectAdsWithHttpInfo(accountId, disconnectAdsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Disconnect ads from an account Disconnects ads from a social account without removing the posting connection.  **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an &#x60;adsOptOut&#x60; flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.  **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.  **Standalone platforms** (googleads): Do not use this endpoint. Use &#x60;DELETE /v1/accounts/{accountId}&#x60; instead, since Google Ads accounts are standalone. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The SocialAccount ID (parent posting account for same-token/separate-token platforms)</param>
+        /// <param name="disconnectAdsRequest"></param>
+        /// <returns>ApiResponse of DeleteAccountGroup200Response</returns>
+        public Late.Client.ApiResponse<DeleteAccountGroup200Response> DisconnectAdsWithHttpInfo(string accountId, DisconnectAdsRequest disconnectAdsRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->DisconnectAds");
+
+            // verify the required parameter 'disconnectAdsRequest' is set
+            if (disconnectAdsRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'disconnectAdsRequest' when calling AccountsApi->DisconnectAds");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = disconnectAdsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<DeleteAccountGroup200Response>("/v1/accounts/{accountId}/disconnect-ads", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DisconnectAds", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Disconnect ads from an account Disconnects ads from a social account without removing the posting connection.  **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an &#x60;adsOptOut&#x60; flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.  **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.  **Standalone platforms** (googleads): Do not use this endpoint. Use &#x60;DELETE /v1/accounts/{accountId}&#x60; instead, since Google Ads accounts are standalone. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The SocialAccount ID (parent posting account for same-token/separate-token platforms)</param>
+        /// <param name="disconnectAdsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteAccountGroup200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteAccountGroup200Response> DisconnectAdsAsync(string accountId, DisconnectAdsRequest disconnectAdsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<DeleteAccountGroup200Response> localVarResponse = await DisconnectAdsWithHttpInfoAsync(accountId, disconnectAdsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Disconnect ads from an account Disconnects ads from a social account without removing the posting connection.  **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an &#x60;adsOptOut&#x60; flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.  **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.  **Standalone platforms** (googleads): Do not use this endpoint. Use &#x60;DELETE /v1/accounts/{accountId}&#x60; instead, since Google Ads accounts are standalone. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The SocialAccount ID (parent posting account for same-token/separate-token platforms)</param>
+        /// <param name="disconnectAdsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteAccountGroup200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<DeleteAccountGroup200Response>> DisconnectAdsWithHttpInfoAsync(string accountId, DisconnectAdsRequest disconnectAdsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->DisconnectAds");
+
+            // verify the required parameter 'disconnectAdsRequest' is set
+            if (disconnectAdsRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'disconnectAdsRequest' when calling AccountsApi->DisconnectAds");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = disconnectAdsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<DeleteAccountGroup200Response>("/v1/accounts/{accountId}/disconnect-ads", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DisconnectAds", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

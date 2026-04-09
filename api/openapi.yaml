@@ -3649,6 +3649,55 @@ paths:
       summary: Update account
       tags:
       - Accounts
+  /v1/accounts/{accountId}/disconnect-ads:
+    post:
+      description: |
+        Disconnects ads from a social account without removing the posting connection.
+
+        **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an `adsOptOut` flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.
+
+        **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.
+
+        **Standalone platforms** (googleads): Do not use this endpoint. Use `DELETE /v1/accounts/{accountId}` instead, since Google Ads accounts are standalone.
+      operationId: disconnectAds
+      parameters:
+      - description: The SocialAccount ID (parent posting account for same-token/separate-token
+          platforms)
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              adsPlatform: tiktokads
+            schema:
+              $ref: "#/components/schemas/disconnectAds_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                message: tiktokads disconnected successfully
+              schema:
+                $ref: "#/components/schemas/deleteAccountGroup_200_response"
+          description: Ads disconnected
+        "400":
+          description: Invalid ads platform
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Disconnect ads from an account
+      tags:
+      - Accounts
   /v1/accounts/health:
     get:
       description: "Returns health status of all connected accounts including token\
@@ -4152,9 +4201,9 @@ paths:
       description: |
         Unified ads connection endpoint. Handles all platforms through a single route:
 
-        **Same-token platforms** (facebook, instagram, linkedin): If a posting account already exists, returns `alreadyConnected: true` immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.
+        **Same-token platforms** (facebook, instagram, linkedin, pinterest): If a posting account already exists, returns `alreadyConnected: true` immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.
 
-        **Separate-token platforms** (tiktok, twitter, pinterest): Requires an existing posting account (`accountId` param). If ads are already connected, returns `alreadyConnected: true`. Otherwise, starts the platform-specific marketing API OAuth flow.
+        **Separate-token platforms** (tiktok, twitter): Requires an existing posting account (`accountId` param). If ads are already connected, returns `alreadyConnected: true`. Otherwise, starts the platform-specific marketing API OAuth flow.
 
         **Ads-only platforms** (googleads): If a Google Ads account exists, returns `alreadyConnected: true`. Otherwise, starts the Google Ads OAuth flow.
 
@@ -4187,7 +4236,7 @@ paths:
           type: string
         style: form
       - description: "Existing SocialAccount ID. Required for separate-token platforms\
-          \ (tiktok, twitter, pinterest). Ignored for same-token and ads-only platforms."
+          \ (tiktok, twitter). Ignored for same-token and ads-only platforms."
         explode: true
         in: query
         name: accountId
@@ -22534,6 +22583,19 @@ components:
           type: string
         displayName:
           type: string
+    disconnectAds_request:
+      properties:
+        adsPlatform:
+          description: The ads platform to disconnect
+          enum:
+          - metaads
+          - linkedinads
+          - pinterestads
+          - tiktokads
+          - xads
+          type: string
+      required:
+      - adsPlatform
     getAllAccountsHealth_200_response_summary:
       example:
         total: 0

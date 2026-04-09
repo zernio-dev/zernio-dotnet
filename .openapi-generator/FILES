@@ -165,6 +165,7 @@ docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteQueueSlot200Response.md
 docs/DeleteWhatsAppGroupRequest.md
+docs/DisconnectAdsRequest.md
 docs/EditInboxMessage200Response.md
 docs/EditInboxMessage200ResponseData.md
 docs/EditInboxMessageRequest.md
@@ -797,6 +798,7 @@ docs/YouTubeScopeMissingResponse.md
 docs/YouTubeScopeMissingResponseScopeStatus.md
 git_push.sh
 src/Late.Test/Late.Test.csproj
+src/Late.Test/Model/DisconnectAdsRequestTests.cs
 src/Late/Api/APIKeysApi.cs
 src/Late/Api/AccountGroupsApi.cs
 src/Late/Api/AccountSettingsApi.cs
@@ -1004,6 +1006,7 @@ src/Late/Model/DeleteInboxReviewReply200Response.cs
 src/Late/Model/DeleteInboxReviewReplyRequest.cs
 src/Late/Model/DeleteQueueSlot200Response.cs
 src/Late/Model/DeleteWhatsAppGroupRequest.cs
+src/Late/Model/DisconnectAdsRequest.cs
 src/Late/Model/EditInboxMessage200Response.cs
 src/Late/Model/EditInboxMessage200ResponseData.cs
 src/Late/Model/EditInboxMessageRequest.cs
