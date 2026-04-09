@@ -179,7 +179,6 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**ListAdAccounts**](docs/AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts for a social account
 *AdsApi* | [**ListAds**](docs/AdsApi.md#listads) | **GET** /v1/ads | List ads
 *AdsApi* | [**SearchAdInterests**](docs/AdsApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests
-*AdsApi* | [**SyncExternalAds**](docs/AdsApi.md#syncexternalads) | **POST** /v1/ads/sync | Sync external ads from platform ad managers
 *AdsApi* | [**UpdateAd**](docs/AdsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad (pause/resume, budget, targeting, name)
 *AnalyticsApi* | [**GetAnalytics**](docs/AnalyticsApi.md#getanalytics) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**GetBestTimeToPost**](docs/AnalyticsApi.md#getbesttimetopost) | **GET** /v1/analytics/best-time | Get best times to post
@@ -1007,7 +1006,6 @@ Class | Method | HTTP request | Description
  - [Model.SnapchatPlatformData](docs/SnapchatPlatformData.md)
  - [Model.SocialAccount](docs/SocialAccount.md)
  - [Model.SocialAccountProfileId](docs/SocialAccountProfileId.md)
- - [Model.SyncExternalAds200Response](docs/SyncExternalAds200Response.md)
  - [Model.TelegramPlatformData](docs/TelegramPlatformData.md)
  - [Model.TestWebhookRequest](docs/TestWebhookRequest.md)
  - [Model.ThreadsPlatformData](docs/ThreadsPlatformData.md)

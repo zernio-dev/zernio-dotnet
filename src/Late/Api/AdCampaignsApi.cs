@@ -32,7 +32,7 @@ namespace Late.Api
         /// Get nested campaign/ad-set/ad tree
         /// </summary>
         /// <remarks>
-        /// Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+        /// Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -43,14 +43,16 @@ namespace Late.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>GetAdTree200Response</returns>
-        GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default);
+        GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
 
         /// <summary>
         /// Get nested campaign/ad-set/ad tree
         /// </summary>
         /// <remarks>
-        /// Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+        /// Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -61,8 +63,10 @@ namespace Late.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>ApiResponse of GetAdTree200Response</returns>
-        ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default);
+        ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
         /// List campaigns with aggregate metrics
         /// </summary>
@@ -134,7 +138,7 @@ namespace Late.Api
         /// Get nested campaign/ad-set/ad tree
         /// </summary>
         /// <remarks>
-        /// Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+        /// Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -145,15 +149,17 @@ namespace Late.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdTree200Response</returns>
-        System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get nested campaign/ad-set/ad tree
         /// </summary>
         /// <remarks>
-        /// Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+        /// Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -164,9 +170,11 @@ namespace Late.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdTree200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List campaigns with aggregate metrics
         /// </summary>
@@ -443,7 +451,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get nested campaign/ad-set/ad tree Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+        /// Get nested campaign/ad-set/ad tree Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -454,15 +462,17 @@ namespace Late.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>GetAdTree200Response</returns>
-        public GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default)
+        public GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
-            Late.Client.ApiResponse<GetAdTree200Response> localVarResponse = GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId);
+            Late.Client.ApiResponse<GetAdTree200Response> localVarResponse = GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get nested campaign/ad-set/ad tree Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+        /// Get nested campaign/ad-set/ad tree Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -473,8 +483,10 @@ namespace Late.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>ApiResponse of GetAdTree200Response</returns>
-        public Late.Client.ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default)
+        public Late.Client.ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
 
@@ -523,6 +535,14 @@ namespace Late.Api
             if (profileId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
             }
 
             // authentication (bearerAuth) required
@@ -545,7 +565,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get nested campaign/ad-set/ad tree Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+        /// Get nested campaign/ad-set/ad tree Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -556,16 +576,18 @@ namespace Late.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdTree200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<GetAdTree200Response> localVarResponse = await GetAdTreeWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, accountId, profileId, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<GetAdTree200Response> localVarResponse = await GetAdTreeWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get nested campaign/ad-set/ad tree Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+        /// Get nested campaign/ad-set/ad tree Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -576,9 +598,11 @@ namespace Late.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdTree200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, string? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
@@ -629,6 +653,14 @@ namespace Late.Api
             if (profileId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
             }
 
             // authentication (bearerAuth) required

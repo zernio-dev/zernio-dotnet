@@ -12,7 +12,6 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAdAccounts**](AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts for a social account |
 | [**ListAds**](AdsApi.md#listads) | **GET** /v1/ads | List ads |
 | [**SearchAdInterests**](AdsApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests |
-| [**SyncExternalAds**](AdsApi.md#syncexternalads) | **POST** /v1/ads/sync | Sync external ads from platform ad managers |
 | [**UpdateAd**](AdsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad (pause/resume, budget, targeting, name) |
 
 <a id="boostpost"></a>
@@ -419,11 +418,11 @@ catch (ApiException e)
 
 <a id="getadanalytics"></a>
 # **GetAdAnalytics**
-> GetAdAnalytics200Response GetAdAnalytics (string adId, string? breakdowns = null)
+> GetAdAnalytics200Response GetAdAnalytics (string adId, DateOnly? fromDate = null, DateOnly? toDate = null, string? breakdowns = null)
 
 Get ad analytics with daily breakdown
 
-Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
 
 ### Example
 ```csharp
@@ -450,12 +449,14 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional) 
             var breakdowns = "breakdowns_example";  // string? | Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional) 
 
             try
             {
                 // Get ad analytics with daily breakdown
-                GetAdAnalytics200Response result = apiInstance.GetAdAnalytics(adId, breakdowns);
+                GetAdAnalytics200Response result = apiInstance.GetAdAnalytics(adId, fromDate, toDate, breakdowns);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -476,7 +477,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get ad analytics with daily breakdown
-    ApiResponse<GetAdAnalytics200Response> response = apiInstance.GetAdAnalyticsWithHttpInfo(adId, breakdowns);
+    ApiResponse<GetAdAnalytics200Response> response = apiInstance.GetAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -494,6 +495,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adId** | **string** |  |  |
+| **fromDate** | **DateOnly?** | Start of date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. | [optional]  |
 | **breakdowns** | **string?** | Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. | [optional]  |
 
 ### Return type
@@ -622,11 +625,11 @@ catch (ApiException e)
 
 <a id="listads"></a>
 # **ListAds**
-> ListAds200Response ListAds (int? page = null, int? limit = null, string? source = null, string? status = null, string? platform = null, string? accountId = null, string? profileId = null, string? campaignId = null)
+> ListAds200Response ListAds (int? page = null, int? limit = null, string? source = null, string? status = null, string? platform = null, string? accountId = null, string? profileId = null, string? campaignId = null, DateOnly? fromDate = null, DateOnly? toDate = null)
 
 List ads
 
-Returns a paginated list of ads with cached metrics. Use `source=all` to include externally-synced ads from platform ad managers.
+Returns a paginated list of ads with metrics computed over an optional date range. Use `source=all` to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
 
 ### Example
 ```csharp
@@ -660,11 +663,13 @@ namespace Example
             var accountId = "accountId_example";  // string? | Social account ID (optional) 
             var profileId = "profileId_example";  // string? | Profile ID (optional) 
             var campaignId = "campaignId_example";  // string? | Platform campaign ID (filter ads within a campaign) (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional) 
 
             try
             {
                 // List ads
-                ListAds200Response result = apiInstance.ListAds(page, limit, source, status, platform, accountId, profileId, campaignId);
+                ListAds200Response result = apiInstance.ListAds(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -685,7 +690,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List ads
-    ApiResponse<ListAds200Response> response = apiInstance.ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId);
+    ApiResponse<ListAds200Response> response = apiInstance.ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -710,6 +715,8 @@ catch (ApiException e)
 | **accountId** | **string?** | Social account ID | [optional]  |
 | **profileId** | **string?** | Profile ID | [optional]  |
 | **campaignId** | **string?** | Platform campaign ID (filter ads within a campaign) | [optional]  |
+| **fromDate** | **DateOnly?** | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. | [optional]  |
 
 ### Return type
 
@@ -831,101 +838,6 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Matching interests |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a id="syncexternalads"></a>
-# **SyncExternalAds**
-> SyncExternalAds200Response SyncExternalAds ()
-
-Sync external ads from platform ad managers
-
-Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-
-### Example
-```csharp
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using Late.Api;
-using Late.Client;
-using Late.Model;
-
-namespace Example
-{
-    public class SyncExternalAdsExample
-    {
-        public static void Main()
-        {
-            Configuration config = new Configuration();
-            config.BasePath = "https://zernio.com/api";
-            // Configure Bearer token for authorization: bearerAuth
-            config.AccessToken = "YOUR_BEARER_TOKEN";
-
-            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
-            HttpClient httpClient = new HttpClient();
-            HttpClientHandler httpClientHandler = new HttpClientHandler();
-            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
-
-            try
-            {
-                // Sync external ads from platform ad managers
-                SyncExternalAds200Response result = apiInstance.SyncExternalAds();
-                Debug.WriteLine(result);
-            }
-            catch (ApiException  e)
-            {
-                Debug.Print("Exception when calling AdsApi.SyncExternalAds: " + e.Message);
-                Debug.Print("Status Code: " + e.ErrorCode);
-                Debug.Print(e.StackTrace);
-            }
-        }
-    }
-}
-```
-
-#### Using the SyncExternalAdsWithHttpInfo variant
-This returns an ApiResponse object which contains the response data, status code and headers.
-
-```csharp
-try
-{
-    // Sync external ads from platform ad managers
-    ApiResponse<SyncExternalAds200Response> response = apiInstance.SyncExternalAdsWithHttpInfo();
-    Debug.Write("Status Code: " + response.StatusCode);
-    Debug.Write("Response Headers: " + response.Headers);
-    Debug.Write("Response Body: " + response.Data);
-}
-catch (ApiException e)
-{
-    Debug.Print("Exception when calling AdsApi.SyncExternalAdsWithHttpInfo: " + e.Message);
-    Debug.Print("Status Code: " + e.ErrorCode);
-    Debug.Print(e.StackTrace);
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-### Return type
-
-[**SyncExternalAds200Response**](SyncExternalAds200Response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Sync completed |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
 

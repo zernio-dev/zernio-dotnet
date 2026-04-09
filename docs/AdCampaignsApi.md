@@ -10,11 +10,11 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="getadtree"></a>
 # **GetAdTree**
-> GetAdTree200Response GetAdTree (int? page = null, int? limit = null, string? source = null, string? platform = null, string? status = null, string? adAccountId = null, string? accountId = null, string? profileId = null)
+> GetAdTree200Response GetAdTree (int? page = null, int? limit = null, string? source = null, string? platform = null, string? status = null, string? adAccountId = null, string? accountId = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null)
 
 Get nested campaign/ad-set/ad tree
 
-Returns a nested Campaign > Ad Set > Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \"Ungrouped\" buckets. 
+Returns a nested Campaign > Ad Set > Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \"Ungrouped\" buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
 
 ### Example
 ```csharp
@@ -48,11 +48,13 @@ namespace Example
             var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (optional) 
             var accountId = "accountId_example";  // string? | Social account ID (optional) 
             var profileId = "profileId_example";  // string? | Profile ID (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional) 
 
             try
             {
                 // Get nested campaign/ad-set/ad tree
-                GetAdTree200Response result = apiInstance.GetAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId);
+                GetAdTree200Response result = apiInstance.GetAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -73,7 +75,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get nested campaign/ad-set/ad tree
-    ApiResponse<GetAdTree200Response> response = apiInstance.GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId);
+    ApiResponse<GetAdTree200Response> response = apiInstance.GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -98,6 +100,8 @@ catch (ApiException e)
 | **adAccountId** | **string?** | Platform ad account ID | [optional]  |
 | **accountId** | **string?** | Social account ID | [optional]  |
 | **profileId** | **string?** | Profile ID | [optional]  |
+| **fromDate** | **DateOnly?** | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. | [optional]  |
 
 ### Return type
 

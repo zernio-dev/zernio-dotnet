@@ -113,25 +113,29 @@ namespace Late.Api
         /// Get ad analytics with daily breakdown
         /// </summary>
         /// <remarks>
-        /// Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+        /// Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
         /// <returns>GetAdAnalytics200Response</returns>
-        GetAdAnalytics200Response GetAdAnalytics(string adId, string? breakdowns = default);
+        GetAdAnalytics200Response GetAdAnalytics(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
 
         /// <summary>
         /// Get ad analytics with daily breakdown
         /// </summary>
         /// <remarks>
-        /// Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+        /// Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
         /// <returns>ApiResponse of GetAdAnalytics200Response</returns>
-        ApiResponse<GetAdAnalytics200Response> GetAdAnalyticsWithHttpInfo(string adId, string? breakdowns = default);
+        ApiResponse<GetAdAnalytics200Response> GetAdAnalyticsWithHttpInfo(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
         /// <summary>
         /// List ad accounts for a social account
         /// </summary>
@@ -157,7 +161,7 @@ namespace Late.Api
         /// List ads
         /// </summary>
         /// <remarks>
-        /// Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+        /// Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -168,14 +172,16 @@ namespace Late.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>ListAds200Response</returns>
-        ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default);
+        ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
 
         /// <summary>
         /// List ads
         /// </summary>
         /// <remarks>
-        /// Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+        /// Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -186,8 +192,10 @@ namespace Late.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>ApiResponse of ListAds200Response</returns>
-        ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default);
+        ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
         /// Search targeting interests
         /// </summary>
@@ -211,25 +219,6 @@ namespace Late.Api
         /// <param name="accountId">Social account ID</param>
         /// <returns>ApiResponse of SearchAdInterests200Response</returns>
         ApiResponse<SearchAdInterests200Response> SearchAdInterestsWithHttpInfo(string q, string accountId);
-        /// <summary>
-        /// Sync external ads from platform ad managers
-        /// </summary>
-        /// <remarks>
-        /// Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-        /// </remarks>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>SyncExternalAds200Response</returns>
-        SyncExternalAds200Response SyncExternalAds();
-
-        /// <summary>
-        /// Sync external ads from platform ad managers
-        /// </summary>
-        /// <remarks>
-        /// Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-        /// </remarks>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of SyncExternalAds200Response</returns>
-        ApiResponse<SyncExternalAds200Response> SyncExternalAdsWithHttpInfo();
         /// <summary>
         /// Update ad (pause/resume, budget, targeting, name)
         /// </summary>
@@ -358,27 +347,31 @@ namespace Late.Api
         /// Get ad analytics with daily breakdown
         /// </summary>
         /// <remarks>
-        /// Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+        /// Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdAnalytics200Response</returns>
-        System.Threading.Tasks.Task<GetAdAnalytics200Response> GetAdAnalyticsAsync(string adId, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetAdAnalytics200Response> GetAdAnalyticsAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get ad analytics with daily breakdown
         /// </summary>
         /// <remarks>
-        /// Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+        /// Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdAnalytics200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdAnalytics200Response>> GetAdAnalyticsWithHttpInfoAsync(string adId, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetAdAnalytics200Response>> GetAdAnalyticsWithHttpInfoAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List ad accounts for a social account
         /// </summary>
@@ -406,7 +399,7 @@ namespace Late.Api
         /// List ads
         /// </summary>
         /// <remarks>
-        /// Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+        /// Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -417,15 +410,17 @@ namespace Late.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAds200Response</returns>
-        System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List ads
         /// </summary>
         /// <remarks>
-        /// Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+        /// Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -436,9 +431,11 @@ namespace Late.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAds200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Search targeting interests
         /// </summary>
@@ -464,27 +461,6 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchAdInterests200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SearchAdInterests200Response>> SearchAdInterestsWithHttpInfoAsync(string q, string accountId, System.Threading.CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Sync external ads from platform ad managers
-        /// </summary>
-        /// <remarks>
-        /// Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-        /// </remarks>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of SyncExternalAds200Response</returns>
-        System.Threading.Tasks.Task<SyncExternalAds200Response> SyncExternalAdsAsync(System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Sync external ads from platform ad managers
-        /// </summary>
-        /// <remarks>
-        /// Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-        /// </remarks>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (SyncExternalAds200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SyncExternalAds200Response>> SyncExternalAdsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update ad (pause/resume, budget, targeting, name)
         /// </summary>
@@ -1236,26 +1212,30 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get ad analytics with daily breakdown Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+        /// Get ad analytics with daily breakdown Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
         /// <returns>GetAdAnalytics200Response</returns>
-        public GetAdAnalytics200Response GetAdAnalytics(string adId, string? breakdowns = default)
+        public GetAdAnalytics200Response GetAdAnalytics(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
         {
-            Late.Client.ApiResponse<GetAdAnalytics200Response> localVarResponse = GetAdAnalyticsWithHttpInfo(adId, breakdowns);
+            Late.Client.ApiResponse<GetAdAnalytics200Response> localVarResponse = GetAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get ad analytics with daily breakdown Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+        /// Get ad analytics with daily breakdown Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
         /// <returns>ApiResponse of GetAdAnalytics200Response</returns>
-        public Late.Client.ApiResponse<GetAdAnalytics200Response> GetAdAnalyticsWithHttpInfo(string adId, string? breakdowns = default)
+        public Late.Client.ApiResponse<GetAdAnalytics200Response> GetAdAnalyticsWithHttpInfo(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -1278,6 +1258,14 @@ namespace Late.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adId", Late.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
             if (breakdowns != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "breakdowns", breakdowns));
@@ -1303,28 +1291,32 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get ad analytics with daily breakdown Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+        /// Get ad analytics with daily breakdown Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdAnalytics200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdAnalytics200Response> GetAdAnalyticsAsync(string adId, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetAdAnalytics200Response> GetAdAnalyticsAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<GetAdAnalytics200Response> localVarResponse = await GetAdAnalyticsWithHttpInfoAsync(adId, breakdowns, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<GetAdAnalytics200Response> localVarResponse = await GetAdAnalyticsWithHttpInfoAsync(adId, fromDate, toDate, breakdowns, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get ad analytics with daily breakdown Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+        /// Get ad analytics with daily breakdown Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdAnalytics200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetAdAnalytics200Response>> GetAdAnalyticsWithHttpInfoAsync(string adId, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetAdAnalytics200Response>> GetAdAnalyticsWithHttpInfoAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -1349,6 +1341,14 @@ namespace Late.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adId", Late.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
             if (breakdowns != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "breakdowns", breakdowns));
@@ -1502,7 +1502,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List ads Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -1513,15 +1513,17 @@ namespace Late.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>ListAds200Response</returns>
-        public ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default)
+        public ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
-            Late.Client.ApiResponse<ListAds200Response> localVarResponse = ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId);
+            Late.Client.ApiResponse<ListAds200Response> localVarResponse = ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List ads Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -1532,8 +1534,10 @@ namespace Late.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>ApiResponse of ListAds200Response</returns>
-        public Late.Client.ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default)
+        public Late.Client.ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
 
@@ -1582,6 +1586,14 @@ namespace Late.Api
             if (campaignId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
             }
 
             // authentication (bearerAuth) required
@@ -1604,7 +1616,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List ads Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -1615,16 +1627,18 @@ namespace Late.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAds200Response</returns>
-        public async System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<ListAds200Response> localVarResponse = await ListAdsWithHttpInfoAsync(page, limit, source, status, platform, accountId, profileId, campaignId, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<ListAds200Response> localVarResponse = await ListAdsWithHttpInfoAsync(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List ads Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -1635,9 +1649,11 @@ namespace Late.Api
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAds200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
@@ -1688,6 +1704,14 @@ namespace Late.Api
             if (campaignId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
             }
 
             // authentication (bearerAuth) required
@@ -1845,119 +1869,6 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("SearchAdInterests", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Sync external ads from platform ad managers Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-        /// </summary>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>SyncExternalAds200Response</returns>
-        public SyncExternalAds200Response SyncExternalAds()
-        {
-            Late.Client.ApiResponse<SyncExternalAds200Response> localVarResponse = SyncExternalAdsWithHttpInfo();
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Sync external ads from platform ad managers Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-        /// </summary>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <returns>ApiResponse of SyncExternalAds200Response</returns>
-        public Late.Client.ApiResponse<SyncExternalAds200Response> SyncExternalAdsWithHttpInfo()
-        {
-            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<SyncExternalAds200Response>("/v1/ads/sync", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("SyncExternalAds", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Sync external ads from platform ad managers Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-        /// </summary>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of SyncExternalAds200Response</returns>
-        public async System.Threading.Tasks.Task<SyncExternalAds200Response> SyncExternalAdsAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-            Late.Client.ApiResponse<SyncExternalAds200Response> localVarResponse = await SyncExternalAdsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Sync external ads from platform ad managers Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-        /// </summary>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (SyncExternalAds200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<SyncExternalAds200Response>> SyncExternalAdsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
-        {
-
-            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-
-            var localVarResponse = await this.AsynchronousClient.PostAsync<SyncExternalAds200Response>("/v1/ads/sync", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("SyncExternalAds", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
