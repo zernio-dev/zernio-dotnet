@@ -34,9 +34,142 @@ namespace Late.Model
     public partial class AccountWithFollowerStats : IValidatableObject
     {
         /// <summary>
-        /// Ads connection status for this account. - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). 
+        /// Defines Platform
         /// </summary>
-        /// <value>Ads connection status for this account. - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum PlatformEnum
+        {
+            /// <summary>
+            /// Enum Tiktok for value: tiktok
+            /// </summary>
+            [EnumMember(Value = "tiktok")]
+            Tiktok = 1,
+
+            /// <summary>
+            /// Enum Instagram for value: instagram
+            /// </summary>
+            [EnumMember(Value = "instagram")]
+            Instagram = 2,
+
+            /// <summary>
+            /// Enum Facebook for value: facebook
+            /// </summary>
+            [EnumMember(Value = "facebook")]
+            Facebook = 3,
+
+            /// <summary>
+            /// Enum Youtube for value: youtube
+            /// </summary>
+            [EnumMember(Value = "youtube")]
+            Youtube = 4,
+
+            /// <summary>
+            /// Enum Linkedin for value: linkedin
+            /// </summary>
+            [EnumMember(Value = "linkedin")]
+            Linkedin = 5,
+
+            /// <summary>
+            /// Enum Twitter for value: twitter
+            /// </summary>
+            [EnumMember(Value = "twitter")]
+            Twitter = 6,
+
+            /// <summary>
+            /// Enum Threads for value: threads
+            /// </summary>
+            [EnumMember(Value = "threads")]
+            Threads = 7,
+
+            /// <summary>
+            /// Enum Pinterest for value: pinterest
+            /// </summary>
+            [EnumMember(Value = "pinterest")]
+            Pinterest = 8,
+
+            /// <summary>
+            /// Enum Reddit for value: reddit
+            /// </summary>
+            [EnumMember(Value = "reddit")]
+            Reddit = 9,
+
+            /// <summary>
+            /// Enum Bluesky for value: bluesky
+            /// </summary>
+            [EnumMember(Value = "bluesky")]
+            Bluesky = 10,
+
+            /// <summary>
+            /// Enum Googlebusiness for value: googlebusiness
+            /// </summary>
+            [EnumMember(Value = "googlebusiness")]
+            Googlebusiness = 11,
+
+            /// <summary>
+            /// Enum Telegram for value: telegram
+            /// </summary>
+            [EnumMember(Value = "telegram")]
+            Telegram = 12,
+
+            /// <summary>
+            /// Enum Snapchat for value: snapchat
+            /// </summary>
+            [EnumMember(Value = "snapchat")]
+            Snapchat = 13,
+
+            /// <summary>
+            /// Enum Whatsapp for value: whatsapp
+            /// </summary>
+            [EnumMember(Value = "whatsapp")]
+            Whatsapp = 14,
+
+            /// <summary>
+            /// Enum Linkedinads for value: linkedinads
+            /// </summary>
+            [EnumMember(Value = "linkedinads")]
+            Linkedinads = 15,
+
+            /// <summary>
+            /// Enum Metaads for value: metaads
+            /// </summary>
+            [EnumMember(Value = "metaads")]
+            Metaads = 16,
+
+            /// <summary>
+            /// Enum Pinterestads for value: pinterestads
+            /// </summary>
+            [EnumMember(Value = "pinterestads")]
+            Pinterestads = 17,
+
+            /// <summary>
+            /// Enum Tiktokads for value: tiktokads
+            /// </summary>
+            [EnumMember(Value = "tiktokads")]
+            Tiktokads = 18,
+
+            /// <summary>
+            /// Enum Xads for value: xads
+            /// </summary>
+            [EnumMember(Value = "xads")]
+            Xads = 19,
+
+            /// <summary>
+            /// Enum Googleads for value: googleads
+            /// </summary>
+            [EnumMember(Value = "googleads")]
+            Googleads = 20
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Platform
+        /// </summary>
+        [DataMember(Name = "platform", EmitDefaultValue = false)]
+        public PlatformEnum? Platform { get; set; }
+        /// <summary>
+        /// **Deprecated.** With the new ads account model, ads accounts are separate SocialAccount documents. Check for accounts with ads platform values (metaads, linkedinads, pinterestads, tiktokads, xads, googleads) instead.  Legacy behavior: - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). 
+        /// </summary>
+        /// <value>**Deprecated.** With the new ads account model, ads accounts are separate SocialAccount documents. Check for accounts with ads platform values (metaads, linkedinads, pinterestads, tiktokads, xads, googleads) instead.  Legacy behavior: - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AdsStatusEnum
         {
@@ -61,10 +194,11 @@ namespace Late.Model
 
 
         /// <summary>
-        /// Ads connection status for this account. - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). 
+        /// **Deprecated.** With the new ads account model, ads accounts are separate SocialAccount documents. Check for accounts with ads platform values (metaads, linkedinads, pinterestads, tiktokads, xads, googleads) instead.  Legacy behavior: - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). 
         /// </summary>
-        /// <value>Ads connection status for this account. - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). </value>
+        /// <value>**Deprecated.** With the new ads account model, ads accounts are separate SocialAccount documents. Check for accounts with ads platform values (metaads, linkedinads, pinterestads, tiktokads, xads, googleads) instead.  Legacy behavior: - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). </value>
         [DataMember(Name = "adsStatus", EmitDefaultValue = false)]
+        [Obsolete]
         public AdsStatusEnum? AdsStatus { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountWithFollowerStats" /> class.
@@ -78,7 +212,9 @@ namespace Late.Model
         /// <param name="isActive">isActive.</param>
         /// <param name="followersCount">Follower count (only included if user has analytics add-on).</param>
         /// <param name="followersLastUpdated">Last time follower count was updated (only included if user has analytics add-on).</param>
-        /// <param name="adsStatus">Ads connection status for this account. - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). .</param>
+        /// <param name="parentAccountId">Reference to the parent posting SocialAccount. Set for ads accounts that share or derive from a posting account&#39;s OAuth token. null for standalone ads (Google Ads) and all posting accounts. .</param>
+        /// <param name="enabled">Whether the user explicitly activated this account. false means the account was created as a side effect (e.g., posting account auto-created when user connected ads first). Posting UI and scheduler ignore accounts with enabled: false. .</param>
+        /// <param name="adsStatus">**Deprecated.** With the new ads account model, ads accounts are separate SocialAccount documents. Check for accounts with ads platform values (metaads, linkedinads, pinterestads, tiktokads, xads, googleads) instead.  Legacy behavior: - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). .</param>
         /// <param name="metadata">Platform-specific metadata. Fields vary by platform. For WhatsApp accounts, includes: - &#x60;qualityRating&#x60;: Phone number quality rating from Meta (&#x60;GREEN&#x60;, &#x60;YELLOW&#x60;, &#x60;RED&#x60;, or &#x60;UNKNOWN&#x60;) - &#x60;nameStatus&#x60;: Display name review status (&#x60;APPROVED&#x60;, &#x60;PENDING_REVIEW&#x60;, &#x60;DECLINED&#x60;, or &#x60;NONE&#x60;). Messages cannot be sent until the display name is approved by Meta. - &#x60;messagingLimitTier&#x60;: Maximum unique business-initiated conversations per 24h rolling window (&#x60;TIER_250&#x60;, &#x60;TIER_1K&#x60;, &#x60;TIER_10K&#x60;, &#x60;TIER_100K&#x60;, or &#x60;TIER_UNLIMITED&#x60;). Scales automatically as quality rating improves. - &#x60;verifiedName&#x60;: Meta-verified business display name - &#x60;displayPhoneNumber&#x60;: Formatted phone number (e.g., \&quot;+1 555-123-4567\&quot;) - &#x60;wabaId&#x60;: WhatsApp Business Account ID - &#x60;phoneNumberId&#x60;: Meta phone number ID .</param>
         /// <param name="profilePicture">profilePicture.</param>
         /// <param name="currentFollowers">Current follower count.</param>
@@ -87,7 +223,7 @@ namespace Late.Model
         /// <param name="growthPercentage">Percentage growth.</param>
         /// <param name="dataPoints">Number of historical snapshots.</param>
         /// <param name="accountStats">accountStats.</param>
-        public AccountWithFollowerStats(string id = default, string platform = default, SocialAccountProfileId profileId = default, string username = default, string displayName = default, string profileUrl = default, bool isActive = default, decimal followersCount = default, DateTime followersLastUpdated = default, AdsStatusEnum? adsStatus = default, Object metadata = default, string profilePicture = default, decimal currentFollowers = default, DateTime lastUpdated = default, decimal growth = default, decimal growthPercentage = default, decimal dataPoints = default, AccountWithFollowerStatsAllOfAccountStats accountStats = default)
+        public AccountWithFollowerStats(string id = default, PlatformEnum? platform = default, SocialAccountProfileId profileId = default, string username = default, string displayName = default, string profileUrl = default, bool isActive = default, decimal followersCount = default, DateTime followersLastUpdated = default, string parentAccountId = default, bool enabled = default, AdsStatusEnum? adsStatus = default, Object metadata = default, string profilePicture = default, decimal currentFollowers = default, DateTime lastUpdated = default, decimal growth = default, decimal growthPercentage = default, decimal dataPoints = default, AccountWithFollowerStatsAllOfAccountStats accountStats = default)
         {
             this.Id = id;
             this.Platform = platform;
@@ -98,6 +234,8 @@ namespace Late.Model
             this.IsActive = isActive;
             this.FollowersCount = followersCount;
             this.FollowersLastUpdated = followersLastUpdated;
+            this.ParentAccountId = parentAccountId;
+            this.Enabled = enabled;
             this.AdsStatus = adsStatus;
             this.Metadata = metadata;
             this.ProfilePicture = profilePicture;
@@ -114,12 +252,6 @@ namespace Late.Model
         /// </summary>
         [DataMember(Name = "_id", EmitDefaultValue = false)]
         public string Id { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Platform
-        /// </summary>
-        [DataMember(Name = "platform", EmitDefaultValue = false)]
-        public string Platform { get; set; }
 
         /// <summary>
         /// Gets or Sets ProfileId
@@ -165,6 +297,20 @@ namespace Late.Model
         /// <value>Last time follower count was updated (only included if user has analytics add-on)</value>
         [DataMember(Name = "followersLastUpdated", EmitDefaultValue = false)]
         public DateTime FollowersLastUpdated { get; set; }
+
+        /// <summary>
+        /// Reference to the parent posting SocialAccount. Set for ads accounts that share or derive from a posting account&#39;s OAuth token. null for standalone ads (Google Ads) and all posting accounts. 
+        /// </summary>
+        /// <value>Reference to the parent posting SocialAccount. Set for ads accounts that share or derive from a posting account&#39;s OAuth token. null for standalone ads (Google Ads) and all posting accounts. </value>
+        [DataMember(Name = "parentAccountId", EmitDefaultValue = false)]
+        public string ParentAccountId { get; set; }
+
+        /// <summary>
+        /// Whether the user explicitly activated this account. false means the account was created as a side effect (e.g., posting account auto-created when user connected ads first). Posting UI and scheduler ignore accounts with enabled: false. 
+        /// </summary>
+        /// <value>Whether the user explicitly activated this account. false means the account was created as a side effect (e.g., posting account auto-created when user connected ads first). Posting UI and scheduler ignore accounts with enabled: false. </value>
+        [DataMember(Name = "enabled", EmitDefaultValue = true)]
+        public bool Enabled { get; set; }
 
         /// <summary>
         /// Platform-specific metadata. Fields vary by platform. For WhatsApp accounts, includes: - &#x60;qualityRating&#x60;: Phone number quality rating from Meta (&#x60;GREEN&#x60;, &#x60;YELLOW&#x60;, &#x60;RED&#x60;, or &#x60;UNKNOWN&#x60;) - &#x60;nameStatus&#x60;: Display name review status (&#x60;APPROVED&#x60;, &#x60;PENDING_REVIEW&#x60;, &#x60;DECLINED&#x60;, or &#x60;NONE&#x60;). Messages cannot be sent until the display name is approved by Meta. - &#x60;messagingLimitTier&#x60;: Maximum unique business-initiated conversations per 24h rolling window (&#x60;TIER_250&#x60;, &#x60;TIER_1K&#x60;, &#x60;TIER_10K&#x60;, &#x60;TIER_100K&#x60;, or &#x60;TIER_UNLIMITED&#x60;). Scales automatically as quality rating improves. - &#x60;verifiedName&#x60;: Meta-verified business display name - &#x60;displayPhoneNumber&#x60;: Formatted phone number (e.g., \&quot;+1 555-123-4567\&quot;) - &#x60;wabaId&#x60;: WhatsApp Business Account ID - &#x60;phoneNumberId&#x60;: Meta phone number ID 
@@ -236,6 +382,8 @@ namespace Late.Model
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("  FollowersCount: ").Append(FollowersCount).Append("\n");
             sb.Append("  FollowersLastUpdated: ").Append(FollowersLastUpdated).Append("\n");
+            sb.Append("  ParentAccountId: ").Append(ParentAccountId).Append("\n");
+            sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  AdsStatus: ").Append(AdsStatus).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  ProfilePicture: ").Append(ProfilePicture).Append("\n");

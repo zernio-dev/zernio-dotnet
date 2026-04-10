@@ -34,9 +34,9 @@ namespace Late.Model
     public partial class DisconnectAdsRequest : IValidatableObject
     {
         /// <summary>
-        /// The ads platform to disconnect
+        /// The ads platform (optional, used for logging only)
         /// </summary>
-        /// <value>The ads platform to disconnect</value>
+        /// <value>The ads platform (optional, used for logging only)</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AdsPlatformEnum
         {
@@ -73,21 +73,16 @@ namespace Late.Model
 
 
         /// <summary>
-        /// The ads platform to disconnect
+        /// The ads platform (optional, used for logging only)
         /// </summary>
-        /// <value>The ads platform to disconnect</value>
-        [DataMember(Name = "adsPlatform", IsRequired = true, EmitDefaultValue = true)]
-        public AdsPlatformEnum AdsPlatform { get; set; }
+        /// <value>The ads platform (optional, used for logging only)</value>
+        [DataMember(Name = "adsPlatform", EmitDefaultValue = false)]
+        public AdsPlatformEnum? AdsPlatform { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DisconnectAdsRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected DisconnectAdsRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DisconnectAdsRequest" /> class.
-        /// </summary>
-        /// <param name="adsPlatform">The ads platform to disconnect (required).</param>
-        public DisconnectAdsRequest(AdsPlatformEnum adsPlatform = default)
+        /// <param name="adsPlatform">The ads platform (optional, used for logging only).</param>
+        public DisconnectAdsRequest(AdsPlatformEnum? adsPlatform = default)
         {
             this.AdsPlatform = adsPlatform;
         }

@@ -115,11 +115,11 @@ catch (ApiException e)
 
 <a id="disconnectads"></a>
 # **DisconnectAds**
-> DeleteAccountGroup200Response DisconnectAds (string accountId, DisconnectAdsRequest disconnectAdsRequest)
+> DeleteAccountGroup200Response DisconnectAds (string accountId, DisconnectAdsRequest? disconnectAdsRequest = null)
 
 Disconnect ads from an account
 
-Disconnects ads from a social account without removing the posting connection.  **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an `adsOptOut` flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.  **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.  **Standalone platforms** (googleads): Do not use this endpoint. Use `DELETE /v1/accounts/{accountId}` instead, since Google Ads accounts are standalone. 
+**Deprecated.** Ads accounts are now standalone SocialAccount documents. Use `DELETE /v1/accounts/{accountId}` instead, passing the ads account's own ID.  This endpoint is kept for backward compatibility. It soft-deletes the ads SocialAccount identified by `accountId` (which must be an ads account, not a posting account). The parent posting account is left untouched. 
 
 ### Example
 ```csharp
@@ -145,8 +145,8 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | The SocialAccount ID (parent posting account for same-token/separate-token platforms)
-            var disconnectAdsRequest = new DisconnectAdsRequest(); // DisconnectAdsRequest | 
+            var accountId = "accountId_example";  // string | The ads SocialAccount ID to disconnect
+            var disconnectAdsRequest = new DisconnectAdsRequest?(); // DisconnectAdsRequest? |  (optional) 
 
             try
             {
@@ -189,8 +189,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The SocialAccount ID (parent posting account for same-token/separate-token platforms) |  |
-| **disconnectAdsRequest** | [**DisconnectAdsRequest**](DisconnectAdsRequest.md) |  |  |
+| **accountId** | **string** | The ads SocialAccount ID to disconnect |  |
+| **disconnectAdsRequest** | [**DisconnectAdsRequest?**](DisconnectAdsRequest?.md) |  | [optional]  |
 
 ### Return type
 
