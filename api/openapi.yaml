@@ -4439,7 +4439,8 @@ paths:
                 $ref: "#/components/schemas/selectFacebookPage_200_response"
           description: Facebook Page connected successfully
         "400":
-          description: "Missing required fields (profileId, pageId, or tempToken)"
+          description: "Missing required fields (profileId, pageId, tempToken, or\
+            \ userProfile)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -23420,6 +23421,7 @@ components:
       - pageId
       - profileId
       - tempToken
+      - userProfile
     selectFacebookPage_200_response_account:
       example:
         accountId: accountId

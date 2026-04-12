@@ -2299,7 +2299,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Facebook Page connected successfully |  -  |
-| **400** | Missing required fields (profileId, pageId, or tempToken) |  -  |
+| **400** | Missing required fields (profileId, pageId, tempToken, or userProfile) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected page not found in available pages |  -  |

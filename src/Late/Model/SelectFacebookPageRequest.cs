@@ -44,7 +44,7 @@ namespace Late.Model
         /// <param name="profileId">Profile ID from your connection flow (required).</param>
         /// <param name="pageId">The Facebook Page ID selected by the user (required).</param>
         /// <param name="tempToken">Temporary Facebook access token from OAuth (required).</param>
-        /// <param name="userProfile">userProfile.</param>
+        /// <param name="userProfile">userProfile (required).</param>
         /// <param name="redirectUrl">Optional custom redirect URL to return to after selection.</param>
         public SelectFacebookPageRequest(string profileId = default, string pageId = default, string tempToken = default, SelectFacebookPageRequestUserProfile userProfile = default, string redirectUrl = default)
         {
@@ -66,6 +66,11 @@ namespace Late.Model
                 throw new ArgumentNullException("tempToken is a required property for SelectFacebookPageRequest and cannot be null");
             }
             this.TempToken = tempToken;
+            // to ensure "userProfile" is required (not null)
+            if (userProfile == null)
+            {
+                throw new ArgumentNullException("userProfile is a required property for SelectFacebookPageRequest and cannot be null");
+            }
             this.UserProfile = userProfile;
             this.RedirectUrl = redirectUrl;
         }
@@ -94,7 +99,7 @@ namespace Late.Model
         /// <summary>
         /// Gets or Sets UserProfile
         /// </summary>
-        [DataMember(Name = "userProfile", EmitDefaultValue = false)]
+        [DataMember(Name = "userProfile", IsRequired = true, EmitDefaultValue = true)]
         public SelectFacebookPageRequestUserProfile UserProfile { get; set; }
 
         /// <summary>
