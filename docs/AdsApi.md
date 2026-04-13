@@ -625,7 +625,7 @@ catch (ApiException e)
 
 <a id="listads"></a>
 # **ListAds**
-> ListAds200Response ListAds (int? page = null, int? limit = null, string? source = null, string? status = null, string? platform = null, string? accountId = null, string? profileId = null, string? campaignId = null, DateOnly? fromDate = null, DateOnly? toDate = null)
+> ListAds200Response ListAds (int? page = null, int? limit = null, string? source = null, string? status = null, string? platform = null, string? accountId = null, string? adAccountId = null, string? profileId = null, string? campaignId = null, DateOnly? fromDate = null, DateOnly? toDate = null)
 
 List ads
 
@@ -661,6 +661,7 @@ namespace Example
             var status = "active";  // string? |  (optional) 
             var platform = "facebook";  // string? |  (optional) 
             var accountId = "accountId_example";  // string? | Social account ID (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional) 
             var profileId = "profileId_example";  // string? | Profile ID (optional) 
             var campaignId = "campaignId_example";  // string? | Platform campaign ID (filter ads within a campaign) (optional) 
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional) 
@@ -669,7 +670,7 @@ namespace Example
             try
             {
                 // List ads
-                ListAds200Response result = apiInstance.ListAds(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate);
+                ListAds200Response result = apiInstance.ListAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -690,7 +691,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List ads
-    ApiResponse<ListAds200Response> response = apiInstance.ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate);
+    ApiResponse<ListAds200Response> response = apiInstance.ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -713,6 +714,7 @@ catch (ApiException e)
 | **status** | **string?** |  | [optional]  |
 | **platform** | **string?** |  | [optional]  |
 | **accountId** | **string?** | Social account ID | [optional]  |
+| **adAccountId** | **string?** | Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. | [optional]  |
 | **profileId** | **string?** | Profile ID | [optional]  |
 | **campaignId** | **string?** | Platform campaign ID (filter ads within a campaign) | [optional]  |
 | **fromDate** | **DateOnly?** | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional]  |

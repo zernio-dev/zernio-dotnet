@@ -170,12 +170,13 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>ListAds200Response</returns>
-        ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
 
         /// <summary>
         /// List ads
@@ -190,12 +191,13 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>ApiResponse of ListAds200Response</returns>
-        ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
+        ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
         /// Search targeting interests
         /// </summary>
@@ -408,13 +410,14 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAds200Response</returns>
-        System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List ads
@@ -429,13 +432,14 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAds200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Search targeting interests
         /// </summary>
@@ -1511,14 +1515,15 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>ListAds200Response</returns>
-        public ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public ListAds200Response ListAds(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
-            Late.Client.ApiResponse<ListAds200Response> localVarResponse = ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate);
+            Late.Client.ApiResponse<ListAds200Response> localVarResponse = ListAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate);
             return localVarResponse.Data;
         }
 
@@ -1532,12 +1537,13 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <returns>ApiResponse of ListAds200Response</returns>
-        public Late.Client.ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
+        public Late.Client.ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
 
@@ -1578,6 +1584,10 @@ namespace Late.Api
             if (accountId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
             }
             if (profileId != null)
             {
@@ -1625,15 +1635,16 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAds200Response</returns>
-        public async System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAds200Response> ListAdsAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<ListAds200Response> localVarResponse = await ListAdsWithHttpInfoAsync(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<ListAds200Response> localVarResponse = await ListAdsWithHttpInfoAsync(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1647,13 +1658,14 @@ namespace Late.Api
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="campaignId">Platform campaign ID (filter ads within a campaign) (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAds200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
@@ -1696,6 +1708,10 @@ namespace Late.Api
             if (accountId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
             }
             if (profileId != null)
             {
