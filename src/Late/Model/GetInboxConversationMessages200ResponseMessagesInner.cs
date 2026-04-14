@@ -163,7 +163,7 @@ namespace Late.Model
         /// <param name="editedAt">When the most recent edit happened..</param>
         /// <param name="editCount">Total number of edits applied..</param>
         /// <param name="editHistory">Every prior version of the message, oldest first..</param>
-        /// <param name="isDeleted">True if the sender has deleted (unsent) this message. The original &#x60;message&#x60; and &#x60;attachments&#x60; fields remain populated..</param>
+        /// <param name="isDeleted">True if the sender has deleted (unsent) this message. The original message and attachments fields remain populated..</param>
         /// <param name="deletedAt">deletedAt.</param>
         /// <param name="deliveryStatus">Lifecycle status for outgoing messages. Not all platforms emit every state (see webhook support matrix)..</param>
         /// <param name="deliveredAt">deliveredAt.</param>
@@ -303,9 +303,9 @@ namespace Late.Model
         public List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> EditHistory { get; set; }
 
         /// <summary>
-        /// True if the sender has deleted (unsent) this message. The original &#x60;message&#x60; and &#x60;attachments&#x60; fields remain populated.
+        /// True if the sender has deleted (unsent) this message. The original message and attachments fields remain populated.
         /// </summary>
-        /// <value>True if the sender has deleted (unsent) this message. The original &#x60;message&#x60; and &#x60;attachments&#x60; fields remain populated.</value>
+        /// <value>True if the sender has deleted (unsent) this message. The original message and attachments fields remain populated.</value>
         [DataMember(Name = "isDeleted", EmitDefaultValue = true)]
         public bool IsDeleted { get; set; }
 

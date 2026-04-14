@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Late.Client.OpenAPIDateConverter;
 namespace Late.Model
 {
     /// <summary>
-    /// The &#x60;account&#x60; context included in inbox webhook payloads.
+    /// The account context included in inbox webhook payloads.
     /// </summary>
     [DataContract(Name = "InboxWebhookAccount")]
     public partial class InboxWebhookAccount : IValidatableObject

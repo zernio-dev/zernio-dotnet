@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Late.Client.OpenAPIDateConverter;
 namespace Late.Model
 {
     /// <summary>
-    /// Populated when &#x60;deliveryStatus &#x3D;&#x3D;&#x3D; \&quot;failed\&quot;&#x60;.
+    /// Populated when deliveryStatus &#x3D;&#x3D;&#x3D; \&quot;failed\&quot;.
     /// </summary>
     [DataContract(Name = "getInboxConversationMessages_200_response_messages_inner_deliveryError")]
     public partial class GetInboxConversationMessages200ResponseMessagesInnerDeliveryError : IValidatableObject

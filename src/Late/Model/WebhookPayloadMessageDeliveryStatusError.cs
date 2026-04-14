@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Late.Client.OpenAPIDateConverter;
 namespace Late.Model
 {
     /// <summary>
-    /// Populated only on &#x60;message.failed&#x60;.
+    /// Populated only on message.failed.
     /// </summary>
     [DataContract(Name = "WebhookPayloadMessageDeliveryStatus_error")]
     public partial class WebhookPayloadMessageDeliveryStatusError : IValidatableObject

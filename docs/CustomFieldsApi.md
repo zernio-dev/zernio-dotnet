@@ -17,6 +17,8 @@ All URIs are relative to *https://zernio.com/api*
 
 Clear custom field value
 
+Remove a custom field value from a contact. The field definition is not affected.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -112,6 +114,8 @@ void (empty response body)
 > CreateCustomField200Response CreateCustomField (CreateCustomFieldRequest createCustomFieldRequest)
 
 Create custom field
+
+Create a new custom field definition. Supported types are text, number, date, boolean, and select.
 
 ### Example
 ```csharp
@@ -211,6 +215,8 @@ catch (ApiException e)
 
 Delete custom field
 
+Delete a custom field definition and remove its values from all contacts.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -304,6 +310,8 @@ void (empty response body)
 > ListCustomFields200Response ListCustomFields (string? profileId = null)
 
 List custom field definitions
+
+Returns all custom field definitions. Optionally filter by profile.
 
 ### Example
 ```csharp
@@ -402,6 +410,8 @@ catch (ApiException e)
 
 Set custom field value
 
+Set or overwrite a custom field value on a contact. The value type must match the field definition.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -499,6 +509,8 @@ void (empty response body)
 > UpdateCustomField200Response UpdateCustomField (string fieldId, UpdateCustomFieldRequest? updateCustomFieldRequest = null)
 
 Update custom field
+
+Update a custom field definition. The field type cannot be changed after creation.
 
 ### Example
 ```csharp

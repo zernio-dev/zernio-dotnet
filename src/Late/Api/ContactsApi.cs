@@ -73,6 +73,9 @@ namespace Late.Api
         /// <summary>
         /// Delete contact
         /// </summary>
+        /// <remarks>
+        /// Permanently deletes a contact and all associated channels.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
         /// <returns></returns>
@@ -82,7 +85,7 @@ namespace Late.Api
         /// Delete contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently deletes a contact and all associated channels.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -91,6 +94,9 @@ namespace Late.Api
         /// <summary>
         /// Get contact
         /// </summary>
+        /// <remarks>
+        /// Returns a contact with all associated messaging channels.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
         /// <returns>GetContact200Response</returns>
@@ -100,7 +106,7 @@ namespace Late.Api
         /// Get contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a contact with all associated messaging channels.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -109,6 +115,9 @@ namespace Late.Api
         /// <summary>
         /// List channels for a contact
         /// </summary>
+        /// <remarks>
+        /// Returns all messaging channels linked to a contact (e.g. Instagram DM, Telegram, WhatsApp).
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
         /// <returns>GetContactChannels200Response</returns>
@@ -118,7 +127,7 @@ namespace Late.Api
         /// List channels for a contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all messaging channels linked to a contact (e.g. Instagram DM, Telegram, WhatsApp).
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -160,6 +169,9 @@ namespace Late.Api
         /// <summary>
         /// Update contact
         /// </summary>
+        /// <remarks>
+        /// Update one or more fields on a contact. Only provided fields are changed.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
         /// <param name="updateContactRequest"> (optional)</param>
@@ -170,7 +182,7 @@ namespace Late.Api
         /// Update contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update one or more fields on a contact. Only provided fields are changed.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -236,7 +248,7 @@ namespace Late.Api
         /// Delete contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently deletes a contact and all associated channels.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -248,7 +260,7 @@ namespace Late.Api
         /// Delete contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently deletes a contact and all associated channels.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -259,7 +271,7 @@ namespace Late.Api
         /// Get contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a contact with all associated messaging channels.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -271,7 +283,7 @@ namespace Late.Api
         /// Get contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a contact with all associated messaging channels.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -282,7 +294,7 @@ namespace Late.Api
         /// List channels for a contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all messaging channels linked to a contact (e.g. Instagram DM, Telegram, WhatsApp).
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -294,7 +306,7 @@ namespace Late.Api
         /// List channels for a contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all messaging channels linked to a contact (e.g. Instagram DM, Telegram, WhatsApp).
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -340,7 +352,7 @@ namespace Late.Api
         /// Update contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update one or more fields on a contact. Only provided fields are changed.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -353,7 +365,7 @@ namespace Late.Api
         /// Update contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update one or more fields on a contact. Only provided fields are changed.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -833,7 +845,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete contact 
+        /// Delete contact Permanently deletes a contact and all associated channels.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -844,7 +856,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete contact 
+        /// Delete contact Permanently deletes a contact and all associated channels.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -893,7 +905,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete contact 
+        /// Delete contact Permanently deletes a contact and all associated channels.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -905,7 +917,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete contact 
+        /// Delete contact Permanently deletes a contact and all associated channels.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -958,7 +970,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get contact 
+        /// Get contact Returns a contact with all associated messaging channels.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -970,7 +982,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get contact 
+        /// Get contact Returns a contact with all associated messaging channels.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1019,7 +1031,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get contact 
+        /// Get contact Returns a contact with all associated messaging channels.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1032,7 +1044,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get contact 
+        /// Get contact Returns a contact with all associated messaging channels.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1085,7 +1097,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List channels for a contact 
+        /// List channels for a contact Returns all messaging channels linked to a contact (e.g. Instagram DM, Telegram, WhatsApp).
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1097,7 +1109,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List channels for a contact 
+        /// List channels for a contact Returns all messaging channels linked to a contact (e.g. Instagram DM, Telegram, WhatsApp).
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1146,7 +1158,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List channels for a contact 
+        /// List channels for a contact Returns all messaging channels linked to a contact (e.g. Instagram DM, Telegram, WhatsApp).
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1159,7 +1171,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List channels for a contact 
+        /// List channels for a contact Returns all messaging channels linked to a contact (e.g. Instagram DM, Telegram, WhatsApp).
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1409,7 +1421,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update contact 
+        /// Update contact Update one or more fields on a contact. Only provided fields are changed.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1422,7 +1434,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update contact 
+        /// Update contact Update one or more fields on a contact. Only provided fields are changed.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1474,7 +1486,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update contact 
+        /// Update contact Update one or more fields on a contact. Only provided fields are changed.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1488,7 +1500,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update contact 
+        /// Update contact Update one or more fields on a contact. Only provided fields are changed.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>

@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Late.Client.OpenAPIDateConverter;
 namespace Late.Model
 {
     /// <summary>
-    /// Webhook payload for &#x60;message.edited&#x60; events. Fires when the sender edits a previously-sent message. Supported platforms: Instagram, Facebook Messenger, Telegram. The &#x60;message&#x60; object reflects the LATEST state; &#x60;editHistory&#x60; contains every prior version in order (oldest first), so the last entry is the version immediately before the current content. 
+    /// Webhook payload for message.edited events. Fires when the sender edits a previously-sent message. Supported platforms: Instagram, Facebook Messenger, Telegram. The message object reflects the LATEST state; editHistory contains every prior version in order (oldest first), so the last entry is the version immediately before the current content. 
     /// </summary>
     [DataContract(Name = "WebhookPayloadMessageEdited")]
     public partial class WebhookPayloadMessageEdited : IValidatableObject

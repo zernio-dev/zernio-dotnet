@@ -42,10 +42,10 @@ namespace Late.Model
         /// Initializes a new instance of the <see cref="CreateInboxConversationRequest" /> class.
         /// </summary>
         /// <param name="accountId">The social account ID to send from (required).</param>
-        /// <param name="participantId">Twitter numeric user ID of the recipient. Provide either this or &#x60;participantUsername&#x60;..</param>
-        /// <param name="participantUsername">Twitter username (with or without @) of the recipient. Resolved to a user ID via lookup. Provide either this or &#x60;participantId&#x60;..</param>
-        /// <param name="message">Text content of the message. At least one of &#x60;message&#x60; or attachment is required..</param>
-        /// <param name="skipDmCheck">Skip the &#x60;receives_your_dm&#x60; eligibility check before sending. Use if you have already verified the recipient accepts DMs. (default to false).</param>
+        /// <param name="participantId">Twitter numeric user ID of the recipient. Provide either this or participantUsername..</param>
+        /// <param name="participantUsername">Twitter username (with or without @) of the recipient. Resolved to a user ID via lookup. Provide either this or participantId..</param>
+        /// <param name="message">Text content of the message. At least one of message or attachment is required..</param>
+        /// <param name="skipDmCheck">Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs. (default to false).</param>
         public CreateInboxConversationRequest(string accountId = default, string participantId = default, string participantUsername = default, string message = default, bool skipDmCheck = false)
         {
             // to ensure "accountId" is required (not null)
@@ -68,30 +68,30 @@ namespace Late.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Twitter numeric user ID of the recipient. Provide either this or &#x60;participantUsername&#x60;.
+        /// Twitter numeric user ID of the recipient. Provide either this or participantUsername.
         /// </summary>
-        /// <value>Twitter numeric user ID of the recipient. Provide either this or &#x60;participantUsername&#x60;.</value>
+        /// <value>Twitter numeric user ID of the recipient. Provide either this or participantUsername.</value>
         [DataMember(Name = "participantId", EmitDefaultValue = false)]
         public string ParticipantId { get; set; }
 
         /// <summary>
-        /// Twitter username (with or without @) of the recipient. Resolved to a user ID via lookup. Provide either this or &#x60;participantId&#x60;.
+        /// Twitter username (with or without @) of the recipient. Resolved to a user ID via lookup. Provide either this or participantId.
         /// </summary>
-        /// <value>Twitter username (with or without @) of the recipient. Resolved to a user ID via lookup. Provide either this or &#x60;participantId&#x60;.</value>
+        /// <value>Twitter username (with or without @) of the recipient. Resolved to a user ID via lookup. Provide either this or participantId.</value>
         [DataMember(Name = "participantUsername", EmitDefaultValue = false)]
         public string ParticipantUsername { get; set; }
 
         /// <summary>
-        /// Text content of the message. At least one of &#x60;message&#x60; or attachment is required.
+        /// Text content of the message. At least one of message or attachment is required.
         /// </summary>
-        /// <value>Text content of the message. At least one of &#x60;message&#x60; or attachment is required.</value>
+        /// <value>Text content of the message. At least one of message or attachment is required.</value>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
         /// <summary>
-        /// Skip the &#x60;receives_your_dm&#x60; eligibility check before sending. Use if you have already verified the recipient accepts DMs.
+        /// Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.
         /// </summary>
-        /// <value>Skip the &#x60;receives_your_dm&#x60; eligibility check before sending. Use if you have already verified the recipient accepts DMs.</value>
+        /// <value>Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.</value>
         [DataMember(Name = "skipDmCheck", EmitDefaultValue = true)]
         public bool SkipDmCheck { get; set; }
 

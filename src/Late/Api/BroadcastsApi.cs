@@ -31,6 +31,9 @@ namespace Late.Api
         /// <summary>
         /// Add recipients to a broadcast
         /// </summary>
+        /// <remarks>
+        /// Add recipients by contact IDs, raw phone numbers, or from the broadcast&#39;s segment filters.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
         /// <param name="addBroadcastRecipientsRequest"></param>
@@ -41,7 +44,7 @@ namespace Late.Api
         /// Add recipients to a broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Add recipients by contact IDs, raw phone numbers, or from the broadcast&#39;s segment filters.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -51,6 +54,9 @@ namespace Late.Api
         /// <summary>
         /// Cancel broadcast
         /// </summary>
+        /// <remarks>
+        /// Cancel a scheduled or in-progress broadcast. Already-sent messages are not affected.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
         /// <returns>CancelBroadcast200Response</returns>
@@ -60,7 +66,7 @@ namespace Late.Api
         /// Cancel broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Cancel a scheduled or in-progress broadcast. Already-sent messages are not affected.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -69,6 +75,9 @@ namespace Late.Api
         /// <summary>
         /// Create broadcast draft
         /// </summary>
+        /// <remarks>
+        /// Create a broadcast in draft status. Add recipients and then send or schedule it.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
         /// <returns>CreateBroadcast200Response</returns>
@@ -78,7 +87,7 @@ namespace Late.Api
         /// Create broadcast draft
         /// </summary>
         /// <remarks>
-        /// 
+        /// Create a broadcast in draft status. Add recipients and then send or schedule it.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
@@ -87,6 +96,9 @@ namespace Late.Api
         /// <summary>
         /// Delete broadcast
         /// </summary>
+        /// <remarks>
+        /// Permanently delete a broadcast. Only drafts can be deleted.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
         /// <returns></returns>
@@ -96,7 +108,7 @@ namespace Late.Api
         /// Delete broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently delete a broadcast. Only drafts can be deleted.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -105,6 +117,9 @@ namespace Late.Api
         /// <summary>
         /// Get broadcast details
         /// </summary>
+        /// <remarks>
+        /// Returns a broadcast with its full configuration and delivery stats.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
         /// <returns>GetBroadcast200Response</returns>
@@ -114,7 +129,7 @@ namespace Late.Api
         /// Get broadcast details
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a broadcast with its full configuration and delivery stats.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -123,6 +138,9 @@ namespace Late.Api
         /// <summary>
         /// List broadcast recipients
         /// </summary>
+        /// <remarks>
+        /// Returns recipients for a broadcast with individual delivery status. Filter by status.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
         /// <param name="status"> (optional)</param>
@@ -135,7 +153,7 @@ namespace Late.Api
         /// List broadcast recipients
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns recipients for a broadcast with individual delivery status. Filter by status.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -147,6 +165,9 @@ namespace Late.Api
         /// <summary>
         /// List broadcasts
         /// </summary>
+        /// <remarks>
+        /// Returns broadcasts with delivery stats. Filter by status, platform, or profile.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
         /// <param name="status"> (optional)</param>
@@ -160,7 +181,7 @@ namespace Late.Api
         /// List broadcasts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns broadcasts with delivery stats. Filter by status, platform, or profile.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -173,6 +194,9 @@ namespace Late.Api
         /// <summary>
         /// Schedule broadcast for later
         /// </summary>
+        /// <remarks>
+        /// Schedule a draft broadcast to be sent at a future date and time.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
         /// <param name="scheduleBroadcastRequest"></param>
@@ -183,7 +207,7 @@ namespace Late.Api
         /// Schedule broadcast for later
         /// </summary>
         /// <remarks>
-        /// 
+        /// Schedule a draft broadcast to be sent at a future date and time.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -193,6 +217,9 @@ namespace Late.Api
         /// <summary>
         /// Send broadcast now
         /// </summary>
+        /// <remarks>
+        /// Immediately start sending a draft broadcast to its recipients.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
         /// <returns>SendBroadcast200Response</returns>
@@ -202,7 +229,7 @@ namespace Late.Api
         /// Send broadcast now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Immediately start sending a draft broadcast to its recipients.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -211,6 +238,9 @@ namespace Late.Api
         /// <summary>
         /// Update broadcast
         /// </summary>
+        /// <remarks>
+        /// Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
         /// <returns>UpdateBroadcast200Response</returns>
@@ -220,7 +250,7 @@ namespace Late.Api
         /// Update broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -239,7 +269,7 @@ namespace Late.Api
         /// Add recipients to a broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Add recipients by contact IDs, raw phone numbers, or from the broadcast&#39;s segment filters.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -252,7 +282,7 @@ namespace Late.Api
         /// Add recipients to a broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Add recipients by contact IDs, raw phone numbers, or from the broadcast&#39;s segment filters.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -264,7 +294,7 @@ namespace Late.Api
         /// Cancel broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Cancel a scheduled or in-progress broadcast. Already-sent messages are not affected.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -276,7 +306,7 @@ namespace Late.Api
         /// Cancel broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Cancel a scheduled or in-progress broadcast. Already-sent messages are not affected.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -287,7 +317,7 @@ namespace Late.Api
         /// Create broadcast draft
         /// </summary>
         /// <remarks>
-        /// 
+        /// Create a broadcast in draft status. Add recipients and then send or schedule it.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
@@ -299,7 +329,7 @@ namespace Late.Api
         /// Create broadcast draft
         /// </summary>
         /// <remarks>
-        /// 
+        /// Create a broadcast in draft status. Add recipients and then send or schedule it.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
@@ -310,7 +340,7 @@ namespace Late.Api
         /// Delete broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently delete a broadcast. Only drafts can be deleted.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -322,7 +352,7 @@ namespace Late.Api
         /// Delete broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently delete a broadcast. Only drafts can be deleted.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -333,7 +363,7 @@ namespace Late.Api
         /// Get broadcast details
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a broadcast with its full configuration and delivery stats.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -345,7 +375,7 @@ namespace Late.Api
         /// Get broadcast details
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a broadcast with its full configuration and delivery stats.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -356,7 +386,7 @@ namespace Late.Api
         /// List broadcast recipients
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns recipients for a broadcast with individual delivery status. Filter by status.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -371,7 +401,7 @@ namespace Late.Api
         /// List broadcast recipients
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns recipients for a broadcast with individual delivery status. Filter by status.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -385,7 +415,7 @@ namespace Late.Api
         /// List broadcasts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns broadcasts with delivery stats. Filter by status, platform, or profile.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -401,7 +431,7 @@ namespace Late.Api
         /// List broadcasts
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns broadcasts with delivery stats. Filter by status, platform, or profile.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -416,7 +446,7 @@ namespace Late.Api
         /// Schedule broadcast for later
         /// </summary>
         /// <remarks>
-        /// 
+        /// Schedule a draft broadcast to be sent at a future date and time.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -429,7 +459,7 @@ namespace Late.Api
         /// Schedule broadcast for later
         /// </summary>
         /// <remarks>
-        /// 
+        /// Schedule a draft broadcast to be sent at a future date and time.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -441,7 +471,7 @@ namespace Late.Api
         /// Send broadcast now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Immediately start sending a draft broadcast to its recipients.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -453,7 +483,7 @@ namespace Late.Api
         /// Send broadcast now
         /// </summary>
         /// <remarks>
-        /// 
+        /// Immediately start sending a draft broadcast to its recipients.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -464,7 +494,7 @@ namespace Late.Api
         /// Update broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -476,7 +506,7 @@ namespace Late.Api
         /// Update broadcast
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -697,7 +727,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Add recipients to a broadcast 
+        /// Add recipients to a broadcast Add recipients by contact IDs, raw phone numbers, or from the broadcast&#39;s segment filters.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -710,7 +740,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Add recipients to a broadcast 
+        /// Add recipients to a broadcast Add recipients by contact IDs, raw phone numbers, or from the broadcast&#39;s segment filters.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -766,7 +796,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Add recipients to a broadcast 
+        /// Add recipients to a broadcast Add recipients by contact IDs, raw phone numbers, or from the broadcast&#39;s segment filters.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -780,7 +810,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Add recipients to a broadcast 
+        /// Add recipients to a broadcast Add recipients by contact IDs, raw phone numbers, or from the broadcast&#39;s segment filters.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -840,7 +870,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Cancel broadcast 
+        /// Cancel broadcast Cancel a scheduled or in-progress broadcast. Already-sent messages are not affected.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -852,7 +882,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Cancel broadcast 
+        /// Cancel broadcast Cancel a scheduled or in-progress broadcast. Already-sent messages are not affected.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -901,7 +931,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Cancel broadcast 
+        /// Cancel broadcast Cancel a scheduled or in-progress broadcast. Already-sent messages are not affected.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -914,7 +944,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Cancel broadcast 
+        /// Cancel broadcast Cancel a scheduled or in-progress broadcast. Already-sent messages are not affected.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -967,7 +997,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create broadcast draft 
+        /// Create broadcast draft Create a broadcast in draft status. Add recipients and then send or schedule it.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
@@ -979,7 +1009,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create broadcast draft 
+        /// Create broadcast draft Create a broadcast in draft status. Add recipients and then send or schedule it.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
@@ -1029,7 +1059,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create broadcast draft 
+        /// Create broadcast draft Create a broadcast in draft status. Add recipients and then send or schedule it.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
@@ -1042,7 +1072,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create broadcast draft 
+        /// Create broadcast draft Create a broadcast in draft status. Add recipients and then send or schedule it.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createBroadcastRequest"></param>
@@ -1096,7 +1126,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete broadcast 
+        /// Delete broadcast Permanently delete a broadcast. Only drafts can be deleted.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1107,7 +1137,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete broadcast 
+        /// Delete broadcast Permanently delete a broadcast. Only drafts can be deleted.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1156,7 +1186,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete broadcast 
+        /// Delete broadcast Permanently delete a broadcast. Only drafts can be deleted.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1168,7 +1198,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete broadcast 
+        /// Delete broadcast Permanently delete a broadcast. Only drafts can be deleted.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1221,7 +1251,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get broadcast details 
+        /// Get broadcast details Returns a broadcast with its full configuration and delivery stats.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1233,7 +1263,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get broadcast details 
+        /// Get broadcast details Returns a broadcast with its full configuration and delivery stats.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1282,7 +1312,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get broadcast details 
+        /// Get broadcast details Returns a broadcast with its full configuration and delivery stats.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1295,7 +1325,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get broadcast details 
+        /// Get broadcast details Returns a broadcast with its full configuration and delivery stats.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1348,7 +1378,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcast recipients 
+        /// List broadcast recipients Returns recipients for a broadcast with individual delivery status. Filter by status.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1363,7 +1393,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcast recipients 
+        /// List broadcast recipients Returns recipients for a broadcast with individual delivery status. Filter by status.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1427,7 +1457,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcast recipients 
+        /// List broadcast recipients Returns recipients for a broadcast with individual delivery status. Filter by status.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1443,7 +1473,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcast recipients 
+        /// List broadcast recipients Returns recipients for a broadcast with individual delivery status. Filter by status.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1511,7 +1541,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcasts 
+        /// List broadcasts Returns broadcasts with delivery stats. Filter by status, platform, or profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -1527,7 +1557,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcasts 
+        /// List broadcasts Returns broadcasts with delivery stats. Filter by status, platform, or profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -1595,7 +1625,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcasts 
+        /// List broadcasts Returns broadcasts with delivery stats. Filter by status, platform, or profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -1612,7 +1642,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List broadcasts 
+        /// List broadcasts Returns broadcasts with delivery stats. Filter by status, platform, or profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -1684,7 +1714,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Schedule broadcast for later 
+        /// Schedule broadcast for later Schedule a draft broadcast to be sent at a future date and time.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1697,7 +1727,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Schedule broadcast for later 
+        /// Schedule broadcast for later Schedule a draft broadcast to be sent at a future date and time.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1753,7 +1783,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Schedule broadcast for later 
+        /// Schedule broadcast for later Schedule a draft broadcast to be sent at a future date and time.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1767,7 +1797,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Schedule broadcast for later 
+        /// Schedule broadcast for later Schedule a draft broadcast to be sent at a future date and time.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1827,7 +1857,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Send broadcast now 
+        /// Send broadcast now Immediately start sending a draft broadcast to its recipients.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1839,7 +1869,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Send broadcast now 
+        /// Send broadcast now Immediately start sending a draft broadcast to its recipients.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1888,7 +1918,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Send broadcast now 
+        /// Send broadcast now Immediately start sending a draft broadcast to its recipients.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1901,7 +1931,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Send broadcast now 
+        /// Send broadcast now Immediately start sending a draft broadcast to its recipients.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1954,7 +1984,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update broadcast 
+        /// Update broadcast Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -1966,7 +1996,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update broadcast 
+        /// Update broadcast Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -2015,7 +2045,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update broadcast 
+        /// Update broadcast Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
@@ -2028,7 +2058,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update broadcast 
+        /// Update broadcast Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>

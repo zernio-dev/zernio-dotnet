@@ -217,6 +217,8 @@ catch (ApiException e)
 
 Delete contact
 
+Permanently deletes a contact and all associated channels.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -310,6 +312,8 @@ void (empty response body)
 > GetContact200Response GetContact (string contactId)
 
 Get contact
+
+Returns a contact with all associated messaging channels.
 
 ### Example
 ```csharp
@@ -408,6 +412,8 @@ catch (ApiException e)
 > GetContactChannels200Response GetContactChannels (string contactId)
 
 List channels for a contact
+
+Returns all messaging channels linked to a contact (e.g. Instagram DM, Telegram, WhatsApp).
 
 ### Example
 ```csharp
@@ -617,6 +623,8 @@ catch (ApiException e)
 > UpdateContact200Response UpdateContact (string contactId, UpdateContactRequest? updateContactRequest = null)
 
 Update contact
+
+Update one or more fields on a contact. Only provided fields are changed.
 
 ### Example
 ```csharp

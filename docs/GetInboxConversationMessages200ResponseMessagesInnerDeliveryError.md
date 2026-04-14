@@ -1,5 +1,5 @@
 # Late.Model.GetInboxConversationMessages200ResponseMessagesInnerDeliveryError
-Populated when `deliveryStatus === \"failed\"`.
+Populated when deliveryStatus === \"failed\".
 
 ## Properties
 

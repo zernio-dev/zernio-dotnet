@@ -1,5 +1,5 @@
 # Late.Model.InboxWebhookAccount
-The `account` context included in inbox webhook payloads.
+The account context included in inbox webhook payloads.
 
 ## Properties
 

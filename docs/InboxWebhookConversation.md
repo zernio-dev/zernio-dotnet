@@ -1,5 +1,5 @@
 # Late.Model.InboxWebhookConversation
-The `conversation` context included in inbox webhook payloads.
+The conversation context included in inbox webhook payloads.
 
 ## Properties
 

@@ -201,7 +201,7 @@ paths:
       description: |
         Dry-run the full post validation pipeline without publishing. Catches issues like missing media for Instagram/TikTok/YouTube, hashtag limits, invalid thread formats, Facebook Reel requirements, and character limit violations.
 
-        Accepts the same body as `POST /v1/posts`. Does NOT validate accounts, process media, or track usage. This is content-only validation.
+        Accepts the same body as POST /v1/posts. Does NOT validate accounts, process media, or track usage. This is content-only validation.
 
         Returns errors for failures and warnings for near-limit content (>90% of character limit).
       operationId: validatePost
@@ -255,7 +255,7 @@ paths:
       description: |
         Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).
 
-        When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit's public JSON API, which may be unreliable from server IPs. Returns `exists: false` for private, banned, or nonexistent subreddits.
+        When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit's public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits.
       operationId: validateSubreddit
       parameters:
       - description: Subreddit name (with or without "r/" prefix)
@@ -295,7 +295,7 @@ paths:
         Accepts both Zernio Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days.
         Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats.
 
-        **LinkedIn personal accounts:** Analytics are only available for posts published through Zernio. LinkedIn's API only returns metrics for posts authored by the authenticated user. Organization/company page analytics work for all posts.
+        LinkedIn personal accounts: Analytics are only available for posts published through Zernio. LinkedIn's API only returns metrics for posts authored by the authenticated user. Organization/company page analytics work for all posts.
       operationId: getAnalytics
       parameters:
       - description: Returns analytics for a single post. Accepts both Zernio Post
@@ -3058,7 +3058,7 @@ paths:
       description: |
         Edit a published post on a social media platform. Currently only supported for X (Twitter).
 
-        **Requirements:**
+        Requirements:
         - Connected X account must have an active X Premium subscription
         - Must be within 1 hour of original publish time
         - Maximum 5 edits per tweet (enforced by X)
@@ -3115,11 +3115,11 @@ paths:
         Updates metadata of a published video on the specified platform without re-uploading.
         Currently only supported for YouTube. At least one updatable field is required.
 
-        **Two modes:**
+        Two modes:
 
-        1. **Post-based** (video published through Zernio): pass the Zernio postId in the URL and `platform` in the body.
-        2. **Direct video ID** (video uploaded outside Zernio, e.g. directly to YouTube): use `_` as the postId,
-           and pass `videoId` + `accountId` + `platform` in the body. The accountId is the Zernio social account ID
+        1. Post-based (video published through Zernio): pass the Zernio postId in the URL and platform in the body.
+        2. Direct video ID (video uploaded outside Zernio, e.g. directly to YouTube): use _ as the postId,
+           and pass videoId + accountId + platform in the body. The accountId is the Zernio social account ID
            for the connected YouTube channel.
       operationId: updatePostMetadata
       parameters:
@@ -4203,13 +4203,13 @@ paths:
       description: |
         Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.
 
-        **Same-token platforms** (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (`metaads`, `linkedinads`, `pinterestads`) with a copied OAuth token from the parent posting account. If the ads account already exists, returns `alreadyConnected: true`. No extra OAuth needed.
+        Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.
 
-        **Separate-token platforms** (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (`tiktokads`, `xads`) with its own token. Requires an existing posting account (`accountId` param). If the ads account already exists, returns `alreadyConnected: true`.
+        Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. Requires an existing posting account (accountId param). If the ads account already exists, returns alreadyConnected: true.
 
-        **Standalone platforms** (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (`googleads`) with no parent. If the account already exists, returns `alreadyConnected: true`.
+        Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.
 
-        Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., `metaads`, `tiktokads`) in `GET /v1/accounts`.
+        Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts.
       operationId: connectAds
       parameters:
       - description: Platform to connect ads for. Only platforms with ads support
@@ -6042,7 +6042,7 @@ paths:
         1. Go to Meta Business Suite (business.facebook.com)
         2. Create or select a WhatsApp Business Account
         3. In Business Settings > System Users, create a System User
-        4. Assign it the `whatsapp_business_management` and `whatsapp_business_messaging` permissions
+        4. Assign it the whatsapp_business_management and whatsapp_business_messaging permissions
         5. Generate a permanent access token
         6. Get the WABA ID from WhatsApp Manager > Account Tools > Phone Numbers
         7. Get the Phone Number ID from the same page (click on the number)
@@ -6078,7 +6078,7 @@ paths:
           description: |
             Invalid request. Either missing fields or the phoneNumberId was not found
             in the specified WABA. If the phone was not found, the response includes
-            `availablePhoneNumbers` to help identify the correct ID.
+            availablePhoneNumbers to help identify the correct ID.
         "401":
           description: Invalid or expired access token
         "403":
@@ -6663,7 +6663,7 @@ paths:
       description: |
         Returns individual reactions for a specific LinkedIn post, including reactor profiles
         (name, headline/job title, profile picture, profile URL, reaction type).
-        Only works for **organization/company page** accounts. LinkedIn restricts reaction
+        Only works for organization/company page accounts. LinkedIn restricts reaction
         data for personal profiles (r_member_social_feed is a closed permission).
       operationId: getLinkedInPostReactions
       parameters:
@@ -6803,22 +6803,22 @@ paths:
       description: |
         Converts a LinkedIn profile or company URL to a URN for @mentions in posts.
 
-        **How to use LinkedIn @mentions (2-step workflow):**
+        How to use LinkedIn @mentions (2-step workflow):
 
         1. Call this endpoint with the LinkedIn profile/company URL to get the mention URN and format.
-        2. Embed the returned `mentionFormat` (e.g. `@[Vincent Jong](urn:li:person:xxx)`) directly in your post's `content` field.
+        2. Embed the returned mentionFormat (e.g. @[Vincent Jong](urn:li:person:xxx)) directly in your post's content field.
 
-        **Example:**
-        - Resolve: `GET /v1/accounts/{id}/linkedin-mentions?url=linkedin.com/in/vincentjong&displayName=Vincent Jong`
-        - Returns: `mentionFormat: "@[Vincent Jong](urn:li:person:xxx)"`
-        - Use in post content: `"Great talk with @[Vincent Jong](urn:li:person:xxx) today!"`
+        Example:
+        - Resolve: GET /v1/accounts/{id}/linkedin-mentions?url=linkedin.com/in/vincentjong&displayName=Vincent Jong
+        - Returns: mentionFormat: "@[Vincent Jong](urn:li:person:xxx)"
+        - Use in post content: "Great talk with @[Vincent Jong](urn:li:person:xxx) today!"
 
-        **Important:** The `mentions` array field in POST /v1/posts is stored for reference only and does NOT trigger @mentions on LinkedIn. You must embed the mention format directly in the content text.
+        Important: The mentions array field in POST /v1/posts is stored for reference only and does NOT trigger @mentions on LinkedIn. You must embed the mention format directly in the content text.
 
-        **Requirements:**
-        - **Person mentions** require the LinkedIn account to be admin of at least one organization. This is a LinkedIn API limitation: the only endpoints that resolve profile URLs to member URNs (`vanityUrl`, `peopleTypeahead`) are scoped to organization followers. There is no public LinkedIn API to resolve a vanity URL without organization context.
-        - **Organization mentions** (e.g. @Microsoft) work without this requirement.
-        - For person mentions to be clickable, the `displayName` parameter must exactly match the name shown on their LinkedIn profile.
+        Requirements:
+        - Person mentions require the LinkedIn account to be admin of at least one organization. This is a LinkedIn API limitation: the only endpoints that resolve profile URLs to member URNs (vanityUrl, peopleTypeahead) are scoped to organization followers. There is no public LinkedIn API to resolve a vanity URL without organization context.
+        - Organization mentions (e.g. @Microsoft) work without this requirement.
+        - For person mentions to be clickable, the displayName parameter must exactly match the name shown on their LinkedIn profile.
         - Person mentions DO work when published from personal profiles (the URN just needs to be valid). The limitation is only in the resolution step (URL to URN), not in publishing.
       operationId: getLinkedInMentions
       parameters:
@@ -7019,7 +7019,7 @@ paths:
   /v1/accounts/{accountId}/youtube-playlists:
     get:
       description: Returns the playlists available for a connected YouTube account.
-        Use this to get a playlist ID when creating a YouTube post with the `playlistId`
+        Use this to get a playlist ID when creating a YouTube post with the playlistId
         field.
       operationId: getYoutubePlaylists
       parameters:
@@ -7063,7 +7063,7 @@ paths:
       - Connect
     put:
       description: "Sets the default playlist used when publishing videos for this\
-        \ account. When a post does not specify a `playlistId`, the default playlist\
+        \ account. When a post does not specify a playlistId, the default playlist\
         \ is not automatically used (it is stored for client-side convenience)."
       operationId: updateYoutubeDefaultPlaylist
       parameters:
@@ -7965,7 +7965,7 @@ paths:
         Fetch conversations (DMs) from all connected messaging accounts in a single API call. Supports filtering by profile and platform. Results are aggregated and deduplicated.
         Supported platforms: Facebook, Instagram, Twitter/X, Bluesky, Reddit, Telegram.
 
-        **Twitter/X limitation:** X has replaced traditional DMs with encrypted "X Chat" for many accounts. Messages sent or received through encrypted X Chat are not accessible via X's API (the `/2/dm_events` endpoint only returns legacy unencrypted DMs). This means some Twitter/X conversations may show only outgoing messages or appear empty. This is an X platform limitation that affects all third-party applications. See [X's docs on encrypted messaging](https://help.x.com/en/using-x/about-chat) for more details.
+        Twitter/X limitation: X has replaced traditional DMs with encrypted "X Chat" for many accounts. Messages sent or received through encrypted X Chat are not accessible via X's API (the /2/dm_events endpoint only returns legacy unencrypted DMs). This means some Twitter/X conversations may show only outgoing messages or appear empty. This is an X platform limitation that affects all third-party applications. See X's docs on encrypted messaging for more details.
       operationId: listInboxConversations
       parameters:
       - description: Filter by profile ID
@@ -8061,13 +8061,13 @@ paths:
       description: |
         Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.
 
-        **Currently supported platforms:** Twitter/X only. Other platforms will return `PLATFORM_NOT_SUPPORTED`.
+        Currently supported platforms: Twitter/X only. Other platforms will return PLATFORM_NOT_SUPPORTED.
 
-        **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the `receives_your_dm` field). If not, a 422 error with code `DM_NOT_ALLOWED` is returned. You can skip this check with `skipDmCheck: true` if you have already verified eligibility.
+        DM eligibility: Before sending, the endpoint checks if the recipient accepts DMs from your account (via the receives_your_dm field). If not, a 422 error with code DM_NOT_ALLOWED is returned. You can skip this check with skipDmCheck: true if you have already verified eligibility.
 
-        **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.
+        X API tier requirement: DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.
 
-        **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints).
+        Rate limits: 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints).
       operationId: createInboxConversation
       requestBody:
         content:
@@ -8194,7 +8194,7 @@ paths:
       description: |
         Fetch messages for a specific conversation. Requires accountId query parameter.
 
-        **Twitter/X limitation:** X's encrypted "X Chat" messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the [list conversations endpoint](#/Messages/listInboxConversations) for more details.
+        Twitter/X limitation: X's encrypted "X Chat" messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.
       operationId: getInboxConversationMessages
       parameters:
       - description: "The conversation ID (id field from list conversations endpoint).\
@@ -8283,11 +8283,11 @@ paths:
     delete:
       description: |
         Delete a message from a conversation. Platform support varies:
-        - **Telegram**: Full delete (bot's own messages anytime, others if admin)
-        - **X/Twitter**: Full delete (own DM events only)
-        - **Bluesky**: Delete for self only (recipient still sees it)
-        - **Reddit**: Delete from sender's view only
-        - **Facebook, Instagram, WhatsApp**: Not supported (returns 400)
+        - Telegram: Full delete (bot's own messages anytime, others if admin)
+        - X/Twitter: Full delete (own DM events only)
+        - Bluesky: Delete for self only (recipient still sees it)
+        - Reddit: Delete from sender's view only
+        - Facebook, Instagram, WhatsApp: Not supported (returns 400)
       operationId: deleteInboxMessage
       parameters:
       - description: The conversation ID
@@ -8384,9 +8384,9 @@ paths:
     post:
       description: |
         Show a typing indicator in a conversation. Platform support:
-        - **Facebook Messenger**: Shows "Page is typing..." for 20 seconds
-        - **Telegram**: Shows "Bot is typing..." for 5 seconds
-        - **All others**: Returns 200 but no-op (platform doesn't support it)
+        - Facebook Messenger: Shows "Page is typing..." for 20 seconds
+        - Telegram: Shows "Bot is typing..." for 5 seconds
+        - All others: Returns 200 but no-op (platform doesn't support it)
 
         Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails.
       operationId: sendTypingIndicator
@@ -8427,9 +8427,9 @@ paths:
     delete:
       description: |
         Remove a reaction from a message. Platform support:
-        - **Telegram**: Send empty reaction array to clear
-        - **WhatsApp**: Send empty emoji to remove
-        - **All others**: Returns 400 (not supported)
+        - Telegram: Send empty reaction array to clear
+        - WhatsApp: Send empty emoji to remove
+        - All others: Returns 400 (not supported)
       operationId: removeMessageReaction
       parameters:
       - description: The conversation ID
@@ -8479,9 +8479,9 @@ paths:
     post:
       description: |
         Add an emoji reaction to a message. Platform support:
-        - **Telegram**: Supports a subset of Unicode emoji reactions
-        - **WhatsApp**: Supports any standard emoji (one reaction per message per sender)
-        - **All others**: Returns 400 (not supported)
+        - Telegram: Supports a subset of Unicode emoji reactions
+        - WhatsApp: Supports any standard emoji (one reaction per message per sender)
+        - All others: Returns 400 (not supported)
       operationId: addMessageReaction
       parameters:
       - description: The conversation ID
@@ -8530,12 +8530,12 @@ paths:
     post:
       description: |
         Upload a media file using API key authentication and get back a publicly accessible URL.
-        The URL can be used as `attachmentUrl` when sending inbox messages.
+        The URL can be used as attachmentUrl when sending inbox messages.
 
         Files are stored in temporary storage and auto-delete after 7 days.
         Maximum file size is 25MB.
 
-        Unlike `/v1/media/upload` (which uses upload tokens for end-user flows),
+        Unlike /v1/media/upload (which uses upload tokens for end-user flows),
         this endpoint uses standard Bearer token authentication for programmatic use.
       operationId: uploadMediaDirect
       requestBody:
@@ -9765,11 +9765,11 @@ paths:
       description: |
         Create a new message template. Supports two modes:
 
-        **Custom template:** Provide `components` with your own content. Submitted to Meta for review (can take up to 24h).
+        Custom template: Provide components with your own content. Submitted to Meta for review (can take up to 24h).
 
-        **Library template:** Provide `library_template_name` instead of `components` to use a pre-built template
-        from Meta's template library. Library templates are **pre-approved** (no review wait). You can optionally
-        customize parameters and buttons via `library_template_body_inputs` and `library_template_button_inputs`.
+        Library template: Provide library_template_name instead of components to use a pre-built template
+        from Meta's template library. Library templates are pre-approved (no review wait). You can optionally
+        customize parameters and buttons via library_template_body_inputs and library_template_button_inputs.
 
         Browse available library templates at: https://business.facebook.com/wa/manage/message-templates/
       operationId: createWhatsAppTemplate
@@ -11014,9 +11014,9 @@ paths:
   /v1/whatsapp/flows/{flowId}/publish:
     post:
       description: |
-        Publish a DRAFT flow. **This is irreversible.** Once published, the flow and its JSON
+        Publish a DRAFT flow. This is irreversible. Once published, the flow and its JSON
         become immutable and the flow can be sent to users. To update a published flow,
-        create a new flow (optionally cloning this one via `cloneFlowId`).
+        create a new flow (optionally cloning this one via cloneFlowId).
       operationId: publishWhatsAppFlow
       parameters:
       - description: Flow ID
@@ -11054,7 +11054,7 @@ paths:
   /v1/whatsapp/flows/{flowId}/deprecate:
     post:
       description: |
-        Deprecate a PUBLISHED flow. **This is irreversible.** Deprecated flows cannot be sent
+        Deprecate a PUBLISHED flow. This is irreversible. Deprecated flows cannot be sent
         or opened, but existing active sessions may continue until they complete.
       operationId: deprecateWhatsAppFlow
       parameters:
@@ -11241,6 +11241,7 @@ paths:
       - Contacts
   /v1/contacts/{contactId}:
     delete:
+      description: Permanently deletes a contact and all associated channels.
       operationId: deleteContact
       parameters:
       - explode: false
@@ -11261,6 +11262,7 @@ paths:
       tags:
       - Contacts
     get:
+      description: Returns a contact with all associated messaging channels.
       operationId: getContact
       parameters:
       - explode: false
@@ -11285,6 +11287,8 @@ paths:
       tags:
       - Contacts
     patch:
+      description: Update one or more fields on a contact. Only provided fields are
+        changed.
       operationId: updateContact
       parameters:
       - explode: false
@@ -11315,6 +11319,8 @@ paths:
       - Contacts
   /v1/contacts/{contactId}/channels:
     get:
+      description: "Returns all messaging channels linked to a contact (e.g. Instagram\
+        \ DM, Telegram, WhatsApp)."
       operationId: getContactChannels
       parameters:
       - explode: false
@@ -11362,6 +11368,8 @@ paths:
       - Contacts
   /v1/contacts/{contactId}/fields/{slug}:
     delete:
+      description: Remove a custom field value from a contact. The field definition
+        is not affected.
       operationId: clearContactFieldValue
       parameters:
       - explode: false
@@ -11389,6 +11397,8 @@ paths:
       tags:
       - Custom Fields
     put:
+      description: Set or overwrite a custom field value on a contact. The value type
+        must match the field definition.
       operationId: setContactFieldValue
       parameters:
       - explode: false
@@ -11423,6 +11433,7 @@ paths:
       - Custom Fields
   /v1/custom-fields:
     get:
+      description: Returns all custom field definitions. Optionally filter by profile.
       operationId: listCustomFields
       parameters:
       - description: Filter by profile. Omit to list across all profiles
@@ -11446,6 +11457,8 @@ paths:
       tags:
       - Custom Fields
     post:
+      description: "Create a new custom field definition. Supported types are text,\
+        \ number, date, boolean, and select."
       operationId: createCustomField
       requestBody:
         content:
@@ -11469,6 +11482,8 @@ paths:
       - Custom Fields
   /v1/custom-fields/{fieldId}:
     delete:
+      description: Delete a custom field definition and remove its values from all
+        contacts.
       operationId: deleteCustomField
       parameters:
       - explode: false
@@ -11489,6 +11504,8 @@ paths:
       tags:
       - Custom Fields
     patch:
+      description: Update a custom field definition. The field type cannot be changed
+        after creation.
       operationId: updateCustomField
       parameters:
       - explode: false
@@ -11519,6 +11536,8 @@ paths:
       - Custom Fields
   /v1/broadcasts:
     get:
+      description: "Returns broadcasts with delivery stats. Filter by status, platform,\
+        \ or profile."
       operationId: listBroadcasts
       parameters:
       - description: Filter by profile. Omit to list across all profiles
@@ -11579,6 +11598,8 @@ paths:
       tags:
       - Broadcasts
     post:
+      description: Create a broadcast in draft status. Add recipients and then send
+        or schedule it.
       operationId: createBroadcast
       requestBody:
         content:
@@ -11600,6 +11621,7 @@ paths:
       - Broadcasts
   /v1/broadcasts/{broadcastId}:
     delete:
+      description: Permanently delete a broadcast. Only drafts can be deleted.
       operationId: deleteBroadcast
       parameters:
       - explode: false
@@ -11620,6 +11642,7 @@ paths:
       tags:
       - Broadcasts
     get:
+      description: Returns a broadcast with its full configuration and delivery stats.
       operationId: getBroadcast
       parameters:
       - explode: false
@@ -11644,6 +11667,8 @@ paths:
       tags:
       - Broadcasts
     patch:
+      description: "Update a broadcast's name, message, template, or segment filters.\
+        \ Only draft broadcasts can be updated."
       operationId: updateBroadcast
       parameters:
       - explode: false
@@ -11669,6 +11694,7 @@ paths:
       - Broadcasts
   /v1/broadcasts/{broadcastId}/send:
     post:
+      description: Immediately start sending a draft broadcast to its recipients.
       operationId: sendBroadcast
       parameters:
       - explode: false
@@ -11696,6 +11722,7 @@ paths:
       - Broadcasts
   /v1/broadcasts/{broadcastId}/schedule:
     post:
+      description: Schedule a draft broadcast to be sent at a future date and time.
       operationId: scheduleBroadcast
       parameters:
       - explode: false
@@ -11729,6 +11756,8 @@ paths:
       - Broadcasts
   /v1/broadcasts/{broadcastId}/cancel:
     post:
+      description: Cancel a scheduled or in-progress broadcast. Already-sent messages
+        are not affected.
       operationId: cancelBroadcast
       parameters:
       - explode: false
@@ -11756,6 +11785,8 @@ paths:
       - Broadcasts
   /v1/broadcasts/{broadcastId}/recipients:
     get:
+      description: Returns recipients for a broadcast with individual delivery status.
+        Filter by status.
       operationId: listBroadcastRecipients
       parameters:
       - explode: false
@@ -11809,6 +11840,8 @@ paths:
       tags:
       - Broadcasts
     post:
+      description: "Add recipients by contact IDs, raw phone numbers, or from the\
+        \ broadcast's segment filters."
       operationId: addBroadcastRecipients
       parameters:
       - explode: false
@@ -11840,6 +11873,8 @@ paths:
       - Broadcasts
   /v1/sequences:
     get:
+      description: "Returns sequences with enrollment stats. Filter by status, platform,\
+        \ or profile."
       operationId: listSequences
       parameters:
       - description: Filter by profile. Omit to list across all profiles
@@ -11890,6 +11925,8 @@ paths:
       tags:
       - Sequences
     post:
+      description: Create a multi-step messaging sequence. Each step has a delay and
+        a message or WhatsApp template.
       operationId: createSequence
       requestBody:
         content:
@@ -11911,6 +11948,7 @@ paths:
       - Sequences
   /v1/sequences/{sequenceId}:
     delete:
+      description: Permanently delete a sequence. Active enrollments are stopped.
       operationId: deleteSequence
       parameters:
       - explode: false
@@ -11931,6 +11969,7 @@ paths:
       tags:
       - Sequences
     get:
+      description: Returns a sequence with all its steps and enrollment stats.
       operationId: getSequence
       parameters:
       - explode: false
@@ -11955,6 +11994,8 @@ paths:
       tags:
       - Sequences
     patch:
+      description: "Update a sequence's name, steps, or exit conditions. Active sequences\
+        \ can be updated without pausing."
       operationId: updateSequence
       parameters:
       - explode: false
@@ -11980,6 +12021,8 @@ paths:
       - Sequences
   /v1/sequences/{sequenceId}/activate:
     post:
+      description: Start a draft or paused sequence. The sequence must have at least
+        one step.
       operationId: activateSequence
       parameters:
       - explode: false
@@ -12007,6 +12050,8 @@ paths:
       - Sequences
   /v1/sequences/{sequenceId}/pause:
     post:
+      description: Pause an active sequence. Enrolled contacts stop receiving messages
+        until the sequence is reactivated.
       operationId: pauseSequence
       parameters:
       - explode: false
@@ -12034,6 +12079,8 @@ paths:
       - Sequences
   /v1/sequences/{sequenceId}/enroll:
     post:
+      description: Enroll one or more contacts into a sequence. Contacts already enrolled
+        are skipped.
       operationId: enrollContacts
       parameters:
       - explode: false
@@ -12065,6 +12112,8 @@ paths:
       - Sequences
   /v1/sequences/{sequenceId}/enroll/{contactId}:
     delete:
+      description: Remove a contact from a sequence. No further messages will be sent
+        to this contact.
       operationId: unenrollContact
       parameters:
       - explode: false
@@ -12093,6 +12142,8 @@ paths:
       - Sequences
   /v1/sequences/{sequenceId}/enrollments:
     get:
+      description: "Returns enrolled contacts with their progress, status, and next\
+        \ scheduled step."
       operationId: listSequenceEnrollments
       parameters:
       - explode: false
@@ -12204,6 +12255,7 @@ paths:
       - Comment Automations
   /v1/comment-automations/{automationId}:
     delete:
+      description: Permanently delete an automation and all its trigger logs.
       operationId: deleteCommentAutomation
       parameters:
       - explode: false
@@ -12226,6 +12278,8 @@ paths:
       tags:
       - Comment Automations
     get:
+      description: "Returns an automation with its configuration, stats, and recent\
+        \ trigger logs."
       operationId: getCommentAutomation
       parameters:
       - explode: false
@@ -12252,6 +12306,8 @@ paths:
       tags:
       - Comment Automations
     patch:
+      description: "Update an automation's keywords, DM message, comment reply, or\
+        \ active status."
       operationId: updateCommentAutomation
       parameters:
       - explode: false
@@ -12343,7 +12399,7 @@ paths:
     get:
       description: |
         Returns a paginated list of ads with metrics computed over an optional date range.
-        Use `source=all` to include externally-synced ads from platform ad managers.
+        Use source=all to include externally-synced ads from platform ad managers.
         If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max.
       operationId: listAds
       parameters:
@@ -12764,6 +12820,8 @@ paths:
       tags:
       - Ads
     get:
+      description: "Returns an ad with its creative, targeting, status, and performance\
+        \ metrics."
       operationId: getAd
       parameters:
       - explode: false
@@ -14619,7 +14677,7 @@ components:
       - post
       - timestamp
     InboxWebhookMessage:
-      description: The `message` object included in inbox webhook payloads.
+      description: The message object included in inbox webhook payloads.
       example:
         attachments:
         - payload: "{}"
@@ -14696,7 +14754,7 @@ components:
       - sentAt
       - text
     InboxWebhookConversation:
-      description: The `conversation` context included in inbox webhook payloads.
+      description: The conversation context included in inbox webhook payloads.
       example:
         participantId: participantId
         platformConversationId: platformConversationId
@@ -14728,7 +14786,7 @@ components:
       - platformConversationId
       - status
     InboxWebhookAccount:
-      description: The `account` context included in inbox webhook payloads.
+      description: The account context included in inbox webhook payloads.
       example:
         displayName: displayName
         id: id
@@ -14891,10 +14949,10 @@ components:
       - timestamp
     WebhookPayloadMessageEdited:
       description: |
-        Webhook payload for `message.edited` events. Fires when the sender
+        Webhook payload for message.edited events. Fires when the sender
         edits a previously-sent message. Supported platforms: Instagram,
-        Facebook Messenger, Telegram. The `message` object reflects the
-        LATEST state; `editHistory` contains every prior version in order
+        Facebook Messenger, Telegram. The message object reflects the
+        LATEST state; editHistory contains every prior version in order
         (oldest first), so the last entry is the version immediately before
         the current content.
       example:
@@ -15001,12 +15059,12 @@ components:
       - timestamp
     WebhookPayloadMessageDeleted:
       description: |
-        Webhook payload for `message.deleted` events. Fires when the sender
+        Webhook payload for message.deleted events. Fires when the sender
         deletes (unsends) a message. Supported platforms: Instagram (incoming
         unsend) and WhatsApp (when the business deletes an outgoing message
         via the Cloud API).
 
-        The `message.text` and `message.attachments` fields retain the content
+        The message.text and message.attachments fields retain the content
         that existed before the delete. The Zernio dashboard UI does not show
         this content, but authorized API consumers may access it for
         moderation, compliance, or archival use cases.
@@ -15083,14 +15141,14 @@ components:
       - timestamp
     WebhookPayloadMessageDeliveryStatus:
       description: |
-        Shared payload for `message.delivered`, `message.read`, and
-        `message.failed` events. Fires when the platform reports a new
+        Shared payload for message.delivered, message.read, and
+        message.failed events. Fires when the platform reports a new
         delivery state for an outgoing message.
 
         Platform support:
-          * `message.delivered` — WhatsApp, Facebook Messenger.
-          * `message.read`      — WhatsApp, Facebook Messenger, Instagram.
-          * `message.failed`    — WhatsApp only (other platforms don't expose
+          * message.delivered — WhatsApp, Facebook Messenger.
+          * message.read      — WhatsApp, Facebook Messenger, Instagram.
+          * message.failed    — WhatsApp only (other platforms don't expose
             per-message failure via webhook).
       example:
         id: id
@@ -16131,26 +16189,26 @@ components:
         Photo carousels up to 35 images. Video titles up to 2200 chars, photo titles truncated to 90 chars.
         privacyLevel must match creator_info options. Both camelCase and snake_case accepted.
 
-        **Creator Inbox (draft mode):** Set `draft: true` to send content to the TikTok Creator Inbox
+        Creator Inbox (draft mode): Set draft: true to send content to the TikTok Creator Inbox
         instead of publishing immediately. The creator receives an inbox notification and completes
-        the post using TikTok's editing flow. This maps to TikTok's `post_mode: "MEDIA_UPLOAD"` internally.
+        the post using TikTok's editing flow. This maps to TikTok's post_mode: "MEDIA_UPLOAD" internally.
 
-        **Important:** The field `publish_type` is NOT supported. Use `draft: true` for Creator Inbox flow.
+        Important: The field publish_type is NOT supported. Use draft: true for Creator Inbox flow.
 
-        **Photo drafts** use the `/v2/post/publish/content/init/` endpoint with `post_mode: "MEDIA_UPLOAD"`.
-        **Video drafts** use the dedicated `/v2/post/publish/inbox/video/init/` endpoint.
+        Photo drafts use the /v2/post/publish/content/init/ endpoint with post_mode: "MEDIA_UPLOAD".
+        Video drafts use the dedicated /v2/post/publish/inbox/video/init/ endpoint.
 
-        When `draft: true`, the `video.upload` scope is required. When `draft` is false or omitted
-        (direct post), the `video.publish` scope is required. For Creator Inbox, TikTok app version
+        When draft: true, the video.upload scope is required. When draft is false or omitted
+        (direct post), the video.publish scope is required. For Creator Inbox, TikTok app version
         must be 31.8 or higher.
       properties:
         draft:
           description: |
             When true, sends the post to the TikTok Creator Inbox as a draft instead of publishing
             immediately. The creator receives an inbox notification to complete posting via TikTok's
-            editing flow. Maps to TikTok API `post_mode: "MEDIA_UPLOAD"` (photos) or the dedicated
-            inbox endpoint (videos). When false or omitted, publishes directly via `post_mode: "DIRECT_POST"`.
-            Note: `publish_type` is not a supported field. Use this field instead.
+            editing flow. Maps to TikTok API post_mode: "MEDIA_UPLOAD" (photos) or the dedicated
+            inbox endpoint (videos). When false or omitted, publishes directly via post_mode: "DIRECT_POST".
+            Note: publish_type is not a supported field. Use this field instead.
           type: boolean
         privacyLevel:
           description: One of the values returned by the TikTok creator info API for
@@ -16479,13 +16537,13 @@ components:
         metadata:
           description: |
             Platform-specific metadata. Fields vary by platform. For WhatsApp accounts, includes:
-            - `qualityRating`: Phone number quality rating from Meta (`GREEN`, `YELLOW`, `RED`, or `UNKNOWN`)
-            - `nameStatus`: Display name review status (`APPROVED`, `PENDING_REVIEW`, `DECLINED`, or `NONE`). Messages cannot be sent until the display name is approved by Meta.
-            - `messagingLimitTier`: Maximum unique business-initiated conversations per 24h rolling window (`TIER_250`, `TIER_1K`, `TIER_10K`, `TIER_100K`, or `TIER_UNLIMITED`). Scales automatically as quality rating improves.
-            - `verifiedName`: Meta-verified business display name
-            - `displayPhoneNumber`: Formatted phone number (e.g., "+1 555-123-4567")
-            - `wabaId`: WhatsApp Business Account ID
-            - `phoneNumberId`: Meta phone number ID
+            - qualityRating: Phone number quality rating from Meta (GREEN, YELLOW, RED, or UNKNOWN)
+            - nameStatus: Display name review status (APPROVED, PENDING_REVIEW, DECLINED, or NONE). Messages cannot be sent until the display name is approved by Meta.
+            - messagingLimitTier: Maximum unique business-initiated conversations per 24h rolling window (TIER_250, TIER_1K, TIER_10K, TIER_100K, or TIER_UNLIMITED). Scales automatically as quality rating improves.
+            - verifiedName: Meta-verified business display name
+            - displayPhoneNumber: Formatted phone number (e.g., "+1 555-123-4567")
+            - wabaId: WhatsApp Business Account ID
+            - phoneNumberId: Meta phone number ID
           type: object
     AccountWithFollowerStats:
       allOf:
@@ -26929,19 +26987,19 @@ components:
           type: string
         participantId:
           description: Twitter numeric user ID of the recipient. Provide either this
-            or `participantUsername`.
+            or participantUsername.
           type: string
         participantUsername:
           description: Twitter username (with or without @) of the recipient. Resolved
-            to a user ID via lookup. Provide either this or `participantId`.
+            to a user ID via lookup. Provide either this or participantId.
           type: string
         message:
-          description: Text content of the message. At least one of `message` or attachment
+          description: Text content of the message. At least one of message or attachment
             is required.
           type: string
         skipDmCheck:
           default: false
-          description: Skip the `receives_your_dm` eligibility check before sending.
+          description: Skip the receives_your_dm eligibility check before sending.
             Use if you have already verified the recipient accepts DMs.
           type: boolean
       required:
@@ -27239,7 +27297,7 @@ components:
           format: date-time
           type: string
     getInboxConversationMessages_200_response_messages_inner_deliveryError:
-      description: Populated when `deliveryStatus === "failed"`.
+      description: Populated when deliveryStatus === "failed".
       example:
         code: 6
         title: title
@@ -27377,7 +27435,7 @@ components:
           type: array
         isDeleted:
           description: True if the sender has deleted (unsent) this message. The original
-            `message` and `attachments` fields remain populated.
+            message and attachments fields remain populated.
           type: boolean
         deletedAt:
           format: date-time
@@ -28931,7 +28989,7 @@ components:
           description: |
             Name of a pre-built template from Meta's template library (e.g., "appointment_reminder",
             "auto_pay_reminder_1", "address_update"). When provided, the template is pre-approved
-            by Meta with no review wait. Omit `components` when using this field.
+            by Meta with no review wait. Omit components when using this field.
           type: string
         library_template_body_inputs:
           description: |
@@ -34762,7 +34820,7 @@ components:
       - editedAt
       - text
     WebhookPayloadMessageDeliveryStatus_error:
-      description: Populated only on `message.failed`.
+      description: Populated only on message.failed.
       example:
         code: 0
         title: title

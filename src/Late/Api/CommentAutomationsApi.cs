@@ -52,6 +52,9 @@ namespace Late.Api
         /// <summary>
         /// Delete automation
         /// </summary>
+        /// <remarks>
+        /// Permanently delete an automation and all its trigger logs.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
         /// <returns></returns>
@@ -61,7 +64,7 @@ namespace Late.Api
         /// Delete automation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently delete an automation and all its trigger logs.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -70,6 +73,9 @@ namespace Late.Api
         /// <summary>
         /// Get automation details
         /// </summary>
+        /// <remarks>
+        /// Returns an automation with its configuration, stats, and recent trigger logs.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
         /// <returns>GetCommentAutomation200Response</returns>
@@ -79,7 +85,7 @@ namespace Late.Api
         /// Get automation details
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns an automation with its configuration, stats, and recent trigger logs.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -136,6 +142,9 @@ namespace Late.Api
         /// <summary>
         /// Update automation settings
         /// </summary>
+        /// <remarks>
+        /// Update an automation&#39;s keywords, DM message, comment reply, or active status.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
         /// <param name="updateCommentAutomationRequest"> (optional)</param>
@@ -146,7 +155,7 @@ namespace Late.Api
         /// Update automation settings
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update an automation&#39;s keywords, DM message, comment reply, or active status.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -189,7 +198,7 @@ namespace Late.Api
         /// Delete automation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently delete an automation and all its trigger logs.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -201,7 +210,7 @@ namespace Late.Api
         /// Delete automation
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently delete an automation and all its trigger logs.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -212,7 +221,7 @@ namespace Late.Api
         /// Get automation details
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns an automation with its configuration, stats, and recent trigger logs.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -224,7 +233,7 @@ namespace Late.Api
         /// Get automation details
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns an automation with its configuration, stats, and recent trigger logs.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -287,7 +296,7 @@ namespace Late.Api
         /// Update automation settings
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update an automation&#39;s keywords, DM message, comment reply, or active status.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -300,7 +309,7 @@ namespace Late.Api
         /// Update automation settings
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update an automation&#39;s keywords, DM message, comment reply, or active status.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -651,7 +660,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete automation 
+        /// Delete automation Permanently delete an automation and all its trigger logs.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -662,7 +671,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete automation 
+        /// Delete automation Permanently delete an automation and all its trigger logs.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -711,7 +720,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete automation 
+        /// Delete automation Permanently delete an automation and all its trigger logs.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -723,7 +732,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete automation 
+        /// Delete automation Permanently delete an automation and all its trigger logs.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -776,7 +785,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get automation details 
+        /// Get automation details Returns an automation with its configuration, stats, and recent trigger logs.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -788,7 +797,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get automation details 
+        /// Get automation details Returns an automation with its configuration, stats, and recent trigger logs.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -837,7 +846,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get automation details 
+        /// Get automation details Returns an automation with its configuration, stats, and recent trigger logs.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -850,7 +859,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get automation details 
+        /// Get automation details Returns an automation with its configuration, stats, and recent trigger logs.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -1191,7 +1200,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update automation settings 
+        /// Update automation settings Update an automation&#39;s keywords, DM message, comment reply, or active status.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -1204,7 +1213,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update automation settings 
+        /// Update automation settings Update an automation&#39;s keywords, DM message, comment reply, or active status.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -1256,7 +1265,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update automation settings 
+        /// Update automation settings Update an automation&#39;s keywords, DM message, comment reply, or active status.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -1270,7 +1279,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update automation settings 
+        /// Update automation settings Update an automation&#39;s keywords, DM message, comment reply, or active status.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>

@@ -79,7 +79,7 @@ namespace Late.Model
         /// <param name="category">Template category (required).</param>
         /// <param name="language">Template language code (e.g., en_US) (required).</param>
         /// <param name="components">Template components (header, body, footer, buttons). Required for custom templates, omit when using library_template_name..</param>
-        /// <param name="libraryTemplateName">Name of a pre-built template from Meta&#39;s template library (e.g., \&quot;appointment_reminder\&quot;, \&quot;auto_pay_reminder_1\&quot;, \&quot;address_update\&quot;). When provided, the template is pre-approved by Meta with no review wait. Omit &#x60;components&#x60; when using this field. .</param>
+        /// <param name="libraryTemplateName">Name of a pre-built template from Meta&#39;s template library (e.g., \&quot;appointment_reminder\&quot;, \&quot;auto_pay_reminder_1\&quot;, \&quot;address_update\&quot;). When provided, the template is pre-approved by Meta with no review wait. Omit components when using this field. .</param>
         /// <param name="libraryTemplateBodyInputs">Optional body customizations for library templates. Available options depend on the template (e.g., add_contact_number, add_learn_more_link, add_security_recommendation, add_track_package_link, code_expiration_minutes). .</param>
         /// <param name="libraryTemplateButtonInputs">Optional button customizations for library templates. Each item specifies button type and configuration (e.g., URL, phone number, quick reply). .</param>
         public CreateWhatsAppTemplateRequest(string accountId = default, string name = default, CategoryEnum category = default, string language = default, List<WhatsAppTemplateComponent> components = default, string libraryTemplateName = default, Object libraryTemplateBodyInputs = default, List<CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInner> libraryTemplateButtonInputs = default)
@@ -138,9 +138,9 @@ namespace Late.Model
         public List<WhatsAppTemplateComponent> Components { get; set; }
 
         /// <summary>
-        /// Name of a pre-built template from Meta&#39;s template library (e.g., \&quot;appointment_reminder\&quot;, \&quot;auto_pay_reminder_1\&quot;, \&quot;address_update\&quot;). When provided, the template is pre-approved by Meta with no review wait. Omit &#x60;components&#x60; when using this field. 
+        /// Name of a pre-built template from Meta&#39;s template library (e.g., \&quot;appointment_reminder\&quot;, \&quot;auto_pay_reminder_1\&quot;, \&quot;address_update\&quot;). When provided, the template is pre-approved by Meta with no review wait. Omit components when using this field. 
         /// </summary>
-        /// <value>Name of a pre-built template from Meta&#39;s template library (e.g., \&quot;appointment_reminder\&quot;, \&quot;auto_pay_reminder_1\&quot;, \&quot;address_update\&quot;). When provided, the template is pre-approved by Meta with no review wait. Omit &#x60;components&#x60; when using this field. </value>
+        /// <value>Name of a pre-built template from Meta&#39;s template library (e.g., \&quot;appointment_reminder\&quot;, \&quot;auto_pay_reminder_1\&quot;, \&quot;address_update\&quot;). When provided, the template is pre-approved by Meta with no review wait. Omit components when using this field. </value>
         [DataMember(Name = "library_template_name", EmitDefaultValue = false)]
         public string LibraryTemplateName { get; set; }
 

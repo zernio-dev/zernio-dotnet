@@ -31,6 +31,9 @@ namespace Late.Api
         /// <summary>
         /// Activate sequence
         /// </summary>
+        /// <remarks>
+        /// Start a draft or paused sequence. The sequence must have at least one step.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
         /// <returns>ActivateSequence200Response</returns>
@@ -40,7 +43,7 @@ namespace Late.Api
         /// Activate sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Start a draft or paused sequence. The sequence must have at least one step.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -49,6 +52,9 @@ namespace Late.Api
         /// <summary>
         /// Create sequence
         /// </summary>
+        /// <remarks>
+        /// Create a multi-step messaging sequence. Each step has a delay and a message or WhatsApp template.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
         /// <returns>CreateSequence200Response</returns>
@@ -58,7 +64,7 @@ namespace Late.Api
         /// Create sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Create a multi-step messaging sequence. Each step has a delay and a message or WhatsApp template.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
@@ -67,6 +73,9 @@ namespace Late.Api
         /// <summary>
         /// Delete sequence
         /// </summary>
+        /// <remarks>
+        /// Permanently delete a sequence. Active enrollments are stopped.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
         /// <returns></returns>
@@ -76,7 +85,7 @@ namespace Late.Api
         /// Delete sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently delete a sequence. Active enrollments are stopped.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -85,6 +94,9 @@ namespace Late.Api
         /// <summary>
         /// Enroll contacts in a sequence
         /// </summary>
+        /// <remarks>
+        /// Enroll one or more contacts into a sequence. Contacts already enrolled are skipped.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
         /// <param name="enrollContactsRequest"></param>
@@ -95,7 +107,7 @@ namespace Late.Api
         /// Enroll contacts in a sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Enroll one or more contacts into a sequence. Contacts already enrolled are skipped.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -105,6 +117,9 @@ namespace Late.Api
         /// <summary>
         /// Get sequence with steps
         /// </summary>
+        /// <remarks>
+        /// Returns a sequence with all its steps and enrollment stats.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
         /// <returns>GetSequence200Response</returns>
@@ -114,7 +129,7 @@ namespace Late.Api
         /// Get sequence with steps
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a sequence with all its steps and enrollment stats.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -123,6 +138,9 @@ namespace Late.Api
         /// <summary>
         /// List enrollments for a sequence
         /// </summary>
+        /// <remarks>
+        /// Returns enrolled contacts with their progress, status, and next scheduled step.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
         /// <param name="status"> (optional)</param>
@@ -135,7 +153,7 @@ namespace Late.Api
         /// List enrollments for a sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns enrolled contacts with their progress, status, and next scheduled step.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -147,6 +165,9 @@ namespace Late.Api
         /// <summary>
         /// List sequences
         /// </summary>
+        /// <remarks>
+        /// Returns sequences with enrollment stats. Filter by status, platform, or profile.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
         /// <param name="status"> (optional)</param>
@@ -159,7 +180,7 @@ namespace Late.Api
         /// List sequences
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns sequences with enrollment stats. Filter by status, platform, or profile.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -171,6 +192,9 @@ namespace Late.Api
         /// <summary>
         /// Pause sequence
         /// </summary>
+        /// <remarks>
+        /// Pause an active sequence. Enrolled contacts stop receiving messages until the sequence is reactivated.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
         /// <returns>ActivateSequence200Response</returns>
@@ -180,7 +204,7 @@ namespace Late.Api
         /// Pause sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Pause an active sequence. Enrolled contacts stop receiving messages until the sequence is reactivated.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -189,6 +213,9 @@ namespace Late.Api
         /// <summary>
         /// Unenroll contact
         /// </summary>
+        /// <remarks>
+        /// Remove a contact from a sequence. No further messages will be sent to this contact.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
         /// <param name="contactId"></param>
@@ -199,7 +226,7 @@ namespace Late.Api
         /// Unenroll contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Remove a contact from a sequence. No further messages will be sent to this contact.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -209,6 +236,9 @@ namespace Late.Api
         /// <summary>
         /// Update sequence
         /// </summary>
+        /// <remarks>
+        /// Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
         /// <returns>UpdateSequence200Response</returns>
@@ -218,7 +248,7 @@ namespace Late.Api
         /// Update sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -237,7 +267,7 @@ namespace Late.Api
         /// Activate sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Start a draft or paused sequence. The sequence must have at least one step.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -249,7 +279,7 @@ namespace Late.Api
         /// Activate sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Start a draft or paused sequence. The sequence must have at least one step.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -260,7 +290,7 @@ namespace Late.Api
         /// Create sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Create a multi-step messaging sequence. Each step has a delay and a message or WhatsApp template.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
@@ -272,7 +302,7 @@ namespace Late.Api
         /// Create sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Create a multi-step messaging sequence. Each step has a delay and a message or WhatsApp template.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
@@ -283,7 +313,7 @@ namespace Late.Api
         /// Delete sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently delete a sequence. Active enrollments are stopped.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -295,7 +325,7 @@ namespace Late.Api
         /// Delete sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Permanently delete a sequence. Active enrollments are stopped.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -306,7 +336,7 @@ namespace Late.Api
         /// Enroll contacts in a sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Enroll one or more contacts into a sequence. Contacts already enrolled are skipped.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -319,7 +349,7 @@ namespace Late.Api
         /// Enroll contacts in a sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Enroll one or more contacts into a sequence. Contacts already enrolled are skipped.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -331,7 +361,7 @@ namespace Late.Api
         /// Get sequence with steps
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a sequence with all its steps and enrollment stats.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -343,7 +373,7 @@ namespace Late.Api
         /// Get sequence with steps
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns a sequence with all its steps and enrollment stats.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -354,7 +384,7 @@ namespace Late.Api
         /// List enrollments for a sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns enrolled contacts with their progress, status, and next scheduled step.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -369,7 +399,7 @@ namespace Late.Api
         /// List enrollments for a sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns enrolled contacts with their progress, status, and next scheduled step.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -383,7 +413,7 @@ namespace Late.Api
         /// List sequences
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns sequences with enrollment stats. Filter by status, platform, or profile.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -398,7 +428,7 @@ namespace Late.Api
         /// List sequences
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns sequences with enrollment stats. Filter by status, platform, or profile.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -412,7 +442,7 @@ namespace Late.Api
         /// Pause sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Pause an active sequence. Enrolled contacts stop receiving messages until the sequence is reactivated.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -424,7 +454,7 @@ namespace Late.Api
         /// Pause sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Pause an active sequence. Enrolled contacts stop receiving messages until the sequence is reactivated.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -435,7 +465,7 @@ namespace Late.Api
         /// Unenroll contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Remove a contact from a sequence. No further messages will be sent to this contact.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -448,7 +478,7 @@ namespace Late.Api
         /// Unenroll contact
         /// </summary>
         /// <remarks>
-        /// 
+        /// Remove a contact from a sequence. No further messages will be sent to this contact.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -460,7 +490,7 @@ namespace Late.Api
         /// Update sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -472,7 +502,7 @@ namespace Late.Api
         /// Update sequence
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -693,7 +723,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Activate sequence 
+        /// Activate sequence Start a draft or paused sequence. The sequence must have at least one step.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -705,7 +735,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Activate sequence 
+        /// Activate sequence Start a draft or paused sequence. The sequence must have at least one step.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -754,7 +784,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Activate sequence 
+        /// Activate sequence Start a draft or paused sequence. The sequence must have at least one step.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -767,7 +797,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Activate sequence 
+        /// Activate sequence Start a draft or paused sequence. The sequence must have at least one step.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -820,7 +850,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create sequence 
+        /// Create sequence Create a multi-step messaging sequence. Each step has a delay and a message or WhatsApp template.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
@@ -832,7 +862,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create sequence 
+        /// Create sequence Create a multi-step messaging sequence. Each step has a delay and a message or WhatsApp template.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
@@ -882,7 +912,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create sequence 
+        /// Create sequence Create a multi-step messaging sequence. Each step has a delay and a message or WhatsApp template.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
@@ -895,7 +925,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create sequence 
+        /// Create sequence Create a multi-step messaging sequence. Each step has a delay and a message or WhatsApp template.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createSequenceRequest"></param>
@@ -949,7 +979,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete sequence 
+        /// Delete sequence Permanently delete a sequence. Active enrollments are stopped.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -960,7 +990,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete sequence 
+        /// Delete sequence Permanently delete a sequence. Active enrollments are stopped.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1009,7 +1039,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete sequence 
+        /// Delete sequence Permanently delete a sequence. Active enrollments are stopped.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1021,7 +1051,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete sequence 
+        /// Delete sequence Permanently delete a sequence. Active enrollments are stopped.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1074,7 +1104,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Enroll contacts in a sequence 
+        /// Enroll contacts in a sequence Enroll one or more contacts into a sequence. Contacts already enrolled are skipped.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1087,7 +1117,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Enroll contacts in a sequence 
+        /// Enroll contacts in a sequence Enroll one or more contacts into a sequence. Contacts already enrolled are skipped.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1143,7 +1173,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Enroll contacts in a sequence 
+        /// Enroll contacts in a sequence Enroll one or more contacts into a sequence. Contacts already enrolled are skipped.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1157,7 +1187,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Enroll contacts in a sequence 
+        /// Enroll contacts in a sequence Enroll one or more contacts into a sequence. Contacts already enrolled are skipped.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1217,7 +1247,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get sequence with steps 
+        /// Get sequence with steps Returns a sequence with all its steps and enrollment stats.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1229,7 +1259,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get sequence with steps 
+        /// Get sequence with steps Returns a sequence with all its steps and enrollment stats.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1278,7 +1308,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get sequence with steps 
+        /// Get sequence with steps Returns a sequence with all its steps and enrollment stats.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1291,7 +1321,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get sequence with steps 
+        /// Get sequence with steps Returns a sequence with all its steps and enrollment stats.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1344,7 +1374,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List enrollments for a sequence 
+        /// List enrollments for a sequence Returns enrolled contacts with their progress, status, and next scheduled step.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1359,7 +1389,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List enrollments for a sequence 
+        /// List enrollments for a sequence Returns enrolled contacts with their progress, status, and next scheduled step.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1423,7 +1453,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List enrollments for a sequence 
+        /// List enrollments for a sequence Returns enrolled contacts with their progress, status, and next scheduled step.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1439,7 +1469,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List enrollments for a sequence 
+        /// List enrollments for a sequence Returns enrolled contacts with their progress, status, and next scheduled step.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1507,7 +1537,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List sequences 
+        /// List sequences Returns sequences with enrollment stats. Filter by status, platform, or profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -1522,7 +1552,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List sequences 
+        /// List sequences Returns sequences with enrollment stats. Filter by status, platform, or profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -1585,7 +1615,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List sequences 
+        /// List sequences Returns sequences with enrollment stats. Filter by status, platform, or profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -1601,7 +1631,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List sequences 
+        /// List sequences Returns sequences with enrollment stats. Filter by status, platform, or profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -1668,7 +1698,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Pause sequence 
+        /// Pause sequence Pause an active sequence. Enrolled contacts stop receiving messages until the sequence is reactivated.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1680,7 +1710,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Pause sequence 
+        /// Pause sequence Pause an active sequence. Enrolled contacts stop receiving messages until the sequence is reactivated.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1729,7 +1759,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Pause sequence 
+        /// Pause sequence Pause an active sequence. Enrolled contacts stop receiving messages until the sequence is reactivated.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1742,7 +1772,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Pause sequence 
+        /// Pause sequence Pause an active sequence. Enrolled contacts stop receiving messages until the sequence is reactivated.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1795,7 +1825,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Unenroll contact 
+        /// Unenroll contact Remove a contact from a sequence. No further messages will be sent to this contact.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1807,7 +1837,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Unenroll contact 
+        /// Unenroll contact Remove a contact from a sequence. No further messages will be sent to this contact.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1862,7 +1892,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Unenroll contact 
+        /// Unenroll contact Remove a contact from a sequence. No further messages will be sent to this contact.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1875,7 +1905,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Unenroll contact 
+        /// Unenroll contact Remove a contact from a sequence. No further messages will be sent to this contact.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1934,7 +1964,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update sequence 
+        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1946,7 +1976,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update sequence 
+        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -1995,7 +2025,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update sequence 
+        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
@@ -2008,7 +2038,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update sequence 
+        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>

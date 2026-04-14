@@ -31,6 +31,9 @@ namespace Late.Api
         /// <summary>
         /// Clear custom field value
         /// </summary>
+        /// <remarks>
+        /// Remove a custom field value from a contact. The field definition is not affected.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
         /// <param name="slug"></param>
@@ -41,7 +44,7 @@ namespace Late.Api
         /// Clear custom field value
         /// </summary>
         /// <remarks>
-        /// 
+        /// Remove a custom field value from a contact. The field definition is not affected.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -51,6 +54,9 @@ namespace Late.Api
         /// <summary>
         /// Create custom field
         /// </summary>
+        /// <remarks>
+        /// Create a new custom field definition. Supported types are text, number, date, boolean, and select.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCustomFieldRequest"></param>
         /// <returns>CreateCustomField200Response</returns>
@@ -60,7 +66,7 @@ namespace Late.Api
         /// Create custom field
         /// </summary>
         /// <remarks>
-        /// 
+        /// Create a new custom field definition. Supported types are text, number, date, boolean, and select.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCustomFieldRequest"></param>
@@ -69,6 +75,9 @@ namespace Late.Api
         /// <summary>
         /// Delete custom field
         /// </summary>
+        /// <remarks>
+        /// Delete a custom field definition and remove its values from all contacts.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
         /// <returns></returns>
@@ -78,7 +87,7 @@ namespace Late.Api
         /// Delete custom field
         /// </summary>
         /// <remarks>
-        /// 
+        /// Delete a custom field definition and remove its values from all contacts.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -87,6 +96,9 @@ namespace Late.Api
         /// <summary>
         /// List custom field definitions
         /// </summary>
+        /// <remarks>
+        /// Returns all custom field definitions. Optionally filter by profile.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
         /// <returns>ListCustomFields200Response</returns>
@@ -96,7 +108,7 @@ namespace Late.Api
         /// List custom field definitions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all custom field definitions. Optionally filter by profile.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -105,6 +117,9 @@ namespace Late.Api
         /// <summary>
         /// Set custom field value
         /// </summary>
+        /// <remarks>
+        /// Set or overwrite a custom field value on a contact. The value type must match the field definition.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
         /// <param name="slug"></param>
@@ -116,7 +131,7 @@ namespace Late.Api
         /// Set custom field value
         /// </summary>
         /// <remarks>
-        /// 
+        /// Set or overwrite a custom field value on a contact. The value type must match the field definition.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -127,6 +142,9 @@ namespace Late.Api
         /// <summary>
         /// Update custom field
         /// </summary>
+        /// <remarks>
+        /// Update a custom field definition. The field type cannot be changed after creation.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
         /// <param name="updateCustomFieldRequest"> (optional)</param>
@@ -137,7 +155,7 @@ namespace Late.Api
         /// Update custom field
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a custom field definition. The field type cannot be changed after creation.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -157,7 +175,7 @@ namespace Late.Api
         /// Clear custom field value
         /// </summary>
         /// <remarks>
-        /// 
+        /// Remove a custom field value from a contact. The field definition is not affected.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -170,7 +188,7 @@ namespace Late.Api
         /// Clear custom field value
         /// </summary>
         /// <remarks>
-        /// 
+        /// Remove a custom field value from a contact. The field definition is not affected.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -182,7 +200,7 @@ namespace Late.Api
         /// Create custom field
         /// </summary>
         /// <remarks>
-        /// 
+        /// Create a new custom field definition. Supported types are text, number, date, boolean, and select.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCustomFieldRequest"></param>
@@ -194,7 +212,7 @@ namespace Late.Api
         /// Create custom field
         /// </summary>
         /// <remarks>
-        /// 
+        /// Create a new custom field definition. Supported types are text, number, date, boolean, and select.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCustomFieldRequest"></param>
@@ -205,7 +223,7 @@ namespace Late.Api
         /// Delete custom field
         /// </summary>
         /// <remarks>
-        /// 
+        /// Delete a custom field definition and remove its values from all contacts.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -217,7 +235,7 @@ namespace Late.Api
         /// Delete custom field
         /// </summary>
         /// <remarks>
-        /// 
+        /// Delete a custom field definition and remove its values from all contacts.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -228,7 +246,7 @@ namespace Late.Api
         /// List custom field definitions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all custom field definitions. Optionally filter by profile.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -240,7 +258,7 @@ namespace Late.Api
         /// List custom field definitions
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns all custom field definitions. Optionally filter by profile.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -251,7 +269,7 @@ namespace Late.Api
         /// Set custom field value
         /// </summary>
         /// <remarks>
-        /// 
+        /// Set or overwrite a custom field value on a contact. The value type must match the field definition.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -265,7 +283,7 @@ namespace Late.Api
         /// Set custom field value
         /// </summary>
         /// <remarks>
-        /// 
+        /// Set or overwrite a custom field value on a contact. The value type must match the field definition.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -278,7 +296,7 @@ namespace Late.Api
         /// Update custom field
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a custom field definition. The field type cannot be changed after creation.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -291,7 +309,7 @@ namespace Late.Api
         /// Update custom field
         /// </summary>
         /// <remarks>
-        /// 
+        /// Update a custom field definition. The field type cannot be changed after creation.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -513,7 +531,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Clear custom field value 
+        /// Clear custom field value Remove a custom field value from a contact. The field definition is not affected.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -525,7 +543,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Clear custom field value 
+        /// Clear custom field value Remove a custom field value from a contact. The field definition is not affected.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -580,7 +598,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Clear custom field value 
+        /// Clear custom field value Remove a custom field value from a contact. The field definition is not affected.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -593,7 +611,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Clear custom field value 
+        /// Clear custom field value Remove a custom field value from a contact. The field definition is not affected.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -652,7 +670,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create custom field 
+        /// Create custom field Create a new custom field definition. Supported types are text, number, date, boolean, and select.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCustomFieldRequest"></param>
@@ -664,7 +682,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create custom field 
+        /// Create custom field Create a new custom field definition. Supported types are text, number, date, boolean, and select.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCustomFieldRequest"></param>
@@ -714,7 +732,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create custom field 
+        /// Create custom field Create a new custom field definition. Supported types are text, number, date, boolean, and select.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCustomFieldRequest"></param>
@@ -727,7 +745,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create custom field 
+        /// Create custom field Create a new custom field definition. Supported types are text, number, date, boolean, and select.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCustomFieldRequest"></param>
@@ -781,7 +799,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete custom field 
+        /// Delete custom field Delete a custom field definition and remove its values from all contacts.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -792,7 +810,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete custom field 
+        /// Delete custom field Delete a custom field definition and remove its values from all contacts.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -841,7 +859,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete custom field 
+        /// Delete custom field Delete a custom field definition and remove its values from all contacts.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -853,7 +871,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Delete custom field 
+        /// Delete custom field Delete a custom field definition and remove its values from all contacts.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -906,7 +924,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List custom field definitions 
+        /// List custom field definitions Returns all custom field definitions. Optionally filter by profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -918,7 +936,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List custom field definitions 
+        /// List custom field definitions Returns all custom field definitions. Optionally filter by profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -966,7 +984,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List custom field definitions 
+        /// List custom field definitions Returns all custom field definitions. Optionally filter by profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -979,7 +997,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List custom field definitions 
+        /// List custom field definitions Returns all custom field definitions. Optionally filter by profile.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">Filter by profile. Omit to list across all profiles (optional)</param>
@@ -1031,7 +1049,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Set custom field value 
+        /// Set custom field value Set or overwrite a custom field value on a contact. The value type must match the field definition.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1044,7 +1062,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Set custom field value 
+        /// Set custom field value Set or overwrite a custom field value on a contact. The value type must match the field definition.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1106,7 +1124,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Set custom field value 
+        /// Set custom field value Set or overwrite a custom field value on a contact. The value type must match the field definition.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1120,7 +1138,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Set custom field value 
+        /// Set custom field value Set or overwrite a custom field value on a contact. The value type must match the field definition.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="contactId"></param>
@@ -1186,7 +1204,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update custom field 
+        /// Update custom field Update a custom field definition. The field type cannot be changed after creation.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -1199,7 +1217,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update custom field 
+        /// Update custom field Update a custom field definition. The field type cannot be changed after creation.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -1251,7 +1269,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update custom field 
+        /// Update custom field Update a custom field definition. The field type cannot be changed after creation.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
@@ -1265,7 +1283,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Update custom field 
+        /// Update custom field Update a custom field definition. The field type cannot be changed after creation.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>

@@ -21,6 +21,8 @@ All URIs are relative to *https://zernio.com/api*
 
 Activate sequence
 
+Start a draft or paused sequence. The sequence must have at least one step.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -120,6 +122,8 @@ catch (ApiException e)
 
 Create sequence
 
+Create a multi-step messaging sequence. Each step has a delay and a message or WhatsApp template.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -217,6 +221,8 @@ catch (ApiException e)
 
 Delete sequence
 
+Permanently delete a sequence. Active enrollments are stopped.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -310,6 +316,8 @@ void (empty response body)
 > EnrollContacts200Response EnrollContacts (string sequenceId, EnrollContactsRequest enrollContactsRequest)
 
 Enroll contacts in a sequence
+
+Enroll one or more contacts into a sequence. Contacts already enrolled are skipped.
 
 ### Example
 ```csharp
@@ -411,6 +419,8 @@ catch (ApiException e)
 
 Get sequence with steps
 
+Returns a sequence with all its steps and enrollment stats.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -508,6 +518,8 @@ catch (ApiException e)
 > ListSequenceEnrollments200Response ListSequenceEnrollments (string sequenceId, string? status = null, int? limit = null, int? skip = null)
 
 List enrollments for a sequence
+
+Returns enrolled contacts with their progress, status, and next scheduled step.
 
 ### Example
 ```csharp
@@ -613,6 +625,8 @@ catch (ApiException e)
 
 List sequences
 
+Returns sequences with enrollment stats. Filter by status, platform, or profile.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -716,6 +730,8 @@ catch (ApiException e)
 
 Pause sequence
 
+Pause an active sequence. Enrolled contacts stop receiving messages until the sequence is reactivated.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -815,6 +831,8 @@ catch (ApiException e)
 
 Unenroll contact
 
+Remove a contact from a sequence. No further messages will be sent to this contact.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -910,6 +928,8 @@ void (empty response body)
 > UpdateSequence200Response UpdateSequence (string sequenceId)
 
 Update sequence
+
+Update a sequence's name, steps, or exit conditions. Active sequences can be updated without pausing.
 
 ### Example
 ```csharp

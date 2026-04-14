@@ -94,6 +94,9 @@ namespace Late.Api
         /// <summary>
         /// Get ad details
         /// </summary>
+        /// <remarks>
+        /// Returns an ad with its creative, targeting, status, and performance metrics.
+        /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
         /// <returns>GetAd200Response</returns>
@@ -103,7 +106,7 @@ namespace Late.Api
         /// Get ad details
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns an ad with its creative, targeting, status, and performance metrics.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -161,7 +164,7 @@ namespace Late.Api
         /// List ads
         /// </summary>
         /// <remarks>
-        /// Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+        /// Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -182,7 +185,7 @@ namespace Late.Api
         /// List ads
         /// </summary>
         /// <remarks>
-        /// Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+        /// Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -326,7 +329,7 @@ namespace Late.Api
         /// Get ad details
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns an ad with its creative, targeting, status, and performance metrics.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -338,7 +341,7 @@ namespace Late.Api
         /// Get ad details
         /// </summary>
         /// <remarks>
-        /// 
+        /// Returns an ad with its creative, targeting, status, and performance metrics.
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -401,7 +404,7 @@ namespace Late.Api
         /// List ads
         /// </summary>
         /// <remarks>
-        /// Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+        /// Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -423,7 +426,7 @@ namespace Late.Api
         /// List ads
         /// </summary>
         /// <remarks>
-        /// Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+        /// Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -1089,7 +1092,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get ad details 
+        /// Get ad details Returns an ad with its creative, targeting, status, and performance metrics.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -1101,7 +1104,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get ad details 
+        /// Get ad details Returns an ad with its creative, targeting, status, and performance metrics.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -1150,7 +1153,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get ad details 
+        /// Get ad details Returns an ad with its creative, targeting, status, and performance metrics.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -1163,7 +1166,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get ad details 
+        /// Get ad details Returns an ad with its creative, targeting, status, and performance metrics.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -1506,7 +1509,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -1528,7 +1531,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -1626,7 +1629,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
@@ -1649,7 +1652,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+        /// List ads Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>

@@ -118,6 +118,8 @@ catch (ApiException e)
 
 Delete automation
 
+Permanently delete an automation and all its trigger logs.
+
 ### Example
 ```csharp
 using System.Collections.Generic;
@@ -211,6 +213,8 @@ void (empty response body)
 > GetCommentAutomation200Response GetCommentAutomation (string automationId)
 
 Get automation details
+
+Returns an automation with its configuration, stats, and recent trigger logs.
 
 ### Example
 ```csharp
@@ -514,6 +518,8 @@ catch (ApiException e)
 > UpdateCommentAutomation200Response UpdateCommentAutomation (string automationId, UpdateCommentAutomationRequest? updateCommentAutomationRequest = null)
 
 Update automation settings
+
+Update an automation's keywords, DM message, comment reply, or active status.
 
 ### Example
 ```csharp
