@@ -99,8 +99,11 @@ namespace Late.Model
         /// <param name="adCount">adCount.</param>
         /// <param name="budget">budget.</param>
         /// <param name="metrics">metrics.</param>
+        /// <param name="optimizationGoal">Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION).</param>
+        /// <param name="bidStrategy">Bid strategy for this ad set (overrides campaign level when set).</param>
+        /// <param name="promotedObject">promotedObject.</param>
         /// <param name="ads">Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent)..</param>
-        public AdTreeAdSet(string platformAdSetId = default, string adSetName = default, StatusEnum? status = default, int adCount = default, AdBudget budget = default, AdMetrics metrics = default, List<Ad> ads = default)
+        public AdTreeAdSet(string platformAdSetId = default, string adSetName = default, StatusEnum? status = default, int adCount = default, AdBudget budget = default, AdMetrics metrics = default, string optimizationGoal = default, string bidStrategy = default, AdTreeAdSetPromotedObject promotedObject = default, List<Ad> ads = default)
         {
             this.PlatformAdSetId = platformAdSetId;
             this.AdSetName = adSetName;
@@ -108,6 +111,9 @@ namespace Late.Model
             this.AdCount = adCount;
             this.Budget = budget;
             this.Metrics = metrics;
+            this.OptimizationGoal = optimizationGoal;
+            this.BidStrategy = bidStrategy;
+            this.PromotedObject = promotedObject;
             this.Ads = ads;
         }
 
@@ -142,6 +148,26 @@ namespace Late.Model
         public AdMetrics Metrics { get; set; }
 
         /// <summary>
+        /// Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)
+        /// </summary>
+        /// <value>Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)</value>
+        [DataMember(Name = "optimizationGoal", EmitDefaultValue = false)]
+        public string OptimizationGoal { get; set; }
+
+        /// <summary>
+        /// Bid strategy for this ad set (overrides campaign level when set)
+        /// </summary>
+        /// <value>Bid strategy for this ad set (overrides campaign level when set)</value>
+        [DataMember(Name = "bidStrategy", EmitDefaultValue = false)]
+        public string BidStrategy { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PromotedObject
+        /// </summary>
+        [DataMember(Name = "promotedObject", EmitDefaultValue = false)]
+        public AdTreeAdSetPromotedObject PromotedObject { get; set; }
+
+        /// <summary>
         /// Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent).
         /// </summary>
         /// <value>Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent).</value>
@@ -162,6 +188,9 @@ namespace Late.Model
             sb.Append("  AdCount: ").Append(AdCount).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  Metrics: ").Append(Metrics).Append("\n");
+            sb.Append("  OptimizationGoal: ").Append(OptimizationGoal).Append("\n");
+            sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
+            sb.Append("  PromotedObject: ").Append(PromotedObject).Append("\n");
             sb.Append("  Ads: ").Append(Ads).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

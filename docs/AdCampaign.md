@@ -14,6 +14,10 @@ Name | Type | Description | Notes
 **PlatformAdAccountId** | **string** |  | [optional] 
 **AccountId** | **string** |  | [optional] 
 **ProfileId** | **string** |  | [optional] 
+**PlatformObjective** | **string** | Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC) | [optional] 
+**OptimizationGoal** | [**AdTreeCampaignOptimizationGoal**](AdTreeCampaignOptimizationGoal.md) |  | [optional] 
+**BidStrategy** | **string** | Campaign-level bid strategy (e.g. LOWEST_COST_WITHOUT_CAP, COST_CAP, LOWEST_COST_WITH_MIN_ROAS) | [optional] 
+**PromotedObject** | [**AdTreeCampaignPromotedObject**](AdTreeCampaignPromotedObject.md) |  | [optional] 
 **EarliestAd** | **DateTime** |  | [optional] 
 **LatestAd** | **DateTime** |  | [optional] 
 

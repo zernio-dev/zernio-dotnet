@@ -18760,12 +18760,28 @@ components:
           type: string
     Ad:
       example:
-        goal: engagement
+        bidStrategy: LOWEST_COST_WITHOUT_CAP
         adSetName: adSetName
-        isExternal: true
         platformCampaignId: platformCampaignId
+        optimizationGoal: OFFSITE_CONVERSIONS
         platformAdId: platformAdId
         platform: facebook
+        promotedObject:
+          page_id: page_id
+          custom_event_type: PURCHASE
+          product_set_id: product_set_id
+          pixel_id: pixel_id
+          application_id: application_id
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        adType: boost
+        targeting: "{}"
+        platformAdSetId: platformAdSetId
+        budget:
+          amount: 0.8008281904610115
+          type: daily
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+        goal: engagement
+        isExternal: true
         creative:
           videoId: videoId
           pinterestTitle: pinterestTitle
@@ -18785,21 +18801,14 @@ components:
         schedule:
           endDate: 2000-01-23T04:56:07.000+00:00
           startDate: 2000-01-23T04:56:07.000+00:00
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        adType: boost
-        targeting: "{}"
         name: name
-        platformAdSetId: platformAdSetId
+        platformObjective: OUTCOME_SALES
         _id: _id
         metrics: ""
         rejectionReason: rejectionReason
         campaignName: campaignName
         platformAdAccountId: platformAdAccountId
         status: active
-        budget:
-          amount: 0.8008281904610115
-          type: daily
-        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         _id:
           type: string
@@ -18858,6 +18867,26 @@ components:
           type: string
         adSetName:
           type: string
+        platformObjective:
+          description: "Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS,\
+            \ OUTCOME_TRAFFIC). Only present for Meta ads."
+          example: OUTCOME_SALES
+          type: string
+          nullable: true
+        optimizationGoal:
+          description: "Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE,\
+            \ LEAD_GENERATION, LINK_CLICKS). Only present for Meta ads."
+          example: OFFSITE_CONVERSIONS
+          type: string
+          nullable: true
+        bidStrategy:
+          description: "Bid strategy (e.g. LOWEST_COST_WITHOUT_CAP, COST_CAP, LOWEST_COST_WITH_MIN_ROAS).\
+            \ Ad set level overrides campaign level. Only present for Meta ads."
+          example: LOWEST_COST_WITHOUT_CAP
+          type: string
+          nullable: true
+        promotedObject:
+          $ref: "#/components/schemas/Ad_promotedObject"
         creative:
           $ref: "#/components/schemas/Ad_creative"
         targeting:
@@ -18876,13 +18905,30 @@ components:
       description: Ad set (or ad group/line item depending on platform) with rolled-up
         metrics and child ads
       example:
+        bidStrategy: bidStrategy
         ads:
-        - goal: engagement
+        - bidStrategy: LOWEST_COST_WITHOUT_CAP
           adSetName: adSetName
-          isExternal: true
           platformCampaignId: platformCampaignId
+          optimizationGoal: OFFSITE_CONVERSIONS
           platformAdId: platformAdId
           platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: PURCHASE
+            product_set_id: product_set_id
+            pixel_id: pixel_id
+            application_id: application_id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adType: boost
+          targeting: "{}"
+          platformAdSetId: platformAdSetId
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          goal: engagement
+          isExternal: true
           creative:
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -18902,27 +18948,36 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          adType: boost
-          targeting: "{}"
           name: name
-          platformAdSetId: platformAdSetId
+          platformObjective: OUTCOME_SALES
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: active
+        - bidStrategy: LOWEST_COST_WITHOUT_CAP
+          adSetName: adSetName
+          platformCampaignId: platformCampaignId
+          optimizationGoal: OFFSITE_CONVERSIONS
+          platformAdId: platformAdId
+          platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: PURCHASE
+            product_set_id: product_set_id
+            pixel_id: pixel_id
+            application_id: application_id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adType: boost
+          targeting: "{}"
+          platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
             type: daily
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        - goal: engagement
-          adSetName: adSetName
+          goal: engagement
           isExternal: true
-          platformCampaignId: platformCampaignId
-          platformAdId: platformAdId
-          platform: facebook
           creative:
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -18942,24 +18997,18 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          adType: boost
-          targeting: "{}"
           name: name
-          platformAdSetId: platformAdSetId
+          platformObjective: OUTCOME_SALES
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: active
-          budget:
-            amount: 0.8008281904610115
-            type: daily
-          updatedAt: 2000-01-23T04:56:07.000+00:00
         adSetName: adSetName
         platformAdSetId: platformAdSetId
         adCount: 1
+        optimizationGoal: optimizationGoal
         metrics:
           ctr: 2.3021358869347655
           cpm: 9.301444243932576
@@ -18970,6 +19019,10 @@ components:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 5
           impressions: 1
+        promotedObject:
+          page_id: page_id
+          custom_event_type: custom_event_type
+          pixel_id: pixel_id
         status: active
         budget:
           amount: 0.8008281904610115
@@ -18996,6 +19049,18 @@ components:
           $ref: "#/components/schemas/Ad_budget"
         metrics:
           $ref: "#/components/schemas/AdMetrics"
+        optimizationGoal:
+          description: "Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE,\
+            \ LEAD_GENERATION)"
+          type: string
+          nullable: true
+        bidStrategy:
+          description: Bid strategy for this ad set (overrides campaign level when
+            set)
+          type: string
+          nullable: true
+        promotedObject:
+          $ref: "#/components/schemas/AdTreeAdSet_promotedObject"
         ads:
           description: "Individual ads within this ad set (capped at 100). Returns\
             \ a subset of Ad fields from the aggregation (core fields like _id, name,\
@@ -19007,18 +19072,44 @@ components:
     AdTreeCampaign:
       description: Campaign with nested ad sets and rolled-up metrics
       example:
-        accountId: accountId
-        profileId: profileId
+        bidStrategy: bidStrategy
         platformCampaignId: platformCampaignId
         adCount: 0
+        optimizationGoal: AdTreeCampaign_optimizationGoal
+        adSetCount: 6
+        platform: facebook
+        promotedObject:
+          page_id: page_id
+          custom_event_type: custom_event_type
+          pixel_id: pixel_id
+        accountId: accountId
+        profileId: profileId
+        platformObjective: platformObjective
         adSets:
-        - ads:
-          - goal: engagement
+        - bidStrategy: bidStrategy
+          ads:
+          - bidStrategy: LOWEST_COST_WITHOUT_CAP
             adSetName: adSetName
-            isExternal: true
             platformCampaignId: platformCampaignId
+            optimizationGoal: OFFSITE_CONVERSIONS
             platformAdId: platformAdId
             platform: facebook
+            promotedObject:
+              page_id: page_id
+              custom_event_type: PURCHASE
+              product_set_id: product_set_id
+              pixel_id: pixel_id
+              application_id: application_id
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            adType: boost
+            targeting: "{}"
+            platformAdSetId: platformAdSetId
+            budget:
+              amount: 0.8008281904610115
+              type: daily
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+            goal: engagement
+            isExternal: true
             creative:
               videoId: videoId
               pinterestTitle: pinterestTitle
@@ -19038,27 +19129,36 @@ components:
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            adType: boost
-            targeting: "{}"
             name: name
-            platformAdSetId: platformAdSetId
+            platformObjective: OUTCOME_SALES
             _id: _id
             metrics: ""
             rejectionReason: rejectionReason
             campaignName: campaignName
             platformAdAccountId: platformAdAccountId
             status: active
+          - bidStrategy: LOWEST_COST_WITHOUT_CAP
+            adSetName: adSetName
+            platformCampaignId: platformCampaignId
+            optimizationGoal: OFFSITE_CONVERSIONS
+            platformAdId: platformAdId
+            platform: facebook
+            promotedObject:
+              page_id: page_id
+              custom_event_type: PURCHASE
+              product_set_id: product_set_id
+              pixel_id: pixel_id
+              application_id: application_id
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            adType: boost
+            targeting: "{}"
+            platformAdSetId: platformAdSetId
             budget:
               amount: 0.8008281904610115
               type: daily
             updatedAt: 2000-01-23T04:56:07.000+00:00
-          - goal: engagement
-            adSetName: adSetName
+            goal: engagement
             isExternal: true
-            platformCampaignId: platformCampaignId
-            platformAdId: platformAdId
-            platform: facebook
             creative:
               videoId: videoId
               pinterestTitle: pinterestTitle
@@ -19078,24 +19178,18 @@ components:
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            adType: boost
-            targeting: "{}"
             name: name
-            platformAdSetId: platformAdSetId
+            platformObjective: OUTCOME_SALES
             _id: _id
             metrics: ""
             rejectionReason: rejectionReason
             campaignName: campaignName
             platformAdAccountId: platformAdAccountId
             status: active
-            budget:
-              amount: 0.8008281904610115
-              type: daily
-            updatedAt: 2000-01-23T04:56:07.000+00:00
           adSetName: adSetName
           platformAdSetId: platformAdSetId
           adCount: 1
+          optimizationGoal: optimizationGoal
           metrics:
             ctr: 2.3021358869347655
             cpm: 9.301444243932576
@@ -19106,17 +19200,38 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
             impressions: 1
+          promotedObject:
+            page_id: page_id
+            custom_event_type: custom_event_type
+            pixel_id: pixel_id
           status: active
           budget:
             amount: 0.8008281904610115
             type: daily
-        - ads:
-          - goal: engagement
+        - bidStrategy: bidStrategy
+          ads:
+          - bidStrategy: LOWEST_COST_WITHOUT_CAP
             adSetName: adSetName
-            isExternal: true
             platformCampaignId: platformCampaignId
+            optimizationGoal: OFFSITE_CONVERSIONS
             platformAdId: platformAdId
             platform: facebook
+            promotedObject:
+              page_id: page_id
+              custom_event_type: PURCHASE
+              product_set_id: product_set_id
+              pixel_id: pixel_id
+              application_id: application_id
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            adType: boost
+            targeting: "{}"
+            platformAdSetId: platformAdSetId
+            budget:
+              amount: 0.8008281904610115
+              type: daily
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+            goal: engagement
+            isExternal: true
             creative:
               videoId: videoId
               pinterestTitle: pinterestTitle
@@ -19136,27 +19251,36 @@ components:
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            adType: boost
-            targeting: "{}"
             name: name
-            platformAdSetId: platformAdSetId
+            platformObjective: OUTCOME_SALES
             _id: _id
             metrics: ""
             rejectionReason: rejectionReason
             campaignName: campaignName
             platformAdAccountId: platformAdAccountId
             status: active
+          - bidStrategy: LOWEST_COST_WITHOUT_CAP
+            adSetName: adSetName
+            platformCampaignId: platformCampaignId
+            optimizationGoal: OFFSITE_CONVERSIONS
+            platformAdId: platformAdId
+            platform: facebook
+            promotedObject:
+              page_id: page_id
+              custom_event_type: PURCHASE
+              product_set_id: product_set_id
+              pixel_id: pixel_id
+              application_id: application_id
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            adType: boost
+            targeting: "{}"
+            platformAdSetId: platformAdSetId
             budget:
               amount: 0.8008281904610115
               type: daily
             updatedAt: 2000-01-23T04:56:07.000+00:00
-          - goal: engagement
-            adSetName: adSetName
+            goal: engagement
             isExternal: true
-            platformCampaignId: platformCampaignId
-            platformAdId: platformAdId
-            platform: facebook
             creative:
               videoId: videoId
               pinterestTitle: pinterestTitle
@@ -19176,24 +19300,18 @@ components:
             schedule:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
-            createdAt: 2000-01-23T04:56:07.000+00:00
-            adType: boost
-            targeting: "{}"
             name: name
-            platformAdSetId: platformAdSetId
+            platformObjective: OUTCOME_SALES
             _id: _id
             metrics: ""
             rejectionReason: rejectionReason
             campaignName: campaignName
             platformAdAccountId: platformAdAccountId
             status: active
-            budget:
-              amount: 0.8008281904610115
-              type: daily
-            updatedAt: 2000-01-23T04:56:07.000+00:00
           adSetName: adSetName
           platformAdSetId: platformAdSetId
           adCount: 1
+          optimizationGoal: optimizationGoal
           metrics:
             ctr: 2.3021358869347655
             cpm: 9.301444243932576
@@ -19204,6 +19322,10 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
             impressions: 1
+          promotedObject:
+            page_id: page_id
+            custom_event_type: custom_event_type
+            pixel_id: pixel_id
           status: active
           budget:
             amount: 0.8008281904610115
@@ -19218,9 +19340,7 @@ components:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 5
           impressions: 1
-        adSetCount: 6
         campaignName: campaignName
-        platform: facebook
         platformAdAccountId: platformAdAccountId
         status: active
         budget:
@@ -19267,18 +19387,40 @@ components:
           type: string
         profileId:
           type: string
+        platformObjective:
+          description: "Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS,\
+            \ OUTCOME_TRAFFIC)"
+          type: string
+          nullable: true
+        optimizationGoal:
+          $ref: "#/components/schemas/AdTreeCampaign_optimizationGoal"
+        bidStrategy:
+          description: "Campaign-level bid strategy (e.g. LOWEST_COST_WITHOUT_CAP,\
+            \ COST_CAP, LOWEST_COST_WITH_MIN_ROAS)"
+          type: string
+          nullable: true
+        promotedObject:
+          $ref: "#/components/schemas/AdTreeCampaign_promotedObject"
         adSets:
           items:
             $ref: "#/components/schemas/AdTreeAdSet"
           type: array
     AdCampaign:
       example:
+        bidStrategy: bidStrategy
+        platformCampaignId: platformCampaignId
+        adCount: 0
+        optimizationGoal: AdTreeCampaign_optimizationGoal
+        platform: facebook
+        promotedObject:
+          page_id: page_id
+          custom_event_type: custom_event_type
+          pixel_id: pixel_id
         accountId: accountId
         profileId: profileId
         earliestAd: 2000-01-23T04:56:07.000+00:00
-        platformCampaignId: platformCampaignId
+        platformObjective: platformObjective
         latestAd: 2000-01-23T04:56:07.000+00:00
-        adCount: 0
         metrics:
           ctr: 2.3021358869347655
           cpm: 9.301444243932576
@@ -19290,7 +19432,6 @@ components:
           clicks: 5
           impressions: 1
         campaignName: campaignName
-        platform: facebook
         platformAdAccountId: platformAdAccountId
         status: active
         budget:
@@ -19334,6 +19475,20 @@ components:
           type: string
         profileId:
           type: string
+        platformObjective:
+          description: "Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS,\
+            \ OUTCOME_TRAFFIC)"
+          type: string
+          nullable: true
+        optimizationGoal:
+          $ref: "#/components/schemas/AdTreeCampaign_optimizationGoal"
+        bidStrategy:
+          description: "Campaign-level bid strategy (e.g. LOWEST_COST_WITHOUT_CAP,\
+            \ COST_CAP, LOWEST_COST_WITH_MIN_ROAS)"
+          type: string
+          nullable: true
+        promotedObject:
+          $ref: "#/components/schemas/AdTreeCampaign_promotedObject"
         earliestAd:
           format: date-time
           type: string
@@ -32503,12 +32658,28 @@ components:
     listAds_200_response:
       example:
         ads:
-        - goal: engagement
+        - bidStrategy: LOWEST_COST_WITHOUT_CAP
           adSetName: adSetName
-          isExternal: true
           platformCampaignId: platformCampaignId
+          optimizationGoal: OFFSITE_CONVERSIONS
           platformAdId: platformAdId
           platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: PURCHASE
+            product_set_id: product_set_id
+            pixel_id: pixel_id
+            application_id: application_id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adType: boost
+          targeting: "{}"
+          platformAdSetId: platformAdSetId
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          goal: engagement
+          isExternal: true
           creative:
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -32528,27 +32699,36 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          adType: boost
-          targeting: "{}"
           name: name
-          platformAdSetId: platformAdSetId
+          platformObjective: OUTCOME_SALES
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: active
+        - bidStrategy: LOWEST_COST_WITHOUT_CAP
+          adSetName: adSetName
+          platformCampaignId: platformCampaignId
+          optimizationGoal: OFFSITE_CONVERSIONS
+          platformAdId: platformAdId
+          platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: PURCHASE
+            product_set_id: product_set_id
+            pixel_id: pixel_id
+            application_id: application_id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adType: boost
+          targeting: "{}"
+          platformAdSetId: platformAdSetId
           budget:
             amount: 0.8008281904610115
             type: daily
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        - goal: engagement
-          adSetName: adSetName
+          goal: engagement
           isExternal: true
-          platformCampaignId: platformCampaignId
-          platformAdId: platformAdId
-          platform: facebook
           creative:
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -32568,21 +32748,14 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          adType: boost
-          targeting: "{}"
           name: name
-          platformAdSetId: platformAdSetId
+          platformObjective: OUTCOME_SALES
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: active
-          budget:
-            amount: 0.8008281904610115
-            type: daily
-          updatedAt: 2000-01-23T04:56:07.000+00:00
         pagination:
           total: 3
           pages: 2
@@ -32603,12 +32776,20 @@ components:
           limit: 9
           page: 7
         campaigns:
-        - accountId: accountId
+        - bidStrategy: bidStrategy
+          platformCampaignId: platformCampaignId
+          adCount: 0
+          optimizationGoal: AdTreeCampaign_optimizationGoal
+          platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: custom_event_type
+            pixel_id: pixel_id
+          accountId: accountId
           profileId: profileId
           earliestAd: 2000-01-23T04:56:07.000+00:00
-          platformCampaignId: platformCampaignId
+          platformObjective: platformObjective
           latestAd: 2000-01-23T04:56:07.000+00:00
-          adCount: 0
           metrics:
             ctr: 2.3021358869347655
             cpm: 9.301444243932576
@@ -32620,18 +32801,25 @@ components:
             clicks: 5
             impressions: 1
           campaignName: campaignName
-          platform: facebook
           platformAdAccountId: platformAdAccountId
           status: active
           budget:
             amount: 0.8008281904610115
             type: daily
-        - accountId: accountId
+        - bidStrategy: bidStrategy
+          platformCampaignId: platformCampaignId
+          adCount: 0
+          optimizationGoal: AdTreeCampaign_optimizationGoal
+          platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: custom_event_type
+            pixel_id: pixel_id
+          accountId: accountId
           profileId: profileId
           earliestAd: 2000-01-23T04:56:07.000+00:00
-          platformCampaignId: platformCampaignId
+          platformObjective: platformObjective
           latestAd: 2000-01-23T04:56:07.000+00:00
-          adCount: 0
           metrics:
             ctr: 2.3021358869347655
             cpm: 9.301444243932576
@@ -32643,7 +32831,6 @@ components:
             clicks: 5
             impressions: 1
           campaignName: campaignName
-          platform: facebook
           platformAdAccountId: platformAdAccountId
           status: active
           budget:
@@ -32706,18 +32893,44 @@ components:
           limit: 9
           page: 7
         campaigns:
-        - accountId: accountId
-          profileId: profileId
+        - bidStrategy: bidStrategy
           platformCampaignId: platformCampaignId
           adCount: 0
+          optimizationGoal: AdTreeCampaign_optimizationGoal
+          adSetCount: 6
+          platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: custom_event_type
+            pixel_id: pixel_id
+          accountId: accountId
+          profileId: profileId
+          platformObjective: platformObjective
           adSets:
-          - ads:
-            - goal: engagement
+          - bidStrategy: bidStrategy
+            ads:
+            - bidStrategy: LOWEST_COST_WITHOUT_CAP
               adSetName: adSetName
-              isExternal: true
               platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
               platformAdId: platformAdId
               platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              goal: engagement
+              isExternal: true
               creative:
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -32737,27 +32950,36 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              adType: boost
-              targeting: "{}"
               name: name
-              platformAdSetId: platformAdSetId
+              platformObjective: OUTCOME_SALES
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
+            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
                 type: daily
               updatedAt: 2000-01-23T04:56:07.000+00:00
-            - goal: engagement
-              adSetName: adSetName
+              goal: engagement
               isExternal: true
-              platformCampaignId: platformCampaignId
-              platformAdId: platformAdId
-              platform: facebook
               creative:
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -32777,24 +32999,18 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              adType: boost
-              targeting: "{}"
               name: name
-              platformAdSetId: platformAdSetId
+              platformObjective: OUTCOME_SALES
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
-              budget:
-                amount: 0.8008281904610115
-                type: daily
-              updatedAt: 2000-01-23T04:56:07.000+00:00
             adSetName: adSetName
             platformAdSetId: platformAdSetId
             adCount: 1
+            optimizationGoal: optimizationGoal
             metrics:
               ctr: 2.3021358869347655
               cpm: 9.301444243932576
@@ -32805,17 +33021,38 @@ components:
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 5
               impressions: 1
+            promotedObject:
+              page_id: page_id
+              custom_event_type: custom_event_type
+              pixel_id: pixel_id
             status: active
             budget:
               amount: 0.8008281904610115
               type: daily
-          - ads:
-            - goal: engagement
+          - bidStrategy: bidStrategy
+            ads:
+            - bidStrategy: LOWEST_COST_WITHOUT_CAP
               adSetName: adSetName
-              isExternal: true
               platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
               platformAdId: platformAdId
               platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              goal: engagement
+              isExternal: true
               creative:
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -32835,27 +33072,36 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              adType: boost
-              targeting: "{}"
               name: name
-              platformAdSetId: platformAdSetId
+              platformObjective: OUTCOME_SALES
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
+            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
                 type: daily
               updatedAt: 2000-01-23T04:56:07.000+00:00
-            - goal: engagement
-              adSetName: adSetName
+              goal: engagement
               isExternal: true
-              platformCampaignId: platformCampaignId
-              platformAdId: platformAdId
-              platform: facebook
               creative:
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -32875,24 +33121,18 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              adType: boost
-              targeting: "{}"
               name: name
-              platformAdSetId: platformAdSetId
+              platformObjective: OUTCOME_SALES
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
-              budget:
-                amount: 0.8008281904610115
-                type: daily
-              updatedAt: 2000-01-23T04:56:07.000+00:00
             adSetName: adSetName
             platformAdSetId: platformAdSetId
             adCount: 1
+            optimizationGoal: optimizationGoal
             metrics:
               ctr: 2.3021358869347655
               cpm: 9.301444243932576
@@ -32903,6 +33143,10 @@ components:
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 5
               impressions: 1
+            promotedObject:
+              page_id: page_id
+              custom_event_type: custom_event_type
+              pixel_id: pixel_id
             status: active
             budget:
               amount: 0.8008281904610115
@@ -32917,26 +33161,50 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
             impressions: 1
-          adSetCount: 6
           campaignName: campaignName
-          platform: facebook
           platformAdAccountId: platformAdAccountId
           status: active
           budget:
             amount: 0.8008281904610115
             type: daily
-        - accountId: accountId
-          profileId: profileId
+        - bidStrategy: bidStrategy
           platformCampaignId: platformCampaignId
           adCount: 0
+          optimizationGoal: AdTreeCampaign_optimizationGoal
+          adSetCount: 6
+          platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: custom_event_type
+            pixel_id: pixel_id
+          accountId: accountId
+          profileId: profileId
+          platformObjective: platformObjective
           adSets:
-          - ads:
-            - goal: engagement
+          - bidStrategy: bidStrategy
+            ads:
+            - bidStrategy: LOWEST_COST_WITHOUT_CAP
               adSetName: adSetName
-              isExternal: true
               platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
               platformAdId: platformAdId
               platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              goal: engagement
+              isExternal: true
               creative:
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -32956,27 +33224,36 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              adType: boost
-              targeting: "{}"
               name: name
-              platformAdSetId: platformAdSetId
+              platformObjective: OUTCOME_SALES
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
+            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
                 type: daily
               updatedAt: 2000-01-23T04:56:07.000+00:00
-            - goal: engagement
-              adSetName: adSetName
+              goal: engagement
               isExternal: true
-              platformCampaignId: platformCampaignId
-              platformAdId: platformAdId
-              platform: facebook
               creative:
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -32996,24 +33273,18 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              adType: boost
-              targeting: "{}"
               name: name
-              platformAdSetId: platformAdSetId
+              platformObjective: OUTCOME_SALES
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
-              budget:
-                amount: 0.8008281904610115
-                type: daily
-              updatedAt: 2000-01-23T04:56:07.000+00:00
             adSetName: adSetName
             platformAdSetId: platformAdSetId
             adCount: 1
+            optimizationGoal: optimizationGoal
             metrics:
               ctr: 2.3021358869347655
               cpm: 9.301444243932576
@@ -33024,17 +33295,38 @@ components:
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 5
               impressions: 1
+            promotedObject:
+              page_id: page_id
+              custom_event_type: custom_event_type
+              pixel_id: pixel_id
             status: active
             budget:
               amount: 0.8008281904610115
               type: daily
-          - ads:
-            - goal: engagement
+          - bidStrategy: bidStrategy
+            ads:
+            - bidStrategy: LOWEST_COST_WITHOUT_CAP
               adSetName: adSetName
-              isExternal: true
               platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
               platformAdId: platformAdId
               platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              platformAdSetId: platformAdSetId
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+              goal: engagement
+              isExternal: true
               creative:
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -33054,27 +33346,36 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              adType: boost
-              targeting: "{}"
               name: name
-              platformAdSetId: platformAdSetId
+              platformObjective: OUTCOME_SALES
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
+            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+              adSetName: adSetName
+              platformCampaignId: platformCampaignId
+              optimizationGoal: OFFSITE_CONVERSIONS
+              platformAdId: platformAdId
+              platform: facebook
+              promotedObject:
+                page_id: page_id
+                custom_event_type: PURCHASE
+                product_set_id: product_set_id
+                pixel_id: pixel_id
+                application_id: application_id
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              platformAdSetId: platformAdSetId
               budget:
                 amount: 0.8008281904610115
                 type: daily
               updatedAt: 2000-01-23T04:56:07.000+00:00
-            - goal: engagement
-              adSetName: adSetName
+              goal: engagement
               isExternal: true
-              platformCampaignId: platformCampaignId
-              platformAdId: platformAdId
-              platform: facebook
               creative:
                 videoId: videoId
                 pinterestTitle: pinterestTitle
@@ -33094,24 +33395,18 @@ components:
               schedule:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
-              createdAt: 2000-01-23T04:56:07.000+00:00
-              adType: boost
-              targeting: "{}"
               name: name
-              platformAdSetId: platformAdSetId
+              platformObjective: OUTCOME_SALES
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
-              budget:
-                amount: 0.8008281904610115
-                type: daily
-              updatedAt: 2000-01-23T04:56:07.000+00:00
             adSetName: adSetName
             platformAdSetId: platformAdSetId
             adCount: 1
+            optimizationGoal: optimizationGoal
             metrics:
               ctr: 2.3021358869347655
               cpm: 9.301444243932576
@@ -33122,6 +33417,10 @@ components:
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 5
               impressions: 1
+            promotedObject:
+              page_id: page_id
+              custom_event_type: custom_event_type
+              pixel_id: pixel_id
             status: active
             budget:
               amount: 0.8008281904610115
@@ -33136,9 +33435,7 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
             impressions: 1
-          adSetCount: 6
           campaignName: campaignName
-          platform: facebook
           platformAdAccountId: platformAdAccountId
           status: active
           budget:
@@ -33154,12 +33451,28 @@ components:
     getAd_200_response:
       example:
         ad:
-          goal: engagement
+          bidStrategy: LOWEST_COST_WITHOUT_CAP
           adSetName: adSetName
-          isExternal: true
           platformCampaignId: platformCampaignId
+          optimizationGoal: OFFSITE_CONVERSIONS
           platformAdId: platformAdId
           platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: PURCHASE
+            product_set_id: product_set_id
+            pixel_id: pixel_id
+            application_id: application_id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adType: boost
+          targeting: "{}"
+          platformAdSetId: platformAdSetId
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          goal: engagement
+          isExternal: true
           creative:
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -33179,21 +33492,14 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          adType: boost
-          targeting: "{}"
           name: name
-          platformAdSetId: platformAdSetId
+          platformObjective: OUTCOME_SALES
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: active
-          budget:
-            amount: 0.8008281904610115
-            type: daily
-          updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         ad:
           $ref: "#/components/schemas/Ad"
@@ -33243,12 +33549,28 @@ components:
     updateAd_200_response:
       example:
         ad:
-          goal: engagement
+          bidStrategy: LOWEST_COST_WITHOUT_CAP
           adSetName: adSetName
-          isExternal: true
           platformCampaignId: platformCampaignId
+          optimizationGoal: OFFSITE_CONVERSIONS
           platformAdId: platformAdId
           platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: PURCHASE
+            product_set_id: product_set_id
+            pixel_id: pixel_id
+            application_id: application_id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adType: boost
+          targeting: "{}"
+          platformAdSetId: platformAdSetId
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          goal: engagement
+          isExternal: true
           creative:
             videoId: videoId
             pinterestTitle: pinterestTitle
@@ -33268,21 +33590,14 @@ components:
           schedule:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          adType: boost
-          targeting: "{}"
           name: name
-          platformAdSetId: platformAdSetId
+          platformObjective: OUTCOME_SALES
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: active
-          budget:
-            amount: 0.8008281904610115
-            type: daily
-          updatedAt: 2000-01-23T04:56:07.000+00:00
         message: message
       properties:
         ad:
@@ -35150,6 +35465,34 @@ components:
           - lifetime
           type: string
       nullable: true
+    Ad_promotedObject:
+      description: Meta promoted object containing conversion event details. Structure
+        varies by objective. Only present for Meta ads.
+      example:
+        page_id: page_id
+        custom_event_type: PURCHASE
+        product_set_id: product_set_id
+        pixel_id: pixel_id
+        application_id: application_id
+      properties:
+        custom_event_type:
+          description: "Conversion event type (e.g. PURCHASE, LEAD, COMPLETE_REGISTRATION,\
+            \ ADD_TO_CART)"
+          example: PURCHASE
+          type: string
+        pixel_id:
+          description: Meta pixel ID
+          type: string
+        page_id:
+          description: Facebook page ID
+          type: string
+        application_id:
+          description: Facebook app ID
+          type: string
+        product_set_id:
+          description: Product catalog set ID
+          type: string
+      nullable: true
     Ad_creative:
       description: Platform-specific creative data. Fields vary by platform.
       example:
@@ -35227,6 +35570,43 @@ components:
           type: string
         endDate:
           format: date-time
+          type: string
+      nullable: true
+    AdTreeAdSet_promotedObject:
+      description: Meta promoted object for this ad set (conversion event details)
+      example:
+        page_id: page_id
+        custom_event_type: custom_event_type
+        pixel_id: pixel_id
+      properties:
+        custom_event_type:
+          type: string
+        pixel_id:
+          type: string
+        page_id:
+          type: string
+      nullable: true
+    AdTreeCampaign_optimizationGoal:
+      description: "Meta optimization goal. String if all ad sets share the same goal,\
+        \ array of distinct values if they differ."
+      oneOf:
+      - type: string
+      - items:
+          type: string
+        type: array
+      nullable: true
+    AdTreeCampaign_promotedObject:
+      description: Meta promoted object at campaign level (conversion event details)
+      example:
+        page_id: page_id
+        custom_event_type: custom_event_type
+        pixel_id: pixel_id
+      properties:
+        custom_event_type:
+          type: string
+        pixel_id:
+          type: string
+        page_id:
           type: string
       nullable: true
     inline_object:

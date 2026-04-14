@@ -223,13 +223,17 @@ namespace Late.Model
         /// <param name="platformAdSetId">platformAdSetId.</param>
         /// <param name="campaignName">campaignName.</param>
         /// <param name="adSetName">adSetName.</param>
+        /// <param name="platformObjective">Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC). Only present for Meta ads..</param>
+        /// <param name="optimizationGoal">Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION, LINK_CLICKS). Only present for Meta ads..</param>
+        /// <param name="bidStrategy">Bid strategy (e.g. LOWEST_COST_WITHOUT_CAP, COST_CAP, LOWEST_COST_WITH_MIN_ROAS). Ad set level overrides campaign level. Only present for Meta ads..</param>
+        /// <param name="promotedObject">promotedObject.</param>
         /// <param name="creative">creative.</param>
         /// <param name="targeting">targeting.</param>
         /// <param name="schedule">schedule.</param>
         /// <param name="rejectionReason">rejectionReason.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public Ad(string id = default, string name = default, PlatformEnum? platform = default, StatusEnum? status = default, AdTypeEnum? adType = default, GoalEnum? goal = default, bool isExternal = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdId = default, string platformAdAccountId = default, string platformCampaignId = default, string platformAdSetId = default, string campaignName = default, string adSetName = default, AdCreative creative = default, Object targeting = default, AdSchedule schedule = default, string rejectionReason = default, DateTime createdAt = default, DateTime updatedAt = default)
+        public Ad(string id = default, string name = default, PlatformEnum? platform = default, StatusEnum? status = default, AdTypeEnum? adType = default, GoalEnum? goal = default, bool isExternal = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdId = default, string platformAdAccountId = default, string platformCampaignId = default, string platformAdSetId = default, string campaignName = default, string adSetName = default, string platformObjective = default, string optimizationGoal = default, string bidStrategy = default, AdPromotedObject promotedObject = default, AdCreative creative = default, Object targeting = default, AdSchedule schedule = default, string rejectionReason = default, DateTime createdAt = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -246,6 +250,10 @@ namespace Late.Model
             this.PlatformAdSetId = platformAdSetId;
             this.CampaignName = campaignName;
             this.AdSetName = adSetName;
+            this.PlatformObjective = platformObjective;
+            this.OptimizationGoal = optimizationGoal;
+            this.BidStrategy = bidStrategy;
+            this.PromotedObject = promotedObject;
             this.Creative = creative;
             this.Targeting = targeting;
             this.Schedule = schedule;
@@ -322,6 +330,42 @@ namespace Late.Model
         public string AdSetName { get; set; }
 
         /// <summary>
+        /// Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC). Only present for Meta ads.
+        /// </summary>
+        /// <value>Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC). Only present for Meta ads.</value>
+        /*
+        <example>OUTCOME_SALES</example>
+        */
+        [DataMember(Name = "platformObjective", EmitDefaultValue = false)]
+        public string PlatformObjective { get; set; }
+
+        /// <summary>
+        /// Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION, LINK_CLICKS). Only present for Meta ads.
+        /// </summary>
+        /// <value>Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION, LINK_CLICKS). Only present for Meta ads.</value>
+        /*
+        <example>OFFSITE_CONVERSIONS</example>
+        */
+        [DataMember(Name = "optimizationGoal", EmitDefaultValue = false)]
+        public string OptimizationGoal { get; set; }
+
+        /// <summary>
+        /// Bid strategy (e.g. LOWEST_COST_WITHOUT_CAP, COST_CAP, LOWEST_COST_WITH_MIN_ROAS). Ad set level overrides campaign level. Only present for Meta ads.
+        /// </summary>
+        /// <value>Bid strategy (e.g. LOWEST_COST_WITHOUT_CAP, COST_CAP, LOWEST_COST_WITH_MIN_ROAS). Ad set level overrides campaign level. Only present for Meta ads.</value>
+        /*
+        <example>LOWEST_COST_WITHOUT_CAP</example>
+        */
+        [DataMember(Name = "bidStrategy", EmitDefaultValue = false)]
+        public string BidStrategy { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PromotedObject
+        /// </summary>
+        [DataMember(Name = "promotedObject", EmitDefaultValue = false)]
+        public AdPromotedObject PromotedObject { get; set; }
+
+        /// <summary>
         /// Gets or Sets Creative
         /// </summary>
         [DataMember(Name = "creative", EmitDefaultValue = false)]
@@ -380,6 +424,10 @@ namespace Late.Model
             sb.Append("  PlatformAdSetId: ").Append(PlatformAdSetId).Append("\n");
             sb.Append("  CampaignName: ").Append(CampaignName).Append("\n");
             sb.Append("  AdSetName: ").Append(AdSetName).Append("\n");
+            sb.Append("  PlatformObjective: ").Append(PlatformObjective).Append("\n");
+            sb.Append("  OptimizationGoal: ").Append(OptimizationGoal).Append("\n");
+            sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
+            sb.Append("  PromotedObject: ").Append(PromotedObject).Append("\n");
             sb.Append("  Creative: ").Append(Creative).Append("\n");
             sb.Append("  Targeting: ").Append(Targeting).Append("\n");
             sb.Append("  Schedule: ").Append(Schedule).Append("\n");

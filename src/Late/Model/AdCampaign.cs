@@ -158,9 +158,13 @@ namespace Late.Model
         /// <param name="platformAdAccountId">platformAdAccountId.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="profileId">profileId.</param>
+        /// <param name="platformObjective">Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC).</param>
+        /// <param name="optimizationGoal">optimizationGoal.</param>
+        /// <param name="bidStrategy">Campaign-level bid strategy (e.g. LOWEST_COST_WITHOUT_CAP, COST_CAP, LOWEST_COST_WITH_MIN_ROAS).</param>
+        /// <param name="promotedObject">promotedObject.</param>
         /// <param name="earliestAd">earliestAd.</param>
         /// <param name="latestAd">latestAd.</param>
-        public AdCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, StatusEnum? status = default, int adCount = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdAccountId = default, string accountId = default, string profileId = default, DateTime earliestAd = default, DateTime latestAd = default)
+        public AdCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, StatusEnum? status = default, int adCount = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdAccountId = default, string accountId = default, string profileId = default, string platformObjective = default, AdTreeCampaignOptimizationGoal optimizationGoal = default, string bidStrategy = default, AdTreeCampaignPromotedObject promotedObject = default, DateTime earliestAd = default, DateTime latestAd = default)
         {
             this.PlatformCampaignId = platformCampaignId;
             this.Platform = platform;
@@ -172,6 +176,10 @@ namespace Late.Model
             this.PlatformAdAccountId = platformAdAccountId;
             this.AccountId = accountId;
             this.ProfileId = profileId;
+            this.PlatformObjective = platformObjective;
+            this.OptimizationGoal = optimizationGoal;
+            this.BidStrategy = bidStrategy;
+            this.PromotedObject = promotedObject;
             this.EarliestAd = earliestAd;
             this.LatestAd = latestAd;
         }
@@ -225,6 +233,32 @@ namespace Late.Model
         public string ProfileId { get; set; }
 
         /// <summary>
+        /// Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC)
+        /// </summary>
+        /// <value>Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC)</value>
+        [DataMember(Name = "platformObjective", EmitDefaultValue = false)]
+        public string PlatformObjective { get; set; }
+
+        /// <summary>
+        /// Gets or Sets OptimizationGoal
+        /// </summary>
+        [DataMember(Name = "optimizationGoal", EmitDefaultValue = false)]
+        public AdTreeCampaignOptimizationGoal OptimizationGoal { get; set; }
+
+        /// <summary>
+        /// Campaign-level bid strategy (e.g. LOWEST_COST_WITHOUT_CAP, COST_CAP, LOWEST_COST_WITH_MIN_ROAS)
+        /// </summary>
+        /// <value>Campaign-level bid strategy (e.g. LOWEST_COST_WITHOUT_CAP, COST_CAP, LOWEST_COST_WITH_MIN_ROAS)</value>
+        [DataMember(Name = "bidStrategy", EmitDefaultValue = false)]
+        public string BidStrategy { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PromotedObject
+        /// </summary>
+        [DataMember(Name = "promotedObject", EmitDefaultValue = false)]
+        public AdTreeCampaignPromotedObject PromotedObject { get; set; }
+
+        /// <summary>
         /// Gets or Sets EarliestAd
         /// </summary>
         [DataMember(Name = "earliestAd", EmitDefaultValue = false)]
@@ -254,6 +288,10 @@ namespace Late.Model
             sb.Append("  PlatformAdAccountId: ").Append(PlatformAdAccountId).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
+            sb.Append("  PlatformObjective: ").Append(PlatformObjective).Append("\n");
+            sb.Append("  OptimizationGoal: ").Append(OptimizationGoal).Append("\n");
+            sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
+            sb.Append("  PromotedObject: ").Append(PromotedObject).Append("\n");
             sb.Append("  EarliestAd: ").Append(EarliestAd).Append("\n");
             sb.Append("  LatestAd: ").Append(LatestAd).Append("\n");
             sb.Append("}\n");
