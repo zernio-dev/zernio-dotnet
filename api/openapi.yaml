@@ -35655,7 +35655,6 @@ components:
       properties:
         email:
           description: Plaintext email. Hashed server-side.
-          format: email
           type: string
         phone:
           description: "Phone number, ideally E.164. Hashed server-side."
