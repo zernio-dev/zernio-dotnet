@@ -202,6 +202,27 @@ namespace Late.Api
         /// <returns>ApiResponse of ListAds200Response</returns>
         ApiResponse<ListAds200Response> ListAdsWithHttpInfo(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
+        /// List destinations for the Conversions API
+        /// </summary>
+        /// <remarks>
+        /// Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <returns>ListConversionDestinations200Response</returns>
+        ListConversionDestinations200Response ListConversionDestinations(string accountId);
+
+        /// <summary>
+        /// List destinations for the Conversions API
+        /// </summary>
+        /// <remarks>
+        /// Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <returns>ApiResponse of ListConversionDestinations200Response</returns>
+        ApiResponse<ListConversionDestinations200Response> ListConversionDestinationsWithHttpInfo(string accountId);
+        /// <summary>
         /// Search targeting interests
         /// </summary>
         /// <remarks>
@@ -224,6 +245,27 @@ namespace Late.Api
         /// <param name="accountId">Social account ID</param>
         /// <returns>ApiResponse of SearchAdInterests200Response</returns>
         ApiResponse<SearchAdInterests200Response> SearchAdInterestsWithHttpInfo(string q, string accountId);
+        /// <summary>
+        /// Send conversion events to an ad platform
+        /// </summary>
+        /// <remarks>
+        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendConversionsRequest"></param>
+        /// <returns>SendConversions200Response</returns>
+        SendConversions200Response SendConversions(SendConversionsRequest sendConversionsRequest);
+
+        /// <summary>
+        /// Send conversion events to an ad platform
+        /// </summary>
+        /// <remarks>
+        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendConversionsRequest"></param>
+        /// <returns>ApiResponse of SendConversions200Response</returns>
+        ApiResponse<SendConversions200Response> SendConversionsWithHttpInfo(SendConversionsRequest sendConversionsRequest);
         /// <summary>
         /// Update ad
         /// </summary>
@@ -444,6 +486,29 @@ namespace Late.Api
         /// <returns>Task of ApiResponse (ListAds200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAds200Response>> ListAdsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, AdStatus? status = default, string? platform = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List destinations for the Conversions API
+        /// </summary>
+        /// <remarks>
+        /// Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListConversionDestinations200Response</returns>
+        System.Threading.Tasks.Task<ListConversionDestinations200Response> ListConversionDestinationsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List destinations for the Conversions API
+        /// </summary>
+        /// <remarks>
+        /// Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListConversionDestinations200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListConversionDestinations200Response>> ListConversionDestinationsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Search targeting interests
         /// </summary>
         /// <remarks>
@@ -468,6 +533,29 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchAdInterests200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SearchAdInterests200Response>> SearchAdInterestsWithHttpInfoAsync(string q, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Send conversion events to an ad platform
+        /// </summary>
+        /// <remarks>
+        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendConversionsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SendConversions200Response</returns>
+        System.Threading.Tasks.Task<SendConversions200Response> SendConversionsAsync(SendConversionsRequest sendConversionsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Send conversion events to an ad platform
+        /// </summary>
+        /// <remarks>
+        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendConversionsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SendConversions200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SendConversions200Response>> SendConversionsWithHttpInfoAsync(SendConversionsRequest sendConversionsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update ad
         /// </summary>
@@ -1754,6 +1842,133 @@ namespace Late.Api
         }
 
         /// <summary>
+        /// List destinations for the Conversions API Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <returns>ListConversionDestinations200Response</returns>
+        public ListConversionDestinations200Response ListConversionDestinations(string accountId)
+        {
+            Late.Client.ApiResponse<ListConversionDestinations200Response> localVarResponse = ListConversionDestinationsWithHttpInfo(accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List destinations for the Conversions API Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <returns>ApiResponse of ListConversionDestinations200Response</returns>
+        public Late.Client.ApiResponse<ListConversionDestinations200Response> ListConversionDestinationsWithHttpInfo(string accountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListConversionDestinations");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListConversionDestinations200Response>("/v1/accounts/{accountId}/conversion-destinations", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListConversionDestinations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List destinations for the Conversions API Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListConversionDestinations200Response</returns>
+        public async System.Threading.Tasks.Task<ListConversionDestinations200Response> ListConversionDestinationsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<ListConversionDestinations200Response> localVarResponse = await ListConversionDestinationsWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List destinations for the Conversions API Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListConversionDestinations200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<ListConversionDestinations200Response>> ListConversionDestinationsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListConversionDestinations");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListConversionDestinations200Response>("/v1/accounts/{accountId}/conversion-destinations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListConversionDestinations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Search targeting interests Search for interest-based targeting options available on the platform.
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1888,6 +2103,135 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("SearchAdInterests", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendConversionsRequest"></param>
+        /// <returns>SendConversions200Response</returns>
+        public SendConversions200Response SendConversions(SendConversionsRequest sendConversionsRequest)
+        {
+            Late.Client.ApiResponse<SendConversions200Response> localVarResponse = SendConversionsWithHttpInfo(sendConversionsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendConversionsRequest"></param>
+        /// <returns>ApiResponse of SendConversions200Response</returns>
+        public Late.Client.ApiResponse<SendConversions200Response> SendConversionsWithHttpInfo(SendConversionsRequest sendConversionsRequest)
+        {
+            // verify the required parameter 'sendConversionsRequest' is set
+            if (sendConversionsRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'sendConversionsRequest' when calling AdsApi->SendConversions");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = sendConversionsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<SendConversions200Response>("/v1/ads/conversions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SendConversions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendConversionsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SendConversions200Response</returns>
+        public async System.Threading.Tasks.Task<SendConversions200Response> SendConversionsAsync(SendConversionsRequest sendConversionsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<SendConversions200Response> localVarResponse = await SendConversionsWithHttpInfoAsync(sendConversionsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendConversionsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SendConversions200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<SendConversions200Response>> SendConversionsWithHttpInfoAsync(SendConversionsRequest sendConversionsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'sendConversionsRequest' is set
+            if (sendConversionsRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'sendConversionsRequest' when calling AdsApi->SendConversions");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = sendConversionsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SendConversions200Response>("/v1/ads/conversions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SendConversions", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
