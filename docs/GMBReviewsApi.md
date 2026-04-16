@@ -4,7 +4,110 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**BatchGetGoogleBusinessReviews**](GMBReviewsApi.md#batchgetgooglebusinessreviews) | **POST** /v1/accounts/{accountId}/gmb-reviews/batch | Batch get reviews |
 | [**GetGoogleBusinessReviews**](GMBReviewsApi.md#getgooglebusinessreviews) | **GET** /v1/accounts/{accountId}/gmb-reviews | Get reviews |
+
+<a id="batchgetgooglebusinessreviews"></a>
+# **BatchGetGoogleBusinessReviews**
+> BatchGetGoogleBusinessReviews200Response BatchGetGoogleBusinessReviews (string accountId, BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest)
+
+Batch get reviews
+
+Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class BatchGetGoogleBusinessReviewsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new GMBReviewsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var batchGetGoogleBusinessReviewsRequest = new BatchGetGoogleBusinessReviewsRequest(); // BatchGetGoogleBusinessReviewsRequest | 
+
+            try
+            {
+                // Batch get reviews
+                BatchGetGoogleBusinessReviews200Response result = apiInstance.BatchGetGoogleBusinessReviews(accountId, batchGetGoogleBusinessReviewsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling GMBReviewsApi.BatchGetGoogleBusinessReviews: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the BatchGetGoogleBusinessReviewsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Batch get reviews
+    ApiResponse<BatchGetGoogleBusinessReviews200Response> response = apiInstance.BatchGetGoogleBusinessReviewsWithHttpInfo(accountId, batchGetGoogleBusinessReviewsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling GMBReviewsApi.BatchGetGoogleBusinessReviewsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **batchGetGoogleBusinessReviewsRequest** | [**BatchGetGoogleBusinessReviewsRequest**](BatchGetGoogleBusinessReviewsRequest.md) |  |  |
+
+### Return type
+
+[**BatchGetGoogleBusinessReviews200Response**](BatchGetGoogleBusinessReviews200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Batch reviews fetched successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getgooglebusinessreviews"></a>
 # **GetGoogleBusinessReviews**

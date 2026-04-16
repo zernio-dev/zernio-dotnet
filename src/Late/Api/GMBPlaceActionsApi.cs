@@ -105,6 +105,31 @@ namespace Late.Api
         /// <param name="pageToken"> (optional)</param>
         /// <returns>ApiResponse of ListGoogleBusinessPlaceActions200Response</returns>
         ApiResponse<ListGoogleBusinessPlaceActions200Response> ListGoogleBusinessPlaceActionsWithHttpInfo(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default);
+        /// <summary>
+        /// Update action link
+        /// </summary>
+        /// <remarks>
+        /// Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessPlaceActionRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>UpdateGoogleBusinessPlaceAction200Response</returns>
+        UpdateGoogleBusinessPlaceAction200Response UpdateGoogleBusinessPlaceAction(string accountId, UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, string? locationId = default);
+
+        /// <summary>
+        /// Update action link
+        /// </summary>
+        /// <remarks>
+        /// Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessPlaceActionRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>ApiResponse of UpdateGoogleBusinessPlaceAction200Response</returns>
+        ApiResponse<UpdateGoogleBusinessPlaceAction200Response> UpdateGoogleBusinessPlaceActionWithHttpInfo(string accountId, UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, string? locationId = default);
         #endregion Synchronous Operations
     }
 
@@ -197,6 +222,33 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListGoogleBusinessPlaceActions200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListGoogleBusinessPlaceActions200Response>> ListGoogleBusinessPlaceActionsWithHttpInfoAsync(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update action link
+        /// </summary>
+        /// <remarks>
+        /// Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessPlaceActionRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateGoogleBusinessPlaceAction200Response</returns>
+        System.Threading.Tasks.Task<UpdateGoogleBusinessPlaceAction200Response> UpdateGoogleBusinessPlaceActionAsync(string accountId, UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, string? locationId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update action link
+        /// </summary>
+        /// <remarks>
+        /// Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessPlaceActionRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateGoogleBusinessPlaceAction200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateGoogleBusinessPlaceAction200Response>> UpdateGoogleBusinessPlaceActionWithHttpInfoAsync(string accountId, UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, string? locationId = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -875,6 +927,161 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListGoogleBusinessPlaceActions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update action link Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessPlaceActionRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>UpdateGoogleBusinessPlaceAction200Response</returns>
+        public UpdateGoogleBusinessPlaceAction200Response UpdateGoogleBusinessPlaceAction(string accountId, UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, string? locationId = default)
+        {
+            Late.Client.ApiResponse<UpdateGoogleBusinessPlaceAction200Response> localVarResponse = UpdateGoogleBusinessPlaceActionWithHttpInfo(accountId, updateGoogleBusinessPlaceActionRequest, locationId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update action link Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessPlaceActionRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>ApiResponse of UpdateGoogleBusinessPlaceAction200Response</returns>
+        public Late.Client.ApiResponse<UpdateGoogleBusinessPlaceAction200Response> UpdateGoogleBusinessPlaceActionWithHttpInfo(string accountId, UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, string? locationId = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBPlaceActionsApi->UpdateGoogleBusinessPlaceAction");
+
+            // verify the required parameter 'updateGoogleBusinessPlaceActionRequest' is set
+            if (updateGoogleBusinessPlaceActionRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateGoogleBusinessPlaceActionRequest' when calling GMBPlaceActionsApi->UpdateGoogleBusinessPlaceAction");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (locationId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "locationId", locationId));
+            }
+            localVarRequestOptions.Data = updateGoogleBusinessPlaceActionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<UpdateGoogleBusinessPlaceAction200Response>("/v1/accounts/{accountId}/gmb-place-actions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateGoogleBusinessPlaceAction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update action link Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessPlaceActionRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateGoogleBusinessPlaceAction200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateGoogleBusinessPlaceAction200Response> UpdateGoogleBusinessPlaceActionAsync(string accountId, UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, string? locationId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UpdateGoogleBusinessPlaceAction200Response> localVarResponse = await UpdateGoogleBusinessPlaceActionWithHttpInfoAsync(accountId, updateGoogleBusinessPlaceActionRequest, locationId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update action link Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessPlaceActionRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateGoogleBusinessPlaceAction200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateGoogleBusinessPlaceAction200Response>> UpdateGoogleBusinessPlaceActionWithHttpInfoAsync(string accountId, UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, string? locationId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBPlaceActionsApi->UpdateGoogleBusinessPlaceAction");
+
+            // verify the required parameter 'updateGoogleBusinessPlaceActionRequest' is set
+            if (updateGoogleBusinessPlaceActionRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateGoogleBusinessPlaceActionRequest' when calling GMBPlaceActionsApi->UpdateGoogleBusinessPlaceAction");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (locationId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "locationId", locationId));
+            }
+            localVarRequestOptions.Data = updateGoogleBusinessPlaceActionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<UpdateGoogleBusinessPlaceAction200Response>("/v1/accounts/{accountId}/gmb-place-actions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateGoogleBusinessPlaceAction", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

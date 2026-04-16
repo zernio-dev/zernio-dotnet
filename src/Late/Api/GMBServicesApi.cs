@@ -25,129 +25,125 @@ namespace Late.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IGMBReviewsApiSync : IApiAccessor
+    public interface IGMBServicesApiSync : IApiAccessor
     {
         #region Synchronous Operations
         /// <summary>
-        /// Batch get reviews
+        /// Get services
         /// </summary>
         /// <remarks>
-        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+        /// Gets the services offered by a Google Business Profile location. Returns an array of service items (structured or free-form with optional price). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="batchGetGoogleBusinessReviewsRequest"></param>
-        /// <returns>BatchGetGoogleBusinessReviews200Response</returns>
-        BatchGetGoogleBusinessReviews200Response BatchGetGoogleBusinessReviews(string accountId, BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest);
+        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>GetGoogleBusinessServices200Response</returns>
+        GetGoogleBusinessServices200Response GetGoogleBusinessServices(string accountId, string? locationId = default);
 
         /// <summary>
-        /// Batch get reviews
+        /// Get services
         /// </summary>
         /// <remarks>
-        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+        /// Gets the services offered by a Google Business Profile location. Returns an array of service items (structured or free-form with optional price). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="batchGetGoogleBusinessReviewsRequest"></param>
-        /// <returns>ApiResponse of BatchGetGoogleBusinessReviews200Response</returns>
-        ApiResponse<BatchGetGoogleBusinessReviews200Response> BatchGetGoogleBusinessReviewsWithHttpInfo(string accountId, BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest);
+        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>ApiResponse of GetGoogleBusinessServices200Response</returns>
+        ApiResponse<GetGoogleBusinessServices200Response> GetGoogleBusinessServicesWithHttpInfo(string accountId, string? locationId = default);
         /// <summary>
-        /// Get reviews
+        /// Replace services
         /// </summary>
         /// <remarks>
-        /// Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Replaces the entire service list for a location. Google&#39;s API requires full replacement; individual item updates are not supported. Each service can be structured (using a predefined serviceTypeId) or free-form (custom label). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
-        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
-        /// <param name="pageSize">Number of reviews to fetch per page (max 50) (optional, default to 50)</param>
-        /// <param name="pageToken">Pagination token from previous response (optional)</param>
-        /// <returns>GetGoogleBusinessReviews200Response</returns>
-        GetGoogleBusinessReviews200Response GetGoogleBusinessReviews(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default);
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessServicesRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>UpdateGoogleBusinessServices200Response</returns>
+        UpdateGoogleBusinessServices200Response UpdateGoogleBusinessServices(string accountId, UpdateGoogleBusinessServicesRequest updateGoogleBusinessServicesRequest, string? locationId = default);
 
         /// <summary>
-        /// Get reviews
+        /// Replace services
         /// </summary>
         /// <remarks>
-        /// Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Replaces the entire service list for a location. Google&#39;s API requires full replacement; individual item updates are not supported. Each service can be structured (using a predefined serviceTypeId) or free-form (custom label). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
-        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
-        /// <param name="pageSize">Number of reviews to fetch per page (max 50) (optional, default to 50)</param>
-        /// <param name="pageToken">Pagination token from previous response (optional)</param>
-        /// <returns>ApiResponse of GetGoogleBusinessReviews200Response</returns>
-        ApiResponse<GetGoogleBusinessReviews200Response> GetGoogleBusinessReviewsWithHttpInfo(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default);
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessServicesRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>ApiResponse of UpdateGoogleBusinessServices200Response</returns>
+        ApiResponse<UpdateGoogleBusinessServices200Response> UpdateGoogleBusinessServicesWithHttpInfo(string accountId, UpdateGoogleBusinessServicesRequest updateGoogleBusinessServicesRequest, string? locationId = default);
         #endregion Synchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IGMBReviewsApiAsync : IApiAccessor
+    public interface IGMBServicesApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Batch get reviews
+        /// Get services
         /// </summary>
         /// <remarks>
-        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+        /// Gets the services offered by a Google Business Profile location. Returns an array of service items (structured or free-form with optional price). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="batchGetGoogleBusinessReviewsRequest"></param>
+        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of BatchGetGoogleBusinessReviews200Response</returns>
-        System.Threading.Tasks.Task<BatchGetGoogleBusinessReviews200Response> BatchGetGoogleBusinessReviewsAsync(string accountId, BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of GetGoogleBusinessServices200Response</returns>
+        System.Threading.Tasks.Task<GetGoogleBusinessServices200Response> GetGoogleBusinessServicesAsync(string accountId, string? locationId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Batch get reviews
+        /// Get services
         /// </summary>
         /// <remarks>
-        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+        /// Gets the services offered by a Google Business Profile location. Returns an array of service items (structured or free-form with optional price). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="batchGetGoogleBusinessReviewsRequest"></param>
+        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (BatchGetGoogleBusinessReviews200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BatchGetGoogleBusinessReviews200Response>> BatchGetGoogleBusinessReviewsWithHttpInfoAsync(string accountId, BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (GetGoogleBusinessServices200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetGoogleBusinessServices200Response>> GetGoogleBusinessServicesWithHttpInfoAsync(string accountId, string? locationId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get reviews
+        /// Replace services
         /// </summary>
         /// <remarks>
-        /// Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Replaces the entire service list for a location. Google&#39;s API requires full replacement; individual item updates are not supported. Each service can be structured (using a predefined serviceTypeId) or free-form (custom label). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
-        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
-        /// <param name="pageSize">Number of reviews to fetch per page (max 50) (optional, default to 50)</param>
-        /// <param name="pageToken">Pagination token from previous response (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessServicesRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetGoogleBusinessReviews200Response</returns>
-        System.Threading.Tasks.Task<GetGoogleBusinessReviews200Response> GetGoogleBusinessReviewsAsync(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of UpdateGoogleBusinessServices200Response</returns>
+        System.Threading.Tasks.Task<UpdateGoogleBusinessServices200Response> UpdateGoogleBusinessServicesAsync(string accountId, UpdateGoogleBusinessServicesRequest updateGoogleBusinessServicesRequest, string? locationId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get reviews
+        /// Replace services
         /// </summary>
         /// <remarks>
-        /// Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Replaces the entire service list for a location. Google&#39;s API requires full replacement; individual item updates are not supported. Each service can be structured (using a predefined serviceTypeId) or free-form (custom label). 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
-        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
-        /// <param name="pageSize">Number of reviews to fetch per page (max 50) (optional, default to 50)</param>
-        /// <param name="pageToken">Pagination token from previous response (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessServicesRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetGoogleBusinessReviews200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetGoogleBusinessReviews200Response>> GetGoogleBusinessReviewsWithHttpInfoAsync(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (UpdateGoogleBusinessServices200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateGoogleBusinessServices200Response>> UpdateGoogleBusinessServicesWithHttpInfoAsync(string accountId, UpdateGoogleBusinessServicesRequest updateGoogleBusinessServicesRequest, string? locationId = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public interface IGMBReviewsApi : IGMBReviewsApiSync, IGMBReviewsApiAsync
+    public interface IGMBServicesApi : IGMBServicesApiSync, IGMBServicesApiAsync
     {
 
     }
@@ -155,29 +151,29 @@ namespace Late.Api
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
-    public partial class GMBReviewsApi : IDisposable, IGMBReviewsApi
+    public partial class GMBServicesApi : IDisposable, IGMBServicesApi
     {
         private Late.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GMBReviewsApi"/> class.
+        /// Initializes a new instance of the <see cref="GMBServicesApi"/> class.
         /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
         /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <returns></returns>
-        public GMBReviewsApi() : this((string)null)
+        public GMBServicesApi() : this((string)null)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GMBReviewsApi"/> class.
+        /// Initializes a new instance of the <see cref="GMBServicesApi"/> class.
         /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
         /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <param name="basePath">The target service's base path in URL format.</param>
         /// <exception cref="ArgumentException"></exception>
         /// <returns></returns>
-        public GMBReviewsApi(string basePath)
+        public GMBServicesApi(string basePath)
         {
             this.Configuration = Late.Client.Configuration.MergeConfigurations(
                 Late.Client.GlobalConfiguration.Instance,
@@ -190,14 +186,14 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GMBReviewsApi"/> class using Configuration object.
+        /// Initializes a new instance of the <see cref="GMBServicesApi"/> class using Configuration object.
         /// **IMPORTANT** This will also create an instance of HttpClient, which is less than ideal.
         /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public GMBReviewsApi(Late.Client.Configuration configuration)
+        public GMBServicesApi(Late.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
@@ -212,7 +208,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GMBReviewsApi"/> class.
+        /// Initializes a new instance of the <see cref="GMBServicesApi"/> class.
         /// </summary>
         /// <param name="client">An instance of HttpClient.</param>
         /// <param name="handler">An optional instance of HttpClientHandler that is used by HttpClient.</param>
@@ -222,12 +218,12 @@ namespace Late.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public GMBReviewsApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
+        public GMBServicesApi(HttpClient client, HttpClientHandler handler = null) : this(client, (string)null, handler)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GMBReviewsApi"/> class.
+        /// Initializes a new instance of the <see cref="GMBServicesApi"/> class.
         /// </summary>
         /// <param name="client">An instance of HttpClient.</param>
         /// <param name="basePath">The target service's base path in URL format.</param>
@@ -239,7 +235,7 @@ namespace Late.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public GMBReviewsApi(HttpClient client, string basePath, HttpClientHandler handler = null)
+        public GMBServicesApi(HttpClient client, string basePath, HttpClientHandler handler = null)
         {
             if (client == null) throw new ArgumentNullException("client");
 
@@ -254,7 +250,7 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GMBReviewsApi"/> class using Configuration object.
+        /// Initializes a new instance of the <see cref="GMBServicesApi"/> class using Configuration object.
         /// </summary>
         /// <param name="client">An instance of HttpClient.</param>
         /// <param name="configuration">An instance of Configuration.</param>
@@ -265,7 +261,7 @@ namespace Late.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public GMBReviewsApi(HttpClient client, Late.Client.Configuration configuration, HttpClientHandler handler = null)
+        public GMBServicesApi(HttpClient client, Late.Client.Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
@@ -281,14 +277,14 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GMBReviewsApi"/> class
+        /// Initializes a new instance of the <see cref="GMBServicesApi"/> class
         /// using a Configuration object and client instance.
         /// </summary>
         /// <param name="client">The client interface for synchronous API access.</param>
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public GMBReviewsApi(Late.Client.ISynchronousClient client, Late.Client.IAsynchronousClient asyncClient, Late.Client.IReadableConfiguration configuration)
+        public GMBServicesApi(Late.Client.ISynchronousClient client, Late.Client.IAsynchronousClient asyncClient, Late.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -355,177 +351,30 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+        /// Get services Gets the services offered by a Google Business Profile location. Returns an array of service items (structured or free-form with optional price). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="batchGetGoogleBusinessReviewsRequest"></param>
-        /// <returns>BatchGetGoogleBusinessReviews200Response</returns>
-        public BatchGetGoogleBusinessReviews200Response BatchGetGoogleBusinessReviews(string accountId, BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest)
+        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>GetGoogleBusinessServices200Response</returns>
+        public GetGoogleBusinessServices200Response GetGoogleBusinessServices(string accountId, string? locationId = default)
         {
-            Late.Client.ApiResponse<BatchGetGoogleBusinessReviews200Response> localVarResponse = BatchGetGoogleBusinessReviewsWithHttpInfo(accountId, batchGetGoogleBusinessReviewsRequest);
+            Late.Client.ApiResponse<GetGoogleBusinessServices200Response> localVarResponse = GetGoogleBusinessServicesWithHttpInfo(accountId, locationId);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+        /// Get services Gets the services offered by a Google Business Profile location. Returns an array of service items (structured or free-form with optional price). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="batchGetGoogleBusinessReviewsRequest"></param>
-        /// <returns>ApiResponse of BatchGetGoogleBusinessReviews200Response</returns>
-        public Late.Client.ApiResponse<BatchGetGoogleBusinessReviews200Response> BatchGetGoogleBusinessReviewsWithHttpInfo(string accountId, BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest)
+        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>ApiResponse of GetGoogleBusinessServices200Response</returns>
+        public Late.Client.ApiResponse<GetGoogleBusinessServices200Response> GetGoogleBusinessServicesWithHttpInfo(string accountId, string? locationId = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
-                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBReviewsApi->BatchGetGoogleBusinessReviews");
-
-            // verify the required parameter 'batchGetGoogleBusinessReviewsRequest' is set
-            if (batchGetGoogleBusinessReviewsRequest == null)
-                throw new Late.Client.ApiException(400, "Missing required parameter 'batchGetGoogleBusinessReviewsRequest' when calling GMBReviewsApi->BatchGetGoogleBusinessReviews");
-
-            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
-            localVarRequestOptions.Data = batchGetGoogleBusinessReviewsRequest;
-
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<BatchGetGoogleBusinessReviews200Response>("/v1/accounts/{accountId}/gmb-reviews/batch", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("BatchGetGoogleBusinessReviews", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
-        /// </summary>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="batchGetGoogleBusinessReviewsRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of BatchGetGoogleBusinessReviews200Response</returns>
-        public async System.Threading.Tasks.Task<BatchGetGoogleBusinessReviews200Response> BatchGetGoogleBusinessReviewsAsync(string accountId, BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest, System.Threading.CancellationToken cancellationToken = default)
-        {
-            Late.Client.ApiResponse<BatchGetGoogleBusinessReviews200Response> localVarResponse = await BatchGetGoogleBusinessReviewsWithHttpInfoAsync(accountId, batchGetGoogleBusinessReviewsRequest, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
-        /// </summary>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="batchGetGoogleBusinessReviewsRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (BatchGetGoogleBusinessReviews200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<BatchGetGoogleBusinessReviews200Response>> BatchGetGoogleBusinessReviewsWithHttpInfoAsync(string accountId, BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest, System.Threading.CancellationToken cancellationToken = default)
-        {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBReviewsApi->BatchGetGoogleBusinessReviews");
-
-            // verify the required parameter 'batchGetGoogleBusinessReviewsRequest' is set
-            if (batchGetGoogleBusinessReviewsRequest == null)
-                throw new Late.Client.ApiException(400, "Missing required parameter 'batchGetGoogleBusinessReviewsRequest' when calling GMBReviewsApi->BatchGetGoogleBusinessReviews");
-
-
-            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
-            localVarRequestOptions.Data = batchGetGoogleBusinessReviewsRequest;
-
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-
-            var localVarResponse = await this.AsynchronousClient.PostAsync<BatchGetGoogleBusinessReviews200Response>("/v1/accounts/{accountId}/gmb-reviews/batch", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("BatchGetGoogleBusinessReviews", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Get reviews Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
-        /// </summary>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
-        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
-        /// <param name="pageSize">Number of reviews to fetch per page (max 50) (optional, default to 50)</param>
-        /// <param name="pageToken">Pagination token from previous response (optional)</param>
-        /// <returns>GetGoogleBusinessReviews200Response</returns>
-        public GetGoogleBusinessReviews200Response GetGoogleBusinessReviews(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default)
-        {
-            Late.Client.ApiResponse<GetGoogleBusinessReviews200Response> localVarResponse = GetGoogleBusinessReviewsWithHttpInfo(accountId, locationId, pageSize, pageToken);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get reviews Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
-        /// </summary>
-        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
-        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
-        /// <param name="pageSize">Number of reviews to fetch per page (max 50) (optional, default to 50)</param>
-        /// <param name="pageToken">Pagination token from previous response (optional)</param>
-        /// <returns>ApiResponse of GetGoogleBusinessReviews200Response</returns>
-        public Late.Client.ApiResponse<GetGoogleBusinessReviews200Response> GetGoogleBusinessReviewsWithHttpInfo(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default)
-        {
-            // verify the required parameter 'accountId' is set
-            if (accountId == null)
-                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBReviewsApi->GetGoogleBusinessReviews");
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBServicesApi->GetGoogleBusinessServices");
 
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
 
@@ -548,14 +397,6 @@ namespace Late.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "locationId", locationId));
             }
-            if (pageSize != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "pageSize", pageSize));
-            }
-            if (pageToken != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
-            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -565,11 +406,11 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetGoogleBusinessReviews200Response>("/v1/accounts/{accountId}/gmb-reviews", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GetGoogleBusinessServices200Response>("/v1/accounts/{accountId}/gmb-services", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetGoogleBusinessReviews", localVarResponse);
+                Exception _exception = this.ExceptionFactory("GetGoogleBusinessServices", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -577,36 +418,32 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Get reviews Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Get services Gets the services offered by a Google Business Profile location. Returns an array of service items (structured or free-form with optional price). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
-        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
-        /// <param name="pageSize">Number of reviews to fetch per page (max 50) (optional, default to 50)</param>
-        /// <param name="pageToken">Pagination token from previous response (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetGoogleBusinessReviews200Response</returns>
-        public async System.Threading.Tasks.Task<GetGoogleBusinessReviews200Response> GetGoogleBusinessReviewsAsync(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of GetGoogleBusinessServices200Response</returns>
+        public async System.Threading.Tasks.Task<GetGoogleBusinessServices200Response> GetGoogleBusinessServicesAsync(string accountId, string? locationId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<GetGoogleBusinessReviews200Response> localVarResponse = await GetGoogleBusinessReviewsWithHttpInfoAsync(accountId, locationId, pageSize, pageToken, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<GetGoogleBusinessServices200Response> localVarResponse = await GetGoogleBusinessServicesWithHttpInfoAsync(accountId, locationId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get reviews Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
+        /// Get services Gets the services offered by a Google Business Profile location. Returns an array of service items (structured or free-form with optional price). 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
-        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)</param>
-        /// <param name="pageSize">Number of reviews to fetch per page (max 50) (optional, default to 50)</param>
-        /// <param name="pageToken">Pagination token from previous response (optional)</param>
+        /// <param name="accountId"></param>
+        /// <param name="locationId">Override which location to query. If omitted, uses the account&#39;s selected location. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetGoogleBusinessReviews200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetGoogleBusinessReviews200Response>> GetGoogleBusinessReviewsWithHttpInfoAsync(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (GetGoogleBusinessServices200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<GetGoogleBusinessServices200Response>> GetGoogleBusinessServicesWithHttpInfoAsync(string accountId, string? locationId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
-                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBReviewsApi->GetGoogleBusinessReviews");
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBServicesApi->GetGoogleBusinessServices");
 
 
             Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
@@ -631,14 +468,6 @@ namespace Late.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "locationId", locationId));
             }
-            if (pageSize != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "pageSize", pageSize));
-            }
-            if (pageToken != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
-            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -649,11 +478,166 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetGoogleBusinessReviews200Response>("/v1/accounts/{accountId}/gmb-reviews", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetGoogleBusinessServices200Response>("/v1/accounts/{accountId}/gmb-services", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("GetGoogleBusinessReviews", localVarResponse);
+                Exception _exception = this.ExceptionFactory("GetGoogleBusinessServices", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Replace services Replaces the entire service list for a location. Google&#39;s API requires full replacement; individual item updates are not supported. Each service can be structured (using a predefined serviceTypeId) or free-form (custom label). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessServicesRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>UpdateGoogleBusinessServices200Response</returns>
+        public UpdateGoogleBusinessServices200Response UpdateGoogleBusinessServices(string accountId, UpdateGoogleBusinessServicesRequest updateGoogleBusinessServicesRequest, string? locationId = default)
+        {
+            Late.Client.ApiResponse<UpdateGoogleBusinessServices200Response> localVarResponse = UpdateGoogleBusinessServicesWithHttpInfo(accountId, updateGoogleBusinessServicesRequest, locationId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Replace services Replaces the entire service list for a location. Google&#39;s API requires full replacement; individual item updates are not supported. Each service can be structured (using a predefined serviceTypeId) or free-form (custom label). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessServicesRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <returns>ApiResponse of UpdateGoogleBusinessServices200Response</returns>
+        public Late.Client.ApiResponse<UpdateGoogleBusinessServices200Response> UpdateGoogleBusinessServicesWithHttpInfo(string accountId, UpdateGoogleBusinessServicesRequest updateGoogleBusinessServicesRequest, string? locationId = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBServicesApi->UpdateGoogleBusinessServices");
+
+            // verify the required parameter 'updateGoogleBusinessServicesRequest' is set
+            if (updateGoogleBusinessServicesRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateGoogleBusinessServicesRequest' when calling GMBServicesApi->UpdateGoogleBusinessServices");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (locationId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "locationId", locationId));
+            }
+            localVarRequestOptions.Data = updateGoogleBusinessServicesRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateGoogleBusinessServices200Response>("/v1/accounts/{accountId}/gmb-services", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateGoogleBusinessServices", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Replace services Replaces the entire service list for a location. Google&#39;s API requires full replacement; individual item updates are not supported. Each service can be structured (using a predefined serviceTypeId) or free-form (custom label). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessServicesRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateGoogleBusinessServices200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateGoogleBusinessServices200Response> UpdateGoogleBusinessServicesAsync(string accountId, UpdateGoogleBusinessServicesRequest updateGoogleBusinessServicesRequest, string? locationId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UpdateGoogleBusinessServices200Response> localVarResponse = await UpdateGoogleBusinessServicesWithHttpInfoAsync(accountId, updateGoogleBusinessServicesRequest, locationId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Replace services Replaces the entire service list for a location. Google&#39;s API requires full replacement; individual item updates are not supported. Each service can be structured (using a predefined serviceTypeId) or free-form (custom label). 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="updateGoogleBusinessServicesRequest"></param>
+        /// <param name="locationId">Override which location to target. If omitted, uses the account&#39;s selected location. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateGoogleBusinessServices200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateGoogleBusinessServices200Response>> UpdateGoogleBusinessServicesWithHttpInfoAsync(string accountId, UpdateGoogleBusinessServicesRequest updateGoogleBusinessServicesRequest, string? locationId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBServicesApi->UpdateGoogleBusinessServices");
+
+            // verify the required parameter 'updateGoogleBusinessServicesRequest' is set
+            if (updateGoogleBusinessServicesRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateGoogleBusinessServicesRequest' when calling GMBServicesApi->UpdateGoogleBusinessServices");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Late.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (locationId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Late.Client.ClientUtils.ParameterToMultiMap("", "locationId", locationId));
+            }
+            localVarRequestOptions.Data = updateGoogleBusinessServicesRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateGoogleBusinessServices200Response>("/v1/accounts/{accountId}/gmb-services", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateGoogleBusinessServices", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

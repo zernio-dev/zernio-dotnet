@@ -97,7 +97,25 @@ namespace Late.Model
             /// Enum CommentReceived for value: comment.received
             /// </summary>
             [EnumMember(Value = "comment.received")]
-            CommentReceived = 10
+            CommentReceived = 10,
+
+            /// <summary>
+            /// Enum GbpReviewNew for value: gbp.review.new
+            /// </summary>
+            [EnumMember(Value = "gbp.review.new")]
+            GbpReviewNew = 11,
+
+            /// <summary>
+            /// Enum GbpReviewUpdated for value: gbp.review.updated
+            /// </summary>
+            [EnumMember(Value = "gbp.review.updated")]
+            GbpReviewUpdated = 12,
+
+            /// <summary>
+            /// Enum GbpMediaNew for value: gbp.media.new
+            /// </summary>
+            [EnumMember(Value = "gbp.media.new")]
+            GbpMediaNew = 13
         }
 
         /// <summary>

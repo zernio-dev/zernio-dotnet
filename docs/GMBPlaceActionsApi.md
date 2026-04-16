@@ -7,6 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateGoogleBusinessPlaceAction**](GMBPlaceActionsApi.md#creategooglebusinessplaceaction) | **POST** /v1/accounts/{accountId}/gmb-place-actions | Create action link |
 | [**DeleteGoogleBusinessPlaceAction**](GMBPlaceActionsApi.md#deletegooglebusinessplaceaction) | **DELETE** /v1/accounts/{accountId}/gmb-place-actions | Delete action link |
 | [**ListGoogleBusinessPlaceActions**](GMBPlaceActionsApi.md#listgooglebusinessplaceactions) | **GET** /v1/accounts/{accountId}/gmb-place-actions | List action links |
+| [**UpdateGoogleBusinessPlaceAction**](GMBPlaceActionsApi.md#updategooglebusinessplaceaction) | **PATCH** /v1/accounts/{accountId}/gmb-place-actions | Update action link |
 
 <a id="creategooglebusinessplaceaction"></a>
 # **CreateGoogleBusinessPlaceAction**
@@ -317,6 +318,110 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Place actions fetched successfully |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updategooglebusinessplaceaction"></a>
+# **UpdateGoogleBusinessPlaceAction**
+> UpdateGoogleBusinessPlaceAction200Response UpdateGoogleBusinessPlaceAction (string accountId, UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, string? locationId = null)
+
+Update action link
+
+Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Late.Api;
+using Late.Client;
+using Late.Model;
+
+namespace Example
+{
+    public class UpdateGoogleBusinessPlaceActionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new GMBPlaceActionsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | 
+            var updateGoogleBusinessPlaceActionRequest = new UpdateGoogleBusinessPlaceActionRequest(); // UpdateGoogleBusinessPlaceActionRequest | 
+            var locationId = "locationId_example";  // string? | Override which location to target. If omitted, uses the account's selected location. (optional) 
+
+            try
+            {
+                // Update action link
+                UpdateGoogleBusinessPlaceAction200Response result = apiInstance.UpdateGoogleBusinessPlaceAction(accountId, updateGoogleBusinessPlaceActionRequest, locationId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling GMBPlaceActionsApi.UpdateGoogleBusinessPlaceAction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateGoogleBusinessPlaceActionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update action link
+    ApiResponse<UpdateGoogleBusinessPlaceAction200Response> response = apiInstance.UpdateGoogleBusinessPlaceActionWithHttpInfo(accountId, updateGoogleBusinessPlaceActionRequest, locationId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling GMBPlaceActionsApi.UpdateGoogleBusinessPlaceActionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** |  |  |
+| **updateGoogleBusinessPlaceActionRequest** | [**UpdateGoogleBusinessPlaceActionRequest**](UpdateGoogleBusinessPlaceActionRequest.md) |  |  |
+| **locationId** | **string?** | Override which location to target. If omitted, uses the account&#39;s selected location. | [optional]  |
+
+### Return type
+
+[**UpdateGoogleBusinessPlaceAction200Response**](UpdateGoogleBusinessPlaceAction200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Place action updated successfully |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 

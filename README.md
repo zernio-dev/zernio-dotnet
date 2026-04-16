@@ -283,7 +283,11 @@ Class | Method | HTTP request | Description
 *GMBPlaceActionsApi* | [**CreateGoogleBusinessPlaceAction**](docs/GMBPlaceActionsApi.md#creategooglebusinessplaceaction) | **POST** /v1/accounts/{accountId}/gmb-place-actions | Create action link
 *GMBPlaceActionsApi* | [**DeleteGoogleBusinessPlaceAction**](docs/GMBPlaceActionsApi.md#deletegooglebusinessplaceaction) | **DELETE** /v1/accounts/{accountId}/gmb-place-actions | Delete action link
 *GMBPlaceActionsApi* | [**ListGoogleBusinessPlaceActions**](docs/GMBPlaceActionsApi.md#listgooglebusinessplaceactions) | **GET** /v1/accounts/{accountId}/gmb-place-actions | List action links
+*GMBPlaceActionsApi* | [**UpdateGoogleBusinessPlaceAction**](docs/GMBPlaceActionsApi.md#updategooglebusinessplaceaction) | **PATCH** /v1/accounts/{accountId}/gmb-place-actions | Update action link
+*GMBReviewsApi* | [**BatchGetGoogleBusinessReviews**](docs/GMBReviewsApi.md#batchgetgooglebusinessreviews) | **POST** /v1/accounts/{accountId}/gmb-reviews/batch | Batch get reviews
 *GMBReviewsApi* | [**GetGoogleBusinessReviews**](docs/GMBReviewsApi.md#getgooglebusinessreviews) | **GET** /v1/accounts/{accountId}/gmb-reviews | Get reviews
+*GMBServicesApi* | [**GetGoogleBusinessServices**](docs/GMBServicesApi.md#getgooglebusinessservices) | **GET** /v1/accounts/{accountId}/gmb-services | Get services
+*GMBServicesApi* | [**UpdateGoogleBusinessServices**](docs/GMBServicesApi.md#updategooglebusinessservices) | **PUT** /v1/accounts/{accountId}/gmb-services | Replace services
 *InvitesApi* | [**CreateInviteToken**](docs/InvitesApi.md#createinvitetoken) | **POST** /v1/invite/tokens | Create invite token
 *LinkedInMentionsApi* | [**GetLinkedInMentions**](docs/LinkedInMentionsApi.md#getlinkedinmentions) | **GET** /v1/accounts/{accountId}/linkedin-mentions | Resolve LinkedIn mention
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **GET** /v1/logs | List activity logs
@@ -427,6 +431,9 @@ Class | Method | HTTP request | Description
  - [Model.ApiKey](docs/ApiKey.md)
  - [Model.ApiKeyProfileIdsInner](docs/ApiKeyProfileIdsInner.md)
  - [Model.ApproveWhatsAppGroupJoinRequestsRequest](docs/ApproveWhatsAppGroupJoinRequestsRequest.md)
+ - [Model.BatchGetGoogleBusinessReviews200Response](docs/BatchGetGoogleBusinessReviews200Response.md)
+ - [Model.BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner](docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md)
+ - [Model.BatchGetGoogleBusinessReviewsRequest](docs/BatchGetGoogleBusinessReviewsRequest.md)
  - [Model.BlueskyPlatformData](docs/BlueskyPlatformData.md)
  - [Model.BookmarkPost200Response](docs/BookmarkPost200Response.md)
  - [Model.BookmarkPostRequest](docs/BookmarkPostRequest.md)
@@ -646,6 +653,11 @@ Class | Method | HTTP request | Description
  - [Model.GetGoogleBusinessSearchKeywords200ResponseKeywordsInner](docs/GetGoogleBusinessSearchKeywords200ResponseKeywordsInner.md)
  - [Model.GetGoogleBusinessSearchKeywords200ResponseMonthRange](docs/GetGoogleBusinessSearchKeywords200ResponseMonthRange.md)
  - [Model.GetGoogleBusinessSearchKeywords400Response](docs/GetGoogleBusinessSearchKeywords400Response.md)
+ - [Model.GetGoogleBusinessServices200Response](docs/GetGoogleBusinessServices200Response.md)
+ - [Model.GetGoogleBusinessServices200ResponseServicesInner](docs/GetGoogleBusinessServices200ResponseServicesInner.md)
+ - [Model.GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem](docs/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem.md)
+ - [Model.GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItemLabel](docs/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItemLabel.md)
+ - [Model.GetGoogleBusinessServices200ResponseServicesInnerPrice](docs/GetGoogleBusinessServices200ResponseServicesInnerPrice.md)
  - [Model.GetInboxConversation200Response](docs/GetInboxConversation200Response.md)
  - [Model.GetInboxConversation200ResponseData](docs/GetInboxConversation200ResponseData.md)
  - [Model.GetInboxConversationMessages200Response](docs/GetInboxConversationMessages200Response.md)
@@ -1027,6 +1039,11 @@ Class | Method | HTTP request | Description
  - [Model.UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerFreeFormServiceItemLabel](docs/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerFreeFormServiceItemLabel.md)
  - [Model.UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerPrice](docs/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerPrice.md)
  - [Model.UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerStructuredServiceItem](docs/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerStructuredServiceItem.md)
+ - [Model.UpdateGoogleBusinessPlaceAction200Response](docs/UpdateGoogleBusinessPlaceAction200Response.md)
+ - [Model.UpdateGoogleBusinessPlaceActionRequest](docs/UpdateGoogleBusinessPlaceActionRequest.md)
+ - [Model.UpdateGoogleBusinessServices200Response](docs/UpdateGoogleBusinessServices200Response.md)
+ - [Model.UpdateGoogleBusinessServicesRequest](docs/UpdateGoogleBusinessServicesRequest.md)
+ - [Model.UpdateGoogleBusinessServicesRequestServiceItemsInner](docs/UpdateGoogleBusinessServicesRequestServiceItemsInner.md)
  - [Model.UpdateInboxConversation200Response](docs/UpdateInboxConversation200Response.md)
  - [Model.UpdateInboxConversation200ResponseData](docs/UpdateInboxConversation200ResponseData.md)
  - [Model.UpdateInboxConversationRequest](docs/UpdateInboxConversationRequest.md)

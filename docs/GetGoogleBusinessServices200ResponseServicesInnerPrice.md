@@ -1,0 +1,12 @@
+# Late.Model.GetGoogleBusinessServices200ResponseServicesInnerPrice
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**CurrencyCode** | **string** |  | [optional] 
+**Units** | **string** |  | [optional] 
+**Nanos** | **int** |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
