@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Late.Client.OpenAPIDateConverter;
 namespace Late.Model
 {
     /// <summary>
-    /// Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s).
+    /// Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories. 
     /// </summary>
     [DataContract(Name = "FacebookPlatformData")]
     public partial class FacebookPlatformData : IValidatableObject
@@ -68,13 +68,15 @@ namespace Late.Model
         /// <param name="title">Reel title (only for contentType&#x3D;reel). Separate from the caption/content field..</param>
         /// <param name="firstComment">Optional first comment to post immediately after publishing (feed posts and reels, not stories). Skipped when draft is true..</param>
         /// <param name="pageId">Target Facebook Page ID for multi-page posting. If omitted, uses the default page. Use GET /v1/accounts/{id}/facebook-page to list pages..</param>
-        public FacebookPlatformData(bool draft = false, ContentTypeEnum? contentType = default, string title = default, string firstComment = default, string pageId = default)
+        /// <param name="geoRestriction">geoRestriction.</param>
+        public FacebookPlatformData(bool draft = false, ContentTypeEnum? contentType = default, string title = default, string firstComment = default, string pageId = default, GeoRestriction geoRestriction = default)
         {
             this.Draft = draft;
             this.ContentType = contentType;
             this.Title = title;
             this.FirstComment = firstComment;
             this.PageId = pageId;
+            this.GeoRestriction = geoRestriction;
         }
 
         /// <summary>
@@ -106,6 +108,12 @@ namespace Late.Model
         public string PageId { get; set; }
 
         /// <summary>
+        /// Gets or Sets GeoRestriction
+        /// </summary>
+        [DataMember(Name = "geoRestriction", EmitDefaultValue = false)]
+        public GeoRestriction GeoRestriction { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -118,6 +126,7 @@ namespace Late.Model
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  FirstComment: ").Append(FirstComment).Append("\n");
             sb.Append("  PageId: ").Append(PageId).Append("\n");
+            sb.Append("  GeoRestriction: ").Append(GeoRestriction).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Late.Client.OpenAPIDateConverter;
 namespace Late.Model
 {
     /// <summary>
-    /// Up to 20 images, no multi-video. Single PDF supported (max 100MB). Link previews auto-generated when no media attached. Use organizationUrn for multi-org posting.
+    /// Up to 20 images, no multi-video. Single PDF supported (max 100MB). Link previews auto-generated when no media attached. Use organizationUrn for multi-org posting. Geo-restriction only works for organization pages (not personal profiles) and requires the targeted audience to exceed 300 followers. 
     /// </summary>
     [DataContract(Name = "LinkedInPlatformData")]
     public partial class LinkedInPlatformData : IValidatableObject
@@ -40,12 +40,14 @@ namespace Late.Model
         /// <param name="organizationUrn">Target LinkedIn Organization URN (e.g. \&quot;urn:li:organization:123456789\&quot;). If omitted, uses the default org. Use GET /v1/accounts/{id}/linkedin-organizations to list orgs..</param>
         /// <param name="firstComment">Optional first comment to add after the post is created.</param>
         /// <param name="disableLinkPreview">Set to true to disable automatic link previews for URLs in the post content (default is false).</param>
-        public LinkedInPlatformData(string documentTitle = default, string organizationUrn = default, string firstComment = default, bool disableLinkPreview = default)
+        /// <param name="geoRestriction">geoRestriction.</param>
+        public LinkedInPlatformData(string documentTitle = default, string organizationUrn = default, string firstComment = default, bool disableLinkPreview = default, GeoRestriction geoRestriction = default)
         {
             this.DocumentTitle = documentTitle;
             this.OrganizationUrn = organizationUrn;
             this.FirstComment = firstComment;
             this.DisableLinkPreview = disableLinkPreview;
+            this.GeoRestriction = geoRestriction;
         }
 
         /// <summary>
@@ -77,6 +79,12 @@ namespace Late.Model
         public bool DisableLinkPreview { get; set; }
 
         /// <summary>
+        /// Gets or Sets GeoRestriction
+        /// </summary>
+        [DataMember(Name = "geoRestriction", EmitDefaultValue = false)]
+        public GeoRestriction GeoRestriction { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -88,6 +96,7 @@ namespace Late.Model
             sb.Append("  OrganizationUrn: ").Append(OrganizationUrn).Append("\n");
             sb.Append("  FirstComment: ").Append(FirstComment).Append("\n");
             sb.Append("  DisableLinkPreview: ").Append(DisableLinkPreview).Append("\n");
+            sb.Append("  GeoRestriction: ").Append(GeoRestriction).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

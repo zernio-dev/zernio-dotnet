@@ -15472,6 +15472,31 @@ components:
       - id
       - message
       - timestamp
+    GeoRestriction:
+      description: |
+        Country-level geo-restriction (allowlist). When set, the post is only visible to users in the specified countries. Supported on Facebook (feed posts, videos, reels), X/Twitter (media-level restriction), and LinkedIn (organization pages only, min 300 targeted followers). Ignored on unsupported platforms. Stories (Facebook, Instagram) do not support geo-restriction.
+      example:
+        countries:
+        - US
+        - CA
+        - GB
+      properties:
+        countries:
+          description: |
+            ISO 3166-1 alpha-2 country codes (uppercase). Only users in these countries can see the post. Maximum 25 countries per post. Example: ["US", "CA", "GB", "ES"].
+          example:
+          - US
+          - CA
+          - GB
+          items:
+            example: US
+            pattern: "^[A-Z]{2}$"
+            type: string
+          maxItems: 25
+          minItems: 1
+          type: array
+      required:
+      - countries
     MediaItem:
       description: Media referenced in posts. URLs must be publicly reachable over
         HTTPS. Use POST /v1/media/presign for uploads up to 5GB. Zernio auto-compresses
@@ -15575,6 +15600,11 @@ components:
               url: https://openapi-generator.tech
             content: content
           replyToTweetId: replyToTweetId
+          geoRestriction:
+            countries:
+            - US
+            - CA
+            - GB
           poll:
             duration_minutes: 6077
             options:
@@ -15759,6 +15789,11 @@ components:
                 url: https://openapi-generator.tech
               content: content
             replyToTweetId: replyToTweetId
+            geoRestriction:
+              countries:
+              - US
+              - CA
+              - GB
             poll:
               duration_minutes: 6077
               options:
@@ -15841,6 +15876,11 @@ components:
                 url: https://openapi-generator.tech
               content: content
             replyToTweetId: replyToTweetId
+            geoRestriction:
+              countries:
+              - US
+              - CA
+              - GB
             poll:
               duration_minutes: 6077
               options:
@@ -16095,6 +16135,8 @@ components:
           format: date-time
           type: string
     TwitterPlatformData:
+      description: |
+        X (Twitter) geo-restriction applies at the media level. Media in geo-restricted tweets will be hidden for users outside the specified countries; the tweet text itself remains visible globally. Requires media to be attached (ignored for text-only tweets).
       example:
         longVideo: false
         replySettings: following
@@ -16140,6 +16182,11 @@ components:
             url: https://openapi-generator.tech
           content: content
         replyToTweetId: replyToTweetId
+        geoRestriction:
+          countries:
+          - US
+          - CA
+          - GB
         poll:
           duration_minutes: 6077
           options:
@@ -16183,6 +16230,8 @@ components:
             \ second limit). Note that not all Premium accounts have API long-video\
             \ access, as X may require separate allowlisting."
           type: boolean
+        geoRestriction:
+          $ref: "#/components/schemas/GeoRestriction"
     ThreadsPlatformData:
       description: "Up to 10 images per carousel (no videos). Videos must be H.264/AAC\
         \ MP4, max 5 min. Images JPEG/PNG, max 8 MB. Use threadItems for reply chains."
@@ -16201,9 +16250,8 @@ components:
             $ref: "#/components/schemas/TwitterPlatformData_threadItems_inner"
           type: array
     FacebookPlatformData:
-      description: "Feed posts support up to 10 images (no mixed video+image). Stories\
-        \ require single media (24h, no captions). Reels require single vertical video\
-        \ (9:16, 3-60s)."
+      description: |
+        Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories.
       properties:
         draft:
           default: false
@@ -16232,6 +16280,8 @@ components:
             \ uses the default page. Use GET /v1/accounts/{id}/facebook-page to list\
             \ pages."
           type: string
+        geoRestriction:
+          $ref: "#/components/schemas/GeoRestriction"
     InstagramPlatformData:
       description: "Feed aspect ratio 0.8-1.91, carousels up to 10 items, stories\
         \ require media (no captions). User tag coordinates 0.0-1.0 from top-left.\
@@ -16292,9 +16342,8 @@ components:
           format: uri
           type: string
     LinkedInPlatformData:
-      description: "Up to 20 images, no multi-video. Single PDF supported (max 100MB).\
-        \ Link previews auto-generated when no media attached. Use organizationUrn\
-        \ for multi-org posting."
+      description: |
+        Up to 20 images, no multi-video. Single PDF supported (max 100MB). Link previews auto-generated when no media attached. Use organizationUrn for multi-org posting. Geo-restriction only works for organization pages (not personal profiles) and requires the targeted audience to exceed 300 followers.
       properties:
         documentTitle:
           description: "Title displayed on LinkedIn document (PDF/carousel) posts.\
@@ -16313,6 +16362,8 @@ components:
           description: Set to true to disable automatic link previews for URLs in
             the post content (default is false)
           type: boolean
+        geoRestriction:
+          $ref: "#/components/schemas/GeoRestriction"
     PinterestPlatformData:
       properties:
         title:
@@ -17348,6 +17399,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -17430,6 +17486,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -17570,6 +17631,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -17652,6 +17718,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -17802,6 +17873,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -17884,6 +17960,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -18030,6 +18111,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -18112,6 +18198,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -18261,6 +18352,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -18343,6 +18439,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -18498,6 +18599,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -18580,6 +18686,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -21152,6 +21263,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -21234,6 +21350,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -21374,6 +21495,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
@@ -21456,6 +21582,11 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              geoRestriction:
+                countries:
+                - US
+                - CA
+                - GB
               poll:
                 duration_minutes: 6077
                 options:
