@@ -115,34 +115,54 @@ namespace Late.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateWebhookSettingsRequest" /> class.
         /// </summary>
-        /// <param name="name">Webhook name (max 50 characters).</param>
-        /// <param name="url">Webhook endpoint URL (must be HTTPS in production).</param>
+        [JsonConstructorAttribute]
+        protected CreateWebhookSettingsRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateWebhookSettingsRequest" /> class.
+        /// </summary>
+        /// <param name="name">Webhook name (1-50 characters) (required).</param>
+        /// <param name="url">Webhook endpoint URL (must be a valid URL, whitespace trimmed) (required).</param>
         /// <param name="secret">Secret key for HMAC-SHA256 signature verification.</param>
-        /// <param name="events">Events to subscribe to.</param>
-        /// <param name="isActive">Enable or disable webhook delivery.</param>
+        /// <param name="events">Events to subscribe to (at least one required) (required).</param>
+        /// <param name="isActive">Enable or disable webhook delivery. Defaults to &#x60;true&#x60; when omitted. (default to true).</param>
         /// <param name="customHeaders">Custom headers to include in webhook requests.</param>
-        public CreateWebhookSettingsRequest(string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = default, Dictionary<string, string> customHeaders = default)
+        public CreateWebhookSettingsRequest(string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = true, Dictionary<string, string> customHeaders = default)
         {
+            // to ensure "name" is required (not null)
+            if (name == null)
+            {
+                throw new ArgumentNullException("name is a required property for CreateWebhookSettingsRequest and cannot be null");
+            }
             this.Name = name;
+            // to ensure "url" is required (not null)
+            if (url == null)
+            {
+                throw new ArgumentNullException("url is a required property for CreateWebhookSettingsRequest and cannot be null");
+            }
             this.Url = url;
-            this.Secret = secret;
+            // to ensure "events" is required (not null)
+            if (events == null)
+            {
+                throw new ArgumentNullException("events is a required property for CreateWebhookSettingsRequest and cannot be null");
+            }
             this.Events = events;
+            this.Secret = secret;
             this.IsActive = isActive;
             this.CustomHeaders = customHeaders;
         }
 
         /// <summary>
-        /// Webhook name (max 50 characters)
+        /// Webhook name (1-50 characters)
         /// </summary>
-        /// <value>Webhook name (max 50 characters)</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        /// <value>Webhook name (1-50 characters)</value>
+        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Webhook endpoint URL (must be HTTPS in production)
+        /// Webhook endpoint URL (must be a valid URL, whitespace trimmed)
         /// </summary>
-        /// <value>Webhook endpoint URL (must be HTTPS in production)</value>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
+        /// <value>Webhook endpoint URL (must be a valid URL, whitespace trimmed)</value>
+        [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
         public string Url { get; set; }
 
         /// <summary>
@@ -153,16 +173,16 @@ namespace Late.Model
         public string Secret { get; set; }
 
         /// <summary>
-        /// Events to subscribe to
+        /// Events to subscribe to (at least one required)
         /// </summary>
-        /// <value>Events to subscribe to</value>
-        [DataMember(Name = "events", EmitDefaultValue = false)]
+        /// <value>Events to subscribe to (at least one required)</value>
+        [DataMember(Name = "events", IsRequired = true, EmitDefaultValue = true)]
         public List<CreateWebhookSettingsRequest.EventsEnum> Events { get; set; }
 
         /// <summary>
-        /// Enable or disable webhook delivery
+        /// Enable or disable webhook delivery. Defaults to &#x60;true&#x60; when omitted.
         /// </summary>
-        /// <value>Enable or disable webhook delivery</value>
+        /// <value>Enable or disable webhook delivery. Defaults to &#x60;true&#x60; when omitted.</value>
         [DataMember(Name = "isActive", EmitDefaultValue = true)]
         public bool IsActive { get; set; }
 
@@ -211,6 +231,12 @@ namespace Late.Model
             if (this.Name != null && this.Name.Length > 50)
             {
                 yield return new ValidationResult("Invalid value for Name, length must be less than 50.", new [] { "Name" });
+            }
+
+            // Name (string) minLength
+            if (this.Name != null && this.Name.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             yield break;

@@ -121,10 +121,10 @@ namespace Late.Model
         /// Initializes a new instance of the <see cref="UpdateWebhookSettingsRequest" /> class.
         /// </summary>
         /// <param name="id">Webhook ID to update (required) (required).</param>
-        /// <param name="name">Webhook name (max 50 characters).</param>
-        /// <param name="url">Webhook endpoint URL (must be HTTPS in production).</param>
+        /// <param name="name">Webhook name (1-50 characters). Must be non-empty if provided..</param>
+        /// <param name="url">Webhook endpoint URL (must be a valid URL, whitespace trimmed). Must be a valid URL if provided..</param>
         /// <param name="secret">Secret key for HMAC-SHA256 signature verification.</param>
-        /// <param name="events">Events to subscribe to.</param>
+        /// <param name="events">Events to subscribe to. Must contain at least one event if provided..</param>
         /// <param name="isActive">Enable or disable webhook delivery.</param>
         /// <param name="customHeaders">Custom headers to include in webhook requests.</param>
         public UpdateWebhookSettingsRequest(string id = default, string name = default, string url = default, string secret = default, List<EventsEnum> events = default, bool isActive = default, Dictionary<string, string> customHeaders = default)
@@ -151,16 +151,16 @@ namespace Late.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Webhook name (max 50 characters)
+        /// Webhook name (1-50 characters). Must be non-empty if provided.
         /// </summary>
-        /// <value>Webhook name (max 50 characters)</value>
+        /// <value>Webhook name (1-50 characters). Must be non-empty if provided.</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Webhook endpoint URL (must be HTTPS in production)
+        /// Webhook endpoint URL (must be a valid URL, whitespace trimmed). Must be a valid URL if provided.
         /// </summary>
-        /// <value>Webhook endpoint URL (must be HTTPS in production)</value>
+        /// <value>Webhook endpoint URL (must be a valid URL, whitespace trimmed). Must be a valid URL if provided.</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 
@@ -172,9 +172,9 @@ namespace Late.Model
         public string Secret { get; set; }
 
         /// <summary>
-        /// Events to subscribe to
+        /// Events to subscribe to. Must contain at least one event if provided.
         /// </summary>
-        /// <value>Events to subscribe to</value>
+        /// <value>Events to subscribe to. Must contain at least one event if provided.</value>
         [DataMember(Name = "events", EmitDefaultValue = false)]
         public List<UpdateWebhookSettingsRequest.EventsEnum> Events { get; set; }
 
@@ -231,6 +231,12 @@ namespace Late.Model
             if (this.Name != null && this.Name.Length > 50)
             {
                 yield return new ValidationResult("Invalid value for Name, length must be less than 50.", new [] { "Name" });
+            }
+
+            // Name (string) minLength
+            if (this.Name != null && this.Name.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
             }
 
             yield break;

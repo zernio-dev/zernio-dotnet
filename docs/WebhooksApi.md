@@ -16,7 +16,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create webhook
 
-Create a new webhook configuration. Maximum 10 webhooks per user.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+Create a new webhook configuration. Maximum 10 webhooks per user.  `name`, `url` and `events` are required. `url` must be a valid URL and `events` must contain at least one event. Whitespace is trimmed from `url` before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
 
 ### Example
 ```csharp
@@ -411,7 +411,7 @@ catch (ApiException e)
 
 Update webhook
 
-Update an existing webhook configuration. All fields except _id are optional; only provided fields will be updated.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+Update an existing webhook configuration. All fields except `_id` are optional; only provided fields will be updated.  When provided, `name` must be 1-50 characters, `url` must be a valid URL, and `events` must contain at least one event. Whitespace is trimmed from `url` before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
 
 ### Example
 ```csharp
