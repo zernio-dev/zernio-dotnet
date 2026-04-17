@@ -159,11 +159,12 @@ namespace Late.Model
         /// <param name="quickReplies">Quick reply buttons. Mutually exclusive with buttons. Max 13 items..</param>
         /// <param name="buttons">Action buttons. Mutually exclusive with quickReplies. Max 3 items..</param>
         /// <param name="template">template.</param>
+        /// <param name="interactive">interactive.</param>
         /// <param name="replyMarkup">replyMarkup.</param>
         /// <param name="messagingType">Facebook messaging type. Required when using messageTag..</param>
         /// <param name="messageTag">Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT..</param>
         /// <param name="replyTo">Platform message ID to quote-reply to. For WhatsApp, pass the wamid (available in message.platformMessageId from webhooks). For Telegram, pass the Telegram message ID..</param>
-        public SendInboxMessageRequest(string accountId = default, string message = default, string attachmentUrl = default, AttachmentTypeEnum? attachmentType = default, List<SendInboxMessageRequestQuickRepliesInner> quickReplies = default, List<SendInboxMessageRequestButtonsInner> buttons = default, SendInboxMessageRequestTemplate template = default, SendInboxMessageRequestReplyMarkup replyMarkup = default, MessagingTypeEnum? messagingType = default, MessageTagEnum? messageTag = default, string replyTo = default)
+        public SendInboxMessageRequest(string accountId = default, string message = default, string attachmentUrl = default, AttachmentTypeEnum? attachmentType = default, List<SendInboxMessageRequestQuickRepliesInner> quickReplies = default, List<SendInboxMessageRequestButtonsInner> buttons = default, SendInboxMessageRequestTemplate template = default, SendInboxMessageRequestInteractive interactive = default, SendInboxMessageRequestReplyMarkup replyMarkup = default, MessagingTypeEnum? messagingType = default, MessageTagEnum? messageTag = default, string replyTo = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -177,6 +178,7 @@ namespace Late.Model
             this.QuickReplies = quickReplies;
             this.Buttons = buttons;
             this.Template = template;
+            this.Interactive = interactive;
             this.ReplyMarkup = replyMarkup;
             this.MessagingType = messagingType;
             this.MessageTag = messageTag;
@@ -225,6 +227,12 @@ namespace Late.Model
         public SendInboxMessageRequestTemplate Template { get; set; }
 
         /// <summary>
+        /// Gets or Sets Interactive
+        /// </summary>
+        [DataMember(Name = "interactive", EmitDefaultValue = false)]
+        public SendInboxMessageRequestInteractive Interactive { get; set; }
+
+        /// <summary>
         /// Gets or Sets ReplyMarkup
         /// </summary>
         [DataMember(Name = "replyMarkup", EmitDefaultValue = false)]
@@ -252,6 +260,7 @@ namespace Late.Model
             sb.Append("  QuickReplies: ").Append(QuickReplies).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  Template: ").Append(Template).Append("\n");
+            sb.Append("  Interactive: ").Append(Interactive).Append("\n");
             sb.Append("  ReplyMarkup: ").Append(ReplyMarkup).Append("\n");
             sb.Append("  MessagingType: ").Append(MessagingType).Append("\n");
             sb.Append("  MessageTag: ").Append(MessageTag).Append("\n");

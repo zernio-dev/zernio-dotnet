@@ -133,7 +133,19 @@ namespace Late.Model
             /// Enum CommentReceived for value: comment.received
             /// </summary>
             [EnumMember(Value = "comment.received")]
-            CommentReceived = 16
+            CommentReceived = 16,
+
+            /// <summary>
+            /// Enum ReviewNew for value: review.new
+            /// </summary>
+            [EnumMember(Value = "review.new")]
+            ReviewNew = 17,
+
+            /// <summary>
+            /// Enum ReviewUpdated for value: review.updated
+            /// </summary>
+            [EnumMember(Value = "review.updated")]
+            ReviewUpdated = 18
         }
 
         /// <summary>
