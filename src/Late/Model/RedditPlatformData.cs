@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Late.Client.OpenAPIDateConverter;
 namespace Late.Model
 {
     /// <summary>
-    /// Posts are either link (with URL/media) or self (text-only). Use forceSelf to override. Subreddit defaults to the account&#39;s configured one. Some subreddits require a flair.
+    /// Posts are either link (with URL/media), native video (via nativeVideo), or self (text-only). Use forceSelf to override. Subreddit defaults to the account&#39;s configured one. Some subreddits require a flair.
     /// </summary>
     [DataContract(Name = "RedditPlatformData")]
     public partial class RedditPlatformData : IValidatableObject
@@ -41,13 +41,19 @@ namespace Late.Model
         /// <param name="url">URL for link posts. If provided (and forceSelf is not true), creates a link post instead of a text post..</param>
         /// <param name="forceSelf">When true, creates a text/self post even when a URL or media is provided..</param>
         /// <param name="flairId">Flair ID for the post. Required by some subreddits. Use GET /v1/accounts/{id}/reddit-flairs?subreddit&#x3D;name to list flairs..</param>
-        public RedditPlatformData(string subreddit = default, string title = default, string url = default, bool forceSelf = default, string flairId = default)
+        /// <param name="nativeVideo">Controls Reddit&#39;s native video upload flow. When true (default for video mediaItems), the video is uploaded to Reddit&#39;s CDN and submitted with kind&#x3D;video so it renders as an embedded Reddit video player. Reddit transcodes server-side (1080p/30fps cap). Set to false to fall back to a legacy link post. If the subreddit blocks video posts, the upload falls back to a link post automatically.  (default to true).</param>
+        /// <param name="videogif">When true (and nativeVideo is active), submits the video as a silent videogif (kind&#x3D;videogif). Use for short looping clips without audio..</param>
+        /// <param name="videoPosterUrl">Optional poster/thumbnail image URL for native video posts. If omitted, the first frame of the video is extracted and used automatically..</param>
+        public RedditPlatformData(string subreddit = default, string title = default, string url = default, bool forceSelf = default, string flairId = default, bool nativeVideo = true, bool videogif = default, string videoPosterUrl = default)
         {
             this.Subreddit = subreddit;
             this.Title = title;
             this.Url = url;
             this.ForceSelf = forceSelf;
             this.FlairId = flairId;
+            this.NativeVideo = nativeVideo;
+            this.Videogif = videogif;
+            this.VideoPosterUrl = videoPosterUrl;
         }
 
         /// <summary>
@@ -92,6 +98,27 @@ namespace Late.Model
         public string FlairId { get; set; }
 
         /// <summary>
+        /// Controls Reddit&#39;s native video upload flow. When true (default for video mediaItems), the video is uploaded to Reddit&#39;s CDN and submitted with kind&#x3D;video so it renders as an embedded Reddit video player. Reddit transcodes server-side (1080p/30fps cap). Set to false to fall back to a legacy link post. If the subreddit blocks video posts, the upload falls back to a link post automatically. 
+        /// </summary>
+        /// <value>Controls Reddit&#39;s native video upload flow. When true (default for video mediaItems), the video is uploaded to Reddit&#39;s CDN and submitted with kind&#x3D;video so it renders as an embedded Reddit video player. Reddit transcodes server-side (1080p/30fps cap). Set to false to fall back to a legacy link post. If the subreddit blocks video posts, the upload falls back to a link post automatically. </value>
+        [DataMember(Name = "nativeVideo", EmitDefaultValue = true)]
+        public bool NativeVideo { get; set; }
+
+        /// <summary>
+        /// When true (and nativeVideo is active), submits the video as a silent videogif (kind&#x3D;videogif). Use for short looping clips without audio.
+        /// </summary>
+        /// <value>When true (and nativeVideo is active), submits the video as a silent videogif (kind&#x3D;videogif). Use for short looping clips without audio.</value>
+        [DataMember(Name = "videogif", EmitDefaultValue = true)]
+        public bool Videogif { get; set; }
+
+        /// <summary>
+        /// Optional poster/thumbnail image URL for native video posts. If omitted, the first frame of the video is extracted and used automatically.
+        /// </summary>
+        /// <value>Optional poster/thumbnail image URL for native video posts. If omitted, the first frame of the video is extracted and used automatically.</value>
+        [DataMember(Name = "videoPosterUrl", EmitDefaultValue = false)]
+        public string VideoPosterUrl { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -104,6 +131,9 @@ namespace Late.Model
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  ForceSelf: ").Append(ForceSelf).Append("\n");
             sb.Append("  FlairId: ").Append(FlairId).Append("\n");
+            sb.Append("  NativeVideo: ").Append(NativeVideo).Append("\n");
+            sb.Append("  Videogif: ").Append(Videogif).Append("\n");
+            sb.Append("  VideoPosterUrl: ").Append(VideoPosterUrl).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
