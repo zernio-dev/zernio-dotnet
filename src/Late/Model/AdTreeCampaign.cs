@@ -90,21 +90,94 @@ namespace Late.Model
         public PlatformEnum? Platform { get; set; }
 
         /// <summary>
-        /// Derived from child ad statuses
+        /// Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;, which reflects the platform-side review state.
         /// </summary>
-        /// <value>Derived from child ad statuses</value>
+        /// <value>Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;, which reflects the platform-side review state.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public AdStatus? Status { get; set; }
+        /// <summary>
+        /// Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. 
+        /// </summary>
+        /// <value>Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ReviewStatusEnum
+        {
+            /// <summary>
+            /// Enum InReview for value: in_review
+            /// </summary>
+            [EnumMember(Value = "in_review")]
+            InReview = 1,
+
+            /// <summary>
+            /// Enum Approved for value: approved
+            /// </summary>
+            [EnumMember(Value = "approved")]
+            Approved = 2,
+
+            /// <summary>
+            /// Enum Rejected for value: rejected
+            /// </summary>
+            [EnumMember(Value = "rejected")]
+            Rejected = 3,
+
+            /// <summary>
+            /// Enum WithIssues for value: with_issues
+            /// </summary>
+            [EnumMember(Value = "with_issues")]
+            WithIssues = 4
+        }
+
+
+        /// <summary>
+        /// Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. 
+        /// </summary>
+        /// <value>Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. </value>
+        [DataMember(Name = "reviewStatus", EmitDefaultValue = false)]
+        public ReviewStatusEnum? ReviewStatus { get; set; }
+        /// <summary>
+        /// Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity.
+        /// </summary>
+        /// <value>Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum BudgetLevelEnum
+        {
+            /// <summary>
+            /// Enum Campaign for value: campaign
+            /// </summary>
+            [EnumMember(Value = "campaign")]
+            Campaign = 1,
+
+            /// <summary>
+            /// Enum Adset for value: adset
+            /// </summary>
+            [EnumMember(Value = "adset")]
+            Adset = 2
+        }
+
+
+        /// <summary>
+        /// Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity.
+        /// </summary>
+        /// <value>Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity.</value>
+        [DataMember(Name = "budgetLevel", EmitDefaultValue = false)]
+        public BudgetLevelEnum? BudgetLevel { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AdTreeCampaign" /> class.
         /// </summary>
         /// <param name="platformCampaignId">platformCampaignId.</param>
         /// <param name="platform">platform.</param>
         /// <param name="campaignName">campaignName.</param>
-        /// <param name="status">Derived from child ad statuses.</param>
+        /// <param name="status">Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;, which reflects the platform-side review state..</param>
+        /// <param name="reviewStatus">Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. .</param>
+        /// <param name="platformCampaignStatus">Raw platform-level campaign status (Meta &#x60;effective_status&#x60;: ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct from per-ad &#x60;platformStatus&#x60;..</param>
+        /// <param name="campaignIssuesInfo">Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). Populated only when the platform has delivery issues to report; contains the specific error codes and messages..</param>
         /// <param name="adCount">Total ads across all ad sets.</param>
         /// <param name="adSetCount">adSetCount.</param>
         /// <param name="budget">budget.</param>
+        /// <param name="campaignBudget">campaignBudget.</param>
+        /// <param name="budgetLevel">Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity..</param>
+        /// <param name="isBudgetScheduleEnabled">Meta-only. Mirrors Campaign.is_budget_schedule_enabled — true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO. (default to false).</param>
+        /// <param name="currency">ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD..</param>
         /// <param name="metrics">metrics.</param>
         /// <param name="platformAdAccountId">platformAdAccountId.</param>
         /// <param name="accountId">accountId.</param>
@@ -114,15 +187,22 @@ namespace Late.Model
         /// <param name="bidStrategy">Campaign-level bid strategy (e.g. LOWEST_COST_WITHOUT_CAP, COST_CAP, LOWEST_COST_WITH_MIN_ROAS).</param>
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="adSets">adSets.</param>
-        public AdTreeCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, int adCount = default, int adSetCount = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdAccountId = default, string accountId = default, string profileId = default, string platformObjective = default, string optimizationGoal = default, string bidStrategy = default, AdTreeCampaignPromotedObject promotedObject = default, List<AdTreeAdSet> adSets = default)
+        public AdTreeCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, ReviewStatusEnum? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, int adSetCount = default, AdTreeCampaignBudget budget = default, AdTreeCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string accountId = default, string profileId = default, string platformObjective = default, string optimizationGoal = default, string bidStrategy = default, AdTreeCampaignPromotedObject promotedObject = default, List<AdTreeAdSet> adSets = default)
         {
             this.PlatformCampaignId = platformCampaignId;
             this.Platform = platform;
             this.CampaignName = campaignName;
             this.Status = status;
+            this.ReviewStatus = reviewStatus;
+            this.PlatformCampaignStatus = platformCampaignStatus;
+            this.CampaignIssuesInfo = campaignIssuesInfo;
             this.AdCount = adCount;
             this.AdSetCount = adSetCount;
             this.Budget = budget;
+            this.CampaignBudget = campaignBudget;
+            this.BudgetLevel = budgetLevel;
+            this.IsBudgetScheduleEnabled = isBudgetScheduleEnabled;
+            this.Currency = currency;
             this.Metrics = metrics;
             this.PlatformAdAccountId = platformAdAccountId;
             this.AccountId = accountId;
@@ -147,6 +227,20 @@ namespace Late.Model
         public string CampaignName { get; set; }
 
         /// <summary>
+        /// Raw platform-level campaign status (Meta &#x60;effective_status&#x60;: ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct from per-ad &#x60;platformStatus&#x60;.
+        /// </summary>
+        /// <value>Raw platform-level campaign status (Meta &#x60;effective_status&#x60;: ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct from per-ad &#x60;platformStatus&#x60;.</value>
+        [DataMember(Name = "platformCampaignStatus", EmitDefaultValue = false)]
+        public string PlatformCampaignStatus { get; set; }
+
+        /// <summary>
+        /// Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). Populated only when the platform has delivery issues to report; contains the specific error codes and messages.
+        /// </summary>
+        /// <value>Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). Populated only when the platform has delivery issues to report; contains the specific error codes and messages.</value>
+        [DataMember(Name = "campaignIssuesInfo", EmitDefaultValue = false)]
+        public List<Object> CampaignIssuesInfo { get; set; }
+
+        /// <summary>
         /// Total ads across all ad sets
         /// </summary>
         /// <value>Total ads across all ad sets</value>
@@ -163,7 +257,27 @@ namespace Late.Model
         /// Gets or Sets Budget
         /// </summary>
         [DataMember(Name = "budget", EmitDefaultValue = false)]
-        public AdBudget Budget { get; set; }
+        public AdTreeCampaignBudget Budget { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CampaignBudget
+        /// </summary>
+        [DataMember(Name = "campaignBudget", EmitDefaultValue = false)]
+        public AdTreeCampaignCampaignBudget CampaignBudget { get; set; }
+
+        /// <summary>
+        /// Meta-only. Mirrors Campaign.is_budget_schedule_enabled — true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO.
+        /// </summary>
+        /// <value>Meta-only. Mirrors Campaign.is_budget_schedule_enabled — true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO.</value>
+        [DataMember(Name = "isBudgetScheduleEnabled", EmitDefaultValue = true)]
+        public bool IsBudgetScheduleEnabled { get; set; }
+
+        /// <summary>
+        /// ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD.
+        /// </summary>
+        /// <value>ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD.</value>
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
+        public string Currency { get; set; }
 
         /// <summary>
         /// Gets or Sets Metrics
@@ -234,9 +348,16 @@ namespace Late.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  CampaignName: ").Append(CampaignName).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  ReviewStatus: ").Append(ReviewStatus).Append("\n");
+            sb.Append("  PlatformCampaignStatus: ").Append(PlatformCampaignStatus).Append("\n");
+            sb.Append("  CampaignIssuesInfo: ").Append(CampaignIssuesInfo).Append("\n");
             sb.Append("  AdCount: ").Append(AdCount).Append("\n");
             sb.Append("  AdSetCount: ").Append(AdSetCount).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
+            sb.Append("  CampaignBudget: ").Append(CampaignBudget).Append("\n");
+            sb.Append("  BudgetLevel: ").Append(BudgetLevel).Append("\n");
+            sb.Append("  IsBudgetScheduleEnabled: ").Append(IsBudgetScheduleEnabled).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Metrics: ").Append(Metrics).Append("\n");
             sb.Append("  PlatformAdAccountId: ").Append(PlatformAdAccountId).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");

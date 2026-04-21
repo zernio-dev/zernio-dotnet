@@ -48,18 +48,20 @@ namespace Late.Model
         /// <param name="status">Derived from child ad statuses.</param>
         /// <param name="adCount">adCount.</param>
         /// <param name="budget">budget.</param>
+        /// <param name="adSetBudget">adSetBudget.</param>
         /// <param name="metrics">metrics.</param>
         /// <param name="optimizationGoal">Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION).</param>
         /// <param name="bidStrategy">Bid strategy for this ad set (overrides campaign level when set).</param>
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="ads">Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent)..</param>
-        public AdTreeAdSet(string platformAdSetId = default, string adSetName = default, AdStatus? status = default, int adCount = default, AdBudget budget = default, AdMetrics metrics = default, string optimizationGoal = default, string bidStrategy = default, AdTreeAdSetPromotedObject promotedObject = default, List<Ad> ads = default)
+        public AdTreeAdSet(string platformAdSetId = default, string adSetName = default, AdStatus? status = default, int adCount = default, AdTreeAdSetBudget budget = default, AdTreeAdSetAdSetBudget adSetBudget = default, AdMetrics metrics = default, string optimizationGoal = default, string bidStrategy = default, AdTreeAdSetPromotedObject promotedObject = default, List<Ad> ads = default)
         {
             this.PlatformAdSetId = platformAdSetId;
             this.AdSetName = adSetName;
             this.Status = status;
             this.AdCount = adCount;
             this.Budget = budget;
+            this.AdSetBudget = adSetBudget;
             this.Metrics = metrics;
             this.OptimizationGoal = optimizationGoal;
             this.BidStrategy = bidStrategy;
@@ -89,7 +91,13 @@ namespace Late.Model
         /// Gets or Sets Budget
         /// </summary>
         [DataMember(Name = "budget", EmitDefaultValue = false)]
-        public AdBudget Budget { get; set; }
+        public AdTreeAdSetBudget Budget { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AdSetBudget
+        /// </summary>
+        [DataMember(Name = "adSetBudget", EmitDefaultValue = false)]
+        public AdTreeAdSetAdSetBudget AdSetBudget { get; set; }
 
         /// <summary>
         /// Gets or Sets Metrics
@@ -137,6 +145,7 @@ namespace Late.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  AdCount: ").Append(AdCount).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
+            sb.Append("  AdSetBudget: ").Append(AdSetBudget).Append("\n");
             sb.Append("  Metrics: ").Append(Metrics).Append("\n");
             sb.Append("  OptimizationGoal: ").Append(OptimizationGoal).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");

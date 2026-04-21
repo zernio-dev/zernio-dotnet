@@ -29,6 +29,73 @@ namespace Late.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Pause or resume many campaigns
+        /// </summary>
+        /// <remarks>
+        /// Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="bulkUpdateAdCampaignStatusRequest"></param>
+        /// <returns>BulkUpdateAdCampaignStatus200Response</returns>
+        BulkUpdateAdCampaignStatus200Response BulkUpdateAdCampaignStatus(BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest);
+
+        /// <summary>
+        /// Pause or resume many campaigns
+        /// </summary>
+        /// <remarks>
+        /// Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="bulkUpdateAdCampaignStatusRequest"></param>
+        /// <returns>ApiResponse of BulkUpdateAdCampaignStatus200Response</returns>
+        ApiResponse<BulkUpdateAdCampaignStatus200Response> BulkUpdateAdCampaignStatusWithHttpInfo(BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest);
+        /// <summary>
+        /// Delete a campaign
+        /// </summary>
+        /// <remarks>
+        /// Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="deleteAdCampaignRequest"></param>
+        /// <returns>DeleteAdCampaign200Response</returns>
+        DeleteAdCampaign200Response DeleteAdCampaign(string campaignId, DeleteAdCampaignRequest deleteAdCampaignRequest);
+
+        /// <summary>
+        /// Delete a campaign
+        /// </summary>
+        /// <remarks>
+        /// Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="deleteAdCampaignRequest"></param>
+        /// <returns>ApiResponse of DeleteAdCampaign200Response</returns>
+        ApiResponse<DeleteAdCampaign200Response> DeleteAdCampaignWithHttpInfo(string campaignId, DeleteAdCampaignRequest deleteAdCampaignRequest);
+        /// <summary>
+        /// Duplicate a campaign
+        /// </summary>
+        /// <remarks>
+        /// Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Source platform campaign ID</param>
+        /// <param name="duplicateAdCampaignRequest"></param>
+        /// <returns>DuplicateAdCampaign200Response</returns>
+        DuplicateAdCampaign200Response DuplicateAdCampaign(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest);
+
+        /// <summary>
+        /// Duplicate a campaign
+        /// </summary>
+        /// <remarks>
+        /// Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Source platform campaign ID</param>
+        /// <param name="duplicateAdCampaignRequest"></param>
+        /// <returns>ApiResponse of DuplicateAdCampaign200Response</returns>
+        ApiResponse<DuplicateAdCampaign200Response> DuplicateAdCampaignWithHttpInfo(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest);
+        /// <summary>
         /// Get campaign tree
         /// </summary>
         /// <remarks>
@@ -37,7 +104,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Campaigns per page (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
@@ -57,7 +124,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Campaigns per page (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
@@ -76,7 +143,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
@@ -94,7 +161,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
@@ -102,6 +169,29 @@ namespace Late.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <returns>ApiResponse of ListAdCampaigns200Response</returns>
         ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default);
+        /// <summary>
+        /// Update a campaign (budget)
+        /// </summary>
+        /// <remarks>
+        /// Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="updateAdCampaignRequest"></param>
+        /// <returns>UpdateAdCampaign200Response</returns>
+        UpdateAdCampaign200Response UpdateAdCampaign(string campaignId, UpdateAdCampaignRequest updateAdCampaignRequest);
+
+        /// <summary>
+        /// Update a campaign (budget)
+        /// </summary>
+        /// <remarks>
+        /// Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="updateAdCampaignRequest"></param>
+        /// <returns>ApiResponse of UpdateAdCampaign200Response</returns>
+        ApiResponse<UpdateAdCampaign200Response> UpdateAdCampaignWithHttpInfo(string campaignId, UpdateAdCampaignRequest updateAdCampaignRequest);
         /// <summary>
         /// Pause or resume a campaign
         /// </summary>
@@ -125,6 +215,52 @@ namespace Late.Api
         /// <param name="updateAdCampaignStatusRequest"></param>
         /// <returns>ApiResponse of UpdateAdCampaignStatus200Response</returns>
         ApiResponse<UpdateAdCampaignStatus200Response> UpdateAdCampaignStatusWithHttpInfo(string campaignId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest);
+        /// <summary>
+        /// Update an ad set (budget and/or status)
+        /// </summary>
+        /// <remarks>
+        /// Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdSetRequest"></param>
+        /// <returns>UpdateAdSet200Response</returns>
+        UpdateAdSet200Response UpdateAdSet(string adSetId, UpdateAdSetRequest updateAdSetRequest);
+
+        /// <summary>
+        /// Update an ad set (budget and/or status)
+        /// </summary>
+        /// <remarks>
+        /// Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdSetRequest"></param>
+        /// <returns>ApiResponse of UpdateAdSet200Response</returns>
+        ApiResponse<UpdateAdSet200Response> UpdateAdSetWithHttpInfo(string adSetId, UpdateAdSetRequest updateAdSetRequest);
+        /// <summary>
+        /// Pause or resume a single ad set
+        /// </summary>
+        /// <remarks>
+        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdCampaignStatusRequest"></param>
+        /// <returns>UpdateAdSetStatus200Response</returns>
+        UpdateAdSetStatus200Response UpdateAdSetStatus(string adSetId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest);
+
+        /// <summary>
+        /// Pause or resume a single ad set
+        /// </summary>
+        /// <remarks>
+        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdCampaignStatusRequest"></param>
+        /// <returns>ApiResponse of UpdateAdSetStatus200Response</returns>
+        ApiResponse<UpdateAdSetStatus200Response> UpdateAdSetStatusWithHttpInfo(string adSetId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest);
         #endregion Synchronous Operations
     }
 
@@ -135,6 +271,79 @@ namespace Late.Api
     {
         #region Asynchronous Operations
         /// <summary>
+        /// Pause or resume many campaigns
+        /// </summary>
+        /// <remarks>
+        /// Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="bulkUpdateAdCampaignStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of BulkUpdateAdCampaignStatus200Response</returns>
+        System.Threading.Tasks.Task<BulkUpdateAdCampaignStatus200Response> BulkUpdateAdCampaignStatusAsync(BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Pause or resume many campaigns
+        /// </summary>
+        /// <remarks>
+        /// Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="bulkUpdateAdCampaignStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (BulkUpdateAdCampaignStatus200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BulkUpdateAdCampaignStatus200Response>> BulkUpdateAdCampaignStatusWithHttpInfoAsync(BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete a campaign
+        /// </summary>
+        /// <remarks>
+        /// Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="deleteAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteAdCampaign200Response</returns>
+        System.Threading.Tasks.Task<DeleteAdCampaign200Response> DeleteAdCampaignAsync(string campaignId, DeleteAdCampaignRequest deleteAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete a campaign
+        /// </summary>
+        /// <remarks>
+        /// Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="deleteAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteAdCampaign200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteAdCampaign200Response>> DeleteAdCampaignWithHttpInfoAsync(string campaignId, DeleteAdCampaignRequest deleteAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Duplicate a campaign
+        /// </summary>
+        /// <remarks>
+        /// Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Source platform campaign ID</param>
+        /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DuplicateAdCampaign200Response</returns>
+        System.Threading.Tasks.Task<DuplicateAdCampaign200Response> DuplicateAdCampaignAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Duplicate a campaign
+        /// </summary>
+        /// <remarks>
+        /// Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Source platform campaign ID</param>
+        /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DuplicateAdCampaign200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DuplicateAdCampaign200Response>> DuplicateAdCampaignWithHttpInfoAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get campaign tree
         /// </summary>
         /// <remarks>
@@ -143,7 +352,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Campaigns per page (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
@@ -164,7 +373,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Campaigns per page (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
@@ -184,7 +393,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
@@ -203,7 +412,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
@@ -212,6 +421,31 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdCampaigns200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update a campaign (budget)
+        /// </summary>
+        /// <remarks>
+        /// Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="updateAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdCampaign200Response</returns>
+        System.Threading.Tasks.Task<UpdateAdCampaign200Response> UpdateAdCampaignAsync(string campaignId, UpdateAdCampaignRequest updateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update a campaign (budget)
+        /// </summary>
+        /// <remarks>
+        /// Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="updateAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdCampaign200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdCampaign200Response>> UpdateAdCampaignWithHttpInfoAsync(string campaignId, UpdateAdCampaignRequest updateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Pause or resume a campaign
         /// </summary>
@@ -237,6 +471,56 @@ namespace Late.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAdCampaignStatus200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAdCampaignStatus200Response>> UpdateAdCampaignStatusWithHttpInfoAsync(string campaignId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update an ad set (budget and/or status)
+        /// </summary>
+        /// <remarks>
+        /// Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdSet200Response</returns>
+        System.Threading.Tasks.Task<UpdateAdSet200Response> UpdateAdSetAsync(string adSetId, UpdateAdSetRequest updateAdSetRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update an ad set (budget and/or status)
+        /// </summary>
+        /// <remarks>
+        /// Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdSet200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdSet200Response>> UpdateAdSetWithHttpInfoAsync(string adSetId, UpdateAdSetRequest updateAdSetRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Pause or resume a single ad set
+        /// </summary>
+        /// <remarks>
+        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdCampaignStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdSetStatus200Response</returns>
+        System.Threading.Tasks.Task<UpdateAdSetStatus200Response> UpdateAdSetStatusAsync(string adSetId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Pause or resume a single ad set
+        /// </summary>
+        /// <remarks>
+        /// Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// </remarks>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdCampaignStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdSetStatus200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdSetStatus200Response>> UpdateAdSetStatusWithHttpInfoAsync(string adSetId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -451,12 +735,427 @@ namespace Late.Api
         }
 
         /// <summary>
+        /// Pause or resume many campaigns Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="bulkUpdateAdCampaignStatusRequest"></param>
+        /// <returns>BulkUpdateAdCampaignStatus200Response</returns>
+        public BulkUpdateAdCampaignStatus200Response BulkUpdateAdCampaignStatus(BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest)
+        {
+            Late.Client.ApiResponse<BulkUpdateAdCampaignStatus200Response> localVarResponse = BulkUpdateAdCampaignStatusWithHttpInfo(bulkUpdateAdCampaignStatusRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pause or resume many campaigns Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="bulkUpdateAdCampaignStatusRequest"></param>
+        /// <returns>ApiResponse of BulkUpdateAdCampaignStatus200Response</returns>
+        public Late.Client.ApiResponse<BulkUpdateAdCampaignStatus200Response> BulkUpdateAdCampaignStatusWithHttpInfo(BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest)
+        {
+            // verify the required parameter 'bulkUpdateAdCampaignStatusRequest' is set
+            if (bulkUpdateAdCampaignStatusRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'bulkUpdateAdCampaignStatusRequest' when calling AdCampaignsApi->BulkUpdateAdCampaignStatus");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = bulkUpdateAdCampaignStatusRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<BulkUpdateAdCampaignStatus200Response>("/v1/ads/campaigns/bulk-status", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("BulkUpdateAdCampaignStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pause or resume many campaigns Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="bulkUpdateAdCampaignStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of BulkUpdateAdCampaignStatus200Response</returns>
+        public async System.Threading.Tasks.Task<BulkUpdateAdCampaignStatus200Response> BulkUpdateAdCampaignStatusAsync(BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<BulkUpdateAdCampaignStatus200Response> localVarResponse = await BulkUpdateAdCampaignStatusWithHttpInfoAsync(bulkUpdateAdCampaignStatusRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pause or resume many campaigns Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="bulkUpdateAdCampaignStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (BulkUpdateAdCampaignStatus200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<BulkUpdateAdCampaignStatus200Response>> BulkUpdateAdCampaignStatusWithHttpInfoAsync(BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'bulkUpdateAdCampaignStatusRequest' is set
+            if (bulkUpdateAdCampaignStatusRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'bulkUpdateAdCampaignStatusRequest' when calling AdCampaignsApi->BulkUpdateAdCampaignStatus");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = bulkUpdateAdCampaignStatusRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<BulkUpdateAdCampaignStatus200Response>("/v1/ads/campaigns/bulk-status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("BulkUpdateAdCampaignStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a campaign Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="deleteAdCampaignRequest"></param>
+        /// <returns>DeleteAdCampaign200Response</returns>
+        public DeleteAdCampaign200Response DeleteAdCampaign(string campaignId, DeleteAdCampaignRequest deleteAdCampaignRequest)
+        {
+            Late.Client.ApiResponse<DeleteAdCampaign200Response> localVarResponse = DeleteAdCampaignWithHttpInfo(campaignId, deleteAdCampaignRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a campaign Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="deleteAdCampaignRequest"></param>
+        /// <returns>ApiResponse of DeleteAdCampaign200Response</returns>
+        public Late.Client.ApiResponse<DeleteAdCampaign200Response> DeleteAdCampaignWithHttpInfo(string campaignId, DeleteAdCampaignRequest deleteAdCampaignRequest)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->DeleteAdCampaign");
+
+            // verify the required parameter 'deleteAdCampaignRequest' is set
+            if (deleteAdCampaignRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'deleteAdCampaignRequest' when calling AdCampaignsApi->DeleteAdCampaign");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Late.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.Data = deleteAdCampaignRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeleteAdCampaign200Response>("/v1/ads/campaigns/{campaignId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteAdCampaign", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a campaign Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="deleteAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteAdCampaign200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteAdCampaign200Response> DeleteAdCampaignAsync(string campaignId, DeleteAdCampaignRequest deleteAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<DeleteAdCampaign200Response> localVarResponse = await DeleteAdCampaignWithHttpInfoAsync(campaignId, deleteAdCampaignRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a campaign Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="deleteAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteAdCampaign200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<DeleteAdCampaign200Response>> DeleteAdCampaignWithHttpInfoAsync(string campaignId, DeleteAdCampaignRequest deleteAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->DeleteAdCampaign");
+
+            // verify the required parameter 'deleteAdCampaignRequest' is set
+            if (deleteAdCampaignRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'deleteAdCampaignRequest' when calling AdCampaignsApi->DeleteAdCampaign");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Late.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.Data = deleteAdCampaignRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteAdCampaign200Response>("/v1/ads/campaigns/{campaignId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteAdCampaign", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Duplicate a campaign Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Source platform campaign ID</param>
+        /// <param name="duplicateAdCampaignRequest"></param>
+        /// <returns>DuplicateAdCampaign200Response</returns>
+        public DuplicateAdCampaign200Response DuplicateAdCampaign(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest)
+        {
+            Late.Client.ApiResponse<DuplicateAdCampaign200Response> localVarResponse = DuplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Duplicate a campaign Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Source platform campaign ID</param>
+        /// <param name="duplicateAdCampaignRequest"></param>
+        /// <returns>ApiResponse of DuplicateAdCampaign200Response</returns>
+        public Late.Client.ApiResponse<DuplicateAdCampaign200Response> DuplicateAdCampaignWithHttpInfo(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->DuplicateAdCampaign");
+
+            // verify the required parameter 'duplicateAdCampaignRequest' is set
+            if (duplicateAdCampaignRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'duplicateAdCampaignRequest' when calling AdCampaignsApi->DuplicateAdCampaign");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Late.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.Data = duplicateAdCampaignRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<DuplicateAdCampaign200Response>("/v1/ads/campaigns/{campaignId}/duplicate", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DuplicateAdCampaign", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Duplicate a campaign Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Source platform campaign ID</param>
+        /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DuplicateAdCampaign200Response</returns>
+        public async System.Threading.Tasks.Task<DuplicateAdCampaign200Response> DuplicateAdCampaignAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<DuplicateAdCampaign200Response> localVarResponse = await DuplicateAdCampaignWithHttpInfoAsync(campaignId, duplicateAdCampaignRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Duplicate a campaign Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Source platform campaign ID</param>
+        /// <param name="duplicateAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DuplicateAdCampaign200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<DuplicateAdCampaign200Response>> DuplicateAdCampaignWithHttpInfoAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->DuplicateAdCampaign");
+
+            // verify the required parameter 'duplicateAdCampaignRequest' is set
+            if (duplicateAdCampaignRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'duplicateAdCampaignRequest' when calling AdCampaignsApi->DuplicateAdCampaign");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Late.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.Data = duplicateAdCampaignRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<DuplicateAdCampaign200Response>("/v1/ads/campaigns/{campaignId}/duplicate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DuplicateAdCampaign", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get campaign tree Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Campaigns per page (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
@@ -477,7 +1176,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Campaigns per page (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
@@ -570,7 +1269,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Campaigns per page (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
@@ -592,7 +1291,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Campaigns per page (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
@@ -689,7 +1388,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
@@ -708,7 +1407,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
@@ -791,7 +1490,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
@@ -811,7 +1510,7 @@ namespace Late.Api
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit"> (optional, default to 20)</param>
-        /// <param name="source"> (optional, default to zernio)</param>
+        /// <param name="source">&#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="status">Filter by derived campaign status (post-aggregation) (optional)</param>
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
@@ -886,6 +1585,149 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAdCampaigns", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update a campaign (budget) Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="updateAdCampaignRequest"></param>
+        /// <returns>UpdateAdCampaign200Response</returns>
+        public UpdateAdCampaign200Response UpdateAdCampaign(string campaignId, UpdateAdCampaignRequest updateAdCampaignRequest)
+        {
+            Late.Client.ApiResponse<UpdateAdCampaign200Response> localVarResponse = UpdateAdCampaignWithHttpInfo(campaignId, updateAdCampaignRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update a campaign (budget) Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="updateAdCampaignRequest"></param>
+        /// <returns>ApiResponse of UpdateAdCampaign200Response</returns>
+        public Late.Client.ApiResponse<UpdateAdCampaign200Response> UpdateAdCampaignWithHttpInfo(string campaignId, UpdateAdCampaignRequest updateAdCampaignRequest)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->UpdateAdCampaign");
+
+            // verify the required parameter 'updateAdCampaignRequest' is set
+            if (updateAdCampaignRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateAdCampaignRequest' when calling AdCampaignsApi->UpdateAdCampaign");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Late.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.Data = updateAdCampaignRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateAdCampaign200Response>("/v1/ads/campaigns/{campaignId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdCampaign", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update a campaign (budget) Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="updateAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdCampaign200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAdCampaign200Response> UpdateAdCampaignAsync(string campaignId, UpdateAdCampaignRequest updateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UpdateAdCampaign200Response> localVarResponse = await UpdateAdCampaignWithHttpInfoAsync(campaignId, updateAdCampaignRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update a campaign (budget) Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign ID</param>
+        /// <param name="updateAdCampaignRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdCampaign200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateAdCampaign200Response>> UpdateAdCampaignWithHttpInfoAsync(string campaignId, UpdateAdCampaignRequest updateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdCampaignsApi->UpdateAdCampaign");
+
+            // verify the required parameter 'updateAdCampaignRequest' is set
+            if (updateAdCampaignRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateAdCampaignRequest' when calling AdCampaignsApi->UpdateAdCampaign");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Late.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            localVarRequestOptions.Data = updateAdCampaignRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateAdCampaign200Response>("/v1/ads/campaigns/{campaignId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdCampaign", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1029,6 +1871,292 @@ namespace Late.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateAdCampaignStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update an ad set (budget and/or status) Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdSetRequest"></param>
+        /// <returns>UpdateAdSet200Response</returns>
+        public UpdateAdSet200Response UpdateAdSet(string adSetId, UpdateAdSetRequest updateAdSetRequest)
+        {
+            Late.Client.ApiResponse<UpdateAdSet200Response> localVarResponse = UpdateAdSetWithHttpInfo(adSetId, updateAdSetRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update an ad set (budget and/or status) Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdSetRequest"></param>
+        /// <returns>ApiResponse of UpdateAdSet200Response</returns>
+        public Late.Client.ApiResponse<UpdateAdSet200Response> UpdateAdSetWithHttpInfo(string adSetId, UpdateAdSetRequest updateAdSetRequest)
+        {
+            // verify the required parameter 'adSetId' is set
+            if (adSetId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'adSetId' when calling AdCampaignsApi->UpdateAdSet");
+
+            // verify the required parameter 'updateAdSetRequest' is set
+            if (updateAdSetRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateAdSetRequest' when calling AdCampaignsApi->UpdateAdSet");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adSetId", Late.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
+            localVarRequestOptions.Data = updateAdSetRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateAdSet200Response>("/v1/ads/ad-sets/{adSetId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update an ad set (budget and/or status) Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdSet200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAdSet200Response> UpdateAdSetAsync(string adSetId, UpdateAdSetRequest updateAdSetRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UpdateAdSet200Response> localVarResponse = await UpdateAdSetWithHttpInfoAsync(adSetId, updateAdSetRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update an ad set (budget and/or status) Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdSetRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdSet200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateAdSet200Response>> UpdateAdSetWithHttpInfoAsync(string adSetId, UpdateAdSetRequest updateAdSetRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adSetId' is set
+            if (adSetId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'adSetId' when calling AdCampaignsApi->UpdateAdSet");
+
+            // verify the required parameter 'updateAdSetRequest' is set
+            if (updateAdSetRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateAdSetRequest' when calling AdCampaignsApi->UpdateAdSet");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adSetId", Late.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
+            localVarRequestOptions.Data = updateAdSetRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateAdSet200Response>("/v1/ads/ad-sets/{adSetId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdSet", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdCampaignStatusRequest"></param>
+        /// <returns>UpdateAdSetStatus200Response</returns>
+        public UpdateAdSetStatus200Response UpdateAdSetStatus(string adSetId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest)
+        {
+            Late.Client.ApiResponse<UpdateAdSetStatus200Response> localVarResponse = UpdateAdSetStatusWithHttpInfo(adSetId, updateAdCampaignStatusRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdCampaignStatusRequest"></param>
+        /// <returns>ApiResponse of UpdateAdSetStatus200Response</returns>
+        public Late.Client.ApiResponse<UpdateAdSetStatus200Response> UpdateAdSetStatusWithHttpInfo(string adSetId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest)
+        {
+            // verify the required parameter 'adSetId' is set
+            if (adSetId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'adSetId' when calling AdCampaignsApi->UpdateAdSetStatus");
+
+            // verify the required parameter 'updateAdCampaignStatusRequest' is set
+            if (updateAdCampaignStatusRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateAdCampaignStatusRequest' when calling AdCampaignsApi->UpdateAdSetStatus");
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adSetId", Late.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
+            localVarRequestOptions.Data = updateAdCampaignStatusRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateAdSetStatus200Response>("/v1/ads/ad-sets/{adSetId}/status", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdSetStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdCampaignStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdSetStatus200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAdSetStatus200Response> UpdateAdSetStatusAsync(string adSetId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Late.Client.ApiResponse<UpdateAdSetStatus200Response> localVarResponse = await UpdateAdSetStatusWithHttpInfoAsync(adSetId, updateAdCampaignStatusRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pause or resume a single ad set Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+        /// </summary>
+        /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Platform ad set ID</param>
+        /// <param name="updateAdCampaignStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdSetStatus200Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateAdSetStatus200Response>> UpdateAdSetStatusWithHttpInfoAsync(string adSetId, UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adSetId' is set
+            if (adSetId == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'adSetId' when calling AdCampaignsApi->UpdateAdSetStatus");
+
+            // verify the required parameter 'updateAdCampaignStatusRequest' is set
+            if (updateAdCampaignStatusRequest == null)
+                throw new Late.Client.ApiException(400, "Missing required parameter 'updateAdCampaignStatusRequest' when calling AdCampaignsApi->UpdateAdSetStatus");
+
+
+            Late.Client.RequestOptions localVarRequestOptions = new Late.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Late.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Late.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adSetId", Late.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
+            localVarRequestOptions.Data = updateAdCampaignStatusRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateAdSetStatus200Response>("/v1/ads/ad-sets/{adSetId}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdSetStatus", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

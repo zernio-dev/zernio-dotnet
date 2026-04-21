@@ -90,20 +90,93 @@ namespace Late.Model
         public PlatformEnum? Platform { get; set; }
 
         /// <summary>
-        /// Derived from child ad statuses
+        /// Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;.
         /// </summary>
-        /// <value>Derived from child ad statuses</value>
+        /// <value>Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public AdStatus? Status { get; set; }
+        /// <summary>
+        /// Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description.
+        /// </summary>
+        /// <value>Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ReviewStatusEnum
+        {
+            /// <summary>
+            /// Enum InReview for value: in_review
+            /// </summary>
+            [EnumMember(Value = "in_review")]
+            InReview = 1,
+
+            /// <summary>
+            /// Enum Approved for value: approved
+            /// </summary>
+            [EnumMember(Value = "approved")]
+            Approved = 2,
+
+            /// <summary>
+            /// Enum Rejected for value: rejected
+            /// </summary>
+            [EnumMember(Value = "rejected")]
+            Rejected = 3,
+
+            /// <summary>
+            /// Enum WithIssues for value: with_issues
+            /// </summary>
+            [EnumMember(Value = "with_issues")]
+            WithIssues = 4
+        }
+
+
+        /// <summary>
+        /// Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description.
+        /// </summary>
+        /// <value>Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description.</value>
+        [DataMember(Name = "reviewStatus", EmitDefaultValue = false)]
+        public ReviewStatusEnum? ReviewStatus { get; set; }
+        /// <summary>
+        /// Canonical CBO/ABO indicator. See AdTreeCampaign.budgetLevel.
+        /// </summary>
+        /// <value>Canonical CBO/ABO indicator. See AdTreeCampaign.budgetLevel.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum BudgetLevelEnum
+        {
+            /// <summary>
+            /// Enum Campaign for value: campaign
+            /// </summary>
+            [EnumMember(Value = "campaign")]
+            Campaign = 1,
+
+            /// <summary>
+            /// Enum Adset for value: adset
+            /// </summary>
+            [EnumMember(Value = "adset")]
+            Adset = 2
+        }
+
+
+        /// <summary>
+        /// Canonical CBO/ABO indicator. See AdTreeCampaign.budgetLevel.
+        /// </summary>
+        /// <value>Canonical CBO/ABO indicator. See AdTreeCampaign.budgetLevel.</value>
+        [DataMember(Name = "budgetLevel", EmitDefaultValue = false)]
+        public BudgetLevelEnum? BudgetLevel { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AdCampaign" /> class.
         /// </summary>
         /// <param name="platformCampaignId">platformCampaignId.</param>
         /// <param name="platform">platform.</param>
         /// <param name="campaignName">campaignName.</param>
-        /// <param name="status">Derived from child ad statuses.</param>
+        /// <param name="status">Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;..</param>
+        /// <param name="reviewStatus">Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description..</param>
+        /// <param name="platformCampaignStatus">Raw platform-level campaign status (Meta &#x60;effective_status&#x60;)..</param>
+        /// <param name="campaignIssuesInfo">Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;)..</param>
         /// <param name="adCount">adCount.</param>
         /// <param name="budget">budget.</param>
+        /// <param name="campaignBudget">campaignBudget.</param>
+        /// <param name="budgetLevel">Canonical CBO/ABO indicator. See AdTreeCampaign.budgetLevel..</param>
+        /// <param name="isBudgetScheduleEnabled">Meta-only. Mirrors Campaign.is_budget_schedule_enabled. (default to false).</param>
+        /// <param name="currency">ISO 4217 currency code for all budget amounts. Budgets are NOT normalized to USD..</param>
         /// <param name="metrics">metrics.</param>
         /// <param name="platformAdAccountId">platformAdAccountId.</param>
         /// <param name="accountId">accountId.</param>
@@ -114,14 +187,21 @@ namespace Late.Model
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="earliestAd">earliestAd.</param>
         /// <param name="latestAd">latestAd.</param>
-        public AdCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, int adCount = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdAccountId = default, string accountId = default, string profileId = default, string platformObjective = default, string optimizationGoal = default, string bidStrategy = default, AdTreeCampaignPromotedObject promotedObject = default, DateTime earliestAd = default, DateTime latestAd = default)
+        public AdCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, ReviewStatusEnum? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, AdCampaignBudget budget = default, AdCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string accountId = default, string profileId = default, string platformObjective = default, string optimizationGoal = default, string bidStrategy = default, AdTreeCampaignPromotedObject promotedObject = default, DateTime earliestAd = default, DateTime latestAd = default)
         {
             this.PlatformCampaignId = platformCampaignId;
             this.Platform = platform;
             this.CampaignName = campaignName;
             this.Status = status;
+            this.ReviewStatus = reviewStatus;
+            this.PlatformCampaignStatus = platformCampaignStatus;
+            this.CampaignIssuesInfo = campaignIssuesInfo;
             this.AdCount = adCount;
             this.Budget = budget;
+            this.CampaignBudget = campaignBudget;
+            this.BudgetLevel = budgetLevel;
+            this.IsBudgetScheduleEnabled = isBudgetScheduleEnabled;
+            this.Currency = currency;
             this.Metrics = metrics;
             this.PlatformAdAccountId = platformAdAccountId;
             this.AccountId = accountId;
@@ -147,6 +227,20 @@ namespace Late.Model
         public string CampaignName { get; set; }
 
         /// <summary>
+        /// Raw platform-level campaign status (Meta &#x60;effective_status&#x60;).
+        /// </summary>
+        /// <value>Raw platform-level campaign status (Meta &#x60;effective_status&#x60;).</value>
+        [DataMember(Name = "platformCampaignStatus", EmitDefaultValue = false)]
+        public string PlatformCampaignStatus { get; set; }
+
+        /// <summary>
+        /// Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;).
+        /// </summary>
+        /// <value>Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;).</value>
+        [DataMember(Name = "campaignIssuesInfo", EmitDefaultValue = false)]
+        public List<Object> CampaignIssuesInfo { get; set; }
+
+        /// <summary>
         /// Gets or Sets AdCount
         /// </summary>
         [DataMember(Name = "adCount", EmitDefaultValue = false)]
@@ -156,7 +250,27 @@ namespace Late.Model
         /// Gets or Sets Budget
         /// </summary>
         [DataMember(Name = "budget", EmitDefaultValue = false)]
-        public AdBudget Budget { get; set; }
+        public AdCampaignBudget Budget { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CampaignBudget
+        /// </summary>
+        [DataMember(Name = "campaignBudget", EmitDefaultValue = false)]
+        public AdCampaignCampaignBudget CampaignBudget { get; set; }
+
+        /// <summary>
+        /// Meta-only. Mirrors Campaign.is_budget_schedule_enabled.
+        /// </summary>
+        /// <value>Meta-only. Mirrors Campaign.is_budget_schedule_enabled.</value>
+        [DataMember(Name = "isBudgetScheduleEnabled", EmitDefaultValue = true)]
+        public bool IsBudgetScheduleEnabled { get; set; }
+
+        /// <summary>
+        /// ISO 4217 currency code for all budget amounts. Budgets are NOT normalized to USD.
+        /// </summary>
+        /// <value>ISO 4217 currency code for all budget amounts. Budgets are NOT normalized to USD.</value>
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
+        public string Currency { get; set; }
 
         /// <summary>
         /// Gets or Sets Metrics
@@ -233,8 +347,15 @@ namespace Late.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  CampaignName: ").Append(CampaignName).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  ReviewStatus: ").Append(ReviewStatus).Append("\n");
+            sb.Append("  PlatformCampaignStatus: ").Append(PlatformCampaignStatus).Append("\n");
+            sb.Append("  CampaignIssuesInfo: ").Append(CampaignIssuesInfo).Append("\n");
             sb.Append("  AdCount: ").Append(AdCount).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
+            sb.Append("  CampaignBudget: ").Append(CampaignBudget).Append("\n");
+            sb.Append("  BudgetLevel: ").Append(BudgetLevel).Append("\n");
+            sb.Append("  IsBudgetScheduleEnabled: ").Append(IsBudgetScheduleEnabled).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Metrics: ").Append(Metrics).Append("\n");
             sb.Append("  PlatformAdAccountId: ").Append(PlatformAdAccountId).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
