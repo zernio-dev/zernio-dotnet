@@ -15128,8 +15128,12 @@ components:
           type: type
           url: url
         sender:
+          phoneNumber: phoneNumber
           name: name
+          parentBusinessScopedUserId: parentBusinessScopedUserId
           id: id
+          whatsappUsername: whatsappUsername
+          businessScopedUserId: businessScopedUserId
           picture: picture
           instagramProfile:
             isFollowing: true
@@ -15272,8 +15276,12 @@ components:
             type: type
             url: url
           sender:
+            phoneNumber: phoneNumber
             name: name
+            parentBusinessScopedUserId: parentBusinessScopedUserId
             id: id
+            whatsappUsername: whatsappUsername
+            businessScopedUserId: businessScopedUserId
             picture: picture
             instagramProfile:
               isFollowing: true
@@ -15434,8 +15442,12 @@ components:
             type: type
             url: url
           sender:
+            phoneNumber: phoneNumber
             name: name
+            parentBusinessScopedUserId: parentBusinessScopedUserId
             id: id
+            whatsappUsername: whatsappUsername
+            businessScopedUserId: businessScopedUserId
             picture: picture
             instagramProfile:
               isFollowing: true
@@ -15528,8 +15540,12 @@ components:
             type: type
             url: url
           sender:
+            phoneNumber: phoneNumber
             name: name
+            parentBusinessScopedUserId: parentBusinessScopedUserId
             id: id
+            whatsappUsername: whatsappUsername
+            businessScopedUserId: businessScopedUserId
             picture: picture
             instagramProfile:
               isFollowing: true
@@ -15609,8 +15625,12 @@ components:
             type: type
             url: url
           sender:
+            phoneNumber: phoneNumber
             name: name
+            parentBusinessScopedUserId: parentBusinessScopedUserId
             id: id
+            whatsappUsername: whatsappUsername
+            businessScopedUserId: businessScopedUserId
             picture: picture
             instagramProfile:
               isFollowing: true
@@ -36162,8 +36182,12 @@ components:
           nullable: true
     InboxWebhookMessage_sender:
       example:
+        phoneNumber: phoneNumber
         name: name
+        parentBusinessScopedUserId: parentBusinessScopedUserId
         id: id
+        whatsappUsername: whatsappUsername
+        businessScopedUserId: businessScopedUserId
         picture: picture
         instagramProfile:
           isFollowing: true
@@ -36173,12 +36197,45 @@ components:
         username: username
       properties:
         id:
+          description: |
+            Sender's platform identifier. For WhatsApp this is the phone number
+            (without leading `+`) when available, otherwise the `businessScopedUserId`.
+            For other platforms, the platform's own user ID.
           type: string
         name:
           type: string
         username:
           type: string
         picture:
+          type: string
+        phoneNumber:
+          description: |
+            WhatsApp only. Sender's phone number in E.164 format (with leading `+`).
+
+            **Nullable during the BSUID rollout (April 2026+).** WhatsApp users
+            who adopt a username can message businesses without exposing a phone
+            number — this field is omitted for them. Match by `businessScopedUserId`
+            instead. See `docs/whatsapp-bsuid-migration.md`.
+          type: string
+          nullable: true
+        businessScopedUserId:
+          description: |
+            WhatsApp only. Business-scoped user ID (BSUID) — Meta's canonical
+            identifier for a WhatsApp user within your business. Present when
+            Meta includes it in the inbound payload (rollout in progress since
+            early April 2026). **Recommended primary identity anchor** going
+            forward; fall back to `phoneNumber` only when this field is absent.
+          type: string
+        parentBusinessScopedUserId:
+          description: |
+            WhatsApp only. Parent BSUID for businesses with linked business
+            portfolios. Omitted for standalone portfolios.
+          type: string
+        whatsappUsername:
+          description: |
+            WhatsApp only. User's WhatsApp username (e.g. `@jane`). Not a
+            stable identifier — users can change it. Useful for display, not
+            recommended as an identity anchor.
           type: string
         instagramProfile:
           $ref: "#/components/schemas/InboxWebhookMessage_sender_instagramProfile"
@@ -36211,8 +36268,12 @@ components:
           nullable: true
     WebhookPayloadMessage_message_sender:
       example:
+        phoneNumber: phoneNumber
         name: name
+        parentBusinessScopedUserId: parentBusinessScopedUserId
         id: id
+        whatsappUsername: whatsappUsername
+        businessScopedUserId: businessScopedUserId
         picture: picture
         instagramProfile:
           isFollowing: true
@@ -36222,12 +36283,47 @@ components:
         username: username
       properties:
         id:
+          description: |
+            Sender's platform identifier. For WhatsApp this is the phone
+            number (without leading `+`) when available, otherwise the
+            `businessScopedUserId`.
           type: string
         name:
           type: string
         username:
           type: string
         picture:
+          type: string
+        phoneNumber:
+          description: |
+            WhatsApp only. Sender's phone number in E.164 format (with leading `+`).
+
+            **Nullable during the BSUID rollout (April 2026+).** WhatsApp
+            users who adopt a username can message businesses without
+            exposing a phone number — this field is omitted for them.
+            Match by `businessScopedUserId` instead. See
+            `docs/whatsapp-bsuid-migration.md`.
+          type: string
+          nullable: true
+        businessScopedUserId:
+          description: |
+            WhatsApp only. Business-scoped user ID (BSUID) — Meta's canonical
+            identifier for a WhatsApp user within your business. Present
+            when Meta includes it in the inbound payload (rollout in
+            progress since early April 2026). **Recommended primary identity
+            anchor** going forward; fall back to `phoneNumber` only when
+            this field is absent.
+          type: string
+        parentBusinessScopedUserId:
+          description: |
+            WhatsApp only. Parent BSUID for businesses with linked business
+            portfolios. Omitted for standalone portfolios.
+          type: string
+        whatsappUsername:
+          description: |
+            WhatsApp only. User's WhatsApp username (e.g. `@jane`). Not a
+            stable identifier — users can change it. Useful for display,
+            not recommended as an identity anchor.
           type: string
         instagramProfile:
           $ref: "#/components/schemas/WebhookPayloadMessage_message_sender_instagramProfile"
@@ -36243,8 +36339,12 @@ components:
           type: type
           url: url
         sender:
+          phoneNumber: phoneNumber
           name: name
+          parentBusinessScopedUserId: parentBusinessScopedUserId
           id: id
+          whatsappUsername: whatsappUsername
+          businessScopedUserId: businessScopedUserId
           picture: picture
           instagramProfile:
             isFollowing: true

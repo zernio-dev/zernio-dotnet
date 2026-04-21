@@ -41,12 +41,16 @@ namespace Late.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadMessageMessageSender" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
+        /// <param name="id">Sender&#39;s platform identifier. For WhatsApp this is the phone number (without leading &#x60;+&#x60;) when available, otherwise the &#x60;businessScopedUserId&#x60;.  (required).</param>
         /// <param name="name">name.</param>
         /// <param name="username">username.</param>
         /// <param name="picture">picture.</param>
+        /// <param name="phoneNumber">WhatsApp only. Sender&#39;s phone number in E.164 format (with leading &#x60;+&#x60;).  **Nullable during the BSUID rollout (April 2026+).** WhatsApp users who adopt a username can message businesses without exposing a phone number — this field is omitted for them. Match by &#x60;businessScopedUserId&#x60; instead. See &#x60;docs/whatsapp-bsuid-migration.md&#x60;. .</param>
+        /// <param name="businessScopedUserId">WhatsApp only. Business-scoped user ID (BSUID) — Meta&#39;s canonical identifier for a WhatsApp user within your business. Present when Meta includes it in the inbound payload (rollout in progress since early April 2026). **Recommended primary identity anchor** going forward; fall back to &#x60;phoneNumber&#x60; only when this field is absent. .</param>
+        /// <param name="parentBusinessScopedUserId">WhatsApp only. Parent BSUID for businesses with linked business portfolios. Omitted for standalone portfolios. .</param>
+        /// <param name="whatsappUsername">WhatsApp only. User&#39;s WhatsApp username (e.g. &#x60;@jane&#x60;). Not a stable identifier — users can change it. Useful for display, not recommended as an identity anchor. .</param>
         /// <param name="instagramProfile">instagramProfile.</param>
-        public WebhookPayloadMessageMessageSender(string id = default, string name = default, string username = default, string picture = default, WebhookPayloadMessageMessageSenderInstagramProfile instagramProfile = default)
+        public WebhookPayloadMessageMessageSender(string id = default, string name = default, string username = default, string picture = default, string phoneNumber = default, string businessScopedUserId = default, string parentBusinessScopedUserId = default, string whatsappUsername = default, WebhookPayloadMessageMessageSenderInstagramProfile instagramProfile = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -57,12 +61,17 @@ namespace Late.Model
             this.Name = name;
             this.Username = username;
             this.Picture = picture;
+            this.PhoneNumber = phoneNumber;
+            this.BusinessScopedUserId = businessScopedUserId;
+            this.ParentBusinessScopedUserId = parentBusinessScopedUserId;
+            this.WhatsappUsername = whatsappUsername;
             this.InstagramProfile = instagramProfile;
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Sender&#39;s platform identifier. For WhatsApp this is the phone number (without leading &#x60;+&#x60;) when available, otherwise the &#x60;businessScopedUserId&#x60;. 
         /// </summary>
+        /// <value>Sender&#39;s platform identifier. For WhatsApp this is the phone number (without leading &#x60;+&#x60;) when available, otherwise the &#x60;businessScopedUserId&#x60;. </value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
 
@@ -85,6 +94,34 @@ namespace Late.Model
         public string Picture { get; set; }
 
         /// <summary>
+        /// WhatsApp only. Sender&#39;s phone number in E.164 format (with leading &#x60;+&#x60;).  **Nullable during the BSUID rollout (April 2026+).** WhatsApp users who adopt a username can message businesses without exposing a phone number — this field is omitted for them. Match by &#x60;businessScopedUserId&#x60; instead. See &#x60;docs/whatsapp-bsuid-migration.md&#x60;. 
+        /// </summary>
+        /// <value>WhatsApp only. Sender&#39;s phone number in E.164 format (with leading &#x60;+&#x60;).  **Nullable during the BSUID rollout (April 2026+).** WhatsApp users who adopt a username can message businesses without exposing a phone number — this field is omitted for them. Match by &#x60;businessScopedUserId&#x60; instead. See &#x60;docs/whatsapp-bsuid-migration.md&#x60;. </value>
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. Business-scoped user ID (BSUID) — Meta&#39;s canonical identifier for a WhatsApp user within your business. Present when Meta includes it in the inbound payload (rollout in progress since early April 2026). **Recommended primary identity anchor** going forward; fall back to &#x60;phoneNumber&#x60; only when this field is absent. 
+        /// </summary>
+        /// <value>WhatsApp only. Business-scoped user ID (BSUID) — Meta&#39;s canonical identifier for a WhatsApp user within your business. Present when Meta includes it in the inbound payload (rollout in progress since early April 2026). **Recommended primary identity anchor** going forward; fall back to &#x60;phoneNumber&#x60; only when this field is absent. </value>
+        [DataMember(Name = "businessScopedUserId", EmitDefaultValue = false)]
+        public string BusinessScopedUserId { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. Parent BSUID for businesses with linked business portfolios. Omitted for standalone portfolios. 
+        /// </summary>
+        /// <value>WhatsApp only. Parent BSUID for businesses with linked business portfolios. Omitted for standalone portfolios. </value>
+        [DataMember(Name = "parentBusinessScopedUserId", EmitDefaultValue = false)]
+        public string ParentBusinessScopedUserId { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. User&#39;s WhatsApp username (e.g. &#x60;@jane&#x60;). Not a stable identifier — users can change it. Useful for display, not recommended as an identity anchor. 
+        /// </summary>
+        /// <value>WhatsApp only. User&#39;s WhatsApp username (e.g. &#x60;@jane&#x60;). Not a stable identifier — users can change it. Useful for display, not recommended as an identity anchor. </value>
+        [DataMember(Name = "whatsappUsername", EmitDefaultValue = false)]
+        public string WhatsappUsername { get; set; }
+
+        /// <summary>
         /// Gets or Sets InstagramProfile
         /// </summary>
         [DataMember(Name = "instagramProfile", EmitDefaultValue = false)]
@@ -102,6 +139,10 @@ namespace Late.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  Picture: ").Append(Picture).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  BusinessScopedUserId: ").Append(BusinessScopedUserId).Append("\n");
+            sb.Append("  ParentBusinessScopedUserId: ").Append(ParentBusinessScopedUserId).Append("\n");
+            sb.Append("  WhatsappUsername: ").Append(WhatsappUsername).Append("\n");
             sb.Append("  InstagramProfile: ").Append(InstagramProfile).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
