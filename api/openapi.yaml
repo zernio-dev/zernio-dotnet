@@ -19261,6 +19261,7 @@ components:
       example:
         ctr: 2.3021358869347655
         cpm: 9.301444243932576
+        conversions: 2
         engagement: 3
         reach: 5
         spend: 6.027456183070403
@@ -19268,6 +19269,11 @@ components:
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
         clicks: 5
         impressions: 1
+        costPerConversion: 4.145608029883936
+        actions:
+          link_click: 160
+          post_engagement: 300
+          offsite_conversion.fb_pixel_purchase: 42
       properties:
         spend:
           type: number
@@ -19288,6 +19294,29 @@ components:
           type: number
         engagement:
           type: integer
+        conversions:
+          description: "Count of conversion events matching the campaign's promoted_object.custom_event_type\
+            \ (PURCHASE, LEAD, etc.) over the requested date range. 0 for non-conversion\
+            \ campaigns or when no events have fired. Meta-only at time of writing;\
+            \ other platforms return 0."
+          type: integer
+        costPerConversion:
+          description: Derived spend / conversions in the same currency as spend.
+            0 when conversions is 0.
+          type: number
+        actions:
+          additionalProperties:
+            type: integer
+          description: "Raw per-action-type counts from Meta's Insights actions[]\
+            \ array, summed over the date range. Keys are Meta action_type strings\
+            \ (e.g. link_click, offsite_conversion.fb_pixel_purchase, onsite_conversion.lead_grouped).\
+            \ Use this to extract any conversion event (purchases, leads, add_to_cart,\
+            \ etc.) without relying on the derived conversions field. Empty object\
+            \ when no actions are reported."
+          example:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
         lastSyncedAt:
           description: "Present on individual ads only, not on campaign aggregations"
           format: date-time
@@ -19556,6 +19585,7 @@ components:
         metrics:
           ctr: 2.3021358869347655
           cpm: 9.301444243932576
+          conversions: 2
           engagement: 3
           reach: 5
           spend: 6.027456183070403
@@ -19563,6 +19593,11 @@ components:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 5
           impressions: 1
+          costPerConversion: 4.145608029883936
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
         promotedObject:
           page_id: page_id
           custom_event_type: custom_event_type
@@ -19730,6 +19765,7 @@ components:
           metrics:
             ctr: 2.3021358869347655
             cpm: 9.301444243932576
+            conversions: 2
             engagement: 3
             reach: 5
             spend: 6.027456183070403
@@ -19737,6 +19773,11 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
             impressions: 1
+            costPerConversion: 4.145608029883936
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           promotedObject:
             page_id: page_id
             custom_event_type: custom_event_type
@@ -19852,6 +19893,7 @@ components:
           metrics:
             ctr: 2.3021358869347655
             cpm: 9.301444243932576
+            conversions: 2
             engagement: 3
             reach: 5
             spend: 6.027456183070403
@@ -19859,6 +19901,11 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
             impressions: 1
+            costPerConversion: 4.145608029883936
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           promotedObject:
             page_id: page_id
             custom_event_type: custom_event_type
@@ -19870,6 +19917,7 @@ components:
         metrics:
           ctr: 2.3021358869347655
           cpm: 9.301444243932576
+          conversions: 2
           engagement: 3
           reach: 5
           spend: 6.027456183070403
@@ -19877,6 +19925,11 @@ components:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 5
           impressions: 1
+          costPerConversion: 4.145608029883936
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
         campaignName: campaignName
         platformAdAccountId: platformAdAccountId
         status: ""
@@ -19957,6 +20010,7 @@ components:
         metrics:
           ctr: 2.3021358869347655
           cpm: 9.301444243932576
+          conversions: 2
           engagement: 3
           reach: 5
           spend: 6.027456183070403
@@ -19964,6 +20018,11 @@ components:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 5
           impressions: 1
+          costPerConversion: 4.145608029883936
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
         campaignName: campaignName
         platformAdAccountId: platformAdAccountId
         status: ""
@@ -33954,6 +34013,7 @@ components:
           metrics:
             ctr: 2.3021358869347655
             cpm: 9.301444243932576
+            conversions: 2
             engagement: 3
             reach: 5
             spend: 6.027456183070403
@@ -33961,6 +34021,11 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
             impressions: 1
+            costPerConversion: 4.145608029883936
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: ""
@@ -33984,6 +34049,7 @@ components:
           metrics:
             ctr: 2.3021358869347655
             cpm: 9.301444243932576
+            conversions: 2
             engagement: 3
             reach: 5
             spend: 6.027456183070403
@@ -33991,6 +34057,11 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
             impressions: 1
+            costPerConversion: 4.145608029883936
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: ""
@@ -34175,6 +34246,7 @@ components:
             metrics:
               ctr: 2.3021358869347655
               cpm: 9.301444243932576
+              conversions: 2
               engagement: 3
               reach: 5
               spend: 6.027456183070403
@@ -34182,6 +34254,11 @@ components:
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 5
               impressions: 1
+              costPerConversion: 4.145608029883936
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -34297,6 +34374,7 @@ components:
             metrics:
               ctr: 2.3021358869347655
               cpm: 9.301444243932576
+              conversions: 2
               engagement: 3
               reach: 5
               spend: 6.027456183070403
@@ -34304,6 +34382,11 @@ components:
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 5
               impressions: 1
+              costPerConversion: 4.145608029883936
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -34315,6 +34398,7 @@ components:
           metrics:
             ctr: 2.3021358869347655
             cpm: 9.301444243932576
+            conversions: 2
             engagement: 3
             reach: 5
             spend: 6.027456183070403
@@ -34322,6 +34406,11 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
             impressions: 1
+            costPerConversion: 4.145608029883936
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: ""
@@ -34449,6 +34538,7 @@ components:
             metrics:
               ctr: 2.3021358869347655
               cpm: 9.301444243932576
+              conversions: 2
               engagement: 3
               reach: 5
               spend: 6.027456183070403
@@ -34456,6 +34546,11 @@ components:
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 5
               impressions: 1
+              costPerConversion: 4.145608029883936
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -34571,6 +34666,7 @@ components:
             metrics:
               ctr: 2.3021358869347655
               cpm: 9.301444243932576
+              conversions: 2
               engagement: 3
               reach: 5
               spend: 6.027456183070403
@@ -34578,6 +34674,11 @@ components:
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 5
               impressions: 1
+              costPerConversion: 4.145608029883936
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
             promotedObject:
               page_id: page_id
               custom_event_type: custom_event_type
@@ -34589,6 +34690,7 @@ components:
           metrics:
             ctr: 2.3021358869347655
             cpm: 9.301444243932576
+            conversions: 2
             engagement: 3
             reach: 5
             spend: 6.027456183070403
@@ -34596,6 +34698,11 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
             impressions: 1
+            costPerConversion: 4.145608029883936
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: ""
@@ -34809,18 +34916,25 @@ components:
         ctr: 5.637376656633329
         date: 2000-01-23
         cpm: 7.061401241503109
+        conversions: 3
         engagement: 9
         reach: 1
+        lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+        impressions: 6
         spend: 0.8008281904610115
         cpc: 2.3021358869347655
-        lastSyncedAt: 2000-01-23T04:56:07.000+00:00
         clicks: 5
-        impressions: 6
+        costPerConversion: 2.027123023002322
+        actions:
+          link_click: 160
+          post_engagement: 300
+          offsite_conversion.fb_pixel_purchase: 42
     getAdAnalytics_200_response_analytics:
       example:
         summary:
           ctr: 2.3021358869347655
           cpm: 9.301444243932576
+          conversions: 2
           engagement: 3
           reach: 5
           spend: 6.027456183070403
@@ -34828,27 +34942,44 @@ components:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 5
           impressions: 1
+          costPerConversion: 4.145608029883936
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
         daily:
         - ctr: 5.637376656633329
           date: 2000-01-23
           cpm: 7.061401241503109
+          conversions: 3
           engagement: 9
           reach: 1
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          impressions: 6
           spend: 0.8008281904610115
           cpc: 2.3021358869347655
-          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 5
-          impressions: 6
+          costPerConversion: 2.027123023002322
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
         - ctr: 5.637376656633329
           date: 2000-01-23
           cpm: 7.061401241503109
+          conversions: 3
           engagement: 9
           reach: 1
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          impressions: 6
           spend: 0.8008281904610115
           cpc: 2.3021358869347655
-          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 5
-          impressions: 6
+          costPerConversion: 2.027123023002322
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
         breakdowns:
           key:
           - "{}"
@@ -34870,6 +35001,7 @@ components:
           summary:
             ctr: 2.3021358869347655
             cpm: 9.301444243932576
+            conversions: 2
             engagement: 3
             reach: 5
             spend: 6.027456183070403
@@ -34877,27 +35009,44 @@ components:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
             impressions: 1
+            costPerConversion: 4.145608029883936
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           daily:
           - ctr: 5.637376656633329
             date: 2000-01-23
             cpm: 7.061401241503109
+            conversions: 3
             engagement: 9
             reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 6
             spend: 0.8008281904610115
             cpc: 2.3021358869347655
-            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
-            impressions: 6
+            costPerConversion: 2.027123023002322
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           - ctr: 5.637376656633329
             date: 2000-01-23
             cpm: 7.061401241503109
+            conversions: 3
             engagement: 9
             reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 6
             spend: 0.8008281904610115
             cpc: 2.3021358869347655
-            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 5
-            impressions: 6
+            costPerConversion: 2.027123023002322
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           breakdowns:
             key:
             - "{}"
