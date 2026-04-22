@@ -120,11 +120,11 @@ catch (ApiException e)
 
 <a id="createstandalonead"></a>
 # **CreateStandaloneAd**
-> UpdateAd200Response CreateStandaloneAd (CreateStandaloneAdRequest createStandaloneAdRequest)
+> CreateStandaloneAd201Response CreateStandaloneAd (CreateStandaloneAdRequest createStandaloneAdRequest)
 
 Create standalone ad
 
-Creates a paid ad with custom creative (headline, body, image/video, link). Creates the full platform campaign hierarchy.
+Creates a paid ad with custom creative. The request body supports three mutually-exclusive shapes:  1. **Legacy single-creative** (all platforms). Top-level `headline` + `body` + `imageUrl` + `linkUrl` + `callToAction` create 1 campaign + 1 ad set + 1 ad. 2. **Multi-creative** (Meta only — use `creatives[]` array). Creates 1 campaign + 1 ad set + N ads sharing the same budget / targeting / schedule. This is the standard performance-marketing creative-testing flow — Meta's delivery algorithm A/B tests the creatives inside a single ad set so budget isn't fragmented across N parallel campaigns. 3. **Attach to existing ad set** (Meta only — pass `adSetId` + a single creative). Adds one new ad to an existing ad set without creating a new campaign. Budget, targeting, goal are inherited from the ad set on Meta.  `creatives[]` and `adSetId` are mutually exclusive; specifying both returns 400. 
 
 ### Example
 ```csharp
@@ -155,7 +155,7 @@ namespace Example
             try
             {
                 // Create standalone ad
-                UpdateAd200Response result = apiInstance.CreateStandaloneAd(createStandaloneAdRequest);
+                CreateStandaloneAd201Response result = apiInstance.CreateStandaloneAd(createStandaloneAdRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -176,7 +176,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create standalone ad
-    ApiResponse<UpdateAd200Response> response = apiInstance.CreateStandaloneAdWithHttpInfo(createStandaloneAdRequest);
+    ApiResponse<CreateStandaloneAd201Response> response = apiInstance.CreateStandaloneAdWithHttpInfo(createStandaloneAdRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -197,7 +197,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**UpdateAd200Response**](UpdateAd200Response.md)
+[**CreateStandaloneAd201Response**](CreateStandaloneAd201Response.md)
 
 ### Authorization
 
@@ -212,8 +212,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Ad created |  -  |
-| **400** | Missing required fields or invalid values |  -  |
+| **201** | Ad(s) created |  -  |
+| **400** | Missing required fields, invalid values, or non-Meta platform used with creatives[] / adSetId |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |

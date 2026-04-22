@@ -34,9 +34,9 @@ namespace Late.Model
     public partial class CreateStandaloneAdRequest : IValidatableObject
     {
         /// <summary>
-        /// Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
+        /// Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform.
         /// </summary>
-        /// <value>Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
+        /// <value>Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum GoalEnum
         {
@@ -85,14 +85,15 @@ namespace Late.Model
 
 
         /// <summary>
-        /// Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
+        /// Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform.
         /// </summary>
-        /// <value>Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
-        [DataMember(Name = "goal", IsRequired = true, EmitDefaultValue = true)]
-        public GoalEnum Goal { get; set; }
+        /// <value>Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform.</value>
+        [DataMember(Name = "goal", EmitDefaultValue = false)]
+        public GoalEnum? Goal { get; set; }
         /// <summary>
-        /// Defines BudgetType
+        /// Required on legacy + multi-creative shapes. Inherited on attach.
         /// </summary>
+        /// <value>Required on legacy + multi-creative shapes. Inherited on attach.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum BudgetTypeEnum
         {
@@ -111,14 +112,15 @@ namespace Late.Model
 
 
         /// <summary>
-        /// Gets or Sets BudgetType
+        /// Required on legacy + multi-creative shapes. Inherited on attach.
         /// </summary>
-        [DataMember(Name = "budgetType", IsRequired = true, EmitDefaultValue = true)]
-        public BudgetTypeEnum BudgetType { get; set; }
+        /// <value>Required on legacy + multi-creative shapes. Inherited on attach.</value>
+        [DataMember(Name = "budgetType", EmitDefaultValue = false)]
+        public BudgetTypeEnum? BudgetType { get; set; }
         /// <summary>
-        /// Meta only
+        /// Required on legacy + attach shapes. Meta only.
         /// </summary>
-        /// <value>Meta only</value>
+        /// <value>Required on legacy + attach shapes. Meta only.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CallToActionEnum
         {
@@ -185,9 +187,9 @@ namespace Late.Model
 
 
         /// <summary>
-        /// Meta only
+        /// Required on legacy + attach shapes. Meta only.
         /// </summary>
-        /// <value>Meta only</value>
+        /// <value>Required on legacy + attach shapes. Meta only.</value>
         [DataMember(Name = "callToAction", EmitDefaultValue = false)]
         public CallToActionEnum? CallToAction { get; set; }
         /// <summary>
@@ -252,16 +254,18 @@ namespace Late.Model
         /// <param name="accountId">accountId (required).</param>
         /// <param name="adAccountId">adAccountId (required).</param>
         /// <param name="name">name (required).</param>
-        /// <param name="goal">Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views. (required).</param>
-        /// <param name="budgetAmount">budgetAmount (required).</param>
-        /// <param name="budgetType">budgetType (required).</param>
+        /// <param name="goal">Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform..</param>
+        /// <param name="budgetAmount">Required on legacy + multi-creative shapes. Inherited on attach..</param>
+        /// <param name="budgetType">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="currency">currency.</param>
-        /// <param name="headline">Required for most platforms. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100.</param>
+        /// <param name="headline">Required on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100.</param>
         /// <param name="longHeadline">Google Display only.</param>
-        /// <param name="body">Max: Google&#x3D;90, Pinterest&#x3D;500 (required).</param>
-        /// <param name="callToAction">Meta only.</param>
-        /// <param name="linkUrl">linkUrl.</param>
-        /// <param name="imageUrl">Image URL (or video URL for TikTok). Not required for Google Search campaigns..</param>
+        /// <param name="body">Required on legacy + attach shapes. Max: Google&#x3D;90, Pinterest&#x3D;500.</param>
+        /// <param name="callToAction">Required on legacy + attach shapes. Meta only..</param>
+        /// <param name="linkUrl">Required on legacy + attach shapes. Skip for multi-creative..</param>
+        /// <param name="imageUrl">Required on legacy + attach shapes. Not required for Google Search campaigns..</param>
+        /// <param name="creatives">Meta-only. When present, switches to the multi-creative shape: creates 1 campaign + 1 ad set + N ads (one per entry here). Top-level &#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;linkUrl&#x60; / &#x60;callToAction&#x60; are ignored in this mode. Mutually exclusive with &#x60;adSetId&#x60;. .</param>
+        /// <param name="adSetId">Meta-only. When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, and schedule are inherited from the ad set on Meta. Mutually exclusive with &#x60;creatives[]&#x60;. .</param>
         /// <param name="businessName">Google Display only.</param>
         /// <param name="boardId">Pinterest only. Board ID (auto-creates if not provided)..</param>
         /// <param name="countries">countries.</param>
@@ -275,7 +279,7 @@ namespace Late.Model
         /// <param name="additionalHeadlines">Google Search RSA only. Extra headlines..</param>
         /// <param name="additionalDescriptions">Google Search RSA only. Extra descriptions..</param>
         /// <param name="advantageAudience">Meta only. Controls the Advantage audience feature (targeting_automation). 0 &#x3D; disabled (default), 1 &#x3D; enabled. Meta Marketing API requires this field on all ad set creation requests..</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, decimal budgetAmount = default, BudgetTypeEnum budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, string businessName = default, string boardId = default, List<string> countries = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, List<string> countries = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -298,18 +302,15 @@ namespace Late.Model
             this.Goal = goal;
             this.BudgetAmount = budgetAmount;
             this.BudgetType = budgetType;
-            // to ensure "body" is required (not null)
-            if (body == null)
-            {
-                throw new ArgumentNullException("body is a required property for CreateStandaloneAdRequest and cannot be null");
-            }
-            this.Body = body;
             this.Currency = currency;
             this.Headline = headline;
             this.LongHeadline = longHeadline;
+            this.Body = body;
             this.CallToAction = callToAction;
             this.LinkUrl = linkUrl;
             this.ImageUrl = imageUrl;
+            this.Creatives = creatives;
+            this.AdSetId = adSetId;
             this.BusinessName = businessName;
             this.BoardId = boardId;
             this.Countries = countries;
@@ -344,9 +345,10 @@ namespace Late.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets BudgetAmount
+        /// Required on legacy + multi-creative shapes. Inherited on attach.
         /// </summary>
-        [DataMember(Name = "budgetAmount", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Required on legacy + multi-creative shapes. Inherited on attach.</value>
+        [DataMember(Name = "budgetAmount", EmitDefaultValue = false)]
         public decimal BudgetAmount { get; set; }
 
         /// <summary>
@@ -356,9 +358,9 @@ namespace Late.Model
         public string Currency { get; set; }
 
         /// <summary>
-        /// Required for most platforms. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100
+        /// Required on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100
         /// </summary>
-        /// <value>Required for most platforms. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100</value>
+        /// <value>Required on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100</value>
         [DataMember(Name = "headline", EmitDefaultValue = false)]
         public string Headline { get; set; }
 
@@ -370,24 +372,39 @@ namespace Late.Model
         public string LongHeadline { get; set; }
 
         /// <summary>
-        /// Max: Google&#x3D;90, Pinterest&#x3D;500
+        /// Required on legacy + attach shapes. Max: Google&#x3D;90, Pinterest&#x3D;500
         /// </summary>
-        /// <value>Max: Google&#x3D;90, Pinterest&#x3D;500</value>
-        [DataMember(Name = "body", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Required on legacy + attach shapes. Max: Google&#x3D;90, Pinterest&#x3D;500</value>
+        [DataMember(Name = "body", EmitDefaultValue = false)]
         public string Body { get; set; }
 
         /// <summary>
-        /// Gets or Sets LinkUrl
+        /// Required on legacy + attach shapes. Skip for multi-creative.
         /// </summary>
+        /// <value>Required on legacy + attach shapes. Skip for multi-creative.</value>
         [DataMember(Name = "linkUrl", EmitDefaultValue = false)]
         public string LinkUrl { get; set; }
 
         /// <summary>
-        /// Image URL (or video URL for TikTok). Not required for Google Search campaigns.
+        /// Required on legacy + attach shapes. Not required for Google Search campaigns.
         /// </summary>
-        /// <value>Image URL (or video URL for TikTok). Not required for Google Search campaigns.</value>
+        /// <value>Required on legacy + attach shapes. Not required for Google Search campaigns.</value>
         [DataMember(Name = "imageUrl", EmitDefaultValue = false)]
         public string ImageUrl { get; set; }
+
+        /// <summary>
+        /// Meta-only. When present, switches to the multi-creative shape: creates 1 campaign + 1 ad set + N ads (one per entry here). Top-level &#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;linkUrl&#x60; / &#x60;callToAction&#x60; are ignored in this mode. Mutually exclusive with &#x60;adSetId&#x60;. 
+        /// </summary>
+        /// <value>Meta-only. When present, switches to the multi-creative shape: creates 1 campaign + 1 ad set + N ads (one per entry here). Top-level &#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;linkUrl&#x60; / &#x60;callToAction&#x60; are ignored in this mode. Mutually exclusive with &#x60;adSetId&#x60;. </value>
+        [DataMember(Name = "creatives", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestCreativesInner> Creatives { get; set; }
+
+        /// <summary>
+        /// Meta-only. When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, and schedule are inherited from the ad set on Meta. Mutually exclusive with &#x60;creatives[]&#x60;. 
+        /// </summary>
+        /// <value>Meta-only. When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, and schedule are inherited from the ad set on Meta. Mutually exclusive with &#x60;creatives[]&#x60;. </value>
+        [DataMember(Name = "adSetId", EmitDefaultValue = false)]
+        public string AdSetId { get; set; }
 
         /// <summary>
         /// Google Display only
@@ -484,6 +501,8 @@ namespace Late.Model
             sb.Append("  CallToAction: ").Append(CallToAction).Append("\n");
             sb.Append("  LinkUrl: ").Append(LinkUrl).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
+            sb.Append("  Creatives: ").Append(Creatives).Append("\n");
+            sb.Append("  AdSetId: ").Append(AdSetId).Append("\n");
             sb.Append("  BusinessName: ").Append(BusinessName).Append("\n");
             sb.Append("  BoardId: ").Append(BoardId).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");

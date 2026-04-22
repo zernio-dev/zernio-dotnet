@@ -53,23 +53,23 @@ namespace Late.Api
         /// Create standalone ad
         /// </summary>
         /// <remarks>
-        /// Creates a paid ad with custom creative (headline, body, image/video, link). Creates the full platform campaign hierarchy.
+        /// Creates a paid ad with custom creative. The request body supports three mutually-exclusive shapes:  1. **Legacy single-creative** (all platforms). Top-level &#x60;headline&#x60; + &#x60;body&#x60; + &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; + &#x60;callToAction&#x60; create 1 campaign + 1 ad set + 1 ad. 2. **Multi-creative** (Meta only — use &#x60;creatives[]&#x60; array). Creates 1 campaign + 1 ad set + N ads sharing the same budget / targeting / schedule. This is the standard performance-marketing creative-testing flow — Meta&#39;s delivery algorithm A/B tests the creatives inside a single ad set so budget isn&#39;t fragmented across N parallel campaigns. 3. **Attach to existing ad set** (Meta only — pass &#x60;adSetId&#x60; + a single creative). Adds one new ad to an existing ad set without creating a new campaign. Budget, targeting, goal are inherited from the ad set on Meta.  &#x60;creatives[]&#x60; and &#x60;adSetId&#x60; are mutually exclusive; specifying both returns 400. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <returns>UpdateAd200Response</returns>
-        UpdateAd200Response CreateStandaloneAd(CreateStandaloneAdRequest createStandaloneAdRequest);
+        /// <returns>CreateStandaloneAd201Response</returns>
+        CreateStandaloneAd201Response CreateStandaloneAd(CreateStandaloneAdRequest createStandaloneAdRequest);
 
         /// <summary>
         /// Create standalone ad
         /// </summary>
         /// <remarks>
-        /// Creates a paid ad with custom creative (headline, body, image/video, link). Creates the full platform campaign hierarchy.
+        /// Creates a paid ad with custom creative. The request body supports three mutually-exclusive shapes:  1. **Legacy single-creative** (all platforms). Top-level &#x60;headline&#x60; + &#x60;body&#x60; + &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; + &#x60;callToAction&#x60; create 1 campaign + 1 ad set + 1 ad. 2. **Multi-creative** (Meta only — use &#x60;creatives[]&#x60; array). Creates 1 campaign + 1 ad set + N ads sharing the same budget / targeting / schedule. This is the standard performance-marketing creative-testing flow — Meta&#39;s delivery algorithm A/B tests the creatives inside a single ad set so budget isn&#39;t fragmented across N parallel campaigns. 3. **Attach to existing ad set** (Meta only — pass &#x60;adSetId&#x60; + a single creative). Adds one new ad to an existing ad set without creating a new campaign. Budget, targeting, goal are inherited from the ad set on Meta.  &#x60;creatives[]&#x60; and &#x60;adSetId&#x60; are mutually exclusive; specifying both returns 400. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <returns>ApiResponse of UpdateAd200Response</returns>
-        ApiResponse<UpdateAd200Response> CreateStandaloneAdWithHttpInfo(CreateStandaloneAdRequest createStandaloneAdRequest);
+        /// <returns>ApiResponse of CreateStandaloneAd201Response</returns>
+        ApiResponse<CreateStandaloneAd201Response> CreateStandaloneAdWithHttpInfo(CreateStandaloneAdRequest createStandaloneAdRequest);
         /// <summary>
         /// Cancel an ad
         /// </summary>
@@ -325,25 +325,25 @@ namespace Late.Api
         /// Create standalone ad
         /// </summary>
         /// <remarks>
-        /// Creates a paid ad with custom creative (headline, body, image/video, link). Creates the full platform campaign hierarchy.
+        /// Creates a paid ad with custom creative. The request body supports three mutually-exclusive shapes:  1. **Legacy single-creative** (all platforms). Top-level &#x60;headline&#x60; + &#x60;body&#x60; + &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; + &#x60;callToAction&#x60; create 1 campaign + 1 ad set + 1 ad. 2. **Multi-creative** (Meta only — use &#x60;creatives[]&#x60; array). Creates 1 campaign + 1 ad set + N ads sharing the same budget / targeting / schedule. This is the standard performance-marketing creative-testing flow — Meta&#39;s delivery algorithm A/B tests the creatives inside a single ad set so budget isn&#39;t fragmented across N parallel campaigns. 3. **Attach to existing ad set** (Meta only — pass &#x60;adSetId&#x60; + a single creative). Adds one new ad to an existing ad set without creating a new campaign. Budget, targeting, goal are inherited from the ad set on Meta.  &#x60;creatives[]&#x60; and &#x60;adSetId&#x60; are mutually exclusive; specifying both returns 400. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateAd200Response</returns>
-        System.Threading.Tasks.Task<UpdateAd200Response> CreateStandaloneAdAsync(CreateStandaloneAdRequest createStandaloneAdRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of CreateStandaloneAd201Response</returns>
+        System.Threading.Tasks.Task<CreateStandaloneAd201Response> CreateStandaloneAdAsync(CreateStandaloneAdRequest createStandaloneAdRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create standalone ad
         /// </summary>
         /// <remarks>
-        /// Creates a paid ad with custom creative (headline, body, image/video, link). Creates the full platform campaign hierarchy.
+        /// Creates a paid ad with custom creative. The request body supports three mutually-exclusive shapes:  1. **Legacy single-creative** (all platforms). Top-level &#x60;headline&#x60; + &#x60;body&#x60; + &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; + &#x60;callToAction&#x60; create 1 campaign + 1 ad set + 1 ad. 2. **Multi-creative** (Meta only — use &#x60;creatives[]&#x60; array). Creates 1 campaign + 1 ad set + N ads sharing the same budget / targeting / schedule. This is the standard performance-marketing creative-testing flow — Meta&#39;s delivery algorithm A/B tests the creatives inside a single ad set so budget isn&#39;t fragmented across N parallel campaigns. 3. **Attach to existing ad set** (Meta only — pass &#x60;adSetId&#x60; + a single creative). Adds one new ad to an existing ad set without creating a new campaign. Budget, targeting, goal are inherited from the ad set on Meta.  &#x60;creatives[]&#x60; and &#x60;adSetId&#x60; are mutually exclusive; specifying both returns 400. 
         /// </remarks>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> CreateStandaloneAdWithHttpInfoAsync(CreateStandaloneAdRequest createStandaloneAdRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (CreateStandaloneAd201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateStandaloneAd201Response>> CreateStandaloneAdWithHttpInfoAsync(CreateStandaloneAdRequest createStandaloneAdRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Cancel an ad
         /// </summary>
@@ -924,24 +924,24 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create standalone ad Creates a paid ad with custom creative (headline, body, image/video, link). Creates the full platform campaign hierarchy.
+        /// Create standalone ad Creates a paid ad with custom creative. The request body supports three mutually-exclusive shapes:  1. **Legacy single-creative** (all platforms). Top-level &#x60;headline&#x60; + &#x60;body&#x60; + &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; + &#x60;callToAction&#x60; create 1 campaign + 1 ad set + 1 ad. 2. **Multi-creative** (Meta only — use &#x60;creatives[]&#x60; array). Creates 1 campaign + 1 ad set + N ads sharing the same budget / targeting / schedule. This is the standard performance-marketing creative-testing flow — Meta&#39;s delivery algorithm A/B tests the creatives inside a single ad set so budget isn&#39;t fragmented across N parallel campaigns. 3. **Attach to existing ad set** (Meta only — pass &#x60;adSetId&#x60; + a single creative). Adds one new ad to an existing ad set without creating a new campaign. Budget, targeting, goal are inherited from the ad set on Meta.  &#x60;creatives[]&#x60; and &#x60;adSetId&#x60; are mutually exclusive; specifying both returns 400. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <returns>UpdateAd200Response</returns>
-        public UpdateAd200Response CreateStandaloneAd(CreateStandaloneAdRequest createStandaloneAdRequest)
+        /// <returns>CreateStandaloneAd201Response</returns>
+        public CreateStandaloneAd201Response CreateStandaloneAd(CreateStandaloneAdRequest createStandaloneAdRequest)
         {
-            Late.Client.ApiResponse<UpdateAd200Response> localVarResponse = CreateStandaloneAdWithHttpInfo(createStandaloneAdRequest);
+            Late.Client.ApiResponse<CreateStandaloneAd201Response> localVarResponse = CreateStandaloneAdWithHttpInfo(createStandaloneAdRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create standalone ad Creates a paid ad with custom creative (headline, body, image/video, link). Creates the full platform campaign hierarchy.
+        /// Create standalone ad Creates a paid ad with custom creative. The request body supports three mutually-exclusive shapes:  1. **Legacy single-creative** (all platforms). Top-level &#x60;headline&#x60; + &#x60;body&#x60; + &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; + &#x60;callToAction&#x60; create 1 campaign + 1 ad set + 1 ad. 2. **Multi-creative** (Meta only — use &#x60;creatives[]&#x60; array). Creates 1 campaign + 1 ad set + N ads sharing the same budget / targeting / schedule. This is the standard performance-marketing creative-testing flow — Meta&#39;s delivery algorithm A/B tests the creatives inside a single ad set so budget isn&#39;t fragmented across N parallel campaigns. 3. **Attach to existing ad set** (Meta only — pass &#x60;adSetId&#x60; + a single creative). Adds one new ad to an existing ad set without creating a new campaign. Budget, targeting, goal are inherited from the ad set on Meta.  &#x60;creatives[]&#x60; and &#x60;adSetId&#x60; are mutually exclusive; specifying both returns 400. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
-        /// <returns>ApiResponse of UpdateAd200Response</returns>
-        public Late.Client.ApiResponse<UpdateAd200Response> CreateStandaloneAdWithHttpInfo(CreateStandaloneAdRequest createStandaloneAdRequest)
+        /// <returns>ApiResponse of CreateStandaloneAd201Response</returns>
+        public Late.Client.ApiResponse<CreateStandaloneAd201Response> CreateStandaloneAdWithHttpInfo(CreateStandaloneAdRequest createStandaloneAdRequest)
         {
             // verify the required parameter 'createStandaloneAdRequest' is set
             if (createStandaloneAdRequest == null)
@@ -974,7 +974,7 @@ namespace Late.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<UpdateAd200Response>("/v1/ads/create", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<CreateStandaloneAd201Response>("/v1/ads/create", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -986,26 +986,26 @@ namespace Late.Api
         }
 
         /// <summary>
-        /// Create standalone ad Creates a paid ad with custom creative (headline, body, image/video, link). Creates the full platform campaign hierarchy.
+        /// Create standalone ad Creates a paid ad with custom creative. The request body supports three mutually-exclusive shapes:  1. **Legacy single-creative** (all platforms). Top-level &#x60;headline&#x60; + &#x60;body&#x60; + &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; + &#x60;callToAction&#x60; create 1 campaign + 1 ad set + 1 ad. 2. **Multi-creative** (Meta only — use &#x60;creatives[]&#x60; array). Creates 1 campaign + 1 ad set + N ads sharing the same budget / targeting / schedule. This is the standard performance-marketing creative-testing flow — Meta&#39;s delivery algorithm A/B tests the creatives inside a single ad set so budget isn&#39;t fragmented across N parallel campaigns. 3. **Attach to existing ad set** (Meta only — pass &#x60;adSetId&#x60; + a single creative). Adds one new ad to an existing ad set without creating a new campaign. Budget, targeting, goal are inherited from the ad set on Meta.  &#x60;creatives[]&#x60; and &#x60;adSetId&#x60; are mutually exclusive; specifying both returns 400. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateAd200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateAd200Response> CreateStandaloneAdAsync(CreateStandaloneAdRequest createStandaloneAdRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of CreateStandaloneAd201Response</returns>
+        public async System.Threading.Tasks.Task<CreateStandaloneAd201Response> CreateStandaloneAdAsync(CreateStandaloneAdRequest createStandaloneAdRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Late.Client.ApiResponse<UpdateAd200Response> localVarResponse = await CreateStandaloneAdWithHttpInfoAsync(createStandaloneAdRequest, cancellationToken).ConfigureAwait(false);
+            Late.Client.ApiResponse<CreateStandaloneAd201Response> localVarResponse = await CreateStandaloneAdWithHttpInfoAsync(createStandaloneAdRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create standalone ad Creates a paid ad with custom creative (headline, body, image/video, link). Creates the full platform campaign hierarchy.
+        /// Create standalone ad Creates a paid ad with custom creative. The request body supports three mutually-exclusive shapes:  1. **Legacy single-creative** (all platforms). Top-level &#x60;headline&#x60; + &#x60;body&#x60; + &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; + &#x60;callToAction&#x60; create 1 campaign + 1 ad set + 1 ad. 2. **Multi-creative** (Meta only — use &#x60;creatives[]&#x60; array). Creates 1 campaign + 1 ad set + N ads sharing the same budget / targeting / schedule. This is the standard performance-marketing creative-testing flow — Meta&#39;s delivery algorithm A/B tests the creatives inside a single ad set so budget isn&#39;t fragmented across N parallel campaigns. 3. **Attach to existing ad set** (Meta only — pass &#x60;adSetId&#x60; + a single creative). Adds one new ad to an existing ad set without creating a new campaign. Budget, targeting, goal are inherited from the ad set on Meta.  &#x60;creatives[]&#x60; and &#x60;adSetId&#x60; are mutually exclusive; specifying both returns 400. 
         /// </summary>
         /// <exception cref="Late.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createStandaloneAdRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
-        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<UpdateAd200Response>> CreateStandaloneAdWithHttpInfoAsync(CreateStandaloneAdRequest createStandaloneAdRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (CreateStandaloneAd201Response)</returns>
+        public async System.Threading.Tasks.Task<Late.Client.ApiResponse<CreateStandaloneAd201Response>> CreateStandaloneAdWithHttpInfoAsync(CreateStandaloneAdRequest createStandaloneAdRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'createStandaloneAdRequest' is set
             if (createStandaloneAdRequest == null)
@@ -1041,7 +1041,7 @@ namespace Late.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateAd200Response>("/v1/ads/create", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateStandaloneAd201Response>("/v1/ads/create", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

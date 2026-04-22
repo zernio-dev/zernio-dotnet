@@ -144,7 +144,11 @@ docs/CreateSequenceRequest.md
 docs/CreateSequenceRequestStepsInner.md
 docs/CreateSequenceRequestStepsInnerTemplate.md
 docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md
+docs/CreateStandaloneAd201Response.md
+docs/CreateStandaloneAd201ResponseOneOf.md
+docs/CreateStandaloneAd201ResponseOneOf1.md
 docs/CreateStandaloneAdRequest.md
+docs/CreateStandaloneAdRequestCreativesInner.md
 docs/CreateWebhookSettingsRequest.md
 docs/CreateWhatsAppFlow200Response.md
 docs/CreateWhatsAppFlow200ResponseFlow.md
@@ -837,6 +841,10 @@ docs/YouTubeScopeMissingResponse.md
 docs/YouTubeScopeMissingResponseScopeStatus.md
 git_push.sh
 src/Late.Test/Late.Test.csproj
+src/Late.Test/Model/CreateStandaloneAd201ResponseOneOf1Tests.cs
+src/Late.Test/Model/CreateStandaloneAd201ResponseOneOfTests.cs
+src/Late.Test/Model/CreateStandaloneAd201ResponseTests.cs
+src/Late.Test/Model/CreateStandaloneAdRequestCreativesInnerTests.cs
 src/Late/Api/APIKeysApi.cs
 src/Late/Api/AccountGroupsApi.cs
 src/Late/Api/AccountSettingsApi.cs
@@ -1026,7 +1034,11 @@ src/Late/Model/CreateSequenceRequest.cs
 src/Late/Model/CreateSequenceRequestStepsInner.cs
 src/Late/Model/CreateSequenceRequestStepsInnerTemplate.cs
 src/Late/Model/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.cs
+src/Late/Model/CreateStandaloneAd201Response.cs
+src/Late/Model/CreateStandaloneAd201ResponseOneOf.cs
+src/Late/Model/CreateStandaloneAd201ResponseOneOf1.cs
 src/Late/Model/CreateStandaloneAdRequest.cs
+src/Late/Model/CreateStandaloneAdRequestCreativesInner.cs
 src/Late/Model/CreateWebhookSettingsRequest.cs
 src/Late/Model/CreateWhatsAppFlow200Response.cs
 src/Late/Model/CreateWhatsAppFlow200ResponseFlow.cs
