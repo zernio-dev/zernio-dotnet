@@ -47,9 +47,12 @@ namespace Late.Model
         /// <param name="conversions">Count of conversion events matching the campaign&#39;s promoted_object.custom_event_type (PURCHASE, LEAD, etc.) over the requested date range. 0 for non-conversion campaigns or when no events have fired. Meta-only at time of writing; other platforms return 0..</param>
         /// <param name="costPerConversion">Derived spend / conversions in the same currency as spend. 0 when conversions is 0..</param>
         /// <param name="actions">Raw per-action-type counts from Meta&#39;s Insights actions[] array, summed over the date range. Keys are Meta action_type strings (e.g. link_click, offsite_conversion.fb_pixel_purchase, onsite_conversion.lead_grouped). Use this to extract any conversion event (purchases, leads, add_to_cart, etc.) without relying on the derived conversions field. Empty object when no actions are reported..</param>
+        /// <param name="actionValues">Monetary mirror of &#x60;actions&#x60;, from Meta&#39;s Insights &#x60;action_values[]&#x60; array. Same keying — values are the revenue attributed to each action_type, in ad-account native currency (same unit as &#x60;spend&#x60;; see the campaign node&#39;s &#x60;currency&#x60; field). Use this to compute revenue-per-event (e.g. avg purchase value). Meta-only; other platforms return {}..</param>
+        /// <param name="purchaseValue">Convenience sum of purchase-type action values — picked from &#x60;actionValues&#x60; via the same priority list as &#x60;conversions&#x60; so both fields describe the same events. In ad-account native currency. 0 when the campaign has no purchase event configured. Meta-only..</param>
+        /// <param name="roas">Return on ad spend — derived as &#x60;purchaseValue / spend&#x60;. 0 when &#x60;spend&#x60; is 0. Equivalent to Meta&#39;s &#x60;purchase_roas&#x60; under default attribution. At ad-set and campaign levels this is recomputed from summed purchaseValue + spend (NOT averaged across children) so it&#39;s mathematically correct at every rollup level..</param>
         /// <param name="lastSyncedAt">Present on individual ads only, not on campaign aggregations.</param>
         /// <param name="date">date.</param>
-        public GetAdAnalytics200ResponseAnalyticsDailyInner(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, int conversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, DateTime lastSyncedAt = default, DateOnly date = default)
+        public GetAdAnalytics200ResponseAnalyticsDailyInner(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, int conversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, DateTime lastSyncedAt = default, DateOnly date = default)
         {
             this.Spend = spend;
             this.Impressions = impressions;
@@ -62,6 +65,9 @@ namespace Late.Model
             this.Conversions = conversions;
             this.CostPerConversion = costPerConversion;
             this.Actions = actions;
+            this.ActionValues = actionValues;
+            this.PurchaseValue = purchaseValue;
+            this.Roas = roas;
             this.LastSyncedAt = lastSyncedAt;
             this.Date = date;
         }
@@ -142,6 +148,30 @@ namespace Late.Model
         public Dictionary<string, int> Actions { get; set; }
 
         /// <summary>
+        /// Monetary mirror of &#x60;actions&#x60;, from Meta&#39;s Insights &#x60;action_values[]&#x60; array. Same keying — values are the revenue attributed to each action_type, in ad-account native currency (same unit as &#x60;spend&#x60;; see the campaign node&#39;s &#x60;currency&#x60; field). Use this to compute revenue-per-event (e.g. avg purchase value). Meta-only; other platforms return {}.
+        /// </summary>
+        /// <value>Monetary mirror of &#x60;actions&#x60;, from Meta&#39;s Insights &#x60;action_values[]&#x60; array. Same keying — values are the revenue attributed to each action_type, in ad-account native currency (same unit as &#x60;spend&#x60;; see the campaign node&#39;s &#x60;currency&#x60; field). Use this to compute revenue-per-event (e.g. avg purchase value). Meta-only; other platforms return {}.</value>
+        /*
+        <example>{offsite_conversion.fb_pixel_purchase&#x3D;2456.78, offsite_conversion.fb_pixel_add_to_cart&#x3D;980.5}</example>
+        */
+        [DataMember(Name = "actionValues", EmitDefaultValue = false)]
+        public Dictionary<string, decimal> ActionValues { get; set; }
+
+        /// <summary>
+        /// Convenience sum of purchase-type action values — picked from &#x60;actionValues&#x60; via the same priority list as &#x60;conversions&#x60; so both fields describe the same events. In ad-account native currency. 0 when the campaign has no purchase event configured. Meta-only.
+        /// </summary>
+        /// <value>Convenience sum of purchase-type action values — picked from &#x60;actionValues&#x60; via the same priority list as &#x60;conversions&#x60; so both fields describe the same events. In ad-account native currency. 0 when the campaign has no purchase event configured. Meta-only.</value>
+        [DataMember(Name = "purchaseValue", EmitDefaultValue = false)]
+        public decimal PurchaseValue { get; set; }
+
+        /// <summary>
+        /// Return on ad spend — derived as &#x60;purchaseValue / spend&#x60;. 0 when &#x60;spend&#x60; is 0. Equivalent to Meta&#39;s &#x60;purchase_roas&#x60; under default attribution. At ad-set and campaign levels this is recomputed from summed purchaseValue + spend (NOT averaged across children) so it&#39;s mathematically correct at every rollup level.
+        /// </summary>
+        /// <value>Return on ad spend — derived as &#x60;purchaseValue / spend&#x60;. 0 when &#x60;spend&#x60; is 0. Equivalent to Meta&#39;s &#x60;purchase_roas&#x60; under default attribution. At ad-set and campaign levels this is recomputed from summed purchaseValue + spend (NOT averaged across children) so it&#39;s mathematically correct at every rollup level.</value>
+        [DataMember(Name = "roas", EmitDefaultValue = false)]
+        public decimal Roas { get; set; }
+
+        /// <summary>
         /// Present on individual ads only, not on campaign aggregations
         /// </summary>
         /// <value>Present on individual ads only, not on campaign aggregations</value>
@@ -173,6 +203,9 @@ namespace Late.Model
             sb.Append("  Conversions: ").Append(Conversions).Append("\n");
             sb.Append("  CostPerConversion: ").Append(CostPerConversion).Append("\n");
             sb.Append("  Actions: ").Append(Actions).Append("\n");
+            sb.Append("  ActionValues: ").Append(ActionValues).Append("\n");
+            sb.Append("  PurchaseValue: ").Append(PurchaseValue).Append("\n");
+            sb.Append("  Roas: ").Append(Roas).Append("\n");
             sb.Append("  LastSyncedAt: ").Append(LastSyncedAt).Append("\n");
             sb.Append("  Date: ").Append(Date).Append("\n");
             sb.Append("}\n");
