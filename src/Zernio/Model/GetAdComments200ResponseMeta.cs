@@ -69,7 +69,7 @@ namespace Zernio.Model
         /// <param name="platform">platform (required).</param>
         /// <param name="adId">Internal Zernio ad ID. (required).</param>
         /// <param name="platformAdId">Meta ad ID. (required).</param>
-        /// <param name="effectiveStoryId">Underlying post ID the comments belong to (effective_object_story_id for FB, effective_instagram_media_id for IG). (required).</param>
+        /// <param name="effectiveStoryId">Underlying post ID the comments belong to. effective_object_story_id for Facebook, effective_instagram_media_id for Instagram. (required).</param>
         /// <param name="accountId">Social account ID (ads SocialAccount). (required).</param>
         /// <param name="lastUpdated">lastUpdated (required).</param>
         public GetAdComments200ResponseMeta(PlatformEnum platform = default, string adId = default, string platformAdId = default, string effectiveStoryId = default, string accountId = default, DateTime lastUpdated = default)
@@ -117,9 +117,9 @@ namespace Zernio.Model
         public string PlatformAdId { get; set; }
 
         /// <summary>
-        /// Underlying post ID the comments belong to (effective_object_story_id for FB, effective_instagram_media_id for IG).
+        /// Underlying post ID the comments belong to. effective_object_story_id for Facebook, effective_instagram_media_id for Instagram.
         /// </summary>
-        /// <value>Underlying post ID the comments belong to (effective_object_story_id for FB, effective_instagram_media_id for IG).</value>
+        /// <value>Underlying post ID the comments belong to. effective_object_story_id for Facebook, effective_instagram_media_id for Instagram.</value>
         [DataMember(Name = "effectiveStoryId", IsRequired = true, EmitDefaultValue = true)]
         public string EffectiveStoryId { get; set; }
 

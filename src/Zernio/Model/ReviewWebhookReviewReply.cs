@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Present when &#x60;hasReply&#x60; is true.
+    /// Present when hasReply is true.
     /// </summary>
     [DataContract(Name = "ReviewWebhookReview_reply")]
     public partial class ReviewWebhookReviewReply : IValidatableObject

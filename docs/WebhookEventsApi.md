@@ -1628,7 +1628,7 @@ void (empty response body)
 
 Review updated event
 
-Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches `review.new`. Requires the Inbox add-on. 
+Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
 
 ### Example
 ```csharp

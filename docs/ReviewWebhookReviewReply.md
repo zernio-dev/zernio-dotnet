@@ -1,5 +1,5 @@
 # Zernio.Model.ReviewWebhookReviewReply
-Present when `hasReply` is true.
+Present when hasReply is true.
 
 ## Properties
 

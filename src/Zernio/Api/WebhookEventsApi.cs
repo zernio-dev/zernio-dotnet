@@ -389,7 +389,7 @@ namespace Zernio.Api
         /// Review updated event
         /// </summary>
         /// <remarks>
-        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewUpdated"></param>
@@ -400,7 +400,7 @@ namespace Zernio.Api
         /// Review updated event
         /// </summary>
         /// <remarks>
-        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewUpdated"></param>
@@ -831,7 +831,7 @@ namespace Zernio.Api
         /// Review updated event
         /// </summary>
         /// <remarks>
-        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewUpdated"></param>
@@ -843,7 +843,7 @@ namespace Zernio.Api
         /// Review updated event
         /// </summary>
         /// <remarks>
-        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewUpdated"></param>
@@ -3212,7 +3212,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewUpdated"></param>
@@ -3223,7 +3223,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewUpdated"></param>
@@ -3272,7 +3272,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewUpdated"></param>
@@ -3284,7 +3284,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadReviewUpdated"></param>

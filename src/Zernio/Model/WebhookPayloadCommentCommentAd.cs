@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Ad context. Present only when the comment was made on paid content. Instagram: populated from the webhook payload&#39;s &#x60;value.media.ad_id&#x60;/&#x60;ad_title&#x60;. Facebook: populated via a Graph API lookup of the parent post&#39;s &#x60;promotion_status&#x60;. Absent for comments on organic posts that are not currently promoted. 
+    /// Ad context. Present only when the comment was made on paid content. Instagram: populated from the webhook payload&#39;s value.media.ad_id and value.media.ad_title. Facebook: populated via a Graph API lookup of the parent post&#39;s promotion_status. Absent for comments on organic posts that are not currently promoted. 
     /// </summary>
     [DataContract(Name = "WebhookPayloadComment_comment_ad")]
     public partial class WebhookPayloadCommentCommentAd : IValidatableObject
@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">Meta ad ID (Instagram only)..</param>
         /// <param name="title">Ad creative title (Instagram only)..</param>
-        /// <param name="promotionStatus">Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post / ad creative — not promotable because it already is an ad). .</param>
+        /// <param name="promotionStatus">Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post or ad creative, not promotable because it already is an ad). .</param>
         public WebhookPayloadCommentCommentAd(string id = default, string title = default, string promotionStatus = default)
         {
             this.Id = id;
@@ -61,9 +61,9 @@ namespace Zernio.Model
         public string Title { get; set; }
 
         /// <summary>
-        /// Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post / ad creative — not promotable because it already is an ad). 
+        /// Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post or ad creative, not promotable because it already is an ad). 
         /// </summary>
-        /// <value>Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post / ad creative — not promotable because it already is an ad). </value>
+        /// <value>Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post or ad creative, not promotable because it already is an ad). </value>
         [DataMember(Name = "promotionStatus", EmitDefaultValue = false)]
         public string PromotionStatus { get; set; }
 

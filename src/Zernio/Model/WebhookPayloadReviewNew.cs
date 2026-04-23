@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Webhook payload for the &#x60;review.new&#x60; event (new review posted on a connected account).
+    /// Webhook payload for the review.new event (new review posted on a connected account).
     /// </summary>
     [DataContract(Name = "WebhookPayloadReviewNew")]
     public partial class WebhookPayloadReviewNew : IValidatableObject
