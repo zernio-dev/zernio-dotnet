@@ -118,6 +118,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetAdComments
+        /// </summary>
+        [Fact]
+        public void GetAdCommentsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //int? limit = null;
+            //string? cursor = null;
+            //var response = instance.GetAdComments(adId, limit, cursor);
+            //Assert.IsType<GetAdComments200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdAccounts
         /// </summary>
         [Fact]

@@ -228,6 +228,9 @@ docs/GetAdAnalytics200ResponseAd.md
 docs/GetAdAnalytics200ResponseAnalytics.md
 docs/GetAdAnalytics200ResponseAnalyticsDailyInner.md
 docs/GetAdAudience200Response.md
+docs/GetAdComments200Response.md
+docs/GetAdComments200ResponseMeta.md
+docs/GetAdComments200ResponsePagination.md
 docs/GetAdTree200Response.md
 docs/GetAllAccountsHealth200Response.md
 docs/GetAllAccountsHealth200ResponseAccountsInner.md
@@ -1095,6 +1098,9 @@ src/Zernio.Test/Model/GetAdAnalytics200ResponseAnalyticsDailyInnerTests.cs
 src/Zernio.Test/Model/GetAdAnalytics200ResponseAnalyticsTests.cs
 src/Zernio.Test/Model/GetAdAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAudience200ResponseTests.cs
+src/Zernio.Test/Model/GetAdComments200ResponseMetaTests.cs
+src/Zernio.Test/Model/GetAdComments200ResponsePaginationTests.cs
+src/Zernio.Test/Model/GetAdComments200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTree200ResponseTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseAccountsInnerTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseSummaryTests.cs
@@ -1960,6 +1966,9 @@ src/Zernio/Model/GetAdAnalytics200ResponseAd.cs
 src/Zernio/Model/GetAdAnalytics200ResponseAnalytics.cs
 src/Zernio/Model/GetAdAnalytics200ResponseAnalyticsDailyInner.cs
 src/Zernio/Model/GetAdAudience200Response.cs
+src/Zernio/Model/GetAdComments200Response.cs
+src/Zernio/Model/GetAdComments200ResponseMeta.cs
+src/Zernio/Model/GetAdComments200ResponsePagination.cs
 src/Zernio/Model/GetAdTree200Response.cs
 src/Zernio/Model/GetAllAccountsHealth200Response.cs
 src/Zernio/Model/GetAllAccountsHealth200ResponseAccountsInner.cs

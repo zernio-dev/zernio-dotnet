@@ -9,6 +9,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteAd**](AdsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad |
 | [**GetAd**](AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details |
 | [**GetAdAnalytics**](AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
+| [**GetAdComments**](AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**ListAdAccounts**](AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**ListAds**](AdsApi.md#listads) | **GET** /v1/ads | List ads |
 | [**ListConversionDestinations**](AdsApi.md#listconversiondestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API |
@@ -524,6 +525,113 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadcomments"></a>
+# **GetAdComments**
+> GetAdComments200Response GetAdComments (string adId, int? limit = null, string? cursor = null)
+
+List comments on an ad
+
+Returns comments on an ad's underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular `/v1/inbox/comments/{postId}` endpoint cannot serve because dark posts aren't in Zernio's post database.  Resolves the ad's creative `effective_object_story_id` (Facebook) or `effective_instagram_media_id` (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return `feature_not_available`.  Requires the Ads add-on. Response shape matches `/v1/inbox/comments/{postId}`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdCommentsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var adId = "adId_example";  // string | Internal Zernio ad ID (ObjectId).
+            var limit = 25;  // int? |  (optional)  (default to 25)
+            var cursor = "cursor_example";  // string? | Pagination cursor from a previous response. (optional) 
+
+            try
+            {
+                // List comments on an ad
+                GetAdComments200Response result = apiInstance.GetAdComments(adId, limit, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetAdComments: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdCommentsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List comments on an ad
+    ApiResponse<GetAdComments200Response> response = apiInstance.GetAdCommentsWithHttpInfo(adId, limit, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetAdCommentsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adId** | **string** | Internal Zernio ad ID (ObjectId). |  |
+| **limit** | **int?** |  | [optional] [default to 25] |
+| **cursor** | **string?** | Pagination cursor from a previous response. | [optional]  |
+
+### Return type
+
+[**GetAdComments200Response**](GetAdComments200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comments on the ad |  -  |
+| **400** | Invalid ad ID format, or the ad&#39;s creative format does not expose a commentable underlying post (code &#x60;ad_not_commentable&#x60;).  |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required, or ad platform is not Meta (code &#x60;feature_not_available&#x60;). |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Ads connection missing or account token unavailable (code &#x60;ads_connection_required&#x60;). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
