@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CreateStandaloneAdRequestCreativesInner
+    /// Each creative must supply EXACTLY ONE of &#x60;imageUrl&#x60; (image creative) or &#x60;video&#x60; (video creative).
     /// </summary>
     [DataContract(Name = "createStandaloneAd_request_creatives_inner")]
     public partial class CreateStandaloneAdRequestCreativesInner : IValidatableObject
@@ -116,10 +116,11 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="headline">headline (required).</param>
         /// <param name="body">body (required).</param>
-        /// <param name="imageUrl">imageUrl (required).</param>
+        /// <param name="imageUrl">Image creative. Mutually exclusive with &#x60;video&#x60;..</param>
+        /// <param name="video">video.</param>
         /// <param name="linkUrl">linkUrl (required).</param>
         /// <param name="callToAction">callToAction (required).</param>
-        public CreateStandaloneAdRequestCreativesInner(string headline = default, string body = default, string imageUrl = default, string linkUrl = default, CallToActionEnum callToAction = default)
+        public CreateStandaloneAdRequestCreativesInner(string headline = default, string body = default, string imageUrl = default, CreateStandaloneAdRequestCreativesInnerVideo video = default, string linkUrl = default, CallToActionEnum callToAction = default)
         {
             // to ensure "headline" is required (not null)
             if (headline == null)
@@ -133,12 +134,6 @@ namespace Zernio.Model
                 throw new ArgumentNullException("body is a required property for CreateStandaloneAdRequestCreativesInner and cannot be null");
             }
             this.Body = body;
-            // to ensure "imageUrl" is required (not null)
-            if (imageUrl == null)
-            {
-                throw new ArgumentNullException("imageUrl is a required property for CreateStandaloneAdRequestCreativesInner and cannot be null");
-            }
-            this.ImageUrl = imageUrl;
             // to ensure "linkUrl" is required (not null)
             if (linkUrl == null)
             {
@@ -146,6 +141,8 @@ namespace Zernio.Model
             }
             this.LinkUrl = linkUrl;
             this.CallToAction = callToAction;
+            this.ImageUrl = imageUrl;
+            this.Video = video;
         }
 
         /// <summary>
@@ -161,10 +158,17 @@ namespace Zernio.Model
         public string Body { get; set; }
 
         /// <summary>
-        /// Gets or Sets ImageUrl
+        /// Image creative. Mutually exclusive with &#x60;video&#x60;.
         /// </summary>
-        [DataMember(Name = "imageUrl", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Image creative. Mutually exclusive with &#x60;video&#x60;.</value>
+        [DataMember(Name = "imageUrl", EmitDefaultValue = false)]
         public string ImageUrl { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Video
+        /// </summary>
+        [DataMember(Name = "video", EmitDefaultValue = false)]
+        public CreateStandaloneAdRequestCreativesInnerVideo Video { get; set; }
 
         /// <summary>
         /// Gets or Sets LinkUrl
@@ -183,6 +187,7 @@ namespace Zernio.Model
             sb.Append("  Headline: ").Append(Headline).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
+            sb.Append("  Video: ").Append(Video).Append("\n");
             sb.Append("  LinkUrl: ").Append(LinkUrl).Append("\n");
             sb.Append("  CallToAction: ").Append(CallToAction).Append("\n");
             sb.Append("}\n");

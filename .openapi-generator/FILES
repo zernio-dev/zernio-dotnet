@@ -149,6 +149,8 @@ docs/CreateStandaloneAd201ResponseOneOf.md
 docs/CreateStandaloneAd201ResponseOneOf1.md
 docs/CreateStandaloneAdRequest.md
 docs/CreateStandaloneAdRequestCreativesInner.md
+docs/CreateStandaloneAdRequestCreativesInnerVideo.md
+docs/CreateStandaloneAdRequestVideo.md
 docs/CreateWebhookSettingsRequest.md
 docs/CreateWhatsAppFlow200Response.md
 docs/CreateWhatsAppFlow200ResponseFlow.md
@@ -1014,7 +1016,9 @@ src/Zernio.Test/Model/CreateStandaloneAd201ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/CreateStandaloneAd201ResponseOneOfTests.cs
 src/Zernio.Test/Model/CreateStandaloneAd201ResponseTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerVideoTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestVideoTests.cs
 src/Zernio.Test/Model/CreateWebhookSettingsRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppFlow200ResponseFlowTests.cs
 src/Zernio.Test/Model/CreateWhatsAppFlow200ResponseTests.cs
@@ -1870,6 +1874,8 @@ src/Zernio/Model/CreateStandaloneAd201ResponseOneOf.cs
 src/Zernio/Model/CreateStandaloneAd201ResponseOneOf1.cs
 src/Zernio/Model/CreateStandaloneAdRequest.cs
 src/Zernio/Model/CreateStandaloneAdRequestCreativesInner.cs
+src/Zernio/Model/CreateStandaloneAdRequestCreativesInnerVideo.cs
+src/Zernio/Model/CreateStandaloneAdRequestVideo.cs
 src/Zernio/Model/CreateWebhookSettingsRequest.cs
 src/Zernio/Model/CreateWhatsAppFlow200Response.cs
 src/Zernio/Model/CreateWhatsAppFlow200ResponseFlow.cs

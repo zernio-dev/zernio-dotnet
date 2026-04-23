@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Video'
+        /// </summary>
+        [Fact]
+        public void VideoTest()
+        {
+            // TODO unit test for the property 'Video'
+        }
+
+        /// <summary>
         /// Test the property 'LinkUrl'
         /// </summary>
         [Fact]

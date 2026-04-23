@@ -258,12 +258,13 @@ namespace Zernio.Model
         /// <param name="budgetAmount">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="budgetType">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="currency">currency.</param>
-        /// <param name="headline">Required on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100.</param>
-        /// <param name="longHeadline">Google Display only.</param>
-        /// <param name="body">Required on legacy + attach shapes. Max: Google&#x3D;90, Pinterest&#x3D;500.</param>
+        /// <param name="headline">Required for Meta, Google, and Pinterest on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100..</param>
+        /// <param name="longHeadline">Google Display only. Defaults to &#x60;headline&#x60; if omitted..</param>
+        /// <param name="body">Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). Max: Google&#x3D;90, Pinterest&#x3D;500..</param>
         /// <param name="callToAction">Required on legacy + attach shapes. Meta only..</param>
         /// <param name="linkUrl">Required on legacy + attach shapes. Skip for multi-creative..</param>
-        /// <param name="imageUrl">Required on legacy + attach shapes. Not required for Google Search campaigns..</param>
+        /// <param name="imageUrl">Image creative for Meta/Google/Pinterest on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter..</param>
+        /// <param name="video">video.</param>
         /// <param name="creatives">Meta-only. When present, switches to the multi-creative shape: creates 1 campaign + 1 ad set + N ads (one per entry here). Top-level &#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;linkUrl&#x60; / &#x60;callToAction&#x60; are ignored in this mode. Mutually exclusive with &#x60;adSetId&#x60;. .</param>
         /// <param name="adSetId">Meta-only. When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, and schedule are inherited from the ad set on Meta. Mutually exclusive with &#x60;creatives[]&#x60;. .</param>
         /// <param name="businessName">Google Display only.</param>
@@ -279,7 +280,7 @@ namespace Zernio.Model
         /// <param name="additionalHeadlines">Google Search RSA only. Extra headlines..</param>
         /// <param name="additionalDescriptions">Google Search RSA only. Extra descriptions..</param>
         /// <param name="advantageAudience">Meta only. Controls the Advantage audience feature (targeting_automation). 0 &#x3D; disabled (default), 1 &#x3D; enabled. Meta Marketing API requires this field on all ad set creation requests..</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, List<string> countries = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, List<string> countries = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -309,6 +310,7 @@ namespace Zernio.Model
             this.CallToAction = callToAction;
             this.LinkUrl = linkUrl;
             this.ImageUrl = imageUrl;
+            this.Video = video;
             this.Creatives = creatives;
             this.AdSetId = adSetId;
             this.BusinessName = businessName;
@@ -358,23 +360,23 @@ namespace Zernio.Model
         public string Currency { get; set; }
 
         /// <summary>
-        /// Required on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100
+        /// Required for Meta, Google, and Pinterest on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100.
         /// </summary>
-        /// <value>Required on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100</value>
+        /// <value>Required for Meta, Google, and Pinterest on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100.</value>
         [DataMember(Name = "headline", EmitDefaultValue = false)]
         public string Headline { get; set; }
 
         /// <summary>
-        /// Google Display only
+        /// Google Display only. Defaults to &#x60;headline&#x60; if omitted.
         /// </summary>
-        /// <value>Google Display only</value>
+        /// <value>Google Display only. Defaults to &#x60;headline&#x60; if omitted.</value>
         [DataMember(Name = "longHeadline", EmitDefaultValue = false)]
         public string LongHeadline { get; set; }
 
         /// <summary>
-        /// Required on legacy + attach shapes. Max: Google&#x3D;90, Pinterest&#x3D;500
+        /// Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). Max: Google&#x3D;90, Pinterest&#x3D;500.
         /// </summary>
-        /// <value>Required on legacy + attach shapes. Max: Google&#x3D;90, Pinterest&#x3D;500</value>
+        /// <value>Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). Max: Google&#x3D;90, Pinterest&#x3D;500.</value>
         [DataMember(Name = "body", EmitDefaultValue = false)]
         public string Body { get; set; }
 
@@ -386,11 +388,17 @@ namespace Zernio.Model
         public string LinkUrl { get; set; }
 
         /// <summary>
-        /// Required on legacy + attach shapes. Not required for Google Search campaigns.
+        /// Image creative for Meta/Google/Pinterest on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter.
         /// </summary>
-        /// <value>Required on legacy + attach shapes. Not required for Google Search campaigns.</value>
+        /// <value>Image creative for Meta/Google/Pinterest on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter.</value>
         [DataMember(Name = "imageUrl", EmitDefaultValue = false)]
         public string ImageUrl { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Video
+        /// </summary>
+        [DataMember(Name = "video", EmitDefaultValue = false)]
+        public CreateStandaloneAdRequestVideo Video { get; set; }
 
         /// <summary>
         /// Meta-only. When present, switches to the multi-creative shape: creates 1 campaign + 1 ad set + N ads (one per entry here). Top-level &#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;linkUrl&#x60; / &#x60;callToAction&#x60; are ignored in this mode. Mutually exclusive with &#x60;adSetId&#x60;. 
@@ -501,6 +509,7 @@ namespace Zernio.Model
             sb.Append("  CallToAction: ").Append(CallToAction).Append("\n");
             sb.Append("  LinkUrl: ").Append(LinkUrl).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
+            sb.Append("  Video: ").Append(Video).Append("\n");
             sb.Append("  Creatives: ").Append(Creatives).Append("\n");
             sb.Append("  AdSetId: ").Append(AdSetId).Append("\n");
             sb.Append("  BusinessName: ").Append(BusinessName).Append("\n");
