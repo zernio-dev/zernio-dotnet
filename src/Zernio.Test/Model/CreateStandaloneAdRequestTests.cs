@@ -173,6 +173,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Images'
+        /// </summary>
+        [Fact]
+        public void ImagesTest()
+        {
+            // TODO unit test for the property 'Images'
+        }
+
+        /// <summary>
         /// Test the property 'Video'
         /// </summary>
         [Fact]
