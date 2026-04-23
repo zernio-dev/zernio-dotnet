@@ -231,6 +231,28 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnReviewNew
+        /// </summary>
+        [Fact]
+        public void OnReviewNewTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadReviewNew webhookPayloadReviewNew = null;
+            //instance.OnReviewNew(webhookPayloadReviewNew);
+        }
+
+        /// <summary>
+        /// Test OnReviewUpdated
+        /// </summary>
+        [Fact]
+        public void OnReviewUpdatedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadReviewUpdated webhookPayloadReviewUpdated = null;
+            //instance.OnReviewUpdated(webhookPayloadReviewUpdated);
+        }
+
+        /// <summary>
         /// Test OnWebhookTest
         /// </summary>
         [Fact]

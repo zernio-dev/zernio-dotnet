@@ -365,6 +365,48 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> OnPostScheduledWithHttpInfo(WebhookPayloadPost webhookPayloadPost);
         /// <summary>
+        /// Review new event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewNew"></param>
+        /// <returns></returns>
+        void OnReviewNew(WebhookPayloadReviewNew webhookPayloadReviewNew);
+
+        /// <summary>
+        /// Review new event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewNew"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnReviewNewWithHttpInfo(WebhookPayloadReviewNew webhookPayloadReviewNew);
+        /// <summary>
+        /// Review updated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewUpdated"></param>
+        /// <returns></returns>
+        void OnReviewUpdated(WebhookPayloadReviewUpdated webhookPayloadReviewUpdated);
+
+        /// <summary>
+        /// Review updated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewUpdated"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnReviewUpdatedWithHttpInfo(WebhookPayloadReviewUpdated webhookPayloadReviewUpdated);
+        /// <summary>
         /// Webhook test event
         /// </summary>
         /// <remarks>
@@ -762,6 +804,52 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> OnPostScheduledWithHttpInfoAsync(WebhookPayloadPost webhookPayloadPost, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Review new event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewNew"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnReviewNewAsync(WebhookPayloadReviewNew webhookPayloadReviewNew, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Review new event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewNew"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnReviewNewWithHttpInfoAsync(WebhookPayloadReviewNew webhookPayloadReviewNew, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Review updated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewUpdated"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnReviewUpdatedAsync(WebhookPayloadReviewUpdated webhookPayloadReviewUpdated, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Review updated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewUpdated"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnReviewUpdatedWithHttpInfoAsync(WebhookPayloadReviewUpdated webhookPayloadReviewUpdated, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Webhook test event
         /// </summary>
@@ -2992,6 +3080,256 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("OnPostScheduled", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Review new event Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewNew"></param>
+        /// <returns></returns>
+        public void OnReviewNew(WebhookPayloadReviewNew webhookPayloadReviewNew)
+        {
+            OnReviewNewWithHttpInfo(webhookPayloadReviewNew);
+        }
+
+        /// <summary>
+        /// Review new event Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewNew"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnReviewNewWithHttpInfo(WebhookPayloadReviewNew webhookPayloadReviewNew)
+        {
+            // verify the required parameter 'webhookPayloadReviewNew' is set
+            if (webhookPayloadReviewNew == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadReviewNew' when calling WebhookEventsApi->OnReviewNew");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadReviewNew;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/review.new", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnReviewNew", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Review new event Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewNew"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnReviewNewAsync(WebhookPayloadReviewNew webhookPayloadReviewNew, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnReviewNewWithHttpInfoAsync(webhookPayloadReviewNew, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Review new event Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewNew"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnReviewNewWithHttpInfoAsync(WebhookPayloadReviewNew webhookPayloadReviewNew, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'webhookPayloadReviewNew' is set
+            if (webhookPayloadReviewNew == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadReviewNew' when calling WebhookEventsApi->OnReviewNew");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadReviewNew;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/review.new", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnReviewNew", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewUpdated"></param>
+        /// <returns></returns>
+        public void OnReviewUpdated(WebhookPayloadReviewUpdated webhookPayloadReviewUpdated)
+        {
+            OnReviewUpdatedWithHttpInfo(webhookPayloadReviewUpdated);
+        }
+
+        /// <summary>
+        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewUpdated"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnReviewUpdatedWithHttpInfo(WebhookPayloadReviewUpdated webhookPayloadReviewUpdated)
+        {
+            // verify the required parameter 'webhookPayloadReviewUpdated' is set
+            if (webhookPayloadReviewUpdated == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadReviewUpdated' when calling WebhookEventsApi->OnReviewUpdated");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadReviewUpdated;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/review.updated", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnReviewUpdated", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewUpdated"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnReviewUpdatedAsync(WebhookPayloadReviewUpdated webhookPayloadReviewUpdated, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnReviewUpdatedWithHttpInfoAsync(webhookPayloadReviewUpdated, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Review updated event Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReviewUpdated"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnReviewUpdatedWithHttpInfoAsync(WebhookPayloadReviewUpdated webhookPayloadReviewUpdated, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'webhookPayloadReviewUpdated' is set
+            if (webhookPayloadReviewUpdated == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadReviewUpdated' when calling WebhookEventsApi->OnReviewUpdated");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadReviewUpdated;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/review.updated", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnReviewUpdated", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
