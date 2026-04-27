@@ -130,7 +130,7 @@ namespace Zernio.Model
         /// <param name="body">Primary text shown above the image / video. (required).</param>
         /// <param name="imageUrl">Image asset for image creatives. Mutually exclusive with &#x60;video&#x60;. Required if &#x60;video&#x60; is not supplied. .</param>
         /// <param name="video">video.</param>
-        /// <param name="budgetAmount">Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be positive.  (required).</param>
+        /// <param name="budgetAmount">Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0.  (required).</param>
         /// <param name="budgetType">budgetType (required).</param>
         /// <param name="currency">ISO 4217 currency code matching the ad account&#39;s currency (e.g. &#x60;USD&#x60;). Optional — Meta infers from the ad account when omitted. .</param>
         /// <param name="endDate">ISO 8601 datetime. Required when &#x60;budgetType&#x60; is &#x60;lifetime&#x60;. .</param>
@@ -236,9 +236,9 @@ namespace Zernio.Model
         public CreateCtwaAdRequestVideo Video { get; set; }
 
         /// <summary>
-        /// Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be positive. 
+        /// Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. 
         /// </summary>
-        /// <value>Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be positive. </value>
+        /// <value>Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. </value>
         [DataMember(Name = "budgetAmount", IsRequired = true, EmitDefaultValue = true)]
         public decimal BudgetAmount { get; set; }
 
@@ -368,6 +368,12 @@ namespace Zernio.Model
             if (this.Body != null && this.Body.Length < 1)
             {
                 yield return new ValidationResult("Invalid value for Body, length must be greater than 1.", new [] { "Body" });
+            }
+
+            // BudgetAmount (decimal) minimum
+            if (this.BudgetAmount < (decimal)0)
+            {
+                yield return new ValidationResult("Invalid value for BudgetAmount, must be a value greater than or equal to 0.", new [] { "BudgetAmount" });
             }
 
             // Currency (string) maxLength
