@@ -88,28 +88,34 @@ namespace Zernio.Model
             AccountDisconnected = 8,
 
             /// <summary>
+            /// Enum AccountAdsInitialSyncCompleted for value: account.ads.initial_sync_completed
+            /// </summary>
+            [EnumMember(Value = "account.ads.initial_sync_completed")]
+            AccountAdsInitialSyncCompleted = 9,
+
+            /// <summary>
             /// Enum MessageReceived for value: message.received
             /// </summary>
             [EnumMember(Value = "message.received")]
-            MessageReceived = 9,
+            MessageReceived = 10,
 
             /// <summary>
             /// Enum CommentReceived for value: comment.received
             /// </summary>
             [EnumMember(Value = "comment.received")]
-            CommentReceived = 10,
+            CommentReceived = 11,
 
             /// <summary>
             /// Enum ReviewNew for value: review.new
             /// </summary>
             [EnumMember(Value = "review.new")]
-            ReviewNew = 11,
+            ReviewNew = 12,
 
             /// <summary>
             /// Enum ReviewUpdated for value: review.updated
             /// </summary>
             [EnumMember(Value = "review.updated")]
-            ReviewUpdated = 12
+            ReviewUpdated = 13
         }
 
         /// <summary>

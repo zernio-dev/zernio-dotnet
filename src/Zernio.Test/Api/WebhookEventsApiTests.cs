@@ -55,6 +55,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnAccountAdsInitialSyncCompleted
+        /// </summary>
+        [Fact]
+        public void OnAccountAdsInitialSyncCompletedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadAccountAdsInitialSyncCompleted webhookPayloadAccountAdsInitialSyncCompleted = null;
+            //instance.OnAccountAdsInitialSyncCompleted(webhookPayloadAccountAdsInitialSyncCompleted);
+        }
+
+        /// <summary>
         /// Test OnAccountConnected
         /// </summary>
         [Fact]

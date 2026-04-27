@@ -88,64 +88,70 @@ namespace Zernio.Model
             AccountDisconnected = 8,
 
             /// <summary>
+            /// Enum AccountAdsInitialSyncCompleted for value: account.ads.initial_sync_completed
+            /// </summary>
+            [EnumMember(Value = "account.ads.initial_sync_completed")]
+            AccountAdsInitialSyncCompleted = 9,
+
+            /// <summary>
             /// Enum MessageReceived for value: message.received
             /// </summary>
             [EnumMember(Value = "message.received")]
-            MessageReceived = 9,
+            MessageReceived = 10,
 
             /// <summary>
             /// Enum MessageSent for value: message.sent
             /// </summary>
             [EnumMember(Value = "message.sent")]
-            MessageSent = 10,
+            MessageSent = 11,
 
             /// <summary>
             /// Enum MessageEdited for value: message.edited
             /// </summary>
             [EnumMember(Value = "message.edited")]
-            MessageEdited = 11,
+            MessageEdited = 12,
 
             /// <summary>
             /// Enum MessageDeleted for value: message.deleted
             /// </summary>
             [EnumMember(Value = "message.deleted")]
-            MessageDeleted = 12,
+            MessageDeleted = 13,
 
             /// <summary>
             /// Enum MessageDelivered for value: message.delivered
             /// </summary>
             [EnumMember(Value = "message.delivered")]
-            MessageDelivered = 13,
+            MessageDelivered = 14,
 
             /// <summary>
             /// Enum MessageRead for value: message.read
             /// </summary>
             [EnumMember(Value = "message.read")]
-            MessageRead = 14,
+            MessageRead = 15,
 
             /// <summary>
             /// Enum MessageFailed for value: message.failed
             /// </summary>
             [EnumMember(Value = "message.failed")]
-            MessageFailed = 15,
+            MessageFailed = 16,
 
             /// <summary>
             /// Enum CommentReceived for value: comment.received
             /// </summary>
             [EnumMember(Value = "comment.received")]
-            CommentReceived = 16,
+            CommentReceived = 17,
 
             /// <summary>
             /// Enum ReviewNew for value: review.new
             /// </summary>
             [EnumMember(Value = "review.new")]
-            ReviewNew = 17,
+            ReviewNew = 18,
 
             /// <summary>
             /// Enum ReviewUpdated for value: review.updated
             /// </summary>
             [EnumMember(Value = "review.updated")]
-            ReviewUpdated = 18
+            ReviewUpdated = 19
         }
 
         /// <summary>

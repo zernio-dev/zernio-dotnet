@@ -798,6 +798,9 @@ docs/ValidateSubreddit200ResponseOneOf1.md
 docs/ValidateSubreddit200ResponseOneOfSubreddit.md
 docs/Webhook.md
 docs/WebhookEventsApi.md
+docs/WebhookPayloadAccountAdsInitialSyncCompleted.md
+docs/WebhookPayloadAccountAdsInitialSyncCompletedAccount.md
+docs/WebhookPayloadAccountAdsInitialSyncCompletedSync.md
 docs/WebhookPayloadAccountConnected.md
 docs/WebhookPayloadAccountConnectedAccount.md
 docs/WebhookPayloadAccountDisconnected.md
@@ -1651,6 +1654,9 @@ src/Zernio.Test/Model/ValidateSubreddit200ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/ValidateSubreddit200ResponseOneOfSubredditTests.cs
 src/Zernio.Test/Model/ValidateSubreddit200ResponseOneOfTests.cs
 src/Zernio.Test/Model/ValidateSubreddit200ResponseTests.cs
+src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedSyncTests.cs
+src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountConnectedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountConnectedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountDisconnectedAccountTests.cs
@@ -2520,6 +2526,9 @@ src/Zernio/Model/ValidateSubreddit200ResponseOneOf.cs
 src/Zernio/Model/ValidateSubreddit200ResponseOneOf1.cs
 src/Zernio/Model/ValidateSubreddit200ResponseOneOfSubreddit.cs
 src/Zernio/Model/Webhook.cs
+src/Zernio/Model/WebhookPayloadAccountAdsInitialSyncCompleted.cs
+src/Zernio/Model/WebhookPayloadAccountAdsInitialSyncCompletedAccount.cs
+src/Zernio/Model/WebhookPayloadAccountAdsInitialSyncCompletedSync.cs
 src/Zernio/Model/WebhookPayloadAccountConnected.cs
 src/Zernio/Model/WebhookPayloadAccountConnectedAccount.cs
 src/Zernio/Model/WebhookPayloadAccountDisconnected.cs
