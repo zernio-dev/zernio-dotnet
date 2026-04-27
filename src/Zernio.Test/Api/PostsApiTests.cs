@@ -134,7 +134,8 @@ namespace Zernio.Test.Api
             //bool? includeHidden = null;
             //string? search = null;
             //string? sortBy = null;
-            //var response = instance.ListPosts(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy);
+            //string? accountId = null;
+            //var response = instance.ListPosts(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
             //Assert.IsType<PostsListResponse>(response);
         }
 

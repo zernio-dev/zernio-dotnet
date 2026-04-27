@@ -155,8 +155,9 @@ namespace Zernio.Api
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
+        /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <returns>PostsListResponse</returns>
-        PostsListResponse ListPosts(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default);
+        PostsListResponse ListPosts(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default);
 
         /// <summary>
         /// List posts
@@ -176,8 +177,9 @@ namespace Zernio.Api
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
+        /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <returns>ApiResponse of PostsListResponse</returns>
-        ApiResponse<PostsListResponse> ListPostsWithHttpInfo(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default);
+        ApiResponse<PostsListResponse> ListPostsWithHttpInfo(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default);
         /// <summary>
         /// Retry failed post
         /// </summary>
@@ -414,9 +416,10 @@ namespace Zernio.Api
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
+        /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PostsListResponse</returns>
-        System.Threading.Tasks.Task<PostsListResponse> ListPostsAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<PostsListResponse> ListPostsAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List posts
@@ -436,9 +439,10 @@ namespace Zernio.Api
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
+        /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PostsListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PostsListResponse>> ListPostsWithHttpInfoAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<PostsListResponse>> ListPostsWithHttpInfoAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Retry failed post
         /// </summary>
@@ -1430,10 +1434,11 @@ namespace Zernio.Api
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
+        /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <returns>PostsListResponse</returns>
-        public PostsListResponse ListPosts(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default)
+        public PostsListResponse ListPosts(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default)
         {
-            Zernio.Client.ApiResponse<PostsListResponse> localVarResponse = ListPostsWithHttpInfo(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy);
+            Zernio.Client.ApiResponse<PostsListResponse> localVarResponse = ListPostsWithHttpInfo(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
             return localVarResponse.Data;
         }
 
@@ -1452,8 +1457,9 @@ namespace Zernio.Api
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
+        /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <returns>ApiResponse of PostsListResponse</returns>
-        public Zernio.Client.ApiResponse<PostsListResponse> ListPostsWithHttpInfo(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default)
+        public Zernio.Client.ApiResponse<PostsListResponse> ListPostsWithHttpInfo(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1514,6 +1520,10 @@ namespace Zernio.Api
             if (sortBy != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "sortBy", sortBy));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
             }
 
             // authentication (bearerAuth) required
@@ -1550,11 +1560,12 @@ namespace Zernio.Api
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
+        /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PostsListResponse</returns>
-        public async System.Threading.Tasks.Task<PostsListResponse> ListPostsAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<PostsListResponse> ListPostsAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<PostsListResponse> localVarResponse = await ListPostsWithHttpInfoAsync(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<PostsListResponse> localVarResponse = await ListPostsWithHttpInfoAsync(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1573,9 +1584,10 @@ namespace Zernio.Api
         /// <param name="includeHidden"> (optional, default to false)</param>
         /// <param name="search">Search posts by text content. (optional)</param>
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
+        /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PostsListResponse)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PostsListResponse>> ListPostsWithHttpInfoAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PostsListResponse>> ListPostsWithHttpInfoAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1638,6 +1650,10 @@ namespace Zernio.Api
             if (sortBy != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "sortBy", sortBy));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
             }
 
             // authentication (bearerAuth) required

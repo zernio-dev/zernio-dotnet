@@ -532,7 +532,7 @@ catch (ApiException e)
 
 <a id="listposts"></a>
 # **ListPosts**
-> PostsListResponse ListPosts (int? page = null, int? limit = null, string? status = null, string? platform = null, string? profileId = null, string? createdBy = null, DateOnly? dateFrom = null, DateOnly? dateTo = null, bool? includeHidden = null, string? search = null, string? sortBy = null)
+> PostsListResponse ListPosts (int? page = null, int? limit = null, string? status = null, string? platform = null, string? profileId = null, string? createdBy = null, DateOnly? dateFrom = null, DateOnly? dateTo = null, bool? includeHidden = null, string? search = null, string? sortBy = null, string? accountId = null)
 
 List posts
 
@@ -573,11 +573,12 @@ namespace Example
             var includeHidden = false;  // bool? |  (optional)  (default to false)
             var search = "search_example";  // string? | Search posts by text content. (optional) 
             var sortBy = "scheduled-desc";  // string? | Sort order for results. (optional)  (default to scheduled-desc)
+            var accountId = "accountId_example";  // string? | Filter posts to those published via a specific social account (24-char hex ObjectId). (optional) 
 
             try
             {
                 // List posts
-                PostsListResponse result = apiInstance.ListPosts(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy);
+                PostsListResponse result = apiInstance.ListPosts(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -598,7 +599,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List posts
-    ApiResponse<PostsListResponse> response = apiInstance.ListPostsWithHttpInfo(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy);
+    ApiResponse<PostsListResponse> response = apiInstance.ListPostsWithHttpInfo(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -626,6 +627,7 @@ catch (ApiException e)
 | **includeHidden** | **bool?** |  | [optional] [default to false] |
 | **search** | **string?** | Search posts by text content. | [optional]  |
 | **sortBy** | **string?** | Sort order for results. | [optional] [default to scheduled-desc] |
+| **accountId** | **string?** | Filter posts to those published via a specific social account (24-char hex ObjectId). | [optional]  |
 
 ### Return type
 
