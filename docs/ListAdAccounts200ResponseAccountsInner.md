@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Name** | **string** |  | [optional] 
 **Currency** | **string** |  | [optional] 
 **Status** | **string** |  | [optional] 
+**TimezoneName** | **string** | IANA timezone of the ad account (Meta only). Drives daily-budget reset and Insights day boundaries. | [optional] 
+**TimezoneOffsetHoursUtc** | **decimal** | Signed UTC offset in hours, reflecting current DST (Meta only). | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

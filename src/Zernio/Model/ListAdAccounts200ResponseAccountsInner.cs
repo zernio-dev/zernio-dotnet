@@ -40,12 +40,16 @@ namespace Zernio.Model
         /// <param name="name">name.</param>
         /// <param name="currency">currency.</param>
         /// <param name="status">status.</param>
-        public ListAdAccounts200ResponseAccountsInner(string id = default, string name = default, string currency = default, string status = default)
+        /// <param name="timezoneName">IANA timezone of the ad account (Meta only). Drives daily-budget reset and Insights day boundaries..</param>
+        /// <param name="timezoneOffsetHoursUtc">Signed UTC offset in hours, reflecting current DST (Meta only)..</param>
+        public ListAdAccounts200ResponseAccountsInner(string id = default, string name = default, string currency = default, string status = default, string timezoneName = default, decimal timezoneOffsetHoursUtc = default)
         {
             this.Id = id;
             this.Name = name;
             this.Currency = currency;
             this.Status = status;
+            this.TimezoneName = timezoneName;
+            this.TimezoneOffsetHoursUtc = timezoneOffsetHoursUtc;
         }
 
         /// <summary>
@@ -74,6 +78,20 @@ namespace Zernio.Model
         public string Status { get; set; }
 
         /// <summary>
+        /// IANA timezone of the ad account (Meta only). Drives daily-budget reset and Insights day boundaries.
+        /// </summary>
+        /// <value>IANA timezone of the ad account (Meta only). Drives daily-budget reset and Insights day boundaries.</value>
+        [DataMember(Name = "timezoneName", EmitDefaultValue = false)]
+        public string TimezoneName { get; set; }
+
+        /// <summary>
+        /// Signed UTC offset in hours, reflecting current DST (Meta only).
+        /// </summary>
+        /// <value>Signed UTC offset in hours, reflecting current DST (Meta only).</value>
+        [DataMember(Name = "timezoneOffsetHoursUtc", EmitDefaultValue = false)]
+        public decimal TimezoneOffsetHoursUtc { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -85,6 +103,8 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  TimezoneName: ").Append(TimezoneName).Append("\n");
+            sb.Append("  TimezoneOffsetHoursUtc: ").Append(TimezoneOffsetHoursUtc).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

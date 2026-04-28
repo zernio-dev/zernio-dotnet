@@ -90,5 +90,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Status'
         }
+
+        /// <summary>
+        /// Test the property 'TimezoneName'
+        /// </summary>
+        [Fact]
+        public void TimezoneNameTest()
+        {
+            // TODO unit test for the property 'TimezoneName'
+        }
+
+        /// <summary>
+        /// Test the property 'TimezoneOffsetHoursUtc'
+        /// </summary>
+        [Fact]
+        public void TimezoneOffsetHoursUtcTest()
+        {
+            // TODO unit test for the property 'TimezoneOffsetHoursUtc'
+        }
     }
 }
