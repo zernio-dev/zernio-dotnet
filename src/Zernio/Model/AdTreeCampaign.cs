@@ -187,6 +187,7 @@ namespace Zernio.Model
         /// <param name="currency">ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD..</param>
         /// <param name="metrics">metrics.</param>
         /// <param name="platformAdAccountId">platformAdAccountId.</param>
+        /// <param name="platformAdAccountName">Human-readable advertiser/account name from the platform. Refreshed on every sync..</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="profileId">profileId.</param>
         /// <param name="platformObjective">Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC).</param>
@@ -196,7 +197,7 @@ namespace Zernio.Model
         /// <param name="roasAverageFloor">Representative ROAS floor for the campaign — bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x)..</param>
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="adSets">adSets.</param>
-        public AdTreeCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, ReviewStatusEnum? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, int adSetCount = default, AdTreeCampaignBudget budget = default, AdTreeCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string accountId = default, string profileId = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, List<AdTreeAdSet> adSets = default)
+        public AdTreeCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, ReviewStatusEnum? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, int adSetCount = default, AdTreeCampaignBudget budget = default, AdTreeCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, List<AdTreeAdSet> adSets = default)
         {
             this.PlatformCampaignId = platformCampaignId;
             this.Platform = platform;
@@ -214,6 +215,7 @@ namespace Zernio.Model
             this.Currency = currency;
             this.Metrics = metrics;
             this.PlatformAdAccountId = platformAdAccountId;
+            this.PlatformAdAccountName = platformAdAccountName;
             this.AccountId = accountId;
             this.ProfileId = profileId;
             this.PlatformObjective = platformObjective;
@@ -303,6 +305,13 @@ namespace Zernio.Model
         public string PlatformAdAccountId { get; set; }
 
         /// <summary>
+        /// Human-readable advertiser/account name from the platform. Refreshed on every sync.
+        /// </summary>
+        /// <value>Human-readable advertiser/account name from the platform. Refreshed on every sync.</value>
+        [DataMember(Name = "platformAdAccountName", EmitDefaultValue = false)]
+        public string PlatformAdAccountName { get; set; }
+
+        /// <summary>
         /// Gets or Sets AccountId
         /// </summary>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
@@ -378,6 +387,7 @@ namespace Zernio.Model
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Metrics: ").Append(Metrics).Append("\n");
             sb.Append("  PlatformAdAccountId: ").Append(PlatformAdAccountId).Append("\n");
+            sb.Append("  PlatformAdAccountName: ").Append(PlatformAdAccountName).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  PlatformObjective: ").Append(PlatformObjective).Append("\n");

@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Currency** | **string** | ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD. | [optional] 
 **Metrics** | [**AdMetrics**](AdMetrics.md) |  | [optional] 
 **PlatformAdAccountId** | **string** |  | [optional] 
+**PlatformAdAccountName** | **string** | Human-readable advertiser/account name from the platform. Refreshed on every sync. | [optional] 
 **AccountId** | **string** |  | [optional] 
 **ProfileId** | **string** |  | [optional] 
 **PlatformObjective** | **string** | Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC) | [optional] 

@@ -151,7 +151,9 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
-            //var response = instance.ListAdAccounts(accountId);
+            //string? adAccountId = null;
+            //int? limit = null;
+            //var response = instance.ListAdAccounts(accountId, adAccountId, limit);
             //Assert.IsType<ListAdAccounts200Response>(response);
         }
 
@@ -175,6 +177,18 @@ namespace Zernio.Test.Api
             //DateOnly? toDate = null;
             //var response = instance.ListAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate);
             //Assert.IsType<ListAds200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListAdsBusinessCenters
+        /// </summary>
+        [Fact]
+        public void ListAdsBusinessCentersTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.ListAdsBusinessCenters(accountId);
+            //Assert.IsType<ListAdsBusinessCenters200Response>(response);
         }
 
         /// <summary>
@@ -224,6 +238,18 @@ namespace Zernio.Test.Api
             //SendWhatsAppConversionRequest sendWhatsAppConversionRequest = null;
             //var response = instance.SendWhatsAppConversion(sendWhatsAppConversionRequest);
             //Assert.IsType<SendWhatsAppConversion200Response>(response);
+        }
+
+        /// <summary>
+        /// Test TriggerAdsInitialSync
+        /// </summary>
+        [Fact]
+        public void TriggerAdsInitialSyncTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //TriggerAdsInitialSyncRequest triggerAdsInitialSyncRequest = null;
+            //var response = instance.TriggerAdsInitialSync(triggerAdsInitialSyncRequest);
+            //Assert.IsType<TriggerAdsInitialSync202Response>(response);
         }
 
         /// <summary>

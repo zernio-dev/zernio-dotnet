@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UpdateAdRequest
+    /// TriggerAdsInitialSync202Response
     /// </summary>
-    [DataContract(Name = "updateAd_request")]
-    public partial class UpdateAdRequest : IValidatableObject
+    [DataContract(Name = "triggerAdsInitialSync_202_response")]
+    public partial class TriggerAdsInitialSync202Response : IValidatableObject
     {
         /// <summary>
         /// Defines Status
@@ -40,16 +40,16 @@ namespace Zernio.Model
         public enum StatusEnum
         {
             /// <summary>
-            /// Enum Active for value: active
+            /// Enum Queued for value: queued
             /// </summary>
-            [EnumMember(Value = "active")]
-            Active = 1,
+            [EnumMember(Value = "queued")]
+            Queued = 1,
 
             /// <summary>
-            /// Enum Paused for value: paused
+            /// Enum AlreadyQueued for value: already_queued
             /// </summary>
-            [EnumMember(Value = "paused")]
-            Paused = 2
+            [EnumMember(Value = "already_queued")]
+            AlreadyQueued = 2
         }
 
 
@@ -59,45 +59,30 @@ namespace Zernio.Model
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateAdRequest" /> class.
+        /// Initializes a new instance of the <see cref="TriggerAdsInitialSync202Response" /> class.
         /// </summary>
         /// <param name="status">status.</param>
-        /// <param name="budget">budget.</param>
-        /// <param name="targeting">targeting.</param>
-        /// <param name="creative">creative.</param>
-        /// <param name="name">name.</param>
-        public UpdateAdRequest(StatusEnum? status = default, UpdateAdRequestBudget budget = default, UpdateAdRequestTargeting targeting = default, UpdateAdRequestCreative creative = default, string name = default)
+        /// <param name="traceId">Trace ID for the enqueued job. Reused on &#x60;already_queued&#x60;..</param>
+        /// <param name="message">message.</param>
+        public TriggerAdsInitialSync202Response(StatusEnum? status = default, string traceId = default, string message = default)
         {
             this.Status = status;
-            this.Budget = budget;
-            this.Targeting = targeting;
-            this.Creative = creative;
-            this.Name = name;
+            this.TraceId = traceId;
+            this.Message = message;
         }
 
         /// <summary>
-        /// Gets or Sets Budget
+        /// Trace ID for the enqueued job. Reused on &#x60;already_queued&#x60;.
         /// </summary>
-        [DataMember(Name = "budget", EmitDefaultValue = false)]
-        public UpdateAdRequestBudget Budget { get; set; }
+        /// <value>Trace ID for the enqueued job. Reused on &#x60;already_queued&#x60;.</value>
+        [DataMember(Name = "traceId", EmitDefaultValue = false)]
+        public string TraceId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Targeting
+        /// Gets or Sets Message
         /// </summary>
-        [DataMember(Name = "targeting", EmitDefaultValue = false)]
-        public UpdateAdRequestTargeting Targeting { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Creative
-        /// </summary>
-        [DataMember(Name = "creative", EmitDefaultValue = false)]
-        public UpdateAdRequestCreative Creative { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Name
-        /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
-        public string Name { get; set; }
+        [DataMember(Name = "message", EmitDefaultValue = false)]
+        public string Message { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -106,12 +91,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdateAdRequest {\n");
+            sb.Append("class TriggerAdsInitialSync202Response {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Budget: ").Append(Budget).Append("\n");
-            sb.Append("  Targeting: ").Append(Targeting).Append("\n");
-            sb.Append("  Creative: ").Append(Creative).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  TraceId: ").Append(TraceId).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

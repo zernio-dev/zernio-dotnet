@@ -182,10 +182,12 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**GetAdComments**](docs/AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdsApi* | [**ListAdAccounts**](docs/AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**ListAds**](docs/AdsApi.md#listads) | **GET** /v1/ads | List ads
+*AdsApi* | [**ListAdsBusinessCenters**](docs/AdsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
 *AdsApi* | [**ListConversionDestinations**](docs/AdsApi.md#listconversiondestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API
 *AdsApi* | [**SearchAdInterests**](docs/AdsApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests
 *AdsApi* | [**SendConversions**](docs/AdsApi.md#sendconversions) | **POST** /v1/ads/conversions | Send conversion events to an ad platform
 *AdsApi* | [**SendWhatsAppConversion**](docs/AdsApi.md#sendwhatsappconversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
+*AdsApi* | [**TriggerAdsInitialSync**](docs/AdsApi.md#triggeradsinitialsync) | **POST** /v1/ads/sync/initial | Re-sync an ads account
 *AdsApi* | [**UpdateAd**](docs/AdsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad
 *AnalyticsApi* | [**GetAnalytics**](docs/AnalyticsApi.md#getanalytics) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**GetBestTimeToPost**](docs/AnalyticsApi.md#getbesttimetopost) | **GET** /v1/analytics/best-time | Get best times to post
@@ -471,6 +473,7 @@ Class | Method | HTTP request | Description
  - [Model.BulkUploadPosts200Response](docs/BulkUploadPosts200Response.md)
  - [Model.BulkUploadPosts200ResponseErrorsInner](docs/BulkUploadPosts200ResponseErrorsInner.md)
  - [Model.BulkUploadPosts429Response](docs/BulkUploadPosts429Response.md)
+ - [Model.BusinessCenter](docs/BusinessCenter.md)
  - [Model.CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
  - [Model.CancelBroadcast200ResponseBroadcast](docs/CancelBroadcast200ResponseBroadcast.md)
  - [Model.CompleteTelegramConnect200Response](docs/CompleteTelegramConnect200Response.md)
@@ -844,6 +847,7 @@ Class | Method | HTTP request | Description
  - [Model.ListAdAudiences200ResponseAudiencesInner](docs/ListAdAudiences200ResponseAudiencesInner.md)
  - [Model.ListAdCampaigns200Response](docs/ListAdCampaigns200Response.md)
  - [Model.ListAds200Response](docs/ListAds200Response.md)
+ - [Model.ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
  - [Model.ListApiKeys200Response](docs/ListApiKeys200Response.md)
  - [Model.ListBroadcastRecipients200Response](docs/ListBroadcastRecipients200Response.md)
  - [Model.ListBroadcastRecipients200ResponseRecipientsInner](docs/ListBroadcastRecipients200ResponseRecipientsInner.md)
@@ -1045,6 +1049,8 @@ Class | Method | HTTP request | Description
  - [Model.TestWebhookRequest](docs/TestWebhookRequest.md)
  - [Model.ThreadsPlatformData](docs/ThreadsPlatformData.md)
  - [Model.TikTokPlatformData](docs/TikTokPlatformData.md)
+ - [Model.TriggerAdsInitialSync202Response](docs/TriggerAdsInitialSync202Response.md)
+ - [Model.TriggerAdsInitialSyncRequest](docs/TriggerAdsInitialSyncRequest.md)
  - [Model.TwitterPlatformData](docs/TwitterPlatformData.md)
  - [Model.TwitterPlatformDataPoll](docs/TwitterPlatformDataPoll.md)
  - [Model.TwitterPlatformDataThreadItemsInner](docs/TwitterPlatformDataThreadItemsInner.md)
@@ -1065,6 +1071,7 @@ Class | Method | HTTP request | Description
  - [Model.UpdateAdCampaignStatusRequest](docs/UpdateAdCampaignStatusRequest.md)
  - [Model.UpdateAdRequest](docs/UpdateAdRequest.md)
  - [Model.UpdateAdRequestBudget](docs/UpdateAdRequestBudget.md)
+ - [Model.UpdateAdRequestCreative](docs/UpdateAdRequestCreative.md)
  - [Model.UpdateAdRequestTargeting](docs/UpdateAdRequestTargeting.md)
  - [Model.UpdateAdRequestTargetingInterestsInner](docs/UpdateAdRequestTargetingInterestsInner.md)
  - [Model.UpdateAdSet200Response](docs/UpdateAdSet200Response.md)

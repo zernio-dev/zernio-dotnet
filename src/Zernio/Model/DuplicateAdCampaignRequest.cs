@@ -49,7 +49,13 @@ namespace Zernio.Model
             /// Enum Instagram for value: instagram
             /// </summary>
             [EnumMember(Value = "instagram")]
-            Instagram = 2
+            Instagram = 2,
+
+            /// <summary>
+            /// Enum Tiktok for value: tiktok
+            /// </summary>
+            [EnumMember(Value = "tiktok")]
+            Tiktok = 3
         }
 
 

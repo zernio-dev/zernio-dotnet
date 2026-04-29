@@ -74,6 +74,7 @@ docs/BulkUpdateAdCampaignStatusRequestCampaignsInner.md
 docs/BulkUploadPosts200Response.md
 docs/BulkUploadPosts200ResponseErrorsInner.md
 docs/BulkUploadPosts429Response.md
+docs/BusinessCenter.md
 docs/CancelBroadcast200Response.md
 docs/CancelBroadcast200ResponseBroadcast.md
 docs/CommentAutomationsApi.md
@@ -462,6 +463,7 @@ docs/ListAdAudiences200Response.md
 docs/ListAdAudiences200ResponseAudiencesInner.md
 docs/ListAdCampaigns200Response.md
 docs/ListAds200Response.md
+docs/ListAdsBusinessCenters200Response.md
 docs/ListApiKeys200Response.md
 docs/ListBroadcastRecipients200Response.md
 docs/ListBroadcastRecipients200ResponseRecipientsInner.md
@@ -672,6 +674,8 @@ docs/TelegramPlatformData.md
 docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
 docs/TikTokPlatformData.md
+docs/TriggerAdsInitialSync202Response.md
+docs/TriggerAdsInitialSyncRequest.md
 docs/TwitterEngagementApi.md
 docs/TwitterPlatformData.md
 docs/TwitterPlatformDataPoll.md
@@ -693,6 +697,7 @@ docs/UpdateAdCampaignStatus200Response.md
 docs/UpdateAdCampaignStatusRequest.md
 docs/UpdateAdRequest.md
 docs/UpdateAdRequestBudget.md
+docs/UpdateAdRequestCreative.md
 docs/UpdateAdRequestTargeting.md
 docs/UpdateAdRequestTargetingInterestsInner.md
 docs/UpdateAdSet200Response.md
@@ -970,6 +975,7 @@ src/Zernio.Test/Model/BulkUpdateAdCampaignStatusRequestTests.cs
 src/Zernio.Test/Model/BulkUploadPosts200ResponseErrorsInnerTests.cs
 src/Zernio.Test/Model/BulkUploadPosts200ResponseTests.cs
 src/Zernio.Test/Model/BulkUploadPosts429ResponseTests.cs
+src/Zernio.Test/Model/BusinessCenterTests.cs
 src/Zernio.Test/Model/CancelBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/CancelBroadcast200ResponseTests.cs
 src/Zernio.Test/Model/CompleteTelegramConnect200ResponseTests.cs
@@ -1343,6 +1349,7 @@ src/Zernio.Test/Model/ListAdAudiences200ResponseAudiencesInnerTests.cs
 src/Zernio.Test/Model/ListAdAudiences200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCampaigns200ResponseTests.cs
 src/Zernio.Test/Model/ListAds200ResponseTests.cs
+src/Zernio.Test/Model/ListAdsBusinessCenters200ResponseTests.cs
 src/Zernio.Test/Model/ListApiKeys200ResponseTests.cs
 src/Zernio.Test/Model/ListBroadcastRecipients200ResponseRecipientsInnerTests.cs
 src/Zernio.Test/Model/ListBroadcastRecipients200ResponseTests.cs
@@ -1544,6 +1551,8 @@ src/Zernio.Test/Model/TelegramPlatformDataTests.cs
 src/Zernio.Test/Model/TestWebhookRequestTests.cs
 src/Zernio.Test/Model/ThreadsPlatformDataTests.cs
 src/Zernio.Test/Model/TikTokPlatformDataTests.cs
+src/Zernio.Test/Model/TriggerAdsInitialSync202ResponseTests.cs
+src/Zernio.Test/Model/TriggerAdsInitialSyncRequestTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataPollTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataThreadItemsInnerTests.cs
@@ -1563,6 +1572,7 @@ src/Zernio.Test/Model/UpdateAdCampaignRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignStatus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignStatusRequestTests.cs
 src/Zernio.Test/Model/UpdateAdRequestBudgetTests.cs
+src/Zernio.Test/Model/UpdateAdRequestCreativeTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingInterestsInnerTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTargetingTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTests.cs
@@ -1851,6 +1861,7 @@ src/Zernio/Model/BulkUpdateAdCampaignStatusRequestCampaignsInner.cs
 src/Zernio/Model/BulkUploadPosts200Response.cs
 src/Zernio/Model/BulkUploadPosts200ResponseErrorsInner.cs
 src/Zernio/Model/BulkUploadPosts429Response.cs
+src/Zernio/Model/BusinessCenter.cs
 src/Zernio/Model/CancelBroadcast200Response.cs
 src/Zernio/Model/CancelBroadcast200ResponseBroadcast.cs
 src/Zernio/Model/CompleteTelegramConnect200Response.cs
@@ -2224,6 +2235,7 @@ src/Zernio/Model/ListAdAudiences200Response.cs
 src/Zernio/Model/ListAdAudiences200ResponseAudiencesInner.cs
 src/Zernio/Model/ListAdCampaigns200Response.cs
 src/Zernio/Model/ListAds200Response.cs
+src/Zernio/Model/ListAdsBusinessCenters200Response.cs
 src/Zernio/Model/ListApiKeys200Response.cs
 src/Zernio/Model/ListBroadcastRecipients200Response.cs
 src/Zernio/Model/ListBroadcastRecipients200ResponseRecipientsInner.cs
@@ -2425,6 +2437,8 @@ src/Zernio/Model/TelegramPlatformData.cs
 src/Zernio/Model/TestWebhookRequest.cs
 src/Zernio/Model/ThreadsPlatformData.cs
 src/Zernio/Model/TikTokPlatformData.cs
+src/Zernio/Model/TriggerAdsInitialSync202Response.cs
+src/Zernio/Model/TriggerAdsInitialSyncRequest.cs
 src/Zernio/Model/TwitterPlatformData.cs
 src/Zernio/Model/TwitterPlatformDataPoll.cs
 src/Zernio/Model/TwitterPlatformDataThreadItemsInner.cs
@@ -2445,6 +2459,7 @@ src/Zernio/Model/UpdateAdCampaignStatus200Response.cs
 src/Zernio/Model/UpdateAdCampaignStatusRequest.cs
 src/Zernio/Model/UpdateAdRequest.cs
 src/Zernio/Model/UpdateAdRequestBudget.cs
+src/Zernio/Model/UpdateAdRequestCreative.cs
 src/Zernio/Model/UpdateAdRequestTargeting.cs
 src/Zernio/Model/UpdateAdRequestTargetingInterestsInner.cs
 src/Zernio/Model/UpdateAdSet200Response.cs

@@ -203,6 +203,8 @@ namespace Zernio.Model
         /// <param name="adSetName">adSetName.</param>
         /// <param name="platformObjective">Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC). Only present for Meta ads..</param>
         /// <param name="optimizationGoal">Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION, LINK_CLICKS). Only present for Meta ads..</param>
+        /// <param name="platformAdAccountName">Human-readable advertiser/account name (Meta &#x60;AdAccount.name&#x60;, TikTok &#x60;advertiser_name&#x60;, LinkedIn / X / Pinterest equivalents). Refreshed every sync so platform-side renames propagate within one cycle. &#x60;null&#x60; when the platform doesn&#39;t return a name or the sync hasn&#39;t run yet. .</param>
+        /// <param name="platformCreatedAt">Platform-reported creation timestamp (Meta &#x60;created_time&#x60;, TikTok &#x60;create_time&#x60;). Distinct from &#x60;createdAt&#x60; which reflects when Zernio first synced the doc — for sort/filter by \&quot;when the ad was actually created on the platform\&quot;, read this field. &#x60;null&#x60; for legacy ads synced before this field was added; aggregations fall back to &#x60;createdAt&#x60; in that case. .</param>
         /// <param name="bidStrategy">Ad-set bid strategy (overrides campaign level on Meta). Populated for Meta and TikTok. TikTok&#39;s native &#x60;bid_type&#x60; is normalized to the cross-platform Meta enum: &#x60;BID_TYPE_NO_BID&#x60; -&gt; &#x60;LOWEST_COST_WITHOUT_CAP&#x60;, &#x60;BID_TYPE_CUSTOM&#x60; -&gt; &#x60;LOWEST_COST_WITH_BID_CAP&#x60;, deep_bid_type&#x3D;MIN_ROAS or roas_bid&gt;0 -&gt; &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;, &#x60;BID_TYPE_MAX_CONVERSION&#x60; -&gt; &#x60;LOWEST_COST_WITHOUT_CAP&#x60;. .</param>
         /// <param name="bidAmount">Bid cap in WHOLE currency units of the ad account (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Populated when bidStrategy is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. &#x60;null&#x60; for auto-bid (&#x60;LOWEST_COST_WITHOUT_CAP&#x60;).  - Meta source: &#x60;bid_amount&#x60; on the ad set (smallest-denomination int, decoded here). - TikTok source: priority order &#x60;bid_price&#x60; -&gt; &#x60;conversion_bid_price&#x60; -&gt; &#x60;deep_cpa_bid&#x60;   (whichever is set on the ad group). TikTok stores all three in whole currency units.  Source: facebook-business-sdk-codegen api_specs/specs/AdSet.json (&#x60;bid_amount&#x60;). .</param>
         /// <param name="roasAverageFloor">Minimum ROAS as a decimal multiplier (2.0 &#x3D; 2.0x ROAS). Populated when bidStrategy is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;.  - Meta source: decoded from &#x60;bid_constraints.roas_average_floor&#x60; (Meta stores as   fixed-point int × 10000; we return the decimal). - TikTok source: &#x60;roas_bid&#x60; on the ad group (already a decimal).  Source: facebook-business-sdk-codegen api_specs/specs/AdCampaignBidConstraint.json. .</param>
@@ -213,7 +215,7 @@ namespace Zernio.Model
         /// <param name="rejectionReason">rejectionReason.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public Ad(string id = default, string name = default, PlatformEnum? platform = default, AdStatus? status = default, AdTypeEnum? adType = default, GoalEnum? goal = default, bool isExternal = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdId = default, string platformAdAccountId = default, string platformCampaignId = default, string platformAdSetId = default, string campaignName = default, string adSetName = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, AdPromotedObject promotedObject = default, AdCreative creative = default, Object targeting = default, AdSchedule schedule = default, string rejectionReason = default, DateTime createdAt = default, DateTime updatedAt = default)
+        public Ad(string id = default, string name = default, PlatformEnum? platform = default, AdStatus? status = default, AdTypeEnum? adType = default, GoalEnum? goal = default, bool isExternal = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdId = default, string platformAdAccountId = default, string platformCampaignId = default, string platformAdSetId = default, string campaignName = default, string adSetName = default, string platformObjective = default, string optimizationGoal = default, string platformAdAccountName = default, DateTime platformCreatedAt = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, AdPromotedObject promotedObject = default, AdCreative creative = default, Object targeting = default, AdSchedule schedule = default, string rejectionReason = default, DateTime createdAt = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -232,6 +234,8 @@ namespace Zernio.Model
             this.AdSetName = adSetName;
             this.PlatformObjective = platformObjective;
             this.OptimizationGoal = optimizationGoal;
+            this.PlatformAdAccountName = platformAdAccountName;
+            this.PlatformCreatedAt = platformCreatedAt;
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
@@ -332,6 +336,23 @@ namespace Zernio.Model
         public string OptimizationGoal { get; set; }
 
         /// <summary>
+        /// Human-readable advertiser/account name (Meta &#x60;AdAccount.name&#x60;, TikTok &#x60;advertiser_name&#x60;, LinkedIn / X / Pinterest equivalents). Refreshed every sync so platform-side renames propagate within one cycle. &#x60;null&#x60; when the platform doesn&#39;t return a name or the sync hasn&#39;t run yet. 
+        /// </summary>
+        /// <value>Human-readable advertiser/account name (Meta &#x60;AdAccount.name&#x60;, TikTok &#x60;advertiser_name&#x60;, LinkedIn / X / Pinterest equivalents). Refreshed every sync so platform-side renames propagate within one cycle. &#x60;null&#x60; when the platform doesn&#39;t return a name or the sync hasn&#39;t run yet. </value>
+        /*
+        <example>Zernio - previously Late</example>
+        */
+        [DataMember(Name = "platformAdAccountName", EmitDefaultValue = false)]
+        public string PlatformAdAccountName { get; set; }
+
+        /// <summary>
+        /// Platform-reported creation timestamp (Meta &#x60;created_time&#x60;, TikTok &#x60;create_time&#x60;). Distinct from &#x60;createdAt&#x60; which reflects when Zernio first synced the doc — for sort/filter by \&quot;when the ad was actually created on the platform\&quot;, read this field. &#x60;null&#x60; for legacy ads synced before this field was added; aggregations fall back to &#x60;createdAt&#x60; in that case. 
+        /// </summary>
+        /// <value>Platform-reported creation timestamp (Meta &#x60;created_time&#x60;, TikTok &#x60;create_time&#x60;). Distinct from &#x60;createdAt&#x60; which reflects when Zernio first synced the doc — for sort/filter by \&quot;when the ad was actually created on the platform\&quot;, read this field. &#x60;null&#x60; for legacy ads synced before this field was added; aggregations fall back to &#x60;createdAt&#x60; in that case. </value>
+        [DataMember(Name = "platformCreatedAt", EmitDefaultValue = false)]
+        public DateTime PlatformCreatedAt { get; set; }
+
+        /// <summary>
         /// Bid cap in WHOLE currency units of the ad account (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Populated when bidStrategy is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. &#x60;null&#x60; for auto-bid (&#x60;LOWEST_COST_WITHOUT_CAP&#x60;).  - Meta source: &#x60;bid_amount&#x60; on the ad set (smallest-denomination int, decoded here). - TikTok source: priority order &#x60;bid_price&#x60; -&gt; &#x60;conversion_bid_price&#x60; -&gt; &#x60;deep_cpa_bid&#x60;   (whichever is set on the ad group). TikTok stores all three in whole currency units.  Source: facebook-business-sdk-codegen api_specs/specs/AdSet.json (&#x60;bid_amount&#x60;). 
         /// </summary>
         /// <value>Bid cap in WHOLE currency units of the ad account (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Populated when bidStrategy is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. &#x60;null&#x60; for auto-bid (&#x60;LOWEST_COST_WITHOUT_CAP&#x60;).  - Meta source: &#x60;bid_amount&#x60; on the ad set (smallest-denomination int, decoded here). - TikTok source: priority order &#x60;bid_price&#x60; -&gt; &#x60;conversion_bid_price&#x60; -&gt; &#x60;deep_cpa_bid&#x60;   (whichever is set on the ad group). TikTok stores all three in whole currency units.  Source: facebook-business-sdk-codegen api_specs/specs/AdSet.json (&#x60;bid_amount&#x60;). </value>
@@ -418,6 +439,8 @@ namespace Zernio.Model
             sb.Append("  AdSetName: ").Append(AdSetName).Append("\n");
             sb.Append("  PlatformObjective: ").Append(PlatformObjective).Append("\n");
             sb.Append("  OptimizationGoal: ").Append(OptimizationGoal).Append("\n");
+            sb.Append("  PlatformAdAccountName: ").Append(PlatformAdAccountName).Append("\n");
+            sb.Append("  PlatformCreatedAt: ").Append(PlatformCreatedAt).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");

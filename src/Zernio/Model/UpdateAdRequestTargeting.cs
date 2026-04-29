@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Meta-only. Targeting updates for other platforms are not supported after creation.
+    /// Meta + TikTok only. Pinterest / X / LinkedIn / Google return 501. 
     /// </summary>
     [DataContract(Name = "updateAd_request_targeting")]
     public partial class UpdateAdRequestTargeting : IValidatableObject

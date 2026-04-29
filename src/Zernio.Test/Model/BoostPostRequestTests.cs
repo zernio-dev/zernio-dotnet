@@ -209,6 +209,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'SparkAuthCode'
+        /// </summary>
+        [Fact]
+        public void SparkAuthCodeTest()
+        {
+            // TODO unit test for the property 'SparkAuthCode'
+        }
+
+        /// <summary>
         /// Test the property 'DsaBeneficiary'
         /// </summary>
         [Fact]
