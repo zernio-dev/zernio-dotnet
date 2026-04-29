@@ -668,6 +668,7 @@ Class | Method | HTTP request | Description
  - [Model.GetGoogleBusinessLocationDetails200ResponseCategories](docs/GetGoogleBusinessLocationDetails200ResponseCategories.md)
  - [Model.GetGoogleBusinessLocationDetails200ResponseCategoriesAdditionalCategoriesInner](docs/GetGoogleBusinessLocationDetails200ResponseCategoriesAdditionalCategoriesInner.md)
  - [Model.GetGoogleBusinessLocationDetails200ResponseCategoriesPrimaryCategory](docs/GetGoogleBusinessLocationDetails200ResponseCategoriesPrimaryCategory.md)
+ - [Model.GetGoogleBusinessLocationDetails200ResponseLocation](docs/GetGoogleBusinessLocationDetails200ResponseLocation.md)
  - [Model.GetGoogleBusinessLocationDetails200ResponsePhoneNumbers](docs/GetGoogleBusinessLocationDetails200ResponsePhoneNumbers.md)
  - [Model.GetGoogleBusinessLocationDetails200ResponseProfile](docs/GetGoogleBusinessLocationDetails200ResponseProfile.md)
  - [Model.GetGoogleBusinessLocationDetails200ResponseRegularHours](docs/GetGoogleBusinessLocationDetails200ResponseRegularHours.md)

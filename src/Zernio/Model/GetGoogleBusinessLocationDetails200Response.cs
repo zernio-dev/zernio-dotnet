@@ -39,6 +39,7 @@ namespace Zernio.Model
         /// <param name="success">success.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="locationId">locationId.</param>
+        /// <param name="location">location.</param>
         /// <param name="title">Business name.</param>
         /// <param name="regularHours">regularHours.</param>
         /// <param name="specialHours">specialHours.</param>
@@ -47,11 +48,12 @@ namespace Zernio.Model
         /// <param name="phoneNumbers">phoneNumbers.</param>
         /// <param name="categories">categories.</param>
         /// <param name="serviceItems">Services offered (returned when readMask includes &#39;serviceItems&#39;).</param>
-        public GetGoogleBusinessLocationDetails200Response(bool success = default, string accountId = default, string locationId = default, string title = default, GetGoogleBusinessLocationDetails200ResponseRegularHours regularHours = default, GetGoogleBusinessLocationDetails200ResponseSpecialHours specialHours = default, GetGoogleBusinessLocationDetails200ResponseProfile profile = default, string websiteUri = default, GetGoogleBusinessLocationDetails200ResponsePhoneNumbers phoneNumbers = default, GetGoogleBusinessLocationDetails200ResponseCategories categories = default, List<GetGoogleBusinessLocationDetails200ResponseServiceItemsInner> serviceItems = default)
+        public GetGoogleBusinessLocationDetails200Response(bool success = default, string accountId = default, string locationId = default, GetGoogleBusinessLocationDetails200ResponseLocation location = default, string title = default, GetGoogleBusinessLocationDetails200ResponseRegularHours regularHours = default, GetGoogleBusinessLocationDetails200ResponseSpecialHours specialHours = default, GetGoogleBusinessLocationDetails200ResponseProfile profile = default, string websiteUri = default, GetGoogleBusinessLocationDetails200ResponsePhoneNumbers phoneNumbers = default, GetGoogleBusinessLocationDetails200ResponseCategories categories = default, List<GetGoogleBusinessLocationDetails200ResponseServiceItemsInner> serviceItems = default)
         {
             this.Success = success;
             this.AccountId = accountId;
             this.LocationId = locationId;
+            this.Location = location;
             this.Title = title;
             this.RegularHours = regularHours;
             this.SpecialHours = specialHours;
@@ -79,6 +81,12 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "locationId", EmitDefaultValue = false)]
         public string LocationId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Location
+        /// </summary>
+        [DataMember(Name = "location", EmitDefaultValue = false)]
+        public GetGoogleBusinessLocationDetails200ResponseLocation Location { get; set; }
 
         /// <summary>
         /// Business name
@@ -141,6 +149,7 @@ namespace Zernio.Model
             sb.Append("  Success: ").Append(Success).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  LocationId: ").Append(LocationId).Append("\n");
+            sb.Append("  Location: ").Append(Location).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  RegularHours: ").Append(RegularHours).Append("\n");
             sb.Append("  SpecialHours: ").Append(SpecialHours).Append("\n");

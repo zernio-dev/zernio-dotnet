@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Location'
+        /// </summary>
+        [Fact]
+        public void LocationTest()
+        {
+            // TODO unit test for the property 'Location'
+        }
+
+        /// <summary>
         /// Test the property 'Title'
         /// </summary>
         [Fact]

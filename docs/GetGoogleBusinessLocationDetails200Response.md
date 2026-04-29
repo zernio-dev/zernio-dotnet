@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Success** | **bool** |  | [optional] 
 **AccountId** | **string** |  | [optional] 
 **LocationId** | **string** |  | [optional] 
+**Location** | [**GetGoogleBusinessLocationDetails200ResponseLocation**](GetGoogleBusinessLocationDetails200ResponseLocation.md) |  | [optional] 
 **Title** | **string** | Business name | [optional] 
 **RegularHours** | [**GetGoogleBusinessLocationDetails200ResponseRegularHours**](GetGoogleBusinessLocationDetails200ResponseRegularHours.md) |  | [optional] 
 **SpecialHours** | [**GetGoogleBusinessLocationDetails200ResponseSpecialHours**](GetGoogleBusinessLocationDetails200ResponseSpecialHours.md) |  | [optional] 
