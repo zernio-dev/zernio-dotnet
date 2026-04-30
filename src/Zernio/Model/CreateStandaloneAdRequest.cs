@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class CreateStandaloneAdRequest : IValidatableObject
     {
         /// <summary>
-        /// Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform.
+        /// Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted).
         /// </summary>
-        /// <value>Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform.</value>
+        /// <value>Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum GoalEnum
         {
@@ -85,9 +85,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform.
+        /// Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted).
         /// </summary>
-        /// <value>Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform.</value>
+        /// <value>Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted).</value>
         [DataMember(Name = "goal", EmitDefaultValue = false)]
         public GoalEnum? Goal { get; set; }
         /// <summary>
@@ -294,7 +294,7 @@ namespace Zernio.Model
         /// <param name="accountId">accountId (required).</param>
         /// <param name="adAccountId">adAccountId (required).</param>
         /// <param name="name">name (required).</param>
-        /// <param name="goal">Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform..</param>
+        /// <param name="goal">Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted)..</param>
         /// <param name="budgetAmount">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="budgetType">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="currency">currency.</param>
@@ -327,7 +327,8 @@ namespace Zernio.Model
         /// <param name="roasAverageFloor">Minimum ROAS as a decimal multiplier (e.g. 2.0 &#x3D; 2.0x ROAS). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000. .</param>
         /// <param name="dsaBeneficiary">Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. .</param>
         /// <param name="dsaPayor">Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). .</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, List<string> countries = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default)
+        /// <param name="promotedObject">promotedObject.</param>
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, List<string> countries = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -380,6 +381,7 @@ namespace Zernio.Model
             this.RoasAverageFloor = roasAverageFloor;
             this.DsaBeneficiary = dsaBeneficiary;
             this.DsaPayor = dsaPayor;
+            this.PromotedObject = promotedObject;
         }
 
         /// <summary>
@@ -577,6 +579,12 @@ namespace Zernio.Model
         public string DsaPayor { get; set; }
 
         /// <summary>
+        /// Gets or Sets PromotedObject
+        /// </summary>
+        [DataMember(Name = "promotedObject", EmitDefaultValue = false)]
+        public CreateStandaloneAdRequestPromotedObject PromotedObject { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -620,6 +628,7 @@ namespace Zernio.Model
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
             sb.Append("  DsaBeneficiary: ").Append(DsaBeneficiary).Append("\n");
             sb.Append("  DsaPayor: ").Append(DsaPayor).Append("\n");
+            sb.Append("  PromotedObject: ").Append(PromotedObject).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
