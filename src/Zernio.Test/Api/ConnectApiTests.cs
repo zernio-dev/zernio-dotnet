@@ -67,6 +67,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ConfigureTikTokAdsBrandIdentity
+        /// </summary>
+        [Fact]
+        public void ConfigureTikTokAdsBrandIdentityTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //ConfigureTikTokAdsBrandIdentityRequest configureTikTokAdsBrandIdentityRequest = null;
+            //var response = instance.ConfigureTikTokAdsBrandIdentity(configureTikTokAdsBrandIdentityRequest);
+            //Assert.IsType<ConfigureTikTokAdsBrandIdentity200Response>(response);
+        }
+
+        /// <summary>
         /// Test ConnectAds
         /// </summary>
         [Fact]

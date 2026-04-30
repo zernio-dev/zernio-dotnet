@@ -398,6 +398,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BrandIdentity'
+        /// </summary>
+        [Fact]
+        public void BrandIdentityTest()
+        {
+            // TODO unit test for the property 'BrandIdentity'
+        }
+
+        /// <summary>
+        /// Test the property 'IdentityType'
+        /// </summary>
+        [Fact]
+        public void IdentityTypeTest()
+        {
+            // TODO unit test for the property 'IdentityType'
+        }
+
+        /// <summary>
         /// Test the property 'PromotedObject'
         /// </summary>
         [Fact]

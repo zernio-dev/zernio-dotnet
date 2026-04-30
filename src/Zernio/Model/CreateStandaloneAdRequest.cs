@@ -284,6 +284,33 @@ namespace Zernio.Model
         [DataMember(Name = "bidStrategy", EmitDefaultValue = false)]
         public BidStrategy? BidStrategy { get; set; }
         /// <summary>
+        /// TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. 
+        /// </summary>
+        /// <value>TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum IdentityTypeEnum
+        {
+            /// <summary>
+            /// Enum TTUSER for value: TT_USER
+            /// </summary>
+            [EnumMember(Value = "TT_USER")]
+            TTUSER = 1,
+
+            /// <summary>
+            /// Enum CUSTOMIZEDUSER for value: CUSTOMIZED_USER
+            /// </summary>
+            [EnumMember(Value = "CUSTOMIZED_USER")]
+            CUSTOMIZEDUSER = 2
+        }
+
+
+        /// <summary>
+        /// TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. 
+        /// </summary>
+        /// <value>TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. </value>
+        [DataMember(Name = "identityType", EmitDefaultValue = false)]
+        public IdentityTypeEnum? IdentityType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -329,8 +356,10 @@ namespace Zernio.Model
         /// <param name="roasAverageFloor">Minimum ROAS as a decimal multiplier (e.g. 2.0 &#x3D; 2.0x ROAS). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000. .</param>
         /// <param name="dsaBeneficiary">Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. .</param>
         /// <param name="dsaPayor">Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). .</param>
+        /// <param name="brandIdentity">brandIdentity.</param>
+        /// <param name="identityType">TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. .</param>
         /// <param name="promotedObject">promotedObject.</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -385,6 +414,8 @@ namespace Zernio.Model
             this.RoasAverageFloor = roasAverageFloor;
             this.DsaBeneficiary = dsaBeneficiary;
             this.DsaPayor = dsaPayor;
+            this.BrandIdentity = brandIdentity;
+            this.IdentityType = identityType;
             this.PromotedObject = promotedObject;
         }
 
@@ -598,6 +629,12 @@ namespace Zernio.Model
         public string DsaPayor { get; set; }
 
         /// <summary>
+        /// Gets or Sets BrandIdentity
+        /// </summary>
+        [DataMember(Name = "brandIdentity", EmitDefaultValue = false)]
+        public CreateStandaloneAdRequestBrandIdentity BrandIdentity { get; set; }
+
+        /// <summary>
         /// Gets or Sets PromotedObject
         /// </summary>
         [DataMember(Name = "promotedObject", EmitDefaultValue = false)]
@@ -649,6 +686,8 @@ namespace Zernio.Model
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
             sb.Append("  DsaBeneficiary: ").Append(DsaBeneficiary).Append("\n");
             sb.Append("  DsaPayor: ").Append(DsaPayor).Append("\n");
+            sb.Append("  BrandIdentity: ").Append(BrandIdentity).Append("\n");
+            sb.Append("  IdentityType: ").Append(IdentityType).Append("\n");
             sb.Append("  PromotedObject: ").Append(PromotedObject).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

@@ -80,6 +80,8 @@ docs/CancelBroadcast200ResponseBroadcast.md
 docs/CommentAutomationsApi.md
 docs/CommentsApi.md
 docs/CompleteTelegramConnect200Response.md
+docs/ConfigureTikTokAdsBrandIdentity200Response.md
+docs/ConfigureTikTokAdsBrandIdentityRequest.md
 docs/ConnectAds200Response.md
 docs/ConnectAds200ResponseOneOf.md
 docs/ConnectAds200ResponseOneOf1.md
@@ -154,6 +156,7 @@ docs/CreateStandaloneAd201Response.md
 docs/CreateStandaloneAd201ResponseOneOf.md
 docs/CreateStandaloneAd201ResponseOneOf1.md
 docs/CreateStandaloneAdRequest.md
+docs/CreateStandaloneAdRequestBrandIdentity.md
 docs/CreateStandaloneAdRequestCitiesInner.md
 docs/CreateStandaloneAdRequestCreativesInner.md
 docs/CreateStandaloneAdRequestCreativesInnerVideo.md
@@ -983,6 +986,8 @@ src/Zernio.Test/Model/BusinessCenterTests.cs
 src/Zernio.Test/Model/CancelBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/CancelBroadcast200ResponseTests.cs
 src/Zernio.Test/Model/CompleteTelegramConnect200ResponseTests.cs
+src/Zernio.Test/Model/ConfigureTikTokAdsBrandIdentity200ResponseTests.cs
+src/Zernio.Test/Model/ConfigureTikTokAdsBrandIdentityRequestTests.cs
 src/Zernio.Test/Model/ConnectAds200ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/ConnectAds200ResponseOneOfTests.cs
 src/Zernio.Test/Model/ConnectAds200ResponseTests.cs
@@ -1054,6 +1059,7 @@ src/Zernio.Test/Model/CreateSequenceRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAd201ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/CreateStandaloneAd201ResponseOneOfTests.cs
 src/Zernio.Test/Model/CreateStandaloneAd201ResponseTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestBrandIdentityTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCitiesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerVideoTests.cs
@@ -1873,6 +1879,8 @@ src/Zernio/Model/BusinessCenter.cs
 src/Zernio/Model/CancelBroadcast200Response.cs
 src/Zernio/Model/CancelBroadcast200ResponseBroadcast.cs
 src/Zernio/Model/CompleteTelegramConnect200Response.cs
+src/Zernio/Model/ConfigureTikTokAdsBrandIdentity200Response.cs
+src/Zernio/Model/ConfigureTikTokAdsBrandIdentityRequest.cs
 src/Zernio/Model/ConnectAds200Response.cs
 src/Zernio/Model/ConnectAds200ResponseOneOf.cs
 src/Zernio/Model/ConnectAds200ResponseOneOf1.cs
@@ -1945,6 +1953,7 @@ src/Zernio/Model/CreateStandaloneAd201Response.cs
 src/Zernio/Model/CreateStandaloneAd201ResponseOneOf.cs
 src/Zernio/Model/CreateStandaloneAd201ResponseOneOf1.cs
 src/Zernio/Model/CreateStandaloneAdRequest.cs
+src/Zernio/Model/CreateStandaloneAdRequestBrandIdentity.cs
 src/Zernio/Model/CreateStandaloneAdRequestCitiesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestCreativesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestCreativesInnerVideo.cs

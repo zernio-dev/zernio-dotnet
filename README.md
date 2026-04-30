@@ -236,6 +236,7 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**UnhideInboxComment**](docs/CommentsApi.md#unhideinboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/hide | Unhide comment
 *CommentsApi* | [**UnlikeInboxComment**](docs/CommentsApi.md#unlikeinboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
 *ConnectApi* | [**CompleteTelegramConnect**](docs/ConnectApi.md#completetelegramconnect) | **PATCH** /v1/connect/telegram | Check Telegram status
+*ConnectApi* | [**ConfigureTikTokAdsBrandIdentity**](docs/ConnectApi.md#configuretiktokadsbrandidentity) | **PATCH** /v1/connect/tiktok-ads | Configure TikTok Ads Brand Identity
 *ConnectApi* | [**ConnectAds**](docs/ConnectApi.md#connectads) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**ConnectBlueskyCredentials**](docs/ConnectApi.md#connectblueskycredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**ConnectWhatsAppCredentials**](docs/ConnectApi.md#connectwhatsappcredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
@@ -477,6 +478,8 @@ Class | Method | HTTP request | Description
  - [Model.CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
  - [Model.CancelBroadcast200ResponseBroadcast](docs/CancelBroadcast200ResponseBroadcast.md)
  - [Model.CompleteTelegramConnect200Response](docs/CompleteTelegramConnect200Response.md)
+ - [Model.ConfigureTikTokAdsBrandIdentity200Response](docs/ConfigureTikTokAdsBrandIdentity200Response.md)
+ - [Model.ConfigureTikTokAdsBrandIdentityRequest](docs/ConfigureTikTokAdsBrandIdentityRequest.md)
  - [Model.ConnectAds200Response](docs/ConnectAds200Response.md)
  - [Model.ConnectAds200ResponseOneOf](docs/ConnectAds200ResponseOneOf.md)
  - [Model.ConnectAds200ResponseOneOf1](docs/ConnectAds200ResponseOneOf1.md)
@@ -549,6 +552,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateStandaloneAd201ResponseOneOf](docs/CreateStandaloneAd201ResponseOneOf.md)
  - [Model.CreateStandaloneAd201ResponseOneOf1](docs/CreateStandaloneAd201ResponseOneOf1.md)
  - [Model.CreateStandaloneAdRequest](docs/CreateStandaloneAdRequest.md)
+ - [Model.CreateStandaloneAdRequestBrandIdentity](docs/CreateStandaloneAdRequestBrandIdentity.md)
  - [Model.CreateStandaloneAdRequestCitiesInner](docs/CreateStandaloneAdRequestCitiesInner.md)
  - [Model.CreateStandaloneAdRequestCreativesInner](docs/CreateStandaloneAdRequestCreativesInner.md)
  - [Model.CreateStandaloneAdRequestCreativesInnerVideo](docs/CreateStandaloneAdRequestCreativesInnerVideo.md)

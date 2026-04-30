@@ -5,6 +5,7 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**CompleteTelegramConnect**](ConnectApi.md#completetelegramconnect) | **PATCH** /v1/connect/telegram | Check Telegram status |
+| [**ConfigureTikTokAdsBrandIdentity**](ConnectApi.md#configuretiktokadsbrandidentity) | **PATCH** /v1/connect/tiktok-ads | Configure TikTok Ads Brand Identity |
 | [**ConnectAds**](ConnectApi.md#connectads) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform |
 | [**ConnectBlueskyCredentials**](ConnectApi.md#connectblueskycredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account |
 | [**ConnectWhatsAppCredentials**](ConnectApi.md#connectwhatsappcredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
@@ -138,13 +139,115 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="configuretiktokadsbrandidentity"></a>
+# **ConfigureTikTokAdsBrandIdentity**
+> ConfigureTikTokAdsBrandIdentity200Response ConfigureTikTokAdsBrandIdentity (ConfigureTikTokAdsBrandIdentityRequest configureTikTokAdsBrandIdentityRequest)
+
+Configure TikTok Ads Brand Identity
+
+Set or update the Brand Identity (display name + avatar) for a `tiktokads` SocialAccount. TikTok requires every ad to carry an `identity_id + identity_type` pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via `/v2/identity/create/`, and caches the resulting `identity_id` on the account so subsequent `POST /v1/ads/create` calls can opt into it via `identityType: 'CUSTOMIZED_USER'`.  Configurable on every `tiktokads` account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok's side (harmless, no billing impact).  Alternative: pass `brandIdentity` directly on `POST /v1/ads/create` to configure on first ad creation in a single round-trip. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ConfigureTikTokAdsBrandIdentityExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var configureTikTokAdsBrandIdentityRequest = new ConfigureTikTokAdsBrandIdentityRequest(); // ConfigureTikTokAdsBrandIdentityRequest | 
+
+            try
+            {
+                // Configure TikTok Ads Brand Identity
+                ConfigureTikTokAdsBrandIdentity200Response result = apiInstance.ConfigureTikTokAdsBrandIdentity(configureTikTokAdsBrandIdentityRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.ConfigureTikTokAdsBrandIdentity: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ConfigureTikTokAdsBrandIdentityWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Configure TikTok Ads Brand Identity
+    ApiResponse<ConfigureTikTokAdsBrandIdentity200Response> response = apiInstance.ConfigureTikTokAdsBrandIdentityWithHttpInfo(configureTikTokAdsBrandIdentityRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.ConfigureTikTokAdsBrandIdentityWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **configureTikTokAdsBrandIdentityRequest** | [**ConfigureTikTokAdsBrandIdentityRequest**](ConfigureTikTokAdsBrandIdentityRequest.md) |  |  |
+
+### Return type
+
+[**ConfigureTikTokAdsBrandIdentity200Response**](ConfigureTikTokAdsBrandIdentity200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Brand identity configured (or updated) |  -  |
+| **400** | Missing fields, invalid lengths, account is in linked mode, or no advertiser found on the account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | TikTok Ads account not found |  -  |
+| **500** | Failed to create the TikTok identity (TikTok API error) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="connectads"></a>
 # **ConnectAds**
 > ConnectAds200Response ConnectAds (string platform, string profileId, string? accountId = null, string? redirectUrl = null, bool? headless = null)
 
 Connect ads for a platform
 
-Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. Requires an existing posting account (accountId param). If the ads account already exists, returns alreadyConnected: true.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId=null and standalone ads use a synthetic CUSTOMIZED_USER (\"Brand Identity\"); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There's no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
 
 ### Example
 ```csharp
@@ -172,7 +275,7 @@ namespace Example
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var platform = "facebook";  // string | Platform to connect ads for. Only platforms with ads support are accepted.
             var profileId = "profileId_example";  // string | Your Zernio profile ID
-            var accountId = "accountId_example";  // string? | Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and standalone platforms. (optional) 
+            var accountId = "accountId_example";  // string? | Existing SocialAccount ID. Required for `twitter` (X Ads). Optional for `tiktok` — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (`facebook`, `instagram`, `linkedin`, `pinterest`) and standalone (`googleads`) platforms.  (optional) 
             var redirectUrl = "redirectUrl_example";  // string? | Custom redirect URL after OAuth completes (same-token platforms only) (optional) 
             var headless = false;  // bool? | Enable headless mode (same-token platforms only) (optional)  (default to false)
 
@@ -219,7 +322,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **platform** | **string** | Platform to connect ads for. Only platforms with ads support are accepted. |  |
 | **profileId** | **string** | Your Zernio profile ID |  |
-| **accountId** | **string?** | Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and standalone platforms. | [optional]  |
+| **accountId** | **string?** | Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  | [optional]  |
 | **redirectUrl** | **string?** | Custom redirect URL after OAuth completes (same-token platforms only) | [optional]  |
 | **headless** | **bool?** | Enable headless mode (same-token platforms only) | [optional] [default to false] |
 
@@ -241,7 +344,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Either an OAuth URL to redirect to, or confirmation that ads are already connected |  -  |
-| **400** | Platform doesn&#39;t support ads, or missing accountId for separate-token platform |  -  |
+| **400** | Platform doesn&#39;t support ads, or missing accountId for X Ads |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required, or no access to profile |  -  |
 | **404** | Profile or posting account not found |  -  |

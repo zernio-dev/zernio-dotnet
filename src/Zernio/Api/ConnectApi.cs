@@ -50,15 +50,36 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CompleteTelegramConnect200Response</returns>
         ApiResponse<CompleteTelegramConnect200Response> CompleteTelegramConnectWithHttpInfo(string code);
         /// <summary>
+        /// Configure TikTok Ads Brand Identity
+        /// </summary>
+        /// <remarks>
+        /// Set or update the Brand Identity (display name + avatar) for a &#x60;tiktokads&#x60; SocialAccount. TikTok requires every ad to carry an &#x60;identity_id + identity_type&#x60; pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via &#x60;/v2/identity/create/&#x60;, and caches the resulting &#x60;identity_id&#x60; on the account so subsequent &#x60;POST /v1/ads/create&#x60; calls can opt into it via &#x60;identityType: &#39;CUSTOMIZED_USER&#39;&#x60;.  Configurable on every &#x60;tiktokads&#x60; account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok&#39;s side (harmless, no billing impact).  Alternative: pass &#x60;brandIdentity&#x60; directly on &#x60;POST /v1/ads/create&#x60; to configure on first ad creation in a single round-trip. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="configureTikTokAdsBrandIdentityRequest"></param>
+        /// <returns>ConfigureTikTokAdsBrandIdentity200Response</returns>
+        ConfigureTikTokAdsBrandIdentity200Response ConfigureTikTokAdsBrandIdentity(ConfigureTikTokAdsBrandIdentityRequest configureTikTokAdsBrandIdentityRequest);
+
+        /// <summary>
+        /// Configure TikTok Ads Brand Identity
+        /// </summary>
+        /// <remarks>
+        /// Set or update the Brand Identity (display name + avatar) for a &#x60;tiktokads&#x60; SocialAccount. TikTok requires every ad to carry an &#x60;identity_id + identity_type&#x60; pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via &#x60;/v2/identity/create/&#x60;, and caches the resulting &#x60;identity_id&#x60; on the account so subsequent &#x60;POST /v1/ads/create&#x60; calls can opt into it via &#x60;identityType: &#39;CUSTOMIZED_USER&#39;&#x60;.  Configurable on every &#x60;tiktokads&#x60; account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok&#39;s side (harmless, no billing impact).  Alternative: pass &#x60;brandIdentity&#x60; directly on &#x60;POST /v1/ads/create&#x60; to configure on first ad creation in a single round-trip. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="configureTikTokAdsBrandIdentityRequest"></param>
+        /// <returns>ApiResponse of ConfigureTikTokAdsBrandIdentity200Response</returns>
+        ApiResponse<ConfigureTikTokAdsBrandIdentity200Response> ConfigureTikTokAdsBrandIdentityWithHttpInfo(ConfigureTikTokAdsBrandIdentityRequest configureTikTokAdsBrandIdentityRequest);
+        /// <summary>
         /// Connect ads for a platform
         /// </summary>
         /// <remarks>
-        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. Requires an existing posting account (accountId param). If the ads account already exists, returns alreadyConnected: true.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.</param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and standalone platforms. (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <returns>ConnectAds200Response</returns>
@@ -68,12 +89,12 @@ namespace Zernio.Api
         /// Connect ads for a platform
         /// </summary>
         /// <remarks>
-        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. Requires an existing posting account (accountId param). If the ads account already exists, returns alreadyConnected: true.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.</param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and standalone platforms. (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <returns>ApiResponse of ConnectAds200Response</returns>
@@ -781,15 +802,38 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CompleteTelegramConnect200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CompleteTelegramConnect200Response>> CompleteTelegramConnectWithHttpInfoAsync(string code, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Configure TikTok Ads Brand Identity
+        /// </summary>
+        /// <remarks>
+        /// Set or update the Brand Identity (display name + avatar) for a &#x60;tiktokads&#x60; SocialAccount. TikTok requires every ad to carry an &#x60;identity_id + identity_type&#x60; pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via &#x60;/v2/identity/create/&#x60;, and caches the resulting &#x60;identity_id&#x60; on the account so subsequent &#x60;POST /v1/ads/create&#x60; calls can opt into it via &#x60;identityType: &#39;CUSTOMIZED_USER&#39;&#x60;.  Configurable on every &#x60;tiktokads&#x60; account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok&#39;s side (harmless, no billing impact).  Alternative: pass &#x60;brandIdentity&#x60; directly on &#x60;POST /v1/ads/create&#x60; to configure on first ad creation in a single round-trip. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="configureTikTokAdsBrandIdentityRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ConfigureTikTokAdsBrandIdentity200Response</returns>
+        System.Threading.Tasks.Task<ConfigureTikTokAdsBrandIdentity200Response> ConfigureTikTokAdsBrandIdentityAsync(ConfigureTikTokAdsBrandIdentityRequest configureTikTokAdsBrandIdentityRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Configure TikTok Ads Brand Identity
+        /// </summary>
+        /// <remarks>
+        /// Set or update the Brand Identity (display name + avatar) for a &#x60;tiktokads&#x60; SocialAccount. TikTok requires every ad to carry an &#x60;identity_id + identity_type&#x60; pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via &#x60;/v2/identity/create/&#x60;, and caches the resulting &#x60;identity_id&#x60; on the account so subsequent &#x60;POST /v1/ads/create&#x60; calls can opt into it via &#x60;identityType: &#39;CUSTOMIZED_USER&#39;&#x60;.  Configurable on every &#x60;tiktokads&#x60; account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok&#39;s side (harmless, no billing impact).  Alternative: pass &#x60;brandIdentity&#x60; directly on &#x60;POST /v1/ads/create&#x60; to configure on first ad creation in a single round-trip. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="configureTikTokAdsBrandIdentityRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ConfigureTikTokAdsBrandIdentity200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ConfigureTikTokAdsBrandIdentity200Response>> ConfigureTikTokAdsBrandIdentityWithHttpInfoAsync(ConfigureTikTokAdsBrandIdentityRequest configureTikTokAdsBrandIdentityRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Connect ads for a platform
         /// </summary>
         /// <remarks>
-        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. Requires an existing posting account (accountId param). If the ads account already exists, returns alreadyConnected: true.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.</param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and standalone platforms. (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -800,12 +844,12 @@ namespace Zernio.Api
         /// Connect ads for a platform
         /// </summary>
         /// <remarks>
-        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. Requires an existing posting account (accountId param). If the ads account already exists, returns alreadyConnected: true.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.</param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and standalone platforms. (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1882,12 +1926,141 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. Requires an existing posting account (accountId param). If the ads account already exists, returns alreadyConnected: true.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Configure TikTok Ads Brand Identity Set or update the Brand Identity (display name + avatar) for a &#x60;tiktokads&#x60; SocialAccount. TikTok requires every ad to carry an &#x60;identity_id + identity_type&#x60; pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via &#x60;/v2/identity/create/&#x60;, and caches the resulting &#x60;identity_id&#x60; on the account so subsequent &#x60;POST /v1/ads/create&#x60; calls can opt into it via &#x60;identityType: &#39;CUSTOMIZED_USER&#39;&#x60;.  Configurable on every &#x60;tiktokads&#x60; account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok&#39;s side (harmless, no billing impact).  Alternative: pass &#x60;brandIdentity&#x60; directly on &#x60;POST /v1/ads/create&#x60; to configure on first ad creation in a single round-trip. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="configureTikTokAdsBrandIdentityRequest"></param>
+        /// <returns>ConfigureTikTokAdsBrandIdentity200Response</returns>
+        public ConfigureTikTokAdsBrandIdentity200Response ConfigureTikTokAdsBrandIdentity(ConfigureTikTokAdsBrandIdentityRequest configureTikTokAdsBrandIdentityRequest)
+        {
+            Zernio.Client.ApiResponse<ConfigureTikTokAdsBrandIdentity200Response> localVarResponse = ConfigureTikTokAdsBrandIdentityWithHttpInfo(configureTikTokAdsBrandIdentityRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Configure TikTok Ads Brand Identity Set or update the Brand Identity (display name + avatar) for a &#x60;tiktokads&#x60; SocialAccount. TikTok requires every ad to carry an &#x60;identity_id + identity_type&#x60; pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via &#x60;/v2/identity/create/&#x60;, and caches the resulting &#x60;identity_id&#x60; on the account so subsequent &#x60;POST /v1/ads/create&#x60; calls can opt into it via &#x60;identityType: &#39;CUSTOMIZED_USER&#39;&#x60;.  Configurable on every &#x60;tiktokads&#x60; account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok&#39;s side (harmless, no billing impact).  Alternative: pass &#x60;brandIdentity&#x60; directly on &#x60;POST /v1/ads/create&#x60; to configure on first ad creation in a single round-trip. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="configureTikTokAdsBrandIdentityRequest"></param>
+        /// <returns>ApiResponse of ConfigureTikTokAdsBrandIdentity200Response</returns>
+        public Zernio.Client.ApiResponse<ConfigureTikTokAdsBrandIdentity200Response> ConfigureTikTokAdsBrandIdentityWithHttpInfo(ConfigureTikTokAdsBrandIdentityRequest configureTikTokAdsBrandIdentityRequest)
+        {
+            // verify the required parameter 'configureTikTokAdsBrandIdentityRequest' is set
+            if (configureTikTokAdsBrandIdentityRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'configureTikTokAdsBrandIdentityRequest' when calling ConnectApi->ConfigureTikTokAdsBrandIdentity");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = configureTikTokAdsBrandIdentityRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<ConfigureTikTokAdsBrandIdentity200Response>("/v1/connect/tiktok-ads", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConfigureTikTokAdsBrandIdentity", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Configure TikTok Ads Brand Identity Set or update the Brand Identity (display name + avatar) for a &#x60;tiktokads&#x60; SocialAccount. TikTok requires every ad to carry an &#x60;identity_id + identity_type&#x60; pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via &#x60;/v2/identity/create/&#x60;, and caches the resulting &#x60;identity_id&#x60; on the account so subsequent &#x60;POST /v1/ads/create&#x60; calls can opt into it via &#x60;identityType: &#39;CUSTOMIZED_USER&#39;&#x60;.  Configurable on every &#x60;tiktokads&#x60; account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok&#39;s side (harmless, no billing impact).  Alternative: pass &#x60;brandIdentity&#x60; directly on &#x60;POST /v1/ads/create&#x60; to configure on first ad creation in a single round-trip. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="configureTikTokAdsBrandIdentityRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ConfigureTikTokAdsBrandIdentity200Response</returns>
+        public async System.Threading.Tasks.Task<ConfigureTikTokAdsBrandIdentity200Response> ConfigureTikTokAdsBrandIdentityAsync(ConfigureTikTokAdsBrandIdentityRequest configureTikTokAdsBrandIdentityRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ConfigureTikTokAdsBrandIdentity200Response> localVarResponse = await ConfigureTikTokAdsBrandIdentityWithHttpInfoAsync(configureTikTokAdsBrandIdentityRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Configure TikTok Ads Brand Identity Set or update the Brand Identity (display name + avatar) for a &#x60;tiktokads&#x60; SocialAccount. TikTok requires every ad to carry an &#x60;identity_id + identity_type&#x60; pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via &#x60;/v2/identity/create/&#x60;, and caches the resulting &#x60;identity_id&#x60; on the account so subsequent &#x60;POST /v1/ads/create&#x60; calls can opt into it via &#x60;identityType: &#39;CUSTOMIZED_USER&#39;&#x60;.  Configurable on every &#x60;tiktokads&#x60; account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok&#39;s side (harmless, no billing impact).  Alternative: pass &#x60;brandIdentity&#x60; directly on &#x60;POST /v1/ads/create&#x60; to configure on first ad creation in a single round-trip. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="configureTikTokAdsBrandIdentityRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ConfigureTikTokAdsBrandIdentity200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ConfigureTikTokAdsBrandIdentity200Response>> ConfigureTikTokAdsBrandIdentityWithHttpInfoAsync(ConfigureTikTokAdsBrandIdentityRequest configureTikTokAdsBrandIdentityRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'configureTikTokAdsBrandIdentityRequest' is set
+            if (configureTikTokAdsBrandIdentityRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'configureTikTokAdsBrandIdentityRequest' when calling ConnectApi->ConfigureTikTokAdsBrandIdentity");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = configureTikTokAdsBrandIdentityRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<ConfigureTikTokAdsBrandIdentity200Response>("/v1/connect/tiktok-ads", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConfigureTikTokAdsBrandIdentity", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.</param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and standalone platforms. (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <returns>ConnectAds200Response</returns>
@@ -1898,12 +2071,12 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. Requires an existing posting account (accountId param). If the ads account already exists, returns alreadyConnected: true.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.</param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and standalone platforms. (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <returns>ApiResponse of ConnectAds200Response</returns>
@@ -1968,12 +2141,12 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. Requires an existing posting account (accountId param). If the ads account already exists, returns alreadyConnected: true.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.</param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and standalone platforms. (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1985,12 +2158,12 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. Requires an existing posting account (accountId param). If the ads account already exists, returns alreadyConnected: true.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+        /// Connect ads for a platform Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  Same-token platforms (facebook, instagram, linkedin, pinterest): Creates an ads SocialAccount (metaads, linkedinads, pinterestads) with a copied OAuth token from the parent posting account. If the ads account already exists, returns alreadyConnected: true. No extra OAuth needed.  Separate-token platforms (tiktok, twitter): Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set) — Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode — tweets need to be authored by a real X user.  Standalone platforms (googleads): Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="platform">Platform to connect ads for. Only platforms with ads support are accepted.</param>
         /// <param name="profileId">Your Zernio profile ID</param>
-        /// <param name="accountId">Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and standalone platforms. (optional)</param>
+        /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
