@@ -48,7 +48,9 @@ namespace Zernio.Model
         /// <param name="displayName">displayName.</param>
         /// <param name="platformUserId">The platform-side account/ad-account ID (e.g. Meta ad account ID)..</param>
         /// <param name="profilePicture">URL of the account&#39;s profile picture, when available..</param>
-        public WebhookPayloadAccountAdsInitialSyncCompletedAccount(string accountId = default, string profileId = default, string platform = default, string username = default, string displayName = default, string platformUserId = default, string profilePicture = default)
+        /// <param name="platformAdAccountId">When the consumer scoped the connect call to a single ad account, this echoes that ID back so the webhook can be correlated to the originating connect request without consulting the consumer&#39;s DB. Meta uses the &#x60;act_*&#x60; shape. .</param>
+        /// <param name="platformAdAccountIds">Every ad-account ID that the connected token could see at discovery time. Useful for \&quot;we synced ads from these accounts\&quot; UX without a follow-up API call. Empty array when the token had no ad-account visibility. .</param>
+        public WebhookPayloadAccountAdsInitialSyncCompletedAccount(string accountId = default, string profileId = default, string platform = default, string username = default, string displayName = default, string platformUserId = default, string profilePicture = default, string platformAdAccountId = default, List<string> platformAdAccountIds = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -77,6 +79,8 @@ namespace Zernio.Model
             this.DisplayName = displayName;
             this.PlatformUserId = platformUserId;
             this.ProfilePicture = profilePicture;
+            this.PlatformAdAccountId = platformAdAccountId;
+            this.PlatformAdAccountIds = platformAdAccountIds;
         }
 
         /// <summary>
@@ -126,6 +130,26 @@ namespace Zernio.Model
         public string ProfilePicture { get; set; }
 
         /// <summary>
+        /// When the consumer scoped the connect call to a single ad account, this echoes that ID back so the webhook can be correlated to the originating connect request without consulting the consumer&#39;s DB. Meta uses the &#x60;act_*&#x60; shape. 
+        /// </summary>
+        /// <value>When the consumer scoped the connect call to a single ad account, this echoes that ID back so the webhook can be correlated to the originating connect request without consulting the consumer&#39;s DB. Meta uses the &#x60;act_*&#x60; shape. </value>
+        /*
+        <example>act_1330190928038136</example>
+        */
+        [DataMember(Name = "platformAdAccountId", EmitDefaultValue = false)]
+        public string PlatformAdAccountId { get; set; }
+
+        /// <summary>
+        /// Every ad-account ID that the connected token could see at discovery time. Useful for \&quot;we synced ads from these accounts\&quot; UX without a follow-up API call. Empty array when the token had no ad-account visibility. 
+        /// </summary>
+        /// <value>Every ad-account ID that the connected token could see at discovery time. Useful for \&quot;we synced ads from these accounts\&quot; UX without a follow-up API call. Empty array when the token had no ad-account visibility. </value>
+        /*
+        <example>[act_1330190928038136, act_98765432101234]</example>
+        */
+        [DataMember(Name = "platformAdAccountIds", EmitDefaultValue = false)]
+        public List<string> PlatformAdAccountIds { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -140,6 +164,8 @@ namespace Zernio.Model
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  PlatformUserId: ").Append(PlatformUserId).Append("\n");
             sb.Append("  ProfilePicture: ").Append(ProfilePicture).Append("\n");
+            sb.Append("  PlatformAdAccountId: ").Append(PlatformAdAccountId).Append("\n");
+            sb.Append("  PlatformAdAccountIds: ").Append(PlatformAdAccountIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

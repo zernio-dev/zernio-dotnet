@@ -82,8 +82,10 @@ namespace Zernio.Api
         /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
+        /// <param name="adAccountId">(metaads only) Scope ad sync to a single Meta ad account. Without this param, sync covers every &#x60;act_*&#x60; the connected token can see. Pass this to limit &#x60;sync.totalAds&#x60; / &#x60;synced&#x60; and the resulting ads to one ad account. Format: &#x60;act_&lt;digits&gt;&#x60; (matches what &#x60;/me/adaccounts&#x60; returns). Validated against the connected token; unreachable IDs return 400. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
+        /// <param name="adAccountIds">(metaads only) Scope ad sync to multiple Meta ad accounts. Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Validated against the connected token. Persisted server-side; latest call wins. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  (optional)</param>
         /// <returns>ConnectAds200Response</returns>
-        ConnectAds200Response ConnectAds(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default);
+        ConnectAds200Response ConnectAds(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, string? adAccountId = default, List<string>? adAccountIds = default);
 
         /// <summary>
         /// Connect ads for a platform
@@ -97,8 +99,10 @@ namespace Zernio.Api
         /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
+        /// <param name="adAccountId">(metaads only) Scope ad sync to a single Meta ad account. Without this param, sync covers every &#x60;act_*&#x60; the connected token can see. Pass this to limit &#x60;sync.totalAds&#x60; / &#x60;synced&#x60; and the resulting ads to one ad account. Format: &#x60;act_&lt;digits&gt;&#x60; (matches what &#x60;/me/adaccounts&#x60; returns). Validated against the connected token; unreachable IDs return 400. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
+        /// <param name="adAccountIds">(metaads only) Scope ad sync to multiple Meta ad accounts. Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Validated against the connected token. Persisted server-side; latest call wins. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  (optional)</param>
         /// <returns>ApiResponse of ConnectAds200Response</returns>
-        ApiResponse<ConnectAds200Response> ConnectAdsWithHttpInfo(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default);
+        ApiResponse<ConnectAds200Response> ConnectAdsWithHttpInfo(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, string? adAccountId = default, List<string>? adAccountIds = default);
         /// <summary>
         /// Connect Bluesky account
         /// </summary>
@@ -836,9 +840,11 @@ namespace Zernio.Api
         /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
+        /// <param name="adAccountId">(metaads only) Scope ad sync to a single Meta ad account. Without this param, sync covers every &#x60;act_*&#x60; the connected token can see. Pass this to limit &#x60;sync.totalAds&#x60; / &#x60;synced&#x60; and the resulting ads to one ad account. Format: &#x60;act_&lt;digits&gt;&#x60; (matches what &#x60;/me/adaccounts&#x60; returns). Validated against the connected token; unreachable IDs return 400. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
+        /// <param name="adAccountIds">(metaads only) Scope ad sync to multiple Meta ad accounts. Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Validated against the connected token. Persisted server-side; latest call wins. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ConnectAds200Response</returns>
-        System.Threading.Tasks.Task<ConnectAds200Response> ConnectAdsAsync(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ConnectAds200Response> ConnectAdsAsync(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, string? adAccountId = default, List<string>? adAccountIds = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Connect ads for a platform
@@ -852,9 +858,11 @@ namespace Zernio.Api
         /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
+        /// <param name="adAccountId">(metaads only) Scope ad sync to a single Meta ad account. Without this param, sync covers every &#x60;act_*&#x60; the connected token can see. Pass this to limit &#x60;sync.totalAds&#x60; / &#x60;synced&#x60; and the resulting ads to one ad account. Format: &#x60;act_&lt;digits&gt;&#x60; (matches what &#x60;/me/adaccounts&#x60; returns). Validated against the connected token; unreachable IDs return 400. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
+        /// <param name="adAccountIds">(metaads only) Scope ad sync to multiple Meta ad accounts. Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Validated against the connected token. Persisted server-side; latest call wins. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConnectAds200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ConnectAds200Response>> ConnectAdsWithHttpInfoAsync(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ConnectAds200Response>> ConnectAdsWithHttpInfoAsync(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, string? adAccountId = default, List<string>? adAccountIds = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Connect Bluesky account
         /// </summary>
@@ -2063,10 +2071,12 @@ namespace Zernio.Api
         /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
+        /// <param name="adAccountId">(metaads only) Scope ad sync to a single Meta ad account. Without this param, sync covers every &#x60;act_*&#x60; the connected token can see. Pass this to limit &#x60;sync.totalAds&#x60; / &#x60;synced&#x60; and the resulting ads to one ad account. Format: &#x60;act_&lt;digits&gt;&#x60; (matches what &#x60;/me/adaccounts&#x60; returns). Validated against the connected token; unreachable IDs return 400. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
+        /// <param name="adAccountIds">(metaads only) Scope ad sync to multiple Meta ad accounts. Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Validated against the connected token. Persisted server-side; latest call wins. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  (optional)</param>
         /// <returns>ConnectAds200Response</returns>
-        public ConnectAds200Response ConnectAds(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default)
+        public ConnectAds200Response ConnectAds(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, string? adAccountId = default, List<string>? adAccountIds = default)
         {
-            Zernio.Client.ApiResponse<ConnectAds200Response> localVarResponse = ConnectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless);
+            Zernio.Client.ApiResponse<ConnectAds200Response> localVarResponse = ConnectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless, adAccountId, adAccountIds);
             return localVarResponse.Data;
         }
 
@@ -2079,8 +2089,10 @@ namespace Zernio.Api
         /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
+        /// <param name="adAccountId">(metaads only) Scope ad sync to a single Meta ad account. Without this param, sync covers every &#x60;act_*&#x60; the connected token can see. Pass this to limit &#x60;sync.totalAds&#x60; / &#x60;synced&#x60; and the resulting ads to one ad account. Format: &#x60;act_&lt;digits&gt;&#x60; (matches what &#x60;/me/adaccounts&#x60; returns). Validated against the connected token; unreachable IDs return 400. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
+        /// <param name="adAccountIds">(metaads only) Scope ad sync to multiple Meta ad accounts. Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Validated against the connected token. Persisted server-side; latest call wins. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  (optional)</param>
         /// <returns>ApiResponse of ConnectAds200Response</returns>
-        public Zernio.Client.ApiResponse<ConnectAds200Response> ConnectAdsWithHttpInfo(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default)
+        public Zernio.Client.ApiResponse<ConnectAds200Response> ConnectAdsWithHttpInfo(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, string? adAccountId = default, List<string>? adAccountIds = default)
         {
             // verify the required parameter 'platform' is set
             if (platform == null)
@@ -2119,6 +2131,14 @@ namespace Zernio.Api
             if (headless != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "headless", headless));
+            }
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (adAccountIds != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("multi", "adAccountIds", adAccountIds));
             }
 
             // authentication (bearerAuth) required
@@ -2149,11 +2169,13 @@ namespace Zernio.Api
         /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
+        /// <param name="adAccountId">(metaads only) Scope ad sync to a single Meta ad account. Without this param, sync covers every &#x60;act_*&#x60; the connected token can see. Pass this to limit &#x60;sync.totalAds&#x60; / &#x60;synced&#x60; and the resulting ads to one ad account. Format: &#x60;act_&lt;digits&gt;&#x60; (matches what &#x60;/me/adaccounts&#x60; returns). Validated against the connected token; unreachable IDs return 400. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
+        /// <param name="adAccountIds">(metaads only) Scope ad sync to multiple Meta ad accounts. Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Validated against the connected token. Persisted server-side; latest call wins. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ConnectAds200Response</returns>
-        public async System.Threading.Tasks.Task<ConnectAds200Response> ConnectAdsAsync(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ConnectAds200Response> ConnectAdsAsync(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, string? adAccountId = default, List<string>? adAccountIds = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ConnectAds200Response> localVarResponse = await ConnectAdsWithHttpInfoAsync(platform, profileId, accountId, redirectUrl, headless, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ConnectAds200Response> localVarResponse = await ConnectAdsWithHttpInfoAsync(platform, profileId, accountId, redirectUrl, headless, adAccountId, adAccountIds, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2166,9 +2188,11 @@ namespace Zernio.Api
         /// <param name="accountId">Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  (optional)</param>
         /// <param name="redirectUrl">Custom redirect URL after OAuth completes (same-token platforms only) (optional)</param>
         /// <param name="headless">Enable headless mode (same-token platforms only) (optional, default to false)</param>
+        /// <param name="adAccountId">(metaads only) Scope ad sync to a single Meta ad account. Without this param, sync covers every &#x60;act_*&#x60; the connected token can see. Pass this to limit &#x60;sync.totalAds&#x60; / &#x60;synced&#x60; and the resulting ads to one ad account. Format: &#x60;act_&lt;digits&gt;&#x60; (matches what &#x60;/me/adaccounts&#x60; returns). Validated against the connected token; unreachable IDs return 400. For multiple accounts use &#x60;adAccountIds&#x60; instead.  (optional)</param>
+        /// <param name="adAccountIds">(metaads only) Scope ad sync to multiple Meta ad accounts. Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Validated against the connected token. Persisted server-side; latest call wins. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConnectAds200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ConnectAds200Response>> ConnectAdsWithHttpInfoAsync(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ConnectAds200Response>> ConnectAdsWithHttpInfoAsync(string platform, string profileId, string? accountId = default, string? redirectUrl = default, bool? headless = default, string? adAccountId = default, List<string>? adAccountIds = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'platform' is set
             if (platform == null)
@@ -2209,6 +2233,14 @@ namespace Zernio.Api
             if (headless != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "headless", headless));
+            }
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (adAccountIds != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("multi", "adAccountIds", adAccountIds));
             }
 
             // authentication (bearerAuth) required

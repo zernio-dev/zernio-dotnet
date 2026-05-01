@@ -99,6 +99,7 @@ docs/ConversionEventItemsInner.md
 docs/ConversionEventUser.md
 docs/ConversionEventUserClickIds.md
 docs/CreateAccountGroup201Response.md
+docs/CreateAccountGroup201ResponseGroup.md
 docs/CreateAccountGroupRequest.md
 docs/CreateAdAudience201Response.md
 docs/CreateAdAudienceRequest.md
@@ -1002,6 +1003,7 @@ src/Zernio.Test/Model/ConversionEventItemsInnerTests.cs
 src/Zernio.Test/Model/ConversionEventTests.cs
 src/Zernio.Test/Model/ConversionEventUserClickIdsTests.cs
 src/Zernio.Test/Model/ConversionEventUserTests.cs
+src/Zernio.Test/Model/CreateAccountGroup201ResponseGroupTests.cs
 src/Zernio.Test/Model/CreateAccountGroup201ResponseTests.cs
 src/Zernio.Test/Model/CreateAccountGroupRequestTests.cs
 src/Zernio.Test/Model/CreateAdAudience201ResponseTests.cs
@@ -1896,6 +1898,7 @@ src/Zernio/Model/ConversionEventItemsInner.cs
 src/Zernio/Model/ConversionEventUser.cs
 src/Zernio/Model/ConversionEventUserClickIds.cs
 src/Zernio/Model/CreateAccountGroup201Response.cs
+src/Zernio/Model/CreateAccountGroup201ResponseGroup.cs
 src/Zernio/Model/CreateAccountGroupRequest.cs
 src/Zernio/Model/CreateAdAudience201Response.cs
 src/Zernio/Model/CreateAdAudienceRequest.cs

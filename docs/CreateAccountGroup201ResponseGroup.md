@@ -1,12 +1,12 @@
-# Zernio.Model.CreateAccountGroupRequest
+# Zernio.Model.CreateAccountGroup201ResponseGroup
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**AccountIds** | **List&lt;string&gt;** |  | 
-**ProfileId** | **string** | Deprecated. Accepted for backward compatibility but ignored. Groups are no longer scoped to a single profile.  | [optional] 
+**Id** | **string** |  | [optional] 
+**Name** | **string** |  | [optional] 
+**AccountIds** | **List&lt;string&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

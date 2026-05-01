@@ -43,7 +43,8 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="name">name (required).</param>
         /// <param name="accountIds">accountIds (required).</param>
-        public CreateAccountGroupRequest(string name = default, List<string> accountIds = default)
+        /// <param name="profileId">Deprecated. Accepted for backward compatibility but ignored. Groups are no longer scoped to a single profile. .</param>
+        public CreateAccountGroupRequest(string name = default, List<string> accountIds = default, string profileId = default)
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -57,6 +58,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("accountIds is a required property for CreateAccountGroupRequest and cannot be null");
             }
             this.AccountIds = accountIds;
+            this.ProfileId = profileId;
         }
 
         /// <summary>
@@ -72,6 +74,14 @@ namespace Zernio.Model
         public List<string> AccountIds { get; set; }
 
         /// <summary>
+        /// Deprecated. Accepted for backward compatibility but ignored. Groups are no longer scoped to a single profile. 
+        /// </summary>
+        /// <value>Deprecated. Accepted for backward compatibility but ignored. Groups are no longer scoped to a single profile. </value>
+        [DataMember(Name = "profileId", EmitDefaultValue = false)]
+        [Obsolete]
+        public string ProfileId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -81,6 +91,7 @@ namespace Zernio.Model
             sb.Append("class CreateAccountGroupRequest {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  AccountIds: ").Append(AccountIds).Append("\n");
+            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

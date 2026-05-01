@@ -117,5 +117,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ProfilePicture'
         }
+
+        /// <summary>
+        /// Test the property 'PlatformAdAccountId'
+        /// </summary>
+        [Fact]
+        public void PlatformAdAccountIdTest()
+        {
+            // TODO unit test for the property 'PlatformAdAccountId'
+        }
+
+        /// <summary>
+        /// Test the property 'PlatformAdAccountIds'
+        /// </summary>
+        [Fact]
+        public void PlatformAdAccountIdsTest()
+        {
+            // TODO unit test for the property 'PlatformAdAccountIds'
+        }
     }
 }

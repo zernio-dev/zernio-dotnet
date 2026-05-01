@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Creates a new account group with a name and a list of social account IDs.
+        /// Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -43,7 +43,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Creates a new account group with a name and a list of social account IDs.
+        /// Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -74,7 +74,7 @@ namespace Zernio.Api
         /// List groups
         /// </summary>
         /// <remarks>
-        /// Returns all account groups for the authenticated user, including group names and associated account IDs.
+        /// Returns all account groups visible to the authenticated user. Groups can contain accounts from multiple profiles. For API keys scoped to specific profiles, only groups whose accounts all live in allowed profiles are returned. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ListAccountGroups200Response</returns>
@@ -84,7 +84,7 @@ namespace Zernio.Api
         /// List groups
         /// </summary>
         /// <remarks>
-        /// Returns all account groups for the authenticated user, including group names and associated account IDs.
+        /// Returns all account groups visible to the authenticated user. Groups can contain accounts from multiple profiles. For API keys scoped to specific profiles, only groups whose accounts all live in allowed profiles are returned. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ListAccountGroups200Response</returns>
@@ -125,7 +125,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Creates a new account group with a name and a list of social account IDs.
+        /// Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -137,7 +137,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Creates a new account group with a name and a list of social account IDs.
+        /// Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -171,7 +171,7 @@ namespace Zernio.Api
         /// List groups
         /// </summary>
         /// <remarks>
-        /// Returns all account groups for the authenticated user, including group names and associated account IDs.
+        /// Returns all account groups visible to the authenticated user. Groups can contain accounts from multiple profiles. For API keys scoped to specific profiles, only groups whose accounts all live in allowed profiles are returned. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -182,7 +182,7 @@ namespace Zernio.Api
         /// List groups
         /// </summary>
         /// <remarks>
-        /// Returns all account groups for the authenticated user, including group names and associated account IDs.
+        /// Returns all account groups visible to the authenticated user. Groups can contain accounts from multiple profiles. For API keys scoped to specific profiles, only groups whose accounts all live in allowed profiles are returned. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -427,7 +427,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Creates a new account group with a name and a list of social account IDs.
+        /// Create group Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -439,7 +439,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Creates a new account group with a name and a list of social account IDs.
+        /// Create group Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -489,7 +489,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Creates a new account group with a name and a list of social account IDs.
+        /// Create group Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -502,7 +502,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Creates a new account group with a name and a list of social account IDs.
+        /// Create group Creates a new account group with a name and a list of social account IDs. Accounts can belong to different profiles; the caller must have access to every account&#39;s profile. Group names must be unique per user. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAccountGroupRequest"></param>
@@ -683,7 +683,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List groups Returns all account groups for the authenticated user, including group names and associated account IDs.
+        /// List groups Returns all account groups visible to the authenticated user. Groups can contain accounts from multiple profiles. For API keys scoped to specific profiles, only groups whose accounts all live in allowed profiles are returned. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ListAccountGroups200Response</returns>
@@ -694,7 +694,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List groups Returns all account groups for the authenticated user, including group names and associated account IDs.
+        /// List groups Returns all account groups visible to the authenticated user. Groups can contain accounts from multiple profiles. For API keys scoped to specific profiles, only groups whose accounts all live in allowed profiles are returned. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of ListAccountGroups200Response</returns>
@@ -737,7 +737,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List groups Returns all account groups for the authenticated user, including group names and associated account IDs.
+        /// List groups Returns all account groups visible to the authenticated user. Groups can contain accounts from multiple profiles. For API keys scoped to specific profiles, only groups whose accounts all live in allowed profiles are returned. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -749,7 +749,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List groups Returns all account groups for the authenticated user, including group names and associated account IDs.
+        /// List groups Returns all account groups visible to the authenticated user. Groups can contain accounts from multiple profiles. For API keys scoped to specific profiles, only groups whose accounts all live in allowed profiles are returned. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

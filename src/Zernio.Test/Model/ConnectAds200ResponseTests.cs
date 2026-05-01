@@ -101,6 +101,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ScopedAdAccountIds'
+        /// </summary>
+        [Fact]
+        public void ScopedAdAccountIdsTest()
+        {
+            // TODO unit test for the property 'ScopedAdAccountIds'
+        }
+
+        /// <summary>
         /// Test the property 'AuthUrl'
         /// </summary>
         [Fact]

@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="message">message.</param>
         /// <param name="group">group.</param>
-        public CreateAccountGroup201Response(string message = default, ListAccountGroups200ResponseGroupsInner group = default)
+        public CreateAccountGroup201Response(string message = default, CreateAccountGroup201ResponseGroup group = default)
         {
             this.Message = message;
             this.Group = group;
@@ -54,7 +54,7 @@ namespace Zernio.Model
         /// Gets or Sets Group
         /// </summary>
         [DataMember(Name = "group", EmitDefaultValue = false)]
-        public ListAccountGroups200ResponseGroupsInner Group { get; set; }
+        public CreateAccountGroup201ResponseGroup Group { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

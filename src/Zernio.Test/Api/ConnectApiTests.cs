@@ -90,7 +90,9 @@ namespace Zernio.Test.Api
             //string? accountId = null;
             //string? redirectUrl = null;
             //bool? headless = null;
-            //var response = instance.ConnectAds(platform, profileId, accountId, redirectUrl, headless);
+            //string? adAccountId = null;
+            //List<string>? adAccountIds = null;
+            //var response = instance.ConnectAds(platform, profileId, accountId, redirectUrl, headless, adAccountId, adAccountIds);
             //Assert.IsType<ConnectAds200Response>(response);
         }
 

@@ -61,6 +61,57 @@ namespace Zernio.Model
         [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
         public StatusEnum Status { get; set; }
         /// <summary>
+        /// Stable category for UX branching. New values may be added; existing ones are stable. Mapping:   - &#x60;token_invalid&#x60;: access token is expired or revoked. Reconnect.   - &#x60;permission_denied&#x60;: token lacks required scope, or the user has no role     on the Business Manager that owns the ad account. Reconnect with full     permissions, or have an admin grant access.   - &#x60;no_ad_accounts&#x60;: token is valid but sees zero ad accounts. The user     needs to connect a Business Manager that owns ad accounts.   - &#x60;rate_limited&#x60;: platform throttled us. Sync will retry automatically.   - &#x60;discovery_failed&#x60;: any other platform-side failure. Inspect &#x60;error&#x60;.   - &#x60;unknown&#x60;: classifier could not categorize the failure. 
+        /// </summary>
+        /// <value>Stable category for UX branching. New values may be added; existing ones are stable. Mapping:   - &#x60;token_invalid&#x60;: access token is expired or revoked. Reconnect.   - &#x60;permission_denied&#x60;: token lacks required scope, or the user has no role     on the Business Manager that owns the ad account. Reconnect with full     permissions, or have an admin grant access.   - &#x60;no_ad_accounts&#x60;: token is valid but sees zero ad accounts. The user     needs to connect a Business Manager that owns ad accounts.   - &#x60;rate_limited&#x60;: platform throttled us. Sync will retry automatically.   - &#x60;discovery_failed&#x60;: any other platform-side failure. Inspect &#x60;error&#x60;.   - &#x60;unknown&#x60;: classifier could not categorize the failure. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ErrorCategoryEnum
+        {
+            /// <summary>
+            /// Enum TokenInvalid for value: token_invalid
+            /// </summary>
+            [EnumMember(Value = "token_invalid")]
+            TokenInvalid = 1,
+
+            /// <summary>
+            /// Enum PermissionDenied for value: permission_denied
+            /// </summary>
+            [EnumMember(Value = "permission_denied")]
+            PermissionDenied = 2,
+
+            /// <summary>
+            /// Enum NoAdAccounts for value: no_ad_accounts
+            /// </summary>
+            [EnumMember(Value = "no_ad_accounts")]
+            NoAdAccounts = 3,
+
+            /// <summary>
+            /// Enum RateLimited for value: rate_limited
+            /// </summary>
+            [EnumMember(Value = "rate_limited")]
+            RateLimited = 4,
+
+            /// <summary>
+            /// Enum DiscoveryFailed for value: discovery_failed
+            /// </summary>
+            [EnumMember(Value = "discovery_failed")]
+            DiscoveryFailed = 5,
+
+            /// <summary>
+            /// Enum Unknown for value: unknown
+            /// </summary>
+            [EnumMember(Value = "unknown")]
+            Unknown = 6
+        }
+
+
+        /// <summary>
+        /// Stable category for UX branching. New values may be added; existing ones are stable. Mapping:   - &#x60;token_invalid&#x60;: access token is expired or revoked. Reconnect.   - &#x60;permission_denied&#x60;: token lacks required scope, or the user has no role     on the Business Manager that owns the ad account. Reconnect with full     permissions, or have an admin grant access.   - &#x60;no_ad_accounts&#x60;: token is valid but sees zero ad accounts. The user     needs to connect a Business Manager that owns ad accounts.   - &#x60;rate_limited&#x60;: platform throttled us. Sync will retry automatically.   - &#x60;discovery_failed&#x60;: any other platform-side failure. Inspect &#x60;error&#x60;.   - &#x60;unknown&#x60;: classifier could not categorize the failure. 
+        /// </summary>
+        /// <value>Stable category for UX branching. New values may be added; existing ones are stable. Mapping:   - &#x60;token_invalid&#x60;: access token is expired or revoked. Reconnect.   - &#x60;permission_denied&#x60;: token lacks required scope, or the user has no role     on the Business Manager that owns the ad account. Reconnect with full     permissions, or have an admin grant access.   - &#x60;no_ad_accounts&#x60;: token is valid but sees zero ad accounts. The user     needs to connect a Business Manager that owns ad accounts.   - &#x60;rate_limited&#x60;: platform throttled us. Sync will retry automatically.   - &#x60;discovery_failed&#x60;: any other platform-side failure. Inspect &#x60;error&#x60;.   - &#x60;unknown&#x60;: classifier could not categorize the failure. </value>
+        [DataMember(Name = "errorCategory", EmitDefaultValue = false)]
+        public ErrorCategoryEnum? ErrorCategory { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadAccountAdsInitialSyncCompletedSync" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -72,12 +123,20 @@ namespace Zernio.Model
         /// <param name="totalAds">Total number of ads discovered for backfill. (required).</param>
         /// <param name="synced">Number of ads successfully synced. (required).</param>
         /// <param name="failed">Number of ads that failed to sync. (required).</param>
-        public WebhookPayloadAccountAdsInitialSyncCompletedSync(StatusEnum status = default, int totalAds = default, int synced = default, int failed = default)
+        /// <param name="error">Free-form error message from the platform (typically Meta&#39;s Marketing API). Truncated to ~2KB. Present when &#x60;status&#x60; is &#x60;failure&#x60; (and sometimes on &#x60;success&#x60; when discovery saw zero ad accounts). For UX branching prefer &#x60;errorCategory&#x60;; this field is for human display and debugging. .</param>
+        /// <param name="errorCode">Platform-native error code if parsed (e.g. Meta &#x60;190&#x60;, &#x60;10&#x60;, &#x60;200&#x60;)..</param>
+        /// <param name="errorSubcode">Platform-native error subcode if parsed..</param>
+        /// <param name="errorCategory">Stable category for UX branching. New values may be added; existing ones are stable. Mapping:   - &#x60;token_invalid&#x60;: access token is expired or revoked. Reconnect.   - &#x60;permission_denied&#x60;: token lacks required scope, or the user has no role     on the Business Manager that owns the ad account. Reconnect with full     permissions, or have an admin grant access.   - &#x60;no_ad_accounts&#x60;: token is valid but sees zero ad accounts. The user     needs to connect a Business Manager that owns ad accounts.   - &#x60;rate_limited&#x60;: platform throttled us. Sync will retry automatically.   - &#x60;discovery_failed&#x60;: any other platform-side failure. Inspect &#x60;error&#x60;.   - &#x60;unknown&#x60;: classifier could not categorize the failure. .</param>
+        public WebhookPayloadAccountAdsInitialSyncCompletedSync(StatusEnum status = default, int totalAds = default, int synced = default, int failed = default, string error = default, string errorCode = default, string errorSubcode = default, ErrorCategoryEnum? errorCategory = default)
         {
             this.Status = status;
             this.TotalAds = totalAds;
             this.Synced = synced;
             this.Failed = failed;
+            this.Error = error;
+            this.ErrorCode = errorCode;
+            this.ErrorSubcode = errorSubcode;
+            this.ErrorCategory = errorCategory;
         }
 
         /// <summary>
@@ -102,6 +161,27 @@ namespace Zernio.Model
         public int Failed { get; set; }
 
         /// <summary>
+        /// Free-form error message from the platform (typically Meta&#39;s Marketing API). Truncated to ~2KB. Present when &#x60;status&#x60; is &#x60;failure&#x60; (and sometimes on &#x60;success&#x60; when discovery saw zero ad accounts). For UX branching prefer &#x60;errorCategory&#x60;; this field is for human display and debugging. 
+        /// </summary>
+        /// <value>Free-form error message from the platform (typically Meta&#39;s Marketing API). Truncated to ~2KB. Present when &#x60;status&#x60; is &#x60;failure&#x60; (and sometimes on &#x60;success&#x60; when discovery saw zero ad accounts). For UX branching prefer &#x60;errorCategory&#x60;; this field is for human display and debugging. </value>
+        [DataMember(Name = "error", EmitDefaultValue = false)]
+        public string Error { get; set; }
+
+        /// <summary>
+        /// Platform-native error code if parsed (e.g. Meta &#x60;190&#x60;, &#x60;10&#x60;, &#x60;200&#x60;).
+        /// </summary>
+        /// <value>Platform-native error code if parsed (e.g. Meta &#x60;190&#x60;, &#x60;10&#x60;, &#x60;200&#x60;).</value>
+        [DataMember(Name = "errorCode", EmitDefaultValue = false)]
+        public string ErrorCode { get; set; }
+
+        /// <summary>
+        /// Platform-native error subcode if parsed.
+        /// </summary>
+        /// <value>Platform-native error subcode if parsed.</value>
+        [DataMember(Name = "errorSubcode", EmitDefaultValue = false)]
+        public string ErrorSubcode { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -113,6 +193,10 @@ namespace Zernio.Model
             sb.Append("  TotalAds: ").Append(TotalAds).Append("\n");
             sb.Append("  Synced: ").Append(Synced).Append("\n");
             sb.Append("  Failed: ").Append(Failed).Append("\n");
+            sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
+            sb.Append("  ErrorSubcode: ").Append(ErrorSubcode).Append("\n");
+            sb.Append("  ErrorCategory: ").Append(ErrorCategory).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

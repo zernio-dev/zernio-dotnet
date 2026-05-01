@@ -41,13 +41,15 @@ namespace Zernio.Model
         /// <param name="platform">platform.</param>
         /// <param name="username">username.</param>
         /// <param name="displayName">displayName.</param>
-        public ConnectAds200ResponseOneOf(bool alreadyConnected = default, string accountId = default, string platform = default, string username = default, string displayName = default)
+        /// <param name="scopedAdAccountIds">Echo of the persisted ad-account scope when the caller passed &#x60;adAccountId&#x60; / &#x60;adAccountIds&#x60;. Omitted when no scope is set. .</param>
+        public ConnectAds200ResponseOneOf(bool alreadyConnected = default, string accountId = default, string platform = default, string username = default, string displayName = default, List<string> scopedAdAccountIds = default)
         {
             this.AlreadyConnected = alreadyConnected;
             this.AccountId = accountId;
             this.Platform = platform;
             this.Username = username;
             this.DisplayName = displayName;
+            this.ScopedAdAccountIds = scopedAdAccountIds;
         }
 
         /// <summary>
@@ -84,6 +86,16 @@ namespace Zernio.Model
         public string DisplayName { get; set; }
 
         /// <summary>
+        /// Echo of the persisted ad-account scope when the caller passed &#x60;adAccountId&#x60; / &#x60;adAccountIds&#x60;. Omitted when no scope is set. 
+        /// </summary>
+        /// <value>Echo of the persisted ad-account scope when the caller passed &#x60;adAccountId&#x60; / &#x60;adAccountIds&#x60;. Omitted when no scope is set. </value>
+        /*
+        <example>[&quot;act_1330190928038136&quot;]</example>
+        */
+        [DataMember(Name = "scopedAdAccountIds", EmitDefaultValue = false)]
+        public List<string> ScopedAdAccountIds { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -96,6 +108,7 @@ namespace Zernio.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
+            sb.Append("  ScopedAdAccountIds: ").Append(ScopedAdAccountIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

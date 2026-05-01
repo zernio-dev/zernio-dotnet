@@ -90,5 +90,41 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Failed'
         }
+
+        /// <summary>
+        /// Test the property 'Error'
+        /// </summary>
+        [Fact]
+        public void ErrorTest()
+        {
+            // TODO unit test for the property 'Error'
+        }
+
+        /// <summary>
+        /// Test the property 'ErrorCode'
+        /// </summary>
+        [Fact]
+        public void ErrorCodeTest()
+        {
+            // TODO unit test for the property 'ErrorCode'
+        }
+
+        /// <summary>
+        /// Test the property 'ErrorSubcode'
+        /// </summary>
+        [Fact]
+        public void ErrorSubcodeTest()
+        {
+            // TODO unit test for the property 'ErrorSubcode'
+        }
+
+        /// <summary>
+        /// Test the property 'ErrorCategory'
+        /// </summary>
+        [Fact]
+        public void ErrorCategoryTest()
+        {
+            // TODO unit test for the property 'ErrorCategory'
+        }
     }
 }

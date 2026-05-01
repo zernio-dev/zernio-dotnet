@@ -28,26 +28,22 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListAccountGroups200ResponseGroupsInner
+    /// CreateAccountGroup201ResponseGroup
     /// </summary>
-    [DataContract(Name = "listAccountGroups_200_response_groups_inner")]
-    public partial class ListAccountGroups200ResponseGroupsInner : IValidatableObject
+    [DataContract(Name = "createAccountGroup_201_response_group")]
+    public partial class CreateAccountGroup201ResponseGroup : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListAccountGroups200ResponseGroupsInner" /> class.
+        /// Initializes a new instance of the <see cref="CreateAccountGroup201ResponseGroup" /> class.
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="name">name.</param>
         /// <param name="accountIds">accountIds.</param>
-        /// <param name="createdBy">createdBy.</param>
-        /// <param name="profileId">Legacy field. Present only on groups created before cross-profile groups were supported. New groups omit it. .</param>
-        public ListAccountGroups200ResponseGroupsInner(string id = default, string name = default, List<string> accountIds = default, string createdBy = default, string profileId = default)
+        public CreateAccountGroup201ResponseGroup(string id = default, string name = default, List<string> accountIds = default)
         {
             this.Id = id;
             this.Name = name;
             this.AccountIds = accountIds;
-            this.CreatedBy = createdBy;
-            this.ProfileId = profileId;
         }
 
         /// <summary>
@@ -69,31 +65,16 @@ namespace Zernio.Model
         public List<string> AccountIds { get; set; }
 
         /// <summary>
-        /// Gets or Sets CreatedBy
-        /// </summary>
-        [DataMember(Name = "createdBy", EmitDefaultValue = false)]
-        public string CreatedBy { get; set; }
-
-        /// <summary>
-        /// Legacy field. Present only on groups created before cross-profile groups were supported. New groups omit it. 
-        /// </summary>
-        /// <value>Legacy field. Present only on groups created before cross-profile groups were supported. New groups omit it. </value>
-        [DataMember(Name = "profileId", EmitDefaultValue = false)]
-        public string ProfileId { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListAccountGroups200ResponseGroupsInner {\n");
+            sb.Append("class CreateAccountGroup201ResponseGroup {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  AccountIds: ").Append(AccountIds).Append("\n");
-            sb.Append("  CreatedBy: ").Append(CreatedBy).Append("\n");
-            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

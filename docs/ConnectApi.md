@@ -243,7 +243,7 @@ catch (ApiException e)
 
 <a id="connectads"></a>
 # **ConnectAds**
-> ConnectAds200Response ConnectAds (string platform, string profileId, string? accountId = null, string? redirectUrl = null, bool? headless = null)
+> ConnectAds200Response ConnectAds (string platform, string profileId, string? accountId = null, string? redirectUrl = null, bool? headless = null, string? adAccountId = null, List<string>? adAccountIds = null)
 
 Connect ads for a platform
 
@@ -278,11 +278,13 @@ namespace Example
             var accountId = "accountId_example";  // string? | Existing SocialAccount ID. Required for `twitter` (X Ads). Optional for `tiktok` — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (`facebook`, `instagram`, `linkedin`, `pinterest`) and standalone (`googleads`) platforms.  (optional) 
             var redirectUrl = "redirectUrl_example";  // string? | Custom redirect URL after OAuth completes (same-token platforms only) (optional) 
             var headless = false;  // bool? | Enable headless mode (same-token platforms only) (optional)  (default to false)
+            var adAccountId = act_1330190928038136;  // string? | (metaads only) Scope ad sync to a single Meta ad account. Without this param, sync covers every `act_*` the connected token can see. Pass this to limit `sync.totalAds` / `synced` and the resulting ads to one ad account. Format: `act_<digits>` (matches what `/me/adaccounts` returns). Validated against the connected token; unreachable IDs return 400. For multiple accounts use `adAccountIds` instead.  (optional) 
+            var adAccountIds = new List<string>?(); // List<string>? | (metaads only) Scope ad sync to multiple Meta ad accounts. Repeat the param (`?adAccountIds=act_1&adAccountIds=act_2`) or comma-separate (`?adAccountIds=act_1,act_2`). Validated against the connected token. Persisted server-side; latest call wins. Omitting both `adAccountId` and `adAccountIds` keeps any previously persisted scope unchanged.  (optional) 
 
             try
             {
                 // Connect ads for a platform
-                ConnectAds200Response result = apiInstance.ConnectAds(platform, profileId, accountId, redirectUrl, headless);
+                ConnectAds200Response result = apiInstance.ConnectAds(platform, profileId, accountId, redirectUrl, headless, adAccountId, adAccountIds);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -303,7 +305,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Connect ads for a platform
-    ApiResponse<ConnectAds200Response> response = apiInstance.ConnectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless);
+    ApiResponse<ConnectAds200Response> response = apiInstance.ConnectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless, adAccountId, adAccountIds);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -325,6 +327,8 @@ catch (ApiException e)
 | **accountId** | **string?** | Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  | [optional]  |
 | **redirectUrl** | **string?** | Custom redirect URL after OAuth completes (same-token platforms only) | [optional]  |
 | **headless** | **bool?** | Enable headless mode (same-token platforms only) | [optional] [default to false] |
+| **adAccountId** | **string?** | (metaads only) Scope ad sync to a single Meta ad account. Without this param, sync covers every &#x60;act_*&#x60; the connected token can see. Pass this to limit &#x60;sync.totalAds&#x60; / &#x60;synced&#x60; and the resulting ads to one ad account. Format: &#x60;act_&lt;digits&gt;&#x60; (matches what &#x60;/me/adaccounts&#x60; returns). Validated against the connected token; unreachable IDs return 400. For multiple accounts use &#x60;adAccountIds&#x60; instead.  | [optional]  |
+| **adAccountIds** | [**List&lt;string&gt;?**](string.md) | (metaads only) Scope ad sync to multiple Meta ad accounts. Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Validated against the connected token. Persisted server-side; latest call wins. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  | [optional]  |
 
 ### Return type
 
