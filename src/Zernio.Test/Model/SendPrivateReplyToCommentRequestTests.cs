@@ -72,5 +72,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Message'
         }
+
+        /// <summary>
+        /// Test the property 'QuickReplies'
+        /// </summary>
+        [Fact]
+        public void QuickRepliesTest()
+        {
+            // TODO unit test for the property 'QuickReplies'
+        }
     }
 }

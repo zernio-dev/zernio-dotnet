@@ -43,7 +43,8 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="accountId">The social account ID (Instagram or Facebook) (required).</param>
         /// <param name="message">The message text to send as a private DM (required).</param>
-        public SendPrivateReplyToCommentRequest(string accountId = default, string message = default)
+        /// <param name="quickReplies">Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. .</param>
+        public SendPrivateReplyToCommentRequest(string accountId = default, string message = default, List<SendPrivateReplyToCommentRequestQuickRepliesInner> quickReplies = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -57,6 +58,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("message is a required property for SendPrivateReplyToCommentRequest and cannot be null");
             }
             this.Message = message;
+            this.QuickReplies = quickReplies;
         }
 
         /// <summary>
@@ -74,6 +76,13 @@ namespace Zernio.Model
         public string Message { get; set; }
 
         /// <summary>
+        /// Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. 
+        /// </summary>
+        /// <value>Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. </value>
+        [DataMember(Name = "quickReplies", EmitDefaultValue = false)]
+        public List<SendPrivateReplyToCommentRequestQuickRepliesInner> QuickReplies { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -83,6 +92,7 @@ namespace Zernio.Model
             sb.Append("class SendPrivateReplyToCommentRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  QuickReplies: ").Append(QuickReplies).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

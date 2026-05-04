@@ -1040,6 +1040,7 @@ Class | Method | HTTP request | Description
  - [Model.SendInboxMessageRequestTemplateElementsInnerButtonsInner](docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md)
  - [Model.SendPrivateReplyToComment200Response](docs/SendPrivateReplyToComment200Response.md)
  - [Model.SendPrivateReplyToCommentRequest](docs/SendPrivateReplyToCommentRequest.md)
+ - [Model.SendPrivateReplyToCommentRequestQuickRepliesInner](docs/SendPrivateReplyToCommentRequestQuickRepliesInner.md)
  - [Model.SendTypingIndicatorRequest](docs/SendTypingIndicatorRequest.md)
  - [Model.SendWhatsAppConversion200Response](docs/SendWhatsAppConversion200Response.md)
  - [Model.SendWhatsAppConversionRequest](docs/SendWhatsAppConversionRequest.md)

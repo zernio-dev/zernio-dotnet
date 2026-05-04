@@ -198,7 +198,7 @@ namespace Zernio.Api
         /// Send private reply
         /// </summary>
         /// <remarks>
-        /// Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days, text only.
+        /// Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally include up to 13 quick-reply chips (&#x60;quickReplies&#x60;) on the same first message — useful for comment-to-DM automations that want to capture intent in a single round-trip. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">The media/post ID (Instagram media ID or Facebook post ID)</param>
@@ -211,7 +211,7 @@ namespace Zernio.Api
         /// Send private reply
         /// </summary>
         /// <remarks>
-        /// Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days, text only.
+        /// Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally include up to 13 quick-reply chips (&#x60;quickReplies&#x60;) on the same first message — useful for comment-to-DM automations that want to capture intent in a single round-trip. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">The media/post ID (Instagram media ID or Facebook post ID)</param>
@@ -462,7 +462,7 @@ namespace Zernio.Api
         /// Send private reply
         /// </summary>
         /// <remarks>
-        /// Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days, text only.
+        /// Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally include up to 13 quick-reply chips (&#x60;quickReplies&#x60;) on the same first message — useful for comment-to-DM automations that want to capture intent in a single round-trip. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">The media/post ID (Instagram media ID or Facebook post ID)</param>
@@ -476,7 +476,7 @@ namespace Zernio.Api
         /// Send private reply
         /// </summary>
         /// <remarks>
-        /// Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days, text only.
+        /// Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally include up to 13 quick-reply chips (&#x60;quickReplies&#x60;) on the same first message — useful for comment-to-DM automations that want to capture intent in a single round-trip. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">The media/post ID (Instagram media ID or Facebook post ID)</param>
@@ -1777,7 +1777,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send private reply Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days, text only.
+        /// Send private reply Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally include up to 13 quick-reply chips (&#x60;quickReplies&#x60;) on the same first message — useful for comment-to-DM automations that want to capture intent in a single round-trip. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">The media/post ID (Instagram media ID or Facebook post ID)</param>
@@ -1791,7 +1791,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send private reply Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days, text only.
+        /// Send private reply Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally include up to 13 quick-reply chips (&#x60;quickReplies&#x60;) on the same first message — useful for comment-to-DM automations that want to capture intent in a single round-trip. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">The media/post ID (Instagram media ID or Facebook post ID)</param>
@@ -1853,7 +1853,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send private reply Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days, text only.
+        /// Send private reply Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally include up to 13 quick-reply chips (&#x60;quickReplies&#x60;) on the same first message — useful for comment-to-DM automations that want to capture intent in a single round-trip. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">The media/post ID (Instagram media ID or Facebook post ID)</param>
@@ -1868,7 +1868,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send private reply Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days, text only.
+        /// Send private reply Send a private message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally include up to 13 quick-reply chips (&#x60;quickReplies&#x60;) on the same first message — useful for comment-to-DM automations that want to capture intent in a single round-trip. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId">The media/post ID (Instagram media ID or Facebook post ID)</param>
