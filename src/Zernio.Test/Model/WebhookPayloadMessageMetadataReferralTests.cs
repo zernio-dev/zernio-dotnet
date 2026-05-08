@@ -144,5 +144,50 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ThumbnailUrl'
         }
+
+        /// <summary>
+        /// Test the property 'AdId'
+        /// </summary>
+        [Fact]
+        public void AdIdTest()
+        {
+            // TODO unit test for the property 'AdId'
+        }
+
+        /// <summary>
+        /// Test the property 'Ref'
+        /// </summary>
+        [Fact]
+        public void RefTest()
+        {
+            // TODO unit test for the property 'Ref'
+        }
+
+        /// <summary>
+        /// Test the property 'Source'
+        /// </summary>
+        [Fact]
+        public void SourceTest()
+        {
+            // TODO unit test for the property 'Source'
+        }
+
+        /// <summary>
+        /// Test the property 'Type'
+        /// </summary>
+        [Fact]
+        public void TypeTest()
+        {
+            // TODO unit test for the property 'Type'
+        }
+
+        /// <summary>
+        /// Test the property 'AdsContextData'
+        /// </summary>
+        [Fact]
+        public void AdsContextDataTest()
+        {
+            // TODO unit test for the property 'AdsContextData'
+        }
     }
 }

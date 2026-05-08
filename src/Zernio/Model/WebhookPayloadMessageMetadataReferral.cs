@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// WhatsApp only. Click-to-WhatsApp (CTWA) ad attribution. Present only on the FIRST inbound message after a user reaches the business via a CTWA ad. Forwarded verbatim from Meta&#39;s referral envelope so it can be replayed to the Conversions API for Business Messaging. Attribution window is 7 days from click. 
+    /// Ad-click attribution forwarded verbatim from Meta. Populated only on the FIRST inbound message after the click; absent on subsequent messages of the same conversation.  The populated subset identifies the source platform:   - &#x60;ctwa_clid&#x60; and &#x60;source_*&#x60; fields: WhatsApp CTWA     (Click-to-WhatsApp). Attribution window is 7 days from click.     Forward to Meta Conversions API for Business Messaging replay.   - &#x60;ad_id&#x60; and &#x60;ads_context_data&#x60;: Facebook Messenger CTM     (Click-to-Message) or Instagram CTD (Click-to-Direct). Use     &#x60;ad_id&#x60; to attribute the conversation to a specific ad. 
     /// </summary>
     [DataContract(Name = "WebhookPayloadMessage_metadata_referral")]
     public partial class WebhookPayloadMessageMetadataReferral : IValidatableObject
@@ -46,7 +46,12 @@ namespace Zernio.Model
         /// <param name="imageUrl">imageUrl.</param>
         /// <param name="videoUrl">videoUrl.</param>
         /// <param name="thumbnailUrl">thumbnailUrl.</param>
-        public WebhookPayloadMessageMetadataReferral(string ctwaClid = default, string sourceId = default, string sourceType = default, string sourceUrl = default, string headline = default, string body = default, string mediaType = default, string imageUrl = default, string videoUrl = default, string thumbnailUrl = default)
+        /// <param name="adId">Facebook Messenger CTM / Instagram CTD only. The Meta ad ID the user clicked to start the conversation. .</param>
+        /// <param name="varRef">Optional &#x60;ref&#x60; parameter passed through from the Meta ad creative. Facebook Messenger CTM / Instagram CTD only. .</param>
+        /// <param name="source">Meta-supplied source identifier (e.g. &#x60;ADS&#x60;). Facebook Messenger CTM / Instagram CTD only. .</param>
+        /// <param name="type">Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Facebook Messenger CTM / Instagram CTD only. .</param>
+        /// <param name="adsContextData">adsContextData.</param>
+        public WebhookPayloadMessageMetadataReferral(string ctwaClid = default, string sourceId = default, string sourceType = default, string sourceUrl = default, string headline = default, string body = default, string mediaType = default, string imageUrl = default, string videoUrl = default, string thumbnailUrl = default, string adId = default, string varRef = default, string source = default, string type = default, WebhookPayloadMessageMetadataReferralAdsContextData adsContextData = default)
         {
             this.CtwaClid = ctwaClid;
             this.SourceId = sourceId;
@@ -58,6 +63,11 @@ namespace Zernio.Model
             this.ImageUrl = imageUrl;
             this.VideoUrl = videoUrl;
             this.ThumbnailUrl = thumbnailUrl;
+            this.AdId = adId;
+            this.Ref = varRef;
+            this.Source = source;
+            this.Type = type;
+            this.AdsContextData = adsContextData;
         }
 
         /// <summary>
@@ -122,6 +132,40 @@ namespace Zernio.Model
         public string ThumbnailUrl { get; set; }
 
         /// <summary>
+        /// Facebook Messenger CTM / Instagram CTD only. The Meta ad ID the user clicked to start the conversation. 
+        /// </summary>
+        /// <value>Facebook Messenger CTM / Instagram CTD only. The Meta ad ID the user clicked to start the conversation. </value>
+        [DataMember(Name = "ad_id", EmitDefaultValue = false)]
+        public string AdId { get; set; }
+
+        /// <summary>
+        /// Optional &#x60;ref&#x60; parameter passed through from the Meta ad creative. Facebook Messenger CTM / Instagram CTD only. 
+        /// </summary>
+        /// <value>Optional &#x60;ref&#x60; parameter passed through from the Meta ad creative. Facebook Messenger CTM / Instagram CTD only. </value>
+        [DataMember(Name = "ref", EmitDefaultValue = false)]
+        public string Ref { get; set; }
+
+        /// <summary>
+        /// Meta-supplied source identifier (e.g. &#x60;ADS&#x60;). Facebook Messenger CTM / Instagram CTD only. 
+        /// </summary>
+        /// <value>Meta-supplied source identifier (e.g. &#x60;ADS&#x60;). Facebook Messenger CTM / Instagram CTD only. </value>
+        [DataMember(Name = "source", EmitDefaultValue = false)]
+        public string Source { get; set; }
+
+        /// <summary>
+        /// Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Facebook Messenger CTM / Instagram CTD only. 
+        /// </summary>
+        /// <value>Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Facebook Messenger CTM / Instagram CTD only. </value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public string Type { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AdsContextData
+        /// </summary>
+        [DataMember(Name = "ads_context_data", EmitDefaultValue = false)]
+        public WebhookPayloadMessageMetadataReferralAdsContextData AdsContextData { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -139,6 +183,11 @@ namespace Zernio.Model
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  VideoUrl: ").Append(VideoUrl).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
+            sb.Append("  AdId: ").Append(AdId).Append("\n");
+            sb.Append("  Ref: ").Append(Ref).Append("\n");
+            sb.Append("  Source: ").Append(Source).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  AdsContextData: ").Append(AdsContextData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
