@@ -99,5 +99,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Wbraid'
         }
+
+        /// <summary>
+        /// Test the property 'LiFatId'
+        /// </summary>
+        [Fact]
+        public void LiFatIdTest()
+        {
+            // TODO unit test for the property 'LiFatId'
+        }
     }
 }

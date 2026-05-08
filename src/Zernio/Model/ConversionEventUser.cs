@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="phone">Phone number, ideally E.164. Hashed server-side..</param>
         /// <param name="firstName">Plaintext first name. Hashed server-side..</param>
         /// <param name="lastName">Plaintext last name. Hashed server-side..</param>
-        /// <param name="externalId">Stable customer identifier (e.g. CRM user ID). Hashed server-side..</param>
+        /// <param name="externalId">Stable customer identifier (e.g. CRM user ID). Hashed server-side for Meta and Google. Sent as plaintext to LinkedIn (LinkedIn&#39;s Conversions API spec requires the raw value). Maximum effective list size on LinkedIn is 1. .</param>
         /// <param name="ipAddress">Client IP address. Sent plaintext..</param>
         /// <param name="userAgent">Client user-agent string. Sent plaintext..</param>
         /// <param name="country">ISO 3166-1 alpha-2 country code, e.g. &#39;us&#39;..</param>
@@ -87,9 +87,9 @@ namespace Zernio.Model
         public string LastName { get; set; }
 
         /// <summary>
-        /// Stable customer identifier (e.g. CRM user ID). Hashed server-side.
+        /// Stable customer identifier (e.g. CRM user ID). Hashed server-side for Meta and Google. Sent as plaintext to LinkedIn (LinkedIn&#39;s Conversions API spec requires the raw value). Maximum effective list size on LinkedIn is 1. 
         /// </summary>
-        /// <value>Stable customer identifier (e.g. CRM user ID). Hashed server-side.</value>
+        /// <value>Stable customer identifier (e.g. CRM user ID). Hashed server-side for Meta and Google. Sent as plaintext to LinkedIn (LinkedIn&#39;s Conversions API spec requires the raw value). Maximum effective list size on LinkedIn is 1. </value>
         [DataMember(Name = "externalId", EmitDefaultValue = false)]
         public string ExternalId { get; set; }
 

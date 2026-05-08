@@ -61,22 +61,24 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListConversionDestinations200ResponseDestinationsInner" /> class.
         /// </summary>
-        /// <param name="id">Destination identifier. Meta: pixel ID. Google: conversion action resource name. .</param>
+        /// <param name="id">Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. .</param>
         /// <param name="name">name.</param>
-        /// <param name="type">Present when the platform locks event type to the destination (Google conversion actions). .</param>
+        /// <param name="type">Present when the platform locks event type to the destination (Google conversion actions, LinkedIn conversion rules). .</param>
         /// <param name="status">status.</param>
-        public ListConversionDestinations200ResponseDestinationsInner(string id = default, string name = default, string type = default, StatusEnum? status = default)
+        /// <param name="adAccountId">Set by adapters whose destinations are scoped to a specific ad account (LinkedIn). Pass back on subsequent CRUD calls. .</param>
+        public ListConversionDestinations200ResponseDestinationsInner(string id = default, string name = default, string type = default, StatusEnum? status = default, string adAccountId = default)
         {
             this.Id = id;
             this.Name = name;
             this.Type = type;
             this.Status = status;
+            this.AdAccountId = adAccountId;
         }
 
         /// <summary>
-        /// Destination identifier. Meta: pixel ID. Google: conversion action resource name. 
+        /// Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. 
         /// </summary>
-        /// <value>Destination identifier. Meta: pixel ID. Google: conversion action resource name. </value>
+        /// <value>Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. </value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
@@ -87,11 +89,18 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Present when the platform locks event type to the destination (Google conversion actions). 
+        /// Present when the platform locks event type to the destination (Google conversion actions, LinkedIn conversion rules). 
         /// </summary>
-        /// <value>Present when the platform locks event type to the destination (Google conversion actions). </value>
+        /// <value>Present when the platform locks event type to the destination (Google conversion actions, LinkedIn conversion rules). </value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
+
+        /// <summary>
+        /// Set by adapters whose destinations are scoped to a specific ad account (LinkedIn). Pass back on subsequent CRUD calls. 
+        /// </summary>
+        /// <value>Set by adapters whose destinations are scoped to a specific ad account (LinkedIn). Pass back on subsequent CRUD calls. </value>
+        [DataMember(Name = "adAccountId", EmitDefaultValue = false)]
+        public string AdAccountId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -105,6 +114,7 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -41,10 +41,10 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendConversionsRequest" /> class.
         /// </summary>
-        /// <param name="accountId">SocialAccount ID (metaads or googleads). (required).</param>
-        /// <param name="destinationId">Platform destination identifier. For Meta, the pixel/dataset ID. For Google, the conversion action resource name.  (required).</param>
+        /// <param name="accountId">SocialAccount ID (metaads, googleads, or linkedinads). (required).</param>
+        /// <param name="destinationId">Platform destination identifier. For Meta, the pixel/dataset ID. For Google, the conversion action resource name. For LinkedIn, the conversion rule ID or full &#x60;urn:lla:llaPartnerConversion:{id}&#x60; URN.  (required).</param>
         /// <param name="events">events (required).</param>
-        /// <param name="testCode">Meta &#x60;test_event_code&#x60; passthrough. Ignored by Google..</param>
+        /// <param name="testCode">Meta &#x60;test_event_code&#x60; passthrough. Ignored by Google and LinkedIn..</param>
         /// <param name="consent">consent.</param>
         public SendConversionsRequest(string accountId = default, string destinationId = default, List<ConversionEvent> events = default, string testCode = default, SendConversionsRequestConsent consent = default)
         {
@@ -71,16 +71,16 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// SocialAccount ID (metaads or googleads).
+        /// SocialAccount ID (metaads, googleads, or linkedinads).
         /// </summary>
-        /// <value>SocialAccount ID (metaads or googleads).</value>
+        /// <value>SocialAccount ID (metaads, googleads, or linkedinads).</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Platform destination identifier. For Meta, the pixel/dataset ID. For Google, the conversion action resource name. 
+        /// Platform destination identifier. For Meta, the pixel/dataset ID. For Google, the conversion action resource name. For LinkedIn, the conversion rule ID or full &#x60;urn:lla:llaPartnerConversion:{id}&#x60; URN. 
         /// </summary>
-        /// <value>Platform destination identifier. For Meta, the pixel/dataset ID. For Google, the conversion action resource name. </value>
+        /// <value>Platform destination identifier. For Meta, the pixel/dataset ID. For Google, the conversion action resource name. For LinkedIn, the conversion rule ID or full &#x60;urn:lla:llaPartnerConversion:{id}&#x60; URN. </value>
         [DataMember(Name = "destinationId", IsRequired = true, EmitDefaultValue = true)]
         public string DestinationId { get; set; }
 
@@ -91,9 +91,9 @@ namespace Zernio.Model
         public List<ConversionEvent> Events { get; set; }
 
         /// <summary>
-        /// Meta &#x60;test_event_code&#x60; passthrough. Ignored by Google.
+        /// Meta &#x60;test_event_code&#x60; passthrough. Ignored by Google and LinkedIn.
         /// </summary>
-        /// <value>Meta &#x60;test_event_code&#x60; passthrough. Ignored by Google.</value>
+        /// <value>Meta &#x60;test_event_code&#x60; passthrough. Ignored by Google and LinkedIn.</value>
         [DataMember(Name = "testCode", EmitDefaultValue = false)]
         public string TestCode { get; set; }
 

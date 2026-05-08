@@ -34,6 +34,9 @@ docs/AdTreeCampaignCampaignBudget.md
 docs/AdTreeCampaignPromotedObject.md
 docs/AddBroadcastRecipients200Response.md
 docs/AddBroadcastRecipientsRequest.md
+docs/AddConversionAssociations200Response.md
+docs/AddConversionAssociations200ResponseFailedInner.md
+docs/AddConversionAssociationsRequest.md
 docs/AddMessageReactionRequest.md
 docs/AddUsersToAdAudience200Response.md
 docs/AddUsersToAdAudienceRequest.md
@@ -97,6 +100,7 @@ docs/ConnectWhatsAppCredentialsRequest.md
 docs/Connected.md
 docs/ConnectedAccount.md
 docs/ContactsApi.md
+docs/ConversionDestination.md
 docs/ConversionEvent.md
 docs/ConversionEventItemsInner.md
 docs/ConversionEventUser.md
@@ -123,6 +127,9 @@ docs/CreateContact200Response.md
 docs/CreateContact200ResponseChannel.md
 docs/CreateContact200ResponseContact.md
 docs/CreateContactRequest.md
+docs/CreateConversionDestination201Response.md
+docs/CreateConversionDestinationRequest.md
+docs/CreateConversionDestinationRequestValue.md
 docs/CreateCtwaAd201Response.md
 docs/CreateCtwaAdRequest.md
 docs/CreateCtwaAdRequestInterestsInner.md
@@ -272,6 +279,9 @@ docs/GetContactChannels200Response.md
 docs/GetContactChannels200ResponseChannelsInner.md
 docs/GetContentDecay200Response.md
 docs/GetContentDecay200ResponseBucketsInner.md
+docs/GetConversionMetrics200Response.md
+docs/GetConversionMetrics200ResponseRowsInner.md
+docs/GetConversionMetrics200ResponseRowsInnerMetricsValue.md
 docs/GetDailyMetrics200Response.md
 docs/GetDailyMetrics200ResponseDailyDataInner.md
 docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md
@@ -489,6 +499,8 @@ docs/ListContacts200Response.md
 docs/ListContacts200ResponseContactsInner.md
 docs/ListContacts200ResponseFilters.md
 docs/ListContacts200ResponsePagination.md
+docs/ListConversionAssociations200Response.md
+docs/ListConversionAssociations200ResponseAssociationsInner.md
 docs/ListConversionDestinations200Response.md
 docs/ListConversionDestinations200ResponseDestinationsInner.md
 docs/ListCustomFields200Response.md
@@ -597,6 +609,7 @@ docs/RejectWhatsAppGroupJoinRequestsRequest.md
 docs/ReleaseWhatsAppPhoneNumber200Response.md
 docs/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.md
 docs/RemoveBookmark200Response.md
+docs/RemoveConversionAssociations200Response.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReplyToInboxPost200Response.md
 docs/ReplyToInboxPost200ResponseData.md
@@ -734,6 +747,8 @@ docs/UpdateCommentAutomationRequest.md
 docs/UpdateContact200Response.md
 docs/UpdateContact200ResponseContact.md
 docs/UpdateContactRequest.md
+docs/UpdateConversionDestinationRequest.md
+docs/UpdateConversionDestinationRequestValue.md
 docs/UpdateCustomField200Response.md
 docs/UpdateCustomField200ResponseField.md
 docs/UpdateCustomFieldRequest.md
@@ -967,6 +982,9 @@ src/Zernio.Test/Model/AdTreeCampaignPromotedObjectTests.cs
 src/Zernio.Test/Model/AdTreeCampaignTests.cs
 src/Zernio.Test/Model/AddBroadcastRecipients200ResponseTests.cs
 src/Zernio.Test/Model/AddBroadcastRecipientsRequestTests.cs
+src/Zernio.Test/Model/AddConversionAssociations200ResponseFailedInnerTests.cs
+src/Zernio.Test/Model/AddConversionAssociations200ResponseTests.cs
+src/Zernio.Test/Model/AddConversionAssociationsRequestTests.cs
 src/Zernio.Test/Model/AddMessageReactionRequestTests.cs
 src/Zernio.Test/Model/AddUsersToAdAudience200ResponseTests.cs
 src/Zernio.Test/Model/AddUsersToAdAudienceRequestTests.cs
@@ -1023,6 +1041,7 @@ src/Zernio.Test/Model/ConnectWhatsAppCredentials200ResponseTests.cs
 src/Zernio.Test/Model/ConnectWhatsAppCredentialsRequestTests.cs
 src/Zernio.Test/Model/ConnectedAccountTests.cs
 src/Zernio.Test/Model/ConnectedTests.cs
+src/Zernio.Test/Model/ConversionDestinationTests.cs
 src/Zernio.Test/Model/ConversionEventItemsInnerTests.cs
 src/Zernio.Test/Model/ConversionEventTests.cs
 src/Zernio.Test/Model/ConversionEventUserClickIdsTests.cs
@@ -1049,6 +1068,9 @@ src/Zernio.Test/Model/CreateContact200ResponseChannelTests.cs
 src/Zernio.Test/Model/CreateContact200ResponseContactTests.cs
 src/Zernio.Test/Model/CreateContact200ResponseTests.cs
 src/Zernio.Test/Model/CreateContactRequestTests.cs
+src/Zernio.Test/Model/CreateConversionDestination201ResponseTests.cs
+src/Zernio.Test/Model/CreateConversionDestinationRequestTests.cs
+src/Zernio.Test/Model/CreateConversionDestinationRequestValueTests.cs
 src/Zernio.Test/Model/CreateCtwaAd201ResponseTests.cs
 src/Zernio.Test/Model/CreateCtwaAdRequestInterestsInnerTests.cs
 src/Zernio.Test/Model/CreateCtwaAdRequestTests.cs
@@ -1189,6 +1211,9 @@ src/Zernio.Test/Model/GetContactChannels200ResponseChannelsInnerTests.cs
 src/Zernio.Test/Model/GetContactChannels200ResponseTests.cs
 src/Zernio.Test/Model/GetContentDecay200ResponseBucketsInnerTests.cs
 src/Zernio.Test/Model/GetContentDecay200ResponseTests.cs
+src/Zernio.Test/Model/GetConversionMetrics200ResponseRowsInnerMetricsValueTests.cs
+src/Zernio.Test/Model/GetConversionMetrics200ResponseRowsInnerTests.cs
+src/Zernio.Test/Model/GetConversionMetrics200ResponseTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponseDailyDataInnerMetricsTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponseDailyDataInnerTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponsePlatformBreakdownInnerTests.cs
@@ -1404,6 +1429,8 @@ src/Zernio.Test/Model/ListContacts200ResponseContactsInnerTests.cs
 src/Zernio.Test/Model/ListContacts200ResponseFiltersTests.cs
 src/Zernio.Test/Model/ListContacts200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListContacts200ResponseTests.cs
+src/Zernio.Test/Model/ListConversionAssociations200ResponseAssociationsInnerTests.cs
+src/Zernio.Test/Model/ListConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/ListConversionDestinations200ResponseDestinationsInnerTests.cs
 src/Zernio.Test/Model/ListConversionDestinations200ResponseTests.cs
 src/Zernio.Test/Model/ListCustomFields200ResponseFieldsInnerTests.cs
@@ -1505,6 +1532,7 @@ src/Zernio.Test/Model/RejectWhatsAppGroupJoinRequestsRequestTests.cs
 src/Zernio.Test/Model/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumberTests.cs
 src/Zernio.Test/Model/ReleaseWhatsAppPhoneNumber200ResponseTests.cs
 src/Zernio.Test/Model/RemoveBookmark200ResponseTests.cs
+src/Zernio.Test/Model/RemoveConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/RemoveWhatsAppGroupParticipantsRequestTests.cs
 src/Zernio.Test/Model/ReplyToInboxPost200ResponseDataTests.cs
 src/Zernio.Test/Model/ReplyToInboxPost200ResponseTests.cs
@@ -1639,6 +1667,8 @@ src/Zernio.Test/Model/UpdateCommentAutomationRequestTests.cs
 src/Zernio.Test/Model/UpdateContact200ResponseContactTests.cs
 src/Zernio.Test/Model/UpdateContact200ResponseTests.cs
 src/Zernio.Test/Model/UpdateContactRequestTests.cs
+src/Zernio.Test/Model/UpdateConversionDestinationRequestTests.cs
+src/Zernio.Test/Model/UpdateConversionDestinationRequestValueTests.cs
 src/Zernio.Test/Model/UpdateCustomField200ResponseFieldTests.cs
 src/Zernio.Test/Model/UpdateCustomField200ResponseTests.cs
 src/Zernio.Test/Model/UpdateCustomFieldRequestTests.cs
@@ -1882,6 +1912,9 @@ src/Zernio/Model/AdTreeCampaignCampaignBudget.cs
 src/Zernio/Model/AdTreeCampaignPromotedObject.cs
 src/Zernio/Model/AddBroadcastRecipients200Response.cs
 src/Zernio/Model/AddBroadcastRecipientsRequest.cs
+src/Zernio/Model/AddConversionAssociations200Response.cs
+src/Zernio/Model/AddConversionAssociations200ResponseFailedInner.cs
+src/Zernio/Model/AddConversionAssociationsRequest.cs
 src/Zernio/Model/AddMessageReactionRequest.cs
 src/Zernio/Model/AddUsersToAdAudience200Response.cs
 src/Zernio/Model/AddUsersToAdAudienceRequest.cs
@@ -1938,6 +1971,7 @@ src/Zernio/Model/ConnectWhatsAppCredentials200ResponseAccount.cs
 src/Zernio/Model/ConnectWhatsAppCredentialsRequest.cs
 src/Zernio/Model/Connected.cs
 src/Zernio/Model/ConnectedAccount.cs
+src/Zernio/Model/ConversionDestination.cs
 src/Zernio/Model/ConversionEvent.cs
 src/Zernio/Model/ConversionEventItemsInner.cs
 src/Zernio/Model/ConversionEventUser.cs
@@ -1964,6 +1998,9 @@ src/Zernio/Model/CreateContact200Response.cs
 src/Zernio/Model/CreateContact200ResponseChannel.cs
 src/Zernio/Model/CreateContact200ResponseContact.cs
 src/Zernio/Model/CreateContactRequest.cs
+src/Zernio/Model/CreateConversionDestination201Response.cs
+src/Zernio/Model/CreateConversionDestinationRequest.cs
+src/Zernio/Model/CreateConversionDestinationRequestValue.cs
 src/Zernio/Model/CreateCtwaAd201Response.cs
 src/Zernio/Model/CreateCtwaAdRequest.cs
 src/Zernio/Model/CreateCtwaAdRequestInterestsInner.cs
@@ -2104,6 +2141,9 @@ src/Zernio/Model/GetContactChannels200Response.cs
 src/Zernio/Model/GetContactChannels200ResponseChannelsInner.cs
 src/Zernio/Model/GetContentDecay200Response.cs
 src/Zernio/Model/GetContentDecay200ResponseBucketsInner.cs
+src/Zernio/Model/GetConversionMetrics200Response.cs
+src/Zernio/Model/GetConversionMetrics200ResponseRowsInner.cs
+src/Zernio/Model/GetConversionMetrics200ResponseRowsInnerMetricsValue.cs
 src/Zernio/Model/GetDailyMetrics200Response.cs
 src/Zernio/Model/GetDailyMetrics200ResponseDailyDataInner.cs
 src/Zernio/Model/GetDailyMetrics200ResponseDailyDataInnerMetrics.cs
@@ -2319,6 +2359,8 @@ src/Zernio/Model/ListContacts200Response.cs
 src/Zernio/Model/ListContacts200ResponseContactsInner.cs
 src/Zernio/Model/ListContacts200ResponseFilters.cs
 src/Zernio/Model/ListContacts200ResponsePagination.cs
+src/Zernio/Model/ListConversionAssociations200Response.cs
+src/Zernio/Model/ListConversionAssociations200ResponseAssociationsInner.cs
 src/Zernio/Model/ListConversionDestinations200Response.cs
 src/Zernio/Model/ListConversionDestinations200ResponseDestinationsInner.cs
 src/Zernio/Model/ListCustomFields200Response.cs
@@ -2420,6 +2462,7 @@ src/Zernio/Model/RejectWhatsAppGroupJoinRequestsRequest.cs
 src/Zernio/Model/ReleaseWhatsAppPhoneNumber200Response.cs
 src/Zernio/Model/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.cs
 src/Zernio/Model/RemoveBookmark200Response.cs
+src/Zernio/Model/RemoveConversionAssociations200Response.cs
 src/Zernio/Model/RemoveWhatsAppGroupParticipantsRequest.cs
 src/Zernio/Model/ReplyToInboxPost200Response.cs
 src/Zernio/Model/ReplyToInboxPost200ResponseData.cs
@@ -2554,6 +2597,8 @@ src/Zernio/Model/UpdateCommentAutomationRequest.cs
 src/Zernio/Model/UpdateContact200Response.cs
 src/Zernio/Model/UpdateContact200ResponseContact.cs
 src/Zernio/Model/UpdateContactRequest.cs
+src/Zernio/Model/UpdateConversionDestinationRequest.cs
+src/Zernio/Model/UpdateConversionDestinationRequestValue.cs
 src/Zernio/Model/UpdateCustomField200Response.cs
 src/Zernio/Model/UpdateCustomField200ResponseField.cs
 src/Zernio/Model/UpdateCustomFieldRequest.cs

@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Batch-level user consent. Required by Google for EEA/UK events under the Feb 2026 restrictions. Ignored by Meta. 
+    /// Batch-level user consent. Required by Google for EEA/UK events under the Feb 2026 restrictions. Ignored by Meta and LinkedIn. 
     /// </summary>
     [DataContract(Name = "sendConversions_request_consent")]
     public partial class SendConversionsRequestConsent : IValidatableObject

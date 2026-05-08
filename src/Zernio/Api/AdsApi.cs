@@ -29,6 +29,31 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Associate campaigns with a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="addConversionAssociationsRequest"></param>
+        /// <returns>AddConversionAssociations200Response</returns>
+        AddConversionAssociations200Response AddConversionAssociations(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest);
+
+        /// <summary>
+        /// Associate campaigns with a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="addConversionAssociationsRequest"></param>
+        /// <returns>ApiResponse of AddConversionAssociations200Response</returns>
+        ApiResponse<AddConversionAssociations200Response> AddConversionAssociationsWithHttpInfo(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest);
+        /// <summary>
         /// Boost post as ad
         /// </summary>
         /// <remarks>
@@ -49,6 +74,29 @@ namespace Zernio.Api
         /// <param name="boostPostRequest"></param>
         /// <returns>ApiResponse of UpdateAd200Response</returns>
         ApiResponse<UpdateAd200Response> BoostPostWithHttpInfo(BoostPostRequest boostPostRequest);
+        /// <summary>
+        /// Create a conversion destination (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="createConversionDestinationRequest"></param>
+        /// <returns>CreateConversionDestination201Response</returns>
+        CreateConversionDestination201Response CreateConversionDestination(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest);
+
+        /// <summary>
+        /// Create a conversion destination (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="createConversionDestinationRequest"></param>
+        /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
+        ApiResponse<CreateConversionDestination201Response> CreateConversionDestinationWithHttpInfo(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest);
         /// <summary>
         /// Create Click-to-WhatsApp ad
         /// </summary>
@@ -112,6 +160,31 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <returns>ApiResponse of DeleteAccountGroup200Response</returns>
         ApiResponse<DeleteAccountGroup200Response> DeleteAdWithHttpInfo(string adId);
+        /// <summary>
+        /// Soft-delete a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Required as query OR in JSON body. (optional)</param>
+        /// <returns></returns>
+        void DeleteConversionDestination(string accountId, string destinationId, string? adAccountId = default);
+
+        /// <summary>
+        /// Soft-delete a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Required as query OR in JSON body. (optional)</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteConversionDestinationWithHttpInfo(string accountId, string destinationId, string? adAccountId = default);
         /// <summary>
         /// Get ad details
         /// </summary>
@@ -185,6 +258,62 @@ namespace Zernio.Api
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>ApiResponse of GetAdComments200Response</returns>
         ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, int? limit = default, string? cursor = default);
+        /// <summary>
+        /// Fetch a single conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
+        /// <returns>CreateConversionDestination201Response</returns>
+        CreateConversionDestination201Response GetConversionDestination(string accountId, string destinationId, string adAccountId);
+
+        /// <summary>
+        /// Fetch a single conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
+        /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
+        ApiResponse<CreateConversionDestination201Response> GetConversionDestinationWithHttpInfo(string accountId, string destinationId, string adAccountId);
+        /// <summary>
+        /// Fetch attribution metrics for a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"> (optional)</param>
+        /// <param name="granularity"> (optional, default to DAILY)</param>
+        /// <returns>GetConversionMetrics200Response</returns>
+        GetConversionMetrics200Response GetConversionMetrics(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default);
+
+        /// <summary>
+        /// Fetch attribution metrics for a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"> (optional)</param>
+        /// <param name="granularity"> (optional, default to DAILY)</param>
+        /// <returns>ApiResponse of GetConversionMetrics200Response</returns>
+        ApiResponse<GetConversionMetrics200Response> GetConversionMetricsWithHttpInfo(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default);
         /// <summary>
         /// List ad accounts
         /// </summary>
@@ -273,13 +402,38 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdsBusinessCenters200Response</returns>
         ApiResponse<ListAdsBusinessCenters200Response> ListAdsBusinessCentersWithHttpInfo(string accountId);
         /// <summary>
+        /// List campaigns associated with a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns>ListConversionAssociations200Response</returns>
+        ListConversionAssociations200Response ListConversionAssociations(string accountId, string destinationId, string adAccountId);
+
+        /// <summary>
+        /// List campaigns associated with a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns>ApiResponse of ListConversionAssociations200Response</returns>
+        ApiResponse<ListConversionAssociations200Response> ListConversionAssociationsWithHttpInfo(string accountId, string destinationId, string adAccountId);
+        /// <summary>
         /// List destinations for the Conversions API
         /// </summary>
         /// <remarks>
-        /// Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="accountId">SocialAccount ID (metaads, googleads, or linkedinads).</param>
         /// <returns>ListConversionDestinations200Response</returns>
         ListConversionDestinations200Response ListConversionDestinations(string accountId);
 
@@ -287,12 +441,39 @@ namespace Zernio.Api
         /// List destinations for the Conversions API
         /// </summary>
         /// <remarks>
-        /// Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="accountId">SocialAccount ID (metaads, googleads, or linkedinads).</param>
         /// <returns>ApiResponse of ListConversionDestinations200Response</returns>
         ApiResponse<ListConversionDestinations200Response> ListConversionDestinationsWithHttpInfo(string accountId);
+        /// <summary>
+        /// Remove campaign↔conversion associations
+        /// </summary>
+        /// <remarks>
+        /// Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="campaignIds">Comma-separated list of campaign IDs.</param>
+        /// <returns>RemoveConversionAssociations200Response</returns>
+        RemoveConversionAssociations200Response RemoveConversionAssociations(string accountId, string destinationId, string adAccountId, string campaignIds);
+
+        /// <summary>
+        /// Remove campaign↔conversion associations
+        /// </summary>
+        /// <remarks>
+        /// Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="campaignIds">Comma-separated list of campaign IDs.</param>
+        /// <returns>ApiResponse of RemoveConversionAssociations200Response</returns>
+        ApiResponse<RemoveConversionAssociations200Response> RemoveConversionAssociationsWithHttpInfo(string accountId, string destinationId, string adAccountId, string campaignIds);
         /// <summary>
         /// Search targeting interests
         /// </summary>
@@ -349,7 +530,7 @@ namespace Zernio.Api
         /// Send conversion events to an ad platform
         /// </summary>
         /// <remarks>
-        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -360,7 +541,7 @@ namespace Zernio.Api
         /// Send conversion events to an ad platform
         /// </summary>
         /// <remarks>
-        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -410,6 +591,31 @@ namespace Zernio.Api
         /// <param name="updateAdRequest"></param>
         /// <returns>ApiResponse of UpdateAd200Response</returns>
         ApiResponse<UpdateAd200Response> UpdateAdWithHttpInfo(string adId, UpdateAdRequest updateAdRequest);
+        /// <summary>
+        /// Update a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="updateConversionDestinationRequest"></param>
+        /// <returns>CreateConversionDestination201Response</returns>
+        CreateConversionDestination201Response UpdateConversionDestination(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest);
+
+        /// <summary>
+        /// Update a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="updateConversionDestinationRequest"></param>
+        /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
+        ApiResponse<CreateConversionDestination201Response> UpdateConversionDestinationWithHttpInfo(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest);
         #endregion Synchronous Operations
     }
 
@@ -419,6 +625,33 @@ namespace Zernio.Api
     public interface IAdsApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Associate campaigns with a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="addConversionAssociationsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddConversionAssociations200Response</returns>
+        System.Threading.Tasks.Task<AddConversionAssociations200Response> AddConversionAssociationsAsync(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Associate campaigns with a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="addConversionAssociationsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddConversionAssociations200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AddConversionAssociations200Response>> AddConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Boost post as ad
         /// </summary>
@@ -442,6 +675,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> BoostPostWithHttpInfoAsync(BoostPostRequest boostPostRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a conversion destination (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="createConversionDestinationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateConversionDestination201Response</returns>
+        System.Threading.Tasks.Task<CreateConversionDestination201Response> CreateConversionDestinationAsync(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a conversion destination (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="createConversionDestinationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateConversionDestination201Response>> CreateConversionDestinationWithHttpInfoAsync(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create Click-to-WhatsApp ad
         /// </summary>
@@ -511,6 +769,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteAccountGroup200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteAccountGroup200Response>> DeleteAdWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Soft-delete a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Required as query OR in JSON body. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteConversionDestinationAsync(string accountId, string destinationId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Soft-delete a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Required as query OR in JSON body. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get ad details
         /// </summary>
@@ -590,6 +875,66 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdComments200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Fetch a single conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateConversionDestination201Response</returns>
+        System.Threading.Tasks.Task<CreateConversionDestination201Response> GetConversionDestinationAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Fetch a single conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateConversionDestination201Response>> GetConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Fetch attribution metrics for a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"> (optional)</param>
+        /// <param name="granularity"> (optional, default to DAILY)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetConversionMetrics200Response</returns>
+        System.Threading.Tasks.Task<GetConversionMetrics200Response> GetConversionMetricsAsync(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Fetch attribution metrics for a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"> (optional)</param>
+        /// <param name="granularity"> (optional, default to DAILY)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetConversionMetrics200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetConversionMetrics200Response>> GetConversionMetricsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List ad accounts
         /// </summary>
@@ -684,13 +1029,40 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListAdsBusinessCenters200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdsBusinessCenters200Response>> ListAdsBusinessCentersWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List campaigns associated with a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListConversionAssociations200Response</returns>
+        System.Threading.Tasks.Task<ListConversionAssociations200Response> ListConversionAssociationsAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List campaigns associated with a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListConversionAssociations200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListConversionAssociations200Response>> ListConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List destinations for the Conversions API
         /// </summary>
         /// <remarks>
-        /// Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="accountId">SocialAccount ID (metaads, googleads, or linkedinads).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListConversionDestinations200Response</returns>
         System.Threading.Tasks.Task<ListConversionDestinations200Response> ListConversionDestinationsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -699,13 +1071,42 @@ namespace Zernio.Api
         /// List destinations for the Conversions API
         /// </summary>
         /// <remarks>
-        /// Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="accountId">SocialAccount ID (metaads, googleads, or linkedinads).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListConversionDestinations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListConversionDestinations200Response>> ListConversionDestinationsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remove campaign↔conversion associations
+        /// </summary>
+        /// <remarks>
+        /// Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="campaignIds">Comma-separated list of campaign IDs.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveConversionAssociations200Response</returns>
+        System.Threading.Tasks.Task<RemoveConversionAssociations200Response> RemoveConversionAssociationsAsync(string accountId, string destinationId, string adAccountId, string campaignIds, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Remove campaign↔conversion associations
+        /// </summary>
+        /// <remarks>
+        /// Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="campaignIds">Comma-separated list of campaign IDs.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveConversionAssociations200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RemoveConversionAssociations200Response>> RemoveConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, string campaignIds, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Search targeting interests
         /// </summary>
@@ -766,7 +1167,7 @@ namespace Zernio.Api
         /// Send conversion events to an ad platform
         /// </summary>
         /// <remarks>
-        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -778,7 +1179,7 @@ namespace Zernio.Api
         /// Send conversion events to an ad platform
         /// </summary>
         /// <remarks>
-        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -833,6 +1234,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> UpdateAdWithHttpInfoAsync(string adId, UpdateAdRequest updateAdRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="updateConversionDestinationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateConversionDestination201Response</returns>
+        System.Threading.Tasks.Task<CreateConversionDestination201Response> UpdateConversionDestinationAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update a conversion destination
+        /// </summary>
+        /// <remarks>
+        /// Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="updateConversionDestinationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateConversionDestination201Response>> UpdateConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1047,6 +1475,163 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Associate campaigns with a conversion destination Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="addConversionAssociationsRequest"></param>
+        /// <returns>AddConversionAssociations200Response</returns>
+        public AddConversionAssociations200Response AddConversionAssociations(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest)
+        {
+            Zernio.Client.ApiResponse<AddConversionAssociations200Response> localVarResponse = AddConversionAssociationsWithHttpInfo(accountId, destinationId, addConversionAssociationsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Associate campaigns with a conversion destination Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="addConversionAssociationsRequest"></param>
+        /// <returns>ApiResponse of AddConversionAssociations200Response</returns>
+        public Zernio.Client.ApiResponse<AddConversionAssociations200Response> AddConversionAssociationsWithHttpInfo(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->AddConversionAssociations");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->AddConversionAssociations");
+
+            // verify the required parameter 'addConversionAssociationsRequest' is set
+            if (addConversionAssociationsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'addConversionAssociationsRequest' when calling AdsApi->AddConversionAssociations");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.Data = addConversionAssociationsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AddConversionAssociations200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddConversionAssociations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Associate campaigns with a conversion destination Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="addConversionAssociationsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddConversionAssociations200Response</returns>
+        public async System.Threading.Tasks.Task<AddConversionAssociations200Response> AddConversionAssociationsAsync(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<AddConversionAssociations200Response> localVarResponse = await AddConversionAssociationsWithHttpInfoAsync(accountId, destinationId, addConversionAssociationsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Associate campaigns with a conversion destination Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="addConversionAssociationsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddConversionAssociations200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AddConversionAssociations200Response>> AddConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->AddConversionAssociations");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->AddConversionAssociations");
+
+            // verify the required parameter 'addConversionAssociationsRequest' is set
+            if (addConversionAssociationsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'addConversionAssociationsRequest' when calling AdsApi->AddConversionAssociations");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.Data = addConversionAssociationsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AddConversionAssociations200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddConversionAssociations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Boost post as ad Creates a paid ad campaign from an existing published post. Creates the full platform campaign hierarchy (campaign, ad set, ad).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1169,6 +1754,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("BoostPost", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a conversion destination (LinkedIn) Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="createConversionDestinationRequest"></param>
+        /// <returns>CreateConversionDestination201Response</returns>
+        public CreateConversionDestination201Response CreateConversionDestination(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest)
+        {
+            Zernio.Client.ApiResponse<CreateConversionDestination201Response> localVarResponse = CreateConversionDestinationWithHttpInfo(accountId, createConversionDestinationRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a conversion destination (LinkedIn) Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="createConversionDestinationRequest"></param>
+        /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
+        public Zernio.Client.ApiResponse<CreateConversionDestination201Response> CreateConversionDestinationWithHttpInfo(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->CreateConversionDestination");
+
+            // verify the required parameter 'createConversionDestinationRequest' is set
+            if (createConversionDestinationRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createConversionDestinationRequest' when calling AdsApi->CreateConversionDestination");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = createConversionDestinationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateConversionDestination201Response>("/v1/accounts/{accountId}/conversion-destinations", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateConversionDestination", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a conversion destination (LinkedIn) Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="createConversionDestinationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateConversionDestination201Response</returns>
+        public async System.Threading.Tasks.Task<CreateConversionDestination201Response> CreateConversionDestinationAsync(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateConversionDestination201Response> localVarResponse = await CreateConversionDestinationWithHttpInfoAsync(accountId, createConversionDestinationRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a conversion destination (LinkedIn) Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="createConversionDestinationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateConversionDestination201Response>> CreateConversionDestinationWithHttpInfoAsync(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->CreateConversionDestination");
+
+            // verify the required parameter 'createConversionDestinationRequest' is set
+            if (createConversionDestinationRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createConversionDestinationRequest' when calling AdsApi->CreateConversionDestination");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = createConversionDestinationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateConversionDestination201Response>("/v1/accounts/{accountId}/conversion-destinations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateConversionDestination", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1554,6 +2282,157 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Soft-delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Required as query OR in JSON body. (optional)</param>
+        /// <returns></returns>
+        public void DeleteConversionDestination(string accountId, string destinationId, string? adAccountId = default)
+        {
+            DeleteConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId);
+        }
+
+        /// <summary>
+        /// Soft-delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Required as query OR in JSON body. (optional)</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> DeleteConversionDestinationWithHttpInfo(string accountId, string destinationId, string? adAccountId = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->DeleteConversionDestination");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->DeleteConversionDestination");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<Object>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteConversionDestination", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Soft-delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Required as query OR in JSON body. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteConversionDestinationAsync(string accountId, string destinationId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await DeleteConversionDestinationWithHttpInfoAsync(accountId, destinationId, adAccountId, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Soft-delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Required as query OR in JSON body. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> DeleteConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->DeleteConversionDestination");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->DeleteConversionDestination");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteConversionDestination", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1995,6 +2874,354 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAdComments", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Fetch a single conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
+        /// <returns>CreateConversionDestination201Response</returns>
+        public CreateConversionDestination201Response GetConversionDestination(string accountId, string destinationId, string adAccountId)
+        {
+            Zernio.Client.ApiResponse<CreateConversionDestination201Response> localVarResponse = GetConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Fetch a single conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
+        /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
+        public Zernio.Client.ApiResponse<CreateConversionDestination201Response> GetConversionDestinationWithHttpInfo(string accountId, string destinationId, string adAccountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetConversionDestination");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->GetConversionDestination");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetConversionDestination");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<CreateConversionDestination201Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetConversionDestination", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Fetch a single conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateConversionDestination201Response</returns>
+        public async System.Threading.Tasks.Task<CreateConversionDestination201Response> GetConversionDestinationAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateConversionDestination201Response> localVarResponse = await GetConversionDestinationWithHttpInfoAsync(accountId, destinationId, adAccountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Fetch a single conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateConversionDestination201Response>> GetConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetConversionDestination");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->GetConversionDestination");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetConversionDestination");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<CreateConversionDestination201Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetConversionDestination", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Fetch attribution metrics for a conversion destination LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"> (optional)</param>
+        /// <param name="granularity"> (optional, default to DAILY)</param>
+        /// <returns>GetConversionMetrics200Response</returns>
+        public GetConversionMetrics200Response GetConversionMetrics(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default)
+        {
+            Zernio.Client.ApiResponse<GetConversionMetrics200Response> localVarResponse = GetConversionMetricsWithHttpInfo(accountId, destinationId, adAccountId, startDate, endDate, granularity);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Fetch attribution metrics for a conversion destination LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"> (optional)</param>
+        /// <param name="granularity"> (optional, default to DAILY)</param>
+        /// <returns>ApiResponse of GetConversionMetrics200Response</returns>
+        public Zernio.Client.ApiResponse<GetConversionMetrics200Response> GetConversionMetricsWithHttpInfo(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetConversionMetrics");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->GetConversionMetrics");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetConversionMetrics");
+
+            // verify the required parameter 'startDate' is set
+            if (startDate == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'startDate' when calling AdsApi->GetConversionMetrics");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate));
+            if (endDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate));
+            }
+            if (granularity != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "granularity", granularity));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetConversionMetrics200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetConversionMetrics", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Fetch attribution metrics for a conversion destination LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"> (optional)</param>
+        /// <param name="granularity"> (optional, default to DAILY)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetConversionMetrics200Response</returns>
+        public async System.Threading.Tasks.Task<GetConversionMetrics200Response> GetConversionMetricsAsync(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetConversionMetrics200Response> localVarResponse = await GetConversionMetricsWithHttpInfoAsync(accountId, destinationId, adAccountId, startDate, endDate, granularity, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Fetch attribution metrics for a conversion destination LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"> (optional)</param>
+        /// <param name="granularity"> (optional, default to DAILY)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetConversionMetrics200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetConversionMetrics200Response>> GetConversionMetricsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetConversionMetrics");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->GetConversionMetrics");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetConversionMetrics");
+
+            // verify the required parameter 'startDate' is set
+            if (startDate == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'startDate' when calling AdsApi->GetConversionMetrics");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate));
+            if (endDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate));
+            }
+            if (granularity != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "granularity", granularity));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetConversionMetrics200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetConversionMetrics", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -2525,10 +3752,165 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List destinations for the Conversions API Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// List campaigns associated with a conversion destination LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns>ListConversionAssociations200Response</returns>
+        public ListConversionAssociations200Response ListConversionAssociations(string accountId, string destinationId, string adAccountId)
+        {
+            Zernio.Client.ApiResponse<ListConversionAssociations200Response> localVarResponse = ListConversionAssociationsWithHttpInfo(accountId, destinationId, adAccountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List campaigns associated with a conversion destination LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns>ApiResponse of ListConversionAssociations200Response</returns>
+        public Zernio.Client.ApiResponse<ListConversionAssociations200Response> ListConversionAssociationsWithHttpInfo(string accountId, string destinationId, string adAccountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListConversionAssociations");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->ListConversionAssociations");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListConversionAssociations");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListConversionAssociations200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListConversionAssociations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List campaigns associated with a conversion destination LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListConversionAssociations200Response</returns>
+        public async System.Threading.Tasks.Task<ListConversionAssociations200Response> ListConversionAssociationsAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListConversionAssociations200Response> localVarResponse = await ListConversionAssociationsWithHttpInfoAsync(accountId, destinationId, adAccountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List campaigns associated with a conversion destination LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListConversionAssociations200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListConversionAssociations200Response>> ListConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListConversionAssociations");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->ListConversionAssociations");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListConversionAssociations");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListConversionAssociations200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListConversionAssociations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List destinations for the Conversions API Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount ID (metaads, googleads, or linkedinads).</param>
         /// <returns>ListConversionDestinations200Response</returns>
         public ListConversionDestinations200Response ListConversionDestinations(string accountId)
         {
@@ -2537,10 +3919,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List destinations for the Conversions API Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// List destinations for the Conversions API Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="accountId">SocialAccount ID (metaads, googleads, or linkedinads).</param>
         /// <returns>ApiResponse of ListConversionDestinations200Response</returns>
         public Zernio.Client.ApiResponse<ListConversionDestinations200Response> ListConversionDestinationsWithHttpInfo(string accountId)
         {
@@ -2586,10 +3968,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List destinations for the Conversions API Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// List destinations for the Conversions API Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="accountId">SocialAccount ID (metaads, googleads, or linkedinads).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListConversionDestinations200Response</returns>
         public async System.Threading.Tasks.Task<ListConversionDestinations200Response> ListConversionDestinationsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -2599,10 +3981,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List destinations for the Conversions API Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+        /// List destinations for the Conversions API Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (metaads or googleads).</param>
+        /// <param name="accountId">SocialAccount ID (metaads, googleads, or linkedinads).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListConversionDestinations200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListConversionDestinations200Response>> ListConversionDestinationsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -2645,6 +4027,175 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListConversionDestinations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove campaign↔conversion associations Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="campaignIds">Comma-separated list of campaign IDs.</param>
+        /// <returns>RemoveConversionAssociations200Response</returns>
+        public RemoveConversionAssociations200Response RemoveConversionAssociations(string accountId, string destinationId, string adAccountId, string campaignIds)
+        {
+            Zernio.Client.ApiResponse<RemoveConversionAssociations200Response> localVarResponse = RemoveConversionAssociationsWithHttpInfo(accountId, destinationId, adAccountId, campaignIds);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove campaign↔conversion associations Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="campaignIds">Comma-separated list of campaign IDs.</param>
+        /// <returns>ApiResponse of RemoveConversionAssociations200Response</returns>
+        public Zernio.Client.ApiResponse<RemoveConversionAssociations200Response> RemoveConversionAssociationsWithHttpInfo(string accountId, string destinationId, string adAccountId, string campaignIds)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->RemoveConversionAssociations");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->RemoveConversionAssociations");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->RemoveConversionAssociations");
+
+            // verify the required parameter 'campaignIds' is set
+            if (campaignIds == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignIds' when calling AdsApi->RemoveConversionAssociations");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignIds", campaignIds));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<RemoveConversionAssociations200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveConversionAssociations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove campaign↔conversion associations Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="campaignIds">Comma-separated list of campaign IDs.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveConversionAssociations200Response</returns>
+        public async System.Threading.Tasks.Task<RemoveConversionAssociations200Response> RemoveConversionAssociationsAsync(string accountId, string destinationId, string adAccountId, string campaignIds, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RemoveConversionAssociations200Response> localVarResponse = await RemoveConversionAssociationsWithHttpInfoAsync(accountId, destinationId, adAccountId, campaignIds, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove campaign↔conversion associations Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="campaignIds">Comma-separated list of campaign IDs.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveConversionAssociations200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RemoveConversionAssociations200Response>> RemoveConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, string campaignIds, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->RemoveConversionAssociations");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->RemoveConversionAssociations");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->RemoveConversionAssociations");
+
+            // verify the required parameter 'campaignIds' is set
+            if (campaignIds == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignIds' when calling AdsApi->RemoveConversionAssociations");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignIds", campaignIds));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<RemoveConversionAssociations200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveConversionAssociations", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -2970,7 +4521,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -2982,7 +4533,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -3032,7 +4583,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -3045,7 +4596,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -3364,6 +4915,163 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update a conversion destination Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="updateConversionDestinationRequest"></param>
+        /// <returns>CreateConversionDestination201Response</returns>
+        public CreateConversionDestination201Response UpdateConversionDestination(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest)
+        {
+            Zernio.Client.ApiResponse<CreateConversionDestination201Response> localVarResponse = UpdateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update a conversion destination Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="updateConversionDestinationRequest"></param>
+        /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
+        public Zernio.Client.ApiResponse<CreateConversionDestination201Response> UpdateConversionDestinationWithHttpInfo(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->UpdateConversionDestination");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->UpdateConversionDestination");
+
+            // verify the required parameter 'updateConversionDestinationRequest' is set
+            if (updateConversionDestinationRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateConversionDestinationRequest' when calling AdsApi->UpdateConversionDestination");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.Data = updateConversionDestinationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<CreateConversionDestination201Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateConversionDestination", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update a conversion destination Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="updateConversionDestinationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateConversionDestination201Response</returns>
+        public async System.Threading.Tasks.Task<CreateConversionDestination201Response> UpdateConversionDestinationAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateConversionDestination201Response> localVarResponse = await UpdateConversionDestinationWithHttpInfoAsync(accountId, destinationId, updateConversionDestinationRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update a conversion destination Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="destinationId"></param>
+        /// <param name="updateConversionDestinationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateConversionDestination201Response>> UpdateConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->UpdateConversionDestination");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->UpdateConversionDestination");
+
+            // verify the required parameter 'updateConversionDestinationRequest' is set
+            if (updateConversionDestinationRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateConversionDestinationRequest' when calling AdsApi->UpdateConversionDestination");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("destinationId", Zernio.Client.ClientUtils.ParameterToString(destinationId)); // path parameter
+            localVarRequestOptions.Data = updateConversionDestinationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<CreateConversionDestination201Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateConversionDestination", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

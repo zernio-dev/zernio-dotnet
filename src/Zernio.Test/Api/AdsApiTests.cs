@@ -55,6 +55,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AddConversionAssociations
+        /// </summary>
+        [Fact]
+        public void AddConversionAssociationsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string destinationId = null;
+            //AddConversionAssociationsRequest addConversionAssociationsRequest = null;
+            //var response = instance.AddConversionAssociations(accountId, destinationId, addConversionAssociationsRequest);
+            //Assert.IsType<AddConversionAssociations200Response>(response);
+        }
+
+        /// <summary>
         /// Test BoostPost
         /// </summary>
         [Fact]
@@ -64,6 +78,19 @@ namespace Zernio.Test.Api
             //BoostPostRequest boostPostRequest = null;
             //var response = instance.BoostPost(boostPostRequest);
             //Assert.IsType<UpdateAd200Response>(response);
+        }
+
+        /// <summary>
+        /// Test CreateConversionDestination
+        /// </summary>
+        [Fact]
+        public void CreateConversionDestinationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //CreateConversionDestinationRequest createConversionDestinationRequest = null;
+            //var response = instance.CreateConversionDestination(accountId, createConversionDestinationRequest);
+            //Assert.IsType<CreateConversionDestination201Response>(response);
         }
 
         /// <summary>
@@ -100,6 +127,19 @@ namespace Zernio.Test.Api
             //string adId = null;
             //var response = instance.DeleteAd(adId);
             //Assert.IsType<DeleteAccountGroup200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteConversionDestination
+        /// </summary>
+        [Fact]
+        public void DeleteConversionDestinationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string destinationId = null;
+            //string? adAccountId = null;
+            //instance.DeleteConversionDestination(accountId, destinationId, adAccountId);
         }
 
         /// <summary>
@@ -141,6 +181,37 @@ namespace Zernio.Test.Api
             //string? cursor = null;
             //var response = instance.GetAdComments(adId, limit, cursor);
             //Assert.IsType<GetAdComments200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetConversionDestination
+        /// </summary>
+        [Fact]
+        public void GetConversionDestinationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string destinationId = null;
+            //string adAccountId = null;
+            //var response = instance.GetConversionDestination(accountId, destinationId, adAccountId);
+            //Assert.IsType<CreateConversionDestination201Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetConversionMetrics
+        /// </summary>
+        [Fact]
+        public void GetConversionMetricsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string destinationId = null;
+            //string adAccountId = null;
+            //string startDate = null;
+            //string? endDate = null;
+            //string? granularity = null;
+            //var response = instance.GetConversionMetrics(accountId, destinationId, adAccountId, startDate, endDate, granularity);
+            //Assert.IsType<GetConversionMetrics200Response>(response);
         }
 
         /// <summary>
@@ -192,6 +263,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListConversionAssociations
+        /// </summary>
+        [Fact]
+        public void ListConversionAssociationsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string destinationId = null;
+            //string adAccountId = null;
+            //var response = instance.ListConversionAssociations(accountId, destinationId, adAccountId);
+            //Assert.IsType<ListConversionAssociations200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListConversionDestinations
         /// </summary>
         [Fact]
@@ -201,6 +286,21 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.ListConversionDestinations(accountId);
             //Assert.IsType<ListConversionDestinations200Response>(response);
+        }
+
+        /// <summary>
+        /// Test RemoveConversionAssociations
+        /// </summary>
+        [Fact]
+        public void RemoveConversionAssociationsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string destinationId = null;
+            //string adAccountId = null;
+            //string campaignIds = null;
+            //var response = instance.RemoveConversionAssociations(accountId, destinationId, adAccountId, campaignIds);
+            //Assert.IsType<RemoveConversionAssociations200Response>(response);
         }
 
         /// <summary>
@@ -267,6 +367,20 @@ namespace Zernio.Test.Api
             //UpdateAdRequest updateAdRequest = null;
             //var response = instance.UpdateAd(adId, updateAdRequest);
             //Assert.IsType<UpdateAd200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateConversionDestination
+        /// </summary>
+        [Fact]
+        public void UpdateConversionDestinationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string destinationId = null;
+            //UpdateConversionDestinationRequest updateConversionDestinationRequest = null;
+            //var response = instance.UpdateConversionDestination(accountId, destinationId, updateConversionDestinationRequest);
+            //Assert.IsType<CreateConversionDestination201Response>(response);
         }
     }
 }

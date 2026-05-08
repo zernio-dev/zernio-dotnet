@@ -49,7 +49,13 @@ namespace Zernio.Model
             /// Enum Googleads for value: googleads
             /// </summary>
             [EnumMember(Value = "googleads")]
-            Googleads = 2
+            Googleads = 2,
+
+            /// <summary>
+            /// Enum Linkedinads for value: linkedinads
+            /// </summary>
+            [EnumMember(Value = "linkedinads")]
+            Linkedinads = 3
         }
 
 
@@ -65,7 +71,7 @@ namespace Zernio.Model
         /// <param name="eventsReceived">Events accepted by the platform..</param>
         /// <param name="eventsFailed">Events rejected (see failures)..</param>
         /// <param name="failures">failures.</param>
-        /// <param name="traceId">Platform trace ID (fbtrace_id for Meta, requestId for Google) for debugging..</param>
+        /// <param name="traceId">Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID). .</param>
         public SendConversions200Response(PlatformEnum? platform = default, int eventsReceived = default, int eventsFailed = default, List<SendConversions200ResponseFailuresInner> failures = default, string traceId = default)
         {
             this.Platform = platform;
@@ -96,9 +102,9 @@ namespace Zernio.Model
         public List<SendConversions200ResponseFailuresInner> Failures { get; set; }
 
         /// <summary>
-        /// Platform trace ID (fbtrace_id for Meta, requestId for Google) for debugging.
+        /// Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID). 
         /// </summary>
-        /// <value>Platform trace ID (fbtrace_id for Meta, requestId for Google) for debugging.</value>
+        /// <value>Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID). </value>
         [DataMember(Name = "traceId", EmitDefaultValue = false)]
         public string TraceId { get; set; }
 

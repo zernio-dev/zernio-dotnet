@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **EventsReceived** | **int** | Events accepted by the platform. | [optional] 
 **EventsFailed** | **int** | Events rejected (see failures). | [optional] 
 **Failures** | [**List&lt;SendConversions200ResponseFailuresInner&gt;**](SendConversions200ResponseFailuresInner.md) |  | [optional] 
-**TraceId** | **string** | Platform trace ID (fbtrace_id for Meta, requestId for Google) for debugging. | [optional] 
+**TraceId** | **string** | Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID).  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

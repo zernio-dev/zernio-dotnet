@@ -41,13 +41,15 @@ namespace Zernio.Model
         /// <param name="gclid">Google click ID (from gclid URL param)..</param>
         /// <param name="gbraid">Google iOS 14.5+ app attribution ID..</param>
         /// <param name="wbraid">Google iOS 14.5+ web-to-app attribution ID..</param>
-        public ConversionEventUserClickIds(string fbc = default, string fbp = default, string gclid = default, string gbraid = default, string wbraid = default)
+        /// <param name="liFatId">LinkedIn first-party ad tracking click ID. Captured by parsing &#x60;li_fat_id&#x60; from landing-page URLs after the advertiser enables enhanced conversion tracking on the LinkedIn Insight Tag. Sent to LinkedIn as the LINKEDIN_FIRST_PARTY_ADS_TRACKING_UUID userId. Opaque token, not hashed. .</param>
+        public ConversionEventUserClickIds(string fbc = default, string fbp = default, string gclid = default, string gbraid = default, string wbraid = default, string liFatId = default)
         {
             this.Fbc = fbc;
             this.Fbp = fbp;
             this.Gclid = gclid;
             this.Gbraid = gbraid;
             this.Wbraid = wbraid;
+            this.LiFatId = liFatId;
         }
 
         /// <summary>
@@ -86,6 +88,13 @@ namespace Zernio.Model
         public string Wbraid { get; set; }
 
         /// <summary>
+        /// LinkedIn first-party ad tracking click ID. Captured by parsing &#x60;li_fat_id&#x60; from landing-page URLs after the advertiser enables enhanced conversion tracking on the LinkedIn Insight Tag. Sent to LinkedIn as the LINKEDIN_FIRST_PARTY_ADS_TRACKING_UUID userId. Opaque token, not hashed. 
+        /// </summary>
+        /// <value>LinkedIn first-party ad tracking click ID. Captured by parsing &#x60;li_fat_id&#x60; from landing-page URLs after the advertiser enables enhanced conversion tracking on the LinkedIn Insight Tag. Sent to LinkedIn as the LINKEDIN_FIRST_PARTY_ADS_TRACKING_UUID userId. Opaque token, not hashed. </value>
+        [DataMember(Name = "li_fat_id", EmitDefaultValue = false)]
+        public string LiFatId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -98,6 +107,7 @@ namespace Zernio.Model
             sb.Append("  Gclid: ").Append(Gclid).Append("\n");
             sb.Append("  Gbraid: ").Append(Gbraid).Append("\n");
             sb.Append("  Wbraid: ").Append(Wbraid).Append("\n");
+            sb.Append("  LiFatId: ").Append(LiFatId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

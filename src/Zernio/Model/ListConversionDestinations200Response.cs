@@ -49,7 +49,13 @@ namespace Zernio.Model
             /// Enum Googleads for value: googleads
             /// </summary>
             [EnumMember(Value = "googleads")]
-            Googleads = 2
+            Googleads = 2,
+
+            /// <summary>
+            /// Enum Linkedinads for value: linkedinads
+            /// </summary>
+            [EnumMember(Value = "linkedinads")]
+            Linkedinads = 3
         }
 
 
