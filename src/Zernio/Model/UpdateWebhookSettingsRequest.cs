@@ -100,22 +100,58 @@ namespace Zernio.Model
             MessageReceived = 10,
 
             /// <summary>
+            /// Enum MessageSent for value: message.sent
+            /// </summary>
+            [EnumMember(Value = "message.sent")]
+            MessageSent = 11,
+
+            /// <summary>
+            /// Enum MessageEdited for value: message.edited
+            /// </summary>
+            [EnumMember(Value = "message.edited")]
+            MessageEdited = 12,
+
+            /// <summary>
+            /// Enum MessageDeleted for value: message.deleted
+            /// </summary>
+            [EnumMember(Value = "message.deleted")]
+            MessageDeleted = 13,
+
+            /// <summary>
+            /// Enum MessageDelivered for value: message.delivered
+            /// </summary>
+            [EnumMember(Value = "message.delivered")]
+            MessageDelivered = 14,
+
+            /// <summary>
+            /// Enum MessageRead for value: message.read
+            /// </summary>
+            [EnumMember(Value = "message.read")]
+            MessageRead = 15,
+
+            /// <summary>
+            /// Enum MessageFailed for value: message.failed
+            /// </summary>
+            [EnumMember(Value = "message.failed")]
+            MessageFailed = 16,
+
+            /// <summary>
             /// Enum CommentReceived for value: comment.received
             /// </summary>
             [EnumMember(Value = "comment.received")]
-            CommentReceived = 11,
+            CommentReceived = 17,
 
             /// <summary>
             /// Enum ReviewNew for value: review.new
             /// </summary>
             [EnumMember(Value = "review.new")]
-            ReviewNew = 12,
+            ReviewNew = 18,
 
             /// <summary>
             /// Enum ReviewUpdated for value: review.updated
             /// </summary>
             [EnumMember(Value = "review.updated")]
-            ReviewUpdated = 13
+            ReviewUpdated = 19
         }
 
         /// <summary>
