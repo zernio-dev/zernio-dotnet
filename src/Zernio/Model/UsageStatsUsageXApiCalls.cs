@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Metronome users only. Aggregated X API call counts bucketed by price tier (backward-compat). For per-operation breakdown use &#x60;xApiCallsByOperation&#x60;. 
+    /// **Deprecated.** Legacy 3-tier aggregate. Operations outside the three historical prices ($0.005/$0.010/$0.015) — notably the $0.200 \&quot;Posts with URL\&quot; tier added April 2026 — are silently excluded from this shape. Use &#x60;xApiCallsByOperation&#x60; instead; it captures every tier and is the source of truth for per-operation call counts. 
     /// </summary>
     [DataContract(Name = "UsageStats_usage_xApiCalls")]
     public partial class UsageStatsUsageXApiCalls : IValidatableObject
@@ -36,9 +36,9 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UsageStatsUsageXApiCalls" /> class.
         /// </summary>
-        /// <param name="xApi005">Calls at $0.005 per call (reads, list mgmt, bookmarks, etc.).</param>
-        /// <param name="xApi010">Calls at $0.010 per call (publish/delete, DM reads, follows).</param>
-        /// <param name="xApi015">Calls at $0.015 per call (sending DMs, follow actions).</param>
+        /// <param name="xApi005">Calls at $0.005 per call (reads, lists, bookmarks, content manage, etc.).</param>
+        /// <param name="xApi010">Calls at $0.010 per call (user reads, DM reads, follow reads, trends, list create, privacy update).</param>
+        /// <param name="xApi015">Calls at $0.015 per call (posts/replies, DM sends, user interactions).</param>
         public UsageStatsUsageXApiCalls(int xApi005 = default, int xApi010 = default, int xApi015 = default)
         {
             this.XApi005 = xApi005;
@@ -47,23 +47,23 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Calls at $0.005 per call (reads, list mgmt, bookmarks, etc.)
+        /// Calls at $0.005 per call (reads, lists, bookmarks, content manage, etc.)
         /// </summary>
-        /// <value>Calls at $0.005 per call (reads, list mgmt, bookmarks, etc.)</value>
+        /// <value>Calls at $0.005 per call (reads, lists, bookmarks, content manage, etc.)</value>
         [DataMember(Name = "x_api_005", EmitDefaultValue = false)]
         public int XApi005 { get; set; }
 
         /// <summary>
-        /// Calls at $0.010 per call (publish/delete, DM reads, follows)
+        /// Calls at $0.010 per call (user reads, DM reads, follow reads, trends, list create, privacy update)
         /// </summary>
-        /// <value>Calls at $0.010 per call (publish/delete, DM reads, follows)</value>
+        /// <value>Calls at $0.010 per call (user reads, DM reads, follow reads, trends, list create, privacy update)</value>
         [DataMember(Name = "x_api_010", EmitDefaultValue = false)]
         public int XApi010 { get; set; }
 
         /// <summary>
-        /// Calls at $0.015 per call (sending DMs, follow actions)
+        /// Calls at $0.015 per call (posts/replies, DM sends, user interactions)
         /// </summary>
-        /// <value>Calls at $0.015 per call (sending DMs, follow actions)</value>
+        /// <value>Calls at $0.015 per call (posts/replies, DM sends, user interactions)</value>
         [DataMember(Name = "x_api_015", EmitDefaultValue = false)]
         public int XApi015 { get; set; }
 

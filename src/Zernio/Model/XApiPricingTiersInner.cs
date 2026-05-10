@@ -34,50 +34,27 @@ namespace Zernio.Model
     public partial class XApiPricingTiersInner : IValidatableObject
     {
         /// <summary>
-        /// Historical bucket key used in &#x60;xApiCalls&#x60; aggregation.
-        /// </summary>
-        /// <value>Historical bucket key used in &#x60;xApiCalls&#x60; aggregation.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TierEnum
-        {
-            /// <summary>
-            /// Enum XApi005 for value: x_api_005
-            /// </summary>
-            [EnumMember(Value = "x_api_005")]
-            XApi005 = 1,
-
-            /// <summary>
-            /// Enum XApi010 for value: x_api_010
-            /// </summary>
-            [EnumMember(Value = "x_api_010")]
-            XApi010 = 2,
-
-            /// <summary>
-            /// Enum XApi015 for value: x_api_015
-            /// </summary>
-            [EnumMember(Value = "x_api_015")]
-            XApi015 = 3
-        }
-
-
-        /// <summary>
-        /// Historical bucket key used in &#x60;xApiCalls&#x60; aggregation.
-        /// </summary>
-        /// <value>Historical bucket key used in &#x60;xApiCalls&#x60; aggregation.</value>
-        [DataMember(Name = "tier", EmitDefaultValue = false)]
-        public TierEnum? Tier { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="XApiPricingTiersInner" /> class.
         /// </summary>
-        /// <param name="tier">Historical bucket key used in &#x60;xApiCalls&#x60; aggregation..</param>
+        /// <param name="tier">Tier key derived from price (e.g. &#x60;x_api_005&#x60; for $0.005, &#x60;x_api_200&#x60; for $0.200). The first three keys map to the legacy &#x60;xApiCalls&#x60; aggregate; new tiers (e.g. &#x60;x_api_200&#x60; for the URL tier added April 2026) are surfaced here but not in the legacy shape. .</param>
         /// <param name="pricePerCallUsd">pricePerCallUsd.</param>
         /// <param name="operationCount">operationCount.</param>
-        public XApiPricingTiersInner(TierEnum? tier = default, decimal pricePerCallUsd = default, int operationCount = default)
+        public XApiPricingTiersInner(string tier = default, decimal pricePerCallUsd = default, int operationCount = default)
         {
             this.Tier = tier;
             this.PricePerCallUsd = pricePerCallUsd;
             this.OperationCount = operationCount;
         }
+
+        /// <summary>
+        /// Tier key derived from price (e.g. &#x60;x_api_005&#x60; for $0.005, &#x60;x_api_200&#x60; for $0.200). The first three keys map to the legacy &#x60;xApiCalls&#x60; aggregate; new tiers (e.g. &#x60;x_api_200&#x60; for the URL tier added April 2026) are surfaced here but not in the legacy shape. 
+        /// </summary>
+        /// <value>Tier key derived from price (e.g. &#x60;x_api_005&#x60; for $0.005, &#x60;x_api_200&#x60; for $0.200). The first three keys map to the legacy &#x60;xApiCalls&#x60; aggregate; new tiers (e.g. &#x60;x_api_200&#x60; for the URL tier added April 2026) are surfaced here but not in the legacy shape. </value>
+        /*
+        <example>x_api_005</example>
+        */
+        [DataMember(Name = "tier", EmitDefaultValue = false)]
+        public string Tier { get; set; }
 
         /// <summary>
         /// Gets or Sets PricePerCallUsd

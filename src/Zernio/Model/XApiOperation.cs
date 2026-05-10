@@ -34,39 +34,6 @@ namespace Zernio.Model
     public partial class XApiOperation : IValidatableObject
     {
         /// <summary>
-        /// Which aggregate price tier this operation falls into.
-        /// </summary>
-        /// <value>Which aggregate price tier this operation falls into.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TierEnum
-        {
-            /// <summary>
-            /// Enum XApi005 for value: x_api_005
-            /// </summary>
-            [EnumMember(Value = "x_api_005")]
-            XApi005 = 1,
-
-            /// <summary>
-            /// Enum XApi010 for value: x_api_010
-            /// </summary>
-            [EnumMember(Value = "x_api_010")]
-            XApi010 = 2,
-
-            /// <summary>
-            /// Enum XApi015 for value: x_api_015
-            /// </summary>
-            [EnumMember(Value = "x_api_015")]
-            XApi015 = 3
-        }
-
-
-        /// <summary>
-        /// Which aggregate price tier this operation falls into.
-        /// </summary>
-        /// <value>Which aggregate price tier this operation falls into.</value>
-        [DataMember(Name = "tier", EmitDefaultValue = false)]
-        public TierEnum? Tier { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="XApiOperation" /> class.
         /// </summary>
         /// <param name="operation">Internal operation key. Matches keys in &#x60;xApiCallsByOperation&#x60;..</param>
@@ -74,9 +41,9 @@ namespace Zernio.Model
         /// <param name="displayName">Human-readable label shown on Metronome invoices..</param>
         /// <param name="pricePerCallUsd">pricePerCallUsd.</param>
         /// <param name="pricePerCallCents">Per-call price in cents. Fractional values are intentional..</param>
-        /// <param name="tier">Which aggregate price tier this operation falls into..</param>
+        /// <param name="tier">Tier key derived from &#x60;pricePerCallUsd&#x60; (e.g. &#x60;x_api_005&#x60; for $0.005, &#x60;x_api_200&#x60; for $0.200). Useful for grouping operations by price in dashboards. .</param>
         /// <param name="triggeredBy">Zernio platform methods that emit this operation, with their metering rule..</param>
-        public XApiOperation(string operation = default, string eventType = default, string displayName = default, decimal pricePerCallUsd = default, decimal pricePerCallCents = default, TierEnum? tier = default, List<XApiOperationTriggeredByInner> triggeredBy = default)
+        public XApiOperation(string operation = default, string eventType = default, string displayName = default, decimal pricePerCallUsd = default, decimal pricePerCallCents = default, string tier = default, List<XApiOperationTriggeredByInner> triggeredBy = default)
         {
             this.Operation = operation;
             this.EventType = eventType;
@@ -135,6 +102,16 @@ namespace Zernio.Model
         */
         [DataMember(Name = "pricePerCallCents", EmitDefaultValue = false)]
         public decimal PricePerCallCents { get; set; }
+
+        /// <summary>
+        /// Tier key derived from &#x60;pricePerCallUsd&#x60; (e.g. &#x60;x_api_005&#x60; for $0.005, &#x60;x_api_200&#x60; for $0.200). Useful for grouping operations by price in dashboards. 
+        /// </summary>
+        /// <value>Tier key derived from &#x60;pricePerCallUsd&#x60; (e.g. &#x60;x_api_005&#x60; for $0.005, &#x60;x_api_200&#x60; for $0.200). Useful for grouping operations by price in dashboards. </value>
+        /*
+        <example>x_api_005</example>
+        */
+        [DataMember(Name = "tier", EmitDefaultValue = false)]
+        public string Tier { get; set; }
 
         /// <summary>
         /// Zernio platform methods that emit this operation, with their metering rule.

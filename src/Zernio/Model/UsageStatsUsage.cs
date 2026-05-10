@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <param name="lastReset">Stripe users only..</param>
         /// <param name="connectedAccounts">Metronome users only. Accounts currently connected across the team..</param>
         /// <param name="xApiCalls">xApiCalls.</param>
-        /// <param name="xApiCallsByOperation">Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. .</param>
+        /// <param name="xApiCallsByOperation">Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source — covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. .</param>
         public UsageStatsUsage(int uploads = default, int profiles = default, DateTime lastReset = default, int connectedAccounts = default, UsageStatsUsageXApiCalls xApiCalls = default, Dictionary<string, int> xApiCallsByOperation = default)
         {
             this.Uploads = uploads;
@@ -84,14 +84,15 @@ namespace Zernio.Model
         /// Gets or Sets XApiCalls
         /// </summary>
         [DataMember(Name = "xApiCalls", EmitDefaultValue = false)]
+        [Obsolete]
         public UsageStatsUsageXApiCalls XApiCalls { get; set; }
 
         /// <summary>
-        /// Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. 
+        /// Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source — covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. 
         /// </summary>
-        /// <value>Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. </value>
+        /// <value>Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source — covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. </value>
         /*
-        <example>{posts_read&#x3D;42, content_create&#x3D;7, dm_interaction_create&#x3D;1}</example>
+        <example>{posts_read&#x3D;42, content_create&#x3D;7, content_create_with_url&#x3D;3, dm_interaction_create&#x3D;1}</example>
         */
         [DataMember(Name = "xApiCallsByOperation", EmitDefaultValue = false)]
         public Dictionary<string, int> XApiCallsByOperation { get; set; }
