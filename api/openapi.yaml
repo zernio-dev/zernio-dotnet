@@ -150,6 +150,14 @@ tags:
     Requires the Ads add-on.
   name: Ad Audiences
 - description: |
+    Manage the platform measurement tag — the thing you create, install on a website, send events to,
+    and target ads against. On Meta this is a Pixel; the surface is platform-neutral so other platforms
+    (Pinterest Tag, LinkedIn Insight Tag, etc.) can be added without changing the contract. Create a tag,
+    get it (including the install code snippet), rename + adjust matching/cookie/data-use settings, share
+    it with ad accounts, and read aggregated event stats. Currently Meta-only.
+    Requires the Ads add-on.
+  name: Tracking Tags
+- description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
     Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, comment.received, review.new, review.updated, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
@@ -16047,7 +16055,7 @@ paths:
       - bearerAuth: []
       summary: List tracking tags (Meta Pixels)
       tags:
-      - Ads
+      - Tracking Tags
     post:
       description: |
         Creates a Meta Pixel on the given ad account (`POST /act_{id}/adspixels`
@@ -16102,7 +16110,7 @@ paths:
       - bearerAuth: []
       summary: Create a tracking tag (Meta Pixel)
       tags:
-      - Ads
+      - Tracking Tags
   /v1/accounts/{accountId}/tracking-tags/{tagId}:
     get:
       description: |
@@ -16146,7 +16154,7 @@ paths:
       - bearerAuth: []
       summary: Fetch a single tracking tag (Meta Pixel)
       tags:
-      - Ads
+      - Tracking Tags
     patch:
       description: |
         Partial-update a pixel. Whitelisted fields: `name` (rename),
@@ -16204,7 +16212,7 @@ paths:
       - bearerAuth: []
       summary: Update a tracking tag (Meta Pixel)
       tags:
-      - Ads
+      - Tracking Tags
   /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts:
     delete:
       description: |
@@ -16256,7 +16264,7 @@ paths:
       - bearerAuth: []
       summary: Stop sharing a tracking tag with an ad account
       tags:
-      - Ads
+      - Tracking Tags
     get:
       description: Meta only (platform `metaads`); other platforms return 405.
       operationId: listTrackingTagSharedAccounts
@@ -16296,7 +16304,7 @@ paths:
       - bearerAuth: []
       summary: List ad accounts a tracking tag is shared with
       tags:
-      - Ads
+      - Tracking Tags
     post:
       description: |
         Shares the pixel with another ad account so campaigns/audiences in that
@@ -16350,7 +16358,7 @@ paths:
       - bearerAuth: []
       summary: Share a tracking tag with an ad account
       tags:
-      - Ads
+      - Tracking Tags
   /v1/accounts/{accountId}/tracking-tags/{tagId}/stats:
     get:
       description: |
@@ -16439,7 +16447,7 @@ paths:
       - bearerAuth: []
       summary: Aggregated event stats for a tracking tag (Meta Pixel)
       tags:
-      - Ads
+      - Tracking Tags
 components:
   parameters:
     PageParam:

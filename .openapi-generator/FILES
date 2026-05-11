@@ -720,6 +720,7 @@ docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
 docs/TikTokPlatformData.md
 docs/TrackingTag.md
+docs/TrackingTagsApi.md
 docs/TwitterEngagementApi.md
 docs/TwitterPlatformData.md
 docs/TwitterPlatformDataPoll.md
@@ -961,6 +962,7 @@ src/Zernio.Test/Api/QueueApiTests.cs
 src/Zernio.Test/Api/RedditSearchApiTests.cs
 src/Zernio.Test/Api/ReviewsApiTests.cs
 src/Zernio.Test/Api/SequencesApiTests.cs
+src/Zernio.Test/Api/TrackingTagsApiTests.cs
 src/Zernio.Test/Api/TwitterEngagementApiTests.cs
 src/Zernio.Test/Api/UsageApiTests.cs
 src/Zernio.Test/Api/UsersApiTests.cs
@@ -1886,6 +1888,7 @@ src/Zernio/Api/QueueApi.cs
 src/Zernio/Api/RedditSearchApi.cs
 src/Zernio/Api/ReviewsApi.cs
 src/Zernio/Api/SequencesApi.cs
+src/Zernio/Api/TrackingTagsApi.cs
 src/Zernio/Api/TwitterEngagementApi.cs
 src/Zernio/Api/UsageApi.cs
 src/Zernio/Api/UsersApi.cs
