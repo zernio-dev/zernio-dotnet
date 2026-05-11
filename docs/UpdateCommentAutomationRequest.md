@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Keywords** | **List&lt;string&gt;** |  | [optional] 
 **MatchMode** | **string** |  | [optional] 
 **DmMessage** | **string** |  | [optional] 
+**Buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Inline DM buttons (1-3). Pass [] to clear all buttons. | [optional] 
 **CommentReply** | **string** |  | [optional] 
 **IsActive** | **bool** |  | [optional] 
 

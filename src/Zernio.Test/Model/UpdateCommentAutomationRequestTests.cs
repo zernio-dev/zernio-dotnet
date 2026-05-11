@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Buttons'
+        /// </summary>
+        [Fact]
+        public void ButtonsTest()
+        {
+            // TODO unit test for the property 'Buttons'
+        }
+
+        /// <summary>
         /// Test the property 'CommentReply'
         /// </summary>
         [Fact]

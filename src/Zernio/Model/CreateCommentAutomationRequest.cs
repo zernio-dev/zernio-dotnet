@@ -74,9 +74,10 @@ namespace Zernio.Model
         /// <param name="name">Automation label (required).</param>
         /// <param name="keywords">Trigger keywords (empty &#x3D; any comment triggers).</param>
         /// <param name="matchMode">matchMode (default to MatchModeEnum.Contains).</param>
-        /// <param name="dmMessage">DM text to send to commenter (required).</param>
+        /// <param name="dmMessage">DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000. (required).</param>
+        /// <param name="buttons">Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM..</param>
         /// <param name="commentReply">Optional public reply to the comment.</param>
-        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, string dmMessage = default, string commentReply = default)
+        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -107,6 +108,7 @@ namespace Zernio.Model
             this.PostTitle = postTitle;
             this.Keywords = keywords;
             this.MatchMode = matchMode;
+            this.Buttons = buttons;
             this.CommentReply = commentReply;
         }
 
@@ -159,11 +161,18 @@ namespace Zernio.Model
         public List<string> Keywords { get; set; }
 
         /// <summary>
-        /// DM text to send to commenter
+        /// DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000.
         /// </summary>
-        /// <value>DM text to send to commenter</value>
+        /// <value>DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000.</value>
         [DataMember(Name = "dmMessage", IsRequired = true, EmitDefaultValue = true)]
         public string DmMessage { get; set; }
+
+        /// <summary>
+        /// Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM.
+        /// </summary>
+        /// <value>Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM.</value>
+        [DataMember(Name = "buttons", EmitDefaultValue = false)]
+        public List<DmButton> Buttons { get; set; }
 
         /// <summary>
         /// Optional public reply to the comment
@@ -189,6 +198,7 @@ namespace Zernio.Model
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
             sb.Append("  MatchMode: ").Append(MatchMode).Append("\n");
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
+            sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

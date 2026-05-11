@@ -12,7 +12,8 @@ Name | Type | Description | Notes
 **Name** | **string** | Automation label | 
 **Keywords** | **List&lt;string&gt;** | Trigger keywords (empty &#x3D; any comment triggers) | [optional] 
 **MatchMode** | **string** |  | [optional] [default to MatchModeEnum.Contains]
-**DmMessage** | **string** | DM text to send to commenter | 
+**DmMessage** | **string** | DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000. | 
+**Buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM. | [optional] 
 **CommentReply** | **string** | Optional public reply to the comment | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

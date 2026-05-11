@@ -143,7 +143,7 @@ namespace Zernio.Api
         /// Update automation settings
         /// </summary>
         /// <remarks>
-        /// Update an automation&#39;s keywords, DM message, comment reply, or active status.
+        /// Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -155,7 +155,7 @@ namespace Zernio.Api
         /// Update automation settings
         /// </summary>
         /// <remarks>
-        /// Update an automation&#39;s keywords, DM message, comment reply, or active status.
+        /// Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -296,7 +296,7 @@ namespace Zernio.Api
         /// Update automation settings
         /// </summary>
         /// <remarks>
-        /// Update an automation&#39;s keywords, DM message, comment reply, or active status.
+        /// Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -309,7 +309,7 @@ namespace Zernio.Api
         /// Update automation settings
         /// </summary>
         /// <remarks>
-        /// Update an automation&#39;s keywords, DM message, comment reply, or active status.
+        /// Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -1200,7 +1200,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update automation settings Update an automation&#39;s keywords, DM message, comment reply, or active status.
+        /// Update automation settings Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -1213,7 +1213,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update automation settings Update an automation&#39;s keywords, DM message, comment reply, or active status.
+        /// Update automation settings Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -1265,7 +1265,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update automation settings Update an automation&#39;s keywords, DM message, comment reply, or active status.
+        /// Update automation settings Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>
@@ -1279,7 +1279,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update automation settings Update an automation&#39;s keywords, DM message, comment reply, or active status.
+        /// Update automation settings Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="automationId"></param>

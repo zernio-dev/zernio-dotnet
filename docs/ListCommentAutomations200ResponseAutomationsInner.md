@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Keywords** | **List&lt;string&gt;** |  | [optional] 
 **MatchMode** | **string** |  | [optional] 
 **DmMessage** | **string** |  | [optional] 
+**Buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Inline DM buttons (up to 3). Omitted when none are set. | [optional] 
 **CommentReply** | **string** |  | [optional] 
 **IsActive** | **bool** |  | [optional] 
 **Stats** | [**ListCommentAutomations200ResponseAutomationsInnerStats**](ListCommentAutomations200ResponseAutomationsInnerStats.md) |  | [optional] 

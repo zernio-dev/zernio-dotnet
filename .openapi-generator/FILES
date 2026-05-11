@@ -210,6 +210,7 @@ docs/DiscordPlatformDataPollAnswersInner.md
 docs/DiscordPlatformDataPollAnswersInnerPollMedia.md
 docs/DiscordPlatformDataPollQuestion.md
 docs/DiscordPlatformDataThreadFromMessage.md
+docs/DmButton.md
 docs/DuplicateAdCampaign200Response.md
 docs/DuplicateAdCampaignRequest.md
 docs/EditInboxMessage200Response.md
@@ -1150,6 +1151,7 @@ src/Zernio.Test/Model/DiscordPlatformDataPollQuestionTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataPollTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataThreadFromMessageTests.cs
+src/Zernio.Test/Model/DmButtonTests.cs
 src/Zernio.Test/Model/DuplicateAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/DuplicateAdCampaignRequestTests.cs
 src/Zernio.Test/Model/EditInboxMessage200ResponseDataTests.cs
@@ -2081,6 +2083,7 @@ src/Zernio/Model/DiscordPlatformDataPollAnswersInner.cs
 src/Zernio/Model/DiscordPlatformDataPollAnswersInnerPollMedia.cs
 src/Zernio/Model/DiscordPlatformDataPollQuestion.cs
 src/Zernio/Model/DiscordPlatformDataThreadFromMessage.cs
+src/Zernio/Model/DmButton.cs
 src/Zernio/Model/DuplicateAdCampaign200Response.cs
 src/Zernio/Model/DuplicateAdCampaignRequest.cs
 src/Zernio/Model/EditInboxMessage200Response.cs

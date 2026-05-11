@@ -65,14 +65,16 @@ namespace Zernio.Model
         /// <param name="keywords">keywords.</param>
         /// <param name="matchMode">matchMode.</param>
         /// <param name="dmMessage">dmMessage.</param>
+        /// <param name="buttons">Inline DM buttons (1-3). Pass [] to clear all buttons..</param>
         /// <param name="commentReply">commentReply.</param>
         /// <param name="isActive">isActive.</param>
-        public UpdateCommentAutomationRequest(string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, string commentReply = default, bool isActive = default)
+        public UpdateCommentAutomationRequest(string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, bool isActive = default)
         {
             this.Name = name;
             this.Keywords = keywords;
             this.MatchMode = matchMode;
             this.DmMessage = dmMessage;
+            this.Buttons = buttons;
             this.CommentReply = commentReply;
             this.IsActive = isActive;
         }
@@ -94,6 +96,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "dmMessage", EmitDefaultValue = false)]
         public string DmMessage { get; set; }
+
+        /// <summary>
+        /// Inline DM buttons (1-3). Pass [] to clear all buttons.
+        /// </summary>
+        /// <value>Inline DM buttons (1-3). Pass [] to clear all buttons.</value>
+        [DataMember(Name = "buttons", EmitDefaultValue = false)]
+        public List<DmButton> Buttons { get; set; }
 
         /// <summary>
         /// Gets or Sets CommentReply
@@ -119,6 +128,7 @@ namespace Zernio.Model
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
             sb.Append("  MatchMode: ").Append(MatchMode).Append("\n");
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
+            sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("}\n");

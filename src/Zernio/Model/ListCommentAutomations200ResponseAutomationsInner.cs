@@ -95,11 +95,12 @@ namespace Zernio.Model
         /// <param name="keywords">keywords.</param>
         /// <param name="matchMode">matchMode.</param>
         /// <param name="dmMessage">dmMessage.</param>
+        /// <param name="buttons">Inline DM buttons (up to 3). Omitted when none are set..</param>
         /// <param name="commentReply">commentReply.</param>
         /// <param name="isActive">isActive.</param>
         /// <param name="stats">stats.</param>
         /// <param name="createdAt">createdAt.</param>
-        public ListCommentAutomations200ResponseAutomationsInner(string id = default, string name = default, PlatformEnum? platform = default, string accountId = default, string platformPostId = default, string postTitle = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, string commentReply = default, bool isActive = default, ListCommentAutomations200ResponseAutomationsInnerStats stats = default, DateTime createdAt = default)
+        public ListCommentAutomations200ResponseAutomationsInner(string id = default, string name = default, PlatformEnum? platform = default, string accountId = default, string platformPostId = default, string postTitle = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, bool isActive = default, ListCommentAutomations200ResponseAutomationsInnerStats stats = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -110,6 +111,7 @@ namespace Zernio.Model
             this.Keywords = keywords;
             this.MatchMode = matchMode;
             this.DmMessage = dmMessage;
+            this.Buttons = buttons;
             this.CommentReply = commentReply;
             this.IsActive = isActive;
             this.Stats = stats;
@@ -159,6 +161,13 @@ namespace Zernio.Model
         public string DmMessage { get; set; }
 
         /// <summary>
+        /// Inline DM buttons (up to 3). Omitted when none are set.
+        /// </summary>
+        /// <value>Inline DM buttons (up to 3). Omitted when none are set.</value>
+        [DataMember(Name = "buttons", EmitDefaultValue = false)]
+        public List<DmButton> Buttons { get; set; }
+
+        /// <summary>
         /// Gets or Sets CommentReply
         /// </summary>
         [DataMember(Name = "commentReply", EmitDefaultValue = false)]
@@ -199,6 +208,7 @@ namespace Zernio.Model
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
             sb.Append("  MatchMode: ").Append(MatchMode).Append("\n");
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
+            sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("  Stats: ").Append(Stats).Append("\n");
