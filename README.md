@@ -174,10 +174,12 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**UpdateAdSet**](docs/AdCampaignsApi.md#updateadset) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set (budget, status, and/or bid strategy)
 *AdCampaignsApi* | [**UpdateAdSetStatus**](docs/AdCampaignsApi.md#updateadsetstatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
 *AdsApi* | [**AddConversionAssociations**](docs/AdsApi.md#addconversionassociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination
+*AdsApi* | [**AddTrackingTagSharedAccount**](docs/AdsApi.md#addtrackingtagsharedaccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share a tracking tag with an ad account
 *AdsApi* | [**BoostPost**](docs/AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad
 *AdsApi* | [**CreateConversionDestination**](docs/AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn)
 *AdsApi* | [**CreateCtwaAd**](docs/AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad
 *AdsApi* | [**CreateStandaloneAd**](docs/AdsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad
+*AdsApi* | [**CreateTrackingTag**](docs/AdsApi.md#createtrackingtag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag (Meta Pixel)
 *AdsApi* | [**DeleteAd**](docs/AdsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad
 *AdsApi* | [**DeleteConversionDestination**](docs/AdsApi.md#deleteconversiondestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Soft-delete a conversion destination
 *AdsApi* | [**GetAd**](docs/AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details
@@ -185,18 +187,24 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**GetAdComments**](docs/AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdsApi* | [**GetConversionDestination**](docs/AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Fetch a single conversion destination
 *AdsApi* | [**GetConversionMetrics**](docs/AdsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Fetch attribution metrics for a conversion destination
+*AdsApi* | [**GetTrackingTag**](docs/AdsApi.md#gettrackingtag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Fetch a single tracking tag (Meta Pixel)
+*AdsApi* | [**GetTrackingTagStats**](docs/AdsApi.md#gettrackingtagstats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Aggregated event stats for a tracking tag (Meta Pixel)
 *AdsApi* | [**ListAdAccounts**](docs/AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**ListAds**](docs/AdsApi.md#listads) | **GET** /v1/ads | List ads
 *AdsApi* | [**ListAdsBusinessCenters**](docs/AdsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
 *AdsApi* | [**ListConversionAssociations**](docs/AdsApi.md#listconversionassociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List campaigns associated with a conversion destination
 *AdsApi* | [**ListConversionDestinations**](docs/AdsApi.md#listconversiondestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API
+*AdsApi* | [**ListTrackingTagSharedAccounts**](docs/AdsApi.md#listtrackingtagsharedaccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List ad accounts a tracking tag is shared with
+*AdsApi* | [**ListTrackingTags**](docs/AdsApi.md#listtrackingtags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags (Meta Pixels)
 *AdsApi* | [**RemoveConversionAssociations**](docs/AdsApi.md#removeconversionassociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations
+*AdsApi* | [**RemoveTrackingTagSharedAccount**](docs/AdsApi.md#removetrackingtagsharedaccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing a tracking tag with an ad account
 *AdsApi* | [**SearchAdInterests**](docs/AdsApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests
 *AdsApi* | [**SearchAdTargetingLocations**](docs/AdsApi.md#searchadtargetinglocations) | **GET** /v1/ads/targeting/search | Search geo targeting locations (Meta)
 *AdsApi* | [**SendConversions**](docs/AdsApi.md#sendconversions) | **POST** /v1/ads/conversions | Send conversion events to an ad platform
 *AdsApi* | [**SendWhatsAppConversion**](docs/AdsApi.md#sendwhatsappconversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
 *AdsApi* | [**UpdateAd**](docs/AdsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad
 *AdsApi* | [**UpdateConversionDestination**](docs/AdsApi.md#updateconversiondestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
+*AdsApi* | [**UpdateTrackingTag**](docs/AdsApi.md#updatetrackingtag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag (Meta Pixel)
 *AnalyticsApi* | [**GetAnalytics**](docs/AnalyticsApi.md#getanalytics) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**GetBestTimeToPost**](docs/AnalyticsApi.md#getbesttimetopost) | **GET** /v1/analytics/best-time | Get best times to post
 *AnalyticsApi* | [**GetContentDecay**](docs/AnalyticsApi.md#getcontentdecay) | **GET** /v1/analytics/content-decay | Get content performance decay
@@ -452,6 +460,8 @@ Class | Method | HTTP request | Description
  - [Model.AddConversionAssociations200ResponseFailedInner](docs/AddConversionAssociations200ResponseFailedInner.md)
  - [Model.AddConversionAssociationsRequest](docs/AddConversionAssociationsRequest.md)
  - [Model.AddMessageReactionRequest](docs/AddMessageReactionRequest.md)
+ - [Model.AddTrackingTagSharedAccount201Response](docs/AddTrackingTagSharedAccount201Response.md)
+ - [Model.AddTrackingTagSharedAccountRequest](docs/AddTrackingTagSharedAccountRequest.md)
  - [Model.AddUsersToAdAudience200Response](docs/AddUsersToAdAudience200Response.md)
  - [Model.AddUsersToAdAudienceRequest](docs/AddUsersToAdAudienceRequest.md)
  - [Model.AddUsersToAdAudienceRequestUsersInner](docs/AddUsersToAdAudienceRequestUsersInner.md)
@@ -582,6 +592,8 @@ Class | Method | HTTP request | Description
  - [Model.CreateStandaloneAdRequestPromotedObject](docs/CreateStandaloneAdRequestPromotedObject.md)
  - [Model.CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [Model.CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
+ - [Model.CreateTrackingTag201Response](docs/CreateTrackingTag201Response.md)
+ - [Model.CreateTrackingTagRequest](docs/CreateTrackingTagRequest.md)
  - [Model.CreateWebhookSettingsRequest](docs/CreateWebhookSettingsRequest.md)
  - [Model.CreateWhatsAppFlow200Response](docs/CreateWhatsAppFlow200Response.md)
  - [Model.CreateWhatsAppFlow200ResponseFlow](docs/CreateWhatsAppFlow200ResponseFlow.md)
@@ -799,6 +811,8 @@ Class | Method | HTTP request | Description
  - [Model.GetTikTokCreatorInfo200ResponseCreator](docs/GetTikTokCreatorInfo200ResponseCreator.md)
  - [Model.GetTikTokCreatorInfo200ResponsePostingLimits](docs/GetTikTokCreatorInfo200ResponsePostingLimits.md)
  - [Model.GetTikTokCreatorInfo200ResponsePrivacyLevelsInner](docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md)
+ - [Model.GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
+ - [Model.GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)
  - [Model.GetUser200Response](docs/GetUser200Response.md)
  - [Model.GetUser200ResponseUser](docs/GetUser200ResponseUser.md)
  - [Model.GetWebhookSettings200Response](docs/GetWebhookSettings200Response.md)
@@ -940,6 +954,8 @@ Class | Method | HTTP request | Description
  - [Model.ListSequences200ResponseSequencesInner](docs/ListSequences200ResponseSequencesInner.md)
  - [Model.ListSnapchatProfiles200Response](docs/ListSnapchatProfiles200Response.md)
  - [Model.ListSnapchatProfiles200ResponsePublicProfilesInner](docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md)
+ - [Model.ListTrackingTagSharedAccounts200Response](docs/ListTrackingTagSharedAccounts200Response.md)
+ - [Model.ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [Model.ListUsers200Response](docs/ListUsers200Response.md)
  - [Model.ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
  - [Model.ListWhatsAppFlows200Response](docs/ListWhatsAppFlows200Response.md)
@@ -1090,6 +1106,7 @@ Class | Method | HTTP request | Description
  - [Model.SetMessengerMenuRequest](docs/SetMessengerMenuRequest.md)
  - [Model.SetTelegramCommandsRequest](docs/SetTelegramCommandsRequest.md)
  - [Model.SetTelegramCommandsRequestCommandsInner](docs/SetTelegramCommandsRequestCommandsInner.md)
+ - [Model.SharedAdAccount](docs/SharedAdAccount.md)
  - [Model.SnapchatPlatformData](docs/SnapchatPlatformData.md)
  - [Model.SocialAccount](docs/SocialAccount.md)
  - [Model.SocialAccountProfileId](docs/SocialAccountProfileId.md)
@@ -1097,6 +1114,7 @@ Class | Method | HTTP request | Description
  - [Model.TestWebhookRequest](docs/TestWebhookRequest.md)
  - [Model.ThreadsPlatformData](docs/ThreadsPlatformData.md)
  - [Model.TikTokPlatformData](docs/TikTokPlatformData.md)
+ - [Model.TrackingTag](docs/TrackingTag.md)
  - [Model.TwitterPlatformData](docs/TwitterPlatformData.md)
  - [Model.TwitterPlatformDataPoll](docs/TwitterPlatformDataPoll.md)
  - [Model.TwitterPlatformDataThreadItemsInner](docs/TwitterPlatformDataThreadItemsInner.md)
@@ -1185,6 +1203,7 @@ Class | Method | HTTP request | Description
  - [Model.UpdateRedditSubredditsRequest](docs/UpdateRedditSubredditsRequest.md)
  - [Model.UpdateSequence200Response](docs/UpdateSequence200Response.md)
  - [Model.UpdateSequence200ResponseSequence](docs/UpdateSequence200ResponseSequence.md)
+ - [Model.UpdateTrackingTagRequest](docs/UpdateTrackingTagRequest.md)
  - [Model.UpdateWebhookSettings200Response](docs/UpdateWebhookSettings200Response.md)
  - [Model.UpdateWebhookSettingsRequest](docs/UpdateWebhookSettingsRequest.md)
  - [Model.UpdateWhatsAppBusinessProfileRequest](docs/UpdateWhatsAppBusinessProfileRequest.md)

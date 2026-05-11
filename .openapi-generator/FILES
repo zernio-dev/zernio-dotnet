@@ -38,6 +38,8 @@ docs/AddConversionAssociations200Response.md
 docs/AddConversionAssociations200ResponseFailedInner.md
 docs/AddConversionAssociationsRequest.md
 docs/AddMessageReactionRequest.md
+docs/AddTrackingTagSharedAccount201Response.md
+docs/AddTrackingTagSharedAccountRequest.md
 docs/AddUsersToAdAudience200Response.md
 docs/AddUsersToAdAudienceRequest.md
 docs/AddUsersToAdAudienceRequestUsersInner.md
@@ -175,6 +177,8 @@ docs/CreateStandaloneAdRequestImages.md
 docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestVideo.md
+docs/CreateTrackingTag201Response.md
+docs/CreateTrackingTagRequest.md
 docs/CreateWebhookSettingsRequest.md
 docs/CreateWhatsAppFlow200Response.md
 docs/CreateWhatsAppFlow200ResponseFlow.md
@@ -401,6 +405,8 @@ docs/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.md
 docs/GetTikTokCreatorInfo200ResponseCreator.md
 docs/GetTikTokCreatorInfo200ResponsePostingLimits.md
 docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md
+docs/GetTrackingTagStats200Response.md
+docs/GetTrackingTagStats200ResponseStats.md
 docs/GetUser200Response.md
 docs/GetUser200ResponseUser.md
 docs/GetWebhookSettings200Response.md
@@ -544,6 +550,8 @@ docs/ListSequences200Response.md
 docs/ListSequences200ResponseSequencesInner.md
 docs/ListSnapchatProfiles200Response.md
 docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md
+docs/ListTrackingTagSharedAccounts200Response.md
+docs/ListTrackingTags200Response.md
 docs/ListUsers200Response.md
 docs/ListUsers200ResponseUsersInner.md
 docs/ListWhatsAppFlows200Response.md
@@ -703,6 +711,7 @@ docs/SetInstagramIceBreakersRequestIceBreakersInner.md
 docs/SetMessengerMenuRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
+docs/SharedAdAccount.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
 docs/SocialAccountProfileId.md
@@ -710,6 +719,7 @@ docs/TelegramPlatformData.md
 docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
 docs/TikTokPlatformData.md
+docs/TrackingTag.md
 docs/TwitterEngagementApi.md
 docs/TwitterPlatformData.md
 docs/TwitterPlatformDataPoll.md
@@ -799,6 +809,7 @@ docs/UpdateQueueSlotRequest.md
 docs/UpdateRedditSubredditsRequest.md
 docs/UpdateSequence200Response.md
 docs/UpdateSequence200ResponseSequence.md
+docs/UpdateTrackingTagRequest.md
 docs/UpdateWebhookSettings200Response.md
 docs/UpdateWebhookSettingsRequest.md
 docs/UpdateWhatsAppBusinessProfileRequest.md
@@ -988,6 +999,8 @@ src/Zernio.Test/Model/AddConversionAssociations200ResponseFailedInnerTests.cs
 src/Zernio.Test/Model/AddConversionAssociations200ResponseTests.cs
 src/Zernio.Test/Model/AddConversionAssociationsRequestTests.cs
 src/Zernio.Test/Model/AddMessageReactionRequestTests.cs
+src/Zernio.Test/Model/AddTrackingTagSharedAccount201ResponseTests.cs
+src/Zernio.Test/Model/AddTrackingTagSharedAccountRequestTests.cs
 src/Zernio.Test/Model/AddUsersToAdAudience200ResponseTests.cs
 src/Zernio.Test/Model/AddUsersToAdAudienceRequestTests.cs
 src/Zernio.Test/Model/AddUsersToAdAudienceRequestUsersInnerTests.cs
@@ -1118,6 +1131,8 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestPromotedObjectTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestVideoTests.cs
+src/Zernio.Test/Model/CreateTrackingTag201ResponseTests.cs
+src/Zernio.Test/Model/CreateTrackingTagRequestTests.cs
 src/Zernio.Test/Model/CreateWebhookSettingsRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppFlow200ResponseFlowTests.cs
 src/Zernio.Test/Model/CreateWhatsAppFlow200ResponseTests.cs
@@ -1335,6 +1350,8 @@ src/Zernio.Test/Model/GetTikTokCreatorInfo200ResponseCreatorTests.cs
 src/Zernio.Test/Model/GetTikTokCreatorInfo200ResponsePostingLimitsTests.cs
 src/Zernio.Test/Model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInnerTests.cs
 src/Zernio.Test/Model/GetTikTokCreatorInfo200ResponseTests.cs
+src/Zernio.Test/Model/GetTrackingTagStats200ResponseStatsTests.cs
+src/Zernio.Test/Model/GetTrackingTagStats200ResponseTests.cs
 src/Zernio.Test/Model/GetUser200ResponseTests.cs
 src/Zernio.Test/Model/GetUser200ResponseUserTests.cs
 src/Zernio.Test/Model/GetWebhookSettings200ResponseTests.cs
@@ -1476,6 +1493,8 @@ src/Zernio.Test/Model/ListSequences200ResponseSequencesInnerTests.cs
 src/Zernio.Test/Model/ListSequences200ResponseTests.cs
 src/Zernio.Test/Model/ListSnapchatProfiles200ResponsePublicProfilesInnerTests.cs
 src/Zernio.Test/Model/ListSnapchatProfiles200ResponseTests.cs
+src/Zernio.Test/Model/ListTrackingTagSharedAccounts200ResponseTests.cs
+src/Zernio.Test/Model/ListTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseUsersInnerTests.cs
 src/Zernio.Test/Model/ListWhatsAppFlows200ResponseFlowsInnerTests.cs
@@ -1626,6 +1645,7 @@ src/Zernio.Test/Model/SetInstagramIceBreakersRequestTests.cs
 src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestCommandsInnerTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestTests.cs
+src/Zernio.Test/Model/SharedAdAccountTests.cs
 src/Zernio.Test/Model/SnapchatPlatformDataTests.cs
 src/Zernio.Test/Model/SocialAccountProfileIdTests.cs
 src/Zernio.Test/Model/SocialAccountTests.cs
@@ -1633,6 +1653,7 @@ src/Zernio.Test/Model/TelegramPlatformDataTests.cs
 src/Zernio.Test/Model/TestWebhookRequestTests.cs
 src/Zernio.Test/Model/ThreadsPlatformDataTests.cs
 src/Zernio.Test/Model/TikTokPlatformDataTests.cs
+src/Zernio.Test/Model/TrackingTagTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataPollTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataThreadItemsInnerTests.cs
@@ -1721,6 +1742,7 @@ src/Zernio.Test/Model/UpdateQueueSlotRequestTests.cs
 src/Zernio.Test/Model/UpdateRedditSubredditsRequestTests.cs
 src/Zernio.Test/Model/UpdateSequence200ResponseSequenceTests.cs
 src/Zernio.Test/Model/UpdateSequence200ResponseTests.cs
+src/Zernio.Test/Model/UpdateTrackingTagRequestTests.cs
 src/Zernio.Test/Model/UpdateWebhookSettings200ResponseTests.cs
 src/Zernio.Test/Model/UpdateWebhookSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateWhatsAppBusinessProfileRequestTests.cs
@@ -1920,6 +1942,8 @@ src/Zernio/Model/AddConversionAssociations200Response.cs
 src/Zernio/Model/AddConversionAssociations200ResponseFailedInner.cs
 src/Zernio/Model/AddConversionAssociationsRequest.cs
 src/Zernio/Model/AddMessageReactionRequest.cs
+src/Zernio/Model/AddTrackingTagSharedAccount201Response.cs
+src/Zernio/Model/AddTrackingTagSharedAccountRequest.cs
 src/Zernio/Model/AddUsersToAdAudience200Response.cs
 src/Zernio/Model/AddUsersToAdAudienceRequest.cs
 src/Zernio/Model/AddUsersToAdAudienceRequestUsersInner.cs
@@ -2050,6 +2074,8 @@ src/Zernio/Model/CreateStandaloneAdRequestImages.cs
 src/Zernio/Model/CreateStandaloneAdRequestPromotedObject.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestVideo.cs
+src/Zernio/Model/CreateTrackingTag201Response.cs
+src/Zernio/Model/CreateTrackingTagRequest.cs
 src/Zernio/Model/CreateWebhookSettingsRequest.cs
 src/Zernio/Model/CreateWhatsAppFlow200Response.cs
 src/Zernio/Model/CreateWhatsAppFlow200ResponseFlow.cs
@@ -2267,6 +2293,8 @@ src/Zernio/Model/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.cs
 src/Zernio/Model/GetTikTokCreatorInfo200ResponseCreator.cs
 src/Zernio/Model/GetTikTokCreatorInfo200ResponsePostingLimits.cs
 src/Zernio/Model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.cs
+src/Zernio/Model/GetTrackingTagStats200Response.cs
+src/Zernio/Model/GetTrackingTagStats200ResponseStats.cs
 src/Zernio/Model/GetUser200Response.cs
 src/Zernio/Model/GetUser200ResponseUser.cs
 src/Zernio/Model/GetWebhookSettings200Response.cs
@@ -2408,6 +2436,8 @@ src/Zernio/Model/ListSequences200Response.cs
 src/Zernio/Model/ListSequences200ResponseSequencesInner.cs
 src/Zernio/Model/ListSnapchatProfiles200Response.cs
 src/Zernio/Model/ListSnapchatProfiles200ResponsePublicProfilesInner.cs
+src/Zernio/Model/ListTrackingTagSharedAccounts200Response.cs
+src/Zernio/Model/ListTrackingTags200Response.cs
 src/Zernio/Model/ListUsers200Response.cs
 src/Zernio/Model/ListUsers200ResponseUsersInner.cs
 src/Zernio/Model/ListWhatsAppFlows200Response.cs
@@ -2558,6 +2588,7 @@ src/Zernio/Model/SetInstagramIceBreakersRequestIceBreakersInner.cs
 src/Zernio/Model/SetMessengerMenuRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequestCommandsInner.cs
+src/Zernio/Model/SharedAdAccount.cs
 src/Zernio/Model/SnapchatPlatformData.cs
 src/Zernio/Model/SocialAccount.cs
 src/Zernio/Model/SocialAccountProfileId.cs
@@ -2565,6 +2596,7 @@ src/Zernio/Model/TelegramPlatformData.cs
 src/Zernio/Model/TestWebhookRequest.cs
 src/Zernio/Model/ThreadsPlatformData.cs
 src/Zernio/Model/TikTokPlatformData.cs
+src/Zernio/Model/TrackingTag.cs
 src/Zernio/Model/TwitterPlatformData.cs
 src/Zernio/Model/TwitterPlatformDataPoll.cs
 src/Zernio/Model/TwitterPlatformDataThreadItemsInner.cs
@@ -2653,6 +2685,7 @@ src/Zernio/Model/UpdateQueueSlotRequest.cs
 src/Zernio/Model/UpdateRedditSubredditsRequest.cs
 src/Zernio/Model/UpdateSequence200Response.cs
 src/Zernio/Model/UpdateSequence200ResponseSequence.cs
+src/Zernio/Model/UpdateTrackingTagRequest.cs
 src/Zernio/Model/UpdateWebhookSettings200Response.cs
 src/Zernio/Model/UpdateWebhookSettingsRequest.cs
 src/Zernio/Model/UpdateWhatsAppBusinessProfileRequest.cs

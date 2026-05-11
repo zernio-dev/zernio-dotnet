@@ -69,6 +69,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AddTrackingTagSharedAccount
+        /// </summary>
+        [Fact]
+        public void AddTrackingTagSharedAccountTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string tagId = null;
+            //AddTrackingTagSharedAccountRequest addTrackingTagSharedAccountRequest = null;
+            //var response = instance.AddTrackingTagSharedAccount(accountId, tagId, addTrackingTagSharedAccountRequest);
+            //Assert.IsType<AddTrackingTagSharedAccount201Response>(response);
+        }
+
+        /// <summary>
         /// Test BoostPost
         /// </summary>
         [Fact]
@@ -115,6 +129,19 @@ namespace Zernio.Test.Api
             //CreateStandaloneAdRequest createStandaloneAdRequest = null;
             //var response = instance.CreateStandaloneAd(createStandaloneAdRequest);
             //Assert.IsType<CreateStandaloneAd201Response>(response);
+        }
+
+        /// <summary>
+        /// Test CreateTrackingTag
+        /// </summary>
+        [Fact]
+        public void CreateTrackingTagTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //CreateTrackingTagRequest createTrackingTagRequest = null;
+            //var response = instance.CreateTrackingTag(accountId, createTrackingTagRequest);
+            //Assert.IsType<CreateTrackingTag201Response>(response);
         }
 
         /// <summary>
@@ -215,6 +242,35 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetTrackingTag
+        /// </summary>
+        [Fact]
+        public void GetTrackingTagTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string tagId = null;
+            //var response = instance.GetTrackingTag(accountId, tagId);
+            //Assert.IsType<CreateTrackingTag201Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetTrackingTagStats
+        /// </summary>
+        [Fact]
+        public void GetTrackingTagStatsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string tagId = null;
+            //string? aggregation = null;
+            //int? startTime = null;
+            //int? endTime = null;
+            //var response = instance.GetTrackingTagStats(accountId, tagId, aggregation, startTime, endTime);
+            //Assert.IsType<GetTrackingTagStats200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdAccounts
         /// </summary>
         [Fact]
@@ -289,6 +345,32 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListTrackingTagSharedAccounts
+        /// </summary>
+        [Fact]
+        public void ListTrackingTagSharedAccountsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string tagId = null;
+            //var response = instance.ListTrackingTagSharedAccounts(accountId, tagId);
+            //Assert.IsType<ListTrackingTagSharedAccounts200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListTrackingTags
+        /// </summary>
+        [Fact]
+        public void ListTrackingTagsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? adAccountId = null;
+            //var response = instance.ListTrackingTags(accountId, adAccountId);
+            //Assert.IsType<ListTrackingTags200Response>(response);
+        }
+
+        /// <summary>
         /// Test RemoveConversionAssociations
         /// </summary>
         [Fact]
@@ -301,6 +383,19 @@ namespace Zernio.Test.Api
             //string campaignIds = null;
             //var response = instance.RemoveConversionAssociations(accountId, destinationId, adAccountId, campaignIds);
             //Assert.IsType<RemoveConversionAssociations200Response>(response);
+        }
+
+        /// <summary>
+        /// Test RemoveTrackingTagSharedAccount
+        /// </summary>
+        [Fact]
+        public void RemoveTrackingTagSharedAccountTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string tagId = null;
+            //string? adAccountId = null;
+            //instance.RemoveTrackingTagSharedAccount(accountId, tagId, adAccountId);
         }
 
         /// <summary>
@@ -381,6 +476,20 @@ namespace Zernio.Test.Api
             //UpdateConversionDestinationRequest updateConversionDestinationRequest = null;
             //var response = instance.UpdateConversionDestination(accountId, destinationId, updateConversionDestinationRequest);
             //Assert.IsType<CreateConversionDestination201Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateTrackingTag
+        /// </summary>
+        [Fact]
+        public void UpdateTrackingTagTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string tagId = null;
+            //UpdateTrackingTagRequest updateTrackingTagRequest = null;
+            //var response = instance.UpdateTrackingTag(accountId, tagId, updateTrackingTagRequest);
+            //Assert.IsType<CreateTrackingTag201Response>(response);
         }
     }
 }
