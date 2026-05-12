@@ -9,9 +9,10 @@ Name | Type | Description | Notes
 **AdId** | **string** | Internal Zernio ad ID. | 
 **PlatformAdId** | **string** | Meta ad ID. | 
 **EffectiveStoryId** | **string** | Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side. | 
+**FacebookAccountId** | **string** | Facebook-only. The connected Facebook Page SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible). | [optional] 
 **InstagramUserId** | **string** | Instagram-only. The Instagram-scoped business ID that owns the boosted media (creative.instagram_user_id). | [optional] 
 **InstagramPermalink** | **string** | Instagram-only. Public permalink of the boosted IG post (creative.instagram_permalink_url). | [optional] 
-**InstagramAccountId** | **string** | Instagram-only. The connected Instagram SocialAccount these comments were read through — use it for reply/hide actions via /v1/inbox/comments. | [optional] 
+**InstagramAccountId** | **string** | Instagram-only. The connected Instagram SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. | [optional] 
 **AccountId** | **string** | Social account ID (ads SocialAccount). | 
 **LastUpdated** | **DateTime** |  | 
 

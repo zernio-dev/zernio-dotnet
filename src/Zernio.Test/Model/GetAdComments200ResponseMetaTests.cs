@@ -101,6 +101,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'FacebookAccountId'
+        /// </summary>
+        [Fact]
+        public void FacebookAccountIdTest()
+        {
+            // TODO unit test for the property 'FacebookAccountId'
+        }
+
+        /// <summary>
         /// Test the property 'InstagramUserId'
         /// </summary>
         [Fact]
