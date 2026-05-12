@@ -169,6 +169,7 @@ docs/CreateStandaloneAd201Response.md
 docs/CreateStandaloneAd201ResponseOneOf.md
 docs/CreateStandaloneAd201ResponseOneOf1.md
 docs/CreateStandaloneAdRequest.md
+docs/CreateStandaloneAdRequestAttributionSpecInner.md
 docs/CreateStandaloneAdRequestBrandIdentity.md
 docs/CreateStandaloneAdRequestCitiesInner.md
 docs/CreateStandaloneAdRequestCreativesInner.md
@@ -1125,6 +1126,7 @@ src/Zernio.Test/Model/CreateSequenceRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAd201ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/CreateStandaloneAd201ResponseOneOfTests.cs
 src/Zernio.Test/Model/CreateStandaloneAd201ResponseTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestAttributionSpecInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestBrandIdentityTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCitiesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerTests.cs
@@ -2071,6 +2073,7 @@ src/Zernio/Model/CreateStandaloneAd201Response.cs
 src/Zernio/Model/CreateStandaloneAd201ResponseOneOf.cs
 src/Zernio/Model/CreateStandaloneAd201ResponseOneOf1.cs
 src/Zernio/Model/CreateStandaloneAdRequest.cs
+src/Zernio/Model/CreateStandaloneAdRequestAttributionSpecInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestBrandIdentity.cs
 src/Zernio/Model/CreateStandaloneAdRequestCitiesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestCreativesInner.cs

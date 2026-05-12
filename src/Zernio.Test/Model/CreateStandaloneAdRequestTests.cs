@@ -227,6 +227,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'OrganizationId'
+        /// </summary>
+        [Fact]
+        public void OrganizationIdTest()
+        {
+            // TODO unit test for the property 'OrganizationId'
+        }
+
+        /// <summary>
         /// Test the property 'Countries'
         /// </summary>
         [Fact]
@@ -341,6 +350,15 @@ namespace Zernio.Test.Model
         public void AdvantageAudienceTest()
         {
             // TODO unit test for the property 'AdvantageAudience'
+        }
+
+        /// <summary>
+        /// Test the property 'AttributionSpec'
+        /// </summary>
+        [Fact]
+        public void AttributionSpecTest()
+        {
+            // TODO unit test for the property 'AttributionSpec'
         }
 
         /// <summary>

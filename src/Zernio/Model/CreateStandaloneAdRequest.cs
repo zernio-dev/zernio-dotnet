@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class CreateStandaloneAdRequest : IValidatableObject
     {
         /// <summary>
-        /// Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted).
+        /// Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted). LinkedIn-specific: only &#x60;engagement&#x60;, &#x60;traffic&#x60;, and &#x60;awareness&#x60; are supported for standalone ads (creates a Direct Sponsored Content single image ad); &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;. For &#x60;video_views&#x60; / &#x60;lead_generation&#x60; / &#x60;conversions&#x60; on LinkedIn — or to promote an existing post — use &#x60;POST /v1/ads/boost&#x60;.
         /// </summary>
-        /// <value>Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted).</value>
+        /// <value>Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted). LinkedIn-specific: only &#x60;engagement&#x60;, &#x60;traffic&#x60;, and &#x60;awareness&#x60; are supported for standalone ads (creates a Direct Sponsored Content single image ad); &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;. For &#x60;video_views&#x60; / &#x60;lead_generation&#x60; / &#x60;conversions&#x60; on LinkedIn — or to promote an existing post — use &#x60;POST /v1/ads/boost&#x60;.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum GoalEnum
         {
@@ -85,9 +85,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted).
+        /// Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted). LinkedIn-specific: only &#x60;engagement&#x60;, &#x60;traffic&#x60;, and &#x60;awareness&#x60; are supported for standalone ads (creates a Direct Sponsored Content single image ad); &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;. For &#x60;video_views&#x60; / &#x60;lead_generation&#x60; / &#x60;conversions&#x60; on LinkedIn — or to promote an existing post — use &#x60;POST /v1/ads/boost&#x60;.
         /// </summary>
-        /// <value>Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted).</value>
+        /// <value>Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted). LinkedIn-specific: only &#x60;engagement&#x60;, &#x60;traffic&#x60;, and &#x60;awareness&#x60; are supported for standalone ads (creates a Direct Sponsored Content single image ad); &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;. For &#x60;video_views&#x60; / &#x60;lead_generation&#x60; / &#x60;conversions&#x60; on LinkedIn — or to promote an existing post — use &#x60;POST /v1/ads/boost&#x60;.</value>
         [DataMember(Name = "goal", EmitDefaultValue = false)]
         public GoalEnum? Goal { get; set; }
         /// <summary>
@@ -118,9 +118,9 @@ namespace Zernio.Model
         [DataMember(Name = "budgetType", EmitDefaultValue = false)]
         public BudgetTypeEnum? BudgetType { get; set; }
         /// <summary>
-        /// Required on legacy + attach shapes for Meta. Honoured on TikTok too — passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;. Ignored by other platforms.
+        /// Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.
         /// </summary>
-        /// <value>Required on legacy + attach shapes for Meta. Honoured on TikTok too — passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;. Ignored by other platforms.</value>
+        /// <value>Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CallToActionEnum
         {
@@ -182,14 +182,62 @@ namespace Zernio.Model
             /// Enum WATCHMORE for value: WATCH_MORE
             /// </summary>
             [EnumMember(Value = "WATCH_MORE")]
-            WATCHMORE = 10
+            WATCHMORE = 10,
+
+            /// <summary>
+            /// Enum REGISTER for value: REGISTER
+            /// </summary>
+            [EnumMember(Value = "REGISTER")]
+            REGISTER = 11,
+
+            /// <summary>
+            /// Enum JOIN for value: JOIN
+            /// </summary>
+            [EnumMember(Value = "JOIN")]
+            JOIN = 12,
+
+            /// <summary>
+            /// Enum ATTEND for value: ATTEND
+            /// </summary>
+            [EnumMember(Value = "ATTEND")]
+            ATTEND = 13,
+
+            /// <summary>
+            /// Enum REQUESTDEMO for value: REQUEST_DEMO
+            /// </summary>
+            [EnumMember(Value = "REQUEST_DEMO")]
+            REQUESTDEMO = 14,
+
+            /// <summary>
+            /// Enum VIEWQUOTE for value: VIEW_QUOTE
+            /// </summary>
+            [EnumMember(Value = "VIEW_QUOTE")]
+            VIEWQUOTE = 15,
+
+            /// <summary>
+            /// Enum APPLY for value: APPLY
+            /// </summary>
+            [EnumMember(Value = "APPLY")]
+            APPLY = 16,
+
+            /// <summary>
+            /// Enum SEEMORE for value: SEE_MORE
+            /// </summary>
+            [EnumMember(Value = "SEE_MORE")]
+            SEEMORE = 17,
+
+            /// <summary>
+            /// Enum BUYNOW for value: BUY_NOW
+            /// </summary>
+            [EnumMember(Value = "BUY_NOW")]
+            BUYNOW = 18
         }
 
 
         /// <summary>
-        /// Required on legacy + attach shapes for Meta. Honoured on TikTok too — passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;. Ignored by other platforms.
+        /// Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.
         /// </summary>
-        /// <value>Required on legacy + attach shapes for Meta. Honoured on TikTok too — passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;. Ignored by other platforms.</value>
+        /// <value>Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.</value>
         [DataMember(Name = "callToAction", EmitDefaultValue = false)]
         public CallToActionEnum? CallToAction { get; set; }
         /// <summary>
@@ -321,23 +369,24 @@ namespace Zernio.Model
         /// <param name="accountId">accountId (required).</param>
         /// <param name="adAccountId">adAccountId (required).</param>
         /// <param name="name">name (required).</param>
-        /// <param name="goal">Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted)..</param>
+        /// <param name="goal">Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted). LinkedIn-specific: only &#x60;engagement&#x60;, &#x60;traffic&#x60;, and &#x60;awareness&#x60; are supported for standalone ads (creates a Direct Sponsored Content single image ad); &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;. For &#x60;video_views&#x60; / &#x60;lead_generation&#x60; / &#x60;conversions&#x60; on LinkedIn — or to promote an existing post — use &#x60;POST /v1/ads/boost&#x60;..</param>
         /// <param name="budgetAmount">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="budgetType">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="currency">currency.</param>
-        /// <param name="headline">Required for Meta, Google, and Pinterest on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100..</param>
-        /// <param name="longHeadline">Google Display only. Defaults to &#x60;headline&#x60; if omitted..</param>
-        /// <param name="body">Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). Max: Google&#x3D;90, Pinterest&#x3D;500..</param>
-        /// <param name="callToAction">Required on legacy + attach shapes for Meta. Honoured on TikTok too — passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;. Ignored by other platforms..</param>
-        /// <param name="linkUrl">Required on legacy + attach shapes. Skip for multi-creative..</param>
-        /// <param name="imageUrl">Image creative for Meta/Google/Pinterest on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected..</param>
+        /// <param name="headline">Required for Meta, Google, Pinterest, and LinkedIn on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100, LinkedIn&#x3D;400. On LinkedIn this is the ad&#39;s headline (the bold text on the creative); for traffic ads it&#39;s the link card title..</param>
+        /// <param name="longHeadline">Google Display only — defaults to &#x60;headline&#x60; if omitted. On LinkedIn, reused as the optional secondary description text on traffic (link) ads; omitted if not provided..</param>
+        /// <param name="body">Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). On LinkedIn this is the post commentary (the intro text shown above the ad). Max: Google&#x3D;90, Pinterest&#x3D;500..</param>
+        /// <param name="callToAction">Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter..</param>
+        /// <param name="linkUrl">Required on legacy + attach shapes (skip for multi-creative). On LinkedIn it&#39;s the ad&#39;s destination URL; required for &#x60;traffic&#x60; ads, optional for &#x60;engagement&#x60; / &#x60;awareness&#x60;..</param>
+        /// <param name="imageUrl">Image creative for Meta/Google/Pinterest/LinkedIn on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Required for LinkedIn ads. Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected. For LinkedIn the image is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;); recommended ratio 1.91:1 (e.g. 1200×627)..</param>
         /// <param name="images">images.</param>
         /// <param name="video">video.</param>
         /// <param name="creatives">Meta-only. When present, switches to the multi-creative shape: creates 1 campaign + 1 ad set + N ads (one per entry here). Top-level &#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;linkUrl&#x60; / &#x60;callToAction&#x60; are ignored in this mode. Mutually exclusive with &#x60;adSetId&#x60;. .</param>
         /// <param name="adSetId">Meta-only. When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, schedule, AND bid strategy are inherited from the ad set on Meta — passing &#x60;bidStrategy&#x60; in attach mode returns 400. To change an existing ad set&#39;s bid, use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Mutually exclusive with &#x60;creatives[]&#x60;.  Supported on Meta (facebook, instagram) and TikTok. On TikTok the &#x60;adSetId&#x60; is the ad group ID; the new ad inherits the ad group&#39;s bid + budget + targeting. .</param>
         /// <param name="businessName">Google Display only.</param>
         /// <param name="boardId">Pinterest only. Board ID (auto-creates if not provided)..</param>
-        /// <param name="countries">ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no &#x60;cities&#x60; or &#x60;regions&#x60; are provided..</param>
+        /// <param name="organizationId">LinkedIn only. The Company Page that authors the Direct Sponsored Content (\&quot;dark\&quot;) post backing the ad — accepts a numeric organization ID or a full &#x60;urn:li:organization:N&#x60; URN. Required unless the resolved &#x60;accountId&#x60; is a connected LinkedIn Company-Page account (defaults to that page) or the LinkedIn ad account is org-owned (defaults to the account&#39;s owning organization). The authenticated member must be an ADMINISTRATOR or DIRECT_SPONSORED_CONTENT_POSTER of this page (and the page must be associated with the ad account), or LinkedIn returns 403. Ignored by every other platform..</param>
+        /// <param name="countries">ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no &#x60;cities&#x60; or &#x60;regions&#x60; are provided. (LinkedIn currently honours country-level targeting only.).</param>
         /// <param name="cities">Meta-only. City-level geo targeting. Each city is targeted by Meta&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;city&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  Cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. .</param>
         /// <param name="regions">Meta-only. Region-level (state/province) geo targeting. Each region is targeted by Meta&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;region&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. .</param>
         /// <param name="ageMin">ageMin.</param>
@@ -350,6 +399,7 @@ namespace Zernio.Model
         /// <param name="additionalHeadlines">Google Search RSA only. Extra headlines..</param>
         /// <param name="additionalDescriptions">Google Search RSA only. Extra descriptions..</param>
         /// <param name="advantageAudience">Meta only. Controls the Advantage audience feature (targeting_automation). 0 &#x3D; disabled (default), 1 &#x3D; enabled. Meta Marketing API requires this field on all ad set creation requests..</param>
+        /// <param name="attributionSpec">Meta only. Conversion attribution window for the ad set — maps 1:1 to Meta&#39;s ad-set &#x60;attribution_spec&#x60;. Only honored for conversion goals (&#x60;conversions&#x60;, &#x60;lead_generation&#x60;, &#x60;app_promotion&#x60;); ignored for awareness/traffic/engagement. Omit to use Meta&#39;s default (&#x60;7-day click&#x60; + &#x60;1-day view&#x60;). Meta enforces the valid combinations: &#x60;VIEW_THROUGH&#x60; only allows &#x60;windowDays: 1&#x60; (7d/28d view windows were removed Jan 2026); &#x60;ENGAGED_VIDEO_VIEW&#x60; only &#x60;1&#x60; and only alongside &#x60;VIEW_THROUGH: 1&#x60;; &#x60;CLICK_THROUGH: 28&#x60; only on certain objectives. Invalid combos surface as a Meta 400. Example: &#x60;[{ \&quot;eventType\&quot;: \&quot;CLICK_THROUGH\&quot;, \&quot;windowDays\&quot;: 7 }, { \&quot;eventType\&quot;: \&quot;VIEW_THROUGH\&quot;, \&quot;windowDays\&quot;: 1 }]&#x60; .</param>
         /// <param name="gender">Meta only. Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Ignored by non-Meta platforms. (default to GenderEnum.All).</param>
         /// <param name="bidStrategy">Meta bid strategy applied to the ad set..</param>
         /// <param name="bidAmount">Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. .</param>
@@ -359,7 +409,7 @@ namespace Zernio.Model
         /// <param name="brandIdentity">brandIdentity.</param>
         /// <param name="identityType">TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. .</param>
         /// <param name="promotedObject">promotedObject.</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, string organizationId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -395,6 +445,7 @@ namespace Zernio.Model
             this.AdSetId = adSetId;
             this.BusinessName = businessName;
             this.BoardId = boardId;
+            this.OrganizationId = organizationId;
             this.Countries = countries;
             this.Cities = cities;
             this.Regions = regions;
@@ -408,6 +459,7 @@ namespace Zernio.Model
             this.AdditionalHeadlines = additionalHeadlines;
             this.AdditionalDescriptions = additionalDescriptions;
             this.AdvantageAudience = advantageAudience;
+            this.AttributionSpec = attributionSpec;
             this.Gender = gender;
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
@@ -451,37 +503,37 @@ namespace Zernio.Model
         public string Currency { get; set; }
 
         /// <summary>
-        /// Required for Meta, Google, and Pinterest on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100.
+        /// Required for Meta, Google, Pinterest, and LinkedIn on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100, LinkedIn&#x3D;400. On LinkedIn this is the ad&#39;s headline (the bold text on the creative); for traffic ads it&#39;s the link card title.
         /// </summary>
-        /// <value>Required for Meta, Google, and Pinterest on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100.</value>
+        /// <value>Required for Meta, Google, Pinterest, and LinkedIn on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100, LinkedIn&#x3D;400. On LinkedIn this is the ad&#39;s headline (the bold text on the creative); for traffic ads it&#39;s the link card title.</value>
         [DataMember(Name = "headline", EmitDefaultValue = false)]
         public string Headline { get; set; }
 
         /// <summary>
-        /// Google Display only. Defaults to &#x60;headline&#x60; if omitted.
+        /// Google Display only — defaults to &#x60;headline&#x60; if omitted. On LinkedIn, reused as the optional secondary description text on traffic (link) ads; omitted if not provided.
         /// </summary>
-        /// <value>Google Display only. Defaults to &#x60;headline&#x60; if omitted.</value>
+        /// <value>Google Display only — defaults to &#x60;headline&#x60; if omitted. On LinkedIn, reused as the optional secondary description text on traffic (link) ads; omitted if not provided.</value>
         [DataMember(Name = "longHeadline", EmitDefaultValue = false)]
         public string LongHeadline { get; set; }
 
         /// <summary>
-        /// Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). Max: Google&#x3D;90, Pinterest&#x3D;500.
+        /// Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). On LinkedIn this is the post commentary (the intro text shown above the ad). Max: Google&#x3D;90, Pinterest&#x3D;500.
         /// </summary>
-        /// <value>Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). Max: Google&#x3D;90, Pinterest&#x3D;500.</value>
+        /// <value>Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). On LinkedIn this is the post commentary (the intro text shown above the ad). Max: Google&#x3D;90, Pinterest&#x3D;500.</value>
         [DataMember(Name = "body", EmitDefaultValue = false)]
         public string Body { get; set; }
 
         /// <summary>
-        /// Required on legacy + attach shapes. Skip for multi-creative.
+        /// Required on legacy + attach shapes (skip for multi-creative). On LinkedIn it&#39;s the ad&#39;s destination URL; required for &#x60;traffic&#x60; ads, optional for &#x60;engagement&#x60; / &#x60;awareness&#x60;.
         /// </summary>
-        /// <value>Required on legacy + attach shapes. Skip for multi-creative.</value>
+        /// <value>Required on legacy + attach shapes (skip for multi-creative). On LinkedIn it&#39;s the ad&#39;s destination URL; required for &#x60;traffic&#x60; ads, optional for &#x60;engagement&#x60; / &#x60;awareness&#x60;.</value>
         [DataMember(Name = "linkUrl", EmitDefaultValue = false)]
         public string LinkUrl { get; set; }
 
         /// <summary>
-        /// Image creative for Meta/Google/Pinterest on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected.
+        /// Image creative for Meta/Google/Pinterest/LinkedIn on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Required for LinkedIn ads. Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected. For LinkedIn the image is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;); recommended ratio 1.91:1 (e.g. 1200×627).
         /// </summary>
-        /// <value>Image creative for Meta/Google/Pinterest on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected.</value>
+        /// <value>Image creative for Meta/Google/Pinterest/LinkedIn on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Required for LinkedIn ads. Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected. For LinkedIn the image is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;); recommended ratio 1.91:1 (e.g. 1200×627).</value>
         [DataMember(Name = "imageUrl", EmitDefaultValue = false)]
         public string ImageUrl { get; set; }
 
@@ -526,9 +578,16 @@ namespace Zernio.Model
         public string BoardId { get; set; }
 
         /// <summary>
-        /// ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no &#x60;cities&#x60; or &#x60;regions&#x60; are provided.
+        /// LinkedIn only. The Company Page that authors the Direct Sponsored Content (\&quot;dark\&quot;) post backing the ad — accepts a numeric organization ID or a full &#x60;urn:li:organization:N&#x60; URN. Required unless the resolved &#x60;accountId&#x60; is a connected LinkedIn Company-Page account (defaults to that page) or the LinkedIn ad account is org-owned (defaults to the account&#39;s owning organization). The authenticated member must be an ADMINISTRATOR or DIRECT_SPONSORED_CONTENT_POSTER of this page (and the page must be associated with the ad account), or LinkedIn returns 403. Ignored by every other platform.
         /// </summary>
-        /// <value>ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no &#x60;cities&#x60; or &#x60;regions&#x60; are provided.</value>
+        /// <value>LinkedIn only. The Company Page that authors the Direct Sponsored Content (\&quot;dark\&quot;) post backing the ad — accepts a numeric organization ID or a full &#x60;urn:li:organization:N&#x60; URN. Required unless the resolved &#x60;accountId&#x60; is a connected LinkedIn Company-Page account (defaults to that page) or the LinkedIn ad account is org-owned (defaults to the account&#39;s owning organization). The authenticated member must be an ADMINISTRATOR or DIRECT_SPONSORED_CONTENT_POSTER of this page (and the page must be associated with the ad account), or LinkedIn returns 403. Ignored by every other platform.</value>
+        [DataMember(Name = "organizationId", EmitDefaultValue = false)]
+        public string OrganizationId { get; set; }
+
+        /// <summary>
+        /// ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no &#x60;cities&#x60; or &#x60;regions&#x60; are provided. (LinkedIn currently honours country-level targeting only.)
+        /// </summary>
+        /// <value>ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no &#x60;cities&#x60; or &#x60;regions&#x60; are provided. (LinkedIn currently honours country-level targeting only.)</value>
         [DataMember(Name = "countries", EmitDefaultValue = false)]
         public List<string> Countries { get; set; }
 
@@ -601,6 +660,13 @@ namespace Zernio.Model
         public List<string> AdditionalDescriptions { get; set; }
 
         /// <summary>
+        /// Meta only. Conversion attribution window for the ad set — maps 1:1 to Meta&#39;s ad-set &#x60;attribution_spec&#x60;. Only honored for conversion goals (&#x60;conversions&#x60;, &#x60;lead_generation&#x60;, &#x60;app_promotion&#x60;); ignored for awareness/traffic/engagement. Omit to use Meta&#39;s default (&#x60;7-day click&#x60; + &#x60;1-day view&#x60;). Meta enforces the valid combinations: &#x60;VIEW_THROUGH&#x60; only allows &#x60;windowDays: 1&#x60; (7d/28d view windows were removed Jan 2026); &#x60;ENGAGED_VIDEO_VIEW&#x60; only &#x60;1&#x60; and only alongside &#x60;VIEW_THROUGH: 1&#x60;; &#x60;CLICK_THROUGH: 28&#x60; only on certain objectives. Invalid combos surface as a Meta 400. Example: &#x60;[{ \&quot;eventType\&quot;: \&quot;CLICK_THROUGH\&quot;, \&quot;windowDays\&quot;: 7 }, { \&quot;eventType\&quot;: \&quot;VIEW_THROUGH\&quot;, \&quot;windowDays\&quot;: 1 }]&#x60; 
+        /// </summary>
+        /// <value>Meta only. Conversion attribution window for the ad set — maps 1:1 to Meta&#39;s ad-set &#x60;attribution_spec&#x60;. Only honored for conversion goals (&#x60;conversions&#x60;, &#x60;lead_generation&#x60;, &#x60;app_promotion&#x60;); ignored for awareness/traffic/engagement. Omit to use Meta&#39;s default (&#x60;7-day click&#x60; + &#x60;1-day view&#x60;). Meta enforces the valid combinations: &#x60;VIEW_THROUGH&#x60; only allows &#x60;windowDays: 1&#x60; (7d/28d view windows were removed Jan 2026); &#x60;ENGAGED_VIDEO_VIEW&#x60; only &#x60;1&#x60; and only alongside &#x60;VIEW_THROUGH: 1&#x60;; &#x60;CLICK_THROUGH: 28&#x60; only on certain objectives. Invalid combos surface as a Meta 400. Example: &#x60;[{ \&quot;eventType\&quot;: \&quot;CLICK_THROUGH\&quot;, \&quot;windowDays\&quot;: 7 }, { \&quot;eventType\&quot;: \&quot;VIEW_THROUGH\&quot;, \&quot;windowDays\&quot;: 1 }]&#x60; </value>
+        [DataMember(Name = "attributionSpec", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestAttributionSpecInner> AttributionSpec { get; set; }
+
+        /// <summary>
         /// Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. 
         /// </summary>
         /// <value>Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. </value>
@@ -667,6 +733,7 @@ namespace Zernio.Model
             sb.Append("  AdSetId: ").Append(AdSetId).Append("\n");
             sb.Append("  BusinessName: ").Append(BusinessName).Append("\n");
             sb.Append("  BoardId: ").Append(BoardId).Append("\n");
+            sb.Append("  OrganizationId: ").Append(OrganizationId).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
             sb.Append("  Cities: ").Append(Cities).Append("\n");
             sb.Append("  Regions: ").Append(Regions).Append("\n");
@@ -680,6 +747,7 @@ namespace Zernio.Model
             sb.Append("  AdditionalHeadlines: ").Append(AdditionalHeadlines).Append("\n");
             sb.Append("  AdditionalDescriptions: ").Append(AdditionalDescriptions).Append("\n");
             sb.Append("  AdvantageAudience: ").Append(AdvantageAudience).Append("\n");
+            sb.Append("  AttributionSpec: ").Append(AttributionSpec).Append("\n");
             sb.Append("  Gender: ").Append(Gender).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
