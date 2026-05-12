@@ -99,5 +99,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'LastUpdated'
         }
+
+        /// <summary>
+        /// Test the property 'AdComments'
+        /// </summary>
+        [Fact]
+        public void AdCommentsTest()
+        {
+            // TODO unit test for the property 'AdComments'
+        }
     }
 }

@@ -224,6 +224,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comments for the post |  -  |
+| **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT — response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;).  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -445,7 +446,7 @@ catch (ApiException e)
 
 List commented posts
 
-Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.
+Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user's Meta ads (boosted/dark posts) are included too, flagged with `isAd: true` and an `adId`. Use `?platform=metaads` to return *only* ad rows; passing `facebook`/`instagram` returns *organic* posts only (no ads); omitting `platform` returns both. Fetch an ad row's thread from GET /v1/ads/{adId}/comments. Ad comment counts are read with the Marketing API token (Facebook) or the connected Instagram account's token (Instagram); an ad whose count can't be read is omitted. 
 
 ### Example
 ```csharp
@@ -472,7 +473,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CommentsApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string? | Filter by profile ID (optional) 
-            var platform = "facebook";  // string? | Filter by platform (optional) 
+            var platform = "facebook";  // string? | Filter by platform. `metaads` is a synthetic value meaning the user's ads (boosted/dark posts) only; `facebook`/`instagram` return organic posts only. (optional) 
             var minComments = 56;  // int? | Minimum comment count (optional) 
             var since = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Posts created after this date (optional) 
             var sortBy = "date";  // string? | Sort field (optional)  (default to date)
@@ -523,7 +524,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **profileId** | **string?** | Filter by profile ID | [optional]  |
-| **platform** | **string?** | Filter by platform | [optional]  |
+| **platform** | **string?** | Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. | [optional]  |
 | **minComments** | **int?** | Minimum comment count | [optional]  |
 | **since** | **DateTime?** | Posts created after this date | [optional]  |
 | **sortBy** | **string?** | Sort field | [optional] [default to date] |

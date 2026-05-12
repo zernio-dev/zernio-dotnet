@@ -41,13 +41,15 @@ namespace Zernio.Model
         /// <param name="accountId">accountId.</param>
         /// <param name="subreddit">(Reddit only) Subreddit name.</param>
         /// <param name="lastUpdated">lastUpdated.</param>
-        public GetInboxPostComments200ResponseMeta(string platform = default, string postId = default, string accountId = default, string subreddit = default, DateTime lastUpdated = default)
+        /// <param name="adComments">adComments.</param>
+        public GetInboxPostComments200ResponseMeta(string platform = default, string postId = default, string accountId = default, string subreddit = default, DateTime lastUpdated = default, GetInboxPostComments200ResponseMetaAdComments adComments = default)
         {
             this.Platform = platform;
             this.PostId = postId;
             this.AccountId = accountId;
             this.Subreddit = subreddit;
             this.LastUpdated = lastUpdated;
+            this.AdComments = adComments;
         }
 
         /// <summary>
@@ -82,6 +84,12 @@ namespace Zernio.Model
         public DateTime LastUpdated { get; set; }
 
         /// <summary>
+        /// Gets or Sets AdComments
+        /// </summary>
+        [DataMember(Name = "adComments", EmitDefaultValue = false)]
+        public GetInboxPostComments200ResponseMetaAdComments AdComments { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -94,6 +102,7 @@ namespace Zernio.Model
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Subreddit: ").Append(Subreddit).Append("\n");
             sb.Append("  LastUpdated: ").Append(LastUpdated).Append("\n");
+            sb.Append("  AdComments: ").Append(AdComments).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

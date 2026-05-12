@@ -162,5 +162,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Subreddit'
         }
+
+        /// <summary>
+        /// Test the property 'IsAd'
+        /// </summary>
+        [Fact]
+        public void IsAdTest()
+        {
+            // TODO unit test for the property 'IsAd'
+        }
+
+        /// <summary>
+        /// Test the property 'AdId'
+        /// </summary>
+        [Fact]
+        public void AdIdTest()
+        {
+            // TODO unit test for the property 'AdId'
+        }
     }
 }

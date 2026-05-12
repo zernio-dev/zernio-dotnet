@@ -48,7 +48,9 @@ namespace Zernio.Model
         /// <param name="likeCount">likeCount.</param>
         /// <param name="cid">Bluesky content identifier.</param>
         /// <param name="subreddit">Reddit subreddit name.</param>
-        public ListInboxComments200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string content = default, string picture = default, string permalink = default, DateTime createdTime = default, int commentCount = default, int likeCount = default, string cid = default, string subreddit = default)
+        /// <param name="isAd">True when this row is an ad (boosted/dark post). &#x60;platform&#x60; is then the comment platform (facebook or instagram), &#x60;id&#x60; equals &#x60;adId&#x60;, and the thread is at GET /v1/ads/{adId}/comments..</param>
+        /// <param name="adId">Internal Zernio ad id — only on ad rows (same value as &#x60;id&#x60;)..</param>
+        public ListInboxComments200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string content = default, string picture = default, string permalink = default, DateTime createdTime = default, int commentCount = default, int likeCount = default, string cid = default, string subreddit = default, bool isAd = default, string adId = default)
         {
             this.Id = id;
             this.Platform = platform;
@@ -62,6 +64,8 @@ namespace Zernio.Model
             this.LikeCount = likeCount;
             this.Cid = cid;
             this.Subreddit = subreddit;
+            this.IsAd = isAd;
+            this.AdId = adId;
         }
 
         /// <summary>
@@ -139,6 +143,20 @@ namespace Zernio.Model
         public string Subreddit { get; set; }
 
         /// <summary>
+        /// True when this row is an ad (boosted/dark post). &#x60;platform&#x60; is then the comment platform (facebook or instagram), &#x60;id&#x60; equals &#x60;adId&#x60;, and the thread is at GET /v1/ads/{adId}/comments.
+        /// </summary>
+        /// <value>True when this row is an ad (boosted/dark post). &#x60;platform&#x60; is then the comment platform (facebook or instagram), &#x60;id&#x60; equals &#x60;adId&#x60;, and the thread is at GET /v1/ads/{adId}/comments.</value>
+        [DataMember(Name = "isAd", EmitDefaultValue = true)]
+        public bool IsAd { get; set; }
+
+        /// <summary>
+        /// Internal Zernio ad id — only on ad rows (same value as &#x60;id&#x60;).
+        /// </summary>
+        /// <value>Internal Zernio ad id — only on ad rows (same value as &#x60;id&#x60;).</value>
+        [DataMember(Name = "adId", EmitDefaultValue = false)]
+        public string AdId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -158,6 +176,8 @@ namespace Zernio.Model
             sb.Append("  LikeCount: ").Append(LikeCount).Append("\n");
             sb.Append("  Cid: ").Append(Cid).Append("\n");
             sb.Append("  Subreddit: ").Append(Subreddit).Append("\n");
+            sb.Append("  IsAd: ").Append(IsAd).Append("\n");
+            sb.Append("  AdId: ").Append(AdId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

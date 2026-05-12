@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **AccountId** | **string** |  | [optional] 
 **Subreddit** | **string** | (Reddit only) Subreddit name | [optional] 
 **LastUpdated** | **DateTime** |  | [optional] 
+**AdComments** | [**GetInboxPostComments200ResponseMetaAdComments**](GetInboxPostComments200ResponseMetaAdComments.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -355,6 +355,7 @@ docs/GetInboxPostComments200Response.md
 docs/GetInboxPostComments200ResponseCommentsInner.md
 docs/GetInboxPostComments200ResponseCommentsInnerFrom.md
 docs/GetInboxPostComments200ResponseMeta.md
+docs/GetInboxPostComments200ResponseMetaAdComments.md
 docs/GetInboxPostComments200ResponsePagination.md
 docs/GetInstagramAccountInsights404Response.md
 docs/GetLinkedInAggregateAnalytics200Response.md
@@ -1300,6 +1301,7 @@ src/Zernio.Test/Model/GetInboxConversationMessages200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetInboxConversationMessages200ResponseTests.cs
 src/Zernio.Test/Model/GetInboxPostComments200ResponseCommentsInnerFromTests.cs
 src/Zernio.Test/Model/GetInboxPostComments200ResponseCommentsInnerTests.cs
+src/Zernio.Test/Model/GetInboxPostComments200ResponseMetaAdCommentsTests.cs
 src/Zernio.Test/Model/GetInboxPostComments200ResponseMetaTests.cs
 src/Zernio.Test/Model/GetInboxPostComments200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetInboxPostComments200ResponseTests.cs
@@ -2246,6 +2248,7 @@ src/Zernio/Model/GetInboxPostComments200Response.cs
 src/Zernio/Model/GetInboxPostComments200ResponseCommentsInner.cs
 src/Zernio/Model/GetInboxPostComments200ResponseCommentsInnerFrom.cs
 src/Zernio/Model/GetInboxPostComments200ResponseMeta.cs
+src/Zernio/Model/GetInboxPostComments200ResponseMetaAdComments.cs
 src/Zernio/Model/GetInboxPostComments200ResponsePagination.cs
 src/Zernio/Model/GetInstagramAccountInsights404Response.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics200Response.cs

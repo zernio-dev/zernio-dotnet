@@ -101,6 +101,51 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ObjectStoryId'
+        /// </summary>
+        [Fact]
+        public void ObjectStoryIdTest()
+        {
+            // TODO unit test for the property 'ObjectStoryId'
+        }
+
+        /// <summary>
+        /// Test the property 'EffectiveObjectStoryId'
+        /// </summary>
+        [Fact]
+        public void EffectiveObjectStoryIdTest()
+        {
+            // TODO unit test for the property 'EffectiveObjectStoryId'
+        }
+
+        /// <summary>
+        /// Test the property 'EffectiveInstagramMediaId'
+        /// </summary>
+        [Fact]
+        public void EffectiveInstagramMediaIdTest()
+        {
+            // TODO unit test for the property 'EffectiveInstagramMediaId'
+        }
+
+        /// <summary>
+        /// Test the property 'InstagramUserId'
+        /// </summary>
+        [Fact]
+        public void InstagramUserIdTest()
+        {
+            // TODO unit test for the property 'InstagramUserId'
+        }
+
+        /// <summary>
+        /// Test the property 'InstagramPermalinkUrl'
+        /// </summary>
+        [Fact]
+        public void InstagramPermalinkUrlTest()
+        {
+            // TODO unit test for the property 'InstagramPermalinkUrl'
+        }
+
+        /// <summary>
         /// Test the property 'MediaUrls'
         /// </summary>
         [Fact]
