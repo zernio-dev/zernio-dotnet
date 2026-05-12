@@ -34,8 +34,9 @@ namespace Zernio.Model
     public partial class GetAdComments200ResponseMeta : IValidatableObject
     {
         /// <summary>
-        /// Defines Platform
+        /// Which side these comments are on (same as &#x60;placement&#x60;).
         /// </summary>
+        /// <value>Which side these comments are on (same as &#x60;placement&#x60;).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PlatformEnum
         {
@@ -54,10 +55,38 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Gets or Sets Platform
+        /// Which side these comments are on (same as &#x60;placement&#x60;).
         /// </summary>
+        /// <value>Which side these comments are on (same as &#x60;placement&#x60;).</value>
         [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
         public PlatformEnum Platform { get; set; }
+        /// <summary>
+        /// The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
+        /// </summary>
+        /// <value>The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum PlacementEnum
+        {
+            /// <summary>
+            /// Enum Facebook for value: facebook
+            /// </summary>
+            [EnumMember(Value = "facebook")]
+            Facebook = 1,
+
+            /// <summary>
+            /// Enum Instagram for value: instagram
+            /// </summary>
+            [EnumMember(Value = "instagram")]
+            Instagram = 2
+        }
+
+
+        /// <summary>
+        /// The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
+        /// </summary>
+        /// <value>The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.</value>
+        [DataMember(Name = "placement", IsRequired = true, EmitDefaultValue = true)]
+        public PlacementEnum Placement { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAdComments200ResponseMeta" /> class.
         /// </summary>
@@ -66,18 +95,20 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetAdComments200ResponseMeta" /> class.
         /// </summary>
-        /// <param name="platform">platform (required).</param>
+        /// <param name="platform">Which side these comments are on (same as &#x60;placement&#x60;). (required).</param>
+        /// <param name="placement">The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got. (required).</param>
         /// <param name="adId">Internal Zernio ad ID. (required).</param>
         /// <param name="platformAdId">Meta ad ID. (required).</param>
-        /// <param name="effectiveStoryId">Underlying post ID the comments belong to. effective_object_story_id for Facebook, effective_instagram_media_id for Instagram. (required).</param>
+        /// <param name="effectiveStoryId">Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side. (required).</param>
         /// <param name="instagramUserId">Instagram-only. The Instagram-scoped business ID that owns the boosted media (creative.instagram_user_id)..</param>
         /// <param name="instagramPermalink">Instagram-only. Public permalink of the boosted IG post (creative.instagram_permalink_url)..</param>
         /// <param name="instagramAccountId">Instagram-only. The connected Instagram SocialAccount these comments were read through — use it for reply/hide actions via /v1/inbox/comments..</param>
         /// <param name="accountId">Social account ID (ads SocialAccount). (required).</param>
         /// <param name="lastUpdated">lastUpdated (required).</param>
-        public GetAdComments200ResponseMeta(PlatformEnum platform = default, string adId = default, string platformAdId = default, string effectiveStoryId = default, string instagramUserId = default, string instagramPermalink = default, string instagramAccountId = default, string accountId = default, DateTime lastUpdated = default)
+        public GetAdComments200ResponseMeta(PlatformEnum platform = default, PlacementEnum placement = default, string adId = default, string platformAdId = default, string effectiveStoryId = default, string instagramUserId = default, string instagramPermalink = default, string instagramAccountId = default, string accountId = default, DateTime lastUpdated = default)
         {
             this.Platform = platform;
+            this.Placement = placement;
             // to ensure "adId" is required (not null)
             if (adId == null)
             {
@@ -123,9 +154,9 @@ namespace Zernio.Model
         public string PlatformAdId { get; set; }
 
         /// <summary>
-        /// Underlying post ID the comments belong to. effective_object_story_id for Facebook, effective_instagram_media_id for Instagram.
+        /// Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side.
         /// </summary>
-        /// <value>Underlying post ID the comments belong to. effective_object_story_id for Facebook, effective_instagram_media_id for Instagram.</value>
+        /// <value>Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side.</value>
         [DataMember(Name = "effectiveStoryId", IsRequired = true, EmitDefaultValue = true)]
         public string EffectiveStoryId { get; set; }
 
@@ -172,6 +203,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetAdComments200ResponseMeta {\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
+            sb.Append("  Placement: ").Append(Placement).Append("\n");
             sb.Append("  AdId: ").Append(AdId).Append("\n");
             sb.Append("  PlatformAdId: ").Append(PlatformAdId).Append("\n");
             sb.Append("  EffectiveStoryId: ").Append(EffectiveStoryId).Append("\n");

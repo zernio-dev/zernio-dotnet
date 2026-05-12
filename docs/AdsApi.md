@@ -964,11 +964,11 @@ catch (ApiException e)
 
 <a id="getadcomments"></a>
 # **GetAdComments**
-> GetAdComments200Response GetAdComments (string adId, int? limit = null, string? cursor = null)
+> GetAdComments200Response GetAdComments (string adId, string? placement = null, int? limit = null, string? cursor = null)
 
 List comments on an ad
 
-Returns comments on an ad's underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio's post database.  Resolves the ad's creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  For Instagram-placed ads, the Instagram account that runs the ad must be connected to Zernio — comments are read through that account's token. If none of the connected Instagram accounts on the profile can read the ad's media, the call returns ads_connection_required.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
+Returns comments on an ad's underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio's post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative's effective_object_story_id and effective_instagram_media_id). Use the `placement` query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account's token. If no connected Instagram account on the profile can read the ad's media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement=facebook).  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
 
 ### Example
 ```csharp
@@ -995,13 +995,14 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
             var adId = "adId_example";  // string | Internal Zernio ad ID (ObjectId).
+            var placement = "facebook";  // string? | Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional) 
             var limit = 25;  // int? |  (optional)  (default to 25)
             var cursor = "cursor_example";  // string? | Pagination cursor from a previous response. (optional) 
 
             try
             {
                 // List comments on an ad
-                GetAdComments200Response result = apiInstance.GetAdComments(adId, limit, cursor);
+                GetAdComments200Response result = apiInstance.GetAdComments(adId, placement, limit, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1022,7 +1023,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List comments on an ad
-    ApiResponse<GetAdComments200Response> response = apiInstance.GetAdCommentsWithHttpInfo(adId, limit, cursor);
+    ApiResponse<GetAdComments200Response> response = apiInstance.GetAdCommentsWithHttpInfo(adId, placement, limit, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1040,6 +1041,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **adId** | **string** | Internal Zernio ad ID (ObjectId). |  |
+| **placement** | **string?** | Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 25] |
 | **cursor** | **string?** | Pagination cursor from a previous response. | [optional]  |
 

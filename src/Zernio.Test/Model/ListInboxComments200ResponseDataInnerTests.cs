@@ -180,5 +180,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'AdId'
         }
+
+        /// <summary>
+        /// Test the property 'Placement'
+        /// </summary>
+        [Fact]
+        public void PlacementTest()
+        {
+            // TODO unit test for the property 'Placement'
+        }
     }
 }

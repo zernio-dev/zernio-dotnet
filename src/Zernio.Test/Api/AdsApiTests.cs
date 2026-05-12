@@ -177,9 +177,10 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string adId = null;
+            //string? placement = null;
             //int? limit = null;
             //string? cursor = null;
-            //var response = instance.GetAdComments(adId, limit, cursor);
+            //var response = instance.GetAdComments(adId, placement, limit, cursor);
             //Assert.IsType<GetAdComments200Response>(response);
         }
 

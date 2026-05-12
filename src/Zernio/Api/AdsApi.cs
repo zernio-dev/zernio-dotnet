@@ -237,27 +237,29 @@ namespace Zernio.Api
         /// List comments on an ad
         /// </summary>
         /// <remarks>
-        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  For Instagram-placed ads, the Instagram account that runs the ad must be connected to Zernio — comments are read through that account&#39;s token. If none of the connected Instagram accounts on the profile can read the ad&#39;s media, the call returns ads_connection_required.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
+        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>GetAdComments200Response</returns>
-        GetAdComments200Response GetAdComments(string adId, int? limit = default, string? cursor = default);
+        GetAdComments200Response GetAdComments(string adId, string? placement = default, int? limit = default, string? cursor = default);
 
         /// <summary>
         /// List comments on an ad
         /// </summary>
         /// <remarks>
-        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  For Instagram-placed ads, the Instagram account that runs the ad must be connected to Zernio — comments are read through that account&#39;s token. If none of the connected Instagram accounts on the profile can read the ad&#39;s media, the call returns ads_connection_required.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
+        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>ApiResponse of GetAdComments200Response</returns>
-        ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, int? limit = default, string? cursor = default);
+        ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, string? placement = default, int? limit = default, string? cursor = default);
         /// <summary>
         /// Fetch a single conversion destination
         /// </summary>
@@ -858,29 +860,31 @@ namespace Zernio.Api
         /// List comments on an ad
         /// </summary>
         /// <remarks>
-        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  For Instagram-placed ads, the Instagram account that runs the ad must be connected to Zernio — comments are read through that account&#39;s token. If none of the connected Instagram accounts on the profile can read the ad&#39;s media, the call returns ads_connection_required.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
+        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdComments200Response</returns>
-        System.Threading.Tasks.Task<GetAdComments200Response> GetAdCommentsAsync(string adId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetAdComments200Response> GetAdCommentsAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List comments on an ad
         /// </summary>
         /// <remarks>
-        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  For Instagram-placed ads, the Instagram account that runs the ad must be connected to Zernio — comments are read through that account&#39;s token. If none of the connected Instagram accounts on the profile can read the ad&#39;s media, the call returns ads_connection_required.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
+        /// Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdComments200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Fetch a single conversion destination
         /// </summary>
@@ -2742,28 +2746,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  For Instagram-placed ads, the Instagram account that runs the ad must be connected to Zernio — comments are read through that account&#39;s token. If none of the connected Instagram accounts on the profile can read the ad&#39;s media, the call returns ads_connection_required.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
+        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>GetAdComments200Response</returns>
-        public GetAdComments200Response GetAdComments(string adId, int? limit = default, string? cursor = default)
+        public GetAdComments200Response GetAdComments(string adId, string? placement = default, int? limit = default, string? cursor = default)
         {
-            Zernio.Client.ApiResponse<GetAdComments200Response> localVarResponse = GetAdCommentsWithHttpInfo(adId, limit, cursor);
+            Zernio.Client.ApiResponse<GetAdComments200Response> localVarResponse = GetAdCommentsWithHttpInfo(adId, placement, limit, cursor);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  For Instagram-placed ads, the Instagram account that runs the ad must be connected to Zernio — comments are read through that account&#39;s token. If none of the connected Instagram accounts on the profile can read the ad&#39;s media, the call returns ads_connection_required.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
+        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>ApiResponse of GetAdComments200Response</returns>
-        public Zernio.Client.ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, int? limit = default, string? cursor = default)
+        public Zernio.Client.ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, string? placement = default, int? limit = default, string? cursor = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -2786,6 +2792,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            if (placement != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "placement", placement));
+            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
@@ -2815,30 +2825,32 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  For Instagram-placed ads, the Instagram account that runs the ad must be connected to Zernio — comments are read through that account&#39;s token. If none of the connected Instagram accounts on the profile can read the ad&#39;s media, the call returns ads_connection_required.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
+        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdComments200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdComments200Response> GetAdCommentsAsync(string adId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetAdComments200Response> GetAdCommentsAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetAdComments200Response> localVarResponse = await GetAdCommentsWithHttpInfoAsync(adId, limit, cursor, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetAdComments200Response> localVarResponse = await GetAdCommentsWithHttpInfoAsync(adId, placement, limit, cursor, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  For Instagram-placed ads, the Instagram account that runs the ad must be connected to Zernio — comments are read through that account&#39;s token. If none of the connected Instagram accounts on the profile can read the ad&#39;s media, the call returns ads_connection_required.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
+        /// List comments on an ad Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Internal Zernio ad ID (ObjectId).</param>
+        /// <param name="placement">Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdComments200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'adId' is set
             if (adId == null)
@@ -2863,6 +2875,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            if (placement != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "placement", placement));
+            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
