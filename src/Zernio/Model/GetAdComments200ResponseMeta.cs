@@ -70,9 +70,12 @@ namespace Zernio.Model
         /// <param name="adId">Internal Zernio ad ID. (required).</param>
         /// <param name="platformAdId">Meta ad ID. (required).</param>
         /// <param name="effectiveStoryId">Underlying post ID the comments belong to. effective_object_story_id for Facebook, effective_instagram_media_id for Instagram. (required).</param>
+        /// <param name="instagramUserId">Instagram-only. The Instagram-scoped business ID that owns the boosted media (creative.instagram_user_id)..</param>
+        /// <param name="instagramPermalink">Instagram-only. Public permalink of the boosted IG post (creative.instagram_permalink_url)..</param>
+        /// <param name="instagramAccountId">Instagram-only. The connected Instagram SocialAccount these comments were read through — use it for reply/hide actions via /v1/inbox/comments..</param>
         /// <param name="accountId">Social account ID (ads SocialAccount). (required).</param>
         /// <param name="lastUpdated">lastUpdated (required).</param>
-        public GetAdComments200ResponseMeta(PlatformEnum platform = default, string adId = default, string platformAdId = default, string effectiveStoryId = default, string accountId = default, DateTime lastUpdated = default)
+        public GetAdComments200ResponseMeta(PlatformEnum platform = default, string adId = default, string platformAdId = default, string effectiveStoryId = default, string instagramUserId = default, string instagramPermalink = default, string instagramAccountId = default, string accountId = default, DateTime lastUpdated = default)
         {
             this.Platform = platform;
             // to ensure "adId" is required (not null)
@@ -100,6 +103,9 @@ namespace Zernio.Model
             }
             this.AccountId = accountId;
             this.LastUpdated = lastUpdated;
+            this.InstagramUserId = instagramUserId;
+            this.InstagramPermalink = instagramPermalink;
+            this.InstagramAccountId = instagramAccountId;
         }
 
         /// <summary>
@@ -122,6 +128,27 @@ namespace Zernio.Model
         /// <value>Underlying post ID the comments belong to. effective_object_story_id for Facebook, effective_instagram_media_id for Instagram.</value>
         [DataMember(Name = "effectiveStoryId", IsRequired = true, EmitDefaultValue = true)]
         public string EffectiveStoryId { get; set; }
+
+        /// <summary>
+        /// Instagram-only. The Instagram-scoped business ID that owns the boosted media (creative.instagram_user_id).
+        /// </summary>
+        /// <value>Instagram-only. The Instagram-scoped business ID that owns the boosted media (creative.instagram_user_id).</value>
+        [DataMember(Name = "instagramUserId", EmitDefaultValue = false)]
+        public string InstagramUserId { get; set; }
+
+        /// <summary>
+        /// Instagram-only. Public permalink of the boosted IG post (creative.instagram_permalink_url).
+        /// </summary>
+        /// <value>Instagram-only. Public permalink of the boosted IG post (creative.instagram_permalink_url).</value>
+        [DataMember(Name = "instagramPermalink", EmitDefaultValue = false)]
+        public string InstagramPermalink { get; set; }
+
+        /// <summary>
+        /// Instagram-only. The connected Instagram SocialAccount these comments were read through — use it for reply/hide actions via /v1/inbox/comments.
+        /// </summary>
+        /// <value>Instagram-only. The connected Instagram SocialAccount these comments were read through — use it for reply/hide actions via /v1/inbox/comments.</value>
+        [DataMember(Name = "instagramAccountId", EmitDefaultValue = false)]
+        public string InstagramAccountId { get; set; }
 
         /// <summary>
         /// Social account ID (ads SocialAccount).
@@ -148,6 +175,9 @@ namespace Zernio.Model
             sb.Append("  AdId: ").Append(AdId).Append("\n");
             sb.Append("  PlatformAdId: ").Append(PlatformAdId).Append("\n");
             sb.Append("  EffectiveStoryId: ").Append(EffectiveStoryId).Append("\n");
+            sb.Append("  InstagramUserId: ").Append(InstagramUserId).Append("\n");
+            sb.Append("  InstagramPermalink: ").Append(InstagramPermalink).Append("\n");
+            sb.Append("  InstagramAccountId: ").Append(InstagramAccountId).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  LastUpdated: ").Append(LastUpdated).Append("\n");
             sb.Append("}\n");
