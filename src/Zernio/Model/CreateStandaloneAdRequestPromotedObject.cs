@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Meta only. Forwarded to the ad set&#39;s &#x60;promoted_object&#x60; (snake-cased).  Required for goals whose ad-set optimization_goal points at a specific event/page/app — without it Meta rejects the ad-set create with &#x60;error_subcode: 1815430&#x60; \&quot;Please select a promoted object for your ad set\&quot;:   - &#x60;goal: conversions&#x60; (OFFSITE_CONVERSIONS) — requires &#x60;pixelId&#x60; + &#x60;customEventType&#x60;   - &#x60;goal: app_promotion&#x60; (APP_INSTALLS) — requires &#x60;applicationId&#x60; + &#x60;objectStoreUrl&#x60;   - &#x60;goal: lead_generation&#x60; (LEAD_GENERATION) — &#x60;pageId&#x60; is auto-filled from the connected Page when omitted  Other goals (engagement, traffic, awareness, video_views) ignore this field. 
+    /// What the ad optimises against. Behaviour depends on the platform.  **Meta**: forwarded to the ad set&#39;s &#x60;promoted_object&#x60; (snake-cased). Required for goals whose ad-set optimization_goal points at a specific event/page/app (without it Meta rejects the ad-set create with &#x60;error_subcode: 1815430&#x60; \&quot;Please select a promoted object for your ad set\&quot;):   - &#x60;goal: conversions&#x60; (OFFSITE_CONVERSIONS): requires &#x60;pixelId&#x60; + &#x60;customEventType&#x60;   - &#x60;goal: app_promotion&#x60; (APP_INSTALLS): requires &#x60;applicationId&#x60; + &#x60;objectStoreUrl&#x60;   - &#x60;goal: lead_generation&#x60; (LEAD_GENERATION): &#x60;pageId&#x60; is auto-filled from the connected Page when omitted  Other Meta goals (engagement, traffic, awareness, video_views) ignore this field.  **TikTok**: only &#x60;goal: conversions&#x60; uses it.   - &#x60;pixelId&#x60; maps to the ad group&#39;s &#x60;pixel_id&#x60;. Required: a TikTok website-conversion     ad group without a pixel is rejected with &#x60;40002: Please select a pixel&#x60;.   - &#x60;customEventType&#x60; maps to the ad group&#39;s &#x60;optimization_event&#x60; (the pixel event to     optimise for). Optional: TikTok accepts a pixel-only auto-bid conversion ad group.     See the &#x60;customEventType&#x60; field below for the valid TikTok codes.  The remaining &#x60;promotedObject.*&#x60; fields are Meta-only. Platforms other than Meta and TikTok ignore &#x60;promotedObject&#x60; entirely. 
     /// </summary>
     [DataContract(Name = "createStandaloneAd_request_promotedObject")]
     public partial class CreateStandaloneAdRequestPromotedObject : IValidatableObject
@@ -36,8 +36,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestPromotedObject" /> class.
         /// </summary>
-        /// <param name="pixelId">Facebook Pixel ID. Required for &#x60;goal: conversions&#x60;..</param>
-        /// <param name="customEventType">Standard event the campaign optimises against, e.g. &#x60;PURCHASE&#x60;, &#x60;LEAD&#x60;, &#x60;COMPLETE_REGISTRATION&#x60;, &#x60;ADD_TO_CART&#x60;. Uppercased internally so callers can pass any case. Required for &#x60;goal: conversions&#x60;. .</param>
+        /// <param name="pixelId">Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. .</param>
+        /// <param name="customEventType">The event the campaign/ad group optimises against.  **Meta:** standard event like &#x60;PURCHASE&#x60;, &#x60;LEAD&#x60;, &#x60;COMPLETE_REGISTRATION&#x60;, &#x60;ADD_TO_CART&#x60;. Uppercased internally so callers can pass any case. Required for &#x60;goal: conversions&#x60;.  **TikTok:** an &#x60;optimization_event&#x60; code (UPPER_SNAKE, not Meta&#39;s vocabulary and not PascalCase), e.g. &#x60;ON_WEB_ORDER&#x60; (Complete Payment), &#x60;INITIATE_ORDER&#x60; (Place an Order), &#x60;ON_WEB_CART&#x60; (Add to Cart), &#x60;ON_WEB_REGISTER&#x60; (Complete Registration), &#x60;FORM&#x60; (Submit Form), &#x60;ON_WEB_DETAIL&#x60; (View Content). Must be one of the events your TikTok Pixel is configured to track; passed through verbatim and validated by TikTok. Optional for &#x60;goal: conversions&#x60;. .</param>
         /// <param name="pageId">Facebook Page ID. Used by &#x60;goal: lead_generation&#x60;. Auto-filled from the connected Page when omitted. .</param>
         /// <param name="applicationId">App ID. Required for &#x60;goal: app_promotion&#x60;..</param>
         /// <param name="objectStoreUrl">App Store / Play Store listing URL. Required for &#x60;goal: app_promotion&#x60;..</param>
@@ -57,16 +57,16 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Facebook Pixel ID. Required for &#x60;goal: conversions&#x60;.
+        /// Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. 
         /// </summary>
-        /// <value>Facebook Pixel ID. Required for &#x60;goal: conversions&#x60;.</value>
+        /// <value>Pixel ID. **Meta:** Facebook Pixel ID, required for &#x60;goal: conversions&#x60;. **TikTok:** TikTok Pixel ID, required for &#x60;goal: conversions&#x60;. </value>
         [DataMember(Name = "pixelId", EmitDefaultValue = false)]
         public string PixelId { get; set; }
 
         /// <summary>
-        /// Standard event the campaign optimises against, e.g. &#x60;PURCHASE&#x60;, &#x60;LEAD&#x60;, &#x60;COMPLETE_REGISTRATION&#x60;, &#x60;ADD_TO_CART&#x60;. Uppercased internally so callers can pass any case. Required for &#x60;goal: conversions&#x60;. 
+        /// The event the campaign/ad group optimises against.  **Meta:** standard event like &#x60;PURCHASE&#x60;, &#x60;LEAD&#x60;, &#x60;COMPLETE_REGISTRATION&#x60;, &#x60;ADD_TO_CART&#x60;. Uppercased internally so callers can pass any case. Required for &#x60;goal: conversions&#x60;.  **TikTok:** an &#x60;optimization_event&#x60; code (UPPER_SNAKE, not Meta&#39;s vocabulary and not PascalCase), e.g. &#x60;ON_WEB_ORDER&#x60; (Complete Payment), &#x60;INITIATE_ORDER&#x60; (Place an Order), &#x60;ON_WEB_CART&#x60; (Add to Cart), &#x60;ON_WEB_REGISTER&#x60; (Complete Registration), &#x60;FORM&#x60; (Submit Form), &#x60;ON_WEB_DETAIL&#x60; (View Content). Must be one of the events your TikTok Pixel is configured to track; passed through verbatim and validated by TikTok. Optional for &#x60;goal: conversions&#x60;. 
         /// </summary>
-        /// <value>Standard event the campaign optimises against, e.g. &#x60;PURCHASE&#x60;, &#x60;LEAD&#x60;, &#x60;COMPLETE_REGISTRATION&#x60;, &#x60;ADD_TO_CART&#x60;. Uppercased internally so callers can pass any case. Required for &#x60;goal: conversions&#x60;. </value>
+        /// <value>The event the campaign/ad group optimises against.  **Meta:** standard event like &#x60;PURCHASE&#x60;, &#x60;LEAD&#x60;, &#x60;COMPLETE_REGISTRATION&#x60;, &#x60;ADD_TO_CART&#x60;. Uppercased internally so callers can pass any case. Required for &#x60;goal: conversions&#x60;.  **TikTok:** an &#x60;optimization_event&#x60; code (UPPER_SNAKE, not Meta&#39;s vocabulary and not PascalCase), e.g. &#x60;ON_WEB_ORDER&#x60; (Complete Payment), &#x60;INITIATE_ORDER&#x60; (Place an Order), &#x60;ON_WEB_CART&#x60; (Add to Cart), &#x60;ON_WEB_REGISTER&#x60; (Complete Registration), &#x60;FORM&#x60; (Submit Form), &#x60;ON_WEB_DETAIL&#x60; (View Content). Must be one of the events your TikTok Pixel is configured to track; passed through verbatim and validated by TikTok. Optional for &#x60;goal: conversions&#x60;. </value>
         [DataMember(Name = "customEventType", EmitDefaultValue = false)]
         public string CustomEventType { get; set; }
 

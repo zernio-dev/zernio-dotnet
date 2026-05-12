@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Meta only (facebook, instagram). When set, creates a VIDEO ad on the legacy or attach shape. Mutually exclusive with &#x60;imageUrl&#x60;. For multi-creative, set &#x60;video&#x60; per entry inside &#x60;creatives[]&#x60; instead.
+    /// Meta (facebook, instagram) and LinkedIn. When set, creates a VIDEO ad on the legacy (or, for Meta, attach) shape. Mutually exclusive with &#x60;imageUrl&#x60;. For Meta multi-creative, set &#x60;video&#x60; per entry inside &#x60;creatives[]&#x60; instead. For LinkedIn the video is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;) and the campaign format is set to SINGLE_VIDEO; LinkedIn ignores &#x60;thumbnailUrl&#x60; (it auto-generates the poster frame) — supply MP4 H.264/AAC, 3s-30min, 75KB-500MB.
     /// </summary>
     [DataContract(Name = "createStandaloneAd_request_video")]
     public partial class CreateStandaloneAdRequestVideo : IValidatableObject
@@ -41,8 +41,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestVideo" /> class.
         /// </summary>
-        /// <param name="url">Public URL of the video. Uploaded to Meta via chunked transfer on /act_X/advideos; then the request blocks on Meta&#39;s transcoding until status.video_status &#x3D;&#x3D;&#x3D; &#39;ready&#39;. (required).</param>
-        /// <param name="thumbnailUrl">Public URL of a still-image thumbnail for the video. Required by Meta on every video creative. Uploaded to Meta as an ad image and referenced as the thumbnail in object_story_spec.video_data. (required).</param>
+        /// <param name="url">Public URL of the video. Meta: uploaded via chunked transfer on /act_X/advideos, then the request blocks on Meta&#39;s transcoding until status.video_status &#x3D;&#x3D;&#x3D; &#39;ready&#39;. LinkedIn: uploaded via the Videos API (multipart), then the request blocks until LinkedIn finishes transcoding (status AVAILABLE) — short clips take ~10-30s. (required).</param>
+        /// <param name="thumbnailUrl">Public URL of a still-image thumbnail for the video. Required by Meta on every video creative (uploaded as an ad image and referenced in object_story_spec.video_data). Ignored by LinkedIn (auto-generated poster frame)..</param>
         public CreateStandaloneAdRequestVideo(string url = default, string thumbnailUrl = default)
         {
             // to ensure "url" is required (not null)
@@ -51,26 +51,21 @@ namespace Zernio.Model
                 throw new ArgumentNullException("url is a required property for CreateStandaloneAdRequestVideo and cannot be null");
             }
             this.Url = url;
-            // to ensure "thumbnailUrl" is required (not null)
-            if (thumbnailUrl == null)
-            {
-                throw new ArgumentNullException("thumbnailUrl is a required property for CreateStandaloneAdRequestVideo and cannot be null");
-            }
             this.ThumbnailUrl = thumbnailUrl;
         }
 
         /// <summary>
-        /// Public URL of the video. Uploaded to Meta via chunked transfer on /act_X/advideos; then the request blocks on Meta&#39;s transcoding until status.video_status &#x3D;&#x3D;&#x3D; &#39;ready&#39;.
+        /// Public URL of the video. Meta: uploaded via chunked transfer on /act_X/advideos, then the request blocks on Meta&#39;s transcoding until status.video_status &#x3D;&#x3D;&#x3D; &#39;ready&#39;. LinkedIn: uploaded via the Videos API (multipart), then the request blocks until LinkedIn finishes transcoding (status AVAILABLE) — short clips take ~10-30s.
         /// </summary>
-        /// <value>Public URL of the video. Uploaded to Meta via chunked transfer on /act_X/advideos; then the request blocks on Meta&#39;s transcoding until status.video_status &#x3D;&#x3D;&#x3D; &#39;ready&#39;.</value>
+        /// <value>Public URL of the video. Meta: uploaded via chunked transfer on /act_X/advideos, then the request blocks on Meta&#39;s transcoding until status.video_status &#x3D;&#x3D;&#x3D; &#39;ready&#39;. LinkedIn: uploaded via the Videos API (multipart), then the request blocks until LinkedIn finishes transcoding (status AVAILABLE) — short clips take ~10-30s.</value>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
         public string Url { get; set; }
 
         /// <summary>
-        /// Public URL of a still-image thumbnail for the video. Required by Meta on every video creative. Uploaded to Meta as an ad image and referenced as the thumbnail in object_story_spec.video_data.
+        /// Public URL of a still-image thumbnail for the video. Required by Meta on every video creative (uploaded as an ad image and referenced in object_story_spec.video_data). Ignored by LinkedIn (auto-generated poster frame).
         /// </summary>
-        /// <value>Public URL of a still-image thumbnail for the video. Required by Meta on every video creative. Uploaded to Meta as an ad image and referenced as the thumbnail in object_story_spec.video_data.</value>
-        [DataMember(Name = "thumbnailUrl", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Public URL of a still-image thumbnail for the video. Required by Meta on every video creative (uploaded as an ad image and referenced in object_story_spec.video_data). Ignored by LinkedIn (auto-generated poster frame).</value>
+        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
         public string ThumbnailUrl { get; set; }
 
         /// <summary>
