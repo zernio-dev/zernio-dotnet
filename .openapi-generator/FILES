@@ -261,6 +261,8 @@ docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
 docs/GetAdComments200ResponsePagination.md
 docs/GetAdTree200Response.md
+docs/GetAdsTimeline200Response.md
+docs/GetAdsTimeline200ResponseRowsInner.md
 docs/GetAllAccountsHealth200Response.md
 docs/GetAllAccountsHealth200ResponseAccountsInner.md
 docs/GetAllAccountsHealth200ResponseSummary.md
@@ -1212,6 +1214,8 @@ src/Zernio.Test/Model/GetAdComments200ResponseMetaTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTree200ResponseTests.cs
+src/Zernio.Test/Model/GetAdsTimeline200ResponseRowsInnerTests.cs
+src/Zernio.Test/Model/GetAdsTimeline200ResponseTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseAccountsInnerTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseSummaryTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseTests.cs
@@ -2160,6 +2164,8 @@ src/Zernio/Model/GetAdComments200Response.cs
 src/Zernio/Model/GetAdComments200ResponseMeta.cs
 src/Zernio/Model/GetAdComments200ResponsePagination.cs
 src/Zernio/Model/GetAdTree200Response.cs
+src/Zernio/Model/GetAdsTimeline200Response.cs
+src/Zernio/Model/GetAdsTimeline200ResponseRowsInner.cs
 src/Zernio/Model/GetAllAccountsHealth200Response.cs
 src/Zernio/Model/GetAllAccountsHealth200ResponseAccountsInner.cs
 src/Zernio/Model/GetAllAccountsHealth200ResponseSummary.cs

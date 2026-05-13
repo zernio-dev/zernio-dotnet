@@ -114,6 +114,21 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetAdsTimeline
+        /// </summary>
+        [Fact]
+        public void GetAdsTimelineTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //DateOnly? fromDate = null;
+            //DateOnly? toDate = null;
+            //string? platform = null;
+            //var response = instance.GetAdsTimeline(accountId, fromDate, toDate, platform);
+            //Assert.IsType<GetAdsTimeline200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdCampaigns
         /// </summary>
         [Fact]

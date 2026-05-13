@@ -135,6 +135,33 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetAdTree200Response</returns>
         ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
+        /// Get daily aggregate ad metrics for an account
+        /// </summary>
+        /// <remarks>
+        /// Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <returns>GetAdsTimeline200Response</returns>
+        GetAdsTimeline200Response GetAdsTimeline(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default);
+
+        /// <summary>
+        /// Get daily aggregate ad metrics for an account
+        /// </summary>
+        /// <remarks>
+        /// Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <returns>ApiResponse of GetAdsTimeline200Response</returns>
+        ApiResponse<GetAdsTimeline200Response> GetAdsTimelineWithHttpInfo(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default);
+        /// <summary>
         /// List campaigns
         /// </summary>
         /// <remarks>
@@ -384,6 +411,35 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdTree200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get daily aggregate ad metrics for an account
+        /// </summary>
+        /// <remarks>
+        /// Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdsTimeline200Response</returns>
+        System.Threading.Tasks.Task<GetAdsTimeline200Response> GetAdsTimelineAsync(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get daily aggregate ad metrics for an account
+        /// </summary>
+        /// <remarks>
+        /// Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdsTimeline200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdsTimeline200Response>> GetAdsTimelineWithHttpInfoAsync(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List campaigns
         /// </summary>
@@ -1376,6 +1432,169 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAdTree", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get daily aggregate ad metrics for an account Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <returns>GetAdsTimeline200Response</returns>
+        public GetAdsTimeline200Response GetAdsTimeline(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default)
+        {
+            Zernio.Client.ApiResponse<GetAdsTimeline200Response> localVarResponse = GetAdsTimelineWithHttpInfo(accountId, fromDate, toDate, platform);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get daily aggregate ad metrics for an account Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <returns>ApiResponse of GetAdsTimeline200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdsTimeline200Response> GetAdsTimelineWithHttpInfo(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCampaignsApi->GetAdsTimeline");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdsTimeline200Response>("/v1/ads/timeline", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdsTimeline", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get daily aggregate ad metrics for an account Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdsTimeline200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdsTimeline200Response> GetAdsTimelineAsync(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdsTimeline200Response> localVarResponse = await GetAdsTimelineWithHttpInfoAsync(accountId, fromDate, toDate, platform, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get daily aggregate ad metrics for an account Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="platform">Restrict to one platform. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdsTimeline200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdsTimeline200Response>> GetAdsTimelineWithHttpInfoAsync(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCampaignsApi->GetAdsTimeline");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdsTimeline200Response>("/v1/ads/timeline", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdsTimeline", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

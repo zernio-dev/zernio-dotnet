@@ -169,6 +169,7 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**DeleteAdCampaign**](docs/AdCampaignsApi.md#deleteadcampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
 *AdCampaignsApi* | [**DuplicateAdCampaign**](docs/AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
 *AdCampaignsApi* | [**GetAdTree**](docs/AdCampaignsApi.md#getadtree) | **GET** /v1/ads/tree | Get campaign tree
+*AdCampaignsApi* | [**GetAdsTimeline**](docs/AdCampaignsApi.md#getadstimeline) | **GET** /v1/ads/timeline | Get daily aggregate ad metrics for an account
 *AdCampaignsApi* | [**ListAdCampaigns**](docs/AdCampaignsApi.md#listadcampaigns) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**UpdateAdCampaign**](docs/AdCampaignsApi.md#updateadcampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign (budget and/or bid strategy)
 *AdCampaignsApi* | [**UpdateAdCampaignStatus**](docs/AdCampaignsApi.md#updateadcampaignstatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign
@@ -668,6 +669,8 @@ Class | Method | HTTP request | Description
  - [Model.GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
  - [Model.GetAdComments200ResponsePagination](docs/GetAdComments200ResponsePagination.md)
  - [Model.GetAdTree200Response](docs/GetAdTree200Response.md)
+ - [Model.GetAdsTimeline200Response](docs/GetAdsTimeline200Response.md)
+ - [Model.GetAdsTimeline200ResponseRowsInner](docs/GetAdsTimeline200ResponseRowsInner.md)
  - [Model.GetAllAccountsHealth200Response](docs/GetAllAccountsHealth200Response.md)
  - [Model.GetAllAccountsHealth200ResponseAccountsInner](docs/GetAllAccountsHealth200ResponseAccountsInner.md)
  - [Model.GetAllAccountsHealth200ResponseSummary](docs/GetAllAccountsHealth200ResponseSummary.md)
