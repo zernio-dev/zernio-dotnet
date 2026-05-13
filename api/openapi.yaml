@@ -590,7 +590,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getAnalytics_402_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "404":
           $ref: "#/components/responses/NotFound"
         "424":
@@ -704,7 +705,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "404":
           description: Account not found
         "412":
@@ -829,7 +831,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "403":
           description: |
             Platform error. The authenticated member lacks the required
@@ -943,7 +946,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "404":
           description: Account not found
         "412":
@@ -1051,7 +1055,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getAnalytics_402_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "403":
           content:
             application/json:
@@ -1216,7 +1221,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "404":
           description: Account not found
       summary: Get Facebook Page insights
@@ -1383,7 +1389,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getAnalytics_402_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "403":
           content:
             application/json:
@@ -1476,7 +1483,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "404":
           description: Account not found
       summary: Get Instagram follower history
@@ -1600,7 +1608,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getAnalytics_402_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "403":
           content:
             application/json:
@@ -1711,7 +1720,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getAnalytics_402_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "403":
           content:
             application/json:
@@ -1841,7 +1851,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getAnalytics_402_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
       summary: Get daily aggregated metrics
       tags:
       - Analytics
@@ -1922,7 +1933,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getBestTimeToPost_403_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
       summary: Get best times to post
       tags:
       - Analytics
@@ -2020,7 +2032,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getBestTimeToPost_403_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
       summary: Get content performance decay
       tags:
       - Analytics
@@ -2105,7 +2118,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getBestTimeToPost_403_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
       summary: Get frequency vs engagement
       tags:
       - Analytics
@@ -2192,7 +2206,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getAnalytics_402_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "403":
           content:
             application/json:
@@ -2307,7 +2322,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getAnalytics_402_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "403":
           content:
             application/json:
@@ -2390,7 +2406,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getAnalytics_402_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "403":
           content:
             application/json:
@@ -4370,7 +4387,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getFollowerStats_403_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
       summary: Get follower stats
       tags:
       - Accounts
@@ -5136,7 +5154,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads add-on required, or no access to profile"
+          description: "Ads access required (Ads add-on on legacy plans, included\
+            \ on usage-based plans), or no access to profile"
         "404":
           description: Profile or posting account not found
       security:
@@ -7828,7 +7847,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getLinkedInAggregateAnalytics_402_response"
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "403":
           content:
             application/json:
@@ -7916,7 +7936,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "403":
           content:
             application/json:
@@ -8025,7 +8046,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: Analytics add-on required
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
         "403":
           description: Missing required LinkedIn scope
         "404":
@@ -14115,7 +14137,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
       security:
       - bearerAuth: []
       summary: List ads
@@ -14212,7 +14235,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
       security:
       - bearerAuth: []
       summary: List campaigns
@@ -14645,7 +14669,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
       security:
       - bearerAuth: []
       summary: Get campaign tree
@@ -14736,7 +14761,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
       security:
       - bearerAuth: []
       summary: Get daily aggregate ad metrics for an account
@@ -14900,7 +14926,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
         "404":
           $ref: "#/components/responses/NotFound"
       security:
@@ -14987,7 +15014,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads add-on required, or ad platform is not Meta (code feature_not_available)."
+          description: "Ads access required (legacy plans need the Ads add-on; included\
+            \ by default on usage-based plans), or ad platform is not Meta (code feature_not_available)."
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -15116,7 +15144,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
         "422":
           description: |
             Platform ads connection required (TikTok Ads, X Ads), missing linked
@@ -15163,7 +15192,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
         "422":
           description: "Platform ads connection required (TikTok Ads, X Ads) or missing\
             \ linked account"
@@ -15203,7 +15233,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
       security:
       - bearerAuth: []
       summary: Search targeting interests
@@ -15294,7 +15325,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
         "404":
           description: "Account not found, or platform does not support targeting\
             \ search (Meta only)"
@@ -15348,7 +15380,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
       security:
       - bearerAuth: []
       summary: List custom audiences
@@ -15376,7 +15409,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
       security:
       - bearerAuth: []
       summary: Create custom audience
@@ -15404,7 +15438,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
         "404":
           $ref: "#/components/responses/NotFound"
       security:
@@ -15434,7 +15469,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
         "404":
           $ref: "#/components/responses/NotFound"
       security:
@@ -15474,7 +15510,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -15559,8 +15596,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: |
-            Ads add-on required, OR (for LinkedIn) the connected account
-            lacks the `rw_conversions` scope and must be reconnected.
+            Ads access required (Ads add-on on legacy plans, included on usage-based plans),
+            OR (for LinkedIn) the connected account lacks the `rw_conversions` scope and must be reconnected.
         "404":
           description: Account not found or not accessible.
         "429":
@@ -15613,8 +15650,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: |
-            Ads add-on required, OR (for LinkedIn) the connected account
-            lacks the `rw_conversions` scope and must be reconnected.
+            Ads access required (Ads add-on on legacy plans, included on usage-based plans),
+            OR (for LinkedIn) the connected account lacks the `rw_conversions` scope and must be reconnected.
         "404":
           description: Account not found or not accessible.
         "429":
@@ -15667,8 +15704,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: |
-            Ads add-on required, or the connected LinkedIn account lacks the
-            `rw_conversions` scope (reconnect required).
+            Ads access required (Ads add-on on legacy plans, included on usage-based plans),
+            or the connected LinkedIn account lacks the `rw_conversions` scope (reconnect required).
         "404":
           description: Account not found or not accessible.
         "405":
@@ -16203,7 +16240,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required.
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
         "404":
           description: SocialAccount not found.
         "422":
@@ -16261,8 +16299,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads add-on required, or the Meta token lacks ads permissions\
-            \ (reconnect required)."
+          description: "Ads access required (Ads add-on on legacy plans, included\
+            \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
+            \ required)."
         "404":
           description: Account not found or not accessible.
         "405":
@@ -16316,8 +16355,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads add-on required, or the Meta token lacks ads permissions\
-            \ (reconnect required)."
+          description: "Ads access required (Ads add-on on legacy plans, included\
+            \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
+            \ required)."
         "404":
           description: Account not found or not accessible.
         "405":
@@ -16360,8 +16400,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads add-on required, or the Meta token lacks ads permissions\
-            \ (reconnect required)."
+          description: "Ads access required (Ads add-on on legacy plans, included\
+            \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
+            \ required)."
         "404":
           description: Account or tracking tag not found.
         "405":
@@ -16418,8 +16459,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads add-on required, or the Meta token lacks ads permissions\
-            \ (reconnect required)."
+          description: "Ads access required (Ads add-on on legacy plans, included\
+            \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
+            \ required)."
         "404":
           description: Account or tracking tag not found.
         "405":
@@ -16470,8 +16512,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads add-on required, or the Meta token lacks ads permissions\
-            \ (reconnect required)."
+          description: "Ads access required (Ads add-on on legacy plans, included\
+            \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
+            \ required)."
         "404":
           description: Account or tracking tag not found.
         "405":
@@ -16510,8 +16553,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads add-on required, or the Meta token lacks ads permissions\
-            \ (reconnect required)."
+          description: "Ads access required (Ads add-on on legacy plans, included\
+            \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
+            \ required)."
         "404":
           description: Account or tracking tag not found.
         "405":
@@ -16564,8 +16608,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads add-on required, or the Meta token lacks ads permissions\
-            \ (reconnect required)."
+          description: "Ads access required (Ads add-on on legacy plans, included\
+            \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
+            \ required)."
         "404":
           description: Account or tracking tag not found.
         "405":
@@ -16653,8 +16698,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads add-on required, or the Meta token lacks ads permissions\
-            \ (reconnect required)."
+          description: "Ads access required (Ads add-on on legacy plans, included\
+            \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
+            \ required)."
         "404":
           description: Account or tracking tag not found.
         "405":

@@ -109,7 +109,7 @@ catch (ApiException e)
 | **200** | Users added |  -  |
 | **400** | Invalid input (empty users array, missing email/phone) |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Audience is not a customer_list type or has no platform ID yet |  -  |
 
@@ -212,7 +212,7 @@ catch (ApiException e)
 | **201** | Audience created |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -312,7 +312,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Audience deleted |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -413,7 +413,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Audience details |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -518,7 +518,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Audiences |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

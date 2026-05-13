@@ -420,7 +420,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Analytics add-on required |  -  |
+| **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -436,7 +436,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Nested campaign tree with pagination |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -544,7 +544,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Daily time series of aggregate metrics. Empty &#x60;rows&#x60; means the account has no ad activity in the range. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -658,7 +658,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Paginated campaigns |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
