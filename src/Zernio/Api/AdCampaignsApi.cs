@@ -142,11 +142,12 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="adAccountId">Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)</param>
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <returns>GetAdsTimeline200Response</returns>
-        GetAdsTimeline200Response GetAdsTimeline(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default);
+        GetAdsTimeline200Response GetAdsTimeline(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default);
 
         /// <summary>
         /// Get daily aggregate ad metrics for an account
@@ -156,11 +157,12 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="adAccountId">Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)</param>
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <returns>ApiResponse of GetAdsTimeline200Response</returns>
-        ApiResponse<GetAdsTimeline200Response> GetAdsTimelineWithHttpInfo(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default);
+        ApiResponse<GetAdsTimeline200Response> GetAdsTimelineWithHttpInfo(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default);
         /// <summary>
         /// List campaigns
         /// </summary>
@@ -419,12 +421,13 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="adAccountId">Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)</param>
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdsTimeline200Response</returns>
-        System.Threading.Tasks.Task<GetAdsTimeline200Response> GetAdsTimelineAsync(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetAdsTimeline200Response> GetAdsTimelineAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get daily aggregate ad metrics for an account
@@ -434,12 +437,13 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="adAccountId">Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)</param>
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdsTimeline200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdsTimeline200Response>> GetAdsTimelineWithHttpInfoAsync(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetAdsTimeline200Response>> GetAdsTimelineWithHttpInfoAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List campaigns
         /// </summary>
@@ -1443,13 +1447,14 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="adAccountId">Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)</param>
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <returns>GetAdsTimeline200Response</returns>
-        public GetAdsTimeline200Response GetAdsTimeline(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default)
+        public GetAdsTimeline200Response GetAdsTimeline(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default)
         {
-            Zernio.Client.ApiResponse<GetAdsTimeline200Response> localVarResponse = GetAdsTimelineWithHttpInfo(accountId, fromDate, toDate, platform);
+            Zernio.Client.ApiResponse<GetAdsTimeline200Response> localVarResponse = GetAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform);
             return localVarResponse.Data;
         }
 
@@ -1458,11 +1463,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="adAccountId">Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)</param>
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <returns>ApiResponse of GetAdsTimeline200Response</returns>
-        public Zernio.Client.ApiResponse<GetAdsTimeline200Response> GetAdsTimelineWithHttpInfo(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default)
+        public Zernio.Client.ApiResponse<GetAdsTimeline200Response> GetAdsTimelineWithHttpInfo(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1485,6 +1491,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (fromDate != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
@@ -1522,14 +1532,15 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="adAccountId">Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)</param>
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdsTimeline200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdsTimeline200Response> GetAdsTimelineAsync(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetAdsTimeline200Response> GetAdsTimelineAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetAdsTimeline200Response> localVarResponse = await GetAdsTimelineWithHttpInfoAsync(accountId, fromDate, toDate, platform, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetAdsTimeline200Response> localVarResponse = await GetAdsTimelineWithHttpInfoAsync(accountId, adAccountId, fromDate, toDate, platform, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1538,12 +1549,13 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID. Sibling-expanded to its linked posting↔ads pair.</param>
+        /// <param name="adAccountId">Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)</param>
         /// <param name="fromDate">Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="platform">Restrict to one platform. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdsTimeline200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdsTimeline200Response>> GetAdsTimelineWithHttpInfoAsync(string accountId, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdsTimeline200Response>> GetAdsTimelineWithHttpInfoAsync(string accountId, string? adAccountId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1568,6 +1580,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (fromDate != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));

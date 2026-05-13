@@ -442,7 +442,7 @@ catch (ApiException e)
 
 <a id="getadstimeline"></a>
 # **GetAdsTimeline**
-> GetAdsTimeline200Response GetAdsTimeline (string accountId, DateOnly? fromDate = null, DateOnly? toDate = null, string? platform = null)
+> GetAdsTimeline200Response GetAdsTimeline (string accountId, string? adAccountId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? platform = null)
 
 Get daily aggregate ad metrics for an account
 
@@ -473,6 +473,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | Social account ID. Sibling-expanded to its linked posting↔ads pair.
+            var adAccountId = "adAccountId_example";  // string? | Optional platform-native ad account ID (e.g. Meta `act_…`, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don't carry this column; the recurring 7-day re-sync repopulates them naturally. (optional) 
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional) 
             var platform = "facebook";  // string? | Restrict to one platform. (optional) 
@@ -480,7 +481,7 @@ namespace Example
             try
             {
                 // Get daily aggregate ad metrics for an account
-                GetAdsTimeline200Response result = apiInstance.GetAdsTimeline(accountId, fromDate, toDate, platform);
+                GetAdsTimeline200Response result = apiInstance.GetAdsTimeline(accountId, adAccountId, fromDate, toDate, platform);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -501,7 +502,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get daily aggregate ad metrics for an account
-    ApiResponse<GetAdsTimeline200Response> response = apiInstance.GetAdsTimelineWithHttpInfo(accountId, fromDate, toDate, platform);
+    ApiResponse<GetAdsTimeline200Response> response = apiInstance.GetAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -519,6 +520,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | Social account ID. Sibling-expanded to its linked posting↔ads pair. |  |
+| **adAccountId** | **string?** | Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. | [optional]  |
 | **fromDate** | **DateOnly?** | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. | [optional]  |
 | **toDate** | **DateOnly?** | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional]  |
 | **platform** | **string?** | Restrict to one platform. | [optional]  |

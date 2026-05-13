@@ -121,10 +121,11 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? adAccountId = null;
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
             //string? platform = null;
-            //var response = instance.GetAdsTimeline(accountId, fromDate, toDate, platform);
+            //var response = instance.GetAdsTimeline(accountId, adAccountId, fromDate, toDate, platform);
             //Assert.IsType<GetAdsTimeline200Response>(response);
         }
 
