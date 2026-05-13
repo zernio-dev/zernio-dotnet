@@ -572,6 +572,8 @@ docs/MediaItem.md
 docs/MediaUploadResponse.md
 docs/MessagesApi.md
 docs/Money.md
+docs/MoveAccountToProfile200Response.md
+docs/MoveAccountToProfileRequest.md
 docs/Pagination.md
 docs/Pending.md
 docs/PinterestPlatformData.md
@@ -1516,6 +1518,8 @@ src/Zernio.Test/Model/ListWhatsAppPhoneNumbers200ResponseTests.cs
 src/Zernio.Test/Model/MediaItemTests.cs
 src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
+src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
+src/Zernio.Test/Model/MoveAccountToProfileRequestTests.cs
 src/Zernio.Test/Model/PaginationTests.cs
 src/Zernio.Test/Model/PendingTests.cs
 src/Zernio.Test/Model/PinterestPlatformDataTests.cs
@@ -2462,6 +2466,8 @@ src/Zernio/Model/ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner.cs
 src/Zernio/Model/MediaItem.cs
 src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/Money.cs
+src/Zernio/Model/MoveAccountToProfile200Response.cs
+src/Zernio/Model/MoveAccountToProfileRequest.cs
 src/Zernio/Model/Pagination.cs
 src/Zernio/Model/Pending.cs
 src/Zernio/Model/PinterestPlatformData.cs

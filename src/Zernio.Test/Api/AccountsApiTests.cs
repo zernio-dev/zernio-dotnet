@@ -138,6 +138,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test MoveAccountToProfile
+        /// </summary>
+        [Fact]
+        public void MoveAccountToProfileTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //MoveAccountToProfileRequest moveAccountToProfileRequest = null;
+            //var response = instance.MoveAccountToProfile(accountId, moveAccountToProfileRequest);
+            //Assert.IsType<MoveAccountToProfile200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAccount
         /// </summary>
         [Fact]

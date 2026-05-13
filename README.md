@@ -158,6 +158,7 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**GetFollowerStats**](docs/AccountsApi.md#getfollowerstats) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AccountsApi* | [**GetTikTokCreatorInfo**](docs/AccountsApi.md#gettiktokcreatorinfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**ListAccounts**](docs/AccountsApi.md#listaccounts) | **GET** /v1/accounts | List accounts
+*AccountsApi* | [**MoveAccountToProfile**](docs/AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to a different profile
 *AccountsApi* | [**UpdateAccount**](docs/AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account
 *AdAudiencesApi* | [**AddUsersToAdAudience**](docs/AdAudiencesApi.md#adduserstoadaudience) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to audience
 *AdAudiencesApi* | [**CreateAdAudience**](docs/AdAudiencesApi.md#createadaudience) | **POST** /v1/ads/audiences | Create custom audience
@@ -973,6 +974,8 @@ Class | Method | HTTP request | Description
  - [Model.MediaItem](docs/MediaItem.md)
  - [Model.MediaUploadResponse](docs/MediaUploadResponse.md)
  - [Model.Money](docs/Money.md)
+ - [Model.MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
+ - [Model.MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
  - [Model.Pagination](docs/Pagination.md)
  - [Model.Pending](docs/Pending.md)
  - [Model.PinterestPlatformData](docs/PinterestPlatformData.md)

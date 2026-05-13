@@ -177,6 +177,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAccounts200Response</returns>
         ApiResponse<ListAccounts200Response> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, bool? includeOverLimit = default, int? page = default, int? limit = default);
         /// <summary>
+        /// Move account to a different profile
+        /// </summary>
+        /// <remarks>
+        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="moveAccountToProfileRequest"></param>
+        /// <returns>MoveAccountToProfile200Response</returns>
+        MoveAccountToProfile200Response MoveAccountToProfile(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest);
+
+        /// <summary>
+        /// Move account to a different profile
+        /// </summary>
+        /// <remarks>
+        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="moveAccountToProfileRequest"></param>
+        /// <returns>ApiResponse of MoveAccountToProfile200Response</returns>
+        ApiResponse<MoveAccountToProfile200Response> MoveAccountToProfileWithHttpInfo(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest);
+        /// <summary>
         /// Update account
         /// </summary>
         /// <remarks>
@@ -368,6 +391,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAccounts200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAccounts200Response>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Move account to a different profile
+        /// </summary>
+        /// <remarks>
+        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="moveAccountToProfileRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MoveAccountToProfile200Response</returns>
+        System.Threading.Tasks.Task<MoveAccountToProfile200Response> MoveAccountToProfileAsync(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Move account to a different profile
+        /// </summary>
+        /// <remarks>
+        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="moveAccountToProfileRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MoveAccountToProfile200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MoveAccountToProfile200Response>> MoveAccountToProfileWithHttpInfoAsync(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update account
         /// </summary>
@@ -1488,6 +1536,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAccounts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="moveAccountToProfileRequest"></param>
+        /// <returns>MoveAccountToProfile200Response</returns>
+        public MoveAccountToProfile200Response MoveAccountToProfile(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest)
+        {
+            Zernio.Client.ApiResponse<MoveAccountToProfile200Response> localVarResponse = MoveAccountToProfileWithHttpInfo(accountId, moveAccountToProfileRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="moveAccountToProfileRequest"></param>
+        /// <returns>ApiResponse of MoveAccountToProfile200Response</returns>
+        public Zernio.Client.ApiResponse<MoveAccountToProfile200Response> MoveAccountToProfileWithHttpInfo(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->MoveAccountToProfile");
+
+            // verify the required parameter 'moveAccountToProfileRequest' is set
+            if (moveAccountToProfileRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'moveAccountToProfileRequest' when calling AccountsApi->MoveAccountToProfile");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = moveAccountToProfileRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<MoveAccountToProfile200Response>("/v1/accounts/{accountId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("MoveAccountToProfile", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="moveAccountToProfileRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MoveAccountToProfile200Response</returns>
+        public async System.Threading.Tasks.Task<MoveAccountToProfile200Response> MoveAccountToProfileAsync(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<MoveAccountToProfile200Response> localVarResponse = await MoveAccountToProfileWithHttpInfoAsync(accountId, moveAccountToProfileRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="moveAccountToProfileRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MoveAccountToProfile200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<MoveAccountToProfile200Response>> MoveAccountToProfileWithHttpInfoAsync(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->MoveAccountToProfile");
+
+            // verify the required parameter 'moveAccountToProfileRequest' is set
+            if (moveAccountToProfileRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'moveAccountToProfileRequest' when calling AccountsApi->MoveAccountToProfile");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = moveAccountToProfileRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<MoveAccountToProfile200Response>("/v1/accounts/{accountId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("MoveAccountToProfile", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
