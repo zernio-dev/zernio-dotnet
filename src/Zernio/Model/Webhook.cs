@@ -160,7 +160,7 @@ namespace Zernio.Model
         /// <param name="id">Unique webhook identifier.</param>
         /// <param name="name">Webhook name (for identification).</param>
         /// <param name="url">Webhook endpoint URL.</param>
-        /// <param name="secret">Secret key for HMAC-SHA256 signature (not returned in responses for security).</param>
+        /// <param name="secret">Secret key for HMAC-SHA256 signature verification..</param>
         /// <param name="events">Events subscribed to.</param>
         /// <param name="isActive">Whether webhook delivery is enabled.</param>
         /// <param name="lastFiredAt">Timestamp of last successful webhook delivery.</param>
@@ -201,9 +201,9 @@ namespace Zernio.Model
         public string Url { get; set; }
 
         /// <summary>
-        /// Secret key for HMAC-SHA256 signature (not returned in responses for security)
+        /// Secret key for HMAC-SHA256 signature verification.
         /// </summary>
-        /// <value>Secret key for HMAC-SHA256 signature (not returned in responses for security)</value>
+        /// <value>Secret key for HMAC-SHA256 signature verification.</value>
         [DataMember(Name = "secret", EmitDefaultValue = false)]
         public string Secret { get; set; }
 

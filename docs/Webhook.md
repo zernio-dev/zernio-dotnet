@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Id** | **string** | Unique webhook identifier | [optional] 
 **Name** | **string** | Webhook name (for identification) | [optional] 
 **Url** | **string** | Webhook endpoint URL | [optional] 
-**Secret** | **string** | Secret key for HMAC-SHA256 signature (not returned in responses for security) | [optional] 
+**Secret** | **string** | Secret key for HMAC-SHA256 signature verification. | [optional] 
 **Events** | **List&lt;Webhook.EventsEnum&gt;** | Events subscribed to | [optional] 
 **IsActive** | **bool** | Whether webhook delivery is enabled | [optional] 
 **LastFiredAt** | **DateTime** | Timestamp of last successful webhook delivery | [optional] 
