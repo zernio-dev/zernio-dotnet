@@ -151,7 +151,13 @@ namespace Zernio.Model
             /// Enum ReviewUpdated for value: review.updated
             /// </summary>
             [EnumMember(Value = "review.updated")]
-            ReviewUpdated = 19
+            ReviewUpdated = 19,
+
+            /// <summary>
+            /// Enum AdStatusChanged for value: ad.status_changed
+            /// </summary>
+            [EnumMember(Value = "ad.status_changed")]
+            AdStatusChanged = 20
         }
 
         /// <summary>

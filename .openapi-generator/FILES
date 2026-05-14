@@ -877,6 +877,11 @@ docs/WebhookPayloadAccountConnected.md
 docs/WebhookPayloadAccountConnectedAccount.md
 docs/WebhookPayloadAccountDisconnected.md
 docs/WebhookPayloadAccountDisconnectedAccount.md
+docs/WebhookPayloadAdStatusChanged.md
+docs/WebhookPayloadAdStatusChangedAccount.md
+docs/WebhookPayloadAdStatusChangedAdObject.md
+docs/WebhookPayloadAdStatusChangedError.md
+docs/WebhookPayloadAdStatusChangedStatus.md
 docs/WebhookPayloadComment.md
 docs/WebhookPayloadCommentAccount.md
 docs/WebhookPayloadCommentComment.md
@@ -1812,6 +1817,11 @@ src/Zernio.Test/Model/WebhookPayloadAccountConnectedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountConnectedTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountDisconnectedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountDisconnectedTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdStatusChangedAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdStatusChangedAdObjectTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdStatusChangedErrorTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdStatusChangedStatusTests.cs
+src/Zernio.Test/Model/WebhookPayloadAdStatusChangedTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentAdTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentAuthorTests.cs
@@ -2763,6 +2773,11 @@ src/Zernio/Model/WebhookPayloadAccountConnected.cs
 src/Zernio/Model/WebhookPayloadAccountConnectedAccount.cs
 src/Zernio/Model/WebhookPayloadAccountDisconnected.cs
 src/Zernio/Model/WebhookPayloadAccountDisconnectedAccount.cs
+src/Zernio/Model/WebhookPayloadAdStatusChanged.cs
+src/Zernio/Model/WebhookPayloadAdStatusChangedAccount.cs
+src/Zernio/Model/WebhookPayloadAdStatusChangedAdObject.cs
+src/Zernio/Model/WebhookPayloadAdStatusChangedError.cs
+src/Zernio/Model/WebhookPayloadAdStatusChangedStatus.cs
 src/Zernio/Model/WebhookPayloadComment.cs
 src/Zernio/Model/WebhookPayloadCommentAccount.cs
 src/Zernio/Model/WebhookPayloadCommentComment.cs

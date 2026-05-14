@@ -88,6 +88,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnAdStatusChanged
+        /// </summary>
+        [Fact]
+        public void OnAdStatusChangedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadAdStatusChanged webhookPayloadAdStatusChanged = null;
+            //instance.OnAdStatusChanged(webhookPayloadAdStatusChanged);
+        }
+
+        /// <summary>
         /// Test OnCommentReceived
         /// </summary>
         [Fact]

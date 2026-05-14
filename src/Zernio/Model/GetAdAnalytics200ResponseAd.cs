@@ -40,12 +40,14 @@ namespace Zernio.Model
         /// <param name="name">name.</param>
         /// <param name="platform">platform.</param>
         /// <param name="status">status.</param>
-        public GetAdAnalytics200ResponseAd(string id = default, string name = default, string platform = default, string status = default)
+        /// <param name="currency">ISO 4217 code of the ad account that owns this ad (e.g. USD, THB, INR). All money values in &#x60;summary&#x60; and &#x60;daily&#x60; are in this currency. Null only on legacy ads synced before currency was persisted..</param>
+        public GetAdAnalytics200ResponseAd(string id = default, string name = default, string platform = default, string status = default, string currency = default)
         {
             this.Id = id;
             this.Name = name;
             this.Platform = platform;
             this.Status = status;
+            this.Currency = currency;
         }
 
         /// <summary>
@@ -73,6 +75,13 @@ namespace Zernio.Model
         public string Status { get; set; }
 
         /// <summary>
+        /// ISO 4217 code of the ad account that owns this ad (e.g. USD, THB, INR). All money values in &#x60;summary&#x60; and &#x60;daily&#x60; are in this currency. Null only on legacy ads synced before currency was persisted.
+        /// </summary>
+        /// <value>ISO 4217 code of the ad account that owns this ad (e.g. USD, THB, INR). All money values in &#x60;summary&#x60; and &#x60;daily&#x60; are in this currency. Null only on legacy ads synced before currency was persisted.</value>
+        [DataMember(Name = "currency", EmitDefaultValue = false)]
+        public string Currency { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -84,6 +93,7 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
