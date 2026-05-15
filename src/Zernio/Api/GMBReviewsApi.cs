@@ -52,6 +52,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of BatchGetGoogleBusinessReviews200Response</returns>
         ApiResponse<BatchGetGoogleBusinessReviews200Response> BatchGetGoogleBusinessReviewsWithHttpInfo(string accountId, BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest);
         /// <summary>
+        /// Delete a review reply
+        /// </summary>
+        /// <remarks>
+        /// Removes the business owner reply from a Google Business review. The review itself remains.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <returns>DeleteGoogleBusinessReviewReply200Response</returns>
+        DeleteGoogleBusinessReviewReply200Response DeleteGoogleBusinessReviewReply(string accountId, string reviewId);
+
+        /// <summary>
+        /// Delete a review reply
+        /// </summary>
+        /// <remarks>
+        /// Removes the business owner reply from a Google Business review. The review itself remains.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <returns>ApiResponse of DeleteGoogleBusinessReviewReply200Response</returns>
+        ApiResponse<DeleteGoogleBusinessReviewReply200Response> DeleteGoogleBusinessReviewReplyWithHttpInfo(string accountId, string reviewId);
+        /// <summary>
         /// Get reviews
         /// </summary>
         /// <remarks>
@@ -78,6 +101,31 @@ namespace Zernio.Api
         /// <param name="pageToken">Pagination token from previous response (optional)</param>
         /// <returns>ApiResponse of GetGoogleBusinessReviews200Response</returns>
         ApiResponse<GetGoogleBusinessReviews200Response> GetGoogleBusinessReviewsWithHttpInfo(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default);
+        /// <summary>
+        /// Reply to a review
+        /// </summary>
+        /// <remarks>
+        /// Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="replyToGoogleBusinessReviewRequest"></param>
+        /// <returns>ReplyToGoogleBusinessReview200Response</returns>
+        ReplyToGoogleBusinessReview200Response ReplyToGoogleBusinessReview(string accountId, string reviewId, ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest);
+
+        /// <summary>
+        /// Reply to a review
+        /// </summary>
+        /// <remarks>
+        /// Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="replyToGoogleBusinessReviewRequest"></param>
+        /// <returns>ApiResponse of ReplyToGoogleBusinessReview200Response</returns>
+        ApiResponse<ReplyToGoogleBusinessReview200Response> ReplyToGoogleBusinessReviewWithHttpInfo(string accountId, string reviewId, ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest);
         #endregion Synchronous Operations
     }
 
@@ -113,6 +161,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (BatchGetGoogleBusinessReviews200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<BatchGetGoogleBusinessReviews200Response>> BatchGetGoogleBusinessReviewsWithHttpInfoAsync(string accountId, BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Delete a review reply
+        /// </summary>
+        /// <remarks>
+        /// Removes the business owner reply from a Google Business review. The review itself remains.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteGoogleBusinessReviewReply200Response</returns>
+        System.Threading.Tasks.Task<DeleteGoogleBusinessReviewReply200Response> DeleteGoogleBusinessReviewReplyAsync(string accountId, string reviewId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete a review reply
+        /// </summary>
+        /// <remarks>
+        /// Removes the business owner reply from a Google Business review. The review itself remains.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteGoogleBusinessReviewReply200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteGoogleBusinessReviewReply200Response>> DeleteGoogleBusinessReviewReplyWithHttpInfoAsync(string accountId, string reviewId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get reviews
         /// </summary>
         /// <remarks>
@@ -141,6 +214,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetGoogleBusinessReviews200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetGoogleBusinessReviews200Response>> GetGoogleBusinessReviewsWithHttpInfoAsync(string accountId, string? locationId = default, int? pageSize = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Reply to a review
+        /// </summary>
+        /// <remarks>
+        /// Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="replyToGoogleBusinessReviewRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplyToGoogleBusinessReview200Response</returns>
+        System.Threading.Tasks.Task<ReplyToGoogleBusinessReview200Response> ReplyToGoogleBusinessReviewAsync(string accountId, string reviewId, ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Reply to a review
+        /// </summary>
+        /// <remarks>
+        /// Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="replyToGoogleBusinessReviewRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplyToGoogleBusinessReview200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReplyToGoogleBusinessReview200Response>> ReplyToGoogleBusinessReviewWithHttpInfoAsync(string accountId, string reviewId, ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -498,6 +598,147 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Delete a review reply Removes the business owner reply from a Google Business review. The review itself remains.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <returns>DeleteGoogleBusinessReviewReply200Response</returns>
+        public DeleteGoogleBusinessReviewReply200Response DeleteGoogleBusinessReviewReply(string accountId, string reviewId)
+        {
+            Zernio.Client.ApiResponse<DeleteGoogleBusinessReviewReply200Response> localVarResponse = DeleteGoogleBusinessReviewReplyWithHttpInfo(accountId, reviewId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a review reply Removes the business owner reply from a Google Business review. The review itself remains.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <returns>ApiResponse of DeleteGoogleBusinessReviewReply200Response</returns>
+        public Zernio.Client.ApiResponse<DeleteGoogleBusinessReviewReply200Response> DeleteGoogleBusinessReviewReplyWithHttpInfo(string accountId, string reviewId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBReviewsApi->DeleteGoogleBusinessReviewReply");
+
+            // verify the required parameter 'reviewId' is set
+            if (reviewId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'reviewId' when calling GMBReviewsApi->DeleteGoogleBusinessReviewReply");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("reviewId", Zernio.Client.ClientUtils.ParameterToString(reviewId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeleteGoogleBusinessReviewReply200Response>("/v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteGoogleBusinessReviewReply", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a review reply Removes the business owner reply from a Google Business review. The review itself remains.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteGoogleBusinessReviewReply200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteGoogleBusinessReviewReply200Response> DeleteGoogleBusinessReviewReplyAsync(string accountId, string reviewId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DeleteGoogleBusinessReviewReply200Response> localVarResponse = await DeleteGoogleBusinessReviewReplyWithHttpInfoAsync(accountId, reviewId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a review reply Removes the business owner reply from a Google Business review. The review itself remains.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteGoogleBusinessReviewReply200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteGoogleBusinessReviewReply200Response>> DeleteGoogleBusinessReviewReplyWithHttpInfoAsync(string accountId, string reviewId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBReviewsApi->DeleteGoogleBusinessReviewReply");
+
+            // verify the required parameter 'reviewId' is set
+            if (reviewId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'reviewId' when calling GMBReviewsApi->DeleteGoogleBusinessReviewReply");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("reviewId", Zernio.Client.ClientUtils.ParameterToString(reviewId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteGoogleBusinessReviewReply200Response>("/v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteGoogleBusinessReviewReply", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get reviews Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -654,6 +895,163 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetGoogleBusinessReviews", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reply to a review Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="replyToGoogleBusinessReviewRequest"></param>
+        /// <returns>ReplyToGoogleBusinessReview200Response</returns>
+        public ReplyToGoogleBusinessReview200Response ReplyToGoogleBusinessReview(string accountId, string reviewId, ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest)
+        {
+            Zernio.Client.ApiResponse<ReplyToGoogleBusinessReview200Response> localVarResponse = ReplyToGoogleBusinessReviewWithHttpInfo(accountId, reviewId, replyToGoogleBusinessReviewRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reply to a review Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="replyToGoogleBusinessReviewRequest"></param>
+        /// <returns>ApiResponse of ReplyToGoogleBusinessReview200Response</returns>
+        public Zernio.Client.ApiResponse<ReplyToGoogleBusinessReview200Response> ReplyToGoogleBusinessReviewWithHttpInfo(string accountId, string reviewId, ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBReviewsApi->ReplyToGoogleBusinessReview");
+
+            // verify the required parameter 'reviewId' is set
+            if (reviewId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'reviewId' when calling GMBReviewsApi->ReplyToGoogleBusinessReview");
+
+            // verify the required parameter 'replyToGoogleBusinessReviewRequest' is set
+            if (replyToGoogleBusinessReviewRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replyToGoogleBusinessReviewRequest' when calling GMBReviewsApi->ReplyToGoogleBusinessReview");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("reviewId", Zernio.Client.ClientUtils.ParameterToString(reviewId)); // path parameter
+            localVarRequestOptions.Data = replyToGoogleBusinessReviewRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ReplyToGoogleBusinessReview200Response>("/v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplyToGoogleBusinessReview", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reply to a review Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="replyToGoogleBusinessReviewRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplyToGoogleBusinessReview200Response</returns>
+        public async System.Threading.Tasks.Task<ReplyToGoogleBusinessReview200Response> ReplyToGoogleBusinessReviewAsync(string accountId, string reviewId, ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ReplyToGoogleBusinessReview200Response> localVarResponse = await ReplyToGoogleBusinessReviewWithHttpInfoAsync(accountId, reviewId, replyToGoogleBusinessReviewRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reply to a review Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The Zernio account ID (from /v1/accounts)</param>
+        /// <param name="reviewId">The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name</param>
+        /// <param name="replyToGoogleBusinessReviewRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplyToGoogleBusinessReview200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReplyToGoogleBusinessReview200Response>> ReplyToGoogleBusinessReviewWithHttpInfoAsync(string accountId, string reviewId, ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBReviewsApi->ReplyToGoogleBusinessReview");
+
+            // verify the required parameter 'reviewId' is set
+            if (reviewId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'reviewId' when calling GMBReviewsApi->ReplyToGoogleBusinessReview");
+
+            // verify the required parameter 'replyToGoogleBusinessReviewRequest' is set
+            if (replyToGoogleBusinessReviewRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replyToGoogleBusinessReviewRequest' when calling GMBReviewsApi->ReplyToGoogleBusinessReview");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("reviewId", Zernio.Client.ClientUtils.ParameterToString(reviewId)); // path parameter
+            localVarRequestOptions.Data = replyToGoogleBusinessReviewRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ReplyToGoogleBusinessReview200Response>("/v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplyToGoogleBusinessReview", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

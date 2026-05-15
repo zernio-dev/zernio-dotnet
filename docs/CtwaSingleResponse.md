@@ -1,4 +1,5 @@
-# Zernio.Model.CreateCtwaAd201Response
+# Zernio.Model.CtwaSingleResponse
+Response returned by `POST /v1/ads/ctwa` when the request used the single-creative shape (top-level headline / body / imageUrl|video). `adType` is the union discriminator. 
 
 ## Properties
 
@@ -7,9 +8,6 @@ Name | Type | Description | Notes
 **AdType** | **string** |  | 
 **Ad** | **Object** | The persisted Ad document. | 
 **Message** | **string** |  | 
-**Ads** | **List&lt;Object&gt;** | The persisted Ad documents (one per creative), all sharing the same &#x60;platformCampaignId&#x60; and &#x60;platformAdSetId&#x60;.  | 
-**PlatformCampaignId** | **string** |  | 
-**PlatformAdSetId** | **string** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

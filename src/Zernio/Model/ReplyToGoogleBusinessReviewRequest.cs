@@ -28,49 +28,36 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Video creative for single-creative shape. Mutually exclusive with &#x60;imageUrl&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;imageUrl&#x60; is not supplied. 
+    /// ReplyToGoogleBusinessReviewRequest
     /// </summary>
-    [DataContract(Name = "createCtwaAd_request_video")]
-    public partial class CreateCtwaAdRequestVideo : IValidatableObject
+    [DataContract(Name = "replyToGoogleBusinessReview_request")]
+    public partial class ReplyToGoogleBusinessReviewRequest : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateCtwaAdRequestVideo" /> class.
+        /// Initializes a new instance of the <see cref="ReplyToGoogleBusinessReviewRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CreateCtwaAdRequestVideo() { }
+        protected ReplyToGoogleBusinessReviewRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateCtwaAdRequestVideo" /> class.
+        /// Initializes a new instance of the <see cref="ReplyToGoogleBusinessReviewRequest" /> class.
         /// </summary>
-        /// <param name="url">url (required).</param>
-        /// <param name="thumbnailUrl">Required by Meta for every video creative. Used as the ad thumbnail.  (required).</param>
-        public CreateCtwaAdRequestVideo(string url = default, string thumbnailUrl = default)
+        /// <param name="comment">The reply text to post on the review. Must be non-empty. (required).</param>
+        public ReplyToGoogleBusinessReviewRequest(string comment = default)
         {
-            // to ensure "url" is required (not null)
-            if (url == null)
+            // to ensure "comment" is required (not null)
+            if (comment == null)
             {
-                throw new ArgumentNullException("url is a required property for CreateCtwaAdRequestVideo and cannot be null");
+                throw new ArgumentNullException("comment is a required property for ReplyToGoogleBusinessReviewRequest and cannot be null");
             }
-            this.Url = url;
-            // to ensure "thumbnailUrl" is required (not null)
-            if (thumbnailUrl == null)
-            {
-                throw new ArgumentNullException("thumbnailUrl is a required property for CreateCtwaAdRequestVideo and cannot be null");
-            }
-            this.ThumbnailUrl = thumbnailUrl;
+            this.Comment = comment;
         }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// The reply text to post on the review. Must be non-empty.
         /// </summary>
-        [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
-        public string Url { get; set; }
-
-        /// <summary>
-        /// Required by Meta for every video creative. Used as the ad thumbnail. 
-        /// </summary>
-        /// <value>Required by Meta for every video creative. Used as the ad thumbnail. </value>
-        [DataMember(Name = "thumbnailUrl", IsRequired = true, EmitDefaultValue = true)]
-        public string ThumbnailUrl { get; set; }
+        /// <value>The reply text to post on the review. Must be non-empty.</value>
+        [DataMember(Name = "comment", IsRequired = true, EmitDefaultValue = true)]
+        public string Comment { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,9 +66,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateCtwaAdRequestVideo {\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
-            sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
+            sb.Append("class ReplyToGoogleBusinessReviewRequest {\n");
+            sb.Append("  Comment: ").Append(Comment).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

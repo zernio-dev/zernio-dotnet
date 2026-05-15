@@ -68,6 +68,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test DeleteGoogleBusinessReviewReply
+        /// </summary>
+        [Fact]
+        public void DeleteGoogleBusinessReviewReplyTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string reviewId = null;
+            //var response = instance.DeleteGoogleBusinessReviewReply(accountId, reviewId);
+            //Assert.IsType<DeleteGoogleBusinessReviewReply200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetGoogleBusinessReviews
         /// </summary>
         [Fact]
@@ -80,6 +93,20 @@ namespace Zernio.Test.Api
             //string? pageToken = null;
             //var response = instance.GetGoogleBusinessReviews(accountId, locationId, pageSize, pageToken);
             //Assert.IsType<GetGoogleBusinessReviews200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ReplyToGoogleBusinessReview
+        /// </summary>
+        [Fact]
+        public void ReplyToGoogleBusinessReviewTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string reviewId = null;
+            //ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest = null;
+            //var response = instance.ReplyToGoogleBusinessReview(accountId, reviewId, replyToGoogleBusinessReviewRequest);
+            //Assert.IsType<ReplyToGoogleBusinessReview200Response>(response);
         }
     }
 }

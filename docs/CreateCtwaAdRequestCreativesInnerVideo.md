@@ -1,5 +1,5 @@
-# Zernio.Model.CreateCtwaAdRequestVideo
-Video creative for single-creative shape. Mutually exclusive with `imageUrl` and with `creatives[]`. Required on the single-creative shape if `imageUrl` is not supplied. 
+# Zernio.Model.CreateCtwaAdRequestCreativesInnerVideo
+Video creative. Mutually exclusive with this entry's `imageUrl`. Required if `imageUrl` is not supplied. 
 
 ## Properties
 

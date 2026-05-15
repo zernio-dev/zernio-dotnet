@@ -28,33 +28,33 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Video creative for single-creative shape. Mutually exclusive with &#x60;imageUrl&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;imageUrl&#x60; is not supplied. 
+    /// Video creative. Mutually exclusive with this entry&#39;s &#x60;imageUrl&#x60;. Required if &#x60;imageUrl&#x60; is not supplied. 
     /// </summary>
-    [DataContract(Name = "createCtwaAd_request_video")]
-    public partial class CreateCtwaAdRequestVideo : IValidatableObject
+    [DataContract(Name = "createCtwaAd_request_creatives_inner_video")]
+    public partial class CreateCtwaAdRequestCreativesInnerVideo : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateCtwaAdRequestVideo" /> class.
+        /// Initializes a new instance of the <see cref="CreateCtwaAdRequestCreativesInnerVideo" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CreateCtwaAdRequestVideo() { }
+        protected CreateCtwaAdRequestCreativesInnerVideo() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateCtwaAdRequestVideo" /> class.
+        /// Initializes a new instance of the <see cref="CreateCtwaAdRequestCreativesInnerVideo" /> class.
         /// </summary>
         /// <param name="url">url (required).</param>
         /// <param name="thumbnailUrl">Required by Meta for every video creative. Used as the ad thumbnail.  (required).</param>
-        public CreateCtwaAdRequestVideo(string url = default, string thumbnailUrl = default)
+        public CreateCtwaAdRequestCreativesInnerVideo(string url = default, string thumbnailUrl = default)
         {
             // to ensure "url" is required (not null)
             if (url == null)
             {
-                throw new ArgumentNullException("url is a required property for CreateCtwaAdRequestVideo and cannot be null");
+                throw new ArgumentNullException("url is a required property for CreateCtwaAdRequestCreativesInnerVideo and cannot be null");
             }
             this.Url = url;
             // to ensure "thumbnailUrl" is required (not null)
             if (thumbnailUrl == null)
             {
-                throw new ArgumentNullException("thumbnailUrl is a required property for CreateCtwaAdRequestVideo and cannot be null");
+                throw new ArgumentNullException("thumbnailUrl is a required property for CreateCtwaAdRequestCreativesInnerVideo and cannot be null");
             }
             this.ThumbnailUrl = thumbnailUrl;
         }
@@ -79,7 +79,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateCtwaAdRequestVideo {\n");
+            sb.Append("class CreateCtwaAdRequestCreativesInnerVideo {\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
             sb.Append("}\n");

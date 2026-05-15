@@ -21,41 +21,93 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using JsonSubTypes;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = Zernio.Client.FileParameter;
 using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Zernio.Model
 {
     /// <summary>
     /// CreateCtwaAd201Response
     /// </summary>
+    [JsonConverter(typeof(CreateCtwaAd201ResponseJsonConverter))]
     [DataContract(Name = "createCtwaAd_201_response")]
-    public partial class CreateCtwaAd201Response : IValidatableObject
+    public partial class CreateCtwaAd201Response : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateCtwaAd201Response" /> class.
+        /// Initializes a new instance of the <see cref="CreateCtwaAd201Response" /> class
+        /// with the <see cref="CtwaSingleResponse" /> class
         /// </summary>
-        /// <param name="ad">The persisted Ad document..</param>
-        /// <param name="message">message.</param>
-        public CreateCtwaAd201Response(Object ad = default, string message = default)
+        /// <param name="actualInstance">An instance of CtwaSingleResponse.</param>
+        public CreateCtwaAd201Response(CtwaSingleResponse actualInstance)
         {
-            this.Ad = ad;
-            this.Message = message;
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// The persisted Ad document.
+        /// Initializes a new instance of the <see cref="CreateCtwaAd201Response" /> class
+        /// with the <see cref="CtwaMultiResponse" /> class
         /// </summary>
-        /// <value>The persisted Ad document.</value>
-        [DataMember(Name = "ad", EmitDefaultValue = false)]
-        public Object Ad { get; set; }
+        /// <param name="actualInstance">An instance of CtwaMultiResponse.</param>
+        public CreateCtwaAd201Response(CtwaMultiResponse actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
 
         /// <summary>
-        /// Gets or Sets Message
+        /// Gets or Sets ActualInstance
         /// </summary>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
-        public string Message { get; set; }
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(CtwaMultiResponse) || value is CtwaMultiResponse)
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(CtwaSingleResponse) || value is CtwaSingleResponse)
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: CtwaMultiResponse, CtwaSingleResponse");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `CtwaSingleResponse`. If the actual instance is not `CtwaSingleResponse`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of CtwaSingleResponse</returns>
+        public CtwaSingleResponse GetCtwaSingleResponse()
+        {
+            return (CtwaSingleResponse)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `CtwaMultiResponse`. If the actual instance is not `CtwaMultiResponse`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of CtwaMultiResponse</returns>
+        public CtwaMultiResponse GetCtwaMultiResponse()
+        {
+            return (CtwaMultiResponse)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,10 +115,9 @@ namespace Zernio.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class CreateCtwaAd201Response {\n");
-            sb.Append("  Ad: ").Append(Ad).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -75,19 +126,137 @@ namespace Zernio.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, CreateCtwaAd201Response.SerializerSettings);
         }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of CreateCtwaAd201Response
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of CreateCtwaAd201Response</returns>
+        public static CreateCtwaAd201Response FromJson(string jsonString)
+        {
+            CreateCtwaAd201Response newCreateCtwaAd201Response = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newCreateCtwaAd201Response;
+            }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(CtwaMultiResponse).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreateCtwaAd201Response = new CreateCtwaAd201Response(JsonConvert.DeserializeObject<CtwaMultiResponse>(jsonString, CreateCtwaAd201Response.SerializerSettings));
+                }
+                else
+                {
+                    newCreateCtwaAd201Response = new CreateCtwaAd201Response(JsonConvert.DeserializeObject<CtwaMultiResponse>(jsonString, CreateCtwaAd201Response.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("CtwaMultiResponse");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CtwaMultiResponse: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(CtwaSingleResponse).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreateCtwaAd201Response = new CreateCtwaAd201Response(JsonConvert.DeserializeObject<CtwaSingleResponse>(jsonString, CreateCtwaAd201Response.SerializerSettings));
+                }
+                else
+                {
+                    newCreateCtwaAd201Response = new CreateCtwaAd201Response(JsonConvert.DeserializeObject<CtwaSingleResponse>(jsonString, CreateCtwaAd201Response.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("CtwaSingleResponse");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CtwaSingleResponse: {1}", jsonString, exception.ToString()));
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newCreateCtwaAd201Response;
+        }
+
 
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
+        }
+    }
+
+    /// <summary>
+    /// Custom JSON converter for CreateCtwaAd201Response
+    /// </summary>
+    public class CreateCtwaAd201ResponseJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(CreateCtwaAd201Response).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            switch(reader.TokenType) 
+            {
+                case JsonToken.StartObject:
+                    return CreateCtwaAd201Response.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartArray:
+                    return CreateCtwaAd201Response.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
         }
     }
 

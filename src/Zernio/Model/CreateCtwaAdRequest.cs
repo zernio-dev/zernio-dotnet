@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// In addition to the &#x60;required&#x60; list, exactly one of &#x60;imageUrl&#x60; or &#x60;video&#x60; must be supplied (they are mutually exclusive). The route enforces this at the Zod boundary; OpenAPI&#39;s &#x60;required&#x60; cannot express OR-required cleanly. 
+    /// In addition to the &#x60;required&#x60; list, the request must use EXACTLY ONE of the two shapes:  - Single-creative: &#x60;headline&#x60;, &#x60;body&#x60;, and one of   &#x60;imageUrl&#x60; / &#x60;video&#x60; (mutually exclusive). - Multi-creative: a non-empty &#x60;creatives[]&#x60; array. Top-level   &#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60; must NOT be set   on this shape.  The route enforces this at the Zod boundary; OpenAPI&#39;s &#x60;required&#x60; cannot express the OR cleanly. 
     /// </summary>
     [DataContract(Name = "createCtwaAd_request")]
     public partial class CreateCtwaAdRequest : IValidatableObject
@@ -116,6 +116,45 @@ namespace Zernio.Model
         [DataMember(Name = "objective", EmitDefaultValue = false)]
         public ObjectiveEnum? Objective { get; set; }
         /// <summary>
+        /// Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. 
+        /// </summary>
+        /// <value>Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum BidStrategyEnum
+        {
+            /// <summary>
+            /// Enum LOWESTCOSTWITHOUTCAP for value: LOWEST_COST_WITHOUT_CAP
+            /// </summary>
+            [EnumMember(Value = "LOWEST_COST_WITHOUT_CAP")]
+            LOWESTCOSTWITHOUTCAP = 1,
+
+            /// <summary>
+            /// Enum LOWESTCOSTWITHBIDCAP for value: LOWEST_COST_WITH_BID_CAP
+            /// </summary>
+            [EnumMember(Value = "LOWEST_COST_WITH_BID_CAP")]
+            LOWESTCOSTWITHBIDCAP = 2,
+
+            /// <summary>
+            /// Enum COSTCAP for value: COST_CAP
+            /// </summary>
+            [EnumMember(Value = "COST_CAP")]
+            COSTCAP = 3,
+
+            /// <summary>
+            /// Enum LOWESTCOSTWITHMINROAS for value: LOWEST_COST_WITH_MIN_ROAS
+            /// </summary>
+            [EnumMember(Value = "LOWEST_COST_WITH_MIN_ROAS")]
+            LOWESTCOSTWITHMINROAS = 4
+        }
+
+
+        /// <summary>
+        /// Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. 
+        /// </summary>
+        /// <value>Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. </value>
+        [DataMember(Name = "bidStrategy", EmitDefaultValue = false)]
+        public BidStrategyEnum? BidStrategy { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateCtwaAdRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -125,11 +164,12 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="accountId">Facebook or Instagram SocialAccount ID. (required).</param>
         /// <param name="adAccountId">Meta ad account ID, e.g. &#x60;act_123456789&#x60;. (required).</param>
-        /// <param name="name">Ad display name. Used to derive campaign / ad set names. (required).</param>
-        /// <param name="headline">headline (required).</param>
-        /// <param name="body">Primary text shown above the image / video. (required).</param>
-        /// <param name="imageUrl">Image asset for image creatives. Mutually exclusive with &#x60;video&#x60;. Required if &#x60;video&#x60; is not supplied. .</param>
+        /// <param name="name">Ad display name. Used to derive campaign / ad set names. On the multi-creative shape, each ad&#39;s Meta name gets a \&quot; #N\&quot; suffix (1-indexed) so Ads Manager shows them as a numbered batch.  (required).</param>
+        /// <param name="headline">Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. .</param>
+        /// <param name="body">Primary text shown above the image / video. Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. .</param>
+        /// <param name="imageUrl">Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;video&#x60; is not supplied. .</param>
         /// <param name="video">video.</param>
+        /// <param name="creatives">Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;). Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. .</param>
         /// <param name="budgetAmount">Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0.  (required).</param>
         /// <param name="budgetType">budgetType (required).</param>
         /// <param name="currency">ISO 4217 currency code matching the ad account&#39;s currency (e.g. &#x60;USD&#x60;). Optional; Meta infers from the ad account when omitted. .</param>
@@ -141,9 +181,12 @@ namespace Zernio.Model
         /// <param name="audienceId">Custom audience ID to target..</param>
         /// <param name="advantageAudience">Meta&#39;s Advantage+ audience expansion. &#x60;0&#x60; (default) keeps targeting strict; &#x60;1&#x60; lets Meta expand beyond the supplied targeting when its delivery system finds better matches. Always sent on CREATE (Meta requires it). .</param>
         /// <param name="objective">Defaults to &#x60;OUTCOME_ENGAGEMENT&#x60; (the broadly-supported CTWA objective). &#x60;OUTCOME_SALES&#x60; and &#x60;OUTCOME_LEADS&#x60; require additional account configuration (Dataset linked to the WABA for sales) and may be rejected by Meta if missing. .</param>
+        /// <param name="bidStrategy">Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. .</param>
+        /// <param name="bidAmount">Whole currency units (e.g. &#x60;5&#x60; &#x3D; $5.00 on a USD account). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;; rejected otherwise. .</param>
+        /// <param name="roasAverageFloor">Decimal ROAS multiplier (e.g. &#x60;2.0&#x60; &#x3D; 2.0× ROAS floor). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;; rejected otherwise. Meta enforces its own upper bound server-side. .</param>
         /// <param name="dsaBeneficiary">Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. .</param>
         /// <param name="dsaPayor">Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). .</param>
-        public CreateCtwaAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CreateCtwaAdRequestVideo video = default, decimal budgetAmount = default, BudgetTypeEnum budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, int ageMin = default, int ageMax = default, List<CreateCtwaAdRequestInterestsInner> interests = default, string audienceId = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, string dsaBeneficiary = default, string dsaPayor = default)
+        public CreateCtwaAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CreateCtwaAdRequestVideo video = default, List<CreateCtwaAdRequestCreativesInner> creatives = default, decimal budgetAmount = default, BudgetTypeEnum budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, int ageMin = default, int ageMax = default, List<CreateCtwaAdRequestInterestsInner> interests = default, string audienceId = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -163,22 +206,13 @@ namespace Zernio.Model
                 throw new ArgumentNullException("name is a required property for CreateCtwaAdRequest and cannot be null");
             }
             this.Name = name;
-            // to ensure "headline" is required (not null)
-            if (headline == null)
-            {
-                throw new ArgumentNullException("headline is a required property for CreateCtwaAdRequest and cannot be null");
-            }
-            this.Headline = headline;
-            // to ensure "body" is required (not null)
-            if (body == null)
-            {
-                throw new ArgumentNullException("body is a required property for CreateCtwaAdRequest and cannot be null");
-            }
-            this.Body = body;
             this.BudgetAmount = budgetAmount;
             this.BudgetType = budgetType;
+            this.Headline = headline;
+            this.Body = body;
             this.ImageUrl = imageUrl;
             this.Video = video;
+            this.Creatives = creatives;
             this.Currency = currency;
             this.EndDate = endDate;
             this.Countries = countries;
@@ -188,6 +222,9 @@ namespace Zernio.Model
             this.AudienceId = audienceId;
             this.AdvantageAudience = advantageAudience;
             this.Objective = objective;
+            this.BidStrategy = bidStrategy;
+            this.BidAmount = bidAmount;
+            this.RoasAverageFloor = roasAverageFloor;
             this.DsaBeneficiary = dsaBeneficiary;
             this.DsaPayor = dsaPayor;
         }
@@ -207,29 +244,30 @@ namespace Zernio.Model
         public string AdAccountId { get; set; }
 
         /// <summary>
-        /// Ad display name. Used to derive campaign / ad set names.
+        /// Ad display name. Used to derive campaign / ad set names. On the multi-creative shape, each ad&#39;s Meta name gets a \&quot; #N\&quot; suffix (1-indexed) so Ads Manager shows them as a numbered batch. 
         /// </summary>
-        /// <value>Ad display name. Used to derive campaign / ad set names.</value>
+        /// <value>Ad display name. Used to derive campaign / ad set names. On the multi-creative shape, each ad&#39;s Meta name gets a \&quot; #N\&quot; suffix (1-indexed) so Ads Manager shows them as a numbered batch. </value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Headline
+        /// Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. 
         /// </summary>
-        [DataMember(Name = "headline", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. </value>
+        [DataMember(Name = "headline", EmitDefaultValue = false)]
         public string Headline { get; set; }
 
         /// <summary>
-        /// Primary text shown above the image / video.
+        /// Primary text shown above the image / video. Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. 
         /// </summary>
-        /// <value>Primary text shown above the image / video.</value>
-        [DataMember(Name = "body", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Primary text shown above the image / video. Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. </value>
+        [DataMember(Name = "body", EmitDefaultValue = false)]
         public string Body { get; set; }
 
         /// <summary>
-        /// Image asset for image creatives. Mutually exclusive with &#x60;video&#x60;. Required if &#x60;video&#x60; is not supplied. 
+        /// Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;video&#x60; is not supplied. 
         /// </summary>
-        /// <value>Image asset for image creatives. Mutually exclusive with &#x60;video&#x60;. Required if &#x60;video&#x60; is not supplied. </value>
+        /// <value>Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;video&#x60; is not supplied. </value>
         [DataMember(Name = "imageUrl", EmitDefaultValue = false)]
         public string ImageUrl { get; set; }
 
@@ -238,6 +276,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "video", EmitDefaultValue = false)]
         public CreateCtwaAdRequestVideo Video { get; set; }
+
+        /// <summary>
+        /// Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;). Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. 
+        /// </summary>
+        /// <value>Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;). Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. </value>
+        [DataMember(Name = "creatives", EmitDefaultValue = false)]
+        public List<CreateCtwaAdRequestCreativesInner> Creatives { get; set; }
 
         /// <summary>
         /// Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. 
@@ -293,6 +338,20 @@ namespace Zernio.Model
         public string AudienceId { get; set; }
 
         /// <summary>
+        /// Whole currency units (e.g. &#x60;5&#x60; &#x3D; $5.00 on a USD account). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;; rejected otherwise. 
+        /// </summary>
+        /// <value>Whole currency units (e.g. &#x60;5&#x60; &#x3D; $5.00 on a USD account). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;; rejected otherwise. </value>
+        [DataMember(Name = "bidAmount", EmitDefaultValue = false)]
+        public decimal BidAmount { get; set; }
+
+        /// <summary>
+        /// Decimal ROAS multiplier (e.g. &#x60;2.0&#x60; &#x3D; 2.0× ROAS floor). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;; rejected otherwise. Meta enforces its own upper bound server-side. 
+        /// </summary>
+        /// <value>Decimal ROAS multiplier (e.g. &#x60;2.0&#x60; &#x3D; 2.0× ROAS floor). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;; rejected otherwise. Meta enforces its own upper bound server-side. </value>
+        [DataMember(Name = "roasAverageFloor", EmitDefaultValue = false)]
+        public decimal RoasAverageFloor { get; set; }
+
+        /// <summary>
         /// Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. 
         /// </summary>
         /// <value>Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. </value>
@@ -321,6 +380,7 @@ namespace Zernio.Model
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  Video: ").Append(Video).Append("\n");
+            sb.Append("  Creatives: ").Append(Creatives).Append("\n");
             sb.Append("  BudgetAmount: ").Append(BudgetAmount).Append("\n");
             sb.Append("  BudgetType: ").Append(BudgetType).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
@@ -332,6 +392,9 @@ namespace Zernio.Model
             sb.Append("  AudienceId: ").Append(AudienceId).Append("\n");
             sb.Append("  AdvantageAudience: ").Append(AdvantageAudience).Append("\n");
             sb.Append("  Objective: ").Append(Objective).Append("\n");
+            sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
+            sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
+            sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
             sb.Append("  DsaBeneficiary: ").Append(DsaBeneficiary).Append("\n");
             sb.Append("  DsaPayor: ").Append(DsaPayor).Append("\n");
             sb.Append("}\n");
@@ -430,6 +493,18 @@ namespace Zernio.Model
             if (this.AgeMax < (int)13)
             {
                 yield return new ValidationResult("Invalid value for AgeMax, must be a value greater than or equal to 13.", new [] { "AgeMax" });
+            }
+
+            // BidAmount (decimal) minimum
+            if (this.BidAmount < (decimal)0)
+            {
+                yield return new ValidationResult("Invalid value for BidAmount, must be a value greater than or equal to 0.", new [] { "BidAmount" });
+            }
+
+            // RoasAverageFloor (decimal) minimum
+            if (this.RoasAverageFloor < (decimal)0)
+            {
+                yield return new ValidationResult("Invalid value for RoasAverageFloor, must be a value greater than or equal to 0.", new [] { "RoasAverageFloor" });
             }
 
             // DsaBeneficiary (string) maxLength
