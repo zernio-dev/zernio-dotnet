@@ -220,6 +220,28 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnPostPlatformFailed
+        /// </summary>
+        [Fact]
+        public void OnPostPlatformFailedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadPostPlatform webhookPayloadPostPlatform = null;
+            //instance.OnPostPlatformFailed(webhookPayloadPostPlatform);
+        }
+
+        /// <summary>
+        /// Test OnPostPlatformPublished
+        /// </summary>
+        [Fact]
+        public void OnPostPlatformPublishedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadPostPlatform webhookPayloadPostPlatform = null;
+            //instance.OnPostPlatformPublished(webhookPayloadPostPlatform);
+        }
+
+        /// <summary>
         /// Test OnPostPublished
         /// </summary>
         [Fact]

@@ -914,6 +914,10 @@ docs/WebhookPayloadMessageSent.md
 docs/WebhookPayloadMessageSentMessage.md
 docs/WebhookPayloadMessageSentMessageSender.md
 docs/WebhookPayloadPost.md
+docs/WebhookPayloadPostPlatform.md
+docs/WebhookPayloadPostPlatformAccount.md
+docs/WebhookPayloadPostPlatformPlatform.md
+docs/WebhookPayloadPostPlatformPost.md
 docs/WebhookPayloadPostPost.md
 docs/WebhookPayloadPostPostPlatformsInner.md
 docs/WebhookPayloadReviewNew.md
@@ -1863,6 +1867,10 @@ src/Zernio.Test/Model/WebhookPayloadMessageSentMessageSenderTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentMessageTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageSentTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageTests.cs
+src/Zernio.Test/Model/WebhookPayloadPostPlatformAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadPostPlatformPlatformTests.cs
+src/Zernio.Test/Model/WebhookPayloadPostPlatformPostTests.cs
+src/Zernio.Test/Model/WebhookPayloadPostPlatformTests.cs
 src/Zernio.Test/Model/WebhookPayloadPostPostPlatformsInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadPostPostTests.cs
 src/Zernio.Test/Model/WebhookPayloadPostTests.cs
@@ -2830,6 +2838,10 @@ src/Zernio/Model/WebhookPayloadMessageSent.cs
 src/Zernio/Model/WebhookPayloadMessageSentMessage.cs
 src/Zernio/Model/WebhookPayloadMessageSentMessageSender.cs
 src/Zernio/Model/WebhookPayloadPost.cs
+src/Zernio/Model/WebhookPayloadPostPlatform.cs
+src/Zernio/Model/WebhookPayloadPostPlatformAccount.cs
+src/Zernio/Model/WebhookPayloadPostPlatformPlatform.cs
+src/Zernio/Model/WebhookPayloadPostPlatformPost.cs
 src/Zernio/Model/WebhookPayloadPostPost.cs
 src/Zernio/Model/WebhookPayloadPostPostPlatformsInner.cs
 src/Zernio/Model/WebhookPayloadReviewNew.cs
