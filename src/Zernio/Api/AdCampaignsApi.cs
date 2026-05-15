@@ -178,8 +178,10 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ListAdCampaigns200Response</returns>
-        ListAdCampaigns200Response ListAdCampaigns(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default);
+        ListAdCampaigns200Response ListAdCampaigns(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
 
         /// <summary>
         /// List campaigns
@@ -196,8 +198,10 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ApiResponse of ListAdCampaigns200Response</returns>
-        ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default);
+        ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
         /// Update a campaign (budget and/or bid strategy)
         /// </summary>
@@ -459,9 +463,11 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdCampaigns200Response</returns>
-        System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List campaigns
@@ -478,9 +484,11 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdCampaigns200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update a campaign (budget and/or bid strategy)
         /// </summary>
@@ -1629,10 +1637,12 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ListAdCampaigns200Response</returns>
-        public ListAdCampaigns200Response ListAdCampaigns(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default)
+        public ListAdCampaigns200Response ListAdCampaigns(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
-            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = ListAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId);
+            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = ListAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
             return localVarResponse.Data;
         }
 
@@ -1648,8 +1658,10 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <returns>ApiResponse of ListAdCampaigns200Response</returns>
-        public Zernio.Client.ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default)
+        public Zernio.Client.ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1698,6 +1710,14 @@ namespace Zernio.Api
             if (profileId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
             }
 
             // authentication (bearerAuth) required
@@ -1731,11 +1751,13 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdCampaigns200Response</returns>
-        public async System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAdCampaigns200Response> ListAdCampaignsAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = await ListAdCampaignsWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, accountId, profileId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAdCampaigns200Response> localVarResponse = await ListAdCampaignsWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1751,9 +1773,11 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (e.g. act_123 for Meta) (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)</param>
+        /// <param name="toDate">End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdCampaigns200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1804,6 +1828,14 @@ namespace Zernio.Api
             if (profileId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
             }
 
             // authentication (bearerAuth) required

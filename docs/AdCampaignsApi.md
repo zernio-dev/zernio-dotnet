@@ -550,7 +550,7 @@ catch (ApiException e)
 
 <a id="listadcampaigns"></a>
 # **ListAdCampaigns**
-> ListAdCampaigns200Response ListAdCampaigns (int? page = null, int? limit = null, string? source = null, string? platform = null, AdStatus? status = null, string? adAccountId = null, string? accountId = null, string? profileId = null)
+> ListAdCampaigns200Response ListAdCampaigns (int? page = null, int? limit = null, string? source = null, string? platform = null, AdStatus? status = null, string? adAccountId = null, string? accountId = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null)
 
 List campaigns
 
@@ -588,11 +588,13 @@ namespace Example
             var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (e.g. act_123 for Meta) (optional) 
             var accountId = "accountId_example";  // string? | Social account ID (optional) 
             var profileId = "profileId_example";  // string? | Profile ID (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional) 
 
             try
             {
                 // List campaigns
-                ListAdCampaigns200Response result = apiInstance.ListAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId);
+                ListAdCampaigns200Response result = apiInstance.ListAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -613,7 +615,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List campaigns
-    ApiResponse<ListAdCampaigns200Response> response = apiInstance.ListAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId);
+    ApiResponse<ListAdCampaigns200Response> response = apiInstance.ListAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -638,6 +640,8 @@ catch (ApiException e)
 | **adAccountId** | **string?** | Platform ad account ID (e.g. act_123 for Meta) | [optional]  |
 | **accountId** | **string?** | Social account ID | [optional]  |
 | **profileId** | **string?** | Profile ID | [optional]  |
+| **fromDate** | **DateOnly?** | Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. | [optional]  |
+| **toDate** | **DateOnly?** | End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. | [optional]  |
 
 ### Return type
 

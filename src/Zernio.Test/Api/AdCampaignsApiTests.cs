@@ -144,7 +144,9 @@ namespace Zernio.Test.Api
             //string? adAccountId = null;
             //string? accountId = null;
             //string? profileId = null;
-            //var response = instance.ListAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId);
+            //DateOnly? fromDate = null;
+            //DateOnly? toDate = null;
+            //var response = instance.ListAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
             //Assert.IsType<ListAdCampaigns200Response>(response);
         }
 
