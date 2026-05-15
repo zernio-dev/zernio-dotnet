@@ -48,7 +48,7 @@ namespace Zernio.Model
         /// Gets or Sets Error
         /// </summary>
         /*
-        <example>This exact content was already posted to this account within the last 24 hours.</example>
+        <example>This exact content is already scheduled, publishing, or was posted to this account within the last 24 hours.</example>
         */
         [DataMember(Name = "error", EmitDefaultValue = false)]
         public string Error { get; set; }
