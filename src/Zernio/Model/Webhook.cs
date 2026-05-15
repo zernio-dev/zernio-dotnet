@@ -157,7 +157,13 @@ namespace Zernio.Model
             /// Enum AdStatusChanged for value: ad.status_changed
             /// </summary>
             [EnumMember(Value = "ad.status_changed")]
-            AdStatusChanged = 20
+            AdStatusChanged = 20,
+
+            /// <summary>
+            /// Enum WhatsappTemplateStatusUpdated for value: whatsapp.template.status_updated
+            /// </summary>
+            [EnumMember(Value = "whatsapp.template.status_updated")]
+            WhatsappTemplateStatusUpdated = 21
         }
 
         /// <summary>

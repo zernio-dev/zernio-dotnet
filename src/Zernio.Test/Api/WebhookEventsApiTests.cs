@@ -284,5 +284,16 @@ namespace Zernio.Test.Api
             //WebhookPayloadTest webhookPayloadTest = null;
             //instance.OnWebhookTest(webhookPayloadTest);
         }
+
+        /// <summary>
+        /// Test OnWhatsAppTemplateStatusUpdated
+        /// </summary>
+        [Fact]
+        public void OnWhatsAppTemplateStatusUpdatedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadWhatsAppTemplateStatusUpdated webhookPayloadWhatsAppTemplateStatusUpdated = null;
+            //instance.OnWhatsAppTemplateStatusUpdated(webhookPayloadWhatsAppTemplateStatusUpdated);
+        }
     }
 }

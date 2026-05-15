@@ -920,6 +920,9 @@ docs/WebhookPayloadReviewNew.md
 docs/WebhookPayloadReviewNewAccount.md
 docs/WebhookPayloadReviewUpdated.md
 docs/WebhookPayloadTest.md
+docs/WebhookPayloadWhatsAppTemplateStatusUpdated.md
+docs/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.md
+docs/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.md
 docs/WebhooksApi.md
 docs/WhatsAppApi.md
 docs/WhatsAppBodyComponent.md
@@ -1867,6 +1870,9 @@ src/Zernio.Test/Model/WebhookPayloadReviewNewAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadReviewNewTests.cs
 src/Zernio.Test/Model/WebhookPayloadReviewUpdatedTests.cs
 src/Zernio.Test/Model/WebhookPayloadTestTests.cs
+src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplateTests.cs
+src/Zernio.Test/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedTests.cs
 src/Zernio.Test/Model/WebhookTests.cs
 src/Zernio.Test/Model/WhatsAppBodyComponentExampleTests.cs
 src/Zernio.Test/Model/WhatsAppBodyComponentTests.cs
@@ -2830,6 +2836,9 @@ src/Zernio/Model/WebhookPayloadReviewNew.cs
 src/Zernio/Model/WebhookPayloadReviewNewAccount.cs
 src/Zernio/Model/WebhookPayloadReviewUpdated.cs
 src/Zernio/Model/WebhookPayloadTest.cs
+src/Zernio/Model/WebhookPayloadWhatsAppTemplateStatusUpdated.cs
+src/Zernio/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.cs
+src/Zernio/Model/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.cs
 src/Zernio/Model/WhatsAppBodyComponent.cs
 src/Zernio/Model/WhatsAppBodyComponentExample.cs
 src/Zernio/Model/WhatsAppButtonsComponent.cs
