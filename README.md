@@ -652,6 +652,7 @@ Class | Method | HTTP request | Description
  - [Model.ErrorResponse](docs/ErrorResponse.md)
  - [Model.Expired](docs/Expired.md)
  - [Model.FacebookPlatformData](docs/FacebookPlatformData.md)
+ - [Model.FacebookPlatformDataCarouselCardsInner](docs/FacebookPlatformDataCarouselCardsInner.md)
  - [Model.FollowUser200Response](docs/FollowUser200Response.md)
  - [Model.FollowUserRequest](docs/FollowUserRequest.md)
  - [Model.FollowerStatsResponse](docs/FollowerStatsResponse.md)

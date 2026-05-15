@@ -235,6 +235,7 @@ docs/EnrollContactsRequest.md
 docs/ErrorResponse.md
 docs/Expired.md
 docs/FacebookPlatformData.md
+docs/FacebookPlatformDataCarouselCardsInner.md
 docs/FollowUser200Response.md
 docs/FollowUserRequest.md
 docs/FollowerStatsResponse.md
@@ -1213,6 +1214,7 @@ src/Zernio.Test/Model/EnrollContacts200ResponseTests.cs
 src/Zernio.Test/Model/EnrollContactsRequestTests.cs
 src/Zernio.Test/Model/ErrorResponseTests.cs
 src/Zernio.Test/Model/ExpiredTests.cs
+src/Zernio.Test/Model/FacebookPlatformDataCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataTests.cs
 src/Zernio.Test/Model/FollowUser200ResponseTests.cs
 src/Zernio.Test/Model/FollowUserRequestTests.cs
@@ -2183,6 +2185,7 @@ src/Zernio/Model/EnrollContactsRequest.cs
 src/Zernio/Model/ErrorResponse.cs
 src/Zernio/Model/Expired.cs
 src/Zernio/Model/FacebookPlatformData.cs
+src/Zernio/Model/FacebookPlatformDataCarouselCardsInner.cs
 src/Zernio/Model/FollowUser200Response.cs
 src/Zernio/Model/FollowUserRequest.cs
 src/Zernio/Model/FollowerStatsResponse.cs

@@ -164,6 +164,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CarouselCards'
+        /// </summary>
+        [Fact]
+        public void CarouselCardsTest()
+        {
+            // TODO unit test for the property 'CarouselCards'
+        }
+
+        /// <summary>
+        /// Test the property 'CarouselLink'
+        /// </summary>
+        [Fact]
+        public void CarouselLinkTest()
+        {
+            // TODO unit test for the property 'CarouselLink'
+        }
+
+        /// <summary>
         /// Test the property 'ShareToFeed'
         /// </summary>
         [Fact]
