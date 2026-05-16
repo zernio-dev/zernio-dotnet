@@ -203,8 +203,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="refresh">When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)</param>
         /// <returns>GetFacebookPages200Response</returns>
-        GetFacebookPages200Response GetFacebookPages(string accountId);
+        GetFacebookPages200Response GetFacebookPages(string accountId, bool? refresh = default);
 
         /// <summary>
         /// List Facebook pages
@@ -214,8 +215,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="refresh">When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)</param>
         /// <returns>ApiResponse of GetFacebookPages200Response</returns>
-        ApiResponse<GetFacebookPages200Response> GetFacebookPagesWithHttpInfo(string accountId);
+        ApiResponse<GetFacebookPages200Response> GetFacebookPagesWithHttpInfo(string accountId, bool? refresh = default);
         /// <summary>
         /// List GBP locations
         /// </summary>
@@ -1019,9 +1021,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="refresh">When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetFacebookPages200Response</returns>
-        System.Threading.Tasks.Task<GetFacebookPages200Response> GetFacebookPagesAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetFacebookPages200Response> GetFacebookPagesAsync(string accountId, bool? refresh = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List Facebook pages
@@ -1031,9 +1034,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="refresh">When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetFacebookPages200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetFacebookPages200Response>> GetFacebookPagesWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetFacebookPages200Response>> GetFacebookPagesWithHttpInfoAsync(string accountId, bool? refresh = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List GBP locations
         /// </summary>
@@ -2932,10 +2936,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="refresh">When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)</param>
         /// <returns>GetFacebookPages200Response</returns>
-        public GetFacebookPages200Response GetFacebookPages(string accountId)
+        public GetFacebookPages200Response GetFacebookPages(string accountId, bool? refresh = default)
         {
-            Zernio.Client.ApiResponse<GetFacebookPages200Response> localVarResponse = GetFacebookPagesWithHttpInfo(accountId);
+            Zernio.Client.ApiResponse<GetFacebookPages200Response> localVarResponse = GetFacebookPagesWithHttpInfo(accountId, refresh);
             return localVarResponse.Data;
         }
 
@@ -2944,8 +2949,9 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="refresh">When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)</param>
         /// <returns>ApiResponse of GetFacebookPages200Response</returns>
-        public Zernio.Client.ApiResponse<GetFacebookPages200Response> GetFacebookPagesWithHttpInfo(string accountId)
+        public Zernio.Client.ApiResponse<GetFacebookPages200Response> GetFacebookPagesWithHttpInfo(string accountId, bool? refresh = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -2968,6 +2974,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (refresh != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "refresh", refresh));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -2993,11 +3003,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="refresh">When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetFacebookPages200Response</returns>
-        public async System.Threading.Tasks.Task<GetFacebookPages200Response> GetFacebookPagesAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetFacebookPages200Response> GetFacebookPagesAsync(string accountId, bool? refresh = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetFacebookPages200Response> localVarResponse = await GetFacebookPagesWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetFacebookPages200Response> localVarResponse = await GetFacebookPagesWithHttpInfoAsync(accountId, refresh, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -3006,9 +3017,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="refresh">When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetFacebookPages200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetFacebookPages200Response>> GetFacebookPagesWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetFacebookPages200Response>> GetFacebookPagesWithHttpInfoAsync(string accountId, bool? refresh = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -3033,6 +3045,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (refresh != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "refresh", refresh));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required

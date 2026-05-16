@@ -156,7 +156,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
-            //var response = instance.GetFacebookPages(accountId);
+            //bool? refresh = null;
+            //var response = instance.GetFacebookPages(accountId, refresh);
             //Assert.IsType<GetFacebookPages200Response>(response);
         }
 

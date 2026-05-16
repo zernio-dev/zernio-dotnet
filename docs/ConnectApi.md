@@ -775,7 +775,7 @@ catch (ApiException e)
 
 <a id="getfacebookpages"></a>
 # **GetFacebookPages**
-> GetFacebookPages200Response GetFacebookPages (string accountId)
+> GetFacebookPages200Response GetFacebookPages (string accountId, bool? refresh = null)
 
 List Facebook pages
 
@@ -806,11 +806,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
+            var refresh = true;  // bool? | When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional) 
 
             try
             {
                 // List Facebook pages
-                GetFacebookPages200Response result = apiInstance.GetFacebookPages(accountId);
+                GetFacebookPages200Response result = apiInstance.GetFacebookPages(accountId, refresh);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -831,7 +832,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List Facebook pages
-    ApiResponse<GetFacebookPages200Response> response = apiInstance.GetFacebookPagesWithHttpInfo(accountId);
+    ApiResponse<GetFacebookPages200Response> response = apiInstance.GetFacebookPagesWithHttpInfo(accountId, refresh);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -849,6 +850,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
+| **refresh** | **bool?** | When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  | [optional]  |
 
 ### Return type
 
