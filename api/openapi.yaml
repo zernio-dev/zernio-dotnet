@@ -14895,6 +14895,23 @@ paths:
           format: date
           type: string
         style: form
+      - description: Campaign-level sort order. `newest` (default) and `oldest` order
+          by the campaign's newest-ad createdAt. `spend_desc` / `spend_asc` are accepted
+          for forward compatibility but currently fall back to an adSetCount-based
+          ordering (spend ranking via Tinybird is pending).
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: newest
+          enum:
+          - newest
+          - oldest
+          - spend_desc
+          - spend_asc
+          type: string
+        style: form
       responses:
         "200":
           content:

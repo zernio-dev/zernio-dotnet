@@ -324,7 +324,7 @@ catch (ApiException e)
 
 <a id="getadtree"></a>
 # **GetAdTree**
-> GetAdTree200Response GetAdTree (int? page = null, int? limit = null, string? source = null, string? platform = null, AdStatus? status = null, string? adAccountId = null, string? accountId = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null)
+> GetAdTree200Response GetAdTree (int? page = null, int? limit = null, string? source = null, string? platform = null, AdStatus? status = null, string? adAccountId = null, string? accountId = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? sort = null)
 
 Get campaign tree
 
@@ -364,11 +364,12 @@ namespace Example
             var profileId = "profileId_example";  // string? | Profile ID (optional) 
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional) 
             var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional) 
+            var sort = "newest";  // string? | Campaign-level sort order. `newest` (default) and `oldest` order by the campaign's newest-ad createdAt. `spend_desc` / `spend_asc` are accepted for forward compatibility but currently fall back to an adSetCount-based ordering (spend ranking via Tinybird is pending). (optional)  (default to newest)
 
             try
             {
                 // Get campaign tree
-                GetAdTree200Response result = apiInstance.GetAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
+                GetAdTree200Response result = apiInstance.GetAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -389,7 +390,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get campaign tree
-    ApiResponse<GetAdTree200Response> response = apiInstance.GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
+    ApiResponse<GetAdTree200Response> response = apiInstance.GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -416,6 +417,7 @@ catch (ApiException e)
 | **profileId** | **string?** | Profile ID | [optional]  |
 | **fromDate** | **DateOnly?** | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional]  |
 | **toDate** | **DateOnly?** | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional]  |
+| **sort** | **string?** | Campaign-level sort order. &#x60;newest&#x60; (default) and &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; are accepted for forward compatibility but currently fall back to an adSetCount-based ordering (spend ranking via Tinybird is pending). | [optional] [default to newest] |
 
 ### Return type
 
