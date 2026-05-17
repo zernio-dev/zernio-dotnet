@@ -112,7 +112,7 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) and &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; are accepted for forward compatibility but currently fall back to an adSetCount-based ordering (spend ranking via Tinybird is pending). (optional, default to newest)</param>
+        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <returns>GetAdTree200Response</returns>
         GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default);
 
@@ -133,7 +133,7 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) and &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; are accepted for forward compatibility but currently fall back to an adSetCount-based ordering (spend ranking via Tinybird is pending). (optional, default to newest)</param>
+        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <returns>ApiResponse of GetAdTree200Response</returns>
         ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default);
         /// <summary>
@@ -395,7 +395,7 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) and &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; are accepted for forward compatibility but currently fall back to an adSetCount-based ordering (spend ranking via Tinybird is pending). (optional, default to newest)</param>
+        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdTree200Response</returns>
         System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default);
@@ -417,7 +417,7 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) and &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; are accepted for forward compatibility but currently fall back to an adSetCount-based ordering (spend ranking via Tinybird is pending). (optional, default to newest)</param>
+        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdTree200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1235,7 +1235,7 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) and &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; are accepted for forward compatibility but currently fall back to an adSetCount-based ordering (spend ranking via Tinybird is pending). (optional, default to newest)</param>
+        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <returns>GetAdTree200Response</returns>
         public GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default)
         {
@@ -1257,7 +1257,7 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) and &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; are accepted for forward compatibility but currently fall back to an adSetCount-based ordering (spend ranking via Tinybird is pending). (optional, default to newest)</param>
+        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <returns>ApiResponse of GetAdTree200Response</returns>
         public Zernio.Client.ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default)
         {
@@ -1355,7 +1355,7 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) and &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; are accepted for forward compatibility but currently fall back to an adSetCount-based ordering (spend ranking via Tinybird is pending). (optional, default to newest)</param>
+        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdTree200Response</returns>
         public async System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1378,7 +1378,7 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID (optional)</param>
         /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) and &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; are accepted for forward compatibility but currently fall back to an adSetCount-based ordering (spend ranking via Tinybird is pending). (optional, default to newest)</param>
+        /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdTree200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default)
