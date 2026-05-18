@@ -128,6 +128,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ErrorCode'
+        /// </summary>
+        [Fact]
+        public void ErrorCodeTest()
+        {
+            // TODO unit test for the property 'ErrorCode'
+        }
+
+        /// <summary>
         /// Test the property 'SentAt'
         /// </summary>
         [Fact]

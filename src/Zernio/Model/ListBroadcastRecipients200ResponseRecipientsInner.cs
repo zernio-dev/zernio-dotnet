@@ -87,10 +87,11 @@ namespace Zernio.Model
         /// <param name="status">status.</param>
         /// <param name="messageId">messageId.</param>
         /// <param name="error">error.</param>
+        /// <param name="errorCode">Meta WhatsApp error code (e.g. 131049 for antispam, 131021 for invalid phone, 131026 for re-engagement required). Only populated for status&#x3D;failed..</param>
         /// <param name="sentAt">sentAt.</param>
         /// <param name="deliveredAt">deliveredAt.</param>
         /// <param name="readAt">readAt.</param>
-        public ListBroadcastRecipients200ResponseRecipientsInner(string id = default, string contactId = default, string channelId = default, string platformIdentifier = default, string contactName = default, StatusEnum? status = default, string messageId = default, string error = default, DateTime sentAt = default, DateTime deliveredAt = default, DateTime readAt = default)
+        public ListBroadcastRecipients200ResponseRecipientsInner(string id = default, string contactId = default, string channelId = default, string platformIdentifier = default, string contactName = default, StatusEnum? status = default, string messageId = default, string error = default, int errorCode = default, DateTime sentAt = default, DateTime deliveredAt = default, DateTime readAt = default)
         {
             this.Id = id;
             this.ContactId = contactId;
@@ -100,6 +101,7 @@ namespace Zernio.Model
             this.Status = status;
             this.MessageId = messageId;
             this.Error = error;
+            this.ErrorCode = errorCode;
             this.SentAt = sentAt;
             this.DeliveredAt = deliveredAt;
             this.ReadAt = readAt;
@@ -148,6 +150,13 @@ namespace Zernio.Model
         public string Error { get; set; }
 
         /// <summary>
+        /// Meta WhatsApp error code (e.g. 131049 for antispam, 131021 for invalid phone, 131026 for re-engagement required). Only populated for status&#x3D;failed.
+        /// </summary>
+        /// <value>Meta WhatsApp error code (e.g. 131049 for antispam, 131021 for invalid phone, 131026 for re-engagement required). Only populated for status&#x3D;failed.</value>
+        [DataMember(Name = "errorCode", EmitDefaultValue = false)]
+        public int ErrorCode { get; set; }
+
+        /// <summary>
         /// Gets or Sets SentAt
         /// </summary>
         [DataMember(Name = "sentAt", EmitDefaultValue = false)]
@@ -181,6 +190,7 @@ namespace Zernio.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  MessageId: ").Append(MessageId).Append("\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
             sb.Append("  SentAt: ").Append(SentAt).Append("\n");
             sb.Append("  DeliveredAt: ").Append(DeliveredAt).Append("\n");
             sb.Append("  ReadAt: ").Append(ReadAt).Append("\n");

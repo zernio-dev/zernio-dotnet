@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Status** | **string** |  | [optional] 
 **MessageId** | **string** |  | [optional] 
 **Error** | **string** |  | [optional] 
+**ErrorCode** | **int** | Meta WhatsApp error code (e.g. 131049 for antispam, 131021 for invalid phone, 131026 for re-engagement required). Only populated for status&#x3D;failed. | [optional] 
 **SentAt** | **DateTime** |  | [optional] 
 **DeliveredAt** | **DateTime** |  | [optional] 
 **ReadAt** | **DateTime** |  | [optional] 

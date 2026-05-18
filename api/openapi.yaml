@@ -38148,6 +38148,7 @@ components:
         contactId: contactId
         contactName: contactName
         messageId: messageId
+        errorCode: 0
         id: id
         sentAt: 2000-01-23T04:56:07.000+00:00
         error: error
@@ -38179,6 +38180,12 @@ components:
           type: string
         error:
           type: string
+        errorCode:
+          description: "Meta WhatsApp error code (e.g. 131049 for antispam, 131021\
+            \ for invalid phone, 131026 for re-engagement required). Only populated\
+            \ for status=failed."
+          type: integer
+          nullable: true
         sentAt:
           format: date-time
           type: string
@@ -38200,6 +38207,7 @@ components:
         - contactId: contactId
           contactName: contactName
           messageId: messageId
+          errorCode: 0
           id: id
           sentAt: 2000-01-23T04:56:07.000+00:00
           error: error
@@ -38211,6 +38219,7 @@ components:
         - contactId: contactId
           contactName: contactName
           messageId: messageId
+          errorCode: 0
           id: id
           sentAt: 2000-01-23T04:56:07.000+00:00
           error: error
