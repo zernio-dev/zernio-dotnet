@@ -367,6 +367,9 @@ docs/GetInboxPostComments200ResponseMeta.md
 docs/GetInboxPostComments200ResponseMetaAdComments.md
 docs/GetInboxPostComments200ResponsePagination.md
 docs/GetInstagramAccountInsights404Response.md
+docs/GetInstagramStoryInsights200Response.md
+docs/GetInstagramStoryInsights200ResponseData.md
+docs/GetInstagramStoryInsights200ResponseDataMetrics.md
 docs/GetLinkedInAggregateAnalytics200Response.md
 docs/GetLinkedInAggregateAnalytics400Response.md
 docs/GetLinkedInAggregateAnalytics402Response.md
@@ -477,6 +480,7 @@ docs/InstagramAccountInsightsResponseDateRange.md
 docs/InstagramAccountInsightsResponseMetricsValue.md
 docs/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.md
 docs/InstagramAccountInsightsResponseMetricsValueValuesInner.md
+docs/InstagramApi.md
 docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
 docs/InstagramPlatformData.md
@@ -544,6 +548,8 @@ docs/ListInboxReviews200ResponseDataInner.md
 docs/ListInboxReviews200ResponseDataInnerReply.md
 docs/ListInboxReviews200ResponseDataInnerReviewer.md
 docs/ListInboxReviews200ResponseSummary.md
+docs/ListInstagramStories200Response.md
+docs/ListInstagramStories200ResponseDataInner.md
 docs/ListLinkedInOrganizations200Response.md
 docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md
 docs/ListLogs200Response.md
@@ -977,6 +983,7 @@ src/Zernio.Test/Api/GMBMediaApiTests.cs
 src/Zernio.Test/Api/GMBPlaceActionsApiTests.cs
 src/Zernio.Test/Api/GMBReviewsApiTests.cs
 src/Zernio.Test/Api/GMBServicesApiTests.cs
+src/Zernio.Test/Api/InstagramApiTests.cs
 src/Zernio.Test/Api/InvitesApiTests.cs
 src/Zernio.Test/Api/LinkedInMentionsApiTests.cs
 src/Zernio.Test/Api/LogsApiTests.cs
@@ -1340,6 +1347,9 @@ src/Zernio.Test/Model/GetInboxPostComments200ResponseMetaTests.cs
 src/Zernio.Test/Model/GetInboxPostComments200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetInboxPostComments200ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramAccountInsights404ResponseTests.cs
+src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataMetricsTests.cs
+src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataTests.cs
+src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInAggregateAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInAggregateAnalytics400ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInAggregateAnalytics402ResponseTests.cs
@@ -1515,6 +1525,8 @@ src/Zernio.Test/Model/ListInboxReviews200ResponseDataInnerReviewerTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseSummaryTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseTests.cs
+src/Zernio.Test/Model/ListInstagramStories200ResponseDataInnerTests.cs
+src/Zernio.Test/Model/ListInstagramStories200ResponseTests.cs
 src/Zernio.Test/Model/ListLinkedInOrganizations200ResponseOrganizationsInnerTests.cs
 src/Zernio.Test/Model/ListLinkedInOrganizations200ResponseTests.cs
 src/Zernio.Test/Model/ListLogs200ResponseLogsInnerTests.cs
@@ -1929,6 +1941,7 @@ src/Zernio/Api/GMBMediaApi.cs
 src/Zernio/Api/GMBPlaceActionsApi.cs
 src/Zernio/Api/GMBReviewsApi.cs
 src/Zernio/Api/GMBServicesApi.cs
+src/Zernio/Api/InstagramApi.cs
 src/Zernio/Api/InvitesApi.cs
 src/Zernio/Api/LinkedInMentionsApi.cs
 src/Zernio/Api/LogsApi.cs
@@ -2310,6 +2323,9 @@ src/Zernio/Model/GetInboxPostComments200ResponseMeta.cs
 src/Zernio/Model/GetInboxPostComments200ResponseMetaAdComments.cs
 src/Zernio/Model/GetInboxPostComments200ResponsePagination.cs
 src/Zernio/Model/GetInstagramAccountInsights404Response.cs
+src/Zernio/Model/GetInstagramStoryInsights200Response.cs
+src/Zernio/Model/GetInstagramStoryInsights200ResponseData.cs
+src/Zernio/Model/GetInstagramStoryInsights200ResponseDataMetrics.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics200Response.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics400Response.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics402Response.cs
@@ -2485,6 +2501,8 @@ src/Zernio/Model/ListInboxReviews200ResponseDataInner.cs
 src/Zernio/Model/ListInboxReviews200ResponseDataInnerReply.cs
 src/Zernio/Model/ListInboxReviews200ResponseDataInnerReviewer.cs
 src/Zernio/Model/ListInboxReviews200ResponseSummary.cs
+src/Zernio/Model/ListInstagramStories200Response.cs
+src/Zernio/Model/ListInstagramStories200ResponseDataInner.cs
 src/Zernio/Model/ListLinkedInOrganizations200Response.cs
 src/Zernio/Model/ListLinkedInOrganizations200ResponseOrganizationsInner.cs
 src/Zernio/Model/ListLogs200Response.cs

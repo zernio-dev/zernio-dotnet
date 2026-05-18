@@ -315,6 +315,8 @@ Class | Method | HTTP request | Description
 *GMBReviewsApi* | [**ReplyToGoogleBusinessReview**](docs/GMBReviewsApi.md#replytogooglebusinessreview) | **POST** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Reply to a review
 *GMBServicesApi* | [**GetGoogleBusinessServices**](docs/GMBServicesApi.md#getgooglebusinessservices) | **GET** /v1/accounts/{accountId}/gmb-services | Get services
 *GMBServicesApi* | [**UpdateGoogleBusinessServices**](docs/GMBServicesApi.md#updategooglebusinessservices) | **PUT** /v1/accounts/{accountId}/gmb-services | Replace services
+*InstagramApi* | [**GetInstagramStoryInsights**](docs/InstagramApi.md#getinstagramstoryinsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
+*InstagramApi* | [**ListInstagramStories**](docs/InstagramApi.md#listinstagramstories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
 *InvitesApi* | [**CreateInviteToken**](docs/InvitesApi.md#createinvitetoken) | **POST** /v1/invite/tokens | Create invite token
 *LinkedInMentionsApi* | [**GetLinkedInMentions**](docs/LinkedInMentionsApi.md#getlinkedinmentions) | **GET** /v1/accounts/{accountId}/linkedin-mentions | Resolve LinkedIn mention
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **GET** /v1/logs | List activity logs
@@ -777,6 +779,9 @@ Class | Method | HTTP request | Description
  - [Model.GetInboxPostComments200ResponseMetaAdComments](docs/GetInboxPostComments200ResponseMetaAdComments.md)
  - [Model.GetInboxPostComments200ResponsePagination](docs/GetInboxPostComments200ResponsePagination.md)
  - [Model.GetInstagramAccountInsights404Response](docs/GetInstagramAccountInsights404Response.md)
+ - [Model.GetInstagramStoryInsights200Response](docs/GetInstagramStoryInsights200Response.md)
+ - [Model.GetInstagramStoryInsights200ResponseData](docs/GetInstagramStoryInsights200ResponseData.md)
+ - [Model.GetInstagramStoryInsights200ResponseDataMetrics](docs/GetInstagramStoryInsights200ResponseDataMetrics.md)
  - [Model.GetLinkedInAggregateAnalytics200Response](docs/GetLinkedInAggregateAnalytics200Response.md)
  - [Model.GetLinkedInAggregateAnalytics400Response](docs/GetLinkedInAggregateAnalytics400Response.md)
  - [Model.GetLinkedInAggregateAnalytics402Response](docs/GetLinkedInAggregateAnalytics402Response.md)
@@ -952,6 +957,8 @@ Class | Method | HTTP request | Description
  - [Model.ListInboxReviews200ResponseDataInnerReply](docs/ListInboxReviews200ResponseDataInnerReply.md)
  - [Model.ListInboxReviews200ResponseDataInnerReviewer](docs/ListInboxReviews200ResponseDataInnerReviewer.md)
  - [Model.ListInboxReviews200ResponseSummary](docs/ListInboxReviews200ResponseSummary.md)
+ - [Model.ListInstagramStories200Response](docs/ListInstagramStories200Response.md)
+ - [Model.ListInstagramStories200ResponseDataInner](docs/ListInstagramStories200ResponseDataInner.md)
  - [Model.ListLinkedInOrganizations200Response](docs/ListLinkedInOrganizations200Response.md)
  - [Model.ListLinkedInOrganizations200ResponseOrganizationsInner](docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md)
  - [Model.ListLogs200Response](docs/ListLogs200Response.md)
