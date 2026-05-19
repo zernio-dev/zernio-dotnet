@@ -925,11 +925,11 @@ void (empty response body)
 
 <a id="updatesequence"></a>
 # **UpdateSequence**
-> UpdateSequence200Response UpdateSequence (string sequenceId)
+> UpdateSequence200Response UpdateSequence (string sequenceId, UpdateSequenceRequest? updateSequenceRequest = null)
 
 Update sequence
 
-Update a sequence's name, steps, or exit conditions. Active sequences can be updated without pausing.
+Update a sequence's name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
 
 ### Example
 ```csharp
@@ -956,11 +956,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new SequencesApi(httpClient, config, httpClientHandler);
             var sequenceId = "sequenceId_example";  // string | 
+            var updateSequenceRequest = new UpdateSequenceRequest?(); // UpdateSequenceRequest? |  (optional) 
 
             try
             {
                 // Update sequence
-                UpdateSequence200Response result = apiInstance.UpdateSequence(sequenceId);
+                UpdateSequence200Response result = apiInstance.UpdateSequence(sequenceId, updateSequenceRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -981,7 +982,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update sequence
-    ApiResponse<UpdateSequence200Response> response = apiInstance.UpdateSequenceWithHttpInfo(sequenceId);
+    ApiResponse<UpdateSequence200Response> response = apiInstance.UpdateSequenceWithHttpInfo(sequenceId, updateSequenceRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -999,6 +1000,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **sequenceId** | **string** |  |  |
+| **updateSequenceRequest** | [**UpdateSequenceRequest?**](UpdateSequenceRequest?.md) |  | [optional]  |
 
 ### Return type
 
@@ -1010,7 +1012,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 

@@ -243,8 +243,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
+        /// <param name="updateBroadcastRequest"> (optional)</param>
         /// <returns>UpdateBroadcast200Response</returns>
-        UpdateBroadcast200Response UpdateBroadcast(string broadcastId);
+        UpdateBroadcast200Response UpdateBroadcast(string broadcastId, UpdateBroadcastRequest? updateBroadcastRequest = default);
 
         /// <summary>
         /// Update broadcast
@@ -254,8 +255,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
+        /// <param name="updateBroadcastRequest"> (optional)</param>
         /// <returns>ApiResponse of UpdateBroadcast200Response</returns>
-        ApiResponse<UpdateBroadcast200Response> UpdateBroadcastWithHttpInfo(string broadcastId);
+        ApiResponse<UpdateBroadcast200Response> UpdateBroadcastWithHttpInfo(string broadcastId, UpdateBroadcastRequest? updateBroadcastRequest = default);
         #endregion Synchronous Operations
     }
 
@@ -498,9 +500,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
+        /// <param name="updateBroadcastRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateBroadcast200Response</returns>
-        System.Threading.Tasks.Task<UpdateBroadcast200Response> UpdateBroadcastAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<UpdateBroadcast200Response> UpdateBroadcastAsync(string broadcastId, UpdateBroadcastRequest? updateBroadcastRequest = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update broadcast
@@ -510,9 +513,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
+        /// <param name="updateBroadcastRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateBroadcast200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateBroadcast200Response>> UpdateBroadcastWithHttpInfoAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<UpdateBroadcast200Response>> UpdateBroadcastWithHttpInfoAsync(string broadcastId, UpdateBroadcastRequest? updateBroadcastRequest = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1988,10 +1992,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
+        /// <param name="updateBroadcastRequest"> (optional)</param>
         /// <returns>UpdateBroadcast200Response</returns>
-        public UpdateBroadcast200Response UpdateBroadcast(string broadcastId)
+        public UpdateBroadcast200Response UpdateBroadcast(string broadcastId, UpdateBroadcastRequest? updateBroadcastRequest = default)
         {
-            Zernio.Client.ApiResponse<UpdateBroadcast200Response> localVarResponse = UpdateBroadcastWithHttpInfo(broadcastId);
+            Zernio.Client.ApiResponse<UpdateBroadcast200Response> localVarResponse = UpdateBroadcastWithHttpInfo(broadcastId, updateBroadcastRequest);
             return localVarResponse.Data;
         }
 
@@ -2000,8 +2005,9 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
+        /// <param name="updateBroadcastRequest"> (optional)</param>
         /// <returns>ApiResponse of UpdateBroadcast200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateBroadcast200Response> UpdateBroadcastWithHttpInfo(string broadcastId)
+        public Zernio.Client.ApiResponse<UpdateBroadcast200Response> UpdateBroadcastWithHttpInfo(string broadcastId, UpdateBroadcastRequest? updateBroadcastRequest = default)
         {
             // verify the required parameter 'broadcastId' is set
             if (broadcastId == null)
@@ -2010,6 +2016,7 @@ namespace Zernio.Api
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
+                "application/json"
             };
 
             // to determine the Accept header
@@ -2024,6 +2031,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("broadcastId", Zernio.Client.ClientUtils.ParameterToString(broadcastId)); // path parameter
+            localVarRequestOptions.Data = updateBroadcastRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -2049,11 +2057,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
+        /// <param name="updateBroadcastRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateBroadcast200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateBroadcast200Response> UpdateBroadcastAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<UpdateBroadcast200Response> UpdateBroadcastAsync(string broadcastId, UpdateBroadcastRequest? updateBroadcastRequest = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UpdateBroadcast200Response> localVarResponse = await UpdateBroadcastWithHttpInfoAsync(broadcastId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<UpdateBroadcast200Response> localVarResponse = await UpdateBroadcastWithHttpInfoAsync(broadcastId, updateBroadcastRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2062,9 +2071,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="broadcastId"></param>
+        /// <param name="updateBroadcastRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateBroadcast200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateBroadcast200Response>> UpdateBroadcastWithHttpInfoAsync(string broadcastId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateBroadcast200Response>> UpdateBroadcastWithHttpInfoAsync(string broadcastId, UpdateBroadcastRequest? updateBroadcastRequest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'broadcastId' is set
             if (broadcastId == null)
@@ -2074,6 +2084,7 @@ namespace Zernio.Api
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
+                "application/json"
             };
 
             // to determine the Accept header
@@ -2089,6 +2100,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("broadcastId", Zernio.Client.ClientUtils.ParameterToString(broadcastId)); // path parameter
+            localVarRequestOptions.Data = updateBroadcastRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required

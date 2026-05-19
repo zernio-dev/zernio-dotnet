@@ -176,7 +176,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string sequenceId = null;
-            //var response = instance.UpdateSequence(sequenceId);
+            //UpdateSequenceRequest? updateSequenceRequest = null;
+            //var response = instance.UpdateSequence(sequenceId, updateSequenceRequest);
             //Assert.IsType<UpdateSequence200Response>(response);
         }
     }

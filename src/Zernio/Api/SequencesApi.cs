@@ -237,23 +237,25 @@ namespace Zernio.Api
         /// Update sequence
         /// </summary>
         /// <remarks>
-        /// Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+        /// Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
+        /// <param name="updateSequenceRequest"> (optional)</param>
         /// <returns>UpdateSequence200Response</returns>
-        UpdateSequence200Response UpdateSequence(string sequenceId);
+        UpdateSequence200Response UpdateSequence(string sequenceId, UpdateSequenceRequest? updateSequenceRequest = default);
 
         /// <summary>
         /// Update sequence
         /// </summary>
         /// <remarks>
-        /// Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+        /// Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
+        /// <param name="updateSequenceRequest"> (optional)</param>
         /// <returns>ApiResponse of UpdateSequence200Response</returns>
-        ApiResponse<UpdateSequence200Response> UpdateSequenceWithHttpInfo(string sequenceId);
+        ApiResponse<UpdateSequence200Response> UpdateSequenceWithHttpInfo(string sequenceId, UpdateSequenceRequest? updateSequenceRequest = default);
         #endregion Synchronous Operations
     }
 
@@ -490,25 +492,27 @@ namespace Zernio.Api
         /// Update sequence
         /// </summary>
         /// <remarks>
-        /// Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+        /// Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
+        /// <param name="updateSequenceRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateSequence200Response</returns>
-        System.Threading.Tasks.Task<UpdateSequence200Response> UpdateSequenceAsync(string sequenceId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<UpdateSequence200Response> UpdateSequenceAsync(string sequenceId, UpdateSequenceRequest? updateSequenceRequest = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update sequence
         /// </summary>
         /// <remarks>
-        /// Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+        /// Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
+        /// <param name="updateSequenceRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateSequence200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateSequence200Response>> UpdateSequenceWithHttpInfoAsync(string sequenceId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<UpdateSequence200Response>> UpdateSequenceWithHttpInfoAsync(string sequenceId, UpdateSequenceRequest? updateSequenceRequest = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1964,24 +1968,26 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
+        /// <param name="updateSequenceRequest"> (optional)</param>
         /// <returns>UpdateSequence200Response</returns>
-        public UpdateSequence200Response UpdateSequence(string sequenceId)
+        public UpdateSequence200Response UpdateSequence(string sequenceId, UpdateSequenceRequest? updateSequenceRequest = default)
         {
-            Zernio.Client.ApiResponse<UpdateSequence200Response> localVarResponse = UpdateSequenceWithHttpInfo(sequenceId);
+            Zernio.Client.ApiResponse<UpdateSequence200Response> localVarResponse = UpdateSequenceWithHttpInfo(sequenceId, updateSequenceRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
+        /// <param name="updateSequenceRequest"> (optional)</param>
         /// <returns>ApiResponse of UpdateSequence200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateSequence200Response> UpdateSequenceWithHttpInfo(string sequenceId)
+        public Zernio.Client.ApiResponse<UpdateSequence200Response> UpdateSequenceWithHttpInfo(string sequenceId, UpdateSequenceRequest? updateSequenceRequest = default)
         {
             // verify the required parameter 'sequenceId' is set
             if (sequenceId == null)
@@ -1990,6 +1996,7 @@ namespace Zernio.Api
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
+                "application/json"
             };
 
             // to determine the Accept header
@@ -2004,6 +2011,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("sequenceId", Zernio.Client.ClientUtils.ParameterToString(sequenceId)); // path parameter
+            localVarRequestOptions.Data = updateSequenceRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -2025,26 +2033,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
+        /// <param name="updateSequenceRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateSequence200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateSequence200Response> UpdateSequenceAsync(string sequenceId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<UpdateSequence200Response> UpdateSequenceAsync(string sequenceId, UpdateSequenceRequest? updateSequenceRequest = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UpdateSequence200Response> localVarResponse = await UpdateSequenceWithHttpInfoAsync(sequenceId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<UpdateSequence200Response> localVarResponse = await UpdateSequenceWithHttpInfoAsync(sequenceId, updateSequenceRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+        /// Update sequence Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sequenceId"></param>
+        /// <param name="updateSequenceRequest"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateSequence200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateSequence200Response>> UpdateSequenceWithHttpInfoAsync(string sequenceId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateSequence200Response>> UpdateSequenceWithHttpInfoAsync(string sequenceId, UpdateSequenceRequest? updateSequenceRequest = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'sequenceId' is set
             if (sequenceId == null)
@@ -2054,6 +2064,7 @@ namespace Zernio.Api
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
+                "application/json"
             };
 
             // to determine the Accept header
@@ -2069,6 +2080,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("sequenceId", Zernio.Client.ClientUtils.ParameterToString(sequenceId)); // path parameter
+            localVarRequestOptions.Data = updateSequenceRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required

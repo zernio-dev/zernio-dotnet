@@ -773,6 +773,10 @@ docs/UpdateAdSetRequestBudget.md
 docs/UpdateAdSetStatus200Response.md
 docs/UpdateBroadcast200Response.md
 docs/UpdateBroadcast200ResponseBroadcast.md
+docs/UpdateBroadcastRequest.md
+docs/UpdateBroadcastRequestMessage.md
+docs/UpdateBroadcastRequestTemplate.md
+docs/UpdateBroadcastRequestTemplateVariableMappingValue.md
 docs/UpdateCommentAutomation200Response.md
 docs/UpdateCommentAutomation200ResponseAutomation.md
 docs/UpdateCommentAutomationRequest.md
@@ -830,6 +834,9 @@ docs/UpdateQueueSlotRequest.md
 docs/UpdateRedditSubredditsRequest.md
 docs/UpdateSequence200Response.md
 docs/UpdateSequence200ResponseSequence.md
+docs/UpdateSequenceRequest.md
+docs/UpdateSequenceRequestStepsInner.md
+docs/UpdateSequenceRequestStepsInnerTemplate.md
 docs/UpdateTrackingTagRequest.md
 docs/UpdateWebhookSettings200Response.md
 docs/UpdateWebhookSettingsRequest.md
@@ -1739,6 +1746,10 @@ src/Zernio.Test/Model/UpdateAdSetRequestTests.cs
 src/Zernio.Test/Model/UpdateAdSetStatus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/UpdateBroadcast200ResponseTests.cs
+src/Zernio.Test/Model/UpdateBroadcastRequestMessageTests.cs
+src/Zernio.Test/Model/UpdateBroadcastRequestTemplateTests.cs
+src/Zernio.Test/Model/UpdateBroadcastRequestTemplateVariableMappingValueTests.cs
+src/Zernio.Test/Model/UpdateBroadcastRequestTests.cs
 src/Zernio.Test/Model/UpdateCommentAutomation200ResponseAutomationTests.cs
 src/Zernio.Test/Model/UpdateCommentAutomation200ResponseTests.cs
 src/Zernio.Test/Model/UpdateCommentAutomationRequestTests.cs
@@ -1796,6 +1807,9 @@ src/Zernio.Test/Model/UpdateQueueSlotRequestTests.cs
 src/Zernio.Test/Model/UpdateRedditSubredditsRequestTests.cs
 src/Zernio.Test/Model/UpdateSequence200ResponseSequenceTests.cs
 src/Zernio.Test/Model/UpdateSequence200ResponseTests.cs
+src/Zernio.Test/Model/UpdateSequenceRequestStepsInnerTemplateTests.cs
+src/Zernio.Test/Model/UpdateSequenceRequestStepsInnerTests.cs
+src/Zernio.Test/Model/UpdateSequenceRequestTests.cs
 src/Zernio.Test/Model/UpdateTrackingTagRequestTests.cs
 src/Zernio.Test/Model/UpdateWebhookSettings200ResponseTests.cs
 src/Zernio.Test/Model/UpdateWebhookSettingsRequestTests.cs
@@ -2715,6 +2729,10 @@ src/Zernio/Model/UpdateAdSetRequestBudget.cs
 src/Zernio/Model/UpdateAdSetStatus200Response.cs
 src/Zernio/Model/UpdateBroadcast200Response.cs
 src/Zernio/Model/UpdateBroadcast200ResponseBroadcast.cs
+src/Zernio/Model/UpdateBroadcastRequest.cs
+src/Zernio/Model/UpdateBroadcastRequestMessage.cs
+src/Zernio/Model/UpdateBroadcastRequestTemplate.cs
+src/Zernio/Model/UpdateBroadcastRequestTemplateVariableMappingValue.cs
 src/Zernio/Model/UpdateCommentAutomation200Response.cs
 src/Zernio/Model/UpdateCommentAutomation200ResponseAutomation.cs
 src/Zernio/Model/UpdateCommentAutomationRequest.cs
@@ -2772,6 +2790,9 @@ src/Zernio/Model/UpdateQueueSlotRequest.cs
 src/Zernio/Model/UpdateRedditSubredditsRequest.cs
 src/Zernio/Model/UpdateSequence200Response.cs
 src/Zernio/Model/UpdateSequence200ResponseSequence.cs
+src/Zernio/Model/UpdateSequenceRequest.cs
+src/Zernio/Model/UpdateSequenceRequestStepsInner.cs
+src/Zernio/Model/UpdateSequenceRequestStepsInnerTemplate.cs
 src/Zernio/Model/UpdateTrackingTagRequest.cs
 src/Zernio/Model/UpdateWebhookSettings200Response.cs
 src/Zernio/Model/UpdateWebhookSettingsRequest.cs

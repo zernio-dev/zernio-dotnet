@@ -13565,6 +13565,11 @@ paths:
         schema:
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateBroadcast_request"
       responses:
         "200":
           content:
@@ -13881,8 +13886,8 @@ paths:
       tags:
       - Sequences
     patch:
-      description: "Update a sequence's name, steps, or exit conditions. Active sequences\
-        \ can be updated without pausing."
+      description: "Update a sequence's name, steps, or exit conditions. Steps can\
+        \ only be modified while the sequence is draft or paused."
       operationId: updateSequence
       parameters:
       - explode: false
@@ -13892,6 +13897,11 @@ paths:
         schema:
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateSequence_request"
       responses:
         "200":
           content:
@@ -38032,6 +38042,48 @@ components:
           type: boolean
         broadcast:
           $ref: "#/components/schemas/getBroadcast_200_response_broadcast"
+    updateBroadcast_request_message:
+      description: Generic message payload (used for non-WhatsApp platforms).
+      properties:
+        text:
+          type: string
+    updateBroadcast_request_template_variableMapping_value:
+      properties:
+        field:
+          enum:
+          - name
+          - phone
+          - email
+          - company
+          - custom
+          type: string
+        customValue:
+          type: string
+    updateBroadcast_request_template:
+      description: WhatsApp template payload (used when platform is `whatsapp`).
+      properties:
+        name:
+          type: string
+        language:
+          type: string
+        variableMapping:
+          additionalProperties:
+            $ref: "#/components/schemas/updateBroadcast_request_template_variableMapping_value"
+          description: "Maps template variable positions to contact fields. Keys are\
+            \ position strings (\"1\", \"2\"); values are { field, customValue }."
+    updateBroadcast_request:
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        message:
+          $ref: "#/components/schemas/updateBroadcast_request_message"
+        template:
+          $ref: "#/components/schemas/updateBroadcast_request_template"
+        segmentFilters:
+          description: "Recipient segment filters (tags, channels, subscription state)."
+          type: object
     updateBroadcast_200_response_broadcast:
       example:
         name: name
@@ -38623,6 +38675,44 @@ components:
           type: boolean
         sequence:
           $ref: "#/components/schemas/getSequence_200_response_sequence"
+    updateSequence_request_steps_inner_template:
+      properties:
+        name:
+          type: string
+        language:
+          type: string
+        variableMapping:
+          additionalProperties:
+            $ref: "#/components/schemas/updateBroadcast_request_template_variableMapping_value"
+    updateSequence_request_steps_inner:
+      properties:
+        order:
+          type: integer
+        delayMinutes:
+          type: integer
+        message:
+          $ref: "#/components/schemas/getBroadcast_200_response_broadcast_message"
+        template:
+          $ref: "#/components/schemas/updateSequence_request_steps_inner_template"
+      required:
+      - delayMinutes
+      - order
+    updateSequence_request:
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        steps:
+          description: Replace the full step list. Only allowed while the sequence
+            is draft or paused.
+          items:
+            $ref: "#/components/schemas/updateSequence_request_steps_inner"
+          type: array
+        exitOnReply:
+          type: boolean
+        exitOnUnsubscribe:
+          type: boolean
     updateSequence_200_response_sequence:
       example:
         exitOnUnsubscribe: true

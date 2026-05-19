@@ -178,7 +178,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string broadcastId = null;
-            //var response = instance.UpdateBroadcast(broadcastId);
+            //UpdateBroadcastRequest? updateBroadcastRequest = null;
+            //var response = instance.UpdateBroadcast(broadcastId, updateBroadcastRequest);
             //Assert.IsType<UpdateBroadcast200Response>(response);
         }
     }

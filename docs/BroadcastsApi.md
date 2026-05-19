@@ -932,7 +932,7 @@ catch (ApiException e)
 
 <a id="updatebroadcast"></a>
 # **UpdateBroadcast**
-> UpdateBroadcast200Response UpdateBroadcast (string broadcastId)
+> UpdateBroadcast200Response UpdateBroadcast (string broadcastId, UpdateBroadcastRequest? updateBroadcastRequest = null)
 
 Update broadcast
 
@@ -963,11 +963,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new BroadcastsApi(httpClient, config, httpClientHandler);
             var broadcastId = "broadcastId_example";  // string | 
+            var updateBroadcastRequest = new UpdateBroadcastRequest?(); // UpdateBroadcastRequest? |  (optional) 
 
             try
             {
                 // Update broadcast
-                UpdateBroadcast200Response result = apiInstance.UpdateBroadcast(broadcastId);
+                UpdateBroadcast200Response result = apiInstance.UpdateBroadcast(broadcastId, updateBroadcastRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -988,7 +989,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update broadcast
-    ApiResponse<UpdateBroadcast200Response> response = apiInstance.UpdateBroadcastWithHttpInfo(broadcastId);
+    ApiResponse<UpdateBroadcast200Response> response = apiInstance.UpdateBroadcastWithHttpInfo(broadcastId, updateBroadcastRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1006,6 +1007,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **broadcastId** | **string** |  |  |
+| **updateBroadcastRequest** | [**UpdateBroadcastRequest?**](UpdateBroadcastRequest?.md) |  | [optional]  |
 
 ### Return type
 
@@ -1017,7 +1019,7 @@ catch (ApiException e)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
