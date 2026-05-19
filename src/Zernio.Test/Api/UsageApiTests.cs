@@ -61,7 +61,8 @@ namespace Zernio.Test.Api
         public void GetUsageStatsTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //var response = instance.GetUsageStats();
+            //bool? reconcile = null;
+            //var response = instance.GetUsageStats(reconcile);
             //Assert.IsType<UsageStats>(response);
         }
 

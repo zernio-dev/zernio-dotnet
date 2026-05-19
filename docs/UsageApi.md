@@ -9,7 +9,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="getusagestats"></a>
 # **GetUsageStats**
-> UsageStats GetUsageStats ()
+> UsageStats GetUsageStats (bool? reconcile = null)
 
 Get plan and usage stats
 
@@ -39,11 +39,12 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new UsageApi(httpClient, config, httpClientHandler);
+            var reconcile = true;  // bool? | For Stripe subscription users, `true` forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass `false`, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional) 
 
             try
             {
                 // Get plan and usage stats
-                UsageStats result = apiInstance.GetUsageStats();
+                UsageStats result = apiInstance.GetUsageStats(reconcile);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -64,7 +65,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get plan and usage stats
-    ApiResponse<UsageStats> response = apiInstance.GetUsageStatsWithHttpInfo();
+    ApiResponse<UsageStats> response = apiInstance.GetUsageStatsWithHttpInfo(reconcile);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -78,7 +79,11 @@ catch (ApiException e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **reconcile** | **bool?** | For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  | [optional]  |
+
 ### Return type
 
 [**UsageStats**](UsageStats.md)
@@ -97,6 +102,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Usage stats |  -  |
+| **400** | Invalid query parameter |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
