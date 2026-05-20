@@ -582,6 +582,7 @@ docs/ListWhatsAppGroupJoinRequests200ResponseJoinRequestsInner.md
 docs/ListWhatsAppPhoneNumbers200Response.md
 docs/ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner.md
 docs/LogsApi.md
+docs/MarkConversationRead200Response.md
 docs/MediaApi.md
 docs/MediaItem.md
 docs/MediaUploadResponse.md
@@ -1566,6 +1567,7 @@ src/Zernio.Test/Model/ListWhatsAppGroupJoinRequests200ResponseJoinRequestsInnerT
 src/Zernio.Test/Model/ListWhatsAppGroupJoinRequests200ResponseTests.cs
 src/Zernio.Test/Model/ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInnerTests.cs
 src/Zernio.Test/Model/ListWhatsAppPhoneNumbers200ResponseTests.cs
+src/Zernio.Test/Model/MarkConversationRead200ResponseTests.cs
 src/Zernio.Test/Model/MediaItemTests.cs
 src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
@@ -2550,6 +2552,7 @@ src/Zernio/Model/ListWhatsAppGroupJoinRequests200Response.cs
 src/Zernio/Model/ListWhatsAppGroupJoinRequests200ResponseJoinRequestsInner.cs
 src/Zernio/Model/ListWhatsAppPhoneNumbers200Response.cs
 src/Zernio/Model/ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner.cs
+src/Zernio/Model/MarkConversationRead200Response.cs
 src/Zernio/Model/MediaItem.cs
 src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/Money.cs

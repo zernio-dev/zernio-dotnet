@@ -156,6 +156,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test MarkConversationRead
+        /// </summary>
+        [Fact]
+        public void MarkConversationReadTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string conversationId = null;
+            //SendTypingIndicatorRequest sendTypingIndicatorRequest = null;
+            //var response = instance.MarkConversationRead(conversationId, sendTypingIndicatorRequest);
+            //Assert.IsType<MarkConversationRead200Response>(response);
+        }
+
+        /// <summary>
         /// Test RemoveMessageReaction
         /// </summary>
         [Fact]

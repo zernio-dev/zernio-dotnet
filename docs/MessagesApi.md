@@ -11,6 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetInboxConversation**](MessagesApi.md#getinboxconversation) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation |
 | [**GetInboxConversationMessages**](MessagesApi.md#getinboxconversationmessages) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages |
 | [**ListInboxConversations**](MessagesApi.md#listinboxconversations) | **GET** /v1/inbox/conversations | List conversations |
+| [**MarkConversationRead**](MessagesApi.md#markconversationread) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read |
 | [**RemoveMessageReaction**](MessagesApi.md#removemessagereaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction |
 | [**SendInboxMessage**](MessagesApi.md#sendinboxmessage) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message |
 | [**SendTypingIndicator**](MessagesApi.md#sendtypingindicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator |
@@ -547,7 +548,7 @@ catch (ApiException e)
 
 List messages
 
-Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass `pagination.nextCursor` from a prior response back as the `cursor` query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to `asc` (oldest first, chat style). For the \"show me the latest messages\" pattern, pass `?sortOrder=desc&limit=N`. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field `sortOrderApplied` tells you what was actually applied.  Reddit threads are paginated client-side because Reddit's API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit's inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X's encrypted \"X Chat\" messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details. 
+Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass `pagination.nextCursor` from a prior response back as the `cursor` query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to `asc` (oldest first, chat style). For the \"show me the latest messages\" pattern, pass `?sortOrder=desc&limit=N`. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field `sortOrderApplied` tells you what was actually applied.  Reddit threads are paginated client-side because Reddit's API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit's inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X's encrypted \"X Chat\" messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call `POST /v1/inbox/conversations/{conversationId}/read`. 
 
 ### Example
 ```csharp
@@ -758,6 +759,109 @@ catch (ApiException e)
 | **200** | Aggregated conversations |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="markconversationread"></a>
+# **MarkConversationRead**
+> MarkConversationRead200Response MarkConversationRead (string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest)
+
+Mark a conversation as read
+
+Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer's phone owns read state and we never override it).  This is the explicit, human-driven counterpart to `GET .../messages`, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class MarkConversationReadExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
+            var conversationId = "conversationId_example";  // string | The conversation ID
+            var sendTypingIndicatorRequest = new SendTypingIndicatorRequest(); // SendTypingIndicatorRequest | 
+
+            try
+            {
+                // Mark a conversation as read
+                MarkConversationRead200Response result = apiInstance.MarkConversationRead(conversationId, sendTypingIndicatorRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MessagesApi.MarkConversationRead: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the MarkConversationReadWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Mark a conversation as read
+    ApiResponse<MarkConversationRead200Response> response = apiInstance.MarkConversationReadWithHttpInfo(conversationId, sendTypingIndicatorRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.MarkConversationReadWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **conversationId** | **string** | The conversation ID |  |
+| **sendTypingIndicatorRequest** | [**SendTypingIndicatorRequest**](SendTypingIndicatorRequest.md) |  |  |
+
+### Return type
+
+[**MarkConversationRead200Response**](MarkConversationRead200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversation marked read |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -151,7 +151,7 @@ namespace Zernio.Api
         /// List messages
         /// </summary>
         /// <remarks>
-        /// Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details. 
+        /// Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call &#x60;POST /v1/inbox/conversations/{conversationId}/read&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
@@ -166,7 +166,7 @@ namespace Zernio.Api
         /// List messages
         /// </summary>
         /// <remarks>
-        /// Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details. 
+        /// Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call &#x60;POST /v1/inbox/conversations/{conversationId}/read&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
@@ -209,6 +209,29 @@ namespace Zernio.Api
         /// <param name="accountId">Filter by specific social account ID (optional)</param>
         /// <returns>ApiResponse of ListInboxConversations200Response</returns>
         ApiResponse<ListInboxConversations200Response> ListInboxConversationsWithHttpInfo(string? profileId = default, string? platform = default, string? status = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default);
+        /// <summary>
+        /// Mark a conversation as read
+        /// </summary>
+        /// <remarks>
+        /// Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <returns>MarkConversationRead200Response</returns>
+        MarkConversationRead200Response MarkConversationRead(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest);
+
+        /// <summary>
+        /// Mark a conversation as read
+        /// </summary>
+        /// <remarks>
+        /// Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <returns>ApiResponse of MarkConversationRead200Response</returns>
+        ApiResponse<MarkConversationRead200Response> MarkConversationReadWithHttpInfo(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest);
         /// <summary>
         /// Remove reaction
         /// </summary>
@@ -468,7 +491,7 @@ namespace Zernio.Api
         /// List messages
         /// </summary>
         /// <remarks>
-        /// Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details. 
+        /// Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call &#x60;POST /v1/inbox/conversations/{conversationId}/read&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
@@ -484,7 +507,7 @@ namespace Zernio.Api
         /// List messages
         /// </summary>
         /// <remarks>
-        /// Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details. 
+        /// Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call &#x60;POST /v1/inbox/conversations/{conversationId}/read&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
@@ -530,6 +553,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListInboxConversations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListInboxConversations200Response>> ListInboxConversationsWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, string? sortOrder = default, int? limit = default, string? cursor = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Mark a conversation as read
+        /// </summary>
+        /// <remarks>
+        /// Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MarkConversationRead200Response</returns>
+        System.Threading.Tasks.Task<MarkConversationRead200Response> MarkConversationReadAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Mark a conversation as read
+        /// </summary>
+        /// <remarks>
+        /// Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MarkConversationRead200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<MarkConversationRead200Response>> MarkConversationReadWithHttpInfoAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Remove reaction
         /// </summary>
@@ -1612,7 +1660,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List messages Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details. 
+        /// List messages Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call &#x60;POST /v1/inbox/conversations/{conversationId}/read&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
@@ -1628,7 +1676,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List messages Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details. 
+        /// List messages Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call &#x60;POST /v1/inbox/conversations/{conversationId}/read&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
@@ -1698,7 +1746,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List messages Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details. 
+        /// List messages Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call &#x60;POST /v1/inbox/conversations/{conversationId}/read&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
@@ -1715,7 +1763,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List messages Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details. 
+        /// List messages Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call &#x60;POST /v1/inbox/conversations/{conversationId}/read&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID.</param>
@@ -1979,6 +2027,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListInboxConversations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Mark a conversation as read Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <returns>MarkConversationRead200Response</returns>
+        public MarkConversationRead200Response MarkConversationRead(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest)
+        {
+            Zernio.Client.ApiResponse<MarkConversationRead200Response> localVarResponse = MarkConversationReadWithHttpInfo(conversationId, sendTypingIndicatorRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Mark a conversation as read Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <returns>ApiResponse of MarkConversationRead200Response</returns>
+        public Zernio.Client.ApiResponse<MarkConversationRead200Response> MarkConversationReadWithHttpInfo(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->MarkConversationRead");
+
+            // verify the required parameter 'sendTypingIndicatorRequest' is set
+            if (sendTypingIndicatorRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'sendTypingIndicatorRequest' when calling MessagesApi->MarkConversationRead");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Zernio.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.Data = sendTypingIndicatorRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<MarkConversationRead200Response>("/v1/inbox/conversations/{conversationId}/read", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("MarkConversationRead", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Mark a conversation as read Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of MarkConversationRead200Response</returns>
+        public async System.Threading.Tasks.Task<MarkConversationRead200Response> MarkConversationReadAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<MarkConversationRead200Response> localVarResponse = await MarkConversationReadWithHttpInfoAsync(conversationId, sendTypingIndicatorRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Mark a conversation as read Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="conversationId">The conversation ID</param>
+        /// <param name="sendTypingIndicatorRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (MarkConversationRead200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<MarkConversationRead200Response>> MarkConversationReadWithHttpInfoAsync(string conversationId, SendTypingIndicatorRequest sendTypingIndicatorRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'conversationId' is set
+            if (conversationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'conversationId' when calling MessagesApi->MarkConversationRead");
+
+            // verify the required parameter 'sendTypingIndicatorRequest' is set
+            if (sendTypingIndicatorRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'sendTypingIndicatorRequest' when calling MessagesApi->MarkConversationRead");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("conversationId", Zernio.Client.ClientUtils.ParameterToString(conversationId)); // path parameter
+            localVarRequestOptions.Data = sendTypingIndicatorRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<MarkConversationRead200Response>("/v1/inbox/conversations/{conversationId}/read", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("MarkConversationRead", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
