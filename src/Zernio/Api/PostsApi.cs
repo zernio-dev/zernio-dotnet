@@ -37,8 +37,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dryRun"> (optional, default to false)</param>
         /// <param name="file"> (optional)</param>
-        /// <returns>BulkUploadPosts200Response</returns>
-        BulkUploadPosts200Response BulkUploadPosts(bool? dryRun = default, FileParameter? file = default);
+        /// <returns>BulkUploadResult</returns>
+        BulkUploadResult BulkUploadPosts(bool? dryRun = default, FileParameter? file = default);
 
         /// <summary>
         /// Bulk upload from CSV
@@ -49,8 +49,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dryRun"> (optional, default to false)</param>
         /// <param name="file"> (optional)</param>
-        /// <returns>ApiResponse of BulkUploadPosts200Response</returns>
-        ApiResponse<BulkUploadPosts200Response> BulkUploadPostsWithHttpInfo(bool? dryRun = default, FileParameter? file = default);
+        /// <returns>ApiResponse of BulkUploadResult</returns>
+        ApiResponse<BulkUploadResult> BulkUploadPostsWithHttpInfo(bool? dryRun = default, FileParameter? file = default);
         /// <summary>
         /// Create post
         /// </summary>
@@ -291,8 +291,8 @@ namespace Zernio.Api
         /// <param name="dryRun"> (optional, default to false)</param>
         /// <param name="file"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of BulkUploadPosts200Response</returns>
-        System.Threading.Tasks.Task<BulkUploadPosts200Response> BulkUploadPostsAsync(bool? dryRun = default, FileParameter? file = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of BulkUploadResult</returns>
+        System.Threading.Tasks.Task<BulkUploadResult> BulkUploadPostsAsync(bool? dryRun = default, FileParameter? file = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Bulk upload from CSV
@@ -304,8 +304,8 @@ namespace Zernio.Api
         /// <param name="dryRun"> (optional, default to false)</param>
         /// <param name="file"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (BulkUploadPosts200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<BulkUploadPosts200Response>> BulkUploadPostsWithHttpInfoAsync(bool? dryRun = default, FileParameter? file = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (BulkUploadResult)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BulkUploadResult>> BulkUploadPostsWithHttpInfoAsync(bool? dryRun = default, FileParameter? file = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create post
         /// </summary>
@@ -764,10 +764,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dryRun"> (optional, default to false)</param>
         /// <param name="file"> (optional)</param>
-        /// <returns>BulkUploadPosts200Response</returns>
-        public BulkUploadPosts200Response BulkUploadPosts(bool? dryRun = default, FileParameter? file = default)
+        /// <returns>BulkUploadResult</returns>
+        public BulkUploadResult BulkUploadPosts(bool? dryRun = default, FileParameter? file = default)
         {
-            Zernio.Client.ApiResponse<BulkUploadPosts200Response> localVarResponse = BulkUploadPostsWithHttpInfo(dryRun, file);
+            Zernio.Client.ApiResponse<BulkUploadResult> localVarResponse = BulkUploadPostsWithHttpInfo(dryRun, file);
             return localVarResponse.Data;
         }
 
@@ -777,8 +777,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="dryRun"> (optional, default to false)</param>
         /// <param name="file"> (optional)</param>
-        /// <returns>ApiResponse of BulkUploadPosts200Response</returns>
-        public Zernio.Client.ApiResponse<BulkUploadPosts200Response> BulkUploadPostsWithHttpInfo(bool? dryRun = default, FileParameter? file = default)
+        /// <returns>ApiResponse of BulkUploadResult</returns>
+        public Zernio.Client.ApiResponse<BulkUploadResult> BulkUploadPostsWithHttpInfo(bool? dryRun = default, FileParameter? file = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -814,7 +814,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<BulkUploadPosts200Response>("/v1/posts/bulk-upload", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<BulkUploadResult>("/v1/posts/bulk-upload", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -832,10 +832,10 @@ namespace Zernio.Api
         /// <param name="dryRun"> (optional, default to false)</param>
         /// <param name="file"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of BulkUploadPosts200Response</returns>
-        public async System.Threading.Tasks.Task<BulkUploadPosts200Response> BulkUploadPostsAsync(bool? dryRun = default, FileParameter? file = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of BulkUploadResult</returns>
+        public async System.Threading.Tasks.Task<BulkUploadResult> BulkUploadPostsAsync(bool? dryRun = default, FileParameter? file = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<BulkUploadPosts200Response> localVarResponse = await BulkUploadPostsWithHttpInfoAsync(dryRun, file, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<BulkUploadResult> localVarResponse = await BulkUploadPostsWithHttpInfoAsync(dryRun, file, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -846,8 +846,8 @@ namespace Zernio.Api
         /// <param name="dryRun"> (optional, default to false)</param>
         /// <param name="file"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (BulkUploadPosts200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<BulkUploadPosts200Response>> BulkUploadPostsWithHttpInfoAsync(bool? dryRun = default, FileParameter? file = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (BulkUploadResult)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<BulkUploadResult>> BulkUploadPostsWithHttpInfoAsync(bool? dryRun = default, FileParameter? file = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -886,7 +886,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<BulkUploadPosts200Response>("/v1/posts/bulk-upload", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<BulkUploadResult>("/v1/posts/bulk-upload", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -1,11 +1,13 @@
-# Zernio.Model.BulkUploadPosts200ResponseErrorsInner
+# Zernio.Model.BulkUploadResultRateLimitedAccountsInner
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Row** | **int** |  | [optional] 
-**Error** | **string** |  | [optional] 
+**AccountId** | **string** |  | [optional] 
+**Platform** | **string** |  | [optional] 
+**Username** | **string** |  | [optional] 
+**RateLimitedUntil** | **DateTime** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

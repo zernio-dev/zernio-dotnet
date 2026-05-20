@@ -64,7 +64,7 @@ namespace Zernio.Test.Api
             //bool? dryRun = null;
             //FileParameter? file = null;
             //var response = instance.BulkUploadPosts(dryRun, file);
-            //Assert.IsType<BulkUploadPosts200Response>(response);
+            //Assert.IsType<BulkUploadResult>(response);
         }
 
         /// <summary>

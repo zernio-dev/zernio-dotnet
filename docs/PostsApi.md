@@ -17,7 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="bulkuploadposts"></a>
 # **BulkUploadPosts**
-> BulkUploadPosts200Response BulkUploadPosts (bool? dryRun = null, FileParameter? file = null)
+> BulkUploadResult BulkUploadPosts (bool? dryRun = null, FileParameter? file = null)
 
 Bulk upload from CSV
 
@@ -53,7 +53,7 @@ namespace Example
             try
             {
                 // Bulk upload from CSV
-                BulkUploadPosts200Response result = apiInstance.BulkUploadPosts(dryRun, file);
+                BulkUploadResult result = apiInstance.BulkUploadPosts(dryRun, file);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -74,7 +74,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Bulk upload from CSV
-    ApiResponse<BulkUploadPosts200Response> response = apiInstance.BulkUploadPostsWithHttpInfo(dryRun, file);
+    ApiResponse<BulkUploadResult> response = apiInstance.BulkUploadPostsWithHttpInfo(dryRun, file);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -96,7 +96,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**BulkUploadPosts200Response**](BulkUploadPosts200Response.md)
+[**BulkUploadResult**](BulkUploadResult.md)
 
 ### Authorization
 
@@ -111,8 +111,8 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Bulk upload results |  -  |
-| **207** | Partial success |  -  |
+| **200** | Bulk upload results. Returned when every row succeeded (or every row failed). A mix of successes and failures returns &#x60;207&#x60; instead, with the same body shape.  |  -  |
+| **207** | Partial success: some rows were created and some failed. Body is identical in shape to the &#x60;200&#x60; response. Inspect each entry in &#x60;results&#x60; (&#x60;ok&#x60; plus &#x60;errors&#x60;) to see which rows failed and why.  |  -  |
 | **400** | Invalid CSV or validation errors |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (one or more accounts for platforms specified in the CSV are temporarily rate-limited).  |  -  |

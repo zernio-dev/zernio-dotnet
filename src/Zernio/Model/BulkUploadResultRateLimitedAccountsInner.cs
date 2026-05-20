@@ -28,33 +28,49 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// BulkUploadPosts200ResponseErrorsInner
+    /// BulkUploadResultRateLimitedAccountsInner
     /// </summary>
-    [DataContract(Name = "bulkUploadPosts_200_response_errors_inner")]
-    public partial class BulkUploadPosts200ResponseErrorsInner : IValidatableObject
+    [DataContract(Name = "BulkUploadResult_rateLimitedAccounts_inner")]
+    public partial class BulkUploadResultRateLimitedAccountsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BulkUploadPosts200ResponseErrorsInner" /> class.
+        /// Initializes a new instance of the <see cref="BulkUploadResultRateLimitedAccountsInner" /> class.
         /// </summary>
-        /// <param name="row">row.</param>
-        /// <param name="error">error.</param>
-        public BulkUploadPosts200ResponseErrorsInner(int row = default, string error = default)
+        /// <param name="accountId">accountId.</param>
+        /// <param name="platform">platform.</param>
+        /// <param name="username">username.</param>
+        /// <param name="rateLimitedUntil">rateLimitedUntil.</param>
+        public BulkUploadResultRateLimitedAccountsInner(string accountId = default, string platform = default, string username = default, DateTime rateLimitedUntil = default)
         {
-            this.Row = row;
-            this.Error = error;
+            this.AccountId = accountId;
+            this.Platform = platform;
+            this.Username = username;
+            this.RateLimitedUntil = rateLimitedUntil;
         }
 
         /// <summary>
-        /// Gets or Sets Row
+        /// Gets or Sets AccountId
         /// </summary>
-        [DataMember(Name = "row", EmitDefaultValue = false)]
-        public int Row { get; set; }
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Error
+        /// Gets or Sets Platform
         /// </summary>
-        [DataMember(Name = "error", EmitDefaultValue = false)]
-        public string Error { get; set; }
+        [DataMember(Name = "platform", EmitDefaultValue = false)]
+        public string Platform { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Username
+        /// </summary>
+        [DataMember(Name = "username", EmitDefaultValue = false)]
+        public string Username { get; set; }
+
+        /// <summary>
+        /// Gets or Sets RateLimitedUntil
+        /// </summary>
+        [DataMember(Name = "rateLimitedUntil", EmitDefaultValue = false)]
+        public DateTime RateLimitedUntil { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +79,11 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BulkUploadPosts200ResponseErrorsInner {\n");
-            sb.Append("  Row: ").Append(Row).Append("\n");
-            sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("class BulkUploadResultRateLimitedAccountsInner {\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  Platform: ").Append(Platform).Append("\n");
+            sb.Append("  Username: ").Append(Username).Append("\n");
+            sb.Append("  RateLimitedUntil: ").Append(RateLimitedUntil).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
