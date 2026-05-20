@@ -118,7 +118,7 @@ namespace Zernio.Api
         /// List custom audiences
         /// </summary>
         /// <remarks>
-        /// Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, and Pinterest.
+        /// Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID</param>
@@ -131,7 +131,7 @@ namespace Zernio.Api
         /// List custom audiences
         /// </summary>
         /// <remarks>
-        /// Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, and Pinterest.
+        /// Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID</param>
@@ -246,7 +246,7 @@ namespace Zernio.Api
         /// List custom audiences
         /// </summary>
         /// <remarks>
-        /// Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, and Pinterest.
+        /// Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID</param>
@@ -260,7 +260,7 @@ namespace Zernio.Api
         /// List custom audiences
         /// </summary>
         /// <remarks>
-        /// Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, and Pinterest.
+        /// Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID</param>
@@ -1009,7 +1009,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List custom audiences Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, and Pinterest.
+        /// List custom audiences Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID</param>
@@ -1023,7 +1023,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List custom audiences Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, and Pinterest.
+        /// List custom audiences Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID</param>
@@ -1083,7 +1083,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List custom audiences Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, and Pinterest.
+        /// List custom audiences Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID</param>
@@ -1098,7 +1098,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List custom audiences Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, and Pinterest.
+        /// List custom audiences Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Social account ID</param>
