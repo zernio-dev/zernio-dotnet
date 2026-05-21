@@ -449,6 +449,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> OnPostScheduledWithHttpInfo(WebhookPayloadPost webhookPayloadPost);
         /// <summary>
+        /// Reaction received event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReaction"></param>
+        /// <returns></returns>
+        void OnReactionReceived(WebhookPayloadReaction webhookPayloadReaction);
+
+        /// <summary>
+        /// Reaction received event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReaction"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnReactionReceivedWithHttpInfo(WebhookPayloadReaction webhookPayloadReaction);
+        /// <summary>
         /// Review new event
         /// </summary>
         /// <remarks>
@@ -1001,6 +1022,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> OnPostScheduledWithHttpInfoAsync(WebhookPayloadPost webhookPayloadPost, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Reaction received event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReaction"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnReactionReceivedAsync(WebhookPayloadReaction webhookPayloadReaction, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Reaction received event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReaction"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnReactionReceivedWithHttpInfoAsync(WebhookPayloadReaction webhookPayloadReaction, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Review new event
         /// </summary>
@@ -3800,6 +3844,131 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("OnPostScheduled", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reaction received event Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReaction"></param>
+        /// <returns></returns>
+        public void OnReactionReceived(WebhookPayloadReaction webhookPayloadReaction)
+        {
+            OnReactionReceivedWithHttpInfo(webhookPayloadReaction);
+        }
+
+        /// <summary>
+        /// Reaction received event Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReaction"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnReactionReceivedWithHttpInfo(WebhookPayloadReaction webhookPayloadReaction)
+        {
+            // verify the required parameter 'webhookPayloadReaction' is set
+            if (webhookPayloadReaction == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadReaction' when calling WebhookEventsApi->OnReactionReceived");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadReaction;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/reaction.received", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnReactionReceived", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reaction received event Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReaction"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnReactionReceivedAsync(WebhookPayloadReaction webhookPayloadReaction, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnReactionReceivedWithHttpInfoAsync(webhookPayloadReaction, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Reaction received event Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadReaction"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnReactionReceivedWithHttpInfoAsync(WebhookPayloadReaction webhookPayloadReaction, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'webhookPayloadReaction' is set
+            if (webhookPayloadReaction == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadReaction' when calling WebhookEventsApi->OnReactionReceived");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadReaction;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/reaction.received", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnReactionReceived", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

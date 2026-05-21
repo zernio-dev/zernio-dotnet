@@ -28,41 +28,41 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// WebhookPayloadMessageAccount
+    /// WebhookPayloadReactionAccount
     /// </summary>
-    [DataContract(Name = "WebhookPayloadMessage_account")]
-    public partial class WebhookPayloadMessageAccount : IValidatableObject
+    [DataContract(Name = "WebhookPayloadReaction_account")]
+    public partial class WebhookPayloadReactionAccount : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookPayloadMessageAccount" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadReactionAccount" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected WebhookPayloadMessageAccount() { }
+        protected WebhookPayloadReactionAccount() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookPayloadMessageAccount" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadReactionAccount" /> class.
         /// </summary>
         /// <param name="id">Social account ID (required).</param>
         /// <param name="platform">platform (required).</param>
         /// <param name="username">username (required).</param>
         /// <param name="displayName">displayName.</param>
-        public WebhookPayloadMessageAccount(string id = default, string platform = default, string username = default, string displayName = default)
+        public WebhookPayloadReactionAccount(string id = default, string platform = default, string username = default, string displayName = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
             {
-                throw new ArgumentNullException("id is a required property for WebhookPayloadMessageAccount and cannot be null");
+                throw new ArgumentNullException("id is a required property for WebhookPayloadReactionAccount and cannot be null");
             }
             this.Id = id;
             // to ensure "platform" is required (not null)
             if (platform == null)
             {
-                throw new ArgumentNullException("platform is a required property for WebhookPayloadMessageAccount and cannot be null");
+                throw new ArgumentNullException("platform is a required property for WebhookPayloadReactionAccount and cannot be null");
             }
             this.Platform = platform;
             // to ensure "username" is required (not null)
             if (username == null)
             {
-                throw new ArgumentNullException("username is a required property for WebhookPayloadMessageAccount and cannot be null");
+                throw new ArgumentNullException("username is a required property for WebhookPayloadReactionAccount and cannot be null");
             }
             this.Username = username;
             this.DisplayName = displayName;
@@ -100,7 +100,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class WebhookPayloadMessageAccount {\n");
+            sb.Append("class WebhookPayloadReactionAccount {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");

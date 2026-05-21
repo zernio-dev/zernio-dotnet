@@ -1,4 +1,4 @@
-# Zernio.Model.WebhookPayloadMessageConversation
+# Zernio.Model.WebhookPayloadReactionConversation
 
 ## Properties
 

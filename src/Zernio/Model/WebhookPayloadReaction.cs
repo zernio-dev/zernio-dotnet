@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Webhook payload for message received events
+    /// Webhook payload for reaction received events (WhatsApp, Telegram)
     /// </summary>
-    [DataContract(Name = "WebhookPayloadMessage")]
-    public partial class WebhookPayloadMessage : IValidatableObject
+    [DataContract(Name = "WebhookPayloadReaction")]
+    public partial class WebhookPayloadReaction : IValidatableObject
     {
         /// <summary>
         /// Defines Event
@@ -40,10 +40,10 @@ namespace Zernio.Model
         public enum EventEnum
         {
             /// <summary>
-            /// Enum MessageReceived for value: message.received
+            /// Enum ReactionReceived for value: reaction.received
             /// </summary>
-            [EnumMember(Value = "message.received")]
-            MessageReceived = 1
+            [EnumMember(Value = "reaction.received")]
+            ReactionReceived = 1
         }
 
 
@@ -53,49 +53,47 @@ namespace Zernio.Model
         [DataMember(Name = "event", IsRequired = true, EmitDefaultValue = true)]
         public EventEnum Event { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookPayloadMessage" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadReaction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected WebhookPayloadMessage() { }
+        protected WebhookPayloadReaction() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookPayloadMessage" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadReaction" /> class.
         /// </summary>
         /// <param name="id">Stable webhook event ID (required).</param>
         /// <param name="varEvent">varEvent (required).</param>
-        /// <param name="message">message (required).</param>
+        /// <param name="reaction">reaction (required).</param>
         /// <param name="conversation">conversation (required).</param>
         /// <param name="account">account (required).</param>
-        /// <param name="metadata">metadata.</param>
         /// <param name="timestamp">timestamp (required).</param>
-        public WebhookPayloadMessage(string id = default, EventEnum varEvent = default, WebhookPayloadMessageMessage message = default, WebhookPayloadReactionConversation conversation = default, WebhookPayloadReactionAccount account = default, WebhookPayloadMessageMetadata metadata = default, DateTime timestamp = default)
+        public WebhookPayloadReaction(string id = default, EventEnum varEvent = default, WebhookPayloadReactionReaction reaction = default, WebhookPayloadReactionConversation conversation = default, WebhookPayloadReactionAccount account = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
             {
-                throw new ArgumentNullException("id is a required property for WebhookPayloadMessage and cannot be null");
+                throw new ArgumentNullException("id is a required property for WebhookPayloadReaction and cannot be null");
             }
             this.Id = id;
             this.Event = varEvent;
-            // to ensure "message" is required (not null)
-            if (message == null)
+            // to ensure "reaction" is required (not null)
+            if (reaction == null)
             {
-                throw new ArgumentNullException("message is a required property for WebhookPayloadMessage and cannot be null");
+                throw new ArgumentNullException("reaction is a required property for WebhookPayloadReaction and cannot be null");
             }
-            this.Message = message;
+            this.Reaction = reaction;
             // to ensure "conversation" is required (not null)
             if (conversation == null)
             {
-                throw new ArgumentNullException("conversation is a required property for WebhookPayloadMessage and cannot be null");
+                throw new ArgumentNullException("conversation is a required property for WebhookPayloadReaction and cannot be null");
             }
             this.Conversation = conversation;
             // to ensure "account" is required (not null)
             if (account == null)
             {
-                throw new ArgumentNullException("account is a required property for WebhookPayloadMessage and cannot be null");
+                throw new ArgumentNullException("account is a required property for WebhookPayloadReaction and cannot be null");
             }
             this.Account = account;
             this.Timestamp = timestamp;
-            this.Metadata = metadata;
         }
 
         /// <summary>
@@ -106,10 +104,10 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Message
+        /// Gets or Sets Reaction
         /// </summary>
-        [DataMember(Name = "message", IsRequired = true, EmitDefaultValue = true)]
-        public WebhookPayloadMessageMessage Message { get; set; }
+        [DataMember(Name = "reaction", IsRequired = true, EmitDefaultValue = true)]
+        public WebhookPayloadReactionReaction Reaction { get; set; }
 
         /// <summary>
         /// Gets or Sets Conversation
@@ -124,12 +122,6 @@ namespace Zernio.Model
         public WebhookPayloadReactionAccount Account { get; set; }
 
         /// <summary>
-        /// Gets or Sets Metadata
-        /// </summary>
-        [DataMember(Name = "metadata", EmitDefaultValue = false)]
-        public WebhookPayloadMessageMetadata Metadata { get; set; }
-
-        /// <summary>
         /// Gets or Sets Timestamp
         /// </summary>
         [DataMember(Name = "timestamp", IsRequired = true, EmitDefaultValue = true)]
@@ -142,13 +134,12 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class WebhookPayloadMessage {\n");
+            sb.Append("class WebhookPayloadReaction {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Event: ").Append(Event).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  Reaction: ").Append(Reaction).Append("\n");
             sb.Append("  Conversation: ").Append(Conversation).Append("\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

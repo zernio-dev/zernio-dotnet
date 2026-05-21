@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// WebhookPayloadMessageConversation
+    /// WebhookPayloadReactionConversation
     /// </summary>
-    [DataContract(Name = "WebhookPayloadMessage_conversation")]
-    public partial class WebhookPayloadMessageConversation : IValidatableObject
+    [DataContract(Name = "WebhookPayloadReaction_conversation")]
+    public partial class WebhookPayloadReactionConversation : IValidatableObject
     {
         /// <summary>
         /// Defines Status
@@ -59,12 +59,12 @@ namespace Zernio.Model
         [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
         public StatusEnum Status { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookPayloadMessageConversation" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadReactionConversation" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected WebhookPayloadMessageConversation() { }
+        protected WebhookPayloadReactionConversation() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookPayloadMessageConversation" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadReactionConversation" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
         /// <param name="platformConversationId">platformConversationId (required).</param>
@@ -73,18 +73,18 @@ namespace Zernio.Model
         /// <param name="participantUsername">participantUsername.</param>
         /// <param name="participantPicture">participantPicture.</param>
         /// <param name="status">status (required).</param>
-        public WebhookPayloadMessageConversation(string id = default, string platformConversationId = default, string participantId = default, string participantName = default, string participantUsername = default, string participantPicture = default, StatusEnum status = default)
+        public WebhookPayloadReactionConversation(string id = default, string platformConversationId = default, string participantId = default, string participantName = default, string participantUsername = default, string participantPicture = default, StatusEnum status = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
             {
-                throw new ArgumentNullException("id is a required property for WebhookPayloadMessageConversation and cannot be null");
+                throw new ArgumentNullException("id is a required property for WebhookPayloadReactionConversation and cannot be null");
             }
             this.Id = id;
             // to ensure "platformConversationId" is required (not null)
             if (platformConversationId == null)
             {
-                throw new ArgumentNullException("platformConversationId is a required property for WebhookPayloadMessageConversation and cannot be null");
+                throw new ArgumentNullException("platformConversationId is a required property for WebhookPayloadReactionConversation and cannot be null");
             }
             this.PlatformConversationId = platformConversationId;
             this.Status = status;
@@ -137,7 +137,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class WebhookPayloadMessageConversation {\n");
+            sb.Append("class WebhookPayloadReactionConversation {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PlatformConversationId: ").Append(PlatformConversationId).Append("\n");
             sb.Append("  ParticipantId: ").Append(ParticipantId).Append("\n");

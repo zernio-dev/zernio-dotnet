@@ -148,34 +148,40 @@ namespace Zernio.Model
             MessageFailed = 18,
 
             /// <summary>
+            /// Enum ReactionReceived for value: reaction.received
+            /// </summary>
+            [EnumMember(Value = "reaction.received")]
+            ReactionReceived = 19,
+
+            /// <summary>
             /// Enum CommentReceived for value: comment.received
             /// </summary>
             [EnumMember(Value = "comment.received")]
-            CommentReceived = 19,
+            CommentReceived = 20,
 
             /// <summary>
             /// Enum ReviewNew for value: review.new
             /// </summary>
             [EnumMember(Value = "review.new")]
-            ReviewNew = 20,
+            ReviewNew = 21,
 
             /// <summary>
             /// Enum ReviewUpdated for value: review.updated
             /// </summary>
             [EnumMember(Value = "review.updated")]
-            ReviewUpdated = 21,
+            ReviewUpdated = 22,
 
             /// <summary>
             /// Enum AdStatusChanged for value: ad.status_changed
             /// </summary>
             [EnumMember(Value = "ad.status_changed")]
-            AdStatusChanged = 22,
+            AdStatusChanged = 23,
 
             /// <summary>
             /// Enum WhatsappTemplateStatusUpdated for value: whatsapp.template.status_updated
             /// </summary>
             [EnumMember(Value = "whatsapp.template.status_updated")]
-            WhatsappTemplateStatusUpdated = 23
+            WhatsappTemplateStatusUpdated = 24
         }
 
         /// <summary>

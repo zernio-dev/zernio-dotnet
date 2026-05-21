@@ -1,5 +1,5 @@
-# Zernio.Model.WebhookPayloadMessage
-Webhook payload for message received events
+# Zernio.Model.WebhookPayloadReaction
+Webhook payload for reaction received events (WhatsApp, Telegram)
 
 ## Properties
 
@@ -7,10 +7,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Stable webhook event ID | 
 **Event** | **string** |  | 
-**Message** | [**WebhookPayloadMessageMessage**](WebhookPayloadMessageMessage.md) |  | 
+**Reaction** | [**WebhookPayloadReactionReaction**](WebhookPayloadReactionReaction.md) |  | 
 **Conversation** | [**WebhookPayloadReactionConversation**](WebhookPayloadReactionConversation.md) |  | 
 **Account** | [**WebhookPayloadReactionAccount**](WebhookPayloadReactionAccount.md) |  | 
-**Metadata** | [**WebhookPayloadMessageMetadata**](WebhookPayloadMessageMetadata.md) |  | [optional] 
 **Timestamp** | **DateTime** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

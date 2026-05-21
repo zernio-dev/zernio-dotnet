@@ -275,6 +275,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnReactionReceived
+        /// </summary>
+        [Fact]
+        public void OnReactionReceivedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadReaction webhookPayloadReaction = null;
+            //instance.OnReactionReceived(webhookPayloadReaction);
+        }
+
+        /// <summary>
         /// Test OnReviewNew
         /// </summary>
         [Fact]

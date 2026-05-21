@@ -24,6 +24,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnPostPublished**](WebhookEventsApi.md#onpostpublished) | **POST** /post.published | Post published event |
 | [**OnPostRecycled**](WebhookEventsApi.md#onpostrecycled) | **POST** /post.recycled | Post recycled event |
 | [**OnPostScheduled**](WebhookEventsApi.md#onpostscheduled) | **POST** /post.scheduled | Post scheduled event |
+| [**OnReactionReceived**](WebhookEventsApi.md#onreactionreceived) | **POST** /reaction.received | Reaction received event |
 | [**OnReviewNew**](WebhookEventsApi.md#onreviewnew) | **POST** /review.new | Review new event |
 | [**OnReviewUpdated**](WebhookEventsApi.md#onreviewupdated) | **POST** /review.updated | Review updated event |
 | [**OnWebhookTest**](WebhookEventsApi.md#onwebhooktest) | **POST** /webhook.test | Webhook test event |
@@ -1887,6 +1888,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadPost** | [**WebhookPayloadPost**](WebhookPayloadPost.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onreactionreceived"></a>
+# **OnReactionReceived**
+> void OnReactionReceived (WebhookPayloadReaction webhookPayloadReaction)
+
+Reaction received event
+
+Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The `reaction.action` field is `added` or `removed`. On WhatsApp removals the platform does not report which emoji was removed, so `reaction.emoji` may be an empty string. Requires the Inbox add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnReactionReceivedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadReaction = new WebhookPayloadReaction(); // WebhookPayloadReaction | 
+
+            try
+            {
+                // Reaction received event
+                apiInstance.OnReactionReceived(webhookPayloadReaction);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnReactionReceived: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnReactionReceivedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Reaction received event
+    apiInstance.OnReactionReceivedWithHttpInfo(webhookPayloadReaction);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnReactionReceivedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadReaction** | [**WebhookPayloadReaction**](WebhookPayloadReaction.md) |  |  |
 
 ### Return type
 

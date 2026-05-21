@@ -1,4 +1,4 @@
-# Zernio.Model.WebhookPayloadMessageAccount
+# Zernio.Model.WebhookPayloadReactionAccount
 
 ## Properties
 
