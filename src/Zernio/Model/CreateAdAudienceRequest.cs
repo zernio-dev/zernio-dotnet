@@ -73,7 +73,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateAdAudienceRequest" /> class.
         /// </summary>
         /// <param name="accountId">accountId (required).</param>
-        /// <param name="adAccountId">Must start with act_ (required).</param>
+        /// <param name="adAccountId">Platform ad account ID. Must start with act_ for Meta; bare platform id for others (Google customer id, X/TikTok/LinkedIn/Pinterest account id). (required).</param>
         /// <param name="name">name (required).</param>
         /// <param name="description">description.</param>
         /// <param name="type">type (required).</param>
@@ -122,9 +122,9 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Must start with act_
+        /// Platform ad account ID. Must start with act_ for Meta; bare platform id for others (Google customer id, X/TikTok/LinkedIn/Pinterest account id).
         /// </summary>
-        /// <value>Must start with act_</value>
+        /// <value>Platform ad account ID. Must start with act_ for Meta; bare platform id for others (Google customer id, X/TikTok/LinkedIn/Pinterest account id).</value>
         [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
         public string AdAccountId { get; set; }
 

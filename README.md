@@ -315,6 +315,10 @@ Class | Method | HTTP request | Description
 *GMBReviewsApi* | [**ReplyToGoogleBusinessReview**](docs/GMBReviewsApi.md#replytogooglebusinessreview) | **POST** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Reply to a review
 *GMBServicesApi* | [**GetGoogleBusinessServices**](docs/GMBServicesApi.md#getgooglebusinessservices) | **GET** /v1/accounts/{accountId}/gmb-services | Get services
 *GMBServicesApi* | [**UpdateGoogleBusinessServices**](docs/GMBServicesApi.md#updategooglebusinessservices) | **PUT** /v1/accounts/{accountId}/gmb-services | Replace services
+*GMBVerificationsApi* | [**CompleteGoogleBusinessVerification**](docs/GMBVerificationsApi.md#completegooglebusinessverification) | **POST** /v1/accounts/{accountId}/gmb-verifications/{verificationId}/complete | Complete a verification
+*GMBVerificationsApi* | [**FetchGoogleBusinessVerificationOptions**](docs/GMBVerificationsApi.md#fetchgooglebusinessverificationoptions) | **POST** /v1/accounts/{accountId}/gmb-verifications/options | Fetch verification options
+*GMBVerificationsApi* | [**GetGoogleBusinessVerifications**](docs/GMBVerificationsApi.md#getgooglebusinessverifications) | **GET** /v1/accounts/{accountId}/gmb-verifications | Get verification state
+*GMBVerificationsApi* | [**StartGoogleBusinessVerification**](docs/GMBVerificationsApi.md#startgooglebusinessverification) | **POST** /v1/accounts/{accountId}/gmb-verifications | Start a verification
 *InstagramApi* | [**GetInstagramStoryInsights**](docs/InstagramApi.md#getinstagramstoryinsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**ListInstagramStories**](docs/InstagramApi.md#listinstagramstories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
 *InvitesApi* | [**CreateInviteToken**](docs/InvitesApi.md#createinvitetoken) | **POST** /v1/invite/tokens | Create invite token
@@ -509,6 +513,7 @@ Class | Method | HTTP request | Description
  - [Model.BusinessCenter](docs/BusinessCenter.md)
  - [Model.CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
  - [Model.CancelBroadcast200ResponseBroadcast](docs/CancelBroadcast200ResponseBroadcast.md)
+ - [Model.CompleteGoogleBusinessVerificationRequest](docs/CompleteGoogleBusinessVerificationRequest.md)
  - [Model.CompleteTelegramConnect200Response](docs/CompleteTelegramConnect200Response.md)
  - [Model.CompleteWhatsAppPhoneSelection200Response](docs/CompleteWhatsAppPhoneSelection200Response.md)
  - [Model.CompleteWhatsAppPhoneSelection200ResponseAccount](docs/CompleteWhatsAppPhoneSelection200ResponseAccount.md)
@@ -657,6 +662,9 @@ Class | Method | HTTP request | Description
  - [Model.Expired](docs/Expired.md)
  - [Model.FacebookPlatformData](docs/FacebookPlatformData.md)
  - [Model.FacebookPlatformDataCarouselCardsInner](docs/FacebookPlatformDataCarouselCardsInner.md)
+ - [Model.FetchGoogleBusinessVerificationOptions200Response](docs/FetchGoogleBusinessVerificationOptions200Response.md)
+ - [Model.FetchGoogleBusinessVerificationOptions200ResponseOptionsInner](docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md)
+ - [Model.FetchGoogleBusinessVerificationOptionsRequest](docs/FetchGoogleBusinessVerificationOptionsRequest.md)
  - [Model.FollowUser200Response](docs/FollowUser200Response.md)
  - [Model.FollowUserRequest](docs/FollowUserRequest.md)
  - [Model.FollowerStatsResponse](docs/FollowerStatsResponse.md)
@@ -765,6 +773,10 @@ Class | Method | HTTP request | Description
  - [Model.GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem](docs/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem.md)
  - [Model.GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItemLabel](docs/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItemLabel.md)
  - [Model.GetGoogleBusinessServices200ResponseServicesInnerPrice](docs/GetGoogleBusinessServices200ResponseServicesInnerPrice.md)
+ - [Model.GetGoogleBusinessVerifications200Response](docs/GetGoogleBusinessVerifications200Response.md)
+ - [Model.GetGoogleBusinessVerifications200ResponseVerificationsInner](docs/GetGoogleBusinessVerifications200ResponseVerificationsInner.md)
+ - [Model.GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState](docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.md)
+ - [Model.GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify](docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.md)
  - [Model.GetInboxConversation200Response](docs/GetInboxConversation200Response.md)
  - [Model.GetInboxConversation200ResponseData](docs/GetInboxConversation200ResponseData.md)
  - [Model.GetInboxConversationMessages200Response](docs/GetInboxConversationMessages200Response.md)
@@ -1138,6 +1150,9 @@ Class | Method | HTTP request | Description
  - [Model.SnapchatPlatformData](docs/SnapchatPlatformData.md)
  - [Model.SocialAccount](docs/SocialAccount.md)
  - [Model.SocialAccountProfileId](docs/SocialAccountProfileId.md)
+ - [Model.StartGoogleBusinessVerification200Response](docs/StartGoogleBusinessVerification200Response.md)
+ - [Model.StartGoogleBusinessVerification200ResponseVerification](docs/StartGoogleBusinessVerification200ResponseVerification.md)
+ - [Model.StartGoogleBusinessVerificationRequest](docs/StartGoogleBusinessVerificationRequest.md)
  - [Model.TelegramPlatformData](docs/TelegramPlatformData.md)
  - [Model.TestWebhookRequest](docs/TestWebhookRequest.md)
  - [Model.ThreadsPlatformData](docs/ThreadsPlatformData.md)

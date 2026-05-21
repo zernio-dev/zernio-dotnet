@@ -85,6 +85,7 @@ docs/CancelBroadcast200Response.md
 docs/CancelBroadcast200ResponseBroadcast.md
 docs/CommentAutomationsApi.md
 docs/CommentsApi.md
+docs/CompleteGoogleBusinessVerificationRequest.md
 docs/CompleteTelegramConnect200Response.md
 docs/CompleteWhatsAppPhoneSelection200Response.md
 docs/CompleteWhatsAppPhoneSelection200ResponseAccount.md
@@ -237,6 +238,9 @@ docs/ErrorResponse.md
 docs/Expired.md
 docs/FacebookPlatformData.md
 docs/FacebookPlatformDataCarouselCardsInner.md
+docs/FetchGoogleBusinessVerificationOptions200Response.md
+docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md
+docs/FetchGoogleBusinessVerificationOptionsRequest.md
 docs/FollowUser200Response.md
 docs/FollowUserRequest.md
 docs/FollowerStatsResponse.md
@@ -253,6 +257,7 @@ docs/GMBMediaApi.md
 docs/GMBPlaceActionsApi.md
 docs/GMBReviewsApi.md
 docs/GMBServicesApi.md
+docs/GMBVerificationsApi.md
 docs/GeoRestriction.md
 docs/GetAccountHealth200Response.md
 docs/GetAccountHealth200ResponsePermissions.md
@@ -352,6 +357,10 @@ docs/GetGoogleBusinessServices200ResponseServicesInner.md
 docs/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem.md
 docs/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItemLabel.md
 docs/GetGoogleBusinessServices200ResponseServicesInnerPrice.md
+docs/GetGoogleBusinessVerifications200Response.md
+docs/GetGoogleBusinessVerifications200ResponseVerificationsInner.md
+docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.md
+docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.md
 docs/GetInboxConversation200Response.md
 docs/GetInboxConversation200ResponseData.md
 docs/GetInboxConversationMessages200Response.md
@@ -737,6 +746,9 @@ docs/SharedAdAccount.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
 docs/SocialAccountProfileId.md
+docs/StartGoogleBusinessVerification200Response.md
+docs/StartGoogleBusinessVerification200ResponseVerification.md
+docs/StartGoogleBusinessVerificationRequest.md
 docs/TelegramPlatformData.md
 docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
@@ -995,6 +1007,7 @@ src/Zernio.Test/Api/GMBMediaApiTests.cs
 src/Zernio.Test/Api/GMBPlaceActionsApiTests.cs
 src/Zernio.Test/Api/GMBReviewsApiTests.cs
 src/Zernio.Test/Api/GMBServicesApiTests.cs
+src/Zernio.Test/Api/GMBVerificationsApiTests.cs
 src/Zernio.Test/Api/InstagramApiTests.cs
 src/Zernio.Test/Api/InvitesApiTests.cs
 src/Zernio.Test/Api/LinkedInMentionsApiTests.cs
@@ -1088,6 +1101,7 @@ src/Zernio.Test/Model/BulkUploadResultTests.cs
 src/Zernio.Test/Model/BusinessCenterTests.cs
 src/Zernio.Test/Model/CancelBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/CancelBroadcast200ResponseTests.cs
+src/Zernio.Test/Model/CompleteGoogleBusinessVerificationRequestTests.cs
 src/Zernio.Test/Model/CompleteTelegramConnect200ResponseTests.cs
 src/Zernio.Test/Model/CompleteWhatsAppPhoneSelection200ResponseAccountTests.cs
 src/Zernio.Test/Model/CompleteWhatsAppPhoneSelection200ResponseTests.cs
@@ -1236,6 +1250,9 @@ src/Zernio.Test/Model/ErrorResponseTests.cs
 src/Zernio.Test/Model/ExpiredTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataTests.cs
+src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInnerTests.cs
+src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptions200ResponseTests.cs
+src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptionsRequestTests.cs
 src/Zernio.Test/Model/FollowUser200ResponseTests.cs
 src/Zernio.Test/Model/FollowUserRequestTests.cs
 src/Zernio.Test/Model/FollowerStatsResponseTests.cs
@@ -1344,6 +1361,10 @@ src/Zernio.Test/Model/GetGoogleBusinessServices200ResponseServicesInnerFreeFormS
 src/Zernio.Test/Model/GetGoogleBusinessServices200ResponseServicesInnerPriceTests.cs
 src/Zernio.Test/Model/GetGoogleBusinessServices200ResponseServicesInnerTests.cs
 src/Zernio.Test/Model/GetGoogleBusinessServices200ResponseTests.cs
+src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseTests.cs
+src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseVerificationsInnerTests.cs
+src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateTests.cs
+src/Zernio.Test/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerifyTests.cs
 src/Zernio.Test/Model/GetInboxConversation200ResponseDataTests.cs
 src/Zernio.Test/Model/GetInboxConversation200ResponseTests.cs
 src/Zernio.Test/Model/GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInnerTests.cs
@@ -1717,6 +1738,9 @@ src/Zernio.Test/Model/SharedAdAccountTests.cs
 src/Zernio.Test/Model/SnapchatPlatformDataTests.cs
 src/Zernio.Test/Model/SocialAccountProfileIdTests.cs
 src/Zernio.Test/Model/SocialAccountTests.cs
+src/Zernio.Test/Model/StartGoogleBusinessVerification200ResponseTests.cs
+src/Zernio.Test/Model/StartGoogleBusinessVerification200ResponseVerificationTests.cs
+src/Zernio.Test/Model/StartGoogleBusinessVerificationRequestTests.cs
 src/Zernio.Test/Model/TelegramPlatformDataTests.cs
 src/Zernio.Test/Model/TestWebhookRequestTests.cs
 src/Zernio.Test/Model/ThreadsPlatformDataTests.cs
@@ -1965,6 +1989,7 @@ src/Zernio/Api/GMBMediaApi.cs
 src/Zernio/Api/GMBPlaceActionsApi.cs
 src/Zernio/Api/GMBReviewsApi.cs
 src/Zernio/Api/GMBServicesApi.cs
+src/Zernio/Api/GMBVerificationsApi.cs
 src/Zernio/Api/InstagramApi.cs
 src/Zernio/Api/InvitesApi.cs
 src/Zernio/Api/LinkedInMentionsApi.cs
@@ -2076,6 +2101,7 @@ src/Zernio/Model/BulkUploadResultResultsInner.cs
 src/Zernio/Model/BusinessCenter.cs
 src/Zernio/Model/CancelBroadcast200Response.cs
 src/Zernio/Model/CancelBroadcast200ResponseBroadcast.cs
+src/Zernio/Model/CompleteGoogleBusinessVerificationRequest.cs
 src/Zernio/Model/CompleteTelegramConnect200Response.cs
 src/Zernio/Model/CompleteWhatsAppPhoneSelection200Response.cs
 src/Zernio/Model/CompleteWhatsAppPhoneSelection200ResponseAccount.cs
@@ -2224,6 +2250,9 @@ src/Zernio/Model/ErrorResponse.cs
 src/Zernio/Model/Expired.cs
 src/Zernio/Model/FacebookPlatformData.cs
 src/Zernio/Model/FacebookPlatformDataCarouselCardsInner.cs
+src/Zernio/Model/FetchGoogleBusinessVerificationOptions200Response.cs
+src/Zernio/Model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.cs
+src/Zernio/Model/FetchGoogleBusinessVerificationOptionsRequest.cs
 src/Zernio/Model/FollowUser200Response.cs
 src/Zernio/Model/FollowUserRequest.cs
 src/Zernio/Model/FollowerStatsResponse.cs
@@ -2332,6 +2361,10 @@ src/Zernio/Model/GetGoogleBusinessServices200ResponseServicesInner.cs
 src/Zernio/Model/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem.cs
 src/Zernio/Model/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItemLabel.cs
 src/Zernio/Model/GetGoogleBusinessServices200ResponseServicesInnerPrice.cs
+src/Zernio/Model/GetGoogleBusinessVerifications200Response.cs
+src/Zernio/Model/GetGoogleBusinessVerifications200ResponseVerificationsInner.cs
+src/Zernio/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.cs
+src/Zernio/Model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.cs
 src/Zernio/Model/GetInboxConversation200Response.cs
 src/Zernio/Model/GetInboxConversation200ResponseData.cs
 src/Zernio/Model/GetInboxConversationMessages200Response.cs
@@ -2705,6 +2738,9 @@ src/Zernio/Model/SharedAdAccount.cs
 src/Zernio/Model/SnapchatPlatformData.cs
 src/Zernio/Model/SocialAccount.cs
 src/Zernio/Model/SocialAccountProfileId.cs
+src/Zernio/Model/StartGoogleBusinessVerification200Response.cs
+src/Zernio/Model/StartGoogleBusinessVerification200ResponseVerification.cs
+src/Zernio/Model/StartGoogleBusinessVerificationRequest.cs
 src/Zernio/Model/TelegramPlatformData.cs
 src/Zernio/Model/TestWebhookRequest.cs
 src/Zernio/Model/ThreadsPlatformData.cs
