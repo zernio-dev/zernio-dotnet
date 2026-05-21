@@ -39,11 +39,13 @@ namespace Zernio.Model
         /// <param name="name">name.</param>
         /// <param name="language">language.</param>
         /// <param name="components">components.</param>
-        public CreateBroadcastRequestTemplate(string name = default, string language = default, List<Object> components = default)
+        /// <param name="variableMapping">Maps template variable positions (\&quot;1\&quot;, \&quot;2\&quot;) to contact fields or static values. Resolved per recipient at send time..</param>
+        public CreateBroadcastRequestTemplate(string name = default, string language = default, List<Object> components = default, Dictionary<string, CreateBroadcastRequestTemplateVariableMappingValue> variableMapping = default)
         {
             this.Name = name;
             this.Language = language;
             this.Components = components;
+            this.VariableMapping = variableMapping;
         }
 
         /// <summary>
@@ -65,6 +67,13 @@ namespace Zernio.Model
         public List<Object> Components { get; set; }
 
         /// <summary>
+        /// Maps template variable positions (\&quot;1\&quot;, \&quot;2\&quot;) to contact fields or static values. Resolved per recipient at send time.
+        /// </summary>
+        /// <value>Maps template variable positions (\&quot;1\&quot;, \&quot;2\&quot;) to contact fields or static values. Resolved per recipient at send time.</value>
+        [DataMember(Name = "variableMapping", EmitDefaultValue = false)]
+        public Dictionary<string, CreateBroadcastRequestTemplateVariableMappingValue> VariableMapping { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -75,6 +84,7 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
             sb.Append("  Components: ").Append(Components).Append("\n");
+            sb.Append("  VariableMapping: ").Append(VariableMapping).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

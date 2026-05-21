@@ -81,5 +81,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Components'
         }
+
+        /// <summary>
+        /// Test the property 'VariableMapping'
+        /// </summary>
+        [Fact]
+        public void VariableMappingTest()
+        {
+            // TODO unit test for the property 'VariableMapping'
+        }
     }
 }

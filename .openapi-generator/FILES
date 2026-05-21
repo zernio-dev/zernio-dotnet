@@ -123,6 +123,7 @@ docs/CreateBroadcastRequestMessage.md
 docs/CreateBroadcastRequestMessageAttachmentsInner.md
 docs/CreateBroadcastRequestSegmentFilters.md
 docs/CreateBroadcastRequestTemplate.md
+docs/CreateBroadcastRequestTemplateVariableMappingValue.md
 docs/CreateCommentAutomation200Response.md
 docs/CreateCommentAutomation200ResponseAutomation.md
 docs/CreateCommentAutomation200ResponseAutomationStats.md
@@ -1136,6 +1137,7 @@ src/Zernio.Test/Model/CreateBroadcastRequestMessageAttachmentsInnerTests.cs
 src/Zernio.Test/Model/CreateBroadcastRequestMessageTests.cs
 src/Zernio.Test/Model/CreateBroadcastRequestSegmentFiltersTests.cs
 src/Zernio.Test/Model/CreateBroadcastRequestTemplateTests.cs
+src/Zernio.Test/Model/CreateBroadcastRequestTemplateVariableMappingValueTests.cs
 src/Zernio.Test/Model/CreateBroadcastRequestTests.cs
 src/Zernio.Test/Model/CreateCommentAutomation200ResponseAutomationStatsTests.cs
 src/Zernio.Test/Model/CreateCommentAutomation200ResponseAutomationTests.cs
@@ -2137,6 +2139,7 @@ src/Zernio/Model/CreateBroadcastRequestMessage.cs
 src/Zernio/Model/CreateBroadcastRequestMessageAttachmentsInner.cs
 src/Zernio/Model/CreateBroadcastRequestSegmentFilters.cs
 src/Zernio/Model/CreateBroadcastRequestTemplate.cs
+src/Zernio/Model/CreateBroadcastRequestTemplateVariableMappingValue.cs
 src/Zernio/Model/CreateCommentAutomation200Response.cs
 src/Zernio/Model/CreateCommentAutomation200ResponseAutomation.cs
 src/Zernio/Model/CreateCommentAutomation200ResponseAutomationStats.cs

@@ -549,6 +549,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateBroadcastRequestMessageAttachmentsInner](docs/CreateBroadcastRequestMessageAttachmentsInner.md)
  - [Model.CreateBroadcastRequestSegmentFilters](docs/CreateBroadcastRequestSegmentFilters.md)
  - [Model.CreateBroadcastRequestTemplate](docs/CreateBroadcastRequestTemplate.md)
+ - [Model.CreateBroadcastRequestTemplateVariableMappingValue](docs/CreateBroadcastRequestTemplateVariableMappingValue.md)
  - [Model.CreateCommentAutomation200Response](docs/CreateCommentAutomation200Response.md)
  - [Model.CreateCommentAutomation200ResponseAutomation](docs/CreateCommentAutomation200ResponseAutomation.md)
  - [Model.CreateCommentAutomation200ResponseAutomationStats](docs/CreateCommentAutomation200ResponseAutomationStats.md)
