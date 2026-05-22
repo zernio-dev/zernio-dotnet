@@ -24,170 +24,89 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = Zernio.Client.FileParameter;
 using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Zernio.Model
 {
     /// <summary>
     /// CreateAdAudienceRequest
     /// </summary>
+    [JsonConverter(typeof(CreateAdAudienceRequestJsonConverter))]
     [DataContract(Name = "createAdAudience_request")]
-    public partial class CreateAdAudienceRequest : IValidatableObject
+    public partial class CreateAdAudienceRequest : AbstractOpenAPISchema, IValidatableObject
     {
         /// <summary>
-        /// Defines Type
+        /// Initializes a new instance of the <see cref="CreateAdAudienceRequest" /> class
+        /// with the <see cref="UploadedOrDerivedAudience" /> class
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+        /// <param name="actualInstance">An instance of UploadedOrDerivedAudience.</param>
+        public CreateAdAudienceRequest(UploadedOrDerivedAudience actualInstance)
         {
-            /// <summary>
-            /// Enum CustomerList for value: customer_list
-            /// </summary>
-            [EnumMember(Value = "customer_list")]
-            CustomerList = 1,
-
-            /// <summary>
-            /// Enum Website for value: website
-            /// </summary>
-            [EnumMember(Value = "website")]
-            Website = 2,
-
-            /// <summary>
-            /// Enum Lookalike for value: lookalike
-            /// </summary>
-            [EnumMember(Value = "lookalike")]
-            Lookalike = 3
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Type
-        /// </summary>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public TypeEnum Type { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateAdAudienceRequest" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected CreateAdAudienceRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateAdAudienceRequest" /> class.
-        /// </summary>
-        /// <param name="accountId">accountId (required).</param>
-        /// <param name="adAccountId">Platform ad account ID. Must start with act_ for Meta; bare platform id for others (Google customer id, X/TikTok/LinkedIn/Pinterest account id). (required).</param>
-        /// <param name="name">name (required).</param>
-        /// <param name="description">description.</param>
-        /// <param name="type">type (required).</param>
-        /// <param name="pixelId">Required for website audiences.</param>
-        /// <param name="retentionDays">Required for website audiences.</param>
-        /// <param name="sourceAudienceId">Required for lookalike audiences.</param>
-        /// <param name="country">2-letter code, required for lookalike audiences.</param>
-        /// <param name="ratio">Required for lookalike audiences.</param>
-        /// <param name="rule">Pixel event rule for website audiences (optional).</param>
-        /// <param name="customerFileSource">Data source declaration for GDPR compliance (customer_list only).</param>
-        public CreateAdAudienceRequest(string accountId = default, string adAccountId = default, string name = default, string description = default, TypeEnum type = default, string pixelId = default, int retentionDays = default, string sourceAudienceId = default, string country = default, decimal ratio = default, Object rule = default, string customerFileSource = default)
-        {
-            // to ensure "accountId" is required (not null)
-            if (accountId == null)
-            {
-                throw new ArgumentNullException("accountId is a required property for CreateAdAudienceRequest and cannot be null");
-            }
-            this.AccountId = accountId;
-            // to ensure "adAccountId" is required (not null)
-            if (adAccountId == null)
-            {
-                throw new ArgumentNullException("adAccountId is a required property for CreateAdAudienceRequest and cannot be null");
-            }
-            this.AdAccountId = adAccountId;
-            // to ensure "name" is required (not null)
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is a required property for CreateAdAudienceRequest and cannot be null");
-            }
-            this.Name = name;
-            this.Type = type;
-            this.Description = description;
-            this.PixelId = pixelId;
-            this.RetentionDays = retentionDays;
-            this.SourceAudienceId = sourceAudienceId;
-            this.Country = country;
-            this.Ratio = ratio;
-            this.Rule = rule;
-            this.CustomerFileSource = customerFileSource;
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Gets or Sets AccountId
+        /// Initializes a new instance of the <see cref="CreateAdAudienceRequest" /> class
+        /// with the <see cref="SavedTargetingAudience" /> class
         /// </summary>
-        [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
-        public string AccountId { get; set; }
+        /// <param name="actualInstance">An instance of SavedTargetingAudience.</param>
+        public CreateAdAudienceRequest(SavedTargetingAudience actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
 
         /// <summary>
-        /// Platform ad account ID. Must start with act_ for Meta; bare platform id for others (Google customer id, X/TikTok/LinkedIn/Pinterest account id).
+        /// Gets or Sets ActualInstance
         /// </summary>
-        /// <value>Platform ad account ID. Must start with act_ for Meta; bare platform id for others (Google customer id, X/TikTok/LinkedIn/Pinterest account id).</value>
-        [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
-        public string AdAccountId { get; set; }
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(SavedTargetingAudience) || value is SavedTargetingAudience)
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(UploadedOrDerivedAudience) || value is UploadedOrDerivedAudience)
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: SavedTargetingAudience, UploadedOrDerivedAudience");
+                }
+            }
+        }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Get the actual instance of `UploadedOrDerivedAudience`. If the actual instance is not `UploadedOrDerivedAudience`,
+        /// the InvalidClassException will be thrown
         /// </summary>
-        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
-        public string Name { get; set; }
+        /// <returns>An instance of UploadedOrDerivedAudience</returns>
+        public UploadedOrDerivedAudience GetUploadedOrDerivedAudience()
+        {
+            return (UploadedOrDerivedAudience)this.ActualInstance;
+        }
 
         /// <summary>
-        /// Gets or Sets Description
+        /// Get the actual instance of `SavedTargetingAudience`. If the actual instance is not `SavedTargetingAudience`,
+        /// the InvalidClassException will be thrown
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Required for website audiences
-        /// </summary>
-        /// <value>Required for website audiences</value>
-        [DataMember(Name = "pixelId", EmitDefaultValue = false)]
-        public string PixelId { get; set; }
-
-        /// <summary>
-        /// Required for website audiences
-        /// </summary>
-        /// <value>Required for website audiences</value>
-        [DataMember(Name = "retentionDays", EmitDefaultValue = false)]
-        public int RetentionDays { get; set; }
-
-        /// <summary>
-        /// Required for lookalike audiences
-        /// </summary>
-        /// <value>Required for lookalike audiences</value>
-        [DataMember(Name = "sourceAudienceId", EmitDefaultValue = false)]
-        public string SourceAudienceId { get; set; }
-
-        /// <summary>
-        /// 2-letter code, required for lookalike audiences
-        /// </summary>
-        /// <value>2-letter code, required for lookalike audiences</value>
-        [DataMember(Name = "country", EmitDefaultValue = false)]
-        public string Country { get; set; }
-
-        /// <summary>
-        /// Required for lookalike audiences
-        /// </summary>
-        /// <value>Required for lookalike audiences</value>
-        [DataMember(Name = "ratio", EmitDefaultValue = false)]
-        public decimal Ratio { get; set; }
-
-        /// <summary>
-        /// Pixel event rule for website audiences (optional)
-        /// </summary>
-        /// <value>Pixel event rule for website audiences (optional)</value>
-        [DataMember(Name = "rule", EmitDefaultValue = false)]
-        public Object Rule { get; set; }
-
-        /// <summary>
-        /// Data source declaration for GDPR compliance (customer_list only)
-        /// </summary>
-        /// <value>Data source declaration for GDPR compliance (customer_list only)</value>
-        [DataMember(Name = "customerFileSource", EmitDefaultValue = false)]
-        public string CustomerFileSource { get; set; }
+        /// <returns>An instance of SavedTargetingAudience</returns>
+        public SavedTargetingAudience GetSavedTargetingAudience()
+        {
+            return (SavedTargetingAudience)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -195,20 +114,9 @@ namespace Zernio.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class CreateAdAudienceRequest {\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  PixelId: ").Append(PixelId).Append("\n");
-            sb.Append("  RetentionDays: ").Append(RetentionDays).Append("\n");
-            sb.Append("  SourceAudienceId: ").Append(SourceAudienceId).Append("\n");
-            sb.Append("  Country: ").Append(Country).Append("\n");
-            sb.Append("  Ratio: ").Append(Ratio).Append("\n");
-            sb.Append("  Rule: ").Append(Rule).Append("\n");
-            sb.Append("  CustomerFileSource: ").Append(CustomerFileSource).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -217,49 +125,137 @@ namespace Zernio.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, CreateAdAudienceRequest.SerializerSettings);
         }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of CreateAdAudienceRequest
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of CreateAdAudienceRequest</returns>
+        public static CreateAdAudienceRequest FromJson(string jsonString)
+        {
+            CreateAdAudienceRequest newCreateAdAudienceRequest = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newCreateAdAudienceRequest;
+            }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(SavedTargetingAudience).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreateAdAudienceRequest = new CreateAdAudienceRequest(JsonConvert.DeserializeObject<SavedTargetingAudience>(jsonString, CreateAdAudienceRequest.SerializerSettings));
+                }
+                else
+                {
+                    newCreateAdAudienceRequest = new CreateAdAudienceRequest(JsonConvert.DeserializeObject<SavedTargetingAudience>(jsonString, CreateAdAudienceRequest.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("SavedTargetingAudience");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SavedTargetingAudience: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(UploadedOrDerivedAudience).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreateAdAudienceRequest = new CreateAdAudienceRequest(JsonConvert.DeserializeObject<UploadedOrDerivedAudience>(jsonString, CreateAdAudienceRequest.SerializerSettings));
+                }
+                else
+                {
+                    newCreateAdAudienceRequest = new CreateAdAudienceRequest(JsonConvert.DeserializeObject<UploadedOrDerivedAudience>(jsonString, CreateAdAudienceRequest.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("UploadedOrDerivedAudience");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into UploadedOrDerivedAudience: {1}", jsonString, exception.ToString()));
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newCreateAdAudienceRequest;
+        }
+
 
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Name (string) maxLength
-            if (this.Name != null && this.Name.Length > 255)
-            {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
-            }
-
-            // RetentionDays (int) maximum
-            if (this.RetentionDays > (int)180)
-            {
-                yield return new ValidationResult("Invalid value for RetentionDays, must be a value less than or equal to 180.", new [] { "RetentionDays" });
-            }
-
-            // RetentionDays (int) minimum
-            if (this.RetentionDays < (int)1)
-            {
-                yield return new ValidationResult("Invalid value for RetentionDays, must be a value greater than or equal to 1.", new [] { "RetentionDays" });
-            }
-
-            // Ratio (decimal) maximum
-            if (this.Ratio > (decimal)0.2)
-            {
-                yield return new ValidationResult("Invalid value for Ratio, must be a value less than or equal to 0.2.", new [] { "Ratio" });
-            }
-
-            // Ratio (decimal) minimum
-            if (this.Ratio < (decimal)0.01)
-            {
-                yield return new ValidationResult("Invalid value for Ratio, must be a value greater than or equal to 0.01.", new [] { "Ratio" });
-            }
-
             yield break;
+        }
+    }
+
+    /// <summary>
+    /// Custom JSON converter for CreateAdAudienceRequest
+    /// </summary>
+    public class CreateAdAudienceRequestJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(CreateAdAudienceRequest).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            switch(reader.TokenType) 
+            {
+                case JsonToken.StartObject:
+                    return CreateAdAudienceRequest.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                case JsonToken.StartArray:
+                    return CreateAdAudienceRequest.FromJson(JArray.Load(reader).ToString(Formatting.None));
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
         }
     }
 

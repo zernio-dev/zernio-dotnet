@@ -113,7 +113,8 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //string adAccountId = null;
             //string? platform = null;
-            //var response = instance.ListAdAudiences(accountId, adAccountId, platform);
+            //string? type = null;
+            //var response = instance.ListAdAudiences(accountId, adAccountId, platform, type);
             //Assert.IsType<ListAdAudiences200Response>(response);
         }
     }

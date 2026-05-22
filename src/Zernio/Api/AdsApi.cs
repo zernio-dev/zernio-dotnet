@@ -186,6 +186,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteConversionDestinationWithHttpInfo(string accountId, string destinationId, string? adAccountId = default);
         /// <summary>
+        /// Estimate audience reach
+        /// </summary>
+        /// <remarks>
+        /// Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateAdReachRequest"></param>
+        /// <returns>EstimateAdReach200Response</returns>
+        EstimateAdReach200Response EstimateAdReach(EstimateAdReachRequest estimateAdReachRequest);
+
+        /// <summary>
+        /// Estimate audience reach
+        /// </summary>
+        /// <remarks>
+        /// Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateAdReachRequest"></param>
+        /// <returns>ApiResponse of EstimateAdReach200Response</returns>
+        ApiResponse<EstimateAdReach200Response> EstimateAdReachWithHttpInfo(EstimateAdReachRequest estimateAdReachRequest);
+        /// <summary>
         /// Get ad details
         /// </summary>
         /// <remarks>
@@ -483,57 +504,61 @@ namespace Zernio.Api
         /// <returns>ApiResponse of RemoveConversionAssociations200Response</returns>
         ApiResponse<RemoveConversionAssociations200Response> RemoveConversionAssociationsWithHttpInfo(string accountId, string destinationId, string adAccountId, string campaignIds);
         /// <summary>
-        /// Search targeting interests
+        /// Search targeting interests (deprecated)
         /// </summary>
         /// <remarks>
-        /// Search for interest-based targeting options available on the platform.
+        /// Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
         /// <param name="accountId">Social account ID</param>
         /// <returns>SearchAdInterests200Response</returns>
+        [Obsolete]
         SearchAdInterests200Response SearchAdInterests(string q, string accountId);
 
         /// <summary>
-        /// Search targeting interests
+        /// Search targeting interests (deprecated)
         /// </summary>
         /// <remarks>
-        /// Search for interest-based targeting options available on the platform.
+        /// Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
         /// <param name="accountId">Social account ID</param>
         /// <returns>ApiResponse of SearchAdInterests200Response</returns>
+        [Obsolete]
         ApiResponse<SearchAdInterests200Response> SearchAdInterestsWithHttpInfo(string q, string accountId);
         /// <summary>
-        /// Search geo targeting locations (Meta)
+        /// Search targeting options
         /// </summary>
         /// <remarks>
-        /// Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+        /// Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Social account ID (must be a connected Facebook or Instagram account).</param>
-        /// <param name="q">Location name. Locality only — no region/country suffix.</param>
-        /// <param name="type">Type of location to search. Defaults to city. (optional, default to city)</param>
-        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)</param>
+        /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
+        /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
+        /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
-        /// <returns>SearchAdTargetingLocations200Response</returns>
-        SearchAdTargetingLocations200Response SearchAdTargetingLocations(string accountId, string q, string? type = default, string? countryCode = default, int? limit = default);
+        /// <returns>SearchAdTargeting200Response</returns>
+        SearchAdTargeting200Response SearchAdTargeting(string accountId, string q, string? dimension = default, string? geoType = default, string? countryCode = default, int? limit = default);
 
         /// <summary>
-        /// Search geo targeting locations (Meta)
+        /// Search targeting options
         /// </summary>
         /// <remarks>
-        /// Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+        /// Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Social account ID (must be a connected Facebook or Instagram account).</param>
-        /// <param name="q">Location name. Locality only — no region/country suffix.</param>
-        /// <param name="type">Type of location to search. Defaults to city. (optional, default to city)</param>
-        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)</param>
+        /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
+        /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
+        /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
-        /// <returns>ApiResponse of SearchAdTargetingLocations200Response</returns>
-        ApiResponse<SearchAdTargetingLocations200Response> SearchAdTargetingLocationsWithHttpInfo(string accountId, string q, string? type = default, string? countryCode = default, int? limit = default);
+        /// <returns>ApiResponse of SearchAdTargeting200Response</returns>
+        ApiResponse<SearchAdTargeting200Response> SearchAdTargetingWithHttpInfo(string accountId, string q, string? dimension = default, string? geoType = default, string? countryCode = default, int? limit = default);
         /// <summary>
         /// Send conversion events to an ad platform
         /// </summary>
@@ -804,6 +829,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Estimate audience reach
+        /// </summary>
+        /// <remarks>
+        /// Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateAdReachRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of EstimateAdReach200Response</returns>
+        System.Threading.Tasks.Task<EstimateAdReach200Response> EstimateAdReachAsync(EstimateAdReachRequest estimateAdReachRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Estimate audience reach
+        /// </summary>
+        /// <remarks>
+        /// Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateAdReachRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (EstimateAdReach200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<EstimateAdReach200Response>> EstimateAdReachWithHttpInfoAsync(EstimateAdReachRequest estimateAdReachRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get ad details
         /// </summary>
@@ -1124,61 +1172,65 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (RemoveConversionAssociations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RemoveConversionAssociations200Response>> RemoveConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, string campaignIds, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Search targeting interests
+        /// Search targeting interests (deprecated)
         /// </summary>
         /// <remarks>
-        /// Search for interest-based targeting options available on the platform.
+        /// Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchAdInterests200Response</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<SearchAdInterests200Response> SearchAdInterestsAsync(string q, string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Search targeting interests
+        /// Search targeting interests (deprecated)
         /// </summary>
         /// <remarks>
-        /// Search for interest-based targeting options available on the platform.
+        /// Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchAdInterests200Response)</returns>
+        [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<SearchAdInterests200Response>> SearchAdInterestsWithHttpInfoAsync(string q, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Search geo targeting locations (Meta)
+        /// Search targeting options
         /// </summary>
         /// <remarks>
-        /// Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+        /// Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Social account ID (must be a connected Facebook or Instagram account).</param>
-        /// <param name="q">Location name. Locality only — no region/country suffix.</param>
-        /// <param name="type">Type of location to search. Defaults to city. (optional, default to city)</param>
-        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)</param>
+        /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
+        /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
+        /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of SearchAdTargetingLocations200Response</returns>
-        System.Threading.Tasks.Task<SearchAdTargetingLocations200Response> SearchAdTargetingLocationsAsync(string accountId, string q, string? type = default, string? countryCode = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of SearchAdTargeting200Response</returns>
+        System.Threading.Tasks.Task<SearchAdTargeting200Response> SearchAdTargetingAsync(string accountId, string q, string? dimension = default, string? geoType = default, string? countryCode = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Search geo targeting locations (Meta)
+        /// Search targeting options
         /// </summary>
         /// <remarks>
-        /// Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+        /// Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Social account ID (must be a connected Facebook or Instagram account).</param>
-        /// <param name="q">Location name. Locality only — no region/country suffix.</param>
-        /// <param name="type">Type of location to search. Defaults to city. (optional, default to city)</param>
-        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)</param>
+        /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
+        /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
+        /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (SearchAdTargetingLocations200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SearchAdTargetingLocations200Response>> SearchAdTargetingLocationsWithHttpInfoAsync(string accountId, string q, string? type = default, string? countryCode = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (SearchAdTargeting200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SearchAdTargeting200Response>> SearchAdTargetingWithHttpInfoAsync(string accountId, string q, string? dimension = default, string? geoType = default, string? countryCode = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Send conversion events to an ad platform
         /// </summary>
@@ -2449,6 +2501,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteConversionDestination", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Estimate audience reach Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateAdReachRequest"></param>
+        /// <returns>EstimateAdReach200Response</returns>
+        public EstimateAdReach200Response EstimateAdReach(EstimateAdReachRequest estimateAdReachRequest)
+        {
+            Zernio.Client.ApiResponse<EstimateAdReach200Response> localVarResponse = EstimateAdReachWithHttpInfo(estimateAdReachRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Estimate audience reach Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateAdReachRequest"></param>
+        /// <returns>ApiResponse of EstimateAdReach200Response</returns>
+        public Zernio.Client.ApiResponse<EstimateAdReach200Response> EstimateAdReachWithHttpInfo(EstimateAdReachRequest estimateAdReachRequest)
+        {
+            // verify the required parameter 'estimateAdReachRequest' is set
+            if (estimateAdReachRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'estimateAdReachRequest' when calling AdsApi->EstimateAdReach");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = estimateAdReachRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<EstimateAdReach200Response>("/v1/ads/targeting/reach-estimate", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EstimateAdReach", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Estimate audience reach Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateAdReachRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of EstimateAdReach200Response</returns>
+        public async System.Threading.Tasks.Task<EstimateAdReach200Response> EstimateAdReachAsync(EstimateAdReachRequest estimateAdReachRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<EstimateAdReach200Response> localVarResponse = await EstimateAdReachWithHttpInfoAsync(estimateAdReachRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Estimate audience reach Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="estimateAdReachRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (EstimateAdReach200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<EstimateAdReach200Response>> EstimateAdReachWithHttpInfoAsync(EstimateAdReachRequest estimateAdReachRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'estimateAdReachRequest' is set
+            if (estimateAdReachRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'estimateAdReachRequest' when calling AdsApi->EstimateAdReach");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = estimateAdReachRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<EstimateAdReach200Response>("/v1/ads/targeting/reach-estimate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EstimateAdReach", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -4267,12 +4448,13 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search targeting interests Search for interest-based targeting options available on the platform.
+        /// Search targeting interests (deprecated) Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
         /// <param name="accountId">Social account ID</param>
         /// <returns>SearchAdInterests200Response</returns>
+        [Obsolete]
         public SearchAdInterests200Response SearchAdInterests(string q, string accountId)
         {
             Zernio.Client.ApiResponse<SearchAdInterests200Response> localVarResponse = SearchAdInterestsWithHttpInfo(q, accountId);
@@ -4280,12 +4462,13 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search targeting interests Search for interest-based targeting options available on the platform.
+        /// Search targeting interests (deprecated) Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
         /// <param name="accountId">Social account ID</param>
         /// <returns>ApiResponse of SearchAdInterests200Response</returns>
+        [Obsolete]
         public Zernio.Client.ApiResponse<SearchAdInterests200Response> SearchAdInterestsWithHttpInfo(string q, string accountId)
         {
             // verify the required parameter 'q' is set
@@ -4335,13 +4518,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search targeting interests Search for interest-based targeting options available on the platform.
+        /// Search targeting interests (deprecated) Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SearchAdInterests200Response</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<SearchAdInterests200Response> SearchAdInterestsAsync(string q, string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
             Zernio.Client.ApiResponse<SearchAdInterests200Response> localVarResponse = await SearchAdInterestsWithHttpInfoAsync(q, accountId, cancellationToken).ConfigureAwait(false);
@@ -4349,13 +4533,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search targeting interests Search for interest-based targeting options available on the platform.
+        /// Search targeting interests (deprecated) Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
         /// <param name="accountId">Social account ID</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SearchAdInterests200Response)</returns>
+        [Obsolete]
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SearchAdInterests200Response>> SearchAdInterestsWithHttpInfoAsync(string q, string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'q' is set
@@ -4408,40 +4593,42 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search geo targeting locations (Meta) Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+        /// Search targeting options Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Social account ID (must be a connected Facebook or Instagram account).</param>
-        /// <param name="q">Location name. Locality only — no region/country suffix.</param>
-        /// <param name="type">Type of location to search. Defaults to city. (optional, default to city)</param>
-        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)</param>
+        /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
+        /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
+        /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
-        /// <returns>SearchAdTargetingLocations200Response</returns>
-        public SearchAdTargetingLocations200Response SearchAdTargetingLocations(string accountId, string q, string? type = default, string? countryCode = default, int? limit = default)
+        /// <returns>SearchAdTargeting200Response</returns>
+        public SearchAdTargeting200Response SearchAdTargeting(string accountId, string q, string? dimension = default, string? geoType = default, string? countryCode = default, int? limit = default)
         {
-            Zernio.Client.ApiResponse<SearchAdTargetingLocations200Response> localVarResponse = SearchAdTargetingLocationsWithHttpInfo(accountId, q, type, countryCode, limit);
+            Zernio.Client.ApiResponse<SearchAdTargeting200Response> localVarResponse = SearchAdTargetingWithHttpInfo(accountId, q, dimension, geoType, countryCode, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Search geo targeting locations (Meta) Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+        /// Search targeting options Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Social account ID (must be a connected Facebook or Instagram account).</param>
-        /// <param name="q">Location name. Locality only — no region/country suffix.</param>
-        /// <param name="type">Type of location to search. Defaults to city. (optional, default to city)</param>
-        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)</param>
+        /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
+        /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
+        /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
-        /// <returns>ApiResponse of SearchAdTargetingLocations200Response</returns>
-        public Zernio.Client.ApiResponse<SearchAdTargetingLocations200Response> SearchAdTargetingLocationsWithHttpInfo(string accountId, string q, string? type = default, string? countryCode = default, int? limit = default)
+        /// <returns>ApiResponse of SearchAdTargeting200Response</returns>
+        public Zernio.Client.ApiResponse<SearchAdTargeting200Response> SearchAdTargetingWithHttpInfo(string accountId, string q, string? dimension = default, string? geoType = default, string? countryCode = default, int? limit = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->SearchAdTargetingLocations");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->SearchAdTargeting");
 
             // verify the required parameter 'q' is set
             if (q == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'q' when calling AdsApi->SearchAdTargetingLocations");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'q' when calling AdsApi->SearchAdTargeting");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -4461,9 +4648,13 @@ namespace Zernio.Api
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "q", q));
-            if (type != null)
+            if (dimension != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "dimension", dimension));
+            }
+            if (geoType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "geoType", geoType));
             }
             if (countryCode != null)
             {
@@ -4482,11 +4673,11 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<SearchAdTargetingLocations200Response>("/v1/ads/targeting/search", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<SearchAdTargeting200Response>("/v1/ads/targeting/search", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("SearchAdTargetingLocations", localVarResponse);
+                Exception _exception = this.ExceptionFactory("SearchAdTargeting", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -4494,42 +4685,44 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search geo targeting locations (Meta) Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+        /// Search targeting options Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Social account ID (must be a connected Facebook or Instagram account).</param>
-        /// <param name="q">Location name. Locality only — no region/country suffix.</param>
-        /// <param name="type">Type of location to search. Defaults to city. (optional, default to city)</param>
-        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)</param>
+        /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
+        /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
+        /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of SearchAdTargetingLocations200Response</returns>
-        public async System.Threading.Tasks.Task<SearchAdTargetingLocations200Response> SearchAdTargetingLocationsAsync(string accountId, string q, string? type = default, string? countryCode = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of SearchAdTargeting200Response</returns>
+        public async System.Threading.Tasks.Task<SearchAdTargeting200Response> SearchAdTargetingAsync(string accountId, string q, string? dimension = default, string? geoType = default, string? countryCode = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<SearchAdTargetingLocations200Response> localVarResponse = await SearchAdTargetingLocationsWithHttpInfoAsync(accountId, q, type, countryCode, limit, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<SearchAdTargeting200Response> localVarResponse = await SearchAdTargetingWithHttpInfoAsync(accountId, q, dimension, geoType, countryCode, limit, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Search geo targeting locations (Meta) Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+        /// Search targeting options Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Social account ID (must be a connected Facebook or Instagram account).</param>
-        /// <param name="q">Location name. Locality only — no region/country suffix.</param>
-        /// <param name="type">Type of location to search. Defaults to city. (optional, default to city)</param>
-        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)</param>
+        /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
+        /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
+        /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (SearchAdTargetingLocations200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SearchAdTargetingLocations200Response>> SearchAdTargetingLocationsWithHttpInfoAsync(string accountId, string q, string? type = default, string? countryCode = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (SearchAdTargeting200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SearchAdTargeting200Response>> SearchAdTargetingWithHttpInfoAsync(string accountId, string q, string? dimension = default, string? geoType = default, string? countryCode = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->SearchAdTargetingLocations");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->SearchAdTargeting");
 
             // verify the required parameter 'q' is set
             if (q == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'q' when calling AdsApi->SearchAdTargetingLocations");
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'q' when calling AdsApi->SearchAdTargeting");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -4551,9 +4744,13 @@ namespace Zernio.Api
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "q", q));
-            if (type != null)
+            if (dimension != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "dimension", dimension));
+            }
+            if (geoType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "geoType", geoType));
             }
             if (countryCode != null)
             {
@@ -4573,11 +4770,11 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<SearchAdTargetingLocations200Response>("/v1/ads/targeting/search", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SearchAdTargeting200Response>("/v1/ads/targeting/search", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("SearchAdTargetingLocations", localVarResponse);
+                Exception _exception = this.ExceptionFactory("SearchAdTargeting", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

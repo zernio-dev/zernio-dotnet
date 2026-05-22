@@ -28,16 +28,16 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SearchAdTargetingLocations200Response
+    /// SearchAdTargeting200Response
     /// </summary>
-    [DataContract(Name = "searchAdTargetingLocations_200_response")]
-    public partial class SearchAdTargetingLocations200Response : IValidatableObject
+    [DataContract(Name = "searchAdTargeting_200_response")]
+    public partial class SearchAdTargeting200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SearchAdTargetingLocations200Response" /> class.
+        /// Initializes a new instance of the <see cref="SearchAdTargeting200Response" /> class.
         /// </summary>
         /// <param name="results">results.</param>
-        public SearchAdTargetingLocations200Response(List<SearchAdTargetingLocations200ResponseResultsInner> results = default)
+        public SearchAdTargeting200Response(List<SearchAdTargeting200ResponseResultsInner> results = default)
         {
             this.Results = results;
         }
@@ -46,7 +46,7 @@ namespace Zernio.Model
         /// Gets or Sets Results
         /// </summary>
         [DataMember(Name = "results", EmitDefaultValue = false)]
-        public List<SearchAdTargetingLocations200ResponseResultsInner> Results { get; set; }
+        public List<SearchAdTargeting200ResponseResultsInner> Results { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,7 +55,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SearchAdTargetingLocations200Response {\n");
+            sb.Append("class SearchAdTargeting200Response {\n");
             sb.Append("  Results: ").Append(Results).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

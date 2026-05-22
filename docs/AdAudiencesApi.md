@@ -121,7 +121,7 @@ catch (ApiException e)
 
 Create custom audience
 
-Create a custom audience. `customer_list` is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; `website` and `lookalike` are Meta-only. The audience is created empty — add members via `POST /v1/ads/audiences/{audienceId}/users`. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is `pending`). Create is not idempotent — never auto-retry. 
+Create a custom audience. `customer_list` is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; `website` and `lookalike` are Meta-only. `saved_targeting` stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via `savedTargetingId` on `POST /v1/ads/create`. Upload-backed audiences are created empty, add members via `POST /v1/ads/audiences/{audienceId}/users`. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is `pending`). Create is not idempotent, never auto-retry. 
 
 ### Example
 ```csharp
@@ -420,7 +420,7 @@ catch (ApiException e)
 
 <a id="listadaudiences"></a>
 # **ListAdAudiences**
-> ListAdAudiences200Response ListAdAudiences (string accountId, string adAccountId, string? platform = null)
+> ListAdAudiences200Response ListAdAudiences (string accountId, string adAccountId, string? platform = null, string? type = null)
 
 List custom audiences
 
@@ -453,11 +453,12 @@ namespace Example
             var accountId = "accountId_example";  // string | Social account ID
             var adAccountId = "adAccountId_example";  // string | Platform ad account ID
             var platform = "facebook";  // string? |  (optional) 
+            var type = "customer_list";  // string? | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences (each item carries a `spec`); the other types return uploaded/derived audiences. (optional) 
 
             try
             {
                 // List custom audiences
-                ListAdAudiences200Response result = apiInstance.ListAdAudiences(accountId, adAccountId, platform);
+                ListAdAudiences200Response result = apiInstance.ListAdAudiences(accountId, adAccountId, platform, type);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -478,7 +479,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List custom audiences
-    ApiResponse<ListAdAudiences200Response> response = apiInstance.ListAdAudiencesWithHttpInfo(accountId, adAccountId, platform);
+    ApiResponse<ListAdAudiences200Response> response = apiInstance.ListAdAudiencesWithHttpInfo(accountId, adAccountId, platform, type);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -498,6 +499,7 @@ catch (ApiException e)
 | **accountId** | **string** | Social account ID |  |
 | **adAccountId** | **string** | Platform ad account ID |  |
 | **platform** | **string?** |  | [optional]  |
+| **type** | **string?** | Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. | [optional]  |
 
 ### Return type
 

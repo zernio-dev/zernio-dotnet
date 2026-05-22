@@ -101,6 +101,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Spec'
+        /// </summary>
+        [Fact]
+        public void SpecTest()
+        {
+            // TODO unit test for the property 'Spec'
+        }
+
+        /// <summary>
         /// Test the property 'Platform'
         /// </summary>
         [Fact]

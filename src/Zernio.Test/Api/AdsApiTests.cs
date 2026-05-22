@@ -143,6 +143,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test EstimateAdReach
+        /// </summary>
+        [Fact]
+        public void EstimateAdReachTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //EstimateAdReachRequest estimateAdReachRequest = null;
+            //var response = instance.EstimateAdReach(estimateAdReachRequest);
+            //Assert.IsType<EstimateAdReach200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetAd
         /// </summary>
         [Fact]
@@ -321,19 +333,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
-        /// Test SearchAdTargetingLocations
+        /// Test SearchAdTargeting
         /// </summary>
         [Fact]
-        public void SearchAdTargetingLocationsTest()
+        public void SearchAdTargetingTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
             //string q = null;
-            //string? type = null;
+            //string? dimension = null;
+            //string? geoType = null;
             //string? countryCode = null;
             //int? limit = null;
-            //var response = instance.SearchAdTargetingLocations(accountId, q, type, countryCode, limit);
-            //Assert.IsType<SearchAdTargetingLocations200Response>(response);
+            //var response = instance.SearchAdTargeting(accountId, q, dimension, geoType, countryCode, limit);
+            //Assert.IsType<SearchAdTargeting200Response>(response);
         }
 
         /// <summary>

@@ -241,6 +241,76 @@ namespace Zernio.Model
         [DataMember(Name = "callToAction", EmitDefaultValue = false)]
         public CallToActionEnum? CallToAction { get; set; }
         /// <summary>
+        /// Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. 
+        /// </summary>
+        /// <value>Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum IncomeTierEnum
+        {
+            /// <summary>
+            /// Enum Top5 for value: top_5
+            /// </summary>
+            [EnumMember(Value = "top_5")]
+            Top5 = 1,
+
+            /// <summary>
+            /// Enum Top10 for value: top_10
+            /// </summary>
+            [EnumMember(Value = "top_10")]
+            Top10 = 2,
+
+            /// <summary>
+            /// Enum Top1025 for value: top_10_25
+            /// </summary>
+            [EnumMember(Value = "top_10_25")]
+            Top1025 = 3,
+
+            /// <summary>
+            /// Enum Top2550 for value: top_25_50
+            /// </summary>
+            [EnumMember(Value = "top_25_50")]
+            Top2550 = 4
+        }
+
+
+        /// <summary>
+        /// Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. 
+        /// </summary>
+        /// <value>Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. </value>
+        [DataMember(Name = "incomeTier", EmitDefaultValue = false)]
+        public IncomeTierEnum? IncomeTier { get; set; }
+        /// <summary>
+        /// Defines SpecialAdCategories
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SpecialAdCategoriesEnum
+        {
+            /// <summary>
+            /// Enum HOUSING for value: HOUSING
+            /// </summary>
+            [EnumMember(Value = "HOUSING")]
+            HOUSING = 1,
+
+            /// <summary>
+            /// Enum EMPLOYMENT for value: EMPLOYMENT
+            /// </summary>
+            [EnumMember(Value = "EMPLOYMENT")]
+            EMPLOYMENT = 2,
+
+            /// <summary>
+            /// Enum CREDIT for value: CREDIT
+            /// </summary>
+            [EnumMember(Value = "CREDIT")]
+            CREDIT = 3,
+
+            /// <summary>
+            /// Enum ISSUESELECTIONSPOLITICS for value: ISSUES_ELECTIONS_POLITICS
+            /// </summary>
+            [EnumMember(Value = "ISSUES_ELECTIONS_POLITICS")]
+            ISSUESELECTIONSPOLITICS = 4
+        }
+
+        /// <summary>
         /// Google only
         /// </summary>
         /// <value>Google only</value>
@@ -392,6 +462,14 @@ namespace Zernio.Model
         /// <param name="ageMin">ageMin.</param>
         /// <param name="ageMax">ageMax.</param>
         /// <param name="interests">Interest objects from /v1/ads/interests. Each must include id and name..</param>
+        /// <param name="zips">Postal/ZIP geo targeting. &#x60;key&#x60; is the platform&#39;s postal location ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;zip. Supported on Meta, Google, TikTok, Pinterest, X..</param>
+        /// <param name="metros">DMA / metro-area geo targeting. &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro..</param>
+        /// <param name="customLocations">Point-radius (lat/lng) geo targeting. Meta only (custom_locations). Rejected on platforms without radius support..</param>
+        /// <param name="behaviors">Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id..</param>
+        /// <param name="incomeTier">Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. .</param>
+        /// <param name="languages">Language codes (e.g. [&#39;en&#39;]). Restricts the audience by language..</param>
+        /// <param name="savedTargetingId">ID of a &#x60;saved_targeting&#x60; audience (created via POST /v1/ads/audiences). When set, its stored TargetingSpec is expanded as the base targeting; inline fields on this body merge on top. Lets you reuse a named targeting preset without re-sending every field. .</param>
+        /// <param name="specialAdCategories">Meta only. Declares the ad&#39;s special category, required for housing, employment, credit, or political/social-issue ads (Meta enforces restricted targeting for these). Note: setting a special category disables income/zip targeting on Meta. .</param>
         /// <param name="endDate">Required for lifetime budgets.</param>
         /// <param name="audienceId">Custom audience ID for targeting.</param>
         /// <param name="campaignType">Google only (default to CampaignTypeEnum.Display).</param>
@@ -409,7 +487,7 @@ namespace Zernio.Model
         /// <param name="brandIdentity">brandIdentity.</param>
         /// <param name="identityType">TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. .</param>
         /// <param name="promotedObject">promotedObject.</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, string organizationId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, string organizationId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<CreateStandaloneAdRequestZipsInner> zips = default, List<CreateStandaloneAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, string savedTargetingId = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -452,6 +530,14 @@ namespace Zernio.Model
             this.AgeMin = ageMin;
             this.AgeMax = ageMax;
             this.Interests = interests;
+            this.Zips = zips;
+            this.Metros = metros;
+            this.CustomLocations = customLocations;
+            this.Behaviors = behaviors;
+            this.IncomeTier = incomeTier;
+            this.Languages = languages;
+            this.SavedTargetingId = savedTargetingId;
+            this.SpecialAdCategories = specialAdCategories;
             this.EndDate = endDate;
             this.AudienceId = audienceId;
             this.CampaignType = campaignType;
@@ -625,6 +711,55 @@ namespace Zernio.Model
         public List<UpdateAdRequestTargetingInterestsInner> Interests { get; set; }
 
         /// <summary>
+        /// Postal/ZIP geo targeting. &#x60;key&#x60; is the platform&#39;s postal location ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;zip. Supported on Meta, Google, TikTok, Pinterest, X.
+        /// </summary>
+        /// <value>Postal/ZIP geo targeting. &#x60;key&#x60; is the platform&#39;s postal location ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;zip. Supported on Meta, Google, TikTok, Pinterest, X.</value>
+        [DataMember(Name = "zips", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestZipsInner> Zips { get; set; }
+
+        /// <summary>
+        /// DMA / metro-area geo targeting. &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro.
+        /// </summary>
+        /// <value>DMA / metro-area geo targeting. &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro.</value>
+        [DataMember(Name = "metros", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestZipsInner> Metros { get; set; }
+
+        /// <summary>
+        /// Point-radius (lat/lng) geo targeting. Meta only (custom_locations). Rejected on platforms without radius support.
+        /// </summary>
+        /// <value>Point-radius (lat/lng) geo targeting. Meta only (custom_locations). Rejected on platforms without radius support.</value>
+        [DataMember(Name = "customLocations", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestCustomLocationsInner> CustomLocations { get; set; }
+
+        /// <summary>
+        /// Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id.
+        /// </summary>
+        /// <value>Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id.</value>
+        [DataMember(Name = "behaviors", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestBehaviorsInner> Behaviors { get; set; }
+
+        /// <summary>
+        /// Language codes (e.g. [&#39;en&#39;]). Restricts the audience by language.
+        /// </summary>
+        /// <value>Language codes (e.g. [&#39;en&#39;]). Restricts the audience by language.</value>
+        [DataMember(Name = "languages", EmitDefaultValue = false)]
+        public List<string> Languages { get; set; }
+
+        /// <summary>
+        /// ID of a &#x60;saved_targeting&#x60; audience (created via POST /v1/ads/audiences). When set, its stored TargetingSpec is expanded as the base targeting; inline fields on this body merge on top. Lets you reuse a named targeting preset without re-sending every field. 
+        /// </summary>
+        /// <value>ID of a &#x60;saved_targeting&#x60; audience (created via POST /v1/ads/audiences). When set, its stored TargetingSpec is expanded as the base targeting; inline fields on this body merge on top. Lets you reuse a named targeting preset without re-sending every field. </value>
+        [DataMember(Name = "savedTargetingId", EmitDefaultValue = false)]
+        public string SavedTargetingId { get; set; }
+
+        /// <summary>
+        /// Meta only. Declares the ad&#39;s special category, required for housing, employment, credit, or political/social-issue ads (Meta enforces restricted targeting for these). Note: setting a special category disables income/zip targeting on Meta. 
+        /// </summary>
+        /// <value>Meta only. Declares the ad&#39;s special category, required for housing, employment, credit, or political/social-issue ads (Meta enforces restricted targeting for these). Note: setting a special category disables income/zip targeting on Meta. </value>
+        [DataMember(Name = "specialAdCategories", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequest.SpecialAdCategoriesEnum> SpecialAdCategories { get; set; }
+
+        /// <summary>
         /// Required for lifetime budgets
         /// </summary>
         /// <value>Required for lifetime budgets</value>
@@ -740,6 +875,14 @@ namespace Zernio.Model
             sb.Append("  AgeMin: ").Append(AgeMin).Append("\n");
             sb.Append("  AgeMax: ").Append(AgeMax).Append("\n");
             sb.Append("  Interests: ").Append(Interests).Append("\n");
+            sb.Append("  Zips: ").Append(Zips).Append("\n");
+            sb.Append("  Metros: ").Append(Metros).Append("\n");
+            sb.Append("  CustomLocations: ").Append(CustomLocations).Append("\n");
+            sb.Append("  Behaviors: ").Append(Behaviors).Append("\n");
+            sb.Append("  IncomeTier: ").Append(IncomeTier).Append("\n");
+            sb.Append("  Languages: ").Append(Languages).Append("\n");
+            sb.Append("  SavedTargetingId: ").Append(SavedTargetingId).Append("\n");
+            sb.Append("  SpecialAdCategories: ").Append(SpecialAdCategories).Append("\n");
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
             sb.Append("  AudienceId: ").Append(AudienceId).Append("\n");
             sb.Append("  CampaignType: ").Append(CampaignType).Append("\n");

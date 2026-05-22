@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | [optional] 
 **Description** | **string** |  | [optional] 
 **Type** | **string** |  | [optional] 
+**Spec** | [**TargetingSpec**](TargetingSpec.md) | Present (and the only meaningful payload) when &#x60;type&#x60; is &#x60;saved_targeting&#x60;. Null for uploaded/derived audience types. | [optional] 
 **Platform** | **string** |  | [optional] 
 **Size** | **int** |  | [optional] 
 **Status** | **string** |  | [optional] 

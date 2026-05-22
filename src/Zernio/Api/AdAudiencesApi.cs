@@ -55,7 +55,7 @@ namespace Zernio.Api
         /// Create custom audience
         /// </summary>
         /// <remarks>
-        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -66,7 +66,7 @@ namespace Zernio.Api
         /// Create custom audience
         /// </summary>
         /// <remarks>
-        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -124,8 +124,9 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
         /// <returns>ListAdAudiences200Response</returns>
-        ListAdAudiences200Response ListAdAudiences(string accountId, string adAccountId, string? platform = default);
+        ListAdAudiences200Response ListAdAudiences(string accountId, string adAccountId, string? platform = default, string? type = default);
 
         /// <summary>
         /// List custom audiences
@@ -137,8 +138,9 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
         /// <returns>ApiResponse of ListAdAudiences200Response</returns>
-        ApiResponse<ListAdAudiences200Response> ListAdAudiencesWithHttpInfo(string accountId, string adAccountId, string? platform = default);
+        ApiResponse<ListAdAudiences200Response> ListAdAudiencesWithHttpInfo(string accountId, string adAccountId, string? platform = default, string? type = default);
         #endregion Synchronous Operations
     }
 
@@ -177,7 +179,7 @@ namespace Zernio.Api
         /// Create custom audience
         /// </summary>
         /// <remarks>
-        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -189,7 +191,7 @@ namespace Zernio.Api
         /// Create custom audience
         /// </summary>
         /// <remarks>
-        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+        /// Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -252,9 +254,10 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdAudiences200Response</returns>
-        System.Threading.Tasks.Task<ListAdAudiences200Response> ListAdAudiencesAsync(string accountId, string adAccountId, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListAdAudiences200Response> ListAdAudiencesAsync(string accountId, string adAccountId, string? platform = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List custom audiences
@@ -266,9 +269,10 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdAudiences200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAdAudiences200Response>> ListAdAudiencesWithHttpInfoAsync(string accountId, string adAccountId, string? platform = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListAdAudiences200Response>> ListAdAudiencesWithHttpInfoAsync(string accountId, string adAccountId, string? platform = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -626,7 +630,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -638,7 +642,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -688,7 +692,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -701,7 +705,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+        /// Create custom audience Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createAdAudienceRequest"></param>
@@ -1015,10 +1019,11 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
         /// <returns>ListAdAudiences200Response</returns>
-        public ListAdAudiences200Response ListAdAudiences(string accountId, string adAccountId, string? platform = default)
+        public ListAdAudiences200Response ListAdAudiences(string accountId, string adAccountId, string? platform = default, string? type = default)
         {
-            Zernio.Client.ApiResponse<ListAdAudiences200Response> localVarResponse = ListAdAudiencesWithHttpInfo(accountId, adAccountId, platform);
+            Zernio.Client.ApiResponse<ListAdAudiences200Response> localVarResponse = ListAdAudiencesWithHttpInfo(accountId, adAccountId, platform, type);
             return localVarResponse.Data;
         }
 
@@ -1029,8 +1034,9 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
         /// <returns>ApiResponse of ListAdAudiences200Response</returns>
-        public Zernio.Client.ApiResponse<ListAdAudiences200Response> ListAdAudiencesWithHttpInfo(string accountId, string adAccountId, string? platform = default)
+        public Zernio.Client.ApiResponse<ListAdAudiences200Response> ListAdAudiencesWithHttpInfo(string accountId, string adAccountId, string? platform = default, string? type = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1061,6 +1067,10 @@ namespace Zernio.Api
             if (platform != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "type", type));
             }
 
             // authentication (bearerAuth) required
@@ -1089,11 +1099,12 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdAudiences200Response</returns>
-        public async System.Threading.Tasks.Task<ListAdAudiences200Response> ListAdAudiencesAsync(string accountId, string adAccountId, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListAdAudiences200Response> ListAdAudiencesAsync(string accountId, string adAccountId, string? platform = default, string? type = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAdAudiences200Response> localVarResponse = await ListAdAudiencesWithHttpInfoAsync(accountId, adAccountId, platform, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListAdAudiences200Response> localVarResponse = await ListAdAudiencesWithHttpInfoAsync(accountId, adAccountId, platform, type, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1104,9 +1115,10 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdAudiences200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdAudiences200Response>> ListAdAudiencesWithHttpInfoAsync(string accountId, string adAccountId, string? platform = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdAudiences200Response>> ListAdAudiencesWithHttpInfoAsync(string accountId, string adAccountId, string? platform = default, string? type = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1139,6 +1151,10 @@ namespace Zernio.Api
             if (platform != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "type", type));
             }
 
             // authentication (bearerAuth) required

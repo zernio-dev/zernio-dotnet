@@ -290,6 +290,78 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Zips'
+        /// </summary>
+        [Fact]
+        public void ZipsTest()
+        {
+            // TODO unit test for the property 'Zips'
+        }
+
+        /// <summary>
+        /// Test the property 'Metros'
+        /// </summary>
+        [Fact]
+        public void MetrosTest()
+        {
+            // TODO unit test for the property 'Metros'
+        }
+
+        /// <summary>
+        /// Test the property 'CustomLocations'
+        /// </summary>
+        [Fact]
+        public void CustomLocationsTest()
+        {
+            // TODO unit test for the property 'CustomLocations'
+        }
+
+        /// <summary>
+        /// Test the property 'Behaviors'
+        /// </summary>
+        [Fact]
+        public void BehaviorsTest()
+        {
+            // TODO unit test for the property 'Behaviors'
+        }
+
+        /// <summary>
+        /// Test the property 'IncomeTier'
+        /// </summary>
+        [Fact]
+        public void IncomeTierTest()
+        {
+            // TODO unit test for the property 'IncomeTier'
+        }
+
+        /// <summary>
+        /// Test the property 'Languages'
+        /// </summary>
+        [Fact]
+        public void LanguagesTest()
+        {
+            // TODO unit test for the property 'Languages'
+        }
+
+        /// <summary>
+        /// Test the property 'SavedTargetingId'
+        /// </summary>
+        [Fact]
+        public void SavedTargetingIdTest()
+        {
+            // TODO unit test for the property 'SavedTargetingId'
+        }
+
+        /// <summary>
+        /// Test the property 'SpecialAdCategories'
+        /// </summary>
+        [Fact]
+        public void SpecialAdCategoriesTest()
+        {
+            // TODO unit test for the property 'SpecialAdCategories'
+        }
+
+        /// <summary>
         /// Test the property 'EndDate'
         /// </summary>
         [Fact]

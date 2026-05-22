@@ -55,7 +55,13 @@ namespace Zernio.Model
             /// Enum Lookalike for value: lookalike
             /// </summary>
             [EnumMember(Value = "lookalike")]
-            Lookalike = 3
+            Lookalike = 3,
+
+            /// <summary>
+            /// Enum SavedTargeting for value: saved_targeting
+            /// </summary>
+            [EnumMember(Value = "saved_targeting")]
+            SavedTargeting = 4
         }
 
 
@@ -72,16 +78,18 @@ namespace Zernio.Model
         /// <param name="name">name.</param>
         /// <param name="description">description.</param>
         /// <param name="type">type.</param>
+        /// <param name="spec">Present (and the only meaningful payload) when &#x60;type&#x60; is &#x60;saved_targeting&#x60;. Null for uploaded/derived audience types..</param>
         /// <param name="platform">platform.</param>
         /// <param name="size">size.</param>
         /// <param name="status">status.</param>
-        public ListAdAudiences200ResponseAudiencesInner(string id = default, string platformAudienceId = default, string name = default, string description = default, TypeEnum? type = default, string platform = default, int size = default, string status = default)
+        public ListAdAudiences200ResponseAudiencesInner(string id = default, string platformAudienceId = default, string name = default, string description = default, TypeEnum? type = default, TargetingSpec spec = default, string platform = default, int size = default, string status = default)
         {
             this.Id = id;
             this.PlatformAudienceId = platformAudienceId;
             this.Name = name;
             this.Description = description;
             this.Type = type;
+            this.Spec = spec;
             this.Platform = platform;
             this.Size = size;
             this.Status = status;
@@ -110,6 +118,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
+
+        /// <summary>
+        /// Present (and the only meaningful payload) when &#x60;type&#x60; is &#x60;saved_targeting&#x60;. Null for uploaded/derived audience types.
+        /// </summary>
+        /// <value>Present (and the only meaningful payload) when &#x60;type&#x60; is &#x60;saved_targeting&#x60;. Null for uploaded/derived audience types.</value>
+        [DataMember(Name = "spec", EmitDefaultValue = false)]
+        public TargetingSpec Spec { get; set; }
 
         /// <summary>
         /// Gets or Sets Platform
@@ -142,6 +157,7 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Spec: ").Append(Spec).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Size: ").Append(Size).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");

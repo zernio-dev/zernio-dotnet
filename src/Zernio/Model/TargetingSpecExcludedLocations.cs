@@ -28,43 +28,49 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CreateCtwaAdRequestInterestsInner
+    /// Geo to exclude from the audience. A subset of the inclusion geo shape.
     /// </summary>
-    [DataContract(Name = "createCtwaAd_request_interests_inner")]
-    public partial class CreateCtwaAdRequestInterestsInner : IValidatableObject
+    [DataContract(Name = "TargetingSpec_excludedLocations")]
+    public partial class TargetingSpecExcludedLocations : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateCtwaAdRequestInterestsInner" /> class.
+        /// Initializes a new instance of the <see cref="TargetingSpecExcludedLocations" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreateCtwaAdRequestInterestsInner() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateCtwaAdRequestInterestsInner" /> class.
-        /// </summary>
-        /// <param name="id">id (required).</param>
-        /// <param name="name">name.</param>
-        public CreateCtwaAdRequestInterestsInner(string id = default, string name = default)
+        /// <param name="countries">countries.</param>
+        /// <param name="regions">regions.</param>
+        /// <param name="cities">cities.</param>
+        /// <param name="zips">zips.</param>
+        public TargetingSpecExcludedLocations(List<string> countries = default, List<CreateStandaloneAdRequestZipsInner> regions = default, List<CreateStandaloneAdRequestZipsInner> cities = default, List<CreateStandaloneAdRequestZipsInner> zips = default)
         {
-            // to ensure "id" is required (not null)
-            if (id == null)
-            {
-                throw new ArgumentNullException("id is a required property for CreateCtwaAdRequestInterestsInner and cannot be null");
-            }
-            this.Id = id;
-            this.Name = name;
+            this.Countries = countries;
+            this.Regions = regions;
+            this.Cities = cities;
+            this.Zips = zips;
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Gets or Sets Countries
         /// </summary>
-        [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
-        public string Id { get; set; }
+        [DataMember(Name = "countries", EmitDefaultValue = false)]
+        public List<string> Countries { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Gets or Sets Regions
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
-        public string Name { get; set; }
+        [DataMember(Name = "regions", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestZipsInner> Regions { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Cities
+        /// </summary>
+        [DataMember(Name = "cities", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestZipsInner> Cities { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Zips
+        /// </summary>
+        [DataMember(Name = "zips", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestZipsInner> Zips { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -73,9 +79,11 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateCtwaAdRequestInterestsInner {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("class TargetingSpecExcludedLocations {\n");
+            sb.Append("  Countries: ").Append(Countries).Append("\n");
+            sb.Append("  Regions: ").Append(Regions).Append("\n");
+            sb.Append("  Cities: ").Append(Cities).Append("\n");
+            sb.Append("  Zips: ").Append(Zips).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
