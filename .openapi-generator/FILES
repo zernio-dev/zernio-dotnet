@@ -896,9 +896,7 @@ docs/ValidatePostLength200Response.md
 docs/ValidatePostLength200ResponsePlatformsValue.md
 docs/ValidatePostLengthRequest.md
 docs/ValidatePostRequest.md
-docs/ValidatePostRequestMediaItemsInner.md
 docs/ValidatePostRequestPlatformsInner.md
-docs/ValidatePostRequestPlatformsInnerCustomMediaInner.md
 docs/ValidateSubreddit200Response.md
 docs/ValidateSubreddit200ResponseOneOf.md
 docs/ValidateSubreddit200ResponseOneOf1.md
@@ -1882,8 +1880,6 @@ src/Zernio.Test/Model/ValidatePost200ResponseTests.cs
 src/Zernio.Test/Model/ValidatePostLength200ResponsePlatformsValueTests.cs
 src/Zernio.Test/Model/ValidatePostLength200ResponseTests.cs
 src/Zernio.Test/Model/ValidatePostLengthRequestTests.cs
-src/Zernio.Test/Model/ValidatePostRequestMediaItemsInnerTests.cs
-src/Zernio.Test/Model/ValidatePostRequestPlatformsInnerCustomMediaInnerTests.cs
 src/Zernio.Test/Model/ValidatePostRequestPlatformsInnerTests.cs
 src/Zernio.Test/Model/ValidatePostRequestTests.cs
 src/Zernio.Test/Model/ValidateSubreddit200ResponseOneOf1Tests.cs
@@ -2883,9 +2879,7 @@ src/Zernio/Model/ValidatePostLength200Response.cs
 src/Zernio/Model/ValidatePostLength200ResponsePlatformsValue.cs
 src/Zernio/Model/ValidatePostLengthRequest.cs
 src/Zernio/Model/ValidatePostRequest.cs
-src/Zernio/Model/ValidatePostRequestMediaItemsInner.cs
 src/Zernio/Model/ValidatePostRequestPlatformsInner.cs
-src/Zernio/Model/ValidatePostRequestPlatformsInnerCustomMediaInner.cs
 src/Zernio/Model/ValidateSubreddit200Response.cs
 src/Zernio/Model/ValidateSubreddit200ResponseOneOf.cs
 src/Zernio/Model/ValidateSubreddit200ResponseOneOf1.cs
