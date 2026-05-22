@@ -158,7 +158,6 @@ docs/CreatePost409Response.md
 docs/CreatePost409ResponseDetails.md
 docs/CreatePost429Response.md
 docs/CreatePostRequest.md
-docs/CreatePostRequestMediaItemsInner.md
 docs/CreatePostRequestPlatformsInner.md
 docs/CreatePostRequestPlatformsInnerPlatformSpecificData.md
 docs/CreateProfileRequest.md
@@ -1172,7 +1171,6 @@ src/Zernio.Test/Model/CreateInviteTokenRequestTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseDetailsTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseTests.cs
 src/Zernio.Test/Model/CreatePost429ResponseTests.cs
-src/Zernio.Test/Model/CreatePostRequestMediaItemsInnerTests.cs
 src/Zernio.Test/Model/CreatePostRequestPlatformsInnerPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/CreatePostRequestPlatformsInnerTests.cs
 src/Zernio.Test/Model/CreatePostRequestTests.cs
@@ -2174,7 +2172,6 @@ src/Zernio/Model/CreatePost409Response.cs
 src/Zernio/Model/CreatePost409ResponseDetails.cs
 src/Zernio/Model/CreatePost429Response.cs
 src/Zernio/Model/CreatePostRequest.cs
-src/Zernio/Model/CreatePostRequestMediaItemsInner.cs
 src/Zernio/Model/CreatePostRequestPlatformsInner.cs
 src/Zernio/Model/CreatePostRequestPlatformsInnerPlatformSpecificData.cs
 src/Zernio/Model/CreateProfileRequest.cs
