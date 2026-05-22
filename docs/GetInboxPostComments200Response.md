@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | **string** |  | [optional] 
 **Comments** | [**List&lt;GetInboxPostComments200ResponseCommentsInner&gt;**](GetInboxPostComments200ResponseCommentsInner.md) |  | [optional] 
+**Post** | [**GetInboxPostComments200ResponsePost**](GetInboxPostComments200ResponsePost.md) |  | [optional] 
 **Pagination** | [**GetInboxPostComments200ResponsePagination**](GetInboxPostComments200ResponsePagination.md) |  | [optional] 
 **Meta** | [**GetInboxPostComments200ResponseMeta**](GetInboxPostComments200ResponseMeta.md) |  | [optional] 
 

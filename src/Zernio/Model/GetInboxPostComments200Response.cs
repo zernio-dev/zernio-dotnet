@@ -38,12 +38,14 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="status">status.</param>
         /// <param name="comments">comments.</param>
+        /// <param name="post">post.</param>
         /// <param name="pagination">pagination.</param>
         /// <param name="meta">meta.</param>
-        public GetInboxPostComments200Response(string status = default, List<GetInboxPostComments200ResponseCommentsInner> comments = default, GetInboxPostComments200ResponsePagination pagination = default, GetInboxPostComments200ResponseMeta meta = default)
+        public GetInboxPostComments200Response(string status = default, List<GetInboxPostComments200ResponseCommentsInner> comments = default, GetInboxPostComments200ResponsePost post = default, GetInboxPostComments200ResponsePagination pagination = default, GetInboxPostComments200ResponseMeta meta = default)
         {
             this.Status = status;
             this.Comments = comments;
+            this.Post = post;
             this.Pagination = pagination;
             this.Meta = meta;
         }
@@ -59,6 +61,12 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "comments", EmitDefaultValue = false)]
         public List<GetInboxPostComments200ResponseCommentsInner> Comments { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Post
+        /// </summary>
+        [DataMember(Name = "post", EmitDefaultValue = false)]
+        public GetInboxPostComments200ResponsePost Post { get; set; }
 
         /// <summary>
         /// Gets or Sets Pagination
@@ -82,6 +90,7 @@ namespace Zernio.Model
             sb.Append("class GetInboxPostComments200Response {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Comments: ").Append(Comments).Append("\n");
+            sb.Append("  Post: ").Append(Post).Append("\n");
             sb.Append("  Pagination: ").Append(Pagination).Append("\n");
             sb.Append("  Meta: ").Append(Meta).Append("\n");
             sb.Append("}\n");

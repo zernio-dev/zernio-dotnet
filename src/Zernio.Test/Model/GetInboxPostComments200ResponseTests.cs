@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Post'
+        /// </summary>
+        [Fact]
+        public void PostTest()
+        {
+            // TODO unit test for the property 'Post'
+        }
+
+        /// <summary>
         /// Test the property 'Pagination'
         /// </summary>
         [Fact]

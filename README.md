@@ -792,6 +792,7 @@ Class | Method | HTTP request | Description
  - [Model.GetInboxPostComments200ResponseMeta](docs/GetInboxPostComments200ResponseMeta.md)
  - [Model.GetInboxPostComments200ResponseMetaAdComments](docs/GetInboxPostComments200ResponseMetaAdComments.md)
  - [Model.GetInboxPostComments200ResponsePagination](docs/GetInboxPostComments200ResponsePagination.md)
+ - [Model.GetInboxPostComments200ResponsePost](docs/GetInboxPostComments200ResponsePost.md)
  - [Model.GetInstagramAccountInsights404Response](docs/GetInstagramAccountInsights404Response.md)
  - [Model.GetInstagramStoryInsights200Response](docs/GetInstagramStoryInsights200Response.md)
  - [Model.GetInstagramStoryInsights200ResponseData](docs/GetInstagramStoryInsights200ResponseData.md)
