@@ -128,6 +128,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'IgReelsAvgWatchTime'
+        /// </summary>
+        [Fact]
+        public void IgReelsAvgWatchTimeTest()
+        {
+            // TODO unit test for the property 'IgReelsAvgWatchTime'
+        }
+
+        /// <summary>
+        /// Test the property 'IgReelsVideoViewTotalTime'
+        /// </summary>
+        [Fact]
+        public void IgReelsVideoViewTotalTimeTest()
+        {
+            // TODO unit test for the property 'IgReelsVideoViewTotalTime'
+        }
+
+        /// <summary>
         /// Test the property 'EngagementRate'
         /// </summary>
         [Fact]

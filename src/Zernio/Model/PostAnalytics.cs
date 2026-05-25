@@ -44,9 +44,11 @@ namespace Zernio.Model
         /// <param name="saves">Number of saves/bookmarks (Instagram, Pinterest).</param>
         /// <param name="clicks">clicks.</param>
         /// <param name="views">views.</param>
+        /// <param name="igReelsAvgWatchTime">Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms..</param>
+        /// <param name="igReelsVideoViewTotalTime">Instagram Reels only: total watch time including replays, in milliseconds. 0 for non-Reels media and other platforms..</param>
         /// <param name="engagementRate">engagementRate.</param>
         /// <param name="lastUpdated">lastUpdated.</param>
-        public PostAnalytics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int clicks = default, int views = default, decimal engagementRate = default, DateTime lastUpdated = default)
+        public PostAnalytics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int clicks = default, int views = default, int igReelsAvgWatchTime = default, int igReelsVideoViewTotalTime = default, decimal engagementRate = default, DateTime lastUpdated = default)
         {
             this.Impressions = impressions;
             this.Reach = reach;
@@ -56,6 +58,8 @@ namespace Zernio.Model
             this.Saves = saves;
             this.Clicks = clicks;
             this.Views = views;
+            this.IgReelsAvgWatchTime = igReelsAvgWatchTime;
+            this.IgReelsVideoViewTotalTime = igReelsVideoViewTotalTime;
             this.EngagementRate = engagementRate;
             this.LastUpdated = lastUpdated;
         }
@@ -134,6 +138,26 @@ namespace Zernio.Model
         public int Views { get; set; }
 
         /// <summary>
+        /// Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms.
+        /// </summary>
+        /// <value>Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms.</value>
+        /*
+        <example>0</example>
+        */
+        [DataMember(Name = "igReelsAvgWatchTime", EmitDefaultValue = false)]
+        public int IgReelsAvgWatchTime { get; set; }
+
+        /// <summary>
+        /// Instagram Reels only: total watch time including replays, in milliseconds. 0 for non-Reels media and other platforms.
+        /// </summary>
+        /// <value>Instagram Reels only: total watch time including replays, in milliseconds. 0 for non-Reels media and other platforms.</value>
+        /*
+        <example>0</example>
+        */
+        [DataMember(Name = "igReelsVideoViewTotalTime", EmitDefaultValue = false)]
+        public int IgReelsVideoViewTotalTime { get; set; }
+
+        /// <summary>
         /// Gets or Sets EngagementRate
         /// </summary>
         /*
@@ -164,6 +188,8 @@ namespace Zernio.Model
             sb.Append("  Saves: ").Append(Saves).Append("\n");
             sb.Append("  Clicks: ").Append(Clicks).Append("\n");
             sb.Append("  Views: ").Append(Views).Append("\n");
+            sb.Append("  IgReelsAvgWatchTime: ").Append(IgReelsAvgWatchTime).Append("\n");
+            sb.Append("  IgReelsVideoViewTotalTime: ").Append(IgReelsVideoViewTotalTime).Append("\n");
             sb.Append("  EngagementRate: ").Append(EngagementRate).Append("\n");
             sb.Append("  LastUpdated: ").Append(LastUpdated).Append("\n");
             sb.Append("}\n");
