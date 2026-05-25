@@ -946,6 +946,9 @@ docs/WebhookPayloadCommentComment.md
 docs/WebhookPayloadCommentCommentAd.md
 docs/WebhookPayloadCommentCommentAuthor.md
 docs/WebhookPayloadCommentPost.md
+docs/WebhookPayloadLead.md
+docs/WebhookPayloadLeadAccount.md
+docs/WebhookPayloadLeadLead.md
 docs/WebhookPayloadMessage.md
 docs/WebhookPayloadMessageDeleted.md
 docs/WebhookPayloadMessageDeliveryStatus.md
@@ -1954,6 +1957,9 @@ src/Zernio.Test/Model/WebhookPayloadCommentCommentAuthorTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentPostTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentTests.cs
+src/Zernio.Test/Model/WebhookPayloadLeadAccountTests.cs
+src/Zernio.Test/Model/WebhookPayloadLeadLeadTests.cs
+src/Zernio.Test/Model/WebhookPayloadLeadTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageDeletedTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageDeliveryStatusErrorTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageDeliveryStatusTests.cs
@@ -2978,6 +2984,9 @@ src/Zernio/Model/WebhookPayloadCommentComment.cs
 src/Zernio/Model/WebhookPayloadCommentCommentAd.cs
 src/Zernio/Model/WebhookPayloadCommentCommentAuthor.cs
 src/Zernio/Model/WebhookPayloadCommentPost.cs
+src/Zernio/Model/WebhookPayloadLead.cs
+src/Zernio/Model/WebhookPayloadLeadAccount.cs
+src/Zernio/Model/WebhookPayloadLeadLead.cs
 src/Zernio/Model/WebhookPayloadMessage.cs
 src/Zernio/Model/WebhookPayloadMessageDeleted.cs
 src/Zernio/Model/WebhookPayloadMessageDeliveryStatus.cs
