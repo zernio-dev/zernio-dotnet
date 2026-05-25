@@ -69,6 +69,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ArchiveLeadForm
+        /// </summary>
+        [Fact]
+        public void ArchiveLeadFormTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string formId = null;
+            //string accountId = null;
+            //var response = instance.ArchiveLeadForm(formId, accountId);
+            //Assert.IsType<ArchiveLeadForm200Response>(response);
+        }
+
+        /// <summary>
         /// Test BoostPost
         /// </summary>
         [Fact]
@@ -106,6 +119,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateLeadForm
+        /// </summary>
+        [Fact]
+        public void CreateLeadFormTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateLeadFormRequest createLeadFormRequest = null;
+            //var response = instance.CreateLeadForm(createLeadFormRequest);
+            //Assert.IsType<CreateLeadForm200Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateStandaloneAd
         /// </summary>
         [Fact]
@@ -115,6 +140,19 @@ namespace Zernio.Test.Api
             //CreateStandaloneAdRequest createStandaloneAdRequest = null;
             //var response = instance.CreateStandaloneAd(createStandaloneAdRequest);
             //Assert.IsType<CreateStandaloneAd201Response>(response);
+        }
+
+        /// <summary>
+        /// Test CreateTestLead
+        /// </summary>
+        [Fact]
+        public void CreateTestLeadTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string formId = null;
+            //CreateTestLeadRequest createTestLeadRequest = null;
+            //var response = instance.CreateTestLead(formId, createTestLeadRequest);
+            //Assert.IsType<CreateTestLead200Response>(response);
         }
 
         /// <summary>
@@ -228,6 +266,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetLeadForm
+        /// </summary>
+        [Fact]
+        public void GetLeadFormTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string formId = null;
+            //string accountId = null;
+            //var response = instance.GetLeadForm(formId, accountId);
+            //Assert.IsType<GetLeadForm200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdAccounts
         /// </summary>
         [Fact]
@@ -302,6 +353,52 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.ListConversionDestinations(accountId);
             //Assert.IsType<ListConversionDestinations200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListFormLeads
+        /// </summary>
+        [Fact]
+        public void ListFormLeadsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string formId = null;
+            //string accountId = null;
+            //int? limit = null;
+            //string? cursor = null;
+            //int? since = null;
+            //var response = instance.ListFormLeads(formId, accountId, limit, cursor, since);
+            //Assert.IsType<ListFormLeads200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListLeadForms
+        /// </summary>
+        [Fact]
+        public void ListLeadFormsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //int? limit = null;
+            //string? cursor = null;
+            //var response = instance.ListLeadForms(accountId, limit, cursor);
+            //Assert.IsType<ListLeadForms200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListLeads
+        /// </summary>
+        [Fact]
+        public void ListLeadsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string? formId = null;
+            //string? accountId = null;
+            //int? limit = null;
+            //int? since = null;
+            //string? cursor = null;
+            //var response = instance.ListLeads(formId, accountId, limit, since, cursor);
+            //Assert.IsType<ListLeads200Response>(response);
         }
 
         /// <summary>

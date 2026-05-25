@@ -55,6 +55,7 @@ docs/AnalyticsSinglePostResponseMediaItemsInner.md
 docs/ApiKey.md
 docs/ApiKeyProfileIdsInner.md
 docs/ApproveWhatsAppGroupJoinRequestsRequest.md
+docs/ArchiveLeadForm200Response.md
 docs/BatchGetGoogleBusinessReviews200Response.md
 docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md
 docs/BatchGetGoogleBusinessReviewsRequest.md
@@ -153,6 +154,10 @@ docs/CreateInboxConversation422Response.md
 docs/CreateInboxConversationRequest.md
 docs/CreateInviteToken201Response.md
 docs/CreateInviteTokenRequest.md
+docs/CreateLeadForm200Response.md
+docs/CreateLeadFormRequest.md
+docs/CreateLeadFormRequestQuestionsInner.md
+docs/CreateLeadFormRequestQuestionsInnerOptionsInner.md
 docs/CreatePost409Response.md
 docs/CreatePost409ResponseDetails.md
 docs/CreatePost429Response.md
@@ -184,6 +189,10 @@ docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestVideo.md
 docs/CreateStandaloneAdRequestZipsInner.md
+docs/CreateTestLead200Response.md
+docs/CreateTestLead200ResponseTestLead.md
+docs/CreateTestLeadRequest.md
+docs/CreateTestLeadRequestFieldDataInner.md
 docs/CreateTrackingTag201Response.md
 docs/CreateTrackingTagRequest.md
 docs/CreateWebhookSettingsRequest.md
@@ -385,6 +394,7 @@ docs/GetInstagramAccountInsights404Response.md
 docs/GetInstagramStoryInsights200Response.md
 docs/GetInstagramStoryInsights200ResponseData.md
 docs/GetInstagramStoryInsights200ResponseDataMetrics.md
+docs/GetLeadForm200Response.md
 docs/GetLinkedInAggregateAnalytics200Response.md
 docs/GetLinkedInAggregateAnalytics400Response.md
 docs/GetLinkedInAggregateAnalytics402Response.md
@@ -543,6 +553,8 @@ docs/ListCustomFields200Response.md
 docs/ListCustomFields200ResponseFieldsInner.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
+docs/ListFormLeads200Response.md
+docs/ListFormLeads200ResponseLeadsInner.md
 docs/ListGoogleBusinessLocations200Response.md
 docs/ListGoogleBusinessLocations200ResponseLocationsInner.md
 docs/ListGoogleBusinessMedia200Response.md
@@ -565,6 +577,9 @@ docs/ListInboxReviews200ResponseDataInnerReviewer.md
 docs/ListInboxReviews200ResponseSummary.md
 docs/ListInstagramStories200Response.md
 docs/ListInstagramStories200ResponseDataInner.md
+docs/ListLeadForms200Response.md
+docs/ListLeads200Response.md
+docs/ListLeads200ResponseLeadsInner.md
 docs/ListLinkedInOrganizations200Response.md
 docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md
 docs/ListLogs200Response.md
@@ -1082,6 +1097,7 @@ src/Zernio.Test/Model/AnalyticsSinglePostResponseTests.cs
 src/Zernio.Test/Model/ApiKeyProfileIdsInnerTests.cs
 src/Zernio.Test/Model/ApiKeyTests.cs
 src/Zernio.Test/Model/ApproveWhatsAppGroupJoinRequestsRequestTests.cs
+src/Zernio.Test/Model/ArchiveLeadForm200ResponseTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInnerTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviews200ResponseTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviewsRequestTests.cs
@@ -1175,6 +1191,10 @@ src/Zernio.Test/Model/CreateInboxConversation422ResponseTests.cs
 src/Zernio.Test/Model/CreateInboxConversationRequestTests.cs
 src/Zernio.Test/Model/CreateInviteToken201ResponseTests.cs
 src/Zernio.Test/Model/CreateInviteTokenRequestTests.cs
+src/Zernio.Test/Model/CreateLeadForm200ResponseTests.cs
+src/Zernio.Test/Model/CreateLeadFormRequestQuestionsInnerOptionsInnerTests.cs
+src/Zernio.Test/Model/CreateLeadFormRequestQuestionsInnerTests.cs
+src/Zernio.Test/Model/CreateLeadFormRequestTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseDetailsTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseTests.cs
 src/Zernio.Test/Model/CreatePost429ResponseTests.cs
@@ -1206,6 +1226,10 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestVideoTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestZipsInnerTests.cs
+src/Zernio.Test/Model/CreateTestLead200ResponseTestLeadTests.cs
+src/Zernio.Test/Model/CreateTestLead200ResponseTests.cs
+src/Zernio.Test/Model/CreateTestLeadRequestFieldDataInnerTests.cs
+src/Zernio.Test/Model/CreateTestLeadRequestTests.cs
 src/Zernio.Test/Model/CreateTrackingTag201ResponseTests.cs
 src/Zernio.Test/Model/CreateTrackingTagRequestTests.cs
 src/Zernio.Test/Model/CreateWebhookSettingsRequestTests.cs
@@ -1397,6 +1421,7 @@ src/Zernio.Test/Model/GetInstagramAccountInsights404ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataMetricsTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseTests.cs
+src/Zernio.Test/Model/GetLeadForm200ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInAggregateAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInAggregateAnalytics400ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInAggregateAnalytics402ResponseTests.cs
@@ -1552,6 +1577,8 @@ src/Zernio.Test/Model/ListCustomFields200ResponseFieldsInnerTests.cs
 src/Zernio.Test/Model/ListCustomFields200ResponseTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/ListFacebookPages200ResponseTests.cs
+src/Zernio.Test/Model/ListFormLeads200ResponseLeadsInnerTests.cs
+src/Zernio.Test/Model/ListFormLeads200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessLocations200ResponseLocationsInnerTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessLocations200ResponseTests.cs
 src/Zernio.Test/Model/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociationTests.cs
@@ -1574,6 +1601,9 @@ src/Zernio.Test/Model/ListInboxReviews200ResponseSummaryTests.cs
 src/Zernio.Test/Model/ListInboxReviews200ResponseTests.cs
 src/Zernio.Test/Model/ListInstagramStories200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/ListInstagramStories200ResponseTests.cs
+src/Zernio.Test/Model/ListLeadForms200ResponseTests.cs
+src/Zernio.Test/Model/ListLeads200ResponseLeadsInnerTests.cs
+src/Zernio.Test/Model/ListLeads200ResponseTests.cs
 src/Zernio.Test/Model/ListLinkedInOrganizations200ResponseOrganizationsInnerTests.cs
 src/Zernio.Test/Model/ListLinkedInOrganizations200ResponseTests.cs
 src/Zernio.Test/Model/ListLogs200ResponseLogsInnerTests.cs
@@ -2090,6 +2120,7 @@ src/Zernio/Model/AnalyticsSinglePostResponseMediaItemsInner.cs
 src/Zernio/Model/ApiKey.cs
 src/Zernio/Model/ApiKeyProfileIdsInner.cs
 src/Zernio/Model/ApproveWhatsAppGroupJoinRequestsRequest.cs
+src/Zernio/Model/ArchiveLeadForm200Response.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviews200Response.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviewsRequest.cs
@@ -2183,6 +2214,10 @@ src/Zernio/Model/CreateInboxConversation422Response.cs
 src/Zernio/Model/CreateInboxConversationRequest.cs
 src/Zernio/Model/CreateInviteToken201Response.cs
 src/Zernio/Model/CreateInviteTokenRequest.cs
+src/Zernio/Model/CreateLeadForm200Response.cs
+src/Zernio/Model/CreateLeadFormRequest.cs
+src/Zernio/Model/CreateLeadFormRequestQuestionsInner.cs
+src/Zernio/Model/CreateLeadFormRequestQuestionsInnerOptionsInner.cs
 src/Zernio/Model/CreatePost409Response.cs
 src/Zernio/Model/CreatePost409ResponseDetails.cs
 src/Zernio/Model/CreatePost429Response.cs
@@ -2214,6 +2249,10 @@ src/Zernio/Model/CreateStandaloneAdRequestPromotedObject.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestVideo.cs
 src/Zernio/Model/CreateStandaloneAdRequestZipsInner.cs
+src/Zernio/Model/CreateTestLead200Response.cs
+src/Zernio/Model/CreateTestLead200ResponseTestLead.cs
+src/Zernio/Model/CreateTestLeadRequest.cs
+src/Zernio/Model/CreateTestLeadRequestFieldDataInner.cs
 src/Zernio/Model/CreateTrackingTag201Response.cs
 src/Zernio/Model/CreateTrackingTagRequest.cs
 src/Zernio/Model/CreateWebhookSettingsRequest.cs
@@ -2405,6 +2444,7 @@ src/Zernio/Model/GetInstagramAccountInsights404Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200ResponseData.cs
 src/Zernio/Model/GetInstagramStoryInsights200ResponseDataMetrics.cs
+src/Zernio/Model/GetLeadForm200Response.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics200Response.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics400Response.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics402Response.cs
@@ -2560,6 +2600,8 @@ src/Zernio/Model/ListCustomFields200Response.cs
 src/Zernio/Model/ListCustomFields200ResponseFieldsInner.cs
 src/Zernio/Model/ListFacebookPages200Response.cs
 src/Zernio/Model/ListFacebookPages200ResponsePagesInner.cs
+src/Zernio/Model/ListFormLeads200Response.cs
+src/Zernio/Model/ListFormLeads200ResponseLeadsInner.cs
 src/Zernio/Model/ListGoogleBusinessLocations200Response.cs
 src/Zernio/Model/ListGoogleBusinessLocations200ResponseLocationsInner.cs
 src/Zernio/Model/ListGoogleBusinessMedia200Response.cs
@@ -2582,6 +2624,9 @@ src/Zernio/Model/ListInboxReviews200ResponseDataInnerReviewer.cs
 src/Zernio/Model/ListInboxReviews200ResponseSummary.cs
 src/Zernio/Model/ListInstagramStories200Response.cs
 src/Zernio/Model/ListInstagramStories200ResponseDataInner.cs
+src/Zernio/Model/ListLeadForms200Response.cs
+src/Zernio/Model/ListLeads200Response.cs
+src/Zernio/Model/ListLeads200ResponseLeadsInner.cs
 src/Zernio/Model/ListLinkedInOrganizations200Response.cs
 src/Zernio/Model/ListLinkedInOrganizations200ResponseOrganizationsInner.cs
 src/Zernio/Model/ListLogs200Response.cs

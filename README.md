@@ -176,10 +176,13 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**UpdateAdSet**](docs/AdCampaignsApi.md#updateadset) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set (budget, status, and/or bid strategy)
 *AdCampaignsApi* | [**UpdateAdSetStatus**](docs/AdCampaignsApi.md#updateadsetstatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
 *AdsApi* | [**AddConversionAssociations**](docs/AdsApi.md#addconversionassociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination
+*AdsApi* | [**ArchiveLeadForm**](docs/AdsApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form
 *AdsApi* | [**BoostPost**](docs/AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad
 *AdsApi* | [**CreateConversionDestination**](docs/AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn)
 *AdsApi* | [**CreateCtwaAd**](docs/AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad(s)
+*AdsApi* | [**CreateLeadForm**](docs/AdsApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a Lead Gen (Instant) form
 *AdsApi* | [**CreateStandaloneAd**](docs/AdsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad
+*AdsApi* | [**CreateTestLead**](docs/AdsApi.md#createtestlead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a synthetic test lead
 *AdsApi* | [**DeleteAd**](docs/AdsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad
 *AdsApi* | [**DeleteConversionDestination**](docs/AdsApi.md#deleteconversiondestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Soft-delete a conversion destination
 *AdsApi* | [**EstimateAdReach**](docs/AdsApi.md#estimateadreach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
@@ -188,11 +191,15 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**GetAdComments**](docs/AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdsApi* | [**GetConversionDestination**](docs/AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Fetch a single conversion destination
 *AdsApi* | [**GetConversionMetrics**](docs/AdsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Fetch attribution metrics for a conversion destination
+*AdsApi* | [**GetLeadForm**](docs/AdsApi.md#getleadform) | **GET** /v1/ads/lead-forms/{formId} | Get a single Lead Gen form
 *AdsApi* | [**ListAdAccounts**](docs/AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**ListAds**](docs/AdsApi.md#listads) | **GET** /v1/ads | List ads
 *AdsApi* | [**ListAdsBusinessCenters**](docs/AdsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
 *AdsApi* | [**ListConversionAssociations**](docs/AdsApi.md#listconversionassociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List campaigns associated with a conversion destination
 *AdsApi* | [**ListConversionDestinations**](docs/AdsApi.md#listconversiondestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API
+*AdsApi* | [**ListFormLeads**](docs/AdsApi.md#listformleads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
+*AdsApi* | [**ListLeadForms**](docs/AdsApi.md#listleadforms) | **GET** /v1/ads/lead-forms | List Lead Gen (Instant) forms
+*AdsApi* | [**ListLeads**](docs/AdsApi.md#listleads) | **GET** /v1/ads/leads | List submitted leads (cross-form CRM view)
 *AdsApi* | [**RemoveConversionAssociations**](docs/AdsApi.md#removeconversionassociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations
 *AdsApi* | [**SearchAdInterests**](docs/AdsApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests (deprecated)
 *AdsApi* | [**SearchAdTargeting**](docs/AdsApi.md#searchadtargeting) | **GET** /v1/ads/targeting/search | Search targeting options
@@ -487,6 +494,7 @@ Class | Method | HTTP request | Description
  - [Model.ApiKey](docs/ApiKey.md)
  - [Model.ApiKeyProfileIdsInner](docs/ApiKeyProfileIdsInner.md)
  - [Model.ApproveWhatsAppGroupJoinRequestsRequest](docs/ApproveWhatsAppGroupJoinRequestsRequest.md)
+ - [Model.ArchiveLeadForm200Response](docs/ArchiveLeadForm200Response.md)
  - [Model.BatchGetGoogleBusinessReviews200Response](docs/BatchGetGoogleBusinessReviews200Response.md)
  - [Model.BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner](docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md)
  - [Model.BatchGetGoogleBusinessReviewsRequest](docs/BatchGetGoogleBusinessReviewsRequest.md)
@@ -580,6 +588,10 @@ Class | Method | HTTP request | Description
  - [Model.CreateInboxConversationRequest](docs/CreateInboxConversationRequest.md)
  - [Model.CreateInviteToken201Response](docs/CreateInviteToken201Response.md)
  - [Model.CreateInviteTokenRequest](docs/CreateInviteTokenRequest.md)
+ - [Model.CreateLeadForm200Response](docs/CreateLeadForm200Response.md)
+ - [Model.CreateLeadFormRequest](docs/CreateLeadFormRequest.md)
+ - [Model.CreateLeadFormRequestQuestionsInner](docs/CreateLeadFormRequestQuestionsInner.md)
+ - [Model.CreateLeadFormRequestQuestionsInnerOptionsInner](docs/CreateLeadFormRequestQuestionsInnerOptionsInner.md)
  - [Model.CreatePost409Response](docs/CreatePost409Response.md)
  - [Model.CreatePost409ResponseDetails](docs/CreatePost409ResponseDetails.md)
  - [Model.CreatePost429Response](docs/CreatePost429Response.md)
@@ -611,6 +623,10 @@ Class | Method | HTTP request | Description
  - [Model.CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [Model.CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
  - [Model.CreateStandaloneAdRequestZipsInner](docs/CreateStandaloneAdRequestZipsInner.md)
+ - [Model.CreateTestLead200Response](docs/CreateTestLead200Response.md)
+ - [Model.CreateTestLead200ResponseTestLead](docs/CreateTestLead200ResponseTestLead.md)
+ - [Model.CreateTestLeadRequest](docs/CreateTestLeadRequest.md)
+ - [Model.CreateTestLeadRequestFieldDataInner](docs/CreateTestLeadRequestFieldDataInner.md)
  - [Model.CreateTrackingTag201Response](docs/CreateTrackingTag201Response.md)
  - [Model.CreateTrackingTagRequest](docs/CreateTrackingTagRequest.md)
  - [Model.CreateWebhookSettingsRequest](docs/CreateWebhookSettingsRequest.md)
@@ -802,6 +818,7 @@ Class | Method | HTTP request | Description
  - [Model.GetInstagramStoryInsights200Response](docs/GetInstagramStoryInsights200Response.md)
  - [Model.GetInstagramStoryInsights200ResponseData](docs/GetInstagramStoryInsights200ResponseData.md)
  - [Model.GetInstagramStoryInsights200ResponseDataMetrics](docs/GetInstagramStoryInsights200ResponseDataMetrics.md)
+ - [Model.GetLeadForm200Response](docs/GetLeadForm200Response.md)
  - [Model.GetLinkedInAggregateAnalytics200Response](docs/GetLinkedInAggregateAnalytics200Response.md)
  - [Model.GetLinkedInAggregateAnalytics400Response](docs/GetLinkedInAggregateAnalytics400Response.md)
  - [Model.GetLinkedInAggregateAnalytics402Response](docs/GetLinkedInAggregateAnalytics402Response.md)
@@ -957,6 +974,8 @@ Class | Method | HTTP request | Description
  - [Model.ListCustomFields200ResponseFieldsInner](docs/ListCustomFields200ResponseFieldsInner.md)
  - [Model.ListFacebookPages200Response](docs/ListFacebookPages200Response.md)
  - [Model.ListFacebookPages200ResponsePagesInner](docs/ListFacebookPages200ResponsePagesInner.md)
+ - [Model.ListFormLeads200Response](docs/ListFormLeads200Response.md)
+ - [Model.ListFormLeads200ResponseLeadsInner](docs/ListFormLeads200ResponseLeadsInner.md)
  - [Model.ListGoogleBusinessLocations200Response](docs/ListGoogleBusinessLocations200Response.md)
  - [Model.ListGoogleBusinessLocations200ResponseLocationsInner](docs/ListGoogleBusinessLocations200ResponseLocationsInner.md)
  - [Model.ListGoogleBusinessMedia200Response](docs/ListGoogleBusinessMedia200Response.md)
@@ -979,6 +998,9 @@ Class | Method | HTTP request | Description
  - [Model.ListInboxReviews200ResponseSummary](docs/ListInboxReviews200ResponseSummary.md)
  - [Model.ListInstagramStories200Response](docs/ListInstagramStories200Response.md)
  - [Model.ListInstagramStories200ResponseDataInner](docs/ListInstagramStories200ResponseDataInner.md)
+ - [Model.ListLeadForms200Response](docs/ListLeadForms200Response.md)
+ - [Model.ListLeads200Response](docs/ListLeads200Response.md)
+ - [Model.ListLeads200ResponseLeadsInner](docs/ListLeads200ResponseLeadsInner.md)
  - [Model.ListLinkedInOrganizations200Response](docs/ListLinkedInOrganizations200Response.md)
  - [Model.ListLinkedInOrganizations200ResponseOrganizationsInner](docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md)
  - [Model.ListLogs200Response](docs/ListLogs200Response.md)

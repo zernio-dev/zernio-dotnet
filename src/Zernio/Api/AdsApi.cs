@@ -54,6 +54,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AddConversionAssociations200Response</returns>
         ApiResponse<AddConversionAssociations200Response> AddConversionAssociationsWithHttpInfo(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest);
         /// <summary>
+        /// Archive a Lead Gen form
+        /// </summary>
+        /// <remarks>
+        /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ArchiveLeadForm200Response</returns>
+        ArchiveLeadForm200Response ArchiveLeadForm(string formId, string accountId);
+
+        /// <summary>
+        /// Archive a Lead Gen form
+        /// </summary>
+        /// <remarks>
+        /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of ArchiveLeadForm200Response</returns>
+        ApiResponse<ArchiveLeadForm200Response> ArchiveLeadFormWithHttpInfo(string formId, string accountId);
+        /// <summary>
         /// Boost post as ad
         /// </summary>
         /// <remarks>
@@ -119,6 +142,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateCtwaAd201Response</returns>
         ApiResponse<CreateCtwaAd201Response> CreateCtwaAdWithHttpInfo(CreateCtwaAdRequest createCtwaAdRequest);
         /// <summary>
+        /// Create a Lead Gen (Instant) form
+        /// </summary>
+        /// <remarks>
+        /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createLeadFormRequest"></param>
+        /// <returns>CreateLeadForm200Response</returns>
+        CreateLeadForm200Response CreateLeadForm(CreateLeadFormRequest createLeadFormRequest);
+
+        /// <summary>
+        /// Create a Lead Gen (Instant) form
+        /// </summary>
+        /// <remarks>
+        /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createLeadFormRequest"></param>
+        /// <returns>ApiResponse of CreateLeadForm200Response</returns>
+        ApiResponse<CreateLeadForm200Response> CreateLeadFormWithHttpInfo(CreateLeadFormRequest createLeadFormRequest);
+        /// <summary>
         /// Create standalone ad
         /// </summary>
         /// <remarks>
@@ -139,6 +183,29 @@ namespace Zernio.Api
         /// <param name="createStandaloneAdRequest"></param>
         /// <returns>ApiResponse of CreateStandaloneAd201Response</returns>
         ApiResponse<CreateStandaloneAd201Response> CreateStandaloneAdWithHttpInfo(CreateStandaloneAdRequest createStandaloneAdRequest);
+        /// <summary>
+        /// Create a synthetic test lead
+        /// </summary>
+        /// <remarks>
+        /// Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="createTestLeadRequest"></param>
+        /// <returns>CreateTestLead200Response</returns>
+        CreateTestLead200Response CreateTestLead(string formId, CreateTestLeadRequest createTestLeadRequest);
+
+        /// <summary>
+        /// Create a synthetic test lead
+        /// </summary>
+        /// <remarks>
+        /// Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="createTestLeadRequest"></param>
+        /// <returns>ApiResponse of CreateTestLead200Response</returns>
+        ApiResponse<CreateTestLead200Response> CreateTestLeadWithHttpInfo(string formId, CreateTestLeadRequest createTestLeadRequest);
         /// <summary>
         /// Cancel an ad
         /// </summary>
@@ -338,6 +405,26 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetConversionMetrics200Response</returns>
         ApiResponse<GetConversionMetrics200Response> GetConversionMetricsWithHttpInfo(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default);
         /// <summary>
+        /// Get a single Lead Gen form
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>GetLeadForm200Response</returns>
+        GetLeadForm200Response GetLeadForm(string formId, string accountId);
+
+        /// <summary>
+        /// Get a single Lead Gen form
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of GetLeadForm200Response</returns>
+        ApiResponse<GetLeadForm200Response> GetLeadFormWithHttpInfo(string formId, string accountId);
+        /// <summary>
         /// List ad accounts
         /// </summary>
         /// <remarks>
@@ -476,6 +563,89 @@ namespace Zernio.Api
         /// <param name="accountId">SocialAccount ID (metaads, googleads, or linkedinads).</param>
         /// <returns>ApiResponse of ListConversionDestinations200Response</returns>
         ApiResponse<ListConversionDestinations200Response> ListConversionDestinationsWithHttpInfo(string accountId);
+        /// <summary>
+        /// List leads for a single form
+        /// </summary>
+        /// <remarks>
+        /// Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="since">Unix seconds. (optional)</param>
+        /// <returns>ListFormLeads200Response</returns>
+        ListFormLeads200Response ListFormLeads(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default);
+
+        /// <summary>
+        /// List leads for a single form
+        /// </summary>
+        /// <remarks>
+        /// Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="since">Unix seconds. (optional)</param>
+        /// <returns>ApiResponse of ListFormLeads200Response</returns>
+        ApiResponse<ListFormLeads200Response> ListFormLeadsWithHttpInfo(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default);
+        /// <summary>
+        /// List Lead Gen (Instant) forms
+        /// </summary>
+        /// <remarks>
+        /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <returns>ListLeadForms200Response</returns>
+        ListLeadForms200Response ListLeadForms(string accountId, int? limit = default, string? cursor = default);
+
+        /// <summary>
+        /// List Lead Gen (Instant) forms
+        /// </summary>
+        /// <remarks>
+        /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <returns>ApiResponse of ListLeadForms200Response</returns>
+        ApiResponse<ListLeadForms200Response> ListLeadFormsWithHttpInfo(string accountId, int? limit = default, string? cursor = default);
+        /// <summary>
+        /// List submitted leads (cross-form CRM view)
+        /// </summary>
+        /// <remarks>
+        /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId">Filter to a single lead form. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <returns>ListLeads200Response</returns>
+        ListLeads200Response ListLeads(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default);
+
+        /// <summary>
+        /// List submitted leads (cross-form CRM view)
+        /// </summary>
+        /// <remarks>
+        /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId">Filter to a single lead form. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <returns>ApiResponse of ListLeads200Response</returns>
+        ApiResponse<ListLeads200Response> ListLeadsWithHttpInfo(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default);
         /// <summary>
         /// Remove campaign↔conversion associations
         /// </summary>
@@ -686,6 +856,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AddConversionAssociations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AddConversionAssociations200Response>> AddConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Archive a Lead Gen form
+        /// </summary>
+        /// <remarks>
+        /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ArchiveLeadForm200Response</returns>
+        System.Threading.Tasks.Task<ArchiveLeadForm200Response> ArchiveLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Archive a Lead Gen form
+        /// </summary>
+        /// <remarks>
+        /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ArchiveLeadForm200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ArchiveLeadForm200Response>> ArchiveLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Boost post as ad
         /// </summary>
         /// <remarks>
@@ -757,6 +952,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateCtwaAd201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateCtwaAd201Response>> CreateCtwaAdWithHttpInfoAsync(CreateCtwaAdRequest createCtwaAdRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Create a Lead Gen (Instant) form
+        /// </summary>
+        /// <remarks>
+        /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createLeadFormRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateLeadForm200Response</returns>
+        System.Threading.Tasks.Task<CreateLeadForm200Response> CreateLeadFormAsync(CreateLeadFormRequest createLeadFormRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a Lead Gen (Instant) form
+        /// </summary>
+        /// <remarks>
+        /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createLeadFormRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateLeadForm200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateLeadForm200Response>> CreateLeadFormWithHttpInfoAsync(CreateLeadFormRequest createLeadFormRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Create standalone ad
         /// </summary>
         /// <remarks>
@@ -779,6 +997,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateStandaloneAd201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateStandaloneAd201Response>> CreateStandaloneAdWithHttpInfoAsync(CreateStandaloneAdRequest createStandaloneAdRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a synthetic test lead
+        /// </summary>
+        /// <remarks>
+        /// Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="createTestLeadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateTestLead200Response</returns>
+        System.Threading.Tasks.Task<CreateTestLead200Response> CreateTestLeadAsync(string formId, CreateTestLeadRequest createTestLeadRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a synthetic test lead
+        /// </summary>
+        /// <remarks>
+        /// Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="createTestLeadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateTestLead200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateTestLead200Response>> CreateTestLeadWithHttpInfoAsync(string formId, CreateTestLeadRequest createTestLeadRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Cancel an ad
         /// </summary>
@@ -994,6 +1237,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetConversionMetrics200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetConversionMetrics200Response>> GetConversionMetricsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get a single Lead Gen form
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetLeadForm200Response</returns>
+        System.Threading.Tasks.Task<GetLeadForm200Response> GetLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a single Lead Gen form
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetLeadForm200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetLeadForm200Response>> GetLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List ad accounts
         /// </summary>
         /// <remarks>
@@ -1142,6 +1410,95 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListConversionDestinations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListConversionDestinations200Response>> ListConversionDestinationsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List leads for a single form
+        /// </summary>
+        /// <remarks>
+        /// Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="since">Unix seconds. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListFormLeads200Response</returns>
+        System.Threading.Tasks.Task<ListFormLeads200Response> ListFormLeadsAsync(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List leads for a single form
+        /// </summary>
+        /// <remarks>
+        /// Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="since">Unix seconds. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListFormLeads200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListFormLeads200Response>> ListFormLeadsWithHttpInfoAsync(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List Lead Gen (Instant) forms
+        /// </summary>
+        /// <remarks>
+        /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListLeadForms200Response</returns>
+        System.Threading.Tasks.Task<ListLeadForms200Response> ListLeadFormsAsync(string accountId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Lead Gen (Instant) forms
+        /// </summary>
+        /// <remarks>
+        /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListLeadForms200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListLeadForms200Response>> ListLeadFormsWithHttpInfoAsync(string accountId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List submitted leads (cross-form CRM view)
+        /// </summary>
+        /// <remarks>
+        /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId">Filter to a single lead form. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListLeads200Response</returns>
+        System.Threading.Tasks.Task<ListLeads200Response> ListLeadsAsync(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List submitted leads (cross-form CRM view)
+        /// </summary>
+        /// <remarks>
+        /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId">Filter to a single lead form. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListLeads200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListLeads200Response>> ListLeadsWithHttpInfoAsync(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Remove campaign↔conversion associations
         /// </summary>
@@ -1700,6 +2057,147 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Archive a Lead Gen form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ArchiveLeadForm200Response</returns>
+        public ArchiveLeadForm200Response ArchiveLeadForm(string formId, string accountId)
+        {
+            Zernio.Client.ApiResponse<ArchiveLeadForm200Response> localVarResponse = ArchiveLeadFormWithHttpInfo(formId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Archive a Lead Gen form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of ArchiveLeadForm200Response</returns>
+        public Zernio.Client.ApiResponse<ArchiveLeadForm200Response> ArchiveLeadFormWithHttpInfo(string formId, string accountId)
+        {
+            // verify the required parameter 'formId' is set
+            if (formId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'formId' when calling AdsApi->ArchiveLeadForm");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ArchiveLeadForm");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("formId", Zernio.Client.ClientUtils.ParameterToString(formId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<ArchiveLeadForm200Response>("/v1/ads/lead-forms/{formId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ArchiveLeadForm", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Archive a Lead Gen form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ArchiveLeadForm200Response</returns>
+        public async System.Threading.Tasks.Task<ArchiveLeadForm200Response> ArchiveLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ArchiveLeadForm200Response> localVarResponse = await ArchiveLeadFormWithHttpInfoAsync(formId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Archive a Lead Gen form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ArchiveLeadForm200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ArchiveLeadForm200Response>> ArchiveLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'formId' is set
+            if (formId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'formId' when calling AdsApi->ArchiveLeadForm");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ArchiveLeadForm");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("formId", Zernio.Client.ClientUtils.ParameterToString(formId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<ArchiveLeadForm200Response>("/v1/ads/lead-forms/{formId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ArchiveLeadForm", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Boost post as ad Creates a paid ad campaign from an existing published post. Creates the full platform campaign hierarchy (campaign, ad set, ad).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -2101,6 +2599,135 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Create a Lead Gen (Instant) form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createLeadFormRequest"></param>
+        /// <returns>CreateLeadForm200Response</returns>
+        public CreateLeadForm200Response CreateLeadForm(CreateLeadFormRequest createLeadFormRequest)
+        {
+            Zernio.Client.ApiResponse<CreateLeadForm200Response> localVarResponse = CreateLeadFormWithHttpInfo(createLeadFormRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Lead Gen (Instant) form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createLeadFormRequest"></param>
+        /// <returns>ApiResponse of CreateLeadForm200Response</returns>
+        public Zernio.Client.ApiResponse<CreateLeadForm200Response> CreateLeadFormWithHttpInfo(CreateLeadFormRequest createLeadFormRequest)
+        {
+            // verify the required parameter 'createLeadFormRequest' is set
+            if (createLeadFormRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createLeadFormRequest' when calling AdsApi->CreateLeadForm");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createLeadFormRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateLeadForm200Response>("/v1/ads/lead-forms", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateLeadForm", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Lead Gen (Instant) form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createLeadFormRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateLeadForm200Response</returns>
+        public async System.Threading.Tasks.Task<CreateLeadForm200Response> CreateLeadFormAsync(CreateLeadFormRequest createLeadFormRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateLeadForm200Response> localVarResponse = await CreateLeadFormWithHttpInfoAsync(createLeadFormRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Lead Gen (Instant) form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createLeadFormRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateLeadForm200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateLeadForm200Response>> CreateLeadFormWithHttpInfoAsync(CreateLeadFormRequest createLeadFormRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createLeadFormRequest' is set
+            if (createLeadFormRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createLeadFormRequest' when calling AdsApi->CreateLeadForm");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createLeadFormRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateLeadForm200Response>("/v1/ads/lead-forms", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateLeadForm", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Create standalone ad Creates a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X/Twitter, and LinkedIn. Supports three mutually-exclusive request shapes selected by the body, a legacy single-creative shape (all platforms, default), a Meta-only multi-creative shape via the creatives array (one ad set with N ads sharing budget and targeting), and a Meta-only attach shape via adSetId (adds one new ad to an existing ad set). Per-platform required fields, budget minimums, and video-ad rules are documented on each property below. LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;); supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -2223,6 +2850,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateStandaloneAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a synthetic test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="createTestLeadRequest"></param>
+        /// <returns>CreateTestLead200Response</returns>
+        public CreateTestLead200Response CreateTestLead(string formId, CreateTestLeadRequest createTestLeadRequest)
+        {
+            Zernio.Client.ApiResponse<CreateTestLead200Response> localVarResponse = CreateTestLeadWithHttpInfo(formId, createTestLeadRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a synthetic test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="createTestLeadRequest"></param>
+        /// <returns>ApiResponse of CreateTestLead200Response</returns>
+        public Zernio.Client.ApiResponse<CreateTestLead200Response> CreateTestLeadWithHttpInfo(string formId, CreateTestLeadRequest createTestLeadRequest)
+        {
+            // verify the required parameter 'formId' is set
+            if (formId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'formId' when calling AdsApi->CreateTestLead");
+
+            // verify the required parameter 'createTestLeadRequest' is set
+            if (createTestLeadRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createTestLeadRequest' when calling AdsApi->CreateTestLead");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("formId", Zernio.Client.ClientUtils.ParameterToString(formId)); // path parameter
+            localVarRequestOptions.Data = createTestLeadRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateTestLead200Response>("/v1/ads/lead-forms/{formId}/test-leads", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateTestLead", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a synthetic test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="createTestLeadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateTestLead200Response</returns>
+        public async System.Threading.Tasks.Task<CreateTestLead200Response> CreateTestLeadAsync(string formId, CreateTestLeadRequest createTestLeadRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateTestLead200Response> localVarResponse = await CreateTestLeadWithHttpInfoAsync(formId, createTestLeadRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a synthetic test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="createTestLeadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateTestLead200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateTestLead200Response>> CreateTestLeadWithHttpInfoAsync(string formId, CreateTestLeadRequest createTestLeadRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'formId' is set
+            if (formId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'formId' when calling AdsApi->CreateTestLead");
+
+            // verify the required parameter 'createTestLeadRequest' is set
+            if (createTestLeadRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createTestLeadRequest' when calling AdsApi->CreateTestLead");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("formId", Zernio.Client.ClientUtils.ParameterToString(formId)); // path parameter
+            localVarRequestOptions.Data = createTestLeadRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateTestLead200Response>("/v1/ads/lead-forms/{formId}/test-leads", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateTestLead", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -3438,6 +4208,147 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Get a single Lead Gen form 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>GetLeadForm200Response</returns>
+        public GetLeadForm200Response GetLeadForm(string formId, string accountId)
+        {
+            Zernio.Client.ApiResponse<GetLeadForm200Response> localVarResponse = GetLeadFormWithHttpInfo(formId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a single Lead Gen form 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of GetLeadForm200Response</returns>
+        public Zernio.Client.ApiResponse<GetLeadForm200Response> GetLeadFormWithHttpInfo(string formId, string accountId)
+        {
+            // verify the required parameter 'formId' is set
+            if (formId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'formId' when calling AdsApi->GetLeadForm");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetLeadForm");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("formId", Zernio.Client.ClientUtils.ParameterToString(formId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetLeadForm200Response>("/v1/ads/lead-forms/{formId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetLeadForm", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a single Lead Gen form 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetLeadForm200Response</returns>
+        public async System.Threading.Tasks.Task<GetLeadForm200Response> GetLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetLeadForm200Response> localVarResponse = await GetLeadFormWithHttpInfoAsync(formId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a single Lead Gen form 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetLeadForm200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetLeadForm200Response>> GetLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'formId' is set
+            if (formId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'formId' when calling AdsApi->GetLeadForm");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetLeadForm");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("formId", Zernio.Client.ClientUtils.ParameterToString(formId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetLeadForm200Response>("/v1/ads/lead-forms/{formId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetLeadForm", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// List ad accounts Returns the platform ad accounts available for the given social account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -4272,6 +5183,507 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListConversionDestinations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List leads for a single form Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="since">Unix seconds. (optional)</param>
+        /// <returns>ListFormLeads200Response</returns>
+        public ListFormLeads200Response ListFormLeads(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default)
+        {
+            Zernio.Client.ApiResponse<ListFormLeads200Response> localVarResponse = ListFormLeadsWithHttpInfo(formId, accountId, limit, cursor, since);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List leads for a single form Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="since">Unix seconds. (optional)</param>
+        /// <returns>ApiResponse of ListFormLeads200Response</returns>
+        public Zernio.Client.ApiResponse<ListFormLeads200Response> ListFormLeadsWithHttpInfo(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default)
+        {
+            // verify the required parameter 'formId' is set
+            if (formId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'formId' when calling AdsApi->ListFormLeads");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListFormLeads");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("formId", Zernio.Client.ClientUtils.ParameterToString(formId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListFormLeads200Response>("/v1/ads/lead-forms/{formId}/leads", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListFormLeads", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List leads for a single form Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="since">Unix seconds. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListFormLeads200Response</returns>
+        public async System.Threading.Tasks.Task<ListFormLeads200Response> ListFormLeadsAsync(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListFormLeads200Response> localVarResponse = await ListFormLeadsWithHttpInfoAsync(formId, accountId, limit, cursor, since, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List leads for a single form Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="since">Unix seconds. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListFormLeads200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListFormLeads200Response>> ListFormLeadsWithHttpInfoAsync(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'formId' is set
+            if (formId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'formId' when calling AdsApi->ListFormLeads");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListFormLeads");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("formId", Zernio.Client.ClientUtils.ParameterToString(formId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListFormLeads200Response>("/v1/ads/lead-forms/{formId}/leads", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListFormLeads", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Lead Gen (Instant) forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <returns>ListLeadForms200Response</returns>
+        public ListLeadForms200Response ListLeadForms(string accountId, int? limit = default, string? cursor = default)
+        {
+            Zernio.Client.ApiResponse<ListLeadForms200Response> localVarResponse = ListLeadFormsWithHttpInfo(accountId, limit, cursor);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Lead Gen (Instant) forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <returns>ApiResponse of ListLeadForms200Response</returns>
+        public Zernio.Client.ApiResponse<ListLeadForms200Response> ListLeadFormsWithHttpInfo(string accountId, int? limit = default, string? cursor = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListLeadForms");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListLeadForms200Response>("/v1/ads/lead-forms", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListLeadForms", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Lead Gen (Instant) forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListLeadForms200Response</returns>
+        public async System.Threading.Tasks.Task<ListLeadForms200Response> ListLeadFormsAsync(string accountId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListLeadForms200Response> localVarResponse = await ListLeadFormsWithHttpInfoAsync(accountId, limit, cursor, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Lead Gen (Instant) forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="cursor"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListLeadForms200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLeadForms200Response>> ListLeadFormsWithHttpInfoAsync(string accountId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListLeadForms");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListLeadForms200Response>("/v1/ads/lead-forms", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListLeadForms", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List submitted leads (cross-form CRM view) Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId">Filter to a single lead form. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <returns>ListLeads200Response</returns>
+        public ListLeads200Response ListLeads(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default)
+        {
+            Zernio.Client.ApiResponse<ListLeads200Response> localVarResponse = ListLeadsWithHttpInfo(formId, accountId, limit, since, cursor);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List submitted leads (cross-form CRM view) Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId">Filter to a single lead form. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <returns>ApiResponse of ListLeads200Response</returns>
+        public Zernio.Client.ApiResponse<ListLeads200Response> ListLeadsWithHttpInfo(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default)
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (formId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "formId", formId));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListLeads200Response>("/v1/ads/leads", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListLeads", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List submitted leads (cross-form CRM view) Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId">Filter to a single lead form. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListLeads200Response</returns>
+        public async System.Threading.Tasks.Task<ListLeads200Response> ListLeadsAsync(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListLeads200Response> localVarResponse = await ListLeadsWithHttpInfoAsync(formId, accountId, limit, since, cursor, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List submitted leads (cross-form CRM view) Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="formId">Filter to a single lead form. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListLeads200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLeads200Response>> ListLeadsWithHttpInfoAsync(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (formId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "formId", formId));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListLeads200Response>("/v1/ads/leads", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListLeads", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
