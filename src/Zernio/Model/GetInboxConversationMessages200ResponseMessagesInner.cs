@@ -171,7 +171,8 @@ namespace Zernio.Model
         /// <param name="sentAt">Original send time for outgoing messages (used for Messenger watermark queries)..</param>
         /// <param name="deliveryError">deliveryError.</param>
         /// <param name="reactions">Emoji reactions on this message (WhatsApp / Telegram). At most one per party in a 1:1 thread..</param>
-        public GetInboxConversationMessages200ResponseMessagesInner(string id = default, string conversationId = default, string accountId = default, string platform = default, string message = default, string senderId = default, string senderName = default, SenderVerifiedTypeEnum? senderVerifiedType = default, DirectionEnum? direction = default, DateTime createdAt = default, List<GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner> attachments = default, string subject = default, bool storyReply = default, bool isStoryMention = default, bool isEdited = default, DateTime editedAt = default, int editCount = default, List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> editHistory = default, bool isDeleted = default, DateTime deletedAt = default, DeliveryStatusEnum? deliveryStatus = default, DateTime deliveredAt = default, DateTime readAt = default, DateTime sentAt = default, GetInboxConversationMessages200ResponseMessagesInnerDeliveryError deliveryError = default, List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions = default)
+        /// <param name="metadata">Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. .</param>
+        public GetInboxConversationMessages200ResponseMessagesInner(string id = default, string conversationId = default, string accountId = default, string platform = default, string message = default, string senderId = default, string senderName = default, SenderVerifiedTypeEnum? senderVerifiedType = default, DirectionEnum? direction = default, DateTime createdAt = default, List<GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner> attachments = default, string subject = default, bool storyReply = default, bool isStoryMention = default, bool isEdited = default, DateTime editedAt = default, int editCount = default, List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> editHistory = default, bool isDeleted = default, DateTime deletedAt = default, DeliveryStatusEnum? deliveryStatus = default, DateTime deliveredAt = default, DateTime readAt = default, DateTime sentAt = default, GetInboxConversationMessages200ResponseMessagesInnerDeliveryError deliveryError = default, List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions = default, Dictionary<string, Object> metadata = default)
         {
             this.Id = id;
             this.ConversationId = conversationId;
@@ -199,6 +200,7 @@ namespace Zernio.Model
             this.SentAt = sentAt;
             this.DeliveryError = deliveryError;
             this.Reactions = reactions;
+            this.Metadata = metadata;
         }
 
         /// <summary>
@@ -350,6 +352,13 @@ namespace Zernio.Model
         public List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> Reactions { get; set; }
 
         /// <summary>
+        /// Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. 
+        /// </summary>
+        /// <value>Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. </value>
+        [DataMember(Name = "metadata", EmitDefaultValue = false)]
+        public Dictionary<string, Object> Metadata { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -383,6 +392,7 @@ namespace Zernio.Model
             sb.Append("  SentAt: ").Append(SentAt).Append("\n");
             sb.Append("  DeliveryError: ").Append(DeliveryError).Append("\n");
             sb.Append("  Reactions: ").Append(Reactions).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
