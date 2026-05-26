@@ -170,7 +170,8 @@ namespace Zernio.Model
         /// <param name="readAt">readAt.</param>
         /// <param name="sentAt">Original send time for outgoing messages (used for Messenger watermark queries)..</param>
         /// <param name="deliveryError">deliveryError.</param>
-        public GetInboxConversationMessages200ResponseMessagesInner(string id = default, string conversationId = default, string accountId = default, string platform = default, string message = default, string senderId = default, string senderName = default, SenderVerifiedTypeEnum? senderVerifiedType = default, DirectionEnum? direction = default, DateTime createdAt = default, List<GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner> attachments = default, string subject = default, bool storyReply = default, bool isStoryMention = default, bool isEdited = default, DateTime editedAt = default, int editCount = default, List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> editHistory = default, bool isDeleted = default, DateTime deletedAt = default, DeliveryStatusEnum? deliveryStatus = default, DateTime deliveredAt = default, DateTime readAt = default, DateTime sentAt = default, GetInboxConversationMessages200ResponseMessagesInnerDeliveryError deliveryError = default)
+        /// <param name="reactions">Emoji reactions on this message (WhatsApp / Telegram). At most one per party in a 1:1 thread..</param>
+        public GetInboxConversationMessages200ResponseMessagesInner(string id = default, string conversationId = default, string accountId = default, string platform = default, string message = default, string senderId = default, string senderName = default, SenderVerifiedTypeEnum? senderVerifiedType = default, DirectionEnum? direction = default, DateTime createdAt = default, List<GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner> attachments = default, string subject = default, bool storyReply = default, bool isStoryMention = default, bool isEdited = default, DateTime editedAt = default, int editCount = default, List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> editHistory = default, bool isDeleted = default, DateTime deletedAt = default, DeliveryStatusEnum? deliveryStatus = default, DateTime deliveredAt = default, DateTime readAt = default, DateTime sentAt = default, GetInboxConversationMessages200ResponseMessagesInnerDeliveryError deliveryError = default, List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions = default)
         {
             this.Id = id;
             this.ConversationId = conversationId;
@@ -197,6 +198,7 @@ namespace Zernio.Model
             this.ReadAt = readAt;
             this.SentAt = sentAt;
             this.DeliveryError = deliveryError;
+            this.Reactions = reactions;
         }
 
         /// <summary>
@@ -341,6 +343,13 @@ namespace Zernio.Model
         public GetInboxConversationMessages200ResponseMessagesInnerDeliveryError DeliveryError { get; set; }
 
         /// <summary>
+        /// Emoji reactions on this message (WhatsApp / Telegram). At most one per party in a 1:1 thread.
+        /// </summary>
+        /// <value>Emoji reactions on this message (WhatsApp / Telegram). At most one per party in a 1:1 thread.</value>
+        [DataMember(Name = "reactions", EmitDefaultValue = false)]
+        public List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> Reactions { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -373,6 +382,7 @@ namespace Zernio.Model
             sb.Append("  ReadAt: ").Append(ReadAt).Append("\n");
             sb.Append("  SentAt: ").Append(SentAt).Append("\n");
             sb.Append("  DeliveryError: ").Append(DeliveryError).Append("\n");
+            sb.Append("  Reactions: ").Append(Reactions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -162,5 +162,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ReplyTo'
         }
+
+        /// <summary>
+        /// Test the property 'Location'
+        /// </summary>
+        [Fact]
+        public void LocationTest()
+        {
+            // TODO unit test for the property 'Location'
+        }
+
+        /// <summary>
+        /// Test the property 'Contacts'
+        /// </summary>
+        [Fact]
+        public void ContactsTest()
+        {
+            // TODO unit test for the property 'Contacts'
+        }
     }
 }

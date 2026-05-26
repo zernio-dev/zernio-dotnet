@@ -164,7 +164,9 @@ namespace Zernio.Model
         /// <param name="messagingType">Facebook messaging type. Required when using messageTag..</param>
         /// <param name="messageTag">Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT..</param>
         /// <param name="replyTo">Platform message ID to quote-reply to. For WhatsApp, pass the wamid (available in message.platformMessageId from webhooks). For Telegram, pass the Telegram message ID..</param>
-        public SendInboxMessageRequest(string accountId = default, string message = default, string attachmentUrl = default, AttachmentTypeEnum? attachmentType = default, List<SendInboxMessageRequestQuickRepliesInner> quickReplies = default, List<SendInboxMessageRequestButtonsInner> buttons = default, SendInboxMessageRequestTemplate template = default, SendInboxMessageRequestInteractive interactive = default, SendInboxMessageRequestReplyMarkup replyMarkup = default, MessagingTypeEnum? messagingType = default, MessageTagEnum? messageTag = default, string replyTo = default)
+        /// <param name="location">location.</param>
+        /// <param name="contacts">WhatsApp-only. Send one or more contact cards..</param>
+        public SendInboxMessageRequest(string accountId = default, string message = default, string attachmentUrl = default, AttachmentTypeEnum? attachmentType = default, List<SendInboxMessageRequestQuickRepliesInner> quickReplies = default, List<SendInboxMessageRequestButtonsInner> buttons = default, SendInboxMessageRequestTemplate template = default, SendInboxMessageRequestInteractive interactive = default, SendInboxMessageRequestReplyMarkup replyMarkup = default, MessagingTypeEnum? messagingType = default, MessageTagEnum? messageTag = default, string replyTo = default, SendInboxMessageRequestLocation location = default, List<SendInboxMessageRequestContactsInner> contacts = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -183,6 +185,8 @@ namespace Zernio.Model
             this.MessagingType = messagingType;
             this.MessageTag = messageTag;
             this.ReplyTo = replyTo;
+            this.Location = location;
+            this.Contacts = contacts;
         }
 
         /// <summary>
@@ -246,6 +250,19 @@ namespace Zernio.Model
         public string ReplyTo { get; set; }
 
         /// <summary>
+        /// Gets or Sets Location
+        /// </summary>
+        [DataMember(Name = "location", EmitDefaultValue = false)]
+        public SendInboxMessageRequestLocation Location { get; set; }
+
+        /// <summary>
+        /// WhatsApp-only. Send one or more contact cards.
+        /// </summary>
+        /// <value>WhatsApp-only. Send one or more contact cards.</value>
+        [DataMember(Name = "contacts", EmitDefaultValue = false)]
+        public List<SendInboxMessageRequestContactsInner> Contacts { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -265,6 +282,8 @@ namespace Zernio.Model
             sb.Append("  MessagingType: ").Append(MessagingType).Append("\n");
             sb.Append("  MessageTag: ").Append(MessageTag).Append("\n");
             sb.Append("  ReplyTo: ").Append(ReplyTo).Append("\n");
+            sb.Append("  Location: ").Append(Location).Append("\n");
+            sb.Append("  Contacts: ").Append(Contacts).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

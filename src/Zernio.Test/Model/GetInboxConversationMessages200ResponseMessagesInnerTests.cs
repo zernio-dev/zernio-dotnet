@@ -279,5 +279,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'DeliveryError'
         }
+
+        /// <summary>
+        /// Test the property 'Reactions'
+        /// </summary>
+        [Fact]
+        public void ReactionsTest()
+        {
+            // TODO unit test for the property 'Reactions'
+        }
     }
 }
