@@ -99,5 +99,32 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'SkipDmCheck'
         }
+
+        /// <summary>
+        /// Test the property 'TemplateName'
+        /// </summary>
+        [Fact]
+        public void TemplateNameTest()
+        {
+            // TODO unit test for the property 'TemplateName'
+        }
+
+        /// <summary>
+        /// Test the property 'TemplateLanguage'
+        /// </summary>
+        [Fact]
+        public void TemplateLanguageTest()
+        {
+            // TODO unit test for the property 'TemplateLanguage'
+        }
+
+        /// <summary>
+        /// Test the property 'TemplateParams'
+        /// </summary>
+        [Fact]
+        public void TemplateParamsTest()
+        {
+            // TODO unit test for the property 'TemplateParams'
+        }
     }
 }

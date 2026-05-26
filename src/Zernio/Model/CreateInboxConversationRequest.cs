@@ -42,11 +42,14 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateInboxConversationRequest" /> class.
         /// </summary>
         /// <param name="accountId">The social account ID to send from (required).</param>
-        /// <param name="participantId">Twitter numeric user ID of the recipient. Provide either this or participantUsername..</param>
-        /// <param name="participantUsername">Twitter username (with or without @) of the recipient. Resolved to a user ID via lookup. Provide either this or participantId..</param>
-        /// <param name="message">Text content of the message. At least one of message or attachment is required..</param>
-        /// <param name="skipDmCheck">Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs. (default to false).</param>
-        public CreateInboxConversationRequest(string accountId = default, string participantId = default, string participantUsername = default, string message = default, bool skipDmCheck = false)
+        /// <param name="participantId">Recipient identifier. For X this is the numeric user ID; for WhatsApp, the recipient phone number in international format (digits, country code included). Provide either this or participantUsername..</param>
+        /// <param name="participantUsername">Recipient handle/username — an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId..</param>
+        /// <param name="message">Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required..</param>
+        /// <param name="skipDmCheck">X/Twitter only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs. (default to false).</param>
+        /// <param name="templateName">WhatsApp only. Name of the approved template to start the conversation with (required for WhatsApp)..</param>
+        /// <param name="templateLanguage">WhatsApp only. Template language code (e.g. en_US)..</param>
+        /// <param name="templateParams">WhatsApp only. Body variable values, in order, substituted into the template body ({{1}}, {{2}}, ...)..</param>
+        public CreateInboxConversationRequest(string accountId = default, string participantId = default, string participantUsername = default, string message = default, bool skipDmCheck = false, string templateName = default, string templateLanguage = default, List<string> templateParams = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -58,6 +61,9 @@ namespace Zernio.Model
             this.ParticipantUsername = participantUsername;
             this.Message = message;
             this.SkipDmCheck = skipDmCheck;
+            this.TemplateName = templateName;
+            this.TemplateLanguage = templateLanguage;
+            this.TemplateParams = templateParams;
         }
 
         /// <summary>
@@ -68,32 +74,53 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Twitter numeric user ID of the recipient. Provide either this or participantUsername.
+        /// Recipient identifier. For X this is the numeric user ID; for WhatsApp, the recipient phone number in international format (digits, country code included). Provide either this or participantUsername.
         /// </summary>
-        /// <value>Twitter numeric user ID of the recipient. Provide either this or participantUsername.</value>
+        /// <value>Recipient identifier. For X this is the numeric user ID; for WhatsApp, the recipient phone number in international format (digits, country code included). Provide either this or participantUsername.</value>
         [DataMember(Name = "participantId", EmitDefaultValue = false)]
         public string ParticipantId { get; set; }
 
         /// <summary>
-        /// Twitter username (with or without @) of the recipient. Resolved to a user ID via lookup. Provide either this or participantId.
+        /// Recipient handle/username — an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId.
         /// </summary>
-        /// <value>Twitter username (with or without @) of the recipient. Resolved to a user ID via lookup. Provide either this or participantId.</value>
+        /// <value>Recipient handle/username — an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId.</value>
         [DataMember(Name = "participantUsername", EmitDefaultValue = false)]
         public string ParticipantUsername { get; set; }
 
         /// <summary>
-        /// Text content of the message. At least one of message or attachment is required.
+        /// Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required.
         /// </summary>
-        /// <value>Text content of the message. At least one of message or attachment is required.</value>
+        /// <value>Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required.</value>
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
         /// <summary>
-        /// Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.
+        /// X/Twitter only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.
         /// </summary>
-        /// <value>Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.</value>
+        /// <value>X/Twitter only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.</value>
         [DataMember(Name = "skipDmCheck", EmitDefaultValue = true)]
         public bool SkipDmCheck { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. Name of the approved template to start the conversation with (required for WhatsApp).
+        /// </summary>
+        /// <value>WhatsApp only. Name of the approved template to start the conversation with (required for WhatsApp).</value>
+        [DataMember(Name = "templateName", EmitDefaultValue = false)]
+        public string TemplateName { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. Template language code (e.g. en_US).
+        /// </summary>
+        /// <value>WhatsApp only. Template language code (e.g. en_US).</value>
+        [DataMember(Name = "templateLanguage", EmitDefaultValue = false)]
+        public string TemplateLanguage { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. Body variable values, in order, substituted into the template body ({{1}}, {{2}}, ...).
+        /// </summary>
+        /// <value>WhatsApp only. Body variable values, in order, substituted into the template body ({{1}}, {{2}}, ...).</value>
+        [DataMember(Name = "templateParams", EmitDefaultValue = false)]
+        public List<string> TemplateParams { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -108,6 +135,9 @@ namespace Zernio.Model
             sb.Append("  ParticipantUsername: ").Append(ParticipantUsername).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  SkipDmCheck: ").Append(SkipDmCheck).Append("\n");
+            sb.Append("  TemplateName: ").Append(TemplateName).Append("\n");
+            sb.Append("  TemplateLanguage: ").Append(TemplateLanguage).Append("\n");
+            sb.Append("  TemplateParams: ").Append(TemplateParams).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
