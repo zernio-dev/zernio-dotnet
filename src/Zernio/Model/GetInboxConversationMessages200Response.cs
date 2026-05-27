@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class GetInboxConversationMessages200Response : IValidatableObject
     {
         /// <summary>
-        /// Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Twitter, Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). 
+        /// Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). 
         /// </summary>
-        /// <value>Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Twitter, Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). </value>
+        /// <value>Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SortOrderAppliedEnum
         {
@@ -55,9 +55,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Twitter, Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). 
+        /// Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). 
         /// </summary>
-        /// <value>Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Twitter, Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). </value>
+        /// <value>Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). </value>
         [DataMember(Name = "sortOrderApplied", EmitDefaultValue = false)]
         public SortOrderAppliedEnum? SortOrderApplied { get; set; }
         /// <summary>
@@ -65,7 +65,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="status">status.</param>
         /// <param name="pagination">pagination.</param>
-        /// <param name="sortOrderApplied">Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Twitter, Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). .</param>
+        /// <param name="sortOrderApplied">Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). .</param>
         /// <param name="messages">messages.</param>
         /// <param name="lastUpdated">lastUpdated.</param>
         public GetInboxConversationMessages200Response(string status = default, GetInboxConversationMessages200ResponsePagination pagination = default, SortOrderAppliedEnum? sortOrderApplied = default, List<GetInboxConversationMessages200ResponseMessagesInner> messages = default, DateTime lastUpdated = default)
