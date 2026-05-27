@@ -1,15 +1,15 @@
-# Zernio.Model.CreateWhatsAppFlow200ResponseFlow
+# Zernio.Model.ListWhatsAppFlowVersions200ResponseVersionsInner
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | [optional] 
+**FlowId** | **string** |  | [optional] 
+**VarVersion** | **int** |  | [optional] 
+**ParentFlowId** | **string** |  | [optional] 
 **Name** | **string** |  | [optional] 
 **Status** | **string** |  | [optional] 
-**Categories** | **List&lt;string&gt;** |  | [optional] 
-**VarVersion** | **int** | Version within the clone lineage | [optional] 
-**LineageId** | **string** | Version-lineage group key | [optional] 
+**Missing** | **bool** | True when Meta no longer has this flow | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

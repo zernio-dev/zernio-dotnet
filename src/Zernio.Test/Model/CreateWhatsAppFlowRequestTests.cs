@@ -90,5 +90,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'CloneFlowId'
         }
+
+        /// <summary>
+        /// Test the property 'AsVersion'
+        /// </summary>
+        [Fact]
+        public void AsVersionTest()
+        {
+            // TODO unit test for the property 'AsVersion'
+        }
     }
 }

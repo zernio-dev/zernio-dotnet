@@ -436,6 +436,8 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**DeprecateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#deprecatewhatsappflow) | **POST** /v1/whatsapp/flows/{flowId}/deprecate | Deprecate flow
 *WhatsAppFlowsApi* | [**GetWhatsAppFlow**](docs/WhatsAppFlowsApi.md#getwhatsappflow) | **GET** /v1/whatsapp/flows/{flowId} | Get flow
 *WhatsAppFlowsApi* | [**GetWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#getwhatsappflowjson) | **GET** /v1/whatsapp/flows/{flowId}/json | Get flow JSON asset
+*WhatsAppFlowsApi* | [**GetWhatsAppFlowPreview**](docs/WhatsAppFlowsApi.md#getwhatsappflowpreview) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL
+*WhatsAppFlowsApi* | [**ListWhatsAppFlowVersions**](docs/WhatsAppFlowsApi.md#listwhatsappflowversions) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions
 *WhatsAppFlowsApi* | [**ListWhatsAppFlows**](docs/WhatsAppFlowsApi.md#listwhatsappflows) | **GET** /v1/whatsapp/flows | List flows
 *WhatsAppFlowsApi* | [**PublishWhatsAppFlow**](docs/WhatsAppFlowsApi.md#publishwhatsappflow) | **POST** /v1/whatsapp/flows/{flowId}/publish | Publish flow
 *WhatsAppFlowsApi* | [**SendWhatsAppFlowMessage**](docs/WhatsAppFlowsApi.md#sendwhatsappflowmessage) | **POST** /v1/whatsapp/flows/send | Send flow message
@@ -882,6 +884,7 @@ Class | Method | HTTP request | Description
  - [Model.GetWhatsAppFlow200ResponseFlowPreview](docs/GetWhatsAppFlow200ResponseFlowPreview.md)
  - [Model.GetWhatsAppFlowJson200Response](docs/GetWhatsAppFlowJson200Response.md)
  - [Model.GetWhatsAppFlowJson200ResponseAssetsInner](docs/GetWhatsAppFlowJson200ResponseAssetsInner.md)
+ - [Model.GetWhatsAppFlowPreview200Response](docs/GetWhatsAppFlowPreview200Response.md)
  - [Model.GetWhatsAppGroupChat200Response](docs/GetWhatsAppGroupChat200Response.md)
  - [Model.GetWhatsAppGroupChat200ResponseGroup](docs/GetWhatsAppGroupChat200ResponseGroup.md)
  - [Model.GetWhatsAppGroupChat200ResponseGroupParticipantsInner](docs/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.md)
@@ -1022,6 +1025,8 @@ Class | Method | HTTP request | Description
  - [Model.ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [Model.ListUsers200Response](docs/ListUsers200Response.md)
  - [Model.ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
+ - [Model.ListWhatsAppFlowVersions200Response](docs/ListWhatsAppFlowVersions200Response.md)
+ - [Model.ListWhatsAppFlowVersions200ResponseVersionsInner](docs/ListWhatsAppFlowVersions200ResponseVersionsInner.md)
  - [Model.ListWhatsAppFlows200Response](docs/ListWhatsAppFlows200Response.md)
  - [Model.ListWhatsAppFlows200ResponseFlowsInner](docs/ListWhatsAppFlows200ResponseFlowsInner.md)
  - [Model.ListWhatsAppGroupChats200Response](docs/ListWhatsAppGroupChats200Response.md)

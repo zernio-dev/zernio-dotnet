@@ -120,6 +120,33 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetWhatsAppFlowPreview
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppFlowPreviewTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string flowId = null;
+            //string accountId = null;
+            //bool? invalidate = null;
+            //var response = instance.GetWhatsAppFlowPreview(flowId, accountId, invalidate);
+            //Assert.IsType<GetWhatsAppFlowPreview200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListWhatsAppFlowVersions
+        /// </summary>
+        [Fact]
+        public void ListWhatsAppFlowVersionsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string flowId = null;
+            //string accountId = null;
+            //var response = instance.ListWhatsAppFlowVersions(flowId, accountId);
+            //Assert.IsType<ListWhatsAppFlowVersions200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListWhatsAppFlows
         /// </summary>
         [Fact]

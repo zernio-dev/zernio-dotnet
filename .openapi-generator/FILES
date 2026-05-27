@@ -458,6 +458,7 @@ docs/GetWhatsAppFlow200ResponseFlow.md
 docs/GetWhatsAppFlow200ResponseFlowPreview.md
 docs/GetWhatsAppFlowJson200Response.md
 docs/GetWhatsAppFlowJson200ResponseAssetsInner.md
+docs/GetWhatsAppFlowPreview200Response.md
 docs/GetWhatsAppGroupChat200Response.md
 docs/GetWhatsAppGroupChat200ResponseGroup.md
 docs/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.md
@@ -601,6 +602,8 @@ docs/ListTrackingTagSharedAccounts200Response.md
 docs/ListTrackingTags200Response.md
 docs/ListUsers200Response.md
 docs/ListUsers200ResponseUsersInner.md
+docs/ListWhatsAppFlowVersions200Response.md
+docs/ListWhatsAppFlowVersions200ResponseVersionsInner.md
 docs/ListWhatsAppFlows200Response.md
 docs/ListWhatsAppFlows200ResponseFlowsInner.md
 docs/ListWhatsAppGroupChats200Response.md
@@ -1494,6 +1497,7 @@ src/Zernio.Test/Model/GetWhatsAppFlow200ResponseFlowTests.cs
 src/Zernio.Test/Model/GetWhatsAppFlow200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppFlowJson200ResponseAssetsInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppFlowJson200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppFlowPreview200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppGroupChat200ResponseGroupParticipantsInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppGroupChat200ResponseGroupTests.cs
 src/Zernio.Test/Model/GetWhatsAppGroupChat200ResponseTests.cs
@@ -1634,6 +1638,8 @@ src/Zernio.Test/Model/ListTrackingTagSharedAccounts200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseUsersInnerTests.cs
+src/Zernio.Test/Model/ListWhatsAppFlowVersions200ResponseTests.cs
+src/Zernio.Test/Model/ListWhatsAppFlowVersions200ResponseVersionsInnerTests.cs
 src/Zernio.Test/Model/ListWhatsAppFlows200ResponseFlowsInnerTests.cs
 src/Zernio.Test/Model/ListWhatsAppFlows200ResponseTests.cs
 src/Zernio.Test/Model/ListWhatsAppGroupChats200ResponseGroupsInnerTests.cs
@@ -2526,6 +2532,7 @@ src/Zernio/Model/GetWhatsAppFlow200ResponseFlow.cs
 src/Zernio/Model/GetWhatsAppFlow200ResponseFlowPreview.cs
 src/Zernio/Model/GetWhatsAppFlowJson200Response.cs
 src/Zernio/Model/GetWhatsAppFlowJson200ResponseAssetsInner.cs
+src/Zernio/Model/GetWhatsAppFlowPreview200Response.cs
 src/Zernio/Model/GetWhatsAppGroupChat200Response.cs
 src/Zernio/Model/GetWhatsAppGroupChat200ResponseGroup.cs
 src/Zernio/Model/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.cs
@@ -2666,6 +2673,8 @@ src/Zernio/Model/ListTrackingTagSharedAccounts200Response.cs
 src/Zernio/Model/ListTrackingTags200Response.cs
 src/Zernio/Model/ListUsers200Response.cs
 src/Zernio/Model/ListUsers200ResponseUsersInner.cs
+src/Zernio/Model/ListWhatsAppFlowVersions200Response.cs
+src/Zernio/Model/ListWhatsAppFlowVersions200ResponseVersionsInner.cs
 src/Zernio/Model/ListWhatsAppFlows200Response.cs
 src/Zernio/Model/ListWhatsAppFlows200ResponseFlowsInner.cs
 src/Zernio/Model/ListWhatsAppGroupChats200Response.cs

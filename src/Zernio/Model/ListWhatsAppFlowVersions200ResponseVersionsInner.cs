@@ -28,35 +28,47 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CreateWhatsAppFlow200ResponseFlow
+    /// ListWhatsAppFlowVersions200ResponseVersionsInner
     /// </summary>
-    [DataContract(Name = "createWhatsAppFlow_200_response_flow")]
-    public partial class CreateWhatsAppFlow200ResponseFlow : IValidatableObject
+    [DataContract(Name = "listWhatsAppFlowVersions_200_response_versions_inner")]
+    public partial class ListWhatsAppFlowVersions200ResponseVersionsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateWhatsAppFlow200ResponseFlow" /> class.
+        /// Initializes a new instance of the <see cref="ListWhatsAppFlowVersions200ResponseVersionsInner" /> class.
         /// </summary>
-        /// <param name="id">id.</param>
+        /// <param name="flowId">flowId.</param>
+        /// <param name="varVersion">varVersion.</param>
+        /// <param name="parentFlowId">parentFlowId.</param>
         /// <param name="name">name.</param>
         /// <param name="status">status.</param>
-        /// <param name="categories">categories.</param>
-        /// <param name="varVersion">Version within the clone lineage.</param>
-        /// <param name="lineageId">Version-lineage group key.</param>
-        public CreateWhatsAppFlow200ResponseFlow(string id = default, string name = default, string status = default, List<string> categories = default, int varVersion = default, string lineageId = default)
+        /// <param name="missing">True when Meta no longer has this flow.</param>
+        public ListWhatsAppFlowVersions200ResponseVersionsInner(string flowId = default, int varVersion = default, string parentFlowId = default, string name = default, string status = default, bool missing = default)
         {
-            this.Id = id;
+            this.FlowId = flowId;
+            this.VarVersion = varVersion;
+            this.ParentFlowId = parentFlowId;
             this.Name = name;
             this.Status = status;
-            this.Categories = categories;
-            this.VarVersion = varVersion;
-            this.LineageId = lineageId;
+            this.Missing = missing;
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Gets or Sets FlowId
         /// </summary>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
-        public string Id { get; set; }
+        [DataMember(Name = "flowId", EmitDefaultValue = false)]
+        public string FlowId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets VarVersion
+        /// </summary>
+        [DataMember(Name = "version", EmitDefaultValue = false)]
+        public int VarVersion { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ParentFlowId
+        /// </summary>
+        [DataMember(Name = "parentFlowId", EmitDefaultValue = false)]
+        public string ParentFlowId { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
@@ -67,31 +79,15 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Status
         /// </summary>
-        /*
-        <example>DRAFT</example>
-        */
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
         /// <summary>
-        /// Gets or Sets Categories
+        /// True when Meta no longer has this flow
         /// </summary>
-        [DataMember(Name = "categories", EmitDefaultValue = false)]
-        public List<string> Categories { get; set; }
-
-        /// <summary>
-        /// Version within the clone lineage
-        /// </summary>
-        /// <value>Version within the clone lineage</value>
-        [DataMember(Name = "version", EmitDefaultValue = false)]
-        public int VarVersion { get; set; }
-
-        /// <summary>
-        /// Version-lineage group key
-        /// </summary>
-        /// <value>Version-lineage group key</value>
-        [DataMember(Name = "lineageId", EmitDefaultValue = false)]
-        public string LineageId { get; set; }
+        /// <value>True when Meta no longer has this flow</value>
+        [DataMember(Name = "missing", EmitDefaultValue = true)]
+        public bool Missing { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,13 +96,13 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateWhatsAppFlow200ResponseFlow {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("class ListWhatsAppFlowVersions200ResponseVersionsInner {\n");
+            sb.Append("  FlowId: ").Append(FlowId).Append("\n");
+            sb.Append("  VarVersion: ").Append(VarVersion).Append("\n");
+            sb.Append("  ParentFlowId: ").Append(ParentFlowId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Categories: ").Append(Categories).Append("\n");
-            sb.Append("  VarVersion: ").Append(VarVersion).Append("\n");
-            sb.Append("  LineageId: ").Append(LineageId).Append("\n");
+            sb.Append("  Missing: ").Append(Missing).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

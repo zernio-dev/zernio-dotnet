@@ -99,8 +99,9 @@ namespace Zernio.Model
         /// <param name="accountId">WhatsApp social account ID (required).</param>
         /// <param name="name">Flow display name (required).</param>
         /// <param name="categories">Flow categories (required).</param>
-        /// <param name="cloneFlowId">Optional: ID of an existing flow to clone.</param>
-        public CreateWhatsAppFlowRequest(string accountId = default, string name = default, List<CategoriesEnum> categories = default, string cloneFlowId = default)
+        /// <param name="cloneFlowId">Optional: ID of an existing flow to clone the Flow JSON from.</param>
+        /// <param name="asVersion">When cloning, true keeps the clone in cloneFlowId&#39;s version lineage (auto-numbered next version); false/absent creates an independent flow. Ignored without cloneFlowId..</param>
+        public CreateWhatsAppFlowRequest(string accountId = default, string name = default, List<CategoriesEnum> categories = default, string cloneFlowId = default, bool asVersion = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -121,6 +122,7 @@ namespace Zernio.Model
             }
             this.Categories = categories;
             this.CloneFlowId = cloneFlowId;
+            this.AsVersion = asVersion;
         }
 
         /// <summary>
@@ -145,11 +147,18 @@ namespace Zernio.Model
         public List<CreateWhatsAppFlowRequest.CategoriesEnum> Categories { get; set; }
 
         /// <summary>
-        /// Optional: ID of an existing flow to clone
+        /// Optional: ID of an existing flow to clone the Flow JSON from
         /// </summary>
-        /// <value>Optional: ID of an existing flow to clone</value>
+        /// <value>Optional: ID of an existing flow to clone the Flow JSON from</value>
         [DataMember(Name = "cloneFlowId", EmitDefaultValue = false)]
         public string CloneFlowId { get; set; }
+
+        /// <summary>
+        /// When cloning, true keeps the clone in cloneFlowId&#39;s version lineage (auto-numbered next version); false/absent creates an independent flow. Ignored without cloneFlowId.
+        /// </summary>
+        /// <value>When cloning, true keeps the clone in cloneFlowId&#39;s version lineage (auto-numbered next version); false/absent creates an independent flow. Ignored without cloneFlowId.</value>
+        [DataMember(Name = "asVersion", EmitDefaultValue = true)]
+        public bool AsVersion { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -163,6 +172,7 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Categories: ").Append(Categories).Append("\n");
             sb.Append("  CloneFlowId: ").Append(CloneFlowId).Append("\n");
+            sb.Append("  AsVersion: ").Append(AsVersion).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

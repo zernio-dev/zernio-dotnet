@@ -84,13 +84,17 @@ namespace Zernio.Model
         /// <param name="status">status.</param>
         /// <param name="categories">categories.</param>
         /// <param name="validationErrors">validationErrors.</param>
-        public ListWhatsAppFlows200ResponseFlowsInner(string id = default, string name = default, StatusEnum? status = default, List<string> categories = default, List<Object> validationErrors = default)
+        /// <param name="varVersion">1-based version within the flow&#39;s clone lineage (Zernio-tracked; Meta has no native versioning). Standalone flows are version 1..</param>
+        /// <param name="lineageId">Stable group key for the flow&#39;s version lineage (the root flow&#39;s ID)..</param>
+        public ListWhatsAppFlows200ResponseFlowsInner(string id = default, string name = default, StatusEnum? status = default, List<string> categories = default, List<Object> validationErrors = default, int varVersion = default, string lineageId = default)
         {
             this.Id = id;
             this.Name = name;
             this.Status = status;
             this.Categories = categories;
             this.ValidationErrors = validationErrors;
+            this.VarVersion = varVersion;
+            this.LineageId = lineageId;
         }
 
         /// <summary>
@@ -118,6 +122,20 @@ namespace Zernio.Model
         public List<Object> ValidationErrors { get; set; }
 
         /// <summary>
+        /// 1-based version within the flow&#39;s clone lineage (Zernio-tracked; Meta has no native versioning). Standalone flows are version 1.
+        /// </summary>
+        /// <value>1-based version within the flow&#39;s clone lineage (Zernio-tracked; Meta has no native versioning). Standalone flows are version 1.</value>
+        [DataMember(Name = "version", EmitDefaultValue = false)]
+        public int VarVersion { get; set; }
+
+        /// <summary>
+        /// Stable group key for the flow&#39;s version lineage (the root flow&#39;s ID).
+        /// </summary>
+        /// <value>Stable group key for the flow&#39;s version lineage (the root flow&#39;s ID).</value>
+        [DataMember(Name = "lineageId", EmitDefaultValue = false)]
+        public string LineageId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -130,6 +148,8 @@ namespace Zernio.Model
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Categories: ").Append(Categories).Append("\n");
             sb.Append("  ValidationErrors: ").Append(ValidationErrors).Append("\n");
+            sb.Append("  VarVersion: ").Append(VarVersion).Append("\n");
+            sb.Append("  LineageId: ").Append(LineageId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

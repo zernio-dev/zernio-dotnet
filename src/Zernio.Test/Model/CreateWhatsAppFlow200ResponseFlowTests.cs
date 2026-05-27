@@ -90,5 +90,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Categories'
         }
+
+        /// <summary>
+        /// Test the property 'VarVersion'
+        /// </summary>
+        [Fact]
+        public void VarVersionTest()
+        {
+            // TODO unit test for the property 'VarVersion'
+        }
+
+        /// <summary>
+        /// Test the property 'LineageId'
+        /// </summary>
+        [Fact]
+        public void LineageIdTest()
+        {
+            // TODO unit test for the property 'LineageId'
+        }
     }
 }

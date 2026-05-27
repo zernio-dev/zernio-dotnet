@@ -144,6 +144,54 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetWhatsAppFlowJson200Response</returns>
         ApiResponse<GetWhatsAppFlowJson200Response> GetWhatsAppFlowJsonWithHttpInfo(string flowId, string accountId);
         /// <summary>
+        /// Get flow preview URL
+        /// </summary>
+        /// <remarks>
+        /// Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
+        /// <returns>GetWhatsAppFlowPreview200Response</returns>
+        GetWhatsAppFlowPreview200Response GetWhatsAppFlowPreview(string flowId, string accountId, bool? invalidate = default);
+
+        /// <summary>
+        /// Get flow preview URL
+        /// </summary>
+        /// <remarks>
+        /// Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
+        /// <returns>ApiResponse of GetWhatsAppFlowPreview200Response</returns>
+        ApiResponse<GetWhatsAppFlowPreview200Response> GetWhatsAppFlowPreviewWithHttpInfo(string flowId, string accountId, bool? invalidate = default);
+        /// <summary>
+        /// List flow versions
+        /// </summary>
+        /// <remarks>
+        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ListWhatsAppFlowVersions200Response</returns>
+        ListWhatsAppFlowVersions200Response ListWhatsAppFlowVersions(string flowId, string accountId);
+
+        /// <summary>
+        /// List flow versions
+        /// </summary>
+        /// <remarks>
+        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ApiResponse of ListWhatsAppFlowVersions200Response</returns>
+        ApiResponse<ListWhatsAppFlowVersions200Response> ListWhatsAppFlowVersionsWithHttpInfo(string flowId, string accountId);
+        /// <summary>
         /// List flows
         /// </summary>
         /// <remarks>
@@ -388,6 +436,58 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppFlowJson200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppFlowJson200Response>> GetWhatsAppFlowJsonWithHttpInfoAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get flow preview URL
+        /// </summary>
+        /// <remarks>
+        /// Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppFlowPreview200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsAppFlowPreview200Response> GetWhatsAppFlowPreviewAsync(string flowId, string accountId, bool? invalidate = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get flow preview URL
+        /// </summary>
+        /// <remarks>
+        /// Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppFlowPreview200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppFlowPreview200Response>> GetWhatsAppFlowPreviewWithHttpInfoAsync(string flowId, string accountId, bool? invalidate = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List flow versions
+        /// </summary>
+        /// <remarks>
+        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListWhatsAppFlowVersions200Response</returns>
+        System.Threading.Tasks.Task<ListWhatsAppFlowVersions200Response> ListWhatsAppFlowVersionsAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List flow versions
+        /// </summary>
+        /// <remarks>
+        /// List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListWhatsAppFlowVersions200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListWhatsAppFlowVersions200Response>> ListWhatsAppFlowVersionsWithHttpInfoAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List flows
         /// </summary>
@@ -1423,6 +1523,300 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetWhatsAppFlowJson", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get flow preview URL Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
+        /// <returns>GetWhatsAppFlowPreview200Response</returns>
+        public GetWhatsAppFlowPreview200Response GetWhatsAppFlowPreview(string flowId, string accountId, bool? invalidate = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppFlowPreview200Response> localVarResponse = GetWhatsAppFlowPreviewWithHttpInfo(flowId, accountId, invalidate);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get flow preview URL Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
+        /// <returns>ApiResponse of GetWhatsAppFlowPreview200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsAppFlowPreview200Response> GetWhatsAppFlowPreviewWithHttpInfo(string flowId, string accountId, bool? invalidate = default)
+        {
+            // verify the required parameter 'flowId' is set
+            if (flowId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'flowId' when calling WhatsAppFlowsApi->GetWhatsAppFlowPreview");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppFlowsApi->GetWhatsAppFlowPreview");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("flowId", Zernio.Client.ClientUtils.ParameterToString(flowId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (invalidate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "invalidate", invalidate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsAppFlowPreview200Response>("/v1/whatsapp/flows/{flowId}/preview", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppFlowPreview", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get flow preview URL Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppFlowPreview200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsAppFlowPreview200Response> GetWhatsAppFlowPreviewAsync(string flowId, string accountId, bool? invalidate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppFlowPreview200Response> localVarResponse = await GetWhatsAppFlowPreviewWithHttpInfoAsync(flowId, accountId, invalidate, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get flow preview URL Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="invalidate">Mint a fresh preview link (default false) (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppFlowPreview200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppFlowPreview200Response>> GetWhatsAppFlowPreviewWithHttpInfoAsync(string flowId, string accountId, bool? invalidate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'flowId' is set
+            if (flowId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'flowId' when calling WhatsAppFlowsApi->GetWhatsAppFlowPreview");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppFlowsApi->GetWhatsAppFlowPreview");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("flowId", Zernio.Client.ClientUtils.ParameterToString(flowId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (invalidate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "invalidate", invalidate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppFlowPreview200Response>("/v1/whatsapp/flows/{flowId}/preview", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppFlowPreview", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ListWhatsAppFlowVersions200Response</returns>
+        public ListWhatsAppFlowVersions200Response ListWhatsAppFlowVersions(string flowId, string accountId)
+        {
+            Zernio.Client.ApiResponse<ListWhatsAppFlowVersions200Response> localVarResponse = ListWhatsAppFlowVersionsWithHttpInfo(flowId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ApiResponse of ListWhatsAppFlowVersions200Response</returns>
+        public Zernio.Client.ApiResponse<ListWhatsAppFlowVersions200Response> ListWhatsAppFlowVersionsWithHttpInfo(string flowId, string accountId)
+        {
+            // verify the required parameter 'flowId' is set
+            if (flowId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'flowId' when calling WhatsAppFlowsApi->ListWhatsAppFlowVersions");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppFlowsApi->ListWhatsAppFlowVersions");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("flowId", Zernio.Client.ClientUtils.ParameterToString(flowId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListWhatsAppFlowVersions200Response>("/v1/whatsapp/flows/{flowId}/versions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListWhatsAppFlowVersions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListWhatsAppFlowVersions200Response</returns>
+        public async System.Threading.Tasks.Task<ListWhatsAppFlowVersions200Response> ListWhatsAppFlowVersionsAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListWhatsAppFlowVersions200Response> localVarResponse = await ListWhatsAppFlowVersionsWithHttpInfoAsync(flowId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List flow versions List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="flowId">Flow ID</param>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListWhatsAppFlowVersions200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListWhatsAppFlowVersions200Response>> ListWhatsAppFlowVersionsWithHttpInfoAsync(string flowId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'flowId' is set
+            if (flowId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'flowId' when calling WhatsAppFlowsApi->ListWhatsAppFlowVersions");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppFlowsApi->ListWhatsAppFlowVersions");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("flowId", Zernio.Client.ClientUtils.ParameterToString(flowId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListWhatsAppFlowVersions200Response>("/v1/whatsapp/flows/{flowId}/versions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListWhatsAppFlowVersions", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

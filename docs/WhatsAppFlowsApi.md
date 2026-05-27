@@ -9,6 +9,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeprecateWhatsAppFlow**](WhatsAppFlowsApi.md#deprecatewhatsappflow) | **POST** /v1/whatsapp/flows/{flowId}/deprecate | Deprecate flow |
 | [**GetWhatsAppFlow**](WhatsAppFlowsApi.md#getwhatsappflow) | **GET** /v1/whatsapp/flows/{flowId} | Get flow |
 | [**GetWhatsAppFlowJson**](WhatsAppFlowsApi.md#getwhatsappflowjson) | **GET** /v1/whatsapp/flows/{flowId}/json | Get flow JSON asset |
+| [**GetWhatsAppFlowPreview**](WhatsAppFlowsApi.md#getwhatsappflowpreview) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL |
+| [**ListWhatsAppFlowVersions**](WhatsAppFlowsApi.md#listwhatsappflowversions) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions |
 | [**ListWhatsAppFlows**](WhatsAppFlowsApi.md#listwhatsappflows) | **GET** /v1/whatsapp/flows | List flows |
 | [**PublishWhatsAppFlow**](WhatsAppFlowsApi.md#publishwhatsappflow) | **POST** /v1/whatsapp/flows/{flowId}/publish | Publish flow |
 | [**SendWhatsAppFlowMessage**](WhatsAppFlowsApi.md#sendwhatsappflowmessage) | **POST** /v1/whatsapp/flows/send | Send flow message |
@@ -525,6 +527,212 @@ catch (ApiException e)
 | **200** | Flow JSON asset |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getwhatsappflowpreview"></a>
+# **GetWhatsAppFlowPreview**
+> GetWhatsAppFlowPreview200Response GetWhatsAppFlowPreview (string flowId, string accountId, bool? invalidate = null)
+
+Get flow preview URL
+
+Get Meta's public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate=true to mint a fresh one (the previous link stops working). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetWhatsAppFlowPreviewExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
+            var flowId = "flowId_example";  // string | Flow ID
+            var accountId = "accountId_example";  // string | WhatsApp social account ID
+            var invalidate = true;  // bool? | Mint a fresh preview link (default false) (optional) 
+
+            try
+            {
+                // Get flow preview URL
+                GetWhatsAppFlowPreview200Response result = apiInstance.GetWhatsAppFlowPreview(flowId, accountId, invalidate);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppFlowsApi.GetWhatsAppFlowPreview: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetWhatsAppFlowPreviewWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get flow preview URL
+    ApiResponse<GetWhatsAppFlowPreview200Response> response = apiInstance.GetWhatsAppFlowPreviewWithHttpInfo(flowId, accountId, invalidate);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppFlowsApi.GetWhatsAppFlowPreviewWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **flowId** | **string** | Flow ID |  |
+| **accountId** | **string** | WhatsApp social account ID |  |
+| **invalidate** | **bool?** | Mint a fresh preview link (default false) | [optional]  |
+
+### Return type
+
+[**GetWhatsAppFlowPreview200Response**](GetWhatsAppFlowPreview200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Preview URL |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Flow or account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listwhatsappflowversions"></a>
+# **ListWhatsAppFlowVersions**
+> ListWhatsAppFlowVersions200Response ListWhatsAppFlowVersions (string flowId, string accountId)
+
+List flow versions
+
+List the flow's version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version's live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListWhatsAppFlowVersionsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
+            var flowId = "flowId_example";  // string | Flow ID
+            var accountId = "accountId_example";  // string | WhatsApp social account ID
+
+            try
+            {
+                // List flow versions
+                ListWhatsAppFlowVersions200Response result = apiInstance.ListWhatsAppFlowVersions(flowId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppFlowsApi.ListWhatsAppFlowVersions: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListWhatsAppFlowVersionsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List flow versions
+    ApiResponse<ListWhatsAppFlowVersions200Response> response = apiInstance.ListWhatsAppFlowVersionsWithHttpInfo(flowId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppFlowsApi.ListWhatsAppFlowVersionsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **flowId** | **string** | Flow ID |  |
+| **accountId** | **string** | WhatsApp social account ID |  |
+
+### Return type
+
+[**ListWhatsAppFlowVersions200Response**](ListWhatsAppFlowVersions200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Version history |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Flow or account not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
