@@ -462,6 +462,9 @@ docs/GetWhatsAppFlowPreview200Response.md
 docs/GetWhatsAppGroupChat200Response.md
 docs/GetWhatsAppGroupChat200ResponseGroup.md
 docs/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.md
+docs/GetWhatsAppLibraryTemplate200Response.md
+docs/GetWhatsAppLibraryTemplate200ResponseTemplate.md
+docs/GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner.md
 docs/GetWhatsAppPhoneNumber200Response.md
 docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md
 docs/GetWhatsAppPhoneNumbers200Response.md
@@ -1007,6 +1010,7 @@ docs/WhatsAppHeaderComponentExample.md
 docs/WhatsAppPhoneNumbersApi.md
 docs/WhatsAppTemplateButton.md
 docs/WhatsAppTemplateComponent.md
+docs/WhatsAppTemplatesApi.md
 docs/XApiOperation.md
 docs/XApiOperationTriggeredByInner.md
 docs/XApiPricing.md
@@ -1067,6 +1071,7 @@ src/Zernio.Test/Api/WebhooksApiTests.cs
 src/Zernio.Test/Api/WhatsAppApiTests.cs
 src/Zernio.Test/Api/WhatsAppFlowsApiTests.cs
 src/Zernio.Test/Api/WhatsAppPhoneNumbersApiTests.cs
+src/Zernio.Test/Api/WhatsAppTemplatesApiTests.cs
 src/Zernio.Test/Model/AccountGetResponseTests.cs
 src/Zernio.Test/Model/AccountWithFollowerStatsAllOfAccountStatsTests.cs
 src/Zernio.Test/Model/AccountWithFollowerStatsTests.cs
@@ -1503,6 +1508,9 @@ src/Zernio.Test/Model/GetWhatsAppFlowPreview200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppGroupChat200ResponseGroupParticipantsInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppGroupChat200ResponseGroupTests.cs
 src/Zernio.Test/Model/GetWhatsAppGroupChat200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInnerTests.cs
+src/Zernio.Test/Model/GetWhatsAppLibraryTemplate200ResponseTemplateTests.cs
+src/Zernio.Test/Model/GetWhatsAppLibraryTemplate200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppPhoneNumber200ResponsePhoneNumberTests.cs
 src/Zernio.Test/Model/GetWhatsAppPhoneNumber200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppPhoneNumbers200ResponseNumbersInnerTests.cs
@@ -2086,6 +2094,7 @@ src/Zernio/Api/WebhooksApi.cs
 src/Zernio/Api/WhatsAppApi.cs
 src/Zernio/Api/WhatsAppFlowsApi.cs
 src/Zernio/Api/WhatsAppPhoneNumbersApi.cs
+src/Zernio/Api/WhatsAppTemplatesApi.cs
 src/Zernio/Client/ApiClient.cs
 src/Zernio/Client/ApiException.cs
 src/Zernio/Client/ApiResponse.cs
@@ -2540,6 +2549,9 @@ src/Zernio/Model/GetWhatsAppFlowPreview200Response.cs
 src/Zernio/Model/GetWhatsAppGroupChat200Response.cs
 src/Zernio/Model/GetWhatsAppGroupChat200ResponseGroup.cs
 src/Zernio/Model/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.cs
+src/Zernio/Model/GetWhatsAppLibraryTemplate200Response.cs
+src/Zernio/Model/GetWhatsAppLibraryTemplate200ResponseTemplate.cs
+src/Zernio/Model/GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner.cs
 src/Zernio/Model/GetWhatsAppPhoneNumber200Response.cs
 src/Zernio/Model/GetWhatsAppPhoneNumber200ResponsePhoneNumber.cs
 src/Zernio/Model/GetWhatsAppPhoneNumbers200Response.cs
