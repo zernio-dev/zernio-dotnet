@@ -444,6 +444,7 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**SendWhatsAppFlowMessage**](docs/WhatsAppFlowsApi.md#sendwhatsappflowmessage) | **POST** /v1/whatsapp/flows/send | Send flow message
 *WhatsAppFlowsApi* | [**UpdateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#updatewhatsappflow) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow
 *WhatsAppFlowsApi* | [**UploadWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#uploadwhatsappflowjson) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
+*WhatsAppPhoneNumbersApi* | [**GetWhatsAppNumberInfo**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappnumberinfo) | **GET** /v1/whatsapp/number-info | Get number status
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappphonenumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppPhoneNumbers**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappphonenumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers
 *WhatsAppPhoneNumbersApi* | [**PurchaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#purchasewhatsappphonenumber) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number
@@ -893,6 +894,10 @@ Class | Method | HTTP request | Description
  - [Model.GetWhatsAppLibraryTemplate200Response](docs/GetWhatsAppLibraryTemplate200Response.md)
  - [Model.GetWhatsAppLibraryTemplate200ResponseTemplate](docs/GetWhatsAppLibraryTemplate200ResponseTemplate.md)
  - [Model.GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner](docs/GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner.md)
+ - [Model.GetWhatsAppNumberInfo200Response](docs/GetWhatsAppNumberInfo200Response.md)
+ - [Model.GetWhatsAppNumberInfo200ResponsePhone](docs/GetWhatsAppNumberInfo200ResponsePhone.md)
+ - [Model.GetWhatsAppNumberInfo200ResponsePhoneThroughput](docs/GetWhatsAppNumberInfo200ResponsePhoneThroughput.md)
+ - [Model.GetWhatsAppNumberInfo200ResponseWaba](docs/GetWhatsAppNumberInfo200ResponseWaba.md)
  - [Model.GetWhatsAppPhoneNumber200Response](docs/GetWhatsAppPhoneNumber200Response.md)
  - [Model.GetWhatsAppPhoneNumber200ResponsePhoneNumber](docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md)
  - [Model.GetWhatsAppPhoneNumbers200Response](docs/GetWhatsAppPhoneNumbers200Response.md)

@@ -465,6 +465,10 @@ docs/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.md
 docs/GetWhatsAppLibraryTemplate200Response.md
 docs/GetWhatsAppLibraryTemplate200ResponseTemplate.md
 docs/GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner.md
+docs/GetWhatsAppNumberInfo200Response.md
+docs/GetWhatsAppNumberInfo200ResponsePhone.md
+docs/GetWhatsAppNumberInfo200ResponsePhoneThroughput.md
+docs/GetWhatsAppNumberInfo200ResponseWaba.md
 docs/GetWhatsAppPhoneNumber200Response.md
 docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md
 docs/GetWhatsAppPhoneNumbers200Response.md
@@ -1511,6 +1515,10 @@ src/Zernio.Test/Model/GetWhatsAppGroupChat200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppLibraryTemplate200ResponseTemplateTests.cs
 src/Zernio.Test/Model/GetWhatsAppLibraryTemplate200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppNumberInfo200ResponsePhoneTests.cs
+src/Zernio.Test/Model/GetWhatsAppNumberInfo200ResponsePhoneThroughputTests.cs
+src/Zernio.Test/Model/GetWhatsAppNumberInfo200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppNumberInfo200ResponseWabaTests.cs
 src/Zernio.Test/Model/GetWhatsAppPhoneNumber200ResponsePhoneNumberTests.cs
 src/Zernio.Test/Model/GetWhatsAppPhoneNumber200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppPhoneNumbers200ResponseNumbersInnerTests.cs
@@ -2552,6 +2560,10 @@ src/Zernio/Model/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.cs
 src/Zernio/Model/GetWhatsAppLibraryTemplate200Response.cs
 src/Zernio/Model/GetWhatsAppLibraryTemplate200ResponseTemplate.cs
 src/Zernio/Model/GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner.cs
+src/Zernio/Model/GetWhatsAppNumberInfo200Response.cs
+src/Zernio/Model/GetWhatsAppNumberInfo200ResponsePhone.cs
+src/Zernio/Model/GetWhatsAppNumberInfo200ResponsePhoneThroughput.cs
+src/Zernio/Model/GetWhatsAppNumberInfo200ResponseWaba.cs
 src/Zernio/Model/GetWhatsAppPhoneNumber200Response.cs
 src/Zernio/Model/GetWhatsAppPhoneNumber200ResponsePhoneNumber.cs
 src/Zernio/Model/GetWhatsAppPhoneNumbers200Response.cs

@@ -55,6 +55,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetWhatsAppNumberInfo
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppNumberInfoTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.GetWhatsAppNumberInfo(accountId);
+            //Assert.IsType<GetWhatsAppNumberInfo200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetWhatsAppPhoneNumber
         /// </summary>
         [Fact]
