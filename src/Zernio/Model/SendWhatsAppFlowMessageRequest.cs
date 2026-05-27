@@ -73,7 +73,7 @@ namespace Zernio.Model
         /// <param name="flowId">Published flow ID (required).</param>
         /// <param name="flowCta">CTA button text (e.g. &#39;Book Now&#39;, &#39;Sign Up&#39;) (required).</param>
         /// <param name="flowAction">Action type: navigate opens a screen directly, data_exchange hits your endpoint first (default to FlowActionEnum.Navigate).</param>
-        /// <param name="flowToken">Unique token to correlate responses. Auto-generated UUID if omitted..</param>
+        /// <param name="flowToken">Unique token to correlate responses. If omitted, auto-generated as &#39;&lt;flowId&gt;:&lt;uuid&gt;&#39; so the response can be attributed to this flow in the Flow Responses view..</param>
         /// <param name="flowActionPayload">flowActionPayload.</param>
         /// <param name="body">Message body text (required).</param>
         /// <param name="header">header.</param>
@@ -148,9 +148,9 @@ namespace Zernio.Model
         public string FlowCta { get; set; }
 
         /// <summary>
-        /// Unique token to correlate responses. Auto-generated UUID if omitted.
+        /// Unique token to correlate responses. If omitted, auto-generated as &#39;&lt;flowId&gt;:&lt;uuid&gt;&#39; so the response can be attributed to this flow in the Flow Responses view.
         /// </summary>
-        /// <value>Unique token to correlate responses. Auto-generated UUID if omitted.</value>
+        /// <value>Unique token to correlate responses. If omitted, auto-generated as &#39;&lt;flowId&gt;:&lt;uuid&gt;&#39; so the response can be attributed to this flow in the Flow Responses view.</value>
         [DataMember(Name = "flow_token", EmitDefaultValue = false)]
         public string FlowToken { get; set; }
 

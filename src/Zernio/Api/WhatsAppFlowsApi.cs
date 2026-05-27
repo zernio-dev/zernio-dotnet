@@ -169,6 +169,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetWhatsAppFlowPreview200Response</returns>
         ApiResponse<GetWhatsAppFlowPreview200Response> GetWhatsAppFlowPreviewWithHttpInfo(string flowId, string accountId, bool? invalidate = default);
         /// <summary>
+        /// List flow responses
+        /// </summary>
+        /// <remarks>
+        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="flowId">Scope to responses for this flow (optional)</param>
+        /// <param name="limit">Max responses to return (optional, default to 50)</param>
+        /// <returns>ListWhatsAppFlowResponses200Response</returns>
+        ListWhatsAppFlowResponses200Response ListWhatsAppFlowResponses(string accountId, string? flowId = default, int? limit = default);
+
+        /// <summary>
+        /// List flow responses
+        /// </summary>
+        /// <remarks>
+        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="flowId">Scope to responses for this flow (optional)</param>
+        /// <param name="limit">Max responses to return (optional, default to 50)</param>
+        /// <returns>ApiResponse of ListWhatsAppFlowResponses200Response</returns>
+        ApiResponse<ListWhatsAppFlowResponses200Response> ListWhatsAppFlowResponsesWithHttpInfo(string accountId, string? flowId = default, int? limit = default);
+        /// <summary>
         /// List flow versions
         /// </summary>
         /// <remarks>
@@ -463,6 +488,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppFlowPreview200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppFlowPreview200Response>> GetWhatsAppFlowPreviewWithHttpInfoAsync(string flowId, string accountId, bool? invalidate = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List flow responses
+        /// </summary>
+        /// <remarks>
+        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="flowId">Scope to responses for this flow (optional)</param>
+        /// <param name="limit">Max responses to return (optional, default to 50)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListWhatsAppFlowResponses200Response</returns>
+        System.Threading.Tasks.Task<ListWhatsAppFlowResponses200Response> ListWhatsAppFlowResponsesAsync(string accountId, string? flowId = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List flow responses
+        /// </summary>
+        /// <remarks>
+        /// List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="flowId">Scope to responses for this flow (optional)</param>
+        /// <param name="limit">Max responses to return (optional, default to 50)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListWhatsAppFlowResponses200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListWhatsAppFlowResponses200Response>> ListWhatsAppFlowResponsesWithHttpInfoAsync(string accountId, string? flowId = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List flow versions
         /// </summary>
@@ -1676,6 +1728,157 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetWhatsAppFlowPreview", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="flowId">Scope to responses for this flow (optional)</param>
+        /// <param name="limit">Max responses to return (optional, default to 50)</param>
+        /// <returns>ListWhatsAppFlowResponses200Response</returns>
+        public ListWhatsAppFlowResponses200Response ListWhatsAppFlowResponses(string accountId, string? flowId = default, int? limit = default)
+        {
+            Zernio.Client.ApiResponse<ListWhatsAppFlowResponses200Response> localVarResponse = ListWhatsAppFlowResponsesWithHttpInfo(accountId, flowId, limit);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="flowId">Scope to responses for this flow (optional)</param>
+        /// <param name="limit">Max responses to return (optional, default to 50)</param>
+        /// <returns>ApiResponse of ListWhatsAppFlowResponses200Response</returns>
+        public Zernio.Client.ApiResponse<ListWhatsAppFlowResponses200Response> ListWhatsAppFlowResponsesWithHttpInfo(string accountId, string? flowId = default, int? limit = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppFlowsApi->ListWhatsAppFlowResponses");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (flowId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "flowId", flowId));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListWhatsAppFlowResponses200Response>("/v1/whatsapp/flow-responses", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListWhatsAppFlowResponses", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="flowId">Scope to responses for this flow (optional)</param>
+        /// <param name="limit">Max responses to return (optional, default to 50)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListWhatsAppFlowResponses200Response</returns>
+        public async System.Threading.Tasks.Task<ListWhatsAppFlowResponses200Response> ListWhatsAppFlowResponsesAsync(string accountId, string? flowId = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListWhatsAppFlowResponses200Response> localVarResponse = await ListWhatsAppFlowResponsesWithHttpInfoAsync(accountId, flowId, limit, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List flow responses List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="flowId">Scope to responses for this flow (optional)</param>
+        /// <param name="limit">Max responses to return (optional, default to 50)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListWhatsAppFlowResponses200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListWhatsAppFlowResponses200Response>> ListWhatsAppFlowResponsesWithHttpInfoAsync(string accountId, string? flowId = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppFlowsApi->ListWhatsAppFlowResponses");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (flowId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "flowId", flowId));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListWhatsAppFlowResponses200Response>("/v1/whatsapp/flow-responses", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListWhatsAppFlowResponses", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

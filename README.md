@@ -437,6 +437,7 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**GetWhatsAppFlow**](docs/WhatsAppFlowsApi.md#getwhatsappflow) | **GET** /v1/whatsapp/flows/{flowId} | Get flow
 *WhatsAppFlowsApi* | [**GetWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#getwhatsappflowjson) | **GET** /v1/whatsapp/flows/{flowId}/json | Get flow JSON asset
 *WhatsAppFlowsApi* | [**GetWhatsAppFlowPreview**](docs/WhatsAppFlowsApi.md#getwhatsappflowpreview) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL
+*WhatsAppFlowsApi* | [**ListWhatsAppFlowResponses**](docs/WhatsAppFlowsApi.md#listwhatsappflowresponses) | **GET** /v1/whatsapp/flow-responses | List flow responses
 *WhatsAppFlowsApi* | [**ListWhatsAppFlowVersions**](docs/WhatsAppFlowsApi.md#listwhatsappflowversions) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions
 *WhatsAppFlowsApi* | [**ListWhatsAppFlows**](docs/WhatsAppFlowsApi.md#listwhatsappflows) | **GET** /v1/whatsapp/flows | List flows
 *WhatsAppFlowsApi* | [**PublishWhatsAppFlow**](docs/WhatsAppFlowsApi.md#publishwhatsappflow) | **POST** /v1/whatsapp/flows/{flowId}/publish | Publish flow
@@ -1025,6 +1026,8 @@ Class | Method | HTTP request | Description
  - [Model.ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [Model.ListUsers200Response](docs/ListUsers200Response.md)
  - [Model.ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
+ - [Model.ListWhatsAppFlowResponses200Response](docs/ListWhatsAppFlowResponses200Response.md)
+ - [Model.ListWhatsAppFlowResponses200ResponseResponsesInner](docs/ListWhatsAppFlowResponses200ResponseResponsesInner.md)
  - [Model.ListWhatsAppFlowVersions200Response](docs/ListWhatsAppFlowVersions200Response.md)
  - [Model.ListWhatsAppFlowVersions200ResponseVersionsInner](docs/ListWhatsAppFlowVersions200ResponseVersionsInner.md)
  - [Model.ListWhatsAppFlows200Response](docs/ListWhatsAppFlows200Response.md)
