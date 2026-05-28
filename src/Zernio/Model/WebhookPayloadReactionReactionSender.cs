@@ -42,11 +42,12 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="WebhookPayloadReactionReactionSender" /> class.
         /// </summary>
         /// <param name="id">id (required).</param>
+        /// <param name="contactId">Zernio CRM Contact id for this sender, when one exists..</param>
         /// <param name="name">name.</param>
         /// <param name="username">username.</param>
         /// <param name="picture">picture.</param>
         /// <param name="phoneNumber">WhatsApp only. Sender&#39;s phone number in E.164 format (with leading &#x60;+&#x60;), when available..</param>
-        public WebhookPayloadReactionReactionSender(string id = default, string name = default, string username = default, string picture = default, string phoneNumber = default)
+        public WebhookPayloadReactionReactionSender(string id = default, string contactId = default, string name = default, string username = default, string picture = default, string phoneNumber = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -54,6 +55,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("id is a required property for WebhookPayloadReactionReactionSender and cannot be null");
             }
             this.Id = id;
+            this.ContactId = contactId;
             this.Name = name;
             this.Username = username;
             this.Picture = picture;
@@ -65,6 +67,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Zernio CRM Contact id for this sender, when one exists.
+        /// </summary>
+        /// <value>Zernio CRM Contact id for this sender, when one exists.</value>
+        [DataMember(Name = "contactId", EmitDefaultValue = false)]
+        public string ContactId { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
@@ -100,6 +109,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class WebhookPayloadReactionReactionSender {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  ContactId: ").Append(ContactId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  Picture: ").Append(Picture).Append("\n");

@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zernio", "src\Zernio\Zernio.csproj", "{FBEFD77F-5B93-4D80-BF20-11EA47A34255}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zernio", "src\Zernio\Zernio.csproj", "{6F9CF7BC-13A8-4EC8-BF9C-6257EECCAB81}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zernio.Test", "src\Zernio.Test\Zernio.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FBEFD77F-5B93-4D80-BF20-11EA47A34255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBEFD77F-5B93-4D80-BF20-11EA47A34255}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBEFD77F-5B93-4D80-BF20-11EA47A34255}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBEFD77F-5B93-4D80-BF20-11EA47A34255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F9CF7BC-13A8-4EC8-BF9C-6257EECCAB81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F9CF7BC-13A8-4EC8-BF9C-6257EECCAB81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F9CF7BC-13A8-4EC8-BF9C-6257EECCAB81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F9CF7BC-13A8-4EC8-BF9C-6257EECCAB81}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU

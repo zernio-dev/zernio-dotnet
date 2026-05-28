@@ -19984,6 +19984,7 @@ components:
           url: url
         sender:
           phoneNumber: phoneNumber
+          contactId: contactId
           name: name
           parentBusinessScopedUserId: parentBusinessScopedUserId
           id: id
@@ -20113,6 +20114,7 @@ components:
           emoji: emoji
           sender:
             phoneNumber: phoneNumber
+            contactId: contactId
             name: name
             id: id
             picture: picture
@@ -20213,6 +20215,7 @@ components:
             url: url
           sender:
             phoneNumber: phoneNumber
+            contactId: contactId
             name: name
             parentBusinessScopedUserId: parentBusinessScopedUserId
             id: id
@@ -20288,6 +20291,7 @@ components:
             type: type
             url: url
           sender:
+            contactId: contactId
             name: name
             id: id
             picture: picture
@@ -20379,6 +20383,7 @@ components:
             url: url
           sender:
             phoneNumber: phoneNumber
+            contactId: contactId
             name: name
             parentBusinessScopedUserId: parentBusinessScopedUserId
             id: id
@@ -20477,6 +20482,7 @@ components:
             url: url
           sender:
             phoneNumber: phoneNumber
+            contactId: contactId
             name: name
             parentBusinessScopedUserId: parentBusinessScopedUserId
             id: id
@@ -20562,6 +20568,7 @@ components:
             url: url
           sender:
             phoneNumber: phoneNumber
+            contactId: contactId
             name: name
             parentBusinessScopedUserId: parentBusinessScopedUserId
             id: id
@@ -46858,6 +46865,7 @@ components:
     InboxWebhookMessage_sender:
       example:
         phoneNumber: phoneNumber
+        contactId: contactId
         name: name
         parentBusinessScopedUserId: parentBusinessScopedUserId
         id: id
@@ -46876,6 +46884,15 @@ components:
             Sender's platform identifier. For WhatsApp this is the phone number
             (without leading `+`) when available, otherwise the `businessScopedUserId`.
             For other platforms, the platform's own user ID.
+          type: string
+        contactId:
+          description: |
+            Zernio CRM Contact id for this sender, when one exists (joined via
+            the ContactChannel mapping). Lets integrators link a message straight
+            to a Contact without a follow-up Contacts API call. Omitted when the
+            sender isn't a tracked contact (e.g. outgoing messages where the
+            sender is the business, or first-touch messages before the contact
+            is created).
           type: string
         name:
           type: string
@@ -46920,12 +46937,16 @@ components:
       description: The participant who added or removed the reaction.
       example:
         phoneNumber: phoneNumber
+        contactId: contactId
         name: name
         id: id
         picture: picture
         username: username
       properties:
         id:
+          type: string
+        contactId:
+          description: "Zernio CRM Contact id for this sender, when one exists."
           type: string
         name:
           type: string
@@ -46945,6 +46966,7 @@ components:
         emoji: emoji
         sender:
           phoneNumber: phoneNumber
+          contactId: contactId
           name: name
           id: id
           picture: picture
@@ -47062,6 +47084,7 @@ components:
     WebhookPayloadMessage_message_sender:
       example:
         phoneNumber: phoneNumber
+        contactId: contactId
         name: name
         parentBusinessScopedUserId: parentBusinessScopedUserId
         id: id
@@ -47080,6 +47103,10 @@ components:
             Sender's platform identifier. For WhatsApp this is the phone
             number (without leading `+`) when available, otherwise the
             `businessScopedUserId`.
+          type: string
+        contactId:
+          description: "Zernio CRM Contact id for this sender, when one exists (omitted\
+            \ for outgoing/business sender)."
           type: string
         name:
           type: string
@@ -47133,6 +47160,7 @@ components:
           url: url
         sender:
           phoneNumber: phoneNumber
+          contactId: contactId
           name: name
           parentBusinessScopedUserId: parentBusinessScopedUserId
           id: id
@@ -47425,12 +47453,16 @@ components:
       nullable: true
     WebhookPayloadMessageSent_message_sender:
       example:
+        contactId: contactId
         name: name
         id: id
         picture: picture
         username: username
       properties:
         id:
+          type: string
+        contactId:
+          description: "Zernio CRM Contact id for this sender, when one exists."
           type: string
         name:
           type: string
@@ -47450,6 +47482,7 @@ components:
           type: type
           url: url
         sender:
+          contactId: contactId
           name: name
           id: id
           picture: picture
