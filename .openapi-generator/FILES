@@ -196,6 +196,8 @@ docs/CreateTestLeadRequestFieldDataInner.md
 docs/CreateTrackingTag201Response.md
 docs/CreateTrackingTagRequest.md
 docs/CreateWebhookSettingsRequest.md
+docs/CreateWhatsAppDataset200Response.md
+docs/CreateWhatsAppDatasetRequest.md
 docs/CreateWhatsAppFlow200Response.md
 docs/CreateWhatsAppFlow200ResponseFlow.md
 docs/CreateWhatsAppFlowRequest.md
@@ -451,6 +453,7 @@ docs/GetUser200ResponseUser.md
 docs/GetWebhookSettings200Response.md
 docs/GetWhatsAppBusinessProfile200Response.md
 docs/GetWhatsAppBusinessProfile200ResponseBusinessProfile.md
+docs/GetWhatsAppDataset200Response.md
 docs/GetWhatsAppDisplayName200Response.md
 docs/GetWhatsAppDisplayName200ResponseDisplayName.md
 docs/GetWhatsAppFlow200Response.md
@@ -657,7 +660,6 @@ docs/ProfileGetResponse.md
 docs/ProfileUpdateResponse.md
 docs/ProfilesApi.md
 docs/ProfilesListResponse.md
-docs/PublishWhatsAppFlowRequest.md
 docs/PurchaseWhatsAppPhoneNumber200Response.md
 docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf.md
 docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.md
@@ -1256,6 +1258,8 @@ src/Zernio.Test/Model/CreateTestLeadRequestTests.cs
 src/Zernio.Test/Model/CreateTrackingTag201ResponseTests.cs
 src/Zernio.Test/Model/CreateTrackingTagRequestTests.cs
 src/Zernio.Test/Model/CreateWebhookSettingsRequestTests.cs
+src/Zernio.Test/Model/CreateWhatsAppDataset200ResponseTests.cs
+src/Zernio.Test/Model/CreateWhatsAppDatasetRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppFlow200ResponseFlowTests.cs
 src/Zernio.Test/Model/CreateWhatsAppFlow200ResponseTests.cs
 src/Zernio.Test/Model/CreateWhatsAppFlowRequestTests.cs
@@ -1501,6 +1505,7 @@ src/Zernio.Test/Model/GetUser200ResponseUserTests.cs
 src/Zernio.Test/Model/GetWebhookSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppBusinessProfile200ResponseBusinessProfileTests.cs
 src/Zernio.Test/Model/GetWhatsAppBusinessProfile200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppDataset200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppDisplayName200ResponseDisplayNameTests.cs
 src/Zernio.Test/Model/GetWhatsAppDisplayName200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppFlow200ResponseFlowPreviewTests.cs
@@ -1699,7 +1704,6 @@ src/Zernio.Test/Model/ProfileGetResponseTests.cs
 src/Zernio.Test/Model/ProfileTests.cs
 src/Zernio.Test/Model/ProfileUpdateResponseTests.cs
 src/Zernio.Test/Model/ProfilesListResponseTests.cs
-src/Zernio.Test/Model/PublishWhatsAppFlowRequestTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumberTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOfTests.cs
@@ -2301,6 +2305,8 @@ src/Zernio/Model/CreateTestLeadRequestFieldDataInner.cs
 src/Zernio/Model/CreateTrackingTag201Response.cs
 src/Zernio/Model/CreateTrackingTagRequest.cs
 src/Zernio/Model/CreateWebhookSettingsRequest.cs
+src/Zernio/Model/CreateWhatsAppDataset200Response.cs
+src/Zernio/Model/CreateWhatsAppDatasetRequest.cs
 src/Zernio/Model/CreateWhatsAppFlow200Response.cs
 src/Zernio/Model/CreateWhatsAppFlow200ResponseFlow.cs
 src/Zernio/Model/CreateWhatsAppFlowRequest.cs
@@ -2546,6 +2552,7 @@ src/Zernio/Model/GetUser200ResponseUser.cs
 src/Zernio/Model/GetWebhookSettings200Response.cs
 src/Zernio/Model/GetWhatsAppBusinessProfile200Response.cs
 src/Zernio/Model/GetWhatsAppBusinessProfile200ResponseBusinessProfile.cs
+src/Zernio/Model/GetWhatsAppDataset200Response.cs
 src/Zernio/Model/GetWhatsAppDisplayName200Response.cs
 src/Zernio/Model/GetWhatsAppDisplayName200ResponseDisplayName.cs
 src/Zernio/Model/GetWhatsAppFlow200Response.cs
@@ -2744,7 +2751,6 @@ src/Zernio/Model/ProfileDeleteResponse.cs
 src/Zernio/Model/ProfileGetResponse.cs
 src/Zernio/Model/ProfileUpdateResponse.cs
 src/Zernio/Model/ProfilesListResponse.cs
-src/Zernio/Model/PublishWhatsAppFlowRequest.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber200Response.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.cs

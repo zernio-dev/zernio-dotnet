@@ -87,8 +87,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string flowId = null;
-            //PublishWhatsAppFlowRequest publishWhatsAppFlowRequest = null;
-            //var response = instance.DeprecateWhatsAppFlow(flowId, publishWhatsAppFlowRequest);
+            //CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest = null;
+            //var response = instance.DeprecateWhatsAppFlow(flowId, createWhatsAppDatasetRequest);
             //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
         }
 
@@ -180,8 +180,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string flowId = null;
-            //PublishWhatsAppFlowRequest publishWhatsAppFlowRequest = null;
-            //var response = instance.PublishWhatsAppFlow(flowId, publishWhatsAppFlowRequest);
+            //CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest = null;
+            //var response = instance.PublishWhatsAppFlow(flowId, createWhatsAppDatasetRequest);
             //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
         }
 

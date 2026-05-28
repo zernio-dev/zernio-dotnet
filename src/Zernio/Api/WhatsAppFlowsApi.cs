@@ -80,9 +80,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
-        UpdateYoutubeDefaultPlaylist200Response DeprecateWhatsAppFlow(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest);
+        UpdateYoutubeDefaultPlaylist200Response DeprecateWhatsAppFlow(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest);
 
         /// <summary>
         /// Deprecate flow
@@ -92,9 +92,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
-        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeprecateWhatsAppFlowWithHttpInfo(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest);
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeprecateWhatsAppFlowWithHttpInfo(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest);
         /// <summary>
         /// Get flow
         /// </summary>
@@ -245,9 +245,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
-        UpdateYoutubeDefaultPlaylist200Response PublishWhatsAppFlow(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest);
+        UpdateYoutubeDefaultPlaylist200Response PublishWhatsAppFlow(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest);
 
         /// <summary>
         /// Publish flow
@@ -257,9 +257,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
-        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> PublishWhatsAppFlowWithHttpInfo(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest);
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> PublishWhatsAppFlowWithHttpInfo(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest);
         /// <summary>
         /// Send flow message
         /// </summary>
@@ -392,10 +392,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
-        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeprecateWhatsAppFlowAsync(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeprecateWhatsAppFlowAsync(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deprecate flow
@@ -405,10 +405,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeprecateWhatsAppFlowWithHttpInfoAsync(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeprecateWhatsAppFlowWithHttpInfoAsync(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get flow
         /// </summary>
@@ -571,10 +571,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
-        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> PublishWhatsAppFlowAsync(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> PublishWhatsAppFlowAsync(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Publish flow
@@ -584,10 +584,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> PublishWhatsAppFlowWithHttpInfoAsync(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> PublishWhatsAppFlowWithHttpInfoAsync(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Send flow message
         /// </summary>
@@ -1149,11 +1149,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
-        public UpdateYoutubeDefaultPlaylist200Response DeprecateWhatsAppFlow(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest)
+        public UpdateYoutubeDefaultPlaylist200Response DeprecateWhatsAppFlow(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest)
         {
-            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = DeprecateWhatsAppFlowWithHttpInfo(flowId, publishWhatsAppFlowRequest);
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = DeprecateWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest);
             return localVarResponse.Data;
         }
 
@@ -1162,17 +1162,17 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeprecateWhatsAppFlowWithHttpInfo(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest)
+        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeprecateWhatsAppFlowWithHttpInfo(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest)
         {
             // verify the required parameter 'flowId' is set
             if (flowId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'flowId' when calling WhatsAppFlowsApi->DeprecateWhatsAppFlow");
 
-            // verify the required parameter 'publishWhatsAppFlowRequest' is set
-            if (publishWhatsAppFlowRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'publishWhatsAppFlowRequest' when calling WhatsAppFlowsApi->DeprecateWhatsAppFlow");
+            // verify the required parameter 'createWhatsAppDatasetRequest' is set
+            if (createWhatsAppDatasetRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createWhatsAppDatasetRequest' when calling WhatsAppFlowsApi->DeprecateWhatsAppFlow");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1192,7 +1192,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("flowId", Zernio.Client.ClientUtils.ParameterToString(flowId)); // path parameter
-            localVarRequestOptions.Data = publishWhatsAppFlowRequest;
+            localVarRequestOptions.Data = createWhatsAppDatasetRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -1218,12 +1218,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeprecateWhatsAppFlowAsync(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeprecateWhatsAppFlowAsync(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await DeprecateWhatsAppFlowWithHttpInfoAsync(flowId, publishWhatsAppFlowRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await DeprecateWhatsAppFlowWithHttpInfoAsync(flowId, createWhatsAppDatasetRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1232,18 +1232,18 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeprecateWhatsAppFlowWithHttpInfoAsync(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeprecateWhatsAppFlowWithHttpInfoAsync(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'flowId' is set
             if (flowId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'flowId' when calling WhatsAppFlowsApi->DeprecateWhatsAppFlow");
 
-            // verify the required parameter 'publishWhatsAppFlowRequest' is set
-            if (publishWhatsAppFlowRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'publishWhatsAppFlowRequest' when calling WhatsAppFlowsApi->DeprecateWhatsAppFlow");
+            // verify the required parameter 'createWhatsAppDatasetRequest' is set
+            if (createWhatsAppDatasetRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createWhatsAppDatasetRequest' when calling WhatsAppFlowsApi->DeprecateWhatsAppFlow");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1265,7 +1265,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("flowId", Zernio.Client.ClientUtils.ParameterToString(flowId)); // path parameter
-            localVarRequestOptions.Data = publishWhatsAppFlowRequest;
+            localVarRequestOptions.Data = createWhatsAppDatasetRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -2158,11 +2158,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
-        public UpdateYoutubeDefaultPlaylist200Response PublishWhatsAppFlow(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest)
+        public UpdateYoutubeDefaultPlaylist200Response PublishWhatsAppFlow(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest)
         {
-            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = PublishWhatsAppFlowWithHttpInfo(flowId, publishWhatsAppFlowRequest);
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = PublishWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest);
             return localVarResponse.Data;
         }
 
@@ -2171,17 +2171,17 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> PublishWhatsAppFlowWithHttpInfo(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest)
+        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> PublishWhatsAppFlowWithHttpInfo(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest)
         {
             // verify the required parameter 'flowId' is set
             if (flowId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'flowId' when calling WhatsAppFlowsApi->PublishWhatsAppFlow");
 
-            // verify the required parameter 'publishWhatsAppFlowRequest' is set
-            if (publishWhatsAppFlowRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'publishWhatsAppFlowRequest' when calling WhatsAppFlowsApi->PublishWhatsAppFlow");
+            // verify the required parameter 'createWhatsAppDatasetRequest' is set
+            if (createWhatsAppDatasetRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createWhatsAppDatasetRequest' when calling WhatsAppFlowsApi->PublishWhatsAppFlow");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -2201,7 +2201,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("flowId", Zernio.Client.ClientUtils.ParameterToString(flowId)); // path parameter
-            localVarRequestOptions.Data = publishWhatsAppFlowRequest;
+            localVarRequestOptions.Data = createWhatsAppDatasetRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -2227,12 +2227,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> PublishWhatsAppFlowAsync(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> PublishWhatsAppFlowAsync(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await PublishWhatsAppFlowWithHttpInfoAsync(flowId, publishWhatsAppFlowRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await PublishWhatsAppFlowWithHttpInfoAsync(flowId, createWhatsAppDatasetRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2241,18 +2241,18 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="flowId">Flow ID</param>
-        /// <param name="publishWhatsAppFlowRequest"></param>
+        /// <param name="createWhatsAppDatasetRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> PublishWhatsAppFlowWithHttpInfoAsync(string flowId, PublishWhatsAppFlowRequest publishWhatsAppFlowRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> PublishWhatsAppFlowWithHttpInfoAsync(string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'flowId' is set
             if (flowId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'flowId' when calling WhatsAppFlowsApi->PublishWhatsAppFlow");
 
-            // verify the required parameter 'publishWhatsAppFlowRequest' is set
-            if (publishWhatsAppFlowRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'publishWhatsAppFlowRequest' when calling WhatsAppFlowsApi->PublishWhatsAppFlow");
+            // verify the required parameter 'createWhatsAppDatasetRequest' is set
+            if (createWhatsAppDatasetRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createWhatsAppDatasetRequest' when calling WhatsAppFlowsApi->PublishWhatsAppFlow");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -2274,7 +2274,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("flowId", Zernio.Client.ClientUtils.ParameterToString(flowId)); // path parameter
-            localVarRequestOptions.Data = publishWhatsAppFlowRequest;
+            localVarRequestOptions.Data = createWhatsAppDatasetRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required

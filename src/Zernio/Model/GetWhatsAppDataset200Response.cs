@@ -28,36 +28,26 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// PublishWhatsAppFlowRequest
+    /// GetWhatsAppDataset200Response
     /// </summary>
-    [DataContract(Name = "publishWhatsAppFlow_request")]
-    public partial class PublishWhatsAppFlowRequest : IValidatableObject
+    [DataContract(Name = "getWhatsAppDataset_200_response")]
+    public partial class GetWhatsAppDataset200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PublishWhatsAppFlowRequest" /> class.
+        /// Initializes a new instance of the <see cref="GetWhatsAppDataset200Response" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected PublishWhatsAppFlowRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PublishWhatsAppFlowRequest" /> class.
-        /// </summary>
-        /// <param name="accountId">WhatsApp social account ID (required).</param>
-        public PublishWhatsAppFlowRequest(string accountId = default)
+        /// <param name="datasetId">Meta dataset ID linked to the WABA, or null if not provisioned yet.</param>
+        public GetWhatsAppDataset200Response(string datasetId = default)
         {
-            // to ensure "accountId" is required (not null)
-            if (accountId == null)
-            {
-                throw new ArgumentNullException("accountId is a required property for PublishWhatsAppFlowRequest and cannot be null");
-            }
-            this.AccountId = accountId;
+            this.DatasetId = datasetId;
         }
 
         /// <summary>
-        /// WhatsApp social account ID
+        /// Meta dataset ID linked to the WABA, or null if not provisioned yet
         /// </summary>
-        /// <value>WhatsApp social account ID</value>
-        [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
-        public string AccountId { get; set; }
+        /// <value>Meta dataset ID linked to the WABA, or null if not provisioned yet</value>
+        [DataMember(Name = "datasetId", EmitDefaultValue = false)]
+        public string DatasetId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,8 +56,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PublishWhatsAppFlowRequest {\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("class GetWhatsAppDataset200Response {\n");
+            sb.Append("  DatasetId: ").Append(DatasetId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

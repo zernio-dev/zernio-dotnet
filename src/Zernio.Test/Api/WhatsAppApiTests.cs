@@ -83,6 +83,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateWhatsAppDataset
+        /// </summary>
+        [Fact]
+        public void CreateWhatsAppDatasetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest = null;
+            //var response = instance.CreateWhatsAppDataset(createWhatsAppDatasetRequest);
+            //Assert.IsType<CreateWhatsAppDataset200Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateWhatsAppGroupChat
         /// </summary>
         [Fact]
@@ -155,6 +167,18 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.GetWhatsAppBusinessProfile(accountId);
             //Assert.IsType<GetWhatsAppBusinessProfile200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetWhatsAppDataset
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppDatasetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.GetWhatsAppDataset(accountId);
+            //Assert.IsType<GetWhatsAppDataset200Response>(response);
         }
 
         /// <summary>
