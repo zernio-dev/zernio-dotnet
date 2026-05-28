@@ -612,6 +612,8 @@ docs/ListTrackingTagSharedAccounts200Response.md
 docs/ListTrackingTags200Response.md
 docs/ListUsers200Response.md
 docs/ListUsers200ResponseUsersInner.md
+docs/ListWhatsAppConversions200Response.md
+docs/ListWhatsAppConversions200ResponseEventsInner.md
 docs/ListWhatsAppFlowResponses200Response.md
 docs/ListWhatsAppFlowResponses200ResponseResponsesInner.md
 docs/ListWhatsAppFlowVersions200Response.md
@@ -1661,6 +1663,8 @@ src/Zernio.Test/Model/ListTrackingTagSharedAccounts200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseTests.cs
 src/Zernio.Test/Model/ListUsers200ResponseUsersInnerTests.cs
+src/Zernio.Test/Model/ListWhatsAppConversions200ResponseEventsInnerTests.cs
+src/Zernio.Test/Model/ListWhatsAppConversions200ResponseTests.cs
 src/Zernio.Test/Model/ListWhatsAppFlowResponses200ResponseResponsesInnerTests.cs
 src/Zernio.Test/Model/ListWhatsAppFlowResponses200ResponseTests.cs
 src/Zernio.Test/Model/ListWhatsAppFlowVersions200ResponseTests.cs
@@ -2708,6 +2712,8 @@ src/Zernio/Model/ListTrackingTagSharedAccounts200Response.cs
 src/Zernio/Model/ListTrackingTags200Response.cs
 src/Zernio/Model/ListUsers200Response.cs
 src/Zernio/Model/ListUsers200ResponseUsersInner.cs
+src/Zernio/Model/ListWhatsAppConversions200Response.cs
+src/Zernio/Model/ListWhatsAppConversions200ResponseEventsInner.cs
 src/Zernio/Model/ListWhatsAppFlowResponses200Response.cs
 src/Zernio/Model/ListWhatsAppFlowResponses200ResponseResponsesInner.cs
 src/Zernio/Model/ListWhatsAppFlowVersions200Response.cs

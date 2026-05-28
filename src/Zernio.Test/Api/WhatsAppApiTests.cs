@@ -232,6 +232,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListWhatsAppConversions
+        /// </summary>
+        [Fact]
+        public void ListWhatsAppConversionsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //int? limit = null;
+            //var response = instance.ListWhatsAppConversions(accountId, limit);
+            //Assert.IsType<ListWhatsAppConversions200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListWhatsAppGroupChats
         /// </summary>
         [Fact]
