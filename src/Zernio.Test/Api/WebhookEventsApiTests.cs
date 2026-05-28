@@ -110,6 +110,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnConversationStarted
+        /// </summary>
+        [Fact]
+        public void OnConversationStartedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadConversationStarted webhookPayloadConversationStarted = null;
+            //instance.OnConversationStarted(webhookPayloadConversationStarted);
+        }
+
+        /// <summary>
         /// Test OnLeadReceived
         /// </summary>
         [Fact]

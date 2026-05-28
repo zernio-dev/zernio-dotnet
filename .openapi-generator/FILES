@@ -968,6 +968,8 @@ docs/WebhookPayloadCommentComment.md
 docs/WebhookPayloadCommentCommentAd.md
 docs/WebhookPayloadCommentCommentAuthor.md
 docs/WebhookPayloadCommentPost.md
+docs/WebhookPayloadConversationStarted.md
+docs/WebhookPayloadConversationStartedConversation.md
 docs/WebhookPayloadLead.md
 docs/WebhookPayloadLeadAccount.md
 docs/WebhookPayloadLeadLead.md
@@ -2003,6 +2005,8 @@ src/Zernio.Test/Model/WebhookPayloadCommentCommentAuthorTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentCommentTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentPostTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentTests.cs
+src/Zernio.Test/Model/WebhookPayloadConversationStartedConversationTests.cs
+src/Zernio.Test/Model/WebhookPayloadConversationStartedTests.cs
 src/Zernio.Test/Model/WebhookPayloadLeadAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadLeadLeadTests.cs
 src/Zernio.Test/Model/WebhookPayloadLeadTests.cs
@@ -3053,6 +3057,8 @@ src/Zernio/Model/WebhookPayloadCommentComment.cs
 src/Zernio/Model/WebhookPayloadCommentCommentAd.cs
 src/Zernio/Model/WebhookPayloadCommentCommentAuthor.cs
 src/Zernio/Model/WebhookPayloadCommentPost.cs
+src/Zernio/Model/WebhookPayloadConversationStarted.cs
+src/Zernio/Model/WebhookPayloadConversationStartedConversation.cs
 src/Zernio/Model/WebhookPayloadLead.cs
 src/Zernio/Model/WebhookPayloadLeadAccount.cs
 src/Zernio/Model/WebhookPayloadLeadLead.cs
