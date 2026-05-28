@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **Id** | **string** | Stable webhook event ID | 
 **Event** | **string** |  | 
 **Message** | [**WebhookPayloadMessageMessage**](WebhookPayloadMessageMessage.md) |  | 
-**Conversation** | [**WebhookPayloadReactionConversation**](WebhookPayloadReactionConversation.md) |  | 
-**Account** | [**WebhookPayloadReactionAccount**](WebhookPayloadReactionAccount.md) |  | 
+**Conversation** | [**InboxWebhookConversation**](InboxWebhookConversation.md) |  | 
+**Account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  | 
 **Metadata** | [**WebhookPayloadMessageMetadata**](WebhookPayloadMessageMetadata.md) |  | [optional] 
 **Timestamp** | **DateTime** |  | 
 

@@ -129,7 +129,8 @@ namespace Zernio.Model
         /// <param name="participantUsername">Contact&#39;s handle when the platform exposes one.</param>
         /// <param name="participantPicture">participantPicture.</param>
         /// <param name="status">status (required).</param>
-        public WebhookPayloadConversationStartedConversation(string id = default, PlatformEnum platform = default, string platformConversationId = default, string participantId = default, string participantName = default, string participantUsername = default, string participantPicture = default, StatusEnum status = default)
+        /// <param name="contactId">Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection (same join used by message.*, reaction.received, and call.* webhooks). Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators seed the CRM straight from &#x60;conversation.started&#x60; without waiting for the first &#x60;message.*&#x60; event. .</param>
+        public WebhookPayloadConversationStartedConversation(string id = default, PlatformEnum platform = default, string platformConversationId = default, string participantId = default, string participantName = default, string participantUsername = default, string participantPicture = default, StatusEnum status = default, string contactId = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -154,6 +155,7 @@ namespace Zernio.Model
             this.ParticipantId = participantId;
             this.ParticipantUsername = participantUsername;
             this.ParticipantPicture = participantPicture;
+            this.ContactId = contactId;
         }
 
         /// <summary>
@@ -196,6 +198,13 @@ namespace Zernio.Model
         public string ParticipantPicture { get; set; }
 
         /// <summary>
+        /// Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection (same join used by message.*, reaction.received, and call.* webhooks). Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators seed the CRM straight from &#x60;conversation.started&#x60; without waiting for the first &#x60;message.*&#x60; event. 
+        /// </summary>
+        /// <value>Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection (same join used by message.*, reaction.received, and call.* webhooks). Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators seed the CRM straight from &#x60;conversation.started&#x60; without waiting for the first &#x60;message.*&#x60; event. </value>
+        [DataMember(Name = "contactId", EmitDefaultValue = false)]
+        public string ContactId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -211,6 +220,7 @@ namespace Zernio.Model
             sb.Append("  ParticipantUsername: ").Append(ParticipantUsername).Append("\n");
             sb.Append("  ParticipantPicture: ").Append(ParticipantPicture).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  ContactId: ").Append(ContactId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

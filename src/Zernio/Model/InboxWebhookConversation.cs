@@ -73,7 +73,8 @@ namespace Zernio.Model
         /// <param name="participantUsername">participantUsername.</param>
         /// <param name="participantPicture">participantPicture.</param>
         /// <param name="status">status (required).</param>
-        public InboxWebhookConversation(string id = default, string platformConversationId = default, string participantId = default, string participantName = default, string participantUsername = default, string participantPicture = default, StatusEnum status = default)
+        /// <param name="contactId">Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection. Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators join any inbox webhook back to the CRM Contact without needing to look at the sender — which matters for outgoing and delivery-status events whose sender is the business. .</param>
+        public InboxWebhookConversation(string id = default, string platformConversationId = default, string participantId = default, string participantName = default, string participantUsername = default, string participantPicture = default, StatusEnum status = default, string contactId = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -92,6 +93,7 @@ namespace Zernio.Model
             this.ParticipantName = participantName;
             this.ParticipantUsername = participantUsername;
             this.ParticipantPicture = participantPicture;
+            this.ContactId = contactId;
         }
 
         /// <summary>
@@ -131,6 +133,13 @@ namespace Zernio.Model
         public string ParticipantPicture { get; set; }
 
         /// <summary>
+        /// Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection. Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators join any inbox webhook back to the CRM Contact without needing to look at the sender — which matters for outgoing and delivery-status events whose sender is the business. 
+        /// </summary>
+        /// <value>Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection. Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators join any inbox webhook back to the CRM Contact without needing to look at the sender — which matters for outgoing and delivery-status events whose sender is the business. </value>
+        [DataMember(Name = "contactId", EmitDefaultValue = false)]
+        public string ContactId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -145,6 +154,7 @@ namespace Zernio.Model
             sb.Append("  ParticipantUsername: ").Append(ParticipantUsername).Append("\n");
             sb.Append("  ParticipantPicture: ").Append(ParticipantPicture).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  ContactId: ").Append(ContactId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

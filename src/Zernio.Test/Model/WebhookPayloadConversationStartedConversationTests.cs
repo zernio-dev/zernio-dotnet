@@ -126,5 +126,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Status'
         }
+
+        /// <summary>
+        /// Test the property 'ContactId'
+        /// </summary>
+        [Fact]
+        public void ContactIdTest()
+        {
+            // TODO unit test for the property 'ContactId'
+        }
     }
 }

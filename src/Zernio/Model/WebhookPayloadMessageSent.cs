@@ -66,7 +66,7 @@ namespace Zernio.Model
         /// <param name="conversation">conversation (required).</param>
         /// <param name="account">account (required).</param>
         /// <param name="timestamp">timestamp (required).</param>
-        public WebhookPayloadMessageSent(string id = default, EventEnum varEvent = default, WebhookPayloadMessageSentMessage message = default, WebhookPayloadReactionConversation conversation = default, WebhookPayloadReactionAccount account = default, DateTime timestamp = default)
+        public WebhookPayloadMessageSent(string id = default, EventEnum varEvent = default, WebhookPayloadMessageSentMessage message = default, InboxWebhookConversation conversation = default, InboxWebhookAccount account = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -113,13 +113,13 @@ namespace Zernio.Model
         /// Gets or Sets Conversation
         /// </summary>
         [DataMember(Name = "conversation", IsRequired = true, EmitDefaultValue = true)]
-        public WebhookPayloadReactionConversation Conversation { get; set; }
+        public InboxWebhookConversation Conversation { get; set; }
 
         /// <summary>
         /// Gets or Sets Account
         /// </summary>
         [DataMember(Name = "account", IsRequired = true, EmitDefaultValue = true)]
-        public WebhookPayloadReactionAccount Account { get; set; }
+        public InboxWebhookAccount Account { get; set; }
 
         /// <summary>
         /// Gets or Sets Timestamp
