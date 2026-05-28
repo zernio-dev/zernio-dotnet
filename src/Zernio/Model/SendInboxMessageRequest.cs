@@ -156,6 +156,7 @@ namespace Zernio.Model
         /// <param name="message">Message text.</param>
         /// <param name="attachmentUrl">URL of the attachment to send (image, video, audio, or file). The URL must be publicly accessible. For binary file uploads, use multipart/form-data instead..</param>
         /// <param name="attachmentType">Type of attachment. Defaults to file if not specified..</param>
+        /// <param name="voiceNote">WhatsApp only. When &#x60;true&#x60; on an audio attachment, the message is sent as a voice message (PTT) — the recipient sees the waveform + voice-note UI instead of a basic audio attachment. The audio file MUST be &#x60;.ogg&#x60; encoded with the OPUS codec (mono) per Meta&#39;s voice-message contract; other formats are rejected by WhatsApp. Ignored for non-audio attachments. .</param>
         /// <param name="quickReplies">Quick reply buttons. Mutually exclusive with buttons. Max 13 items..</param>
         /// <param name="buttons">Action buttons. Mutually exclusive with quickReplies. Max 3 items..</param>
         /// <param name="template">template.</param>
@@ -166,7 +167,7 @@ namespace Zernio.Model
         /// <param name="replyTo">Platform message ID to quote-reply to. For WhatsApp, pass the wamid (available in message.platformMessageId from webhooks). For Telegram, pass the Telegram message ID..</param>
         /// <param name="location">location.</param>
         /// <param name="contacts">WhatsApp-only. Send one or more contact cards..</param>
-        public SendInboxMessageRequest(string accountId = default, string message = default, string attachmentUrl = default, AttachmentTypeEnum? attachmentType = default, List<SendInboxMessageRequestQuickRepliesInner> quickReplies = default, List<SendInboxMessageRequestButtonsInner> buttons = default, SendInboxMessageRequestTemplate template = default, SendInboxMessageRequestInteractive interactive = default, SendInboxMessageRequestReplyMarkup replyMarkup = default, MessagingTypeEnum? messagingType = default, MessageTagEnum? messageTag = default, string replyTo = default, SendInboxMessageRequestLocation location = default, List<SendInboxMessageRequestContactsInner> contacts = default)
+        public SendInboxMessageRequest(string accountId = default, string message = default, string attachmentUrl = default, AttachmentTypeEnum? attachmentType = default, bool voiceNote = default, List<SendInboxMessageRequestQuickRepliesInner> quickReplies = default, List<SendInboxMessageRequestButtonsInner> buttons = default, SendInboxMessageRequestTemplate template = default, SendInboxMessageRequestInteractive interactive = default, SendInboxMessageRequestReplyMarkup replyMarkup = default, MessagingTypeEnum? messagingType = default, MessageTagEnum? messageTag = default, string replyTo = default, SendInboxMessageRequestLocation location = default, List<SendInboxMessageRequestContactsInner> contacts = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -177,6 +178,7 @@ namespace Zernio.Model
             this.Message = message;
             this.AttachmentUrl = attachmentUrl;
             this.AttachmentType = attachmentType;
+            this.VoiceNote = voiceNote;
             this.QuickReplies = quickReplies;
             this.Buttons = buttons;
             this.Template = template;
@@ -209,6 +211,13 @@ namespace Zernio.Model
         /// <value>URL of the attachment to send (image, video, audio, or file). The URL must be publicly accessible. For binary file uploads, use multipart/form-data instead.</value>
         [DataMember(Name = "attachmentUrl", EmitDefaultValue = false)]
         public string AttachmentUrl { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. When &#x60;true&#x60; on an audio attachment, the message is sent as a voice message (PTT) — the recipient sees the waveform + voice-note UI instead of a basic audio attachment. The audio file MUST be &#x60;.ogg&#x60; encoded with the OPUS codec (mono) per Meta&#39;s voice-message contract; other formats are rejected by WhatsApp. Ignored for non-audio attachments. 
+        /// </summary>
+        /// <value>WhatsApp only. When &#x60;true&#x60; on an audio attachment, the message is sent as a voice message (PTT) — the recipient sees the waveform + voice-note UI instead of a basic audio attachment. The audio file MUST be &#x60;.ogg&#x60; encoded with the OPUS codec (mono) per Meta&#39;s voice-message contract; other formats are rejected by WhatsApp. Ignored for non-audio attachments. </value>
+        [DataMember(Name = "voiceNote", EmitDefaultValue = true)]
+        public bool VoiceNote { get; set; }
 
         /// <summary>
         /// Quick reply buttons. Mutually exclusive with buttons. Max 13 items.
@@ -274,6 +283,7 @@ namespace Zernio.Model
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  AttachmentUrl: ").Append(AttachmentUrl).Append("\n");
             sb.Append("  AttachmentType: ").Append(AttachmentType).Append("\n");
+            sb.Append("  VoiceNote: ").Append(VoiceNote).Append("\n");
             sb.Append("  QuickReplies: ").Append(QuickReplies).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  Template: ").Append(Template).Append("\n");

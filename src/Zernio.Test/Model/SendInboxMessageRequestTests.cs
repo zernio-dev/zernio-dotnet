@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'VoiceNote'
+        /// </summary>
+        [Fact]
+        public void VoiceNoteTest()
+        {
+            // TODO unit test for the property 'VoiceNote'
+        }
+
+        /// <summary>
         /// Test the property 'QuickReplies'
         /// </summary>
         [Fact]
