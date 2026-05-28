@@ -174,7 +174,12 @@ namespace Zernio.Model
         /// <param name="budgetType">budgetType (required).</param>
         /// <param name="currency">ISO 4217 currency code matching the ad account&#39;s currency (e.g. &#x60;USD&#x60;). Optional; Meta infers from the ad account when omitted. .</param>
         /// <param name="endDate">ISO 8601 datetime. Required when &#x60;budgetType&#x60; is &#x60;lifetime&#x60;. .</param>
-        /// <param name="countries">ISO 3166-1 alpha-2 country codes. Defaults to &#x60;[\&quot;US\&quot;]&#x60;..</param>
+        /// <param name="countries">ISO 3166-1 alpha-2 country codes. Defaults to &#x60;[\&quot;US\&quot;]&#x60; only when no other geo (&#x60;cities&#x60;, &#x60;regions&#x60;, &#x60;zips&#x60;, &#x60;metros&#x60;, &#x60;customLocations&#x60;) is supplied. .</param>
+        /// <param name="cities">City-level geo targeting for local CTWA campaigns (e.g. 25km radius around Milan). Each entry maps to Meta&#39;s TargetingGeoLocationCity. &#x60;key&#x60; is Meta&#39;s city ID (lookupable via GET /v1/ads/targeting/search). &#x60;radius&#x60; and &#x60;distance_unit&#x60; are coupled: set both or neither. .</param>
+        /// <param name="regions">Region / state-level geo targeting. &#x60;key&#x60; is Meta&#39;s region ID (lookupable via GET /v1/ads/targeting/search?type&#x3D;region). .</param>
+        /// <param name="zips">ZIP / postal-code geo targeting. &#x60;key&#x60; is the platform&#39;s postal id resolved via /v1/ads/targeting/search. .</param>
+        /// <param name="metros">DMA / metro-area geo targeting. &#x60;key&#x60; is Meta&#39;s metro id (e.g. &#x60;DMA:807&#x60;). .</param>
+        /// <param name="customLocations">Point-radius geo (Meta &#x60;geo_locations.custom_locations&#x60;). Use for targeting a radius around a specific lat/long when no Meta city/region key fits. &#x60;distanceUnit&#x60; is required. .</param>
         /// <param name="ageMin">ageMin.</param>
         /// <param name="ageMax">ageMax.</param>
         /// <param name="interests">interests.</param>
@@ -186,7 +191,7 @@ namespace Zernio.Model
         /// <param name="roasAverageFloor">Decimal ROAS multiplier (e.g. &#x60;2.0&#x60; &#x3D; 2.0× ROAS floor). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;; rejected otherwise. Meta enforces its own upper bound server-side. .</param>
         /// <param name="dsaBeneficiary">Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. .</param>
         /// <param name="dsaPayor">Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). .</param>
-        public CreateCtwaAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CreateCtwaAdRequestVideo video = default, List<CreateCtwaAdRequestCreativesInner> creatives = default, decimal budgetAmount = default, BudgetTypeEnum budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default)
+        public CreateCtwaAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CreateCtwaAdRequestVideo video = default, List<CreateCtwaAdRequestCreativesInner> creatives = default, decimal budgetAmount = default, BudgetTypeEnum budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CreateCtwaAdRequestCitiesInner> cities = default, List<CreateCtwaAdRequestRegionsInner> regions = default, List<CreateCtwaAdRequestZipsInner> zips = default, List<CreateCtwaAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -216,6 +221,11 @@ namespace Zernio.Model
             this.Currency = currency;
             this.EndDate = endDate;
             this.Countries = countries;
+            this.Cities = cities;
+            this.Regions = regions;
+            this.Zips = zips;
+            this.Metros = metros;
+            this.CustomLocations = customLocations;
             this.AgeMin = ageMin;
             this.AgeMax = ageMax;
             this.Interests = interests;
@@ -306,11 +316,46 @@ namespace Zernio.Model
         public DateTime EndDate { get; set; }
 
         /// <summary>
-        /// ISO 3166-1 alpha-2 country codes. Defaults to &#x60;[\&quot;US\&quot;]&#x60;.
+        /// ISO 3166-1 alpha-2 country codes. Defaults to &#x60;[\&quot;US\&quot;]&#x60; only when no other geo (&#x60;cities&#x60;, &#x60;regions&#x60;, &#x60;zips&#x60;, &#x60;metros&#x60;, &#x60;customLocations&#x60;) is supplied. 
         /// </summary>
-        /// <value>ISO 3166-1 alpha-2 country codes. Defaults to &#x60;[\&quot;US\&quot;]&#x60;.</value>
+        /// <value>ISO 3166-1 alpha-2 country codes. Defaults to &#x60;[\&quot;US\&quot;]&#x60; only when no other geo (&#x60;cities&#x60;, &#x60;regions&#x60;, &#x60;zips&#x60;, &#x60;metros&#x60;, &#x60;customLocations&#x60;) is supplied. </value>
         [DataMember(Name = "countries", EmitDefaultValue = false)]
         public List<string> Countries { get; set; }
+
+        /// <summary>
+        /// City-level geo targeting for local CTWA campaigns (e.g. 25km radius around Milan). Each entry maps to Meta&#39;s TargetingGeoLocationCity. &#x60;key&#x60; is Meta&#39;s city ID (lookupable via GET /v1/ads/targeting/search). &#x60;radius&#x60; and &#x60;distance_unit&#x60; are coupled: set both or neither. 
+        /// </summary>
+        /// <value>City-level geo targeting for local CTWA campaigns (e.g. 25km radius around Milan). Each entry maps to Meta&#39;s TargetingGeoLocationCity. &#x60;key&#x60; is Meta&#39;s city ID (lookupable via GET /v1/ads/targeting/search). &#x60;radius&#x60; and &#x60;distance_unit&#x60; are coupled: set both or neither. </value>
+        [DataMember(Name = "cities", EmitDefaultValue = false)]
+        public List<CreateCtwaAdRequestCitiesInner> Cities { get; set; }
+
+        /// <summary>
+        /// Region / state-level geo targeting. &#x60;key&#x60; is Meta&#39;s region ID (lookupable via GET /v1/ads/targeting/search?type&#x3D;region). 
+        /// </summary>
+        /// <value>Region / state-level geo targeting. &#x60;key&#x60; is Meta&#39;s region ID (lookupable via GET /v1/ads/targeting/search?type&#x3D;region). </value>
+        [DataMember(Name = "regions", EmitDefaultValue = false)]
+        public List<CreateCtwaAdRequestRegionsInner> Regions { get; set; }
+
+        /// <summary>
+        /// ZIP / postal-code geo targeting. &#x60;key&#x60; is the platform&#39;s postal id resolved via /v1/ads/targeting/search. 
+        /// </summary>
+        /// <value>ZIP / postal-code geo targeting. &#x60;key&#x60; is the platform&#39;s postal id resolved via /v1/ads/targeting/search. </value>
+        [DataMember(Name = "zips", EmitDefaultValue = false)]
+        public List<CreateCtwaAdRequestZipsInner> Zips { get; set; }
+
+        /// <summary>
+        /// DMA / metro-area geo targeting. &#x60;key&#x60; is Meta&#39;s metro id (e.g. &#x60;DMA:807&#x60;). 
+        /// </summary>
+        /// <value>DMA / metro-area geo targeting. &#x60;key&#x60; is Meta&#39;s metro id (e.g. &#x60;DMA:807&#x60;). </value>
+        [DataMember(Name = "metros", EmitDefaultValue = false)]
+        public List<CreateCtwaAdRequestZipsInner> Metros { get; set; }
+
+        /// <summary>
+        /// Point-radius geo (Meta &#x60;geo_locations.custom_locations&#x60;). Use for targeting a radius around a specific lat/long when no Meta city/region key fits. &#x60;distanceUnit&#x60; is required. 
+        /// </summary>
+        /// <value>Point-radius geo (Meta &#x60;geo_locations.custom_locations&#x60;). Use for targeting a radius around a specific lat/long when no Meta city/region key fits. &#x60;distanceUnit&#x60; is required. </value>
+        [DataMember(Name = "customLocations", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestCustomLocationsInner> CustomLocations { get; set; }
 
         /// <summary>
         /// Gets or Sets AgeMin
@@ -386,6 +431,11 @@ namespace Zernio.Model
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
+            sb.Append("  Cities: ").Append(Cities).Append("\n");
+            sb.Append("  Regions: ").Append(Regions).Append("\n");
+            sb.Append("  Zips: ").Append(Zips).Append("\n");
+            sb.Append("  Metros: ").Append(Metros).Append("\n");
+            sb.Append("  CustomLocations: ").Append(CustomLocations).Append("\n");
             sb.Append("  AgeMin: ").Append(AgeMin).Append("\n");
             sb.Append("  AgeMax: ").Append(AgeMax).Append("\n");
             sb.Append("  Interests: ").Append(Interests).Append("\n");

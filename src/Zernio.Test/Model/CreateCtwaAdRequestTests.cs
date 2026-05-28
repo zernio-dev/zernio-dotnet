@@ -173,6 +173,51 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Cities'
+        /// </summary>
+        [Fact]
+        public void CitiesTest()
+        {
+            // TODO unit test for the property 'Cities'
+        }
+
+        /// <summary>
+        /// Test the property 'Regions'
+        /// </summary>
+        [Fact]
+        public void RegionsTest()
+        {
+            // TODO unit test for the property 'Regions'
+        }
+
+        /// <summary>
+        /// Test the property 'Zips'
+        /// </summary>
+        [Fact]
+        public void ZipsTest()
+        {
+            // TODO unit test for the property 'Zips'
+        }
+
+        /// <summary>
+        /// Test the property 'Metros'
+        /// </summary>
+        [Fact]
+        public void MetrosTest()
+        {
+            // TODO unit test for the property 'Metros'
+        }
+
+        /// <summary>
+        /// Test the property 'CustomLocations'
+        /// </summary>
+        [Fact]
+        public void CustomLocationsTest()
+        {
+            // TODO unit test for the property 'CustomLocations'
+        }
+
+        /// <summary>
         /// Test the property 'AgeMin'
         /// </summary>
         [Fact]
