@@ -435,6 +435,15 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**UpdateWhatsAppGroupChat**](docs/WhatsAppApi.md#updatewhatsappgroupchat) | **POST** /v1/whatsapp/wa-groups/{groupId} | Update group settings
 *WhatsAppApi* | [**UpdateWhatsAppTemplate**](docs/WhatsAppApi.md#updatewhatsapptemplate) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template
 *WhatsAppApi* | [**UploadWhatsAppProfilePhoto**](docs/WhatsAppApi.md#uploadwhatsappprofilephoto) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture
+*WhatsAppCallingApi* | [**DisableWhatsAppCalling**](docs/WhatsAppCallingApi.md#disablewhatsappcalling) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number
+*WhatsAppCallingApi* | [**EnableWhatsAppCalling**](docs/WhatsAppCallingApi.md#enablewhatsappcalling) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number
+*WhatsAppCallingApi* | [**GetWhatsAppCall**](docs/WhatsAppCallingApi.md#getwhatsappcall) | **GET** /v1/whatsapp/calls/{callId} | Get a single call
+*WhatsAppCallingApi* | [**GetWhatsAppCallEstimate**](docs/WhatsAppCallingApi.md#getwhatsappcallestimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost for a destination
+*WhatsAppCallingApi* | [**GetWhatsAppCallPermissions**](docs/WhatsAppCallingApi.md#getwhatsappcallpermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission for a consumer
+*WhatsAppCallingApi* | [**GetWhatsAppCallingConfig**](docs/WhatsAppCallingApi.md#getwhatsappcallingconfig) | **GET** /v1/whatsapp/calling | Get calling config for an account
+*WhatsAppCallingApi* | [**InitiateWhatsAppCall**](docs/WhatsAppCallingApi.md#initiatewhatsappcall) | **POST** /v1/whatsapp/calls | Initiate outbound call
+*WhatsAppCallingApi* | [**ListWhatsAppCalls**](docs/WhatsAppCallingApi.md#listwhatsappcalls) | **GET** /v1/whatsapp/calls | List call history for an account
+*WhatsAppCallingApi* | [**UpdateWhatsAppCalling**](docs/WhatsAppCallingApi.md#updatewhatsappcalling) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config
 *WhatsAppFlowsApi* | [**CreateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#createwhatsappflow) | **POST** /v1/whatsapp/flows | Create flow
 *WhatsAppFlowsApi* | [**DeleteWhatsAppFlow**](docs/WhatsAppFlowsApi.md#deletewhatsappflow) | **DELETE** /v1/whatsapp/flows/{flowId} | Delete flow
 *WhatsAppFlowsApi* | [**DeprecateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#deprecatewhatsappflow) | **POST** /v1/whatsapp/flows/{flowId}/deprecate | Deprecate flow
@@ -689,6 +698,8 @@ Class | Method | HTTP request | Description
  - [Model.EditInboxMessageRequestReplyMarkupKeyboardInnerInner](docs/EditInboxMessageRequestReplyMarkupKeyboardInnerInner.md)
  - [Model.EditPost200Response](docs/EditPost200Response.md)
  - [Model.EditPostRequest](docs/EditPostRequest.md)
+ - [Model.EnableWhatsAppCalling200Response](docs/EnableWhatsAppCalling200Response.md)
+ - [Model.EnableWhatsAppCallingRequest](docs/EnableWhatsAppCallingRequest.md)
  - [Model.EnrollContacts200Response](docs/EnrollContacts200Response.md)
  - [Model.EnrollContactsRequest](docs/EnrollContactsRequest.md)
  - [Model.ErrorResponse](docs/ErrorResponse.md)
@@ -889,6 +900,13 @@ Class | Method | HTTP request | Description
  - [Model.GetWebhookSettings200Response](docs/GetWebhookSettings200Response.md)
  - [Model.GetWhatsAppBusinessProfile200Response](docs/GetWhatsAppBusinessProfile200Response.md)
  - [Model.GetWhatsAppBusinessProfile200ResponseBusinessProfile](docs/GetWhatsAppBusinessProfile200ResponseBusinessProfile.md)
+ - [Model.GetWhatsAppCall200Response](docs/GetWhatsAppCall200Response.md)
+ - [Model.GetWhatsAppCallEstimate200Response](docs/GetWhatsAppCallEstimate200Response.md)
+ - [Model.GetWhatsAppCallEstimate200ResponseBreakdown](docs/GetWhatsAppCallEstimate200ResponseBreakdown.md)
+ - [Model.GetWhatsAppCallPermissions200Response](docs/GetWhatsAppCallPermissions200Response.md)
+ - [Model.GetWhatsAppCallPermissions200ResponseActionsInner](docs/GetWhatsAppCallPermissions200ResponseActionsInner.md)
+ - [Model.GetWhatsAppCallPermissions200ResponsePermission](docs/GetWhatsAppCallPermissions200ResponsePermission.md)
+ - [Model.GetWhatsAppCallingConfig200Response](docs/GetWhatsAppCallingConfig200Response.md)
  - [Model.GetWhatsAppDataset200Response](docs/GetWhatsAppDataset200Response.md)
  - [Model.GetWhatsAppDisplayName200Response](docs/GetWhatsAppDisplayName200Response.md)
  - [Model.GetWhatsAppDisplayName200ResponseDisplayName](docs/GetWhatsAppDisplayName200ResponseDisplayName.md)
@@ -944,6 +962,8 @@ Class | Method | HTTP request | Description
  - [Model.InitiateTelegramConnect200Response](docs/InitiateTelegramConnect200Response.md)
  - [Model.InitiateTelegramConnect200ResponseAccount](docs/InitiateTelegramConnect200ResponseAccount.md)
  - [Model.InitiateTelegramConnectRequest](docs/InitiateTelegramConnectRequest.md)
+ - [Model.InitiateWhatsAppCall200Response](docs/InitiateWhatsAppCall200Response.md)
+ - [Model.InitiateWhatsAppCallRequest](docs/InitiateWhatsAppCallRequest.md)
  - [Model.InlineObject](docs/InlineObject.md)
  - [Model.InlineObject1](docs/InlineObject1.md)
  - [Model.InlineObject2](docs/InlineObject2.md)
@@ -1045,6 +1065,9 @@ Class | Method | HTTP request | Description
  - [Model.ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [Model.ListUsers200Response](docs/ListUsers200Response.md)
  - [Model.ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
+ - [Model.ListWhatsAppCalls200Response](docs/ListWhatsAppCalls200Response.md)
+ - [Model.ListWhatsAppCalls200ResponseCallsInner](docs/ListWhatsAppCalls200ResponseCallsInner.md)
+ - [Model.ListWhatsAppCalls200ResponseCallsInnerBilling](docs/ListWhatsAppCalls200ResponseCallsInnerBilling.md)
  - [Model.ListWhatsAppConversions200Response](docs/ListWhatsAppConversions200Response.md)
  - [Model.ListWhatsAppConversions200ResponseEventsInner](docs/ListWhatsAppConversions200ResponseEventsInner.md)
  - [Model.ListWhatsAppFlowResponses200Response](docs/ListWhatsAppFlowResponses200Response.md)
@@ -1323,6 +1346,7 @@ Class | Method | HTTP request | Description
  - [Model.UpdateWebhookSettings200Response](docs/UpdateWebhookSettings200Response.md)
  - [Model.UpdateWebhookSettingsRequest](docs/UpdateWebhookSettingsRequest.md)
  - [Model.UpdateWhatsAppBusinessProfileRequest](docs/UpdateWhatsAppBusinessProfileRequest.md)
+ - [Model.UpdateWhatsAppCallingRequest](docs/UpdateWhatsAppCallingRequest.md)
  - [Model.UpdateWhatsAppDisplayName200Response](docs/UpdateWhatsAppDisplayName200Response.md)
  - [Model.UpdateWhatsAppDisplayName200ResponseDisplayName](docs/UpdateWhatsAppDisplayName200ResponseDisplayName.md)
  - [Model.UpdateWhatsAppDisplayNameRequest](docs/UpdateWhatsAppDisplayNameRequest.md)
@@ -1380,6 +1404,16 @@ Class | Method | HTTP request | Description
  - [Model.WebhookPayloadAdStatusChangedAdObject](docs/WebhookPayloadAdStatusChangedAdObject.md)
  - [Model.WebhookPayloadAdStatusChangedError](docs/WebhookPayloadAdStatusChangedError.md)
  - [Model.WebhookPayloadAdStatusChangedStatus](docs/WebhookPayloadAdStatusChangedStatus.md)
+ - [Model.WebhookPayloadCallEnded](docs/WebhookPayloadCallEnded.md)
+ - [Model.WebhookPayloadCallEndedCall](docs/WebhookPayloadCallEndedCall.md)
+ - [Model.WebhookPayloadCallEndedCallBilling](docs/WebhookPayloadCallEndedCallBilling.md)
+ - [Model.WebhookPayloadCallFailed](docs/WebhookPayloadCallFailed.md)
+ - [Model.WebhookPayloadCallFailedCall](docs/WebhookPayloadCallFailedCall.md)
+ - [Model.WebhookPayloadCallFailedCallError](docs/WebhookPayloadCallFailedCallError.md)
+ - [Model.WebhookPayloadCallPermissionRequest](docs/WebhookPayloadCallPermissionRequest.md)
+ - [Model.WebhookPayloadCallPermissionRequestPermission](docs/WebhookPayloadCallPermissionRequestPermission.md)
+ - [Model.WebhookPayloadCallReceived](docs/WebhookPayloadCallReceived.md)
+ - [Model.WebhookPayloadCallReceivedCall](docs/WebhookPayloadCallReceivedCall.md)
  - [Model.WebhookPayloadComment](docs/WebhookPayloadComment.md)
  - [Model.WebhookPayloadCommentAccount](docs/WebhookPayloadCommentAccount.md)
  - [Model.WebhookPayloadCommentComment](docs/WebhookPayloadCommentComment.md)

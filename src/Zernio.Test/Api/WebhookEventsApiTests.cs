@@ -99,6 +99,50 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnCallEnded
+        /// </summary>
+        [Fact]
+        public void OnCallEndedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadCallEnded webhookPayloadCallEnded = null;
+            //instance.OnCallEnded(webhookPayloadCallEnded);
+        }
+
+        /// <summary>
+        /// Test OnCallFailed
+        /// </summary>
+        [Fact]
+        public void OnCallFailedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadCallFailed webhookPayloadCallFailed = null;
+            //instance.OnCallFailed(webhookPayloadCallFailed);
+        }
+
+        /// <summary>
+        /// Test OnCallPermissionRequest
+        /// </summary>
+        [Fact]
+        public void OnCallPermissionRequestTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadCallPermissionRequest webhookPayloadCallPermissionRequest = null;
+            //instance.OnCallPermissionRequest(webhookPayloadCallPermissionRequest);
+        }
+
+        /// <summary>
+        /// Test OnCallReceived
+        /// </summary>
+        [Fact]
+        public void OnCallReceivedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadCallReceived webhookPayloadCallReceived = null;
+            //instance.OnCallReceived(webhookPayloadCallReceived);
+        }
+
+        /// <summary>
         /// Test OnCommentReceived
         /// </summary>
         [Fact]
