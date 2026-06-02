@@ -504,6 +504,7 @@ namespace Zernio.Model
         /// <param name="startDate">Meta only. Ad-set start time (ISO 8601, e.g. \&quot;2026-06-10T09:00:00Z\&quot;), mapped to the ad set&#39;s &#x60;start_time&#x60;. When omitted the ad starts delivering immediately. For lifetime budgets Meta also requires &#x60;endDate&#x60;. (Same &#x60;schedule.startDate&#x60; semantics already available on &#x60;POST /v1/ads/boost&#x60;.) .</param>
         /// <param name="instagramAccountId">Meta only. Override the Instagram account the ad is delivered as — pass an Instagram Business Account ID (e.g. 17841...), mapped to the creative&#39;s &#x60;instagram_user_id&#x60;. When omitted we auto-resolve the IG account linked to the connected Facebook Page (the existing default). Useful when a Page has more than one eligible IG account. .</param>
         /// <param name="dynamicCreative">dynamicCreative.</param>
+        /// <param name="placementAssets">placementAssets.</param>
         /// <param name="audienceId">Custom audience ID for targeting.</param>
         /// <param name="campaignType">Google only (default to CampaignTypeEnum.Display).</param>
         /// <param name="keywords">Google Search only.</param>
@@ -520,7 +521,7 @@ namespace Zernio.Model
         /// <param name="brandIdentity">brandIdentity.</param>
         /// <param name="identityType">TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. .</param>
         /// <param name="promotedObject">promotedObject.</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, string organizationId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<CreateStandaloneAdRequestZipsInner> zips = default, List<CreateStandaloneAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, string organizationId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<CreateStandaloneAdRequestZipsInner> zips = default, List<CreateStandaloneAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, CreateStandaloneAdRequestPlacementAssets placementAssets = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -578,6 +579,7 @@ namespace Zernio.Model
             this.StartDate = startDate;
             this.InstagramAccountId = instagramAccountId;
             this.DynamicCreative = dynamicCreative;
+            this.PlacementAssets = placementAssets;
             this.AudienceId = audienceId;
             this.CampaignType = campaignType;
             this.Keywords = keywords;
@@ -839,6 +841,12 @@ namespace Zernio.Model
         public CreateStandaloneAdRequestDynamicCreative DynamicCreative { get; set; }
 
         /// <summary>
+        /// Gets or Sets PlacementAssets
+        /// </summary>
+        [DataMember(Name = "placementAssets", EmitDefaultValue = false)]
+        public CreateStandaloneAdRequestPlacementAssets PlacementAssets { get; set; }
+
+        /// <summary>
         /// Custom audience ID for targeting
         /// </summary>
         /// <value>Custom audience ID for targeting</value>
@@ -962,6 +970,7 @@ namespace Zernio.Model
             sb.Append("  StartDate: ").Append(StartDate).Append("\n");
             sb.Append("  InstagramAccountId: ").Append(InstagramAccountId).Append("\n");
             sb.Append("  DynamicCreative: ").Append(DynamicCreative).Append("\n");
+            sb.Append("  PlacementAssets: ").Append(PlacementAssets).Append("\n");
             sb.Append("  AudienceId: ").Append(AudienceId).Append("\n");
             sb.Append("  CampaignType: ").Append(CampaignType).Append("\n");
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");
