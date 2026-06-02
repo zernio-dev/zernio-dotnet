@@ -55,6 +55,48 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AddDiscordMemberRole
+        /// </summary>
+        [Fact]
+        public void AddDiscordMemberRoleTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string userId = null;
+            //string roleId = null;
+            //string accountId = null;
+            //var response = instance.AddDiscordMemberRole(guildId, userId, roleId, accountId);
+            //Assert.IsType<AddDiscordMemberRole200Response>(response);
+        }
+
+        /// <summary>
+        /// Test CreateDiscordScheduledEvent
+        /// </summary>
+        [Fact]
+        public void CreateDiscordScheduledEventTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest = null;
+            //var response = instance.CreateDiscordScheduledEvent(guildId, createDiscordScheduledEventRequest);
+            //Assert.IsType<CreateDiscordScheduledEvent200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteDiscordScheduledEvent
+        /// </summary>
+        [Fact]
+        public void DeleteDiscordScheduledEventTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string eventId = null;
+            //string accountId = null;
+            //var response = instance.DeleteDiscordScheduledEvent(guildId, eventId, accountId);
+            //Assert.IsType<DeleteDiscordScheduledEvent200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetDiscordChannels
         /// </summary>
         [Fact]
@@ -67,6 +109,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetDiscordScheduledEvent
+        /// </summary>
+        [Fact]
+        public void GetDiscordScheduledEventTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string eventId = null;
+            //string accountId = null;
+            //var response = instance.GetDiscordScheduledEvent(guildId, eventId, accountId);
+            //Assert.IsType<CreateDiscordScheduledEvent200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetDiscordSettings
         /// </summary>
         [Fact]
@@ -76,6 +132,130 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.GetDiscordSettings(accountId);
             //Assert.IsType<GetDiscordSettings200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListDiscordGuildMembers
+        /// </summary>
+        [Fact]
+        public void ListDiscordGuildMembersTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string accountId = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.ListDiscordGuildMembers(guildId, accountId, limit, after);
+            //Assert.IsType<ListDiscordGuildMembers200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListDiscordGuildRoles
+        /// </summary>
+        [Fact]
+        public void ListDiscordGuildRolesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string accountId = null;
+            //var response = instance.ListDiscordGuildRoles(guildId, accountId);
+            //Assert.IsType<ListDiscordGuildRoles200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListDiscordPinnedMessages
+        /// </summary>
+        [Fact]
+        public void ListDiscordPinnedMessagesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string channelId = null;
+            //string accountId = null;
+            //var response = instance.ListDiscordPinnedMessages(channelId, accountId);
+            //Assert.IsType<ListDiscordPinnedMessages200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListDiscordScheduledEvents
+        /// </summary>
+        [Fact]
+        public void ListDiscordScheduledEventsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string accountId = null;
+            //bool? withUserCount = null;
+            //var response = instance.ListDiscordScheduledEvents(guildId, accountId, withUserCount);
+            //Assert.IsType<ListDiscordScheduledEvents200Response>(response);
+        }
+
+        /// <summary>
+        /// Test PinDiscordMessage
+        /// </summary>
+        [Fact]
+        public void PinDiscordMessageTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string channelId = null;
+            //string messageId = null;
+            //string accountId = null;
+            //var response = instance.PinDiscordMessage(channelId, messageId, accountId);
+            //Assert.IsType<PinDiscordMessage200Response>(response);
+        }
+
+        /// <summary>
+        /// Test RemoveDiscordMemberRole
+        /// </summary>
+        [Fact]
+        public void RemoveDiscordMemberRoleTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string userId = null;
+            //string roleId = null;
+            //string accountId = null;
+            //var response = instance.RemoveDiscordMemberRole(guildId, userId, roleId, accountId);
+            //Assert.IsType<RemoveDiscordMemberRole200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SendDiscordDirectMessage
+        /// </summary>
+        [Fact]
+        public void SendDiscordDirectMessageTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //SendDiscordDirectMessageRequest sendDiscordDirectMessageRequest = null;
+            //var response = instance.SendDiscordDirectMessage(sendDiscordDirectMessageRequest);
+            //Assert.IsType<SendDiscordDirectMessage200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UnpinDiscordMessage
+        /// </summary>
+        [Fact]
+        public void UnpinDiscordMessageTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string channelId = null;
+            //string messageId = null;
+            //string accountId = null;
+            //var response = instance.UnpinDiscordMessage(channelId, messageId, accountId);
+            //Assert.IsType<UnpinDiscordMessage200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateDiscordScheduledEvent
+        /// </summary>
+        [Fact]
+        public void UpdateDiscordScheduledEventTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string eventId = null;
+            //UpdateDiscordScheduledEventRequest updateDiscordScheduledEventRequest = null;
+            //var response = instance.UpdateDiscordScheduledEvent(guildId, eventId, updateDiscordScheduledEventRequest);
+            //Assert.IsType<CreateDiscordScheduledEvent200Response>(response);
         }
 
         /// <summary>

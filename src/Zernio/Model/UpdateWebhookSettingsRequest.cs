@@ -181,7 +181,25 @@ namespace Zernio.Model
             /// Enum WhatsappTemplateStatusUpdated for value: whatsapp.template.status_updated
             /// </summary>
             [EnumMember(Value = "whatsapp.template.status_updated")]
-            WhatsappTemplateStatusUpdated = 24
+            WhatsappTemplateStatusUpdated = 24,
+
+            /// <summary>
+            /// Enum WhatsappNumberActivated for value: whatsapp.number.activated
+            /// </summary>
+            [EnumMember(Value = "whatsapp.number.activated")]
+            WhatsappNumberActivated = 25,
+
+            /// <summary>
+            /// Enum WhatsappNumberDeclined for value: whatsapp.number.declined
+            /// </summary>
+            [EnumMember(Value = "whatsapp.number.declined")]
+            WhatsappNumberDeclined = 26,
+
+            /// <summary>
+            /// Enum WhatsappNumberVerificationRequired for value: whatsapp.number.verification_required
+            /// </summary>
+            [EnumMember(Value = "whatsapp.number.verification_required")]
+            WhatsappNumberVerificationRequired = 27
         }
 
         /// <summary>

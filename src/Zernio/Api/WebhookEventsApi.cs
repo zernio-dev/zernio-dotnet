@@ -659,6 +659,69 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> OnWebhookTestWithHttpInfo(WebhookPayloadTest webhookPayloadTest);
         /// <summary>
+        /// WhatsApp number activated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActivatedRequest"></param>
+        /// <returns></returns>
+        void OnWhatsAppNumberActivated(OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest);
+
+        /// <summary>
+        /// WhatsApp number activated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActivatedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnWhatsAppNumberActivatedWithHttpInfo(OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest);
+        /// <summary>
+        /// WhatsApp number declined event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberDeclinedRequest"></param>
+        /// <returns></returns>
+        void OnWhatsAppNumberDeclined(OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest);
+
+        /// <summary>
+        /// WhatsApp number declined event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberDeclinedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnWhatsAppNumberDeclinedWithHttpInfo(OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest);
+        /// <summary>
+        /// WhatsApp number verification-required event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberVerificationRequiredRequest"></param>
+        /// <returns></returns>
+        void OnWhatsAppNumberVerificationRequired(OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest);
+
+        /// <summary>
+        /// WhatsApp number verification-required event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberVerificationRequiredRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnWhatsAppNumberVerificationRequiredWithHttpInfo(OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest);
+        /// <summary>
         /// WhatsApp template status updated event
         /// </summary>
         /// <remarks>
@@ -1378,6 +1441,75 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> OnWebhookTestWithHttpInfoAsync(WebhookPayloadTest webhookPayloadTest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// WhatsApp number activated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActivatedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnWhatsAppNumberActivatedAsync(OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// WhatsApp number activated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActivatedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnWhatsAppNumberActivatedWithHttpInfoAsync(OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// WhatsApp number declined event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberDeclinedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnWhatsAppNumberDeclinedAsync(OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// WhatsApp number declined event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberDeclinedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnWhatsAppNumberDeclinedWithHttpInfoAsync(OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// WhatsApp number verification-required event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberVerificationRequiredRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnWhatsAppNumberVerificationRequiredAsync(OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// WhatsApp number verification-required event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberVerificationRequiredRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnWhatsAppNumberVerificationRequiredWithHttpInfoAsync(OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// WhatsApp template status updated event
         /// </summary>
@@ -5358,6 +5490,381 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("OnWebhookTest", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActivatedRequest"></param>
+        /// <returns></returns>
+        public void OnWhatsAppNumberActivated(OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest)
+        {
+            OnWhatsAppNumberActivatedWithHttpInfo(onWhatsAppNumberActivatedRequest);
+        }
+
+        /// <summary>
+        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActivatedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnWhatsAppNumberActivatedWithHttpInfo(OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest)
+        {
+            // verify the required parameter 'onWhatsAppNumberActivatedRequest' is set
+            if (onWhatsAppNumberActivatedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberActivatedRequest' when calling WebhookEventsApi->OnWhatsAppNumberActivated");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberActivatedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/whatsapp.number.activated", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberActivated", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActivatedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnWhatsAppNumberActivatedAsync(OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnWhatsAppNumberActivatedWithHttpInfoAsync(onWhatsAppNumberActivatedRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActivatedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnWhatsAppNumberActivatedWithHttpInfoAsync(OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'onWhatsAppNumberActivatedRequest' is set
+            if (onWhatsAppNumberActivatedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberActivatedRequest' when calling WebhookEventsApi->OnWhatsAppNumberActivated");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberActivatedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/whatsapp.number.activated", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberActivated", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number declined event Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberDeclinedRequest"></param>
+        /// <returns></returns>
+        public void OnWhatsAppNumberDeclined(OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest)
+        {
+            OnWhatsAppNumberDeclinedWithHttpInfo(onWhatsAppNumberDeclinedRequest);
+        }
+
+        /// <summary>
+        /// WhatsApp number declined event Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberDeclinedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnWhatsAppNumberDeclinedWithHttpInfo(OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest)
+        {
+            // verify the required parameter 'onWhatsAppNumberDeclinedRequest' is set
+            if (onWhatsAppNumberDeclinedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberDeclinedRequest' when calling WebhookEventsApi->OnWhatsAppNumberDeclined");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberDeclinedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/whatsapp.number.declined", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberDeclined", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number declined event Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberDeclinedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnWhatsAppNumberDeclinedAsync(OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnWhatsAppNumberDeclinedWithHttpInfoAsync(onWhatsAppNumberDeclinedRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// WhatsApp number declined event Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberDeclinedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnWhatsAppNumberDeclinedWithHttpInfoAsync(OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'onWhatsAppNumberDeclinedRequest' is set
+            if (onWhatsAppNumberDeclinedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberDeclinedRequest' when calling WebhookEventsApi->OnWhatsAppNumberDeclined");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberDeclinedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/whatsapp.number.declined", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberDeclined", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number verification-required event Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberVerificationRequiredRequest"></param>
+        /// <returns></returns>
+        public void OnWhatsAppNumberVerificationRequired(OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest)
+        {
+            OnWhatsAppNumberVerificationRequiredWithHttpInfo(onWhatsAppNumberVerificationRequiredRequest);
+        }
+
+        /// <summary>
+        /// WhatsApp number verification-required event Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberVerificationRequiredRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnWhatsAppNumberVerificationRequiredWithHttpInfo(OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest)
+        {
+            // verify the required parameter 'onWhatsAppNumberVerificationRequiredRequest' is set
+            if (onWhatsAppNumberVerificationRequiredRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberVerificationRequiredRequest' when calling WebhookEventsApi->OnWhatsAppNumberVerificationRequired");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberVerificationRequiredRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/whatsapp.number.verification_required", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberVerificationRequired", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number verification-required event Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberVerificationRequiredRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnWhatsAppNumberVerificationRequiredAsync(OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnWhatsAppNumberVerificationRequiredWithHttpInfoAsync(onWhatsAppNumberVerificationRequiredRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// WhatsApp number verification-required event Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberVerificationRequiredRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnWhatsAppNumberVerificationRequiredWithHttpInfoAsync(OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'onWhatsAppNumberVerificationRequiredRequest' is set
+            if (onWhatsAppNumberVerificationRequiredRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberVerificationRequiredRequest' when calling WebhookEventsApi->OnWhatsAppNumberVerificationRequired");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberVerificationRequiredRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/whatsapp.number.verification_required", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberVerificationRequired", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -29,6 +29,81 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Assign a role to a guild member
+        /// </summary>
+        /// <remarks>
+        /// Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId">Discord user snowflake to assign the role to.</param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>AddDiscordMemberRole200Response</returns>
+        AddDiscordMemberRole200Response AddDiscordMemberRole(string guildId, string userId, string roleId, string accountId);
+
+        /// <summary>
+        /// Assign a role to a guild member
+        /// </summary>
+        /// <remarks>
+        /// Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId">Discord user snowflake to assign the role to.</param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of AddDiscordMemberRole200Response</returns>
+        ApiResponse<AddDiscordMemberRole200Response> AddDiscordMemberRoleWithHttpInfo(string guildId, string userId, string roleId, string accountId);
+        /// <summary>
+        /// Create a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="createDiscordScheduledEventRequest"></param>
+        /// <returns>CreateDiscordScheduledEvent200Response</returns>
+        CreateDiscordScheduledEvent200Response CreateDiscordScheduledEvent(string guildId, CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest);
+
+        /// <summary>
+        /// Create a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="createDiscordScheduledEventRequest"></param>
+        /// <returns>ApiResponse of CreateDiscordScheduledEvent200Response</returns>
+        ApiResponse<CreateDiscordScheduledEvent200Response> CreateDiscordScheduledEventWithHttpInfo(string guildId, CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest);
+        /// <summary>
+        /// Delete a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Hard-delete an event. Use PATCH with &#x60;status: &#39;cancelled&#39;&#x60; instead if you want the event preserved in the guild&#39;s history. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>DeleteDiscordScheduledEvent200Response</returns>
+        DeleteDiscordScheduledEvent200Response DeleteDiscordScheduledEvent(string guildId, string eventId, string accountId);
+
+        /// <summary>
+        /// Delete a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Hard-delete an event. Use PATCH with &#x60;status: &#39;cancelled&#39;&#x60; instead if you want the event preserved in the guild&#39;s history. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of DeleteDiscordScheduledEvent200Response</returns>
+        ApiResponse<DeleteDiscordScheduledEvent200Response> DeleteDiscordScheduledEventWithHttpInfo(string guildId, string eventId, string accountId);
+        /// <summary>
         /// List Discord guild channels
         /// </summary>
         /// <remarks>
@@ -50,6 +125,28 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetDiscordChannels200Response</returns>
         ApiResponse<GetDiscordChannels200Response> GetDiscordChannelsWithHttpInfo(string accountId);
         /// <summary>
+        /// Get a Discord scheduled event
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>CreateDiscordScheduledEvent200Response</returns>
+        CreateDiscordScheduledEvent200Response GetDiscordScheduledEvent(string guildId, string eventId, string accountId);
+
+        /// <summary>
+        /// Get a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of CreateDiscordScheduledEvent200Response</returns>
+        ApiResponse<CreateDiscordScheduledEvent200Response> GetDiscordScheduledEventWithHttpInfo(string guildId, string eventId, string accountId);
+        /// <summary>
         /// Get Discord account settings
         /// </summary>
         /// <remarks>
@@ -70,6 +167,227 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <returns>ApiResponse of GetDiscordSettings200Response</returns>
         ApiResponse<GetDiscordSettings200Response> GetDiscordSettingsWithHttpInfo(string accountId);
+        /// <summary>
+        /// List Discord guild members
+        /// </summary>
+        /// <remarks>
+        /// Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit">Page size (1-1000). (optional, default to 100)</param>
+        /// <param name="after">Snowflake of the last member from the previous page. (optional)</param>
+        /// <returns>ListDiscordGuildMembers200Response</returns>
+        ListDiscordGuildMembers200Response ListDiscordGuildMembers(string guildId, string accountId, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// List Discord guild members
+        /// </summary>
+        /// <remarks>
+        /// Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit">Page size (1-1000). (optional, default to 100)</param>
+        /// <param name="after">Snowflake of the last member from the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListDiscordGuildMembers200Response</returns>
+        ApiResponse<ListDiscordGuildMembers200Response> ListDiscordGuildMembersWithHttpInfo(string guildId, string accountId, int? limit = default, string? after = default);
+        /// <summary>
+        /// List Discord guild roles
+        /// </summary>
+        /// <remarks>
+        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <returns>ListDiscordGuildRoles200Response</returns>
+        ListDiscordGuildRoles200Response ListDiscordGuildRoles(string guildId, string accountId);
+
+        /// <summary>
+        /// List Discord guild roles
+        /// </summary>
+        /// <remarks>
+        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <returns>ApiResponse of ListDiscordGuildRoles200Response</returns>
+        ApiResponse<ListDiscordGuildRoles200Response> ListDiscordGuildRolesWithHttpInfo(string guildId, string accountId);
+        /// <summary>
+        /// List pinned messages in a Discord channel
+        /// </summary>
+        /// <remarks>
+        /// Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake.</param>
+        /// <param name="accountId">SocialAccount _id of any Discord account in the same guild.</param>
+        /// <returns>ListDiscordPinnedMessages200Response</returns>
+        ListDiscordPinnedMessages200Response ListDiscordPinnedMessages(string channelId, string accountId);
+
+        /// <summary>
+        /// List pinned messages in a Discord channel
+        /// </summary>
+        /// <remarks>
+        /// Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake.</param>
+        /// <param name="accountId">SocialAccount _id of any Discord account in the same guild.</param>
+        /// <returns>ApiResponse of ListDiscordPinnedMessages200Response</returns>
+        ApiResponse<ListDiscordPinnedMessages200Response> ListDiscordPinnedMessagesWithHttpInfo(string channelId, string accountId);
+        /// <summary>
+        /// List Discord scheduled events
+        /// </summary>
+        /// <remarks>
+        /// Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="withUserCount">Include user_count on each event. (optional)</param>
+        /// <returns>ListDiscordScheduledEvents200Response</returns>
+        ListDiscordScheduledEvents200Response ListDiscordScheduledEvents(string guildId, string accountId, bool? withUserCount = default);
+
+        /// <summary>
+        /// List Discord scheduled events
+        /// </summary>
+        /// <remarks>
+        /// Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="withUserCount">Include user_count on each event. (optional)</param>
+        /// <returns>ApiResponse of ListDiscordScheduledEvents200Response</returns>
+        ApiResponse<ListDiscordScheduledEvents200Response> ListDiscordScheduledEventsWithHttpInfo(string guildId, string accountId, bool? withUserCount = default);
+        /// <summary>
+        /// Pin a Discord message
+        /// </summary>
+        /// <remarks>
+        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>PinDiscordMessage200Response</returns>
+        PinDiscordMessage200Response PinDiscordMessage(string channelId, string messageId, string accountId);
+
+        /// <summary>
+        /// Pin a Discord message
+        /// </summary>
+        /// <remarks>
+        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of PinDiscordMessage200Response</returns>
+        ApiResponse<PinDiscordMessage200Response> PinDiscordMessageWithHttpInfo(string channelId, string messageId, string accountId);
+        /// <summary>
+        /// Remove a role from a guild member
+        /// </summary>
+        /// <remarks>
+        /// Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>RemoveDiscordMemberRole200Response</returns>
+        RemoveDiscordMemberRole200Response RemoveDiscordMemberRole(string guildId, string userId, string roleId, string accountId);
+
+        /// <summary>
+        /// Remove a role from a guild member
+        /// </summary>
+        /// <remarks>
+        /// Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of RemoveDiscordMemberRole200Response</returns>
+        ApiResponse<RemoveDiscordMemberRole200Response> RemoveDiscordMemberRoleWithHttpInfo(string guildId, string userId, string roleId, string accountId);
+        /// <summary>
+        /// Send a Discord Direct Message
+        /// </summary>
+        /// <remarks>
+        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendDiscordDirectMessageRequest"></param>
+        /// <returns>SendDiscordDirectMessage200Response</returns>
+        SendDiscordDirectMessage200Response SendDiscordDirectMessage(SendDiscordDirectMessageRequest sendDiscordDirectMessageRequest);
+
+        /// <summary>
+        /// Send a Discord Direct Message
+        /// </summary>
+        /// <remarks>
+        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendDiscordDirectMessageRequest"></param>
+        /// <returns>ApiResponse of SendDiscordDirectMessage200Response</returns>
+        ApiResponse<SendDiscordDirectMessage200Response> SendDiscordDirectMessageWithHttpInfo(SendDiscordDirectMessageRequest sendDiscordDirectMessageRequest);
+        /// <summary>
+        /// Unpin a Discord message
+        /// </summary>
+        /// <remarks>
+        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>UnpinDiscordMessage200Response</returns>
+        UnpinDiscordMessage200Response UnpinDiscordMessage(string channelId, string messageId, string accountId);
+
+        /// <summary>
+        /// Unpin a Discord message
+        /// </summary>
+        /// <remarks>
+        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of UnpinDiscordMessage200Response</returns>
+        ApiResponse<UnpinDiscordMessage200Response> UnpinDiscordMessageWithHttpInfo(string channelId, string messageId, string accountId);
+        /// <summary>
+        /// Update a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="updateDiscordScheduledEventRequest"></param>
+        /// <returns>CreateDiscordScheduledEvent200Response</returns>
+        CreateDiscordScheduledEvent200Response UpdateDiscordScheduledEvent(string guildId, string eventId, UpdateDiscordScheduledEventRequest updateDiscordScheduledEventRequest);
+
+        /// <summary>
+        /// Update a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="updateDiscordScheduledEventRequest"></param>
+        /// <returns>ApiResponse of CreateDiscordScheduledEvent200Response</returns>
+        ApiResponse<CreateDiscordScheduledEvent200Response> UpdateDiscordScheduledEventWithHttpInfo(string guildId, string eventId, UpdateDiscordScheduledEventRequest updateDiscordScheduledEventRequest);
         /// <summary>
         /// Update Discord settings
         /// </summary>
@@ -103,6 +421,87 @@ namespace Zernio.Api
     {
         #region Asynchronous Operations
         /// <summary>
+        /// Assign a role to a guild member
+        /// </summary>
+        /// <remarks>
+        /// Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId">Discord user snowflake to assign the role to.</param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddDiscordMemberRole200Response</returns>
+        System.Threading.Tasks.Task<AddDiscordMemberRole200Response> AddDiscordMemberRoleAsync(string guildId, string userId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Assign a role to a guild member
+        /// </summary>
+        /// <remarks>
+        /// Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId">Discord user snowflake to assign the role to.</param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddDiscordMemberRole200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AddDiscordMemberRole200Response>> AddDiscordMemberRoleWithHttpInfoAsync(string guildId, string userId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="createDiscordScheduledEventRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordScheduledEvent200Response</returns>
+        System.Threading.Tasks.Task<CreateDiscordScheduledEvent200Response> CreateDiscordScheduledEventAsync(string guildId, CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="createDiscordScheduledEventRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordScheduledEvent200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateDiscordScheduledEvent200Response>> CreateDiscordScheduledEventWithHttpInfoAsync(string guildId, CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Hard-delete an event. Use PATCH with &#x60;status: &#39;cancelled&#39;&#x60; instead if you want the event preserved in the guild&#39;s history. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteDiscordScheduledEvent200Response</returns>
+        System.Threading.Tasks.Task<DeleteDiscordScheduledEvent200Response> DeleteDiscordScheduledEventAsync(string guildId, string eventId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Hard-delete an event. Use PATCH with &#x60;status: &#39;cancelled&#39;&#x60; instead if you want the event preserved in the guild&#39;s history. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteDiscordScheduledEvent200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteDiscordScheduledEvent200Response>> DeleteDiscordScheduledEventWithHttpInfoAsync(string guildId, string eventId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List Discord guild channels
         /// </summary>
         /// <remarks>
@@ -126,6 +525,33 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetDiscordChannels200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetDiscordChannels200Response>> GetDiscordChannelsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordScheduledEvent200Response</returns>
+        System.Threading.Tasks.Task<CreateDiscordScheduledEvent200Response> GetDiscordScheduledEventAsync(string guildId, string eventId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordScheduledEvent200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateDiscordScheduledEvent200Response>> GetDiscordScheduledEventWithHttpInfoAsync(string guildId, string eventId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get Discord account settings
         /// </summary>
         /// <remarks>
@@ -148,6 +574,245 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetDiscordSettings200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetDiscordSettings200Response>> GetDiscordSettingsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List Discord guild members
+        /// </summary>
+        /// <remarks>
+        /// Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit">Page size (1-1000). (optional, default to 100)</param>
+        /// <param name="after">Snowflake of the last member from the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListDiscordGuildMembers200Response</returns>
+        System.Threading.Tasks.Task<ListDiscordGuildMembers200Response> ListDiscordGuildMembersAsync(string guildId, string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Discord guild members
+        /// </summary>
+        /// <remarks>
+        /// Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit">Page size (1-1000). (optional, default to 100)</param>
+        /// <param name="after">Snowflake of the last member from the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListDiscordGuildMembers200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListDiscordGuildMembers200Response>> ListDiscordGuildMembersWithHttpInfoAsync(string guildId, string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List Discord guild roles
+        /// </summary>
+        /// <remarks>
+        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListDiscordGuildRoles200Response</returns>
+        System.Threading.Tasks.Task<ListDiscordGuildRoles200Response> ListDiscordGuildRolesAsync(string guildId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Discord guild roles
+        /// </summary>
+        /// <remarks>
+        /// Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListDiscordGuildRoles200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListDiscordGuildRoles200Response>> ListDiscordGuildRolesWithHttpInfoAsync(string guildId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List pinned messages in a Discord channel
+        /// </summary>
+        /// <remarks>
+        /// Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake.</param>
+        /// <param name="accountId">SocialAccount _id of any Discord account in the same guild.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListDiscordPinnedMessages200Response</returns>
+        System.Threading.Tasks.Task<ListDiscordPinnedMessages200Response> ListDiscordPinnedMessagesAsync(string channelId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List pinned messages in a Discord channel
+        /// </summary>
+        /// <remarks>
+        /// Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake.</param>
+        /// <param name="accountId">SocialAccount _id of any Discord account in the same guild.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListDiscordPinnedMessages200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListDiscordPinnedMessages200Response>> ListDiscordPinnedMessagesWithHttpInfoAsync(string channelId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List Discord scheduled events
+        /// </summary>
+        /// <remarks>
+        /// Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="withUserCount">Include user_count on each event. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListDiscordScheduledEvents200Response</returns>
+        System.Threading.Tasks.Task<ListDiscordScheduledEvents200Response> ListDiscordScheduledEventsAsync(string guildId, string accountId, bool? withUserCount = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Discord scheduled events
+        /// </summary>
+        /// <remarks>
+        /// Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="withUserCount">Include user_count on each event. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListDiscordScheduledEvents200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListDiscordScheduledEvents200Response>> ListDiscordScheduledEventsWithHttpInfoAsync(string guildId, string accountId, bool? withUserCount = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Pin a Discord message
+        /// </summary>
+        /// <remarks>
+        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PinDiscordMessage200Response</returns>
+        System.Threading.Tasks.Task<PinDiscordMessage200Response> PinDiscordMessageAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Pin a Discord message
+        /// </summary>
+        /// <remarks>
+        /// Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PinDiscordMessage200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PinDiscordMessage200Response>> PinDiscordMessageWithHttpInfoAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remove a role from a guild member
+        /// </summary>
+        /// <remarks>
+        /// Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveDiscordMemberRole200Response</returns>
+        System.Threading.Tasks.Task<RemoveDiscordMemberRole200Response> RemoveDiscordMemberRoleAsync(string guildId, string userId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Remove a role from a guild member
+        /// </summary>
+        /// <remarks>
+        /// Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveDiscordMemberRole200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RemoveDiscordMemberRole200Response>> RemoveDiscordMemberRoleWithHttpInfoAsync(string guildId, string userId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Send a Discord Direct Message
+        /// </summary>
+        /// <remarks>
+        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendDiscordDirectMessageRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SendDiscordDirectMessage200Response</returns>
+        System.Threading.Tasks.Task<SendDiscordDirectMessage200Response> SendDiscordDirectMessageAsync(SendDiscordDirectMessageRequest sendDiscordDirectMessageRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Send a Discord Direct Message
+        /// </summary>
+        /// <remarks>
+        /// Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendDiscordDirectMessageRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SendDiscordDirectMessage200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SendDiscordDirectMessage200Response>> SendDiscordDirectMessageWithHttpInfoAsync(SendDiscordDirectMessageRequest sendDiscordDirectMessageRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Unpin a Discord message
+        /// </summary>
+        /// <remarks>
+        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UnpinDiscordMessage200Response</returns>
+        System.Threading.Tasks.Task<UnpinDiscordMessage200Response> UnpinDiscordMessageAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Unpin a Discord message
+        /// </summary>
+        /// <remarks>
+        /// Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UnpinDiscordMessage200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UnpinDiscordMessage200Response>> UnpinDiscordMessageWithHttpInfoAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="updateDiscordScheduledEventRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordScheduledEvent200Response</returns>
+        System.Threading.Tasks.Task<CreateDiscordScheduledEvent200Response> UpdateDiscordScheduledEventAsync(string guildId, string eventId, UpdateDiscordScheduledEventRequest updateDiscordScheduledEventRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update a Discord scheduled event
+        /// </summary>
+        /// <remarks>
+        /// Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="updateDiscordScheduledEventRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordScheduledEvent200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateDiscordScheduledEvent200Response>> UpdateDiscordScheduledEventWithHttpInfoAsync(string guildId, string eventId, UpdateDiscordScheduledEventRequest updateDiscordScheduledEventRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update Discord settings
         /// </summary>
@@ -387,6 +1052,473 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId">Discord user snowflake to assign the role to.</param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>AddDiscordMemberRole200Response</returns>
+        public AddDiscordMemberRole200Response AddDiscordMemberRole(string guildId, string userId, string roleId, string accountId)
+        {
+            Zernio.Client.ApiResponse<AddDiscordMemberRole200Response> localVarResponse = AddDiscordMemberRoleWithHttpInfo(guildId, userId, roleId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId">Discord user snowflake to assign the role to.</param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of AddDiscordMemberRole200Response</returns>
+        public Zernio.Client.ApiResponse<AddDiscordMemberRole200Response> AddDiscordMemberRoleWithHttpInfo(string guildId, string userId, string roleId, string accountId)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->AddDiscordMemberRole");
+
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'userId' when calling DiscordApi->AddDiscordMemberRole");
+
+            // verify the required parameter 'roleId' is set
+            if (roleId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'roleId' when calling DiscordApi->AddDiscordMemberRole");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->AddDiscordMemberRole");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("userId", Zernio.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("roleId", Zernio.Client.ClientUtils.ParameterToString(roleId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<AddDiscordMemberRole200Response>("/v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddDiscordMemberRole", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId">Discord user snowflake to assign the role to.</param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AddDiscordMemberRole200Response</returns>
+        public async System.Threading.Tasks.Task<AddDiscordMemberRole200Response> AddDiscordMemberRoleAsync(string guildId, string userId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<AddDiscordMemberRole200Response> localVarResponse = await AddDiscordMemberRoleWithHttpInfoAsync(guildId, userId, roleId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Assign a role to a guild member Assign one role to one member. Idempotent on Discord&#39;s side — re-running on a member who already has the role is a 204 no-op.  Path shape mirrors Discord&#39;s own API (&#x60;PUT /guilds/{guild}/members/{user}/roles/{role}&#x60;) for zero-translation mental mapping.  Bot needs MANAGE_ROLES permission in the guild AND its highest role must be above the target role (Discord hierarchy rule). The &#x60;@everyone&#x60; role (where roleId &#x3D;&#x3D; guildId) cannot be assigned. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId">Discord user snowflake to assign the role to.</param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AddDiscordMemberRole200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AddDiscordMemberRole200Response>> AddDiscordMemberRoleWithHttpInfoAsync(string guildId, string userId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->AddDiscordMemberRole");
+
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'userId' when calling DiscordApi->AddDiscordMemberRole");
+
+            // verify the required parameter 'roleId' is set
+            if (roleId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'roleId' when calling DiscordApi->AddDiscordMemberRole");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->AddDiscordMemberRole");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("userId", Zernio.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("roleId", Zernio.Client.ClientUtils.ParameterToString(roleId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<AddDiscordMemberRole200Response>("/v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AddDiscordMemberRole", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="createDiscordScheduledEventRequest"></param>
+        /// <returns>CreateDiscordScheduledEvent200Response</returns>
+        public CreateDiscordScheduledEvent200Response CreateDiscordScheduledEvent(string guildId, CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response> localVarResponse = CreateDiscordScheduledEventWithHttpInfo(guildId, createDiscordScheduledEventRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="createDiscordScheduledEventRequest"></param>
+        /// <returns>ApiResponse of CreateDiscordScheduledEvent200Response</returns>
+        public Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response> CreateDiscordScheduledEventWithHttpInfo(string guildId, CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->CreateDiscordScheduledEvent");
+
+            // verify the required parameter 'createDiscordScheduledEventRequest' is set
+            if (createDiscordScheduledEventRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createDiscordScheduledEventRequest' when calling DiscordApi->CreateDiscordScheduledEvent");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.Data = createDiscordScheduledEventRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateDiscordScheduledEvent200Response>("/v1/discord/guilds/{guildId}/events", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateDiscordScheduledEvent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="createDiscordScheduledEventRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordScheduledEvent200Response</returns>
+        public async System.Threading.Tasks.Task<CreateDiscordScheduledEvent200Response> CreateDiscordScheduledEventAsync(string guildId, CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response> localVarResponse = await CreateDiscordScheduledEventWithHttpInfoAsync(guildId, createDiscordScheduledEventRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="createDiscordScheduledEventRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordScheduledEvent200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response>> CreateDiscordScheduledEventWithHttpInfoAsync(string guildId, CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->CreateDiscordScheduledEvent");
+
+            // verify the required parameter 'createDiscordScheduledEventRequest' is set
+            if (createDiscordScheduledEventRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createDiscordScheduledEventRequest' when calling DiscordApi->CreateDiscordScheduledEvent");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.Data = createDiscordScheduledEventRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateDiscordScheduledEvent200Response>("/v1/discord/guilds/{guildId}/events", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateDiscordScheduledEvent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a Discord scheduled event Hard-delete an event. Use PATCH with &#x60;status: &#39;cancelled&#39;&#x60; instead if you want the event preserved in the guild&#39;s history. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>DeleteDiscordScheduledEvent200Response</returns>
+        public DeleteDiscordScheduledEvent200Response DeleteDiscordScheduledEvent(string guildId, string eventId, string accountId)
+        {
+            Zernio.Client.ApiResponse<DeleteDiscordScheduledEvent200Response> localVarResponse = DeleteDiscordScheduledEventWithHttpInfo(guildId, eventId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a Discord scheduled event Hard-delete an event. Use PATCH with &#x60;status: &#39;cancelled&#39;&#x60; instead if you want the event preserved in the guild&#39;s history. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of DeleteDiscordScheduledEvent200Response</returns>
+        public Zernio.Client.ApiResponse<DeleteDiscordScheduledEvent200Response> DeleteDiscordScheduledEventWithHttpInfo(string guildId, string eventId, string accountId)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->DeleteDiscordScheduledEvent");
+
+            // verify the required parameter 'eventId' is set
+            if (eventId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'eventId' when calling DiscordApi->DeleteDiscordScheduledEvent");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->DeleteDiscordScheduledEvent");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("eventId", Zernio.Client.ClientUtils.ParameterToString(eventId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeleteDiscordScheduledEvent200Response>("/v1/discord/guilds/{guildId}/events/{eventId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteDiscordScheduledEvent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a Discord scheduled event Hard-delete an event. Use PATCH with &#x60;status: &#39;cancelled&#39;&#x60; instead if you want the event preserved in the guild&#39;s history. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteDiscordScheduledEvent200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteDiscordScheduledEvent200Response> DeleteDiscordScheduledEventAsync(string guildId, string eventId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DeleteDiscordScheduledEvent200Response> localVarResponse = await DeleteDiscordScheduledEventWithHttpInfoAsync(guildId, eventId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a Discord scheduled event Hard-delete an event. Use PATCH with &#x60;status: &#39;cancelled&#39;&#x60; instead if you want the event preserved in the guild&#39;s history. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteDiscordScheduledEvent200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteDiscordScheduledEvent200Response>> DeleteDiscordScheduledEventWithHttpInfoAsync(string guildId, string eventId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->DeleteDiscordScheduledEvent");
+
+            // verify the required parameter 'eventId' is set
+            if (eventId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'eventId' when calling DiscordApi->DeleteDiscordScheduledEvent");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->DeleteDiscordScheduledEvent");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("eventId", Zernio.Client.ClientUtils.ParameterToString(eventId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteDiscordScheduledEvent200Response>("/v1/discord/guilds/{guildId}/events/{eventId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteDiscordScheduledEvent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// List Discord guild channels Returns the text, announcement, and forum channels in the connected Discord guild. Use this to discover available channels when switching the connected channel via PATCH /v1/accounts/{accountId}/discord-settings.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -514,6 +1646,161 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Get a Discord scheduled event 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>CreateDiscordScheduledEvent200Response</returns>
+        public CreateDiscordScheduledEvent200Response GetDiscordScheduledEvent(string guildId, string eventId, string accountId)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response> localVarResponse = GetDiscordScheduledEventWithHttpInfo(guildId, eventId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a Discord scheduled event 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of CreateDiscordScheduledEvent200Response</returns>
+        public Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response> GetDiscordScheduledEventWithHttpInfo(string guildId, string eventId, string accountId)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->GetDiscordScheduledEvent");
+
+            // verify the required parameter 'eventId' is set
+            if (eventId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'eventId' when calling DiscordApi->GetDiscordScheduledEvent");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->GetDiscordScheduledEvent");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("eventId", Zernio.Client.ClientUtils.ParameterToString(eventId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<CreateDiscordScheduledEvent200Response>("/v1/discord/guilds/{guildId}/events/{eventId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetDiscordScheduledEvent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a Discord scheduled event 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordScheduledEvent200Response</returns>
+        public async System.Threading.Tasks.Task<CreateDiscordScheduledEvent200Response> GetDiscordScheduledEventAsync(string guildId, string eventId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response> localVarResponse = await GetDiscordScheduledEventWithHttpInfoAsync(guildId, eventId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a Discord scheduled event 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordScheduledEvent200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response>> GetDiscordScheduledEventWithHttpInfoAsync(string guildId, string eventId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->GetDiscordScheduledEvent");
+
+            // verify the required parameter 'eventId' is set
+            if (eventId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'eventId' when calling DiscordApi->GetDiscordScheduledEvent");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->GetDiscordScheduledEvent");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("eventId", Zernio.Client.ClientUtils.ParameterToString(eventId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<CreateDiscordScheduledEvent200Response>("/v1/discord/guilds/{guildId}/events/{eventId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetDiscordScheduledEvent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get Discord account settings Returns the current Discord account settings including webhook identity (display name and avatar), connected channel, and guild information.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -634,6 +1921,1371 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetDiscordSettings", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Discord guild members Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit">Page size (1-1000). (optional, default to 100)</param>
+        /// <param name="after">Snowflake of the last member from the previous page. (optional)</param>
+        /// <returns>ListDiscordGuildMembers200Response</returns>
+        public ListDiscordGuildMembers200Response ListDiscordGuildMembers(string guildId, string accountId, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<ListDiscordGuildMembers200Response> localVarResponse = ListDiscordGuildMembersWithHttpInfo(guildId, accountId, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Discord guild members Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit">Page size (1-1000). (optional, default to 100)</param>
+        /// <param name="after">Snowflake of the last member from the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListDiscordGuildMembers200Response</returns>
+        public Zernio.Client.ApiResponse<ListDiscordGuildMembers200Response> ListDiscordGuildMembersWithHttpInfo(string guildId, string accountId, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->ListDiscordGuildMembers");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->ListDiscordGuildMembers");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListDiscordGuildMembers200Response>("/v1/discord/guilds/{guildId}/members", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListDiscordGuildMembers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Discord guild members Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit">Page size (1-1000). (optional, default to 100)</param>
+        /// <param name="after">Snowflake of the last member from the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListDiscordGuildMembers200Response</returns>
+        public async System.Threading.Tasks.Task<ListDiscordGuildMembers200Response> ListDiscordGuildMembersAsync(string guildId, string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListDiscordGuildMembers200Response> localVarResponse = await ListDiscordGuildMembersWithHttpInfoAsync(guildId, accountId, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Discord guild members Cursor-paginated list of guild members. Returns Discord&#39;s raw member objects so callers can build community-ops automation (e.g. \&quot;add role to all members joined in the last 7 days\&quot;) on the actual platform shape.  **Important:** this endpoint requires the privileged \&quot;Server Members Intent\&quot; enabled on the Discord app (Developer Portal → Bot tab → toggle \&quot;Server Members Intent\&quot; ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass &#x60;after&#x60; &#x3D; the last &#x60;user.id&#x60; from the previous page. Omit on the first call. Response includes a &#x60;nextCursor&#x60; and &#x60;hasMore&#x60; flag so callers don&#39;t need to know Discord&#39;s pagination shape. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="limit">Page size (1-1000). (optional, default to 100)</param>
+        /// <param name="after">Snowflake of the last member from the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListDiscordGuildMembers200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListDiscordGuildMembers200Response>> ListDiscordGuildMembersWithHttpInfoAsync(string guildId, string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->ListDiscordGuildMembers");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->ListDiscordGuildMembers");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListDiscordGuildMembers200Response>("/v1/discord/guilds/{guildId}/members", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListDiscordGuildMembers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <returns>ListDiscordGuildRoles200Response</returns>
+        public ListDiscordGuildRoles200Response ListDiscordGuildRoles(string guildId, string accountId)
+        {
+            Zernio.Client.ApiResponse<ListDiscordGuildRoles200Response> localVarResponse = ListDiscordGuildRolesWithHttpInfo(guildId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <returns>ApiResponse of ListDiscordGuildRoles200Response</returns>
+        public Zernio.Client.ApiResponse<ListDiscordGuildRoles200Response> ListDiscordGuildRolesWithHttpInfo(string guildId, string accountId)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->ListDiscordGuildRoles");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->ListDiscordGuildRoles");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListDiscordGuildRoles200Response>("/v1/discord/guilds/{guildId}/roles", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListDiscordGuildRoles", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListDiscordGuildRoles200Response</returns>
+        public async System.Threading.Tasks.Task<ListDiscordGuildRoles200Response> ListDiscordGuildRolesAsync(string guildId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListDiscordGuildRoles200Response> localVarResponse = await ListDiscordGuildRolesWithHttpInfoAsync(guildId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Discord guild roles Returns all roles in a Discord guild. Useful for building role-mention pickers, role-permission UIs, or finding the role ID before calling the role-assign endpoint.  Roles are returned unordered — sort client-side by &#x60;position&#x60; if you need Discord&#39;s UI ordering.  Caller must pass &#x60;accountId&#x60; of a Discord SocialAccount bound to this guild (route verifies team access + guild match). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListDiscordGuildRoles200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListDiscordGuildRoles200Response>> ListDiscordGuildRolesWithHttpInfoAsync(string guildId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->ListDiscordGuildRoles");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->ListDiscordGuildRoles");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListDiscordGuildRoles200Response>("/v1/discord/guilds/{guildId}/roles", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListDiscordGuildRoles", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List pinned messages in a Discord channel Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake.</param>
+        /// <param name="accountId">SocialAccount _id of any Discord account in the same guild.</param>
+        /// <returns>ListDiscordPinnedMessages200Response</returns>
+        public ListDiscordPinnedMessages200Response ListDiscordPinnedMessages(string channelId, string accountId)
+        {
+            Zernio.Client.ApiResponse<ListDiscordPinnedMessages200Response> localVarResponse = ListDiscordPinnedMessagesWithHttpInfo(channelId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List pinned messages in a Discord channel Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake.</param>
+        /// <param name="accountId">SocialAccount _id of any Discord account in the same guild.</param>
+        /// <returns>ApiResponse of ListDiscordPinnedMessages200Response</returns>
+        public Zernio.Client.ApiResponse<ListDiscordPinnedMessages200Response> ListDiscordPinnedMessagesWithHttpInfo(string channelId, string accountId)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->ListDiscordPinnedMessages");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->ListDiscordPinnedMessages");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListDiscordPinnedMessages200Response>("/v1/discord/channels/{channelId}/pins", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListDiscordPinnedMessages", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List pinned messages in a Discord channel Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake.</param>
+        /// <param name="accountId">SocialAccount _id of any Discord account in the same guild.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListDiscordPinnedMessages200Response</returns>
+        public async System.Threading.Tasks.Task<ListDiscordPinnedMessages200Response> ListDiscordPinnedMessagesAsync(string channelId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListDiscordPinnedMessages200Response> localVarResponse = await ListDiscordPinnedMessagesWithHttpInfoAsync(channelId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List pinned messages in a Discord channel Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake.</param>
+        /// <param name="accountId">SocialAccount _id of any Discord account in the same guild.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListDiscordPinnedMessages200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListDiscordPinnedMessages200Response>> ListDiscordPinnedMessagesWithHttpInfoAsync(string channelId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->ListDiscordPinnedMessages");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->ListDiscordPinnedMessages");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListDiscordPinnedMessages200Response>("/v1/discord/channels/{channelId}/pins", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListDiscordPinnedMessages", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="withUserCount">Include user_count on each event. (optional)</param>
+        /// <returns>ListDiscordScheduledEvents200Response</returns>
+        public ListDiscordScheduledEvents200Response ListDiscordScheduledEvents(string guildId, string accountId, bool? withUserCount = default)
+        {
+            Zernio.Client.ApiResponse<ListDiscordScheduledEvents200Response> localVarResponse = ListDiscordScheduledEventsWithHttpInfo(guildId, accountId, withUserCount);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="withUserCount">Include user_count on each event. (optional)</param>
+        /// <returns>ApiResponse of ListDiscordScheduledEvents200Response</returns>
+        public Zernio.Client.ApiResponse<ListDiscordScheduledEvents200Response> ListDiscordScheduledEventsWithHttpInfo(string guildId, string accountId, bool? withUserCount = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->ListDiscordScheduledEvents");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->ListDiscordScheduledEvents");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (withUserCount != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "withUserCount", withUserCount));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListDiscordScheduledEvents200Response>("/v1/discord/guilds/{guildId}/events", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListDiscordScheduledEvents", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="withUserCount">Include user_count on each event. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListDiscordScheduledEvents200Response</returns>
+        public async System.Threading.Tasks.Task<ListDiscordScheduledEvents200Response> ListDiscordScheduledEventsAsync(string guildId, string accountId, bool? withUserCount = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListDiscordScheduledEvents200Response> localVarResponse = await ListDiscordScheduledEventsWithHttpInfoAsync(guildId, accountId, withUserCount, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Discord scheduled events Return all scheduled events in the guild. Events are distinct from messages — they appear in the server&#39;s Events panel and Discord auto-notifies interested members ahead of start time.  Pass &#x60;withUserCount&#x3D;true&#x60; to include &#x60;user_count&#x60; (number of members who RSVP&#39;d) on each event. Useful for surfacing engagement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="withUserCount">Include user_count on each event. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListDiscordScheduledEvents200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListDiscordScheduledEvents200Response>> ListDiscordScheduledEventsWithHttpInfoAsync(string guildId, string accountId, bool? withUserCount = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->ListDiscordScheduledEvents");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->ListDiscordScheduledEvents");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (withUserCount != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "withUserCount", withUserCount));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListDiscordScheduledEvents200Response>("/v1/discord/guilds/{guildId}/events", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListDiscordScheduledEvents", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>PinDiscordMessage200Response</returns>
+        public PinDiscordMessage200Response PinDiscordMessage(string channelId, string messageId, string accountId)
+        {
+            Zernio.Client.ApiResponse<PinDiscordMessage200Response> localVarResponse = PinDiscordMessageWithHttpInfo(channelId, messageId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of PinDiscordMessage200Response</returns>
+        public Zernio.Client.ApiResponse<PinDiscordMessage200Response> PinDiscordMessageWithHttpInfo(string channelId, string messageId, string accountId)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->PinDiscordMessage");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'messageId' when calling DiscordApi->PinDiscordMessage");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->PinDiscordMessage");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Zernio.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<PinDiscordMessage200Response>("/v1/discord/channels/{channelId}/pins/{messageId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PinDiscordMessage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PinDiscordMessage200Response</returns>
+        public async System.Threading.Tasks.Task<PinDiscordMessage200Response> PinDiscordMessageAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<PinDiscordMessage200Response> localVarResponse = await PinDiscordMessageWithHttpInfoAsync(channelId, messageId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pin a Discord message Pin a specific message in a channel. Path shape mirrors Discord&#39;s own API (&#x60;PUT /channels/{cid}/pins/{mid}&#x60;).  Idempotent — re-pinning an already-pinned message is a 204 no-op.  Constraints:   - Bot needs MANAGE_MESSAGES in the channel.   - 50-pin cap per channel — hitting it returns 400 (Discord-side).     Caller should unpin one first. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PinDiscordMessage200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PinDiscordMessage200Response>> PinDiscordMessageWithHttpInfoAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->PinDiscordMessage");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'messageId' when calling DiscordApi->PinDiscordMessage");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->PinDiscordMessage");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Zernio.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<PinDiscordMessage200Response>("/v1/discord/channels/{channelId}/pins/{messageId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PinDiscordMessage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove a role from a guild member Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>RemoveDiscordMemberRole200Response</returns>
+        public RemoveDiscordMemberRole200Response RemoveDiscordMemberRole(string guildId, string userId, string roleId, string accountId)
+        {
+            Zernio.Client.ApiResponse<RemoveDiscordMemberRole200Response> localVarResponse = RemoveDiscordMemberRoleWithHttpInfo(guildId, userId, roleId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove a role from a guild member Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of RemoveDiscordMemberRole200Response</returns>
+        public Zernio.Client.ApiResponse<RemoveDiscordMemberRole200Response> RemoveDiscordMemberRoleWithHttpInfo(string guildId, string userId, string roleId, string accountId)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->RemoveDiscordMemberRole");
+
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'userId' when calling DiscordApi->RemoveDiscordMemberRole");
+
+            // verify the required parameter 'roleId' is set
+            if (roleId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'roleId' when calling DiscordApi->RemoveDiscordMemberRole");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->RemoveDiscordMemberRole");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("userId", Zernio.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("roleId", Zernio.Client.ClientUtils.ParameterToString(roleId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<RemoveDiscordMemberRole200Response>("/v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveDiscordMemberRole", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Remove a role from a guild member Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemoveDiscordMemberRole200Response</returns>
+        public async System.Threading.Tasks.Task<RemoveDiscordMemberRole200Response> RemoveDiscordMemberRoleAsync(string guildId, string userId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RemoveDiscordMemberRole200Response> localVarResponse = await RemoveDiscordMemberRoleWithHttpInfoAsync(guildId, userId, roleId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Remove a role from a guild member Remove one role from one member. Idempotent — removing a role the member doesn&#39;t have returns 204 no-op.  Same permission + hierarchy constraints as the PUT counterpart. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="userId"></param>
+        /// <param name="roleId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemoveDiscordMemberRole200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RemoveDiscordMemberRole200Response>> RemoveDiscordMemberRoleWithHttpInfoAsync(string guildId, string userId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->RemoveDiscordMemberRole");
+
+            // verify the required parameter 'userId' is set
+            if (userId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'userId' when calling DiscordApi->RemoveDiscordMemberRole");
+
+            // verify the required parameter 'roleId' is set
+            if (roleId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'roleId' when calling DiscordApi->RemoveDiscordMemberRole");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->RemoveDiscordMemberRole");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("userId", Zernio.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("roleId", Zernio.Client.ClientUtils.ParameterToString(roleId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<RemoveDiscordMemberRole200Response>("/v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemoveDiscordMemberRole", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendDiscordDirectMessageRequest"></param>
+        /// <returns>SendDiscordDirectMessage200Response</returns>
+        public SendDiscordDirectMessage200Response SendDiscordDirectMessage(SendDiscordDirectMessageRequest sendDiscordDirectMessageRequest)
+        {
+            Zernio.Client.ApiResponse<SendDiscordDirectMessage200Response> localVarResponse = SendDiscordDirectMessageWithHttpInfo(sendDiscordDirectMessageRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendDiscordDirectMessageRequest"></param>
+        /// <returns>ApiResponse of SendDiscordDirectMessage200Response</returns>
+        public Zernio.Client.ApiResponse<SendDiscordDirectMessage200Response> SendDiscordDirectMessageWithHttpInfo(SendDiscordDirectMessageRequest sendDiscordDirectMessageRequest)
+        {
+            // verify the required parameter 'sendDiscordDirectMessageRequest' is set
+            if (sendDiscordDirectMessageRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'sendDiscordDirectMessageRequest' when calling DiscordApi->SendDiscordDirectMessage");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = sendDiscordDirectMessageRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<SendDiscordDirectMessage200Response>("/v1/discord/dms", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SendDiscordDirectMessage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendDiscordDirectMessageRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SendDiscordDirectMessage200Response</returns>
+        public async System.Threading.Tasks.Task<SendDiscordDirectMessage200Response> SendDiscordDirectMessageAsync(SendDiscordDirectMessageRequest sendDiscordDirectMessageRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<SendDiscordDirectMessage200Response> localVarResponse = await SendDiscordDirectMessageWithHttpInfoAsync(sendDiscordDirectMessageRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Send a Discord Direct Message Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID). Supports the same payload shape as channel posts — content, embeds, media attachments, and TTS.  Constraints (Discord platform limits):   - The bot can only DM users it shares at least one guild with.   - If the recipient has DMs disabled for non-friends, Discord returns 403     (surfaces as a 502 platform error).   - &#x60;content&#x60; capped at 2,000 chars.   - At least one of &#x60;content&#x60;, &#x60;embeds&#x60;, or &#x60;attachments&#x60; is required.   - The recipient must be identified by Discord snowflake ID (not username).  This is a dedicated endpoint rather than a &#x60;POST /v1/posts&#x60; variant because DMs are 1:1 operational messages (onboarding, billing reminders, support pings) with a different lifecycle than scheduled channel posts. DMs are not persisted to &#x60;Post&#x60; / &#x60;ExternalPost&#x60; and are always sent immediately. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="sendDiscordDirectMessageRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SendDiscordDirectMessage200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SendDiscordDirectMessage200Response>> SendDiscordDirectMessageWithHttpInfoAsync(SendDiscordDirectMessageRequest sendDiscordDirectMessageRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'sendDiscordDirectMessageRequest' is set
+            if (sendDiscordDirectMessageRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'sendDiscordDirectMessageRequest' when calling DiscordApi->SendDiscordDirectMessage");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = sendDiscordDirectMessageRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SendDiscordDirectMessage200Response>("/v1/discord/dms", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SendDiscordDirectMessage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>UnpinDiscordMessage200Response</returns>
+        public UnpinDiscordMessage200Response UnpinDiscordMessage(string channelId, string messageId, string accountId)
+        {
+            Zernio.Client.ApiResponse<UnpinDiscordMessage200Response> localVarResponse = UnpinDiscordMessageWithHttpInfo(channelId, messageId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of UnpinDiscordMessage200Response</returns>
+        public Zernio.Client.ApiResponse<UnpinDiscordMessage200Response> UnpinDiscordMessageWithHttpInfo(string channelId, string messageId, string accountId)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->UnpinDiscordMessage");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'messageId' when calling DiscordApi->UnpinDiscordMessage");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->UnpinDiscordMessage");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Zernio.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<UnpinDiscordMessage200Response>("/v1/discord/channels/{channelId}/pins/{messageId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UnpinDiscordMessage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UnpinDiscordMessage200Response</returns>
+        public async System.Threading.Tasks.Task<UnpinDiscordMessage200Response> UnpinDiscordMessageAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UnpinDiscordMessage200Response> localVarResponse = await UnpinDiscordMessageWithHttpInfoAsync(channelId, messageId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Unpin a Discord message Unpin a message. Same MANAGE_MESSAGES permission requirement as pin. Idempotent — unpinning a non-pinned message is a 204 no-op. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId"></param>
+        /// <param name="messageId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UnpinDiscordMessage200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UnpinDiscordMessage200Response>> UnpinDiscordMessageWithHttpInfoAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->UnpinDiscordMessage");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'messageId' when calling DiscordApi->UnpinDiscordMessage");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->UnpinDiscordMessage");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Zernio.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UnpinDiscordMessage200Response>("/v1/discord/channels/{channelId}/pins/{messageId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UnpinDiscordMessage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="updateDiscordScheduledEventRequest"></param>
+        /// <returns>CreateDiscordScheduledEvent200Response</returns>
+        public CreateDiscordScheduledEvent200Response UpdateDiscordScheduledEvent(string guildId, string eventId, UpdateDiscordScheduledEventRequest updateDiscordScheduledEventRequest)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response> localVarResponse = UpdateDiscordScheduledEventWithHttpInfo(guildId, eventId, updateDiscordScheduledEventRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="updateDiscordScheduledEventRequest"></param>
+        /// <returns>ApiResponse of CreateDiscordScheduledEvent200Response</returns>
+        public Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response> UpdateDiscordScheduledEventWithHttpInfo(string guildId, string eventId, UpdateDiscordScheduledEventRequest updateDiscordScheduledEventRequest)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->UpdateDiscordScheduledEvent");
+
+            // verify the required parameter 'eventId' is set
+            if (eventId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'eventId' when calling DiscordApi->UpdateDiscordScheduledEvent");
+
+            // verify the required parameter 'updateDiscordScheduledEventRequest' is set
+            if (updateDiscordScheduledEventRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateDiscordScheduledEventRequest' when calling DiscordApi->UpdateDiscordScheduledEvent");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("eventId", Zernio.Client.ClientUtils.ParameterToString(eventId)); // path parameter
+            localVarRequestOptions.Data = updateDiscordScheduledEventRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<CreateDiscordScheduledEvent200Response>("/v1/discord/guilds/{guildId}/events/{eventId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateDiscordScheduledEvent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="updateDiscordScheduledEventRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordScheduledEvent200Response</returns>
+        public async System.Threading.Tasks.Task<CreateDiscordScheduledEvent200Response> UpdateDiscordScheduledEventAsync(string guildId, string eventId, UpdateDiscordScheduledEventRequest updateDiscordScheduledEventRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response> localVarResponse = await UpdateDiscordScheduledEventWithHttpInfoAsync(guildId, eventId, updateDiscordScheduledEventRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update a Discord scheduled event Patch any subset of fields. Passing &#x60;status: &#39;cancelled&#39;&#x60; is how you cancel an event — Discord doesn&#39;t have a dedicated cancel endpoint, it&#39;s a status transition.  Most status transitions Discord enforces (you can&#39;t go SCHEDULED → COMPLETED directly). The common consumer case is SCHEDULED → CANCELED. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId"></param>
+        /// <param name="eventId"></param>
+        /// <param name="updateDiscordScheduledEventRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordScheduledEvent200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateDiscordScheduledEvent200Response>> UpdateDiscordScheduledEventWithHttpInfoAsync(string guildId, string eventId, UpdateDiscordScheduledEventRequest updateDiscordScheduledEventRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->UpdateDiscordScheduledEvent");
+
+            // verify the required parameter 'eventId' is set
+            if (eventId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'eventId' when calling DiscordApi->UpdateDiscordScheduledEvent");
+
+            // verify the required parameter 'updateDiscordScheduledEventRequest' is set
+            if (updateDiscordScheduledEventRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateDiscordScheduledEventRequest' when calling DiscordApi->UpdateDiscordScheduledEvent");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("eventId", Zernio.Client.ClientUtils.ParameterToString(eventId)); // path parameter
+            localVarRequestOptions.Data = updateDiscordScheduledEventRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<CreateDiscordScheduledEvent200Response>("/v1/discord/guilds/{guildId}/events/{eventId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateDiscordScheduledEvent", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

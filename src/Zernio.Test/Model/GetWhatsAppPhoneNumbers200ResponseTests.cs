@@ -63,5 +63,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Numbers'
         }
+
+        /// <summary>
+        /// Test the property 'Sandbox'
+        /// </summary>
+        [Fact]
+        public void SandboxTest()
+        {
+            // TODO unit test for the property 'Sandbox'
+        }
     }
 }

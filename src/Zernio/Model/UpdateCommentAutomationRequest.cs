@@ -67,8 +67,10 @@ namespace Zernio.Model
         /// <param name="dmMessage">dmMessage.</param>
         /// <param name="buttons">Inline DM buttons (1-3). Pass [] to clear all buttons..</param>
         /// <param name="commentReply">commentReply.</param>
+        /// <param name="linkTracking">Wrap link buttons in a tracked redirect to count clicks. Pass false to send links untouched..</param>
+        /// <param name="clickTag">Tag applied to a contact when they click a tracked link (requires linkTracking). Empty string clears it..</param>
         /// <param name="isActive">isActive.</param>
-        public UpdateCommentAutomationRequest(string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, bool isActive = default)
+        public UpdateCommentAutomationRequest(string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, bool linkTracking = default, string clickTag = default, bool isActive = default)
         {
             this.Name = name;
             this.Keywords = keywords;
@@ -76,6 +78,8 @@ namespace Zernio.Model
             this.DmMessage = dmMessage;
             this.Buttons = buttons;
             this.CommentReply = commentReply;
+            this.LinkTracking = linkTracking;
+            this.ClickTag = clickTag;
             this.IsActive = isActive;
         }
 
@@ -111,6 +115,20 @@ namespace Zernio.Model
         public string CommentReply { get; set; }
 
         /// <summary>
+        /// Wrap link buttons in a tracked redirect to count clicks. Pass false to send links untouched.
+        /// </summary>
+        /// <value>Wrap link buttons in a tracked redirect to count clicks. Pass false to send links untouched.</value>
+        [DataMember(Name = "linkTracking", EmitDefaultValue = true)]
+        public bool LinkTracking { get; set; }
+
+        /// <summary>
+        /// Tag applied to a contact when they click a tracked link (requires linkTracking). Empty string clears it.
+        /// </summary>
+        /// <value>Tag applied to a contact when they click a tracked link (requires linkTracking). Empty string clears it.</value>
+        [DataMember(Name = "clickTag", EmitDefaultValue = false)]
+        public string ClickTag { get; set; }
+
+        /// <summary>
         /// Gets or Sets IsActive
         /// </summary>
         [DataMember(Name = "isActive", EmitDefaultValue = true)]
@@ -130,6 +148,8 @@ namespace Zernio.Model
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
+            sb.Append("  LinkTracking: ").Append(LinkTracking).Append("\n");
+            sb.Append("  ClickTag: ").Append(ClickTag).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'QuoteTweetId'
+        /// </summary>
+        [Fact]
+        public void QuoteTweetIdTest()
+        {
+            // TODO unit test for the property 'QuoteTweetId'
+        }
+
+        /// <summary>
         /// Test the property 'ReplySettings'
         /// </summary>
         [Fact]

@@ -46,34 +46,46 @@ namespace Zernio.Model
             PendingPayment = 1,
 
             /// <summary>
+            /// Enum PendingRegulatory for value: pending_regulatory
+            /// </summary>
+            [EnumMember(Value = "pending_regulatory")]
+            PendingRegulatory = 2,
+
+            /// <summary>
+            /// Enum RegulatoryDeclined for value: regulatory_declined
+            /// </summary>
+            [EnumMember(Value = "regulatory_declined")]
+            RegulatoryDeclined = 3,
+
+            /// <summary>
             /// Enum Provisioning for value: provisioning
             /// </summary>
             [EnumMember(Value = "provisioning")]
-            Provisioning = 2,
+            Provisioning = 4,
 
             /// <summary>
             /// Enum Active for value: active
             /// </summary>
             [EnumMember(Value = "active")]
-            Active = 3,
+            Active = 5,
 
             /// <summary>
             /// Enum Suspended for value: suspended
             /// </summary>
             [EnumMember(Value = "suspended")]
-            Suspended = 4,
+            Suspended = 6,
 
             /// <summary>
             /// Enum Releasing for value: releasing
             /// </summary>
             [EnumMember(Value = "releasing")]
-            Releasing = 5,
+            Releasing = 7,
 
             /// <summary>
             /// Enum Released for value: released
             /// </summary>
             [EnumMember(Value = "released")]
-            Released = 6
+            Released = 8
         }
 
 
@@ -89,21 +101,31 @@ namespace Zernio.Model
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="country">country.</param>
         /// <param name="status">status.</param>
+        /// <param name="monthlyCents">Per-country monthly price in cents ($2..$25)..</param>
         /// <param name="profileId">profileId.</param>
         /// <param name="provisionedAt">provisionedAt.</param>
         /// <param name="metaPreverifiedId">metaPreverifiedId.</param>
         /// <param name="metaVerificationStatus">metaVerificationStatus.</param>
+        /// <param name="onfidoVerificationUrl">For regulated (Tier 3/4) numbers with an Onfido ID-verification step — the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC..</param>
+        /// <param name="endUserFirstName">endUserFirstName.</param>
+        /// <param name="endUserLastName">endUserLastName.</param>
+        /// <param name="regulatoryDeclineReason">Reviewer rejection reason when status is regulatory_declined..</param>
         /// <param name="createdAt">createdAt.</param>
-        public GetWhatsAppPhoneNumbers200ResponseNumbersInner(string id = default, string phoneNumber = default, string country = default, StatusEnum? status = default, Object profileId = default, DateTime provisionedAt = default, string metaPreverifiedId = default, string metaVerificationStatus = default, DateTime createdAt = default)
+        public GetWhatsAppPhoneNumbers200ResponseNumbersInner(string id = default, string phoneNumber = default, string country = default, StatusEnum? status = default, int monthlyCents = default, Object profileId = default, DateTime provisionedAt = default, string metaPreverifiedId = default, string metaVerificationStatus = default, string onfidoVerificationUrl = default, string endUserFirstName = default, string endUserLastName = default, string regulatoryDeclineReason = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.PhoneNumber = phoneNumber;
             this.Country = country;
             this.Status = status;
+            this.MonthlyCents = monthlyCents;
             this.ProfileId = profileId;
             this.ProvisionedAt = provisionedAt;
             this.MetaPreverifiedId = metaPreverifiedId;
             this.MetaVerificationStatus = metaVerificationStatus;
+            this.OnfidoVerificationUrl = onfidoVerificationUrl;
+            this.EndUserFirstName = endUserFirstName;
+            this.EndUserLastName = endUserLastName;
+            this.RegulatoryDeclineReason = regulatoryDeclineReason;
             this.CreatedAt = createdAt;
         }
 
@@ -124,6 +146,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
+
+        /// <summary>
+        /// Per-country monthly price in cents ($2..$25).
+        /// </summary>
+        /// <value>Per-country monthly price in cents ($2..$25).</value>
+        [DataMember(Name = "monthlyCents", EmitDefaultValue = false)]
+        public int MonthlyCents { get; set; }
 
         /// <summary>
         /// Gets or Sets ProfileId
@@ -150,6 +179,32 @@ namespace Zernio.Model
         public string MetaVerificationStatus { get; set; }
 
         /// <summary>
+        /// For regulated (Tier 3/4) numbers with an Onfido ID-verification step — the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC.
+        /// </summary>
+        /// <value>For regulated (Tier 3/4) numbers with an Onfido ID-verification step — the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC.</value>
+        [DataMember(Name = "onfidoVerificationUrl", EmitDefaultValue = false)]
+        public string OnfidoVerificationUrl { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EndUserFirstName
+        /// </summary>
+        [DataMember(Name = "endUserFirstName", EmitDefaultValue = false)]
+        public string EndUserFirstName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EndUserLastName
+        /// </summary>
+        [DataMember(Name = "endUserLastName", EmitDefaultValue = false)]
+        public string EndUserLastName { get; set; }
+
+        /// <summary>
+        /// Reviewer rejection reason when status is regulatory_declined.
+        /// </summary>
+        /// <value>Reviewer rejection reason when status is regulatory_declined.</value>
+        [DataMember(Name = "regulatoryDeclineReason", EmitDefaultValue = false)]
+        public string RegulatoryDeclineReason { get; set; }
+
+        /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
         [DataMember(Name = "createdAt", EmitDefaultValue = false)]
@@ -167,10 +222,15 @@ namespace Zernio.Model
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  MonthlyCents: ").Append(MonthlyCents).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  ProvisionedAt: ").Append(ProvisionedAt).Append("\n");
             sb.Append("  MetaPreverifiedId: ").Append(MetaPreverifiedId).Append("\n");
             sb.Append("  MetaVerificationStatus: ").Append(MetaVerificationStatus).Append("\n");
+            sb.Append("  OnfidoVerificationUrl: ").Append(OnfidoVerificationUrl).Append("\n");
+            sb.Append("  EndUserFirstName: ").Append(EndUserFirstName).Append("\n");
+            sb.Append("  EndUserLastName: ").Append(EndUserLastName).Append("\n");
+            sb.Append("  RegulatoryDeclineReason: ").Append(RegulatoryDeclineReason).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

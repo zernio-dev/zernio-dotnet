@@ -37,16 +37,18 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetWhatsAppCallEstimate200ResponseBreakdown" /> class.
         /// </summary>
         /// <param name="metaMinutes">metaMinutes.</param>
-        /// <param name="metaCostUSD">metaCostUSD.</param>
+        /// <param name="metaCostUSD">Estimated Meta per-minute charge, billed by Meta directly to your WABA. Display only; not billed by Zernio..</param>
         /// <param name="telnyxCostUSD">telnyxCostUSD.</param>
         /// <param name="recordingCostUSD">recordingCostUSD.</param>
-        /// <param name="totalCostUSD">totalCostUSD.</param>
-        public GetWhatsAppCallEstimate200ResponseBreakdown(int metaMinutes = default, decimal metaCostUSD = default, decimal telnyxCostUSD = default, decimal recordingCostUSD = default, decimal totalCostUSD = default)
+        /// <param name="billableCostUSD">Estimated amount Zernio bills you &#x3D; Telnyx leg + recording (excludes Meta)..</param>
+        /// <param name="totalCostUSD">Estimated full cost incl. the Meta portion you pay directly. Display only..</param>
+        public GetWhatsAppCallEstimate200ResponseBreakdown(int metaMinutes = default, decimal metaCostUSD = default, decimal telnyxCostUSD = default, decimal recordingCostUSD = default, decimal billableCostUSD = default, decimal totalCostUSD = default)
         {
             this.MetaMinutes = metaMinutes;
             this.MetaCostUSD = metaCostUSD;
             this.TelnyxCostUSD = telnyxCostUSD;
             this.RecordingCostUSD = recordingCostUSD;
+            this.BillableCostUSD = billableCostUSD;
             this.TotalCostUSD = totalCostUSD;
         }
 
@@ -57,8 +59,9 @@ namespace Zernio.Model
         public int MetaMinutes { get; set; }
 
         /// <summary>
-        /// Gets or Sets MetaCostUSD
+        /// Estimated Meta per-minute charge, billed by Meta directly to your WABA. Display only; not billed by Zernio.
         /// </summary>
+        /// <value>Estimated Meta per-minute charge, billed by Meta directly to your WABA. Display only; not billed by Zernio.</value>
         [DataMember(Name = "metaCostUSD", EmitDefaultValue = false)]
         public decimal MetaCostUSD { get; set; }
 
@@ -75,8 +78,16 @@ namespace Zernio.Model
         public decimal RecordingCostUSD { get; set; }
 
         /// <summary>
-        /// Gets or Sets TotalCostUSD
+        /// Estimated amount Zernio bills you &#x3D; Telnyx leg + recording (excludes Meta).
         /// </summary>
+        /// <value>Estimated amount Zernio bills you &#x3D; Telnyx leg + recording (excludes Meta).</value>
+        [DataMember(Name = "billableCostUSD", EmitDefaultValue = false)]
+        public decimal BillableCostUSD { get; set; }
+
+        /// <summary>
+        /// Estimated full cost incl. the Meta portion you pay directly. Display only.
+        /// </summary>
+        /// <value>Estimated full cost incl. the Meta portion you pay directly. Display only.</value>
         [DataMember(Name = "totalCostUSD", EmitDefaultValue = false)]
         public decimal TotalCostUSD { get; set; }
 
@@ -92,6 +103,7 @@ namespace Zernio.Model
             sb.Append("  MetaCostUSD: ").Append(MetaCostUSD).Append("\n");
             sb.Append("  TelnyxCostUSD: ").Append(TelnyxCostUSD).Append("\n");
             sb.Append("  RecordingCostUSD: ").Append(RecordingCostUSD).Append("\n");
+            sb.Append("  BillableCostUSD: ").Append(BillableCostUSD).Append("\n");
             sb.Append("  TotalCostUSD: ").Append(TotalCostUSD).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

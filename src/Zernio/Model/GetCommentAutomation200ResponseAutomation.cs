@@ -34,6 +34,31 @@ namespace Zernio.Model
     public partial class GetCommentAutomation200ResponseAutomation : IValidatableObject
     {
         /// <summary>
+        /// Defines Trigger
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TriggerEnum
+        {
+            /// <summary>
+            /// Enum Comment for value: comment
+            /// </summary>
+            [EnumMember(Value = "comment")]
+            Comment = 1,
+
+            /// <summary>
+            /// Enum StoryReply for value: story_reply
+            /// </summary>
+            [EnumMember(Value = "story_reply")]
+            StoryReply = 2
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Trigger
+        /// </summary>
+        [DataMember(Name = "trigger", EmitDefaultValue = false)]
+        public TriggerEnum? Trigger { get; set; }
+        /// <summary>
         /// Defines MatchMode
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -64,6 +89,7 @@ namespace Zernio.Model
         /// <param name="id">id.</param>
         /// <param name="name">name.</param>
         /// <param name="platform">platform.</param>
+        /// <param name="trigger">trigger.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="platformPostId">platformPostId.</param>
         /// <param name="postId">postId.</param>
@@ -73,15 +99,18 @@ namespace Zernio.Model
         /// <param name="dmMessage">dmMessage.</param>
         /// <param name="buttons">Inline DM buttons (up to 3). Omitted when none are set..</param>
         /// <param name="commentReply">commentReply.</param>
+        /// <param name="linkTracking">linkTracking.</param>
+        /// <param name="clickTag">clickTag.</param>
         /// <param name="isActive">isActive.</param>
         /// <param name="stats">stats.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public GetCommentAutomation200ResponseAutomation(string id = default, string name = default, string platform = default, string accountId = default, string platformPostId = default, string postId = default, string postTitle = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, bool isActive = default, CreateCommentAutomation200ResponseAutomationStats stats = default, DateTime createdAt = default, DateTime updatedAt = default)
+        public GetCommentAutomation200ResponseAutomation(string id = default, string name = default, string platform = default, TriggerEnum? trigger = default, string accountId = default, string platformPostId = default, string postId = default, string postTitle = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, bool linkTracking = default, string clickTag = default, bool isActive = default, CreateCommentAutomation200ResponseAutomationStats stats = default, DateTime createdAt = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
             this.Platform = platform;
+            this.Trigger = trigger;
             this.AccountId = accountId;
             this.PlatformPostId = platformPostId;
             this.PostId = postId;
@@ -91,6 +120,8 @@ namespace Zernio.Model
             this.DmMessage = dmMessage;
             this.Buttons = buttons;
             this.CommentReply = commentReply;
+            this.LinkTracking = linkTracking;
+            this.ClickTag = clickTag;
             this.IsActive = isActive;
             this.Stats = stats;
             this.CreatedAt = createdAt;
@@ -165,6 +196,18 @@ namespace Zernio.Model
         public string CommentReply { get; set; }
 
         /// <summary>
+        /// Gets or Sets LinkTracking
+        /// </summary>
+        [DataMember(Name = "linkTracking", EmitDefaultValue = true)]
+        public bool LinkTracking { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ClickTag
+        /// </summary>
+        [DataMember(Name = "clickTag", EmitDefaultValue = false)]
+        public string ClickTag { get; set; }
+
+        /// <summary>
         /// Gets or Sets IsActive
         /// </summary>
         [DataMember(Name = "isActive", EmitDefaultValue = true)]
@@ -199,6 +242,7 @@ namespace Zernio.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
+            sb.Append("  Trigger: ").Append(Trigger).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  PlatformPostId: ").Append(PlatformPostId).Append("\n");
             sb.Append("  PostId: ").Append(PostId).Append("\n");
@@ -208,6 +252,8 @@ namespace Zernio.Model
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
+            sb.Append("  LinkTracking: ").Append(LinkTracking).Append("\n");
+            sb.Append("  ClickTag: ").Append(ClickTag).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("  Stats: ").Append(Stats).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");

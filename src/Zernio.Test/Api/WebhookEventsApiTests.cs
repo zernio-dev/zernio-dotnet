@@ -385,6 +385,39 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnWhatsAppNumberActivated
+        /// </summary>
+        [Fact]
+        public void OnWhatsAppNumberActivatedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest = null;
+            //instance.OnWhatsAppNumberActivated(onWhatsAppNumberActivatedRequest);
+        }
+
+        /// <summary>
+        /// Test OnWhatsAppNumberDeclined
+        /// </summary>
+        [Fact]
+        public void OnWhatsAppNumberDeclinedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest = null;
+            //instance.OnWhatsAppNumberDeclined(onWhatsAppNumberDeclinedRequest);
+        }
+
+        /// <summary>
+        /// Test OnWhatsAppNumberVerificationRequired
+        /// </summary>
+        [Fact]
+        public void OnWhatsAppNumberVerificationRequiredTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest = null;
+            //instance.OnWhatsAppNumberVerificationRequired(onWhatsAppNumberVerificationRequiredRequest);
+        }
+
+        /// <summary>
         /// Test OnWhatsAppTemplateStatusUpdated
         /// </summary>
         [Fact]

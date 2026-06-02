@@ -34,18 +34,45 @@ namespace Zernio.Model
     public partial class GetAdAnalytics200ResponseAd : IValidatableObject
     {
         /// <summary>
+        /// Defines Trigger
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TriggerEnum
+        {
+            /// <summary>
+            /// Enum Comment for value: comment
+            /// </summary>
+            [EnumMember(Value = "comment")]
+            Comment = 1,
+
+            /// <summary>
+            /// Enum StoryReply for value: story_reply
+            /// </summary>
+            [EnumMember(Value = "story_reply")]
+            StoryReply = 2
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Trigger
+        /// </summary>
+        [DataMember(Name = "trigger", EmitDefaultValue = false)]
+        public TriggerEnum? Trigger { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="GetAdAnalytics200ResponseAd" /> class.
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="name">name.</param>
         /// <param name="platform">platform.</param>
+        /// <param name="trigger">trigger.</param>
         /// <param name="status">status.</param>
         /// <param name="currency">ISO 4217 code of the ad account that owns this ad (e.g. USD, THB, INR). All money values in &#x60;summary&#x60; and &#x60;daily&#x60; are in this currency. Null only on legacy ads synced before currency was persisted..</param>
-        public GetAdAnalytics200ResponseAd(string id = default, string name = default, string platform = default, string status = default, string currency = default)
+        public GetAdAnalytics200ResponseAd(string id = default, string name = default, string platform = default, TriggerEnum? trigger = default, string status = default, string currency = default)
         {
             this.Id = id;
             this.Name = name;
             this.Platform = platform;
+            this.Trigger = trigger;
             this.Status = status;
             this.Currency = currency;
         }
@@ -92,6 +119,7 @@ namespace Zernio.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
+            sb.Append("  Trigger: ").Append(Trigger).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("}\n");

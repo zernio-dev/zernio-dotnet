@@ -34,6 +34,33 @@ namespace Zernio.Model
     public partial class CreateCommentAutomationRequest : IValidatableObject
     {
         /// <summary>
+        /// What fires the automation. &#39;comment&#39; (keyword comment on a post) or &#39;story_reply&#39; (keyword reply to an Instagram story). For &#39;story_reply&#39;, platformPostId is the story media id (omit for any story).
+        /// </summary>
+        /// <value>What fires the automation. &#39;comment&#39; (keyword comment on a post) or &#39;story_reply&#39; (keyword reply to an Instagram story). For &#39;story_reply&#39;, platformPostId is the story media id (omit for any story).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TriggerEnum
+        {
+            /// <summary>
+            /// Enum Comment for value: comment
+            /// </summary>
+            [EnumMember(Value = "comment")]
+            Comment = 1,
+
+            /// <summary>
+            /// Enum StoryReply for value: story_reply
+            /// </summary>
+            [EnumMember(Value = "story_reply")]
+            StoryReply = 2
+        }
+
+
+        /// <summary>
+        /// What fires the automation. &#39;comment&#39; (keyword comment on a post) or &#39;story_reply&#39; (keyword reply to an Instagram story). For &#39;story_reply&#39;, platformPostId is the story media id (omit for any story).
+        /// </summary>
+        /// <value>What fires the automation. &#39;comment&#39; (keyword comment on a post) or &#39;story_reply&#39; (keyword reply to an Instagram story). For &#39;story_reply&#39;, platformPostId is the story media id (omit for any story).</value>
+        [DataMember(Name = "trigger", EmitDefaultValue = false)]
+        public TriggerEnum? Trigger { get; set; }
+        /// <summary>
         /// Defines MatchMode
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -68,7 +95,8 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="profileId">profileId (required).</param>
         /// <param name="accountId">Instagram or Facebook account ID (required).</param>
-        /// <param name="platformPostId">Platform media/post ID. Omit for an account-wide (any-post) automation..</param>
+        /// <param name="trigger">What fires the automation. &#39;comment&#39; (keyword comment on a post) or &#39;story_reply&#39; (keyword reply to an Instagram story). For &#39;story_reply&#39;, platformPostId is the story media id (omit for any story). (default to TriggerEnum.Comment).</param>
+        /// <param name="platformPostId">Platform media/post ID (or story media id when trigger&#x3D;story_reply). Omit for an account-wide (any-post / any-story) automation..</param>
         /// <param name="postId">Zernio post ID. Required only when also targeting a specific post via platformPostId..</param>
         /// <param name="postTitle">Post content snippet for display.</param>
         /// <param name="name">Automation label (required).</param>
@@ -77,7 +105,9 @@ namespace Zernio.Model
         /// <param name="dmMessage">DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000. (required).</param>
         /// <param name="buttons">Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM..</param>
         /// <param name="commentReply">Optional public reply to the comment.</param>
-        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default)
+        /// <param name="linkTracking">Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on. (default to true).</param>
+        /// <param name="clickTag">Optional tag applied to a contact when they click a tracked link (requires linkTracking). Lets you segment clickers for broadcasts/sequences..</param>
+        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, TriggerEnum? trigger = TriggerEnum.Comment, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, bool linkTracking = true, string clickTag = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -103,6 +133,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("dmMessage is a required property for CreateCommentAutomationRequest and cannot be null");
             }
             this.DmMessage = dmMessage;
+            this.Trigger = trigger;
             this.PlatformPostId = platformPostId;
             this.PostId = postId;
             this.PostTitle = postTitle;
@@ -110,6 +141,8 @@ namespace Zernio.Model
             this.MatchMode = matchMode;
             this.Buttons = buttons;
             this.CommentReply = commentReply;
+            this.LinkTracking = linkTracking;
+            this.ClickTag = clickTag;
         }
 
         /// <summary>
@@ -126,9 +159,9 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Platform media/post ID. Omit for an account-wide (any-post) automation.
+        /// Platform media/post ID (or story media id when trigger&#x3D;story_reply). Omit for an account-wide (any-post / any-story) automation.
         /// </summary>
-        /// <value>Platform media/post ID. Omit for an account-wide (any-post) automation.</value>
+        /// <value>Platform media/post ID (or story media id when trigger&#x3D;story_reply). Omit for an account-wide (any-post / any-story) automation.</value>
         [DataMember(Name = "platformPostId", EmitDefaultValue = false)]
         public string PlatformPostId { get; set; }
 
@@ -182,6 +215,20 @@ namespace Zernio.Model
         public string CommentReply { get; set; }
 
         /// <summary>
+        /// Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on.
+        /// </summary>
+        /// <value>Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on.</value>
+        [DataMember(Name = "linkTracking", EmitDefaultValue = true)]
+        public bool LinkTracking { get; set; }
+
+        /// <summary>
+        /// Optional tag applied to a contact when they click a tracked link (requires linkTracking). Lets you segment clickers for broadcasts/sequences.
+        /// </summary>
+        /// <value>Optional tag applied to a contact when they click a tracked link (requires linkTracking). Lets you segment clickers for broadcasts/sequences.</value>
+        [DataMember(Name = "clickTag", EmitDefaultValue = false)]
+        public string ClickTag { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -191,6 +238,7 @@ namespace Zernio.Model
             sb.Append("class CreateCommentAutomationRequest {\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  Trigger: ").Append(Trigger).Append("\n");
             sb.Append("  PlatformPostId: ").Append(PlatformPostId).Append("\n");
             sb.Append("  PostId: ").Append(PostId).Append("\n");
             sb.Append("  PostTitle: ").Append(PostTitle).Append("\n");
@@ -200,6 +248,8 @@ namespace Zernio.Model
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
+            sb.Append("  LinkTracking: ").Append(LinkTracking).Append("\n");
+            sb.Append("  ClickTag: ").Append(ClickTag).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

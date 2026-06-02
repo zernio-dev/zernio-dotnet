@@ -110,6 +110,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'LinkTracking'
+        /// </summary>
+        [Fact]
+        public void LinkTrackingTest()
+        {
+            // TODO unit test for the property 'LinkTracking'
+        }
+
+        /// <summary>
+        /// Test the property 'ClickTag'
+        /// </summary>
+        [Fact]
+        public void ClickTagTest()
+        {
+            // TODO unit test for the property 'ClickTag'
+        }
+
+        /// <summary>
         /// Test the property 'IsActive'
         /// </summary>
         [Fact]

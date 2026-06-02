@@ -40,12 +40,20 @@ namespace Zernio.Model
         /// <param name="dmsSent">dmsSent.</param>
         /// <param name="dmsFailed">dmsFailed.</param>
         /// <param name="uniqueContacts">uniqueContacts.</param>
-        public ListCommentAutomations200ResponseAutomationsInnerStats(int triggered = default, int dmsSent = default, int dmsFailed = default, int uniqueContacts = default)
+        /// <param name="linkClicks">Total clicks on tracked links (bots/prefetch excluded)..</param>
+        /// <param name="uniqueClicks">Distinct people who clicked a tracked link..</param>
+        /// <param name="delivered">DMs confirmed delivered (Messenger; IG emits no delivery receipt)..</param>
+        /// <param name="read">DMs confirmed read (IG messaging_seen / Messenger message_reads)..</param>
+        public ListCommentAutomations200ResponseAutomationsInnerStats(int triggered = default, int dmsSent = default, int dmsFailed = default, int uniqueContacts = default, int linkClicks = default, int uniqueClicks = default, int delivered = default, int read = default)
         {
             this.Triggered = triggered;
             this.DmsSent = dmsSent;
             this.DmsFailed = dmsFailed;
             this.UniqueContacts = uniqueContacts;
+            this.LinkClicks = linkClicks;
+            this.UniqueClicks = uniqueClicks;
+            this.Delivered = delivered;
+            this.Read = read;
         }
 
         /// <summary>
@@ -73,6 +81,34 @@ namespace Zernio.Model
         public int UniqueContacts { get; set; }
 
         /// <summary>
+        /// Total clicks on tracked links (bots/prefetch excluded).
+        /// </summary>
+        /// <value>Total clicks on tracked links (bots/prefetch excluded).</value>
+        [DataMember(Name = "linkClicks", EmitDefaultValue = false)]
+        public int LinkClicks { get; set; }
+
+        /// <summary>
+        /// Distinct people who clicked a tracked link.
+        /// </summary>
+        /// <value>Distinct people who clicked a tracked link.</value>
+        [DataMember(Name = "uniqueClicks", EmitDefaultValue = false)]
+        public int UniqueClicks { get; set; }
+
+        /// <summary>
+        /// DMs confirmed delivered (Messenger; IG emits no delivery receipt).
+        /// </summary>
+        /// <value>DMs confirmed delivered (Messenger; IG emits no delivery receipt).</value>
+        [DataMember(Name = "delivered", EmitDefaultValue = false)]
+        public int Delivered { get; set; }
+
+        /// <summary>
+        /// DMs confirmed read (IG messaging_seen / Messenger message_reads).
+        /// </summary>
+        /// <value>DMs confirmed read (IG messaging_seen / Messenger message_reads).</value>
+        [DataMember(Name = "read", EmitDefaultValue = false)]
+        public int Read { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -84,6 +120,10 @@ namespace Zernio.Model
             sb.Append("  DmsSent: ").Append(DmsSent).Append("\n");
             sb.Append("  DmsFailed: ").Append(DmsFailed).Append("\n");
             sb.Append("  UniqueContacts: ").Append(UniqueContacts).Append("\n");
+            sb.Append("  LinkClicks: ").Append(LinkClicks).Append("\n");
+            sb.Append("  UniqueClicks: ").Append(UniqueClicks).Append("\n");
+            sb.Append("  Delivered: ").Append(Delivered).Append("\n");
+            sb.Append("  Read: ").Append(Read).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

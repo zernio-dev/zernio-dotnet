@@ -36,21 +36,24 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadCallEndedCallBilling" /> class.
         /// </summary>
-        /// <param name="metaCostUSD">metaCostUSD.</param>
+        /// <param name="metaCostUSD">Meta per-minute charge. Billed by Meta DIRECTLY to your WhatsApp Business Account payment method (your separate Meta invoice). Zernio does NOT charge this. Display only..</param>
         /// <param name="telnyxCostUSD">telnyxCostUSD.</param>
         /// <param name="recordingCostUSD">recordingCostUSD.</param>
-        /// <param name="totalCostUSD">totalCostUSD.</param>
-        public WebhookPayloadCallEndedCallBilling(decimal metaCostUSD = default, decimal telnyxCostUSD = default, decimal recordingCostUSD = default, decimal totalCostUSD = default)
+        /// <param name="billableCostUSD">The amount Zernio bills you &#x3D; Telnyx leg + recording. Excludes Meta (billed by Meta directly)..</param>
+        /// <param name="totalCostUSD">Full economic cost incl. the Meta portion you pay directly (Meta + Telnyx + recording). Display only, not the Zernio-billed amount..</param>
+        public WebhookPayloadCallEndedCallBilling(decimal metaCostUSD = default, decimal telnyxCostUSD = default, decimal recordingCostUSD = default, decimal billableCostUSD = default, decimal totalCostUSD = default)
         {
             this.MetaCostUSD = metaCostUSD;
             this.TelnyxCostUSD = telnyxCostUSD;
             this.RecordingCostUSD = recordingCostUSD;
+            this.BillableCostUSD = billableCostUSD;
             this.TotalCostUSD = totalCostUSD;
         }
 
         /// <summary>
-        /// Gets or Sets MetaCostUSD
+        /// Meta per-minute charge. Billed by Meta DIRECTLY to your WhatsApp Business Account payment method (your separate Meta invoice). Zernio does NOT charge this. Display only.
         /// </summary>
+        /// <value>Meta per-minute charge. Billed by Meta DIRECTLY to your WhatsApp Business Account payment method (your separate Meta invoice). Zernio does NOT charge this. Display only.</value>
         [DataMember(Name = "metaCostUSD", EmitDefaultValue = false)]
         public decimal MetaCostUSD { get; set; }
 
@@ -67,8 +70,16 @@ namespace Zernio.Model
         public decimal RecordingCostUSD { get; set; }
 
         /// <summary>
-        /// Gets or Sets TotalCostUSD
+        /// The amount Zernio bills you &#x3D; Telnyx leg + recording. Excludes Meta (billed by Meta directly).
         /// </summary>
+        /// <value>The amount Zernio bills you &#x3D; Telnyx leg + recording. Excludes Meta (billed by Meta directly).</value>
+        [DataMember(Name = "billableCostUSD", EmitDefaultValue = false)]
+        public decimal BillableCostUSD { get; set; }
+
+        /// <summary>
+        /// Full economic cost incl. the Meta portion you pay directly (Meta + Telnyx + recording). Display only, not the Zernio-billed amount.
+        /// </summary>
+        /// <value>Full economic cost incl. the Meta portion you pay directly (Meta + Telnyx + recording). Display only, not the Zernio-billed amount.</value>
         [DataMember(Name = "totalCostUSD", EmitDefaultValue = false)]
         public decimal TotalCostUSD { get; set; }
 
@@ -83,6 +94,7 @@ namespace Zernio.Model
             sb.Append("  MetaCostUSD: ").Append(MetaCostUSD).Append("\n");
             sb.Append("  TelnyxCostUSD: ").Append(TelnyxCostUSD).Append("\n");
             sb.Append("  RecordingCostUSD: ").Append(RecordingCostUSD).Append("\n");
+            sb.Append("  BillableCostUSD: ").Append(BillableCostUSD).Append("\n");
             sb.Append("  TotalCostUSD: ").Append(TotalCostUSD).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

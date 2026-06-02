@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **DisplayIdentifier** | **string** |  | [optional] 
 **IsSubscribed** | **bool** |  | [optional] 
 **ConversationId** | **string** |  | [optional] 
+**LastActiveAt** | **DateTime** | Most recent message (either direction) in this channel&#39;s conversation, or null if none. | [optional] 
 **CreatedAt** | **DateTime** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

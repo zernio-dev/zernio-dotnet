@@ -128,6 +128,42 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'MessagesSentCount'
+        /// </summary>
+        [Fact]
+        public void MessagesSentCountTest()
+        {
+            // TODO unit test for the property 'MessagesSentCount'
+        }
+
+        /// <summary>
+        /// Test the property 'MessagesReceivedCount'
+        /// </summary>
+        [Fact]
+        public void MessagesReceivedCountTest()
+        {
+            // TODO unit test for the property 'MessagesReceivedCount'
+        }
+
+        /// <summary>
+        /// Test the property 'LastMessageSentAt'
+        /// </summary>
+        [Fact]
+        public void LastMessageSentAtTest()
+        {
+            // TODO unit test for the property 'LastMessageSentAt'
+        }
+
+        /// <summary>
+        /// Test the property 'LastMessageReceivedAt'
+        /// </summary>
+        [Fact]
+        public void LastMessageReceivedAtTest()
+        {
+            // TODO unit test for the property 'LastMessageReceivedAt'
+        }
+
+        /// <summary>
         /// Test the property 'CustomFields'
         /// </summary>
         [Fact]

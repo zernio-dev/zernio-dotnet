@@ -37,9 +37,11 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetWhatsAppPhoneNumbers200Response" /> class.
         /// </summary>
         /// <param name="numbers">numbers.</param>
-        public GetWhatsAppPhoneNumbers200Response(List<GetWhatsAppPhoneNumbers200ResponseNumbersInner> numbers = default)
+        /// <param name="sandbox">sandbox.</param>
+        public GetWhatsAppPhoneNumbers200Response(List<GetWhatsAppPhoneNumbers200ResponseNumbersInner> numbers = default, GetWhatsAppPhoneNumbers200ResponseSandbox sandbox = default)
         {
             this.Numbers = numbers;
+            this.Sandbox = sandbox;
         }
 
         /// <summary>
@@ -47,6 +49,12 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "numbers", EmitDefaultValue = false)]
         public List<GetWhatsAppPhoneNumbers200ResponseNumbersInner> Numbers { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Sandbox
+        /// </summary>
+        [DataMember(Name = "sandbox", EmitDefaultValue = false)]
+        public GetWhatsAppPhoneNumbers200ResponseSandbox Sandbox { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -57,6 +65,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetWhatsAppPhoneNumbers200Response {\n");
             sb.Append("  Numbers: ").Append(Numbers).Append("\n");
+            sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

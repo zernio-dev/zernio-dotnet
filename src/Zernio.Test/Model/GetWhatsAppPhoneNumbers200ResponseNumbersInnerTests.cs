@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'MonthlyCents'
+        /// </summary>
+        [Fact]
+        public void MonthlyCentsTest()
+        {
+            // TODO unit test for the property 'MonthlyCents'
+        }
+
+        /// <summary>
         /// Test the property 'ProfileId'
         /// </summary>
         [Fact]
@@ -125,6 +134,42 @@ namespace Zernio.Test.Model
         public void MetaVerificationStatusTest()
         {
             // TODO unit test for the property 'MetaVerificationStatus'
+        }
+
+        /// <summary>
+        /// Test the property 'OnfidoVerificationUrl'
+        /// </summary>
+        [Fact]
+        public void OnfidoVerificationUrlTest()
+        {
+            // TODO unit test for the property 'OnfidoVerificationUrl'
+        }
+
+        /// <summary>
+        /// Test the property 'EndUserFirstName'
+        /// </summary>
+        [Fact]
+        public void EndUserFirstNameTest()
+        {
+            // TODO unit test for the property 'EndUserFirstName'
+        }
+
+        /// <summary>
+        /// Test the property 'EndUserLastName'
+        /// </summary>
+        [Fact]
+        public void EndUserLastNameTest()
+        {
+            // TODO unit test for the property 'EndUserLastName'
+        }
+
+        /// <summary>
+        /// Test the property 'RegulatoryDeclineReason'
+        /// </summary>
+        [Fact]
+        public void RegulatoryDeclineReasonTest()
+        {
+            // TODO unit test for the property 'RegulatoryDeclineReason'
         }
 
         /// <summary>

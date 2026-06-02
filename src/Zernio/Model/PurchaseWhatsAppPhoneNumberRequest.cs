@@ -42,7 +42,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="PurchaseWhatsAppPhoneNumberRequest" /> class.
         /// </summary>
         /// <param name="profileId">Profile to associate the number with (required).</param>
-        public PurchaseWhatsAppPhoneNumberRequest(string profileId = default)
+        /// <param name="country">ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries.  (default to &quot;US&quot;).</param>
+        public PurchaseWhatsAppPhoneNumberRequest(string profileId = default, string country = @"US")
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -50,6 +51,8 @@ namespace Zernio.Model
                 throw new ArgumentNullException("profileId is a required property for PurchaseWhatsAppPhoneNumberRequest and cannot be null");
             }
             this.ProfileId = profileId;
+            // use default value if no "country" provided
+            this.Country = country ?? @"US";
         }
 
         /// <summary>
@@ -60,6 +63,13 @@ namespace Zernio.Model
         public string ProfileId { get; set; }
 
         /// <summary>
+        /// ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries. 
+        /// </summary>
+        /// <value>ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries. </value>
+        [DataMember(Name = "country", EmitDefaultValue = false)]
+        public string Country { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -68,6 +78,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class PurchaseWhatsAppPhoneNumberRequest {\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
+            sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

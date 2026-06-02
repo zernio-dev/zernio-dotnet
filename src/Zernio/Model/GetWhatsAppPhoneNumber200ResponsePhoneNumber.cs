@@ -46,34 +46,46 @@ namespace Zernio.Model
             PendingPayment = 1,
 
             /// <summary>
+            /// Enum PendingRegulatory for value: pending_regulatory
+            /// </summary>
+            [EnumMember(Value = "pending_regulatory")]
+            PendingRegulatory = 2,
+
+            /// <summary>
+            /// Enum RegulatoryDeclined for value: regulatory_declined
+            /// </summary>
+            [EnumMember(Value = "regulatory_declined")]
+            RegulatoryDeclined = 3,
+
+            /// <summary>
             /// Enum Provisioning for value: provisioning
             /// </summary>
             [EnumMember(Value = "provisioning")]
-            Provisioning = 2,
+            Provisioning = 4,
 
             /// <summary>
             /// Enum Active for value: active
             /// </summary>
             [EnumMember(Value = "active")]
-            Active = 3,
+            Active = 5,
 
             /// <summary>
             /// Enum Suspended for value: suspended
             /// </summary>
             [EnumMember(Value = "suspended")]
-            Suspended = 4,
+            Suspended = 6,
 
             /// <summary>
             /// Enum Releasing for value: releasing
             /// </summary>
             [EnumMember(Value = "releasing")]
-            Releasing = 5,
+            Releasing = 7,
 
             /// <summary>
             /// Enum Released for value: released
             /// </summary>
             [EnumMember(Value = "released")]
-            Released = 6
+            Released = 8
         }
 
 
@@ -91,8 +103,12 @@ namespace Zernio.Model
         /// <param name="country">country.</param>
         /// <param name="metaPreverifiedId">metaPreverifiedId.</param>
         /// <param name="metaVerificationStatus">metaVerificationStatus.</param>
+        /// <param name="onfidoVerificationUrl">For a regulated number with an Onfido ID step — the link to forward to the end user. Appears once the order is placed; null otherwise..</param>
+        /// <param name="endUserFirstName">endUserFirstName.</param>
+        /// <param name="endUserLastName">endUserLastName.</param>
+        /// <param name="regulatoryDeclineReason">Reviewer rejection reason when status is regulatory_declined..</param>
         /// <param name="provisionedAt">provisionedAt.</param>
-        public GetWhatsAppPhoneNumber200ResponsePhoneNumber(string id = default, string phoneNumber = default, StatusEnum? status = default, string country = default, string metaPreverifiedId = default, string metaVerificationStatus = default, DateTime provisionedAt = default)
+        public GetWhatsAppPhoneNumber200ResponsePhoneNumber(string id = default, string phoneNumber = default, StatusEnum? status = default, string country = default, string metaPreverifiedId = default, string metaVerificationStatus = default, string onfidoVerificationUrl = default, string endUserFirstName = default, string endUserLastName = default, string regulatoryDeclineReason = default, DateTime provisionedAt = default)
         {
             this.Id = id;
             this.PhoneNumber = phoneNumber;
@@ -100,6 +116,10 @@ namespace Zernio.Model
             this.Country = country;
             this.MetaPreverifiedId = metaPreverifiedId;
             this.MetaVerificationStatus = metaVerificationStatus;
+            this.OnfidoVerificationUrl = onfidoVerificationUrl;
+            this.EndUserFirstName = endUserFirstName;
+            this.EndUserLastName = endUserLastName;
+            this.RegulatoryDeclineReason = regulatoryDeclineReason;
             this.ProvisionedAt = provisionedAt;
         }
 
@@ -134,6 +154,32 @@ namespace Zernio.Model
         public string MetaVerificationStatus { get; set; }
 
         /// <summary>
+        /// For a regulated number with an Onfido ID step — the link to forward to the end user. Appears once the order is placed; null otherwise.
+        /// </summary>
+        /// <value>For a regulated number with an Onfido ID step — the link to forward to the end user. Appears once the order is placed; null otherwise.</value>
+        [DataMember(Name = "onfidoVerificationUrl", EmitDefaultValue = false)]
+        public string OnfidoVerificationUrl { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EndUserFirstName
+        /// </summary>
+        [DataMember(Name = "endUserFirstName", EmitDefaultValue = false)]
+        public string EndUserFirstName { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EndUserLastName
+        /// </summary>
+        [DataMember(Name = "endUserLastName", EmitDefaultValue = false)]
+        public string EndUserLastName { get; set; }
+
+        /// <summary>
+        /// Reviewer rejection reason when status is regulatory_declined.
+        /// </summary>
+        /// <value>Reviewer rejection reason when status is regulatory_declined.</value>
+        [DataMember(Name = "regulatoryDeclineReason", EmitDefaultValue = false)]
+        public string RegulatoryDeclineReason { get; set; }
+
+        /// <summary>
         /// Gets or Sets ProvisionedAt
         /// </summary>
         [DataMember(Name = "provisionedAt", EmitDefaultValue = false)]
@@ -153,6 +199,10 @@ namespace Zernio.Model
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  MetaPreverifiedId: ").Append(MetaPreverifiedId).Append("\n");
             sb.Append("  MetaVerificationStatus: ").Append(MetaVerificationStatus).Append("\n");
+            sb.Append("  OnfidoVerificationUrl: ").Append(OnfidoVerificationUrl).Append("\n");
+            sb.Append("  EndUserFirstName: ").Append(EndUserFirstName).Append("\n");
+            sb.Append("  EndUserLastName: ").Append(EndUserLastName).Append("\n");
+            sb.Append("  RegulatoryDeclineReason: ").Append(RegulatoryDeclineReason).Append("\n");
             sb.Append("  ProvisionedAt: ").Append(ProvisionedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

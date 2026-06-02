@@ -67,6 +67,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetWhatsAppNumberKycForm
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppNumberKycFormTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string country = null;
+            //string profileId = null;
+            //var response = instance.GetWhatsAppNumberKycForm(country, profileId);
+            //Assert.IsType<GetWhatsAppNumberKycForm200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetWhatsAppPhoneNumber
         /// </summary>
         [Fact]
@@ -92,6 +105,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListWhatsAppNumberCountries
+        /// </summary>
+        [Fact]
+        public void ListWhatsAppNumberCountriesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.ListWhatsAppNumberCountries();
+            //Assert.IsType<ListWhatsAppNumberCountries200Response>(response);
+        }
+
+        /// <summary>
         /// Test PurchaseWhatsAppPhoneNumber
         /// </summary>
         [Fact]
@@ -113,6 +137,35 @@ namespace Zernio.Test.Api
             //string phoneNumberId = null;
             //var response = instance.ReleaseWhatsAppPhoneNumber(phoneNumberId);
             //Assert.IsType<ReleaseWhatsAppPhoneNumber200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SearchAvailableWhatsAppNumbers
+        /// </summary>
+        [Fact]
+        public void SearchAvailableWhatsAppNumbersTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string? country = null;
+            //string? type = null;
+            //string? prefix = null;
+            //string? locality = null;
+            //string? contains = null;
+            //int? limit = null;
+            //var response = instance.SearchAvailableWhatsAppNumbers(country, type, prefix, locality, contains, limit);
+            //Assert.IsType<SearchAvailableWhatsAppNumbers200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SubmitWhatsAppNumberKyc
+        /// </summary>
+        [Fact]
+        public void SubmitWhatsAppNumberKycTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest = null;
+            //var response = instance.SubmitWhatsAppNumberKyc(submitWhatsAppNumberKycRequest);
+            //Assert.IsType<SubmitWhatsAppNumberKyc200Response>(response);
         }
     }
 }

@@ -36,23 +36,26 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListWhatsAppCalls200ResponseCallsInnerBilling" /> class.
         /// </summary>
-        /// <param name="metaCostUSD">metaCostUSD.</param>
+        /// <param name="metaCostUSD">Meta per-minute charge, billed by Meta directly to your WABA. Display only; not billed by Zernio..</param>
         /// <param name="telnyxCostUSD">telnyxCostUSD.</param>
         /// <param name="recordingCostUSD">recordingCostUSD.</param>
-        /// <param name="totalCostUSD">totalCostUSD.</param>
+        /// <param name="billableCostUSD">Amount Zernio bills you &#x3D; Telnyx leg + recording (excludes Meta)..</param>
+        /// <param name="totalCostUSD">Full cost incl. the Meta portion you pay directly. Display only..</param>
         /// <param name="currency">currency.</param>
-        public ListWhatsAppCalls200ResponseCallsInnerBilling(decimal metaCostUSD = default, decimal telnyxCostUSD = default, decimal recordingCostUSD = default, decimal totalCostUSD = default, string currency = default)
+        public ListWhatsAppCalls200ResponseCallsInnerBilling(decimal metaCostUSD = default, decimal telnyxCostUSD = default, decimal recordingCostUSD = default, decimal billableCostUSD = default, decimal totalCostUSD = default, string currency = default)
         {
             this.MetaCostUSD = metaCostUSD;
             this.TelnyxCostUSD = telnyxCostUSD;
             this.RecordingCostUSD = recordingCostUSD;
+            this.BillableCostUSD = billableCostUSD;
             this.TotalCostUSD = totalCostUSD;
             this.Currency = currency;
         }
 
         /// <summary>
-        /// Gets or Sets MetaCostUSD
+        /// Meta per-minute charge, billed by Meta directly to your WABA. Display only; not billed by Zernio.
         /// </summary>
+        /// <value>Meta per-minute charge, billed by Meta directly to your WABA. Display only; not billed by Zernio.</value>
         [DataMember(Name = "metaCostUSD", EmitDefaultValue = false)]
         public decimal MetaCostUSD { get; set; }
 
@@ -69,8 +72,16 @@ namespace Zernio.Model
         public decimal RecordingCostUSD { get; set; }
 
         /// <summary>
-        /// Gets or Sets TotalCostUSD
+        /// Amount Zernio bills you &#x3D; Telnyx leg + recording (excludes Meta).
         /// </summary>
+        /// <value>Amount Zernio bills you &#x3D; Telnyx leg + recording (excludes Meta).</value>
+        [DataMember(Name = "billableCostUSD", EmitDefaultValue = false)]
+        public decimal BillableCostUSD { get; set; }
+
+        /// <summary>
+        /// Full cost incl. the Meta portion you pay directly. Display only.
+        /// </summary>
+        /// <value>Full cost incl. the Meta portion you pay directly. Display only.</value>
         [DataMember(Name = "totalCostUSD", EmitDefaultValue = false)]
         public decimal TotalCostUSD { get; set; }
 
@@ -91,6 +102,7 @@ namespace Zernio.Model
             sb.Append("  MetaCostUSD: ").Append(MetaCostUSD).Append("\n");
             sb.Append("  TelnyxCostUSD: ").Append(TelnyxCostUSD).Append("\n");
             sb.Append("  RecordingCostUSD: ").Append(RecordingCostUSD).Append("\n");
+            sb.Append("  BillableCostUSD: ").Append(BillableCostUSD).Append("\n");
             sb.Append("  TotalCostUSD: ").Append(TotalCostUSD).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("}\n");

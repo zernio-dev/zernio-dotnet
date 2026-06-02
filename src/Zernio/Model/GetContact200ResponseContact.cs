@@ -44,12 +44,16 @@ namespace Zernio.Model
         /// <param name="tags">tags.</param>
         /// <param name="isSubscribed">isSubscribed.</param>
         /// <param name="isBlocked">isBlocked.</param>
+        /// <param name="messagesSentCount">Messages sent to the contact, derived live from message history across all linked conversations..</param>
+        /// <param name="messagesReceivedCount">Messages received from the contact, derived live from message history across all linked conversations..</param>
+        /// <param name="lastMessageSentAt">Timestamp of the most recent outgoing message, or null if none..</param>
+        /// <param name="lastMessageReceivedAt">Timestamp of the most recent incoming message, or null if none..</param>
         /// <param name="customFields">customFields.</param>
         /// <param name="notes">notes.</param>
         /// <param name="conversationIds">conversationIds.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public GetContact200ResponseContact(string id = default, string name = default, string email = default, string company = default, string avatarUrl = default, List<string> tags = default, bool isSubscribed = default, bool isBlocked = default, Object customFields = default, string notes = default, List<string> conversationIds = default, DateTime createdAt = default, DateTime updatedAt = default)
+        public GetContact200ResponseContact(string id = default, string name = default, string email = default, string company = default, string avatarUrl = default, List<string> tags = default, bool isSubscribed = default, bool isBlocked = default, int messagesSentCount = default, int messagesReceivedCount = default, DateTime lastMessageSentAt = default, DateTime lastMessageReceivedAt = default, Object customFields = default, string notes = default, List<string> conversationIds = default, DateTime createdAt = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -59,6 +63,10 @@ namespace Zernio.Model
             this.Tags = tags;
             this.IsSubscribed = isSubscribed;
             this.IsBlocked = isBlocked;
+            this.MessagesSentCount = messagesSentCount;
+            this.MessagesReceivedCount = messagesReceivedCount;
+            this.LastMessageSentAt = lastMessageSentAt;
+            this.LastMessageReceivedAt = lastMessageReceivedAt;
             this.CustomFields = customFields;
             this.Notes = notes;
             this.ConversationIds = conversationIds;
@@ -115,6 +123,34 @@ namespace Zernio.Model
         public bool IsBlocked { get; set; }
 
         /// <summary>
+        /// Messages sent to the contact, derived live from message history across all linked conversations.
+        /// </summary>
+        /// <value>Messages sent to the contact, derived live from message history across all linked conversations.</value>
+        [DataMember(Name = "messagesSentCount", EmitDefaultValue = false)]
+        public int MessagesSentCount { get; set; }
+
+        /// <summary>
+        /// Messages received from the contact, derived live from message history across all linked conversations.
+        /// </summary>
+        /// <value>Messages received from the contact, derived live from message history across all linked conversations.</value>
+        [DataMember(Name = "messagesReceivedCount", EmitDefaultValue = false)]
+        public int MessagesReceivedCount { get; set; }
+
+        /// <summary>
+        /// Timestamp of the most recent outgoing message, or null if none.
+        /// </summary>
+        /// <value>Timestamp of the most recent outgoing message, or null if none.</value>
+        [DataMember(Name = "lastMessageSentAt", EmitDefaultValue = false)]
+        public DateTime LastMessageSentAt { get; set; }
+
+        /// <summary>
+        /// Timestamp of the most recent incoming message, or null if none.
+        /// </summary>
+        /// <value>Timestamp of the most recent incoming message, or null if none.</value>
+        [DataMember(Name = "lastMessageReceivedAt", EmitDefaultValue = false)]
+        public DateTime LastMessageReceivedAt { get; set; }
+
+        /// <summary>
         /// Gets or Sets CustomFields
         /// </summary>
         [DataMember(Name = "customFields", EmitDefaultValue = false)]
@@ -160,6 +196,10 @@ namespace Zernio.Model
             sb.Append("  Tags: ").Append(Tags).Append("\n");
             sb.Append("  IsSubscribed: ").Append(IsSubscribed).Append("\n");
             sb.Append("  IsBlocked: ").Append(IsBlocked).Append("\n");
+            sb.Append("  MessagesSentCount: ").Append(MessagesSentCount).Append("\n");
+            sb.Append("  MessagesReceivedCount: ").Append(MessagesReceivedCount).Append("\n");
+            sb.Append("  LastMessageSentAt: ").Append(LastMessageSentAt).Append("\n");
+            sb.Append("  LastMessageReceivedAt: ").Append(LastMessageReceivedAt).Append("\n");
             sb.Append("  CustomFields: ").Append(CustomFields).Append("\n");
             sb.Append("  Notes: ").Append(Notes).Append("\n");
             sb.Append("  ConversationIds: ").Append(ConversationIds).Append("\n");

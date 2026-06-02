@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BillableCostUSD'
+        /// </summary>
+        [Fact]
+        public void BillableCostUSDTest()
+        {
+            // TODO unit test for the property 'BillableCostUSD'
+        }
+
+        /// <summary>
         /// Test the property 'TotalCostUSD'
         /// </summary>
         [Fact]

@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **Regions** | [**List&lt;CreateCtwaAdRequestRegionsInner&gt;**](CreateCtwaAdRequestRegionsInner.md) | Region / state-level geo targeting. &#x60;key&#x60; is Meta&#39;s region ID (lookupable via GET /v1/ads/targeting/search?type&#x3D;region).  | [optional] 
 **Zips** | [**List&lt;CreateCtwaAdRequestZipsInner&gt;**](CreateCtwaAdRequestZipsInner.md) | ZIP / postal-code geo targeting. &#x60;key&#x60; is the platform&#39;s postal id resolved via /v1/ads/targeting/search.  | [optional] 
 **Metros** | [**List&lt;CreateCtwaAdRequestZipsInner&gt;**](CreateCtwaAdRequestZipsInner.md) | DMA / metro-area geo targeting. &#x60;key&#x60; is Meta&#39;s metro id (e.g. &#x60;DMA:807&#x60;).  | [optional] 
-**CustomLocations** | [**List&lt;CreateStandaloneAdRequestCustomLocationsInner&gt;**](CreateStandaloneAdRequestCustomLocationsInner.md) | Point-radius geo (Meta &#x60;geo_locations.custom_locations&#x60;). Use for targeting a radius around a specific lat/long when no Meta city/region key fits. &#x60;distanceUnit&#x60; is required.  | [optional] 
+**CustomLocations** | [**List&lt;CreateCtwaAdRequestCustomLocationsInner&gt;**](CreateCtwaAdRequestCustomLocationsInner.md) | Point-radius geo (Meta &#x60;geo_locations.custom_locations&#x60;). Use for targeting a radius around a specific lat/long when no Meta city/region key fits. &#x60;distanceUnit&#x60; is required.  | [optional] 
 **AgeMin** | **int** |  | [optional] 
 **AgeMax** | **int** |  | [optional] 
 **Interests** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) |  | [optional] 

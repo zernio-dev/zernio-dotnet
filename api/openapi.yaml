@@ -79,6 +79,11 @@ tags:
 - name: LinkedIn Mentions
 - name: Pinterest
 - name: TikTok
+- description: |
+    Instagram-specific read endpoints: list a connected account's Stories and fetch
+    per-Story insights. All endpoints require an accountId parameter identifying the
+    Instagram-connected social account.
+  name: Instagram
 - name: Queue
 - name: Analytics
 - description: |
@@ -127,6 +132,13 @@ tags:
     between steps. Supports auto-exit on reply or unsubscribe.
   name: Sequences
 - description: |
+    Branching conversation automations. An inbound message matches a workflow's trigger and walks a
+    directed graph of nodes (send message, wait for reply, condition, set variable, delay, webhook,
+    handoff, end). Unlike Sequences (linear, time-based drips), Workflows are event-driven and
+    interactive. Fully supported on WhatsApp, Instagram, and Messenger; `send_message` template and
+    interactive modes are WhatsApp-only.
+  name: Workflows
+- description: |
     Comment-to-DM growth automations. Set up keyword triggers on Instagram/Facebook so
     commenters automatically receive a DM. Scope per post or account-wide (omit
     `platformPostId` to match comments on every post on the account, with unlimited
@@ -159,7 +171,7 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.verification_required, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -173,6 +185,16 @@ tags:
     All endpoints require an accountId parameter identifying the WhatsApp-connected social account.
   name: WhatsApp
 - description: |
+    Voice calling over the WhatsApp Business API: enable/disable calling on a number,
+    configure call hours and permissions, and place or list calls.
+    All endpoints require an accountId parameter identifying the WhatsApp-connected social account.
+  name: WhatsApp Calling
+- description: |
+    Browse Meta's pre-approved WhatsApp template library. Use these read-only lookups to
+    discover library templates you can import as your own message templates.
+    All endpoints require an accountId parameter identifying the WhatsApp-connected social account.
+  name: WhatsApp Templates
+- description: |
     WhatsApp Flows let you build native interactive forms, surveys, and booking experiences inside WhatsApp.
     Flows are created in DRAFT status, populated with a Flow JSON definition, then published for sending.
     Published flows are immutable; to update, create a new flow (optionally cloning the old one).
@@ -182,6 +204,12 @@ tags:
     Manage WhatsApp phone numbers: purchase, verify, and release numbers for your WhatsApp Business account.
     Requires a paid plan.
   name: WhatsApp Phone Numbers
+- description: |
+    Shared WhatsApp sandbox: a Zernio-owned WhatsApp number every user can test against
+    without provisioning their own. Send the verified sandbox template to phones you
+    activate via a reply-based verification flow. Designed for testing message flows,
+    bot replies, and webhook payloads end-to-end with zero number-purchase overhead.
+  name: WhatsApp Sandbox
 paths:
   /v1/tools/validate/post-length:
     post:
@@ -9338,6 +9366,697 @@ paths:
       summary: List Discord guild channels
       tags:
       - Discord
+  /v1/discord/dms:
+    post:
+      description: |
+        Send a 1:1 Direct Message from the bot to a Discord user (by snowflake ID).
+        Supports the same payload shape as channel posts — content, embeds, media
+        attachments, and TTS.
+
+        Constraints (Discord platform limits):
+          - The bot can only DM users it shares at least one guild with.
+          - If the recipient has DMs disabled for non-friends, Discord returns 403
+            (surfaces as a 502 platform error).
+          - `content` capped at 2,000 chars.
+          - At least one of `content`, `embeds`, or `attachments` is required.
+          - The recipient must be identified by Discord snowflake ID (not username).
+
+        This is a dedicated endpoint rather than a `POST /v1/posts` variant because
+        DMs are 1:1 operational messages (onboarding, billing reminders, support
+        pings) with a different lifecycle than scheduled channel posts. DMs are
+        not persisted to `Post` / `ExternalPost` and are always sent immediately.
+      operationId: sendDiscordDirectMessage
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 65a1b2c3d4e5f60718293a4b
+              userId: "1234567890123456789"
+              content: Welcome to Acme! Reply STOP to opt out.
+            schema:
+              $ref: "#/components/schemas/sendDiscordDirectMessage_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                messageId: "1357924680135792468"
+                channelId: "1357924680135792467"
+                url: https://discord.com/channels/@me/1357924680135792467/1357924680135792468
+                timestamp: 2026-06-02T12:34:56.789Z
+                recipient:
+                  userId: "1234567890123456789"
+                  platform: discord
+                account:
+                  id: 65a1b2c3d4e5f60718293a4b
+                  username: announcements
+                  displayName: "My Server - #announcements"
+              schema:
+                $ref: "#/components/schemas/sendDiscordDirectMessage_200_response"
+          description: DM sent successfully.
+        "400":
+          description: "Validation error (missing required fields, content > 2000\
+            \ chars, malformed snowflake, or all of content/embeds/attachments missing)."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Discord account not found or not accessible to this user.
+        "502":
+          description: "Discord rejected the message (most commonly: bot doesn't share\
+            \ a guild with the recipient, OR the recipient has DMs disabled). Error\
+            \ body contains Discord's response."
+      summary: Send a Discord Direct Message
+      tags:
+      - Discord
+  /v1/discord/guilds/{guildId}/roles:
+    get:
+      description: |
+        Returns all roles in a Discord guild. Useful for building role-mention
+        pickers, role-permission UIs, or finding the role ID before calling
+        the role-assign endpoint.
+
+        Roles are returned unordered — sort client-side by `position` if you
+        need Discord's UI ordering.
+
+        Caller must pass `accountId` of a Discord SocialAccount bound to this
+        guild (route verifies team access + guild match).
+      operationId: listDiscordGuildRoles
+      parameters:
+      - description: Discord guild snowflake ID
+        explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SocialAccount _id of the Discord account bound to this guild
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listDiscordGuildRoles_200_response"
+          description: List of guild roles.
+        "400":
+          description: Invalid accountId or guildId format.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Discord account not found
+        "502":
+          description: Discord rejected the request (bot lacks View Channels permission
+            in the guild).
+      summary: List Discord guild roles
+      tags:
+      - Discord
+  /v1/discord/guilds/{guildId}/members:
+    get:
+      description: |
+        Cursor-paginated list of guild members. Returns Discord's raw member
+        objects so callers can build community-ops automation (e.g. "add role
+        to all members joined in the last 7 days") on the actual platform shape.
+
+        **Important:** this endpoint requires the privileged "Server Members
+        Intent" enabled on the Discord app (Developer Portal → Bot tab → toggle
+        "Server Members Intent" ON, then Save). Without it, Discord returns an
+        empty array with no error. Verify the intent is enabled before relying
+        on this endpoint.
+
+        Pagination: pass `after` = the last `user.id` from the previous page.
+        Omit on the first call. Response includes a `nextCursor` and `hasMore`
+        flag so callers don't need to know Discord's pagination shape.
+      operationId: listDiscordGuildMembers
+      parameters:
+      - explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Page size (1-1000).
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      - description: Snowflake of the last member from the previous page.
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listDiscordGuildMembers_200_response"
+          description: List of guild members.
+        "400":
+          description: Invalid query params.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Discord account not found or not in this guild.
+      summary: List Discord guild members
+      tags:
+      - Discord
+  /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId}:
+    delete:
+      description: |
+        Remove one role from one member. Idempotent — removing a role the
+        member doesn't have returns 204 no-op.
+
+        Same permission + hierarchy constraints as the PUT counterpart.
+      operationId: removeDiscordMemberRole
+      parameters:
+      - explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeDiscordMemberRole_200_response"
+          description: Role removed (or was already absent — idempotent).
+        "400":
+          description: Validation error.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Discord account not found or not in this guild.
+        "502":
+          description: Discord rejected the request (permission or hierarchy issue).
+      summary: Remove a role from a guild member
+      tags:
+      - Discord
+    put:
+      description: |
+        Assign one role to one member. Idempotent on Discord's side — re-running
+        on a member who already has the role is a 204 no-op.
+
+        Path shape mirrors Discord's own API (`PUT /guilds/{guild}/members/{user}/roles/{role}`)
+        for zero-translation mental mapping.
+
+        Bot needs MANAGE_ROLES permission in the guild AND its highest role
+        must be above the target role (Discord hierarchy rule). The
+        `@everyone` role (where roleId == guildId) cannot be assigned.
+      operationId: addDiscordMemberRole
+      parameters:
+      - explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Discord user snowflake to assign the role to.
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/addDiscordMemberRole_200_response"
+          description: Role assigned (or already present — idempotent).
+        "400":
+          description: Validation error (malformed snowflake) or @everyone manipulation
+            attempt.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Discord account not found or not in this guild.
+        "502":
+          description: "Discord rejected the request: bot lacks MANAGE_ROLES, or target\
+            \ role is above the bot's highest role."
+      summary: Assign a role to a guild member
+      tags:
+      - Discord
+  /v1/discord/channels/{channelId}/pins:
+    get:
+      description: |
+        Returns the channel's pinned messages, sorted most-recently-pinned
+        first. Discord caps a channel at 50 pinned messages and returns the
+        full list unpaginated.
+
+        Bot needs READ_MESSAGE_HISTORY in the channel (granted by default
+        BOT_PERMISSIONS).
+      operationId: listDiscordPinnedMessages
+      parameters:
+      - description: Discord channel snowflake.
+        explode: false
+        in: path
+        name: channelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SocialAccount _id of any Discord account in the same guild.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listDiscordPinnedMessages_200_response"
+          description: Pinned messages.
+        "400":
+          description: Invalid channelId or accountId format.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Discord account not found or not accessible.
+        "502":
+          description: Bot lacks access to the channel.
+      summary: List pinned messages in a Discord channel
+      tags:
+      - Discord
+  /v1/discord/channels/{channelId}/pins/{messageId}:
+    delete:
+      description: |
+        Unpin a message. Same MANAGE_MESSAGES permission requirement as pin.
+        Idempotent — unpinning a non-pinned message is a 204 no-op.
+      operationId: unpinDiscordMessage
+      parameters:
+      - explode: false
+        in: path
+        name: channelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: messageId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/unpinDiscordMessage_200_response"
+          description: Message unpinned (or was not pinned — idempotent).
+        "400":
+          description: Validation error.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Discord account not found.
+        "502":
+          description: Bot lacks MANAGE_MESSAGES in the channel.
+      summary: Unpin a Discord message
+      tags:
+      - Discord
+    put:
+      description: |
+        Pin a specific message in a channel. Path shape mirrors Discord's own
+        API (`PUT /channels/{cid}/pins/{mid}`).
+
+        Idempotent — re-pinning an already-pinned message is a 204 no-op.
+
+        Constraints:
+          - Bot needs MANAGE_MESSAGES in the channel.
+          - 50-pin cap per channel — hitting it returns 400 (Discord-side).
+            Caller should unpin one first.
+      operationId: pinDiscordMessage
+      parameters:
+      - explode: false
+        in: path
+        name: channelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: messageId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/pinDiscordMessage_200_response"
+          description: Message pinned (or was already pinned — idempotent).
+        "400":
+          description: Validation error or pin cap (50) reached.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Discord account not found.
+        "502":
+          description: Bot lacks MANAGE_MESSAGES in the channel.
+      summary: Pin a Discord message
+      tags:
+      - Discord
+  /v1/discord/guilds/{guildId}/events:
+    get:
+      description: |
+        Return all scheduled events in the guild. Events are distinct from
+        messages — they appear in the server's Events panel and Discord
+        auto-notifies interested members ahead of start time.
+
+        Pass `withUserCount=true` to include `user_count` (number of members
+        who RSVP'd) on each event. Useful for surfacing engagement.
+      operationId: listDiscordScheduledEvents
+      parameters:
+      - explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Include user_count on each event.
+        explode: true
+        in: query
+        name: withUserCount
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listDiscordScheduledEvents_200_response"
+          description: List of scheduled events.
+        "400":
+          description: Invalid params.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Discord account not found or not in this guild.
+        "502":
+          description: Bot lacks access to the guild's events.
+      summary: List Discord scheduled events
+      tags:
+      - Discord
+    post:
+      description: |
+        Create a guild scheduled event. Three event types, selected via the
+        discriminator on `entity.type`:
+
+          - `external` — off-platform (Zoom, in-person, livestream). Requires
+            both `location` and `endsAt`. Most common type for scheduler
+            integrations.
+          - `voice` — hosted in a Discord voice channel. Requires `channelId`.
+          - `stage` — hosted in a Discord stage channel. Requires `channelId`.
+
+        Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events
+        PR) need a re-invite OR a server admin manually granting the
+        permission — see route header for details.
+      operationId: createDiscordScheduledEvent
+      parameters:
+      - explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              external:
+                value:
+                  accountId: 65a1b2c3d4e5f60718293a4b
+                  name: Weekly AMA
+                  description: Bring your questions about the roadmap.
+                  startsAt: 2026-06-15T18:00:00Z
+                  entity:
+                    type: external
+                    location: https://zoom.us/j/123
+                    endsAt: 2026-06-15T19:00:00Z
+              voice:
+                value:
+                  accountId: 65a1b2c3d4e5f60718293a4b
+                  name: Game Night
+                  startsAt: 2026-06-20T20:00:00Z
+                  entity:
+                    type: voice
+                    channelId: "1234567890123456789"
+            schema:
+              $ref: "#/components/schemas/createDiscordScheduledEvent_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createDiscordScheduledEvent_200_response"
+          description: Event created.
+        "400":
+          description: "Validation error (missing required fields for the chosen entity\
+            \ type, malformed snowflake, past startsAt, etc.)."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Discord account not found.
+        "502":
+          description: Bot lacks MANAGE_EVENTS in the guild.
+      summary: Create a Discord scheduled event
+      tags:
+      - Discord
+  /v1/discord/guilds/{guildId}/events/{eventId}:
+    delete:
+      description: |
+        Hard-delete an event. Use PATCH with `status: 'cancelled'` instead
+        if you want the event preserved in the guild's history.
+      operationId: deleteDiscordScheduledEvent
+      parameters:
+      - explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: eventId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteDiscordScheduledEvent_200_response"
+          description: Event deleted.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Event or Discord account not found.
+        "502":
+          description: Bot lacks MANAGE_EVENTS in the guild.
+      summary: Delete a Discord scheduled event
+      tags:
+      - Discord
+    get:
+      operationId: getDiscordScheduledEvent
+      parameters:
+      - explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: eventId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createDiscordScheduledEvent_200_response"
+          description: Event.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Event or Discord account not found.
+      summary: Get a Discord scheduled event
+      tags:
+      - Discord
+    patch:
+      description: |
+        Patch any subset of fields. Passing `status: 'cancelled'` is how you
+        cancel an event — Discord doesn't have a dedicated cancel endpoint,
+        it's a status transition.
+
+        Most status transitions Discord enforces (you can't go SCHEDULED →
+        COMPLETED directly). The common consumer case is SCHEDULED → CANCELED.
+      operationId: updateDiscordScheduledEvent
+      parameters:
+      - explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: eventId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 65a1b2c3d4e5f60718293a4b
+              status: cancelled
+            schema:
+              $ref: "#/components/schemas/updateDiscordScheduledEvent_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createDiscordScheduledEvent_200_response"
+          description: Event updated.
+        "400":
+          description: "Validation error, OR no updatable fields beyond accountId\
+            \ provided."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Event or Discord account not found.
+        "502":
+          description: Discord rejected the update (invalid status transition
+      summary: Update a Discord scheduled event
+      tags:
+      - Discord
   /v1/queue/slots:
     delete:
       description: |
@@ -12898,6 +13617,9 @@ paths:
         schema:
           enum:
           - provisioning
+          - pending_payment
+          - pending_regulatory
+          - regulatory_declined
           - active
           - suspended
           - releasing
@@ -12940,6 +13662,7 @@ paths:
           application/json:
             example:
               profileId: 507f1f77bcf86cd799439011
+              country: DE
             schema:
               $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_request"
         required: true
@@ -12952,14 +13675,193 @@ paths:
           description: |
             Either a checkout URL (first number) or the provisioned phone number (subsequent numbers).
         "400":
-          description: Plan limit reached or profileId required
+          description: Plan limit reached
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: A paid plan is required
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_202_response"
+          description: Country requires end-user KYC before the number can be ordered.
+        "402":
+          description: "Payment method required (Metronome user with no card on file).\
+            \ Response body carries code: PAYMENT_REQUIRED; add a card, then retry."
+        "422":
+          description: "International numbers require usage-based billing (legacy\
+            \ Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED."
       security:
       - bearerAuth: []
       summary: Purchase phone number
+      tags:
+      - WhatsApp Phone Numbers
+  /v1/whatsapp/phone-numbers/countries:
+    get:
+      description: |
+        The WhatsApp number countries available to purchase, each with its flat
+        monthly price (cents), regulatory tier, whether it needs end-user KYC
+        (Tier 3/4), and whether outbound calling is available (not BIC-blocked).
+        Drives the country picker. Tier-4 countries appear only when enabled.
+      operationId: listWhatsAppNumberCountries
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWhatsAppNumberCountries_200_response"
+          description: "Offerable countries, cheapest first."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List offerable number countries
+      tags:
+      - WhatsApp Phone Numbers
+  /v1/whatsapp/phone-numbers/available:
+    get:
+      description: |
+        Search the provider's inventory for numbers available to purchase in a
+        country (default US). Optional filters narrow the results. The country
+        must be offerable (see GET /v1/whatsapp/phone-numbers/countries).
+      operationId: searchAvailableWhatsAppNumbers
+      parameters:
+      - explode: true
+        in: query
+        name: country
+        required: false
+        schema:
+          default: US
+          type: string
+        style: form
+      - description: Number type; defaults to the country's WhatsApp-safe type
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Area code
+        explode: true
+        in: query
+        name: prefix
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: City
+        explode: true
+        in: query
+        name: locality
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Pattern to match within the number
+        explode: true
+        in: query
+        name: contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 100
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/searchAvailableWhatsAppNumbers_200_response"
+          description: Available numbers.
+        "400":
+          description: Country not available
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Search available numbers to purchase
+      tags:
+      - WhatsApp Phone Numbers
+  /v1/whatsapp/phone-numbers/kyc:
+    get:
+      description: |
+        For a Tier 3/4 country, the fields the end customer must provide (Telnyx
+        regulatory requirements) before a number can be ordered: text, date,
+        address, or file (document) per requirement.
+      operationId: getWhatsAppNumberKycForm
+      parameters:
+      - explode: true
+        in: query
+        name: country
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response"
+          description: The KYC form spec.
+        "400":
+          description: Country not available
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Get regulated-number KYC form spec
+      tags:
+      - WhatsApp Phone Numbers
+    post:
+      description: |
+        Submit the end customer's KYC (textual values, uploaded documents,
+        address) for a Tier 3/4 country. Documents are streamed straight to the
+        number provider and are not stored by Zernio. Builds + submits a
+        regulatory requirement group and claims a pending_regulatory slot; the
+        number is ordered + activated once the provider approves (asynchronous).
+        Idempotent per (owner, country).
+      operationId: submitWhatsAppNumberKyc
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/submitWhatsAppNumberKyc_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/submitWhatsAppNumberKyc_200_response"
+          description: KYC submitted (or already submitted); number pending review.
+        "400":
+          description: Validation error (e.g. address not in-country
+        "409":
+          description: reuse requested but no prior approved verification exists for
+            this country
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Submit regulated-number KYC
       tags:
       - WhatsApp Phone Numbers
   /v1/whatsapp/phone-numbers/{phoneNumberId}:
@@ -13000,8 +13902,13 @@ paths:
       - WhatsApp Phone Numbers
     get:
       description: |
-        Retrieve the current status of a purchased phone number. Used to poll for
-        Meta pre-verification completion after purchase.
+        Retrieve the current status of a purchased phone number. Poll this to
+        track Meta pre-verification (US sync path) and, for regulated (Tier 3/4)
+        numbers, the async lifecycle: pending_regulatory → active (or
+        regulatory_declined). When a regulated number has an Onfido ID step,
+        `onfidoVerificationUrl` appears here once the order is placed — forward
+        it to the end user. (Or subscribe to the whatsapp.number.* webhooks
+        instead of polling.)
       operationId: getWhatsAppPhoneNumber
       parameters:
       - description: Phone number record ID
@@ -13028,6 +13935,113 @@ paths:
       summary: Get phone number
       tags:
       - WhatsApp Phone Numbers
+  /v1/whatsapp/sandbox/sessions:
+    get:
+      description: |
+        Returns all of the authenticated user's non-expired sandbox sessions
+        (pending + active) plus the sandbox phone number. In practice there
+        is at most one session per user since the sandbox is one-phone-per-user;
+        the array shape is preserved for forward compatibility.
+      operationId: listWhatsAppSandboxSessions
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWhatsAppSandboxSessions_200_response"
+          description: Sessions retrieved successfully
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+      security:
+      - bearerAuth: []
+      summary: List your sandbox sessions
+      tags:
+      - WhatsApp Sandbox
+    post:
+      description: |
+        Creates (or refreshes) a pending sandbox session for the given phone and
+        immediately fires the verified sandbox template from the shared sandbox
+        number to that phone. The session activates when the phone owner replies
+        to that WhatsApp message — the reply itself is proof of ownership.
+
+        One phone per user: if the caller already has a non-expired session for
+        a DIFFERENT phone, the request is rejected with `invalid_field_value`
+        (the message names the existing phone so it can be revoked first).
+        Re-creating a session for the SAME phone is idempotent and refreshes
+        the verification template.
+
+        If Meta rejects the template send (not a WhatsApp number, paused WABA,
+        token issue), the pending row is rolled back and the Meta error message
+        is returned in `error` so the caller knows why.
+      operationId: createWhatsAppSandboxSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createWhatsAppSandboxSession_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createWhatsAppSandboxSession_200_response"
+          description: Session created or refreshed; verification template sent
+        "400":
+          description: |
+            Returned when (a) phone format is invalid, (b) phone equals the sandbox
+            number itself, (c) the user already has a session for a different phone,
+            or (d) Meta rejected the template send. The `error` field contains the
+            specific reason; `param` is set when a field is at fault.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+      security:
+      - bearerAuth: []
+      summary: Start a sandbox activation for a phone
+      tags:
+      - WhatsApp Sandbox
+  /v1/whatsapp/sandbox/sessions/{sessionId}:
+    delete:
+      description: |
+        Hard-deletes the session. The user loses the ability to send to that
+        phone via the sandbox until they re-activate it. Existing conversations
+        and messages already exchanged with that phone are untouched —
+        revocation only blocks FUTURE sends.
+
+        Sessions belonging to other users cannot be revoked; the response is
+        the same 400 as "session not found" so existence isn't leaked.
+      operationId: deleteWhatsAppSandboxSession
+      parameters:
+      - description: The session id returned by POST /v1/whatsapp/sandbox/sessions.
+        explode: false
+        in: path
+        name: sessionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Session revoked
+        "400":
+          description: Invalid or unknown session id
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+      security:
+      - bearerAuth: []
+      summary: Revoke a sandbox session
+      tags:
+      - WhatsApp Sandbox
   /v1/whatsapp/wa-groups:
     get:
       description: |
@@ -14785,6 +15799,466 @@ paths:
       summary: Add recipients to a broadcast
       tags:
       - Broadcasts
+  /v1/workflows:
+    get:
+      description: Returns workflows with run stats. Filter by status or profile.
+      operationId: listWorkflows
+      parameters:
+      - description: Filter by profile. Omit to list across all profiles
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - draft
+          - active
+          - paused
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWorkflows_200_response"
+          description: Workflows list
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      summary: List workflows
+      tags:
+      - Workflows
+    post:
+      description: |
+        Create a branching conversation workflow (draft) from a node/edge graph. Created in `draft` status; activate it to start matching inbound messages. The graph is validated structurally; completeness (a trigger node + reachable entry) is required at activation.
+      operationId: createWorkflow
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createWorkflow_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createWorkflow_200_response"
+          description: Workflow created
+        "400":
+          description: Invalid graph (duplicate node ids
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      summary: Create workflow
+      tags:
+      - Workflows
+  /v1/workflows/{workflowId}:
+    delete:
+      description: Permanently delete a workflow and all of its executions.
+      operationId: deleteWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Workflow deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Delete workflow
+      tags:
+      - Workflows
+    get:
+      description: Returns a workflow including its full node/edge graph and run stats.
+      operationId: getWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWorkflow_200_response"
+          description: Workflow details
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Get workflow with graph
+      tags:
+      - Workflows
+    patch:
+      description: |
+        Update name, description, the graph, or reassign to a different account. The graph can only be modified while the workflow is draft or paused. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a `start_call` node as an error instead of silently saving an unrunnable graph).
+      operationId: updateWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateWorkflow_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateWorkflow_200_response"
+          description: Workflow updated
+        "400":
+          description: Invalid graph
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Update workflow
+      tags:
+      - Workflows
+  /v1/workflows/{workflowId}/activate:
+    post:
+      description: "Validate the graph is runnable and set the workflow live. Once\
+        \ active, matching inbound messages start executions. Idempotent."
+      operationId: activateWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/activateWorkflow_200_response"
+          description: Workflow activated
+        "400":
+          description: Incomplete or invalid graph
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Activate workflow
+      tags:
+      - Workflows
+  /v1/workflows/{workflowId}/pause:
+    post:
+      description: Stop matching new inbound messages. In-flight executions continue
+        to completion. Idempotent.
+      operationId: pauseWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/pauseWorkflow_200_response"
+          description: Workflow paused
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Pause workflow
+      tags:
+      - Workflows
+  /v1/workflows/{workflowId}/executions:
+    get:
+      description: "Returns recent executions (runs) with their status, current node,\
+        \ and accumulated variables."
+      operationId: listWorkflowExecutions
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - running
+          - waiting
+          - completed
+          - exited
+          - failed
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWorkflowExecutions_200_response"
+          description: Executions list
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: List workflow runs
+      tags:
+      - Workflows
+    post:
+      description: |
+        Kick off a run without waiting for an inbound message (useful for testing). Target an existing conversation by `conversationId`, or — WhatsApp only — a phone number via `to` (a conversation is found or created). `text` seeds the run's `lastMessage` variable. The graph must be runnable.
+      operationId: triggerWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/triggerWorkflow_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/triggerWorkflow_200_response"
+          description: Run started
+        "400":
+          description: Missing target
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Manually start a workflow run
+      tags:
+      - Workflows
+  /v1/workflows/{workflowId}/executions/{executionId}/events:
+    get:
+      description: |
+        Returns the per-step run-log for a single workflow execution: trigger fired, each node visited, edge handles taken, errors, and durations. Backed by Tinybird (90-day retention). Used by the Runs UI drawer to render the timeline.
+      operationId: listWorkflowExecutionEvents
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: executionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWorkflowExecutionEvents_200_response"
+          description: Timeline events for the execution
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Get an execution's timeline
+      tags:
+      - Workflows
+  /v1/workflows/{workflowId}/duplicate:
+    post:
+      description: |
+        Create an independent copy of a workflow's graph, name, description, and account binding. The copy is created in `draft` status with fresh execution counters and a new id — execution history is NOT copied. Useful for branching off a known-good workflow before making experimental edits.
+      operationId: duplicateWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/duplicateWorkflow_201_response"
+          description: Workflow duplicated
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Duplicate a workflow
+      tags:
+      - Workflows
+  /v1/workflows/{workflowId}/versions:
+    get:
+      description: |
+        Returns the snapshot history. A new version is recorded automatically before every PATCH to `nodes` / `edges` / `entryNodeId`, and explicitly when a previous version is restored. Lightweight list — call `getWorkflowVersion` for the full snapshot graph.
+      operationId: listWorkflowVersions
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWorkflowVersions_200_response"
+          description: Versions list
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: List a workflow's version history
+      tags:
+      - Workflows
+  /v1/workflows/{workflowId}/versions/{version}:
+    get:
+      description: "Returns the full snapshot for a single historical version, including\
+        \ the graph."
+      operationId: getWorkflowVersion
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWorkflowVersion_200_response"
+          description: Version snapshot
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Get a specific workflow version
+      tags:
+      - Workflows
+  /v1/workflows/{workflowId}/versions/{version}/restore:
+    post:
+      description: |
+        Replace the current graph with the named version's snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in `draft` or `paused` status (same gate as a normal graph edit). The returned workflow carries `restoredFromVersion` so the UI can surface which version was rolled back to.
+      operationId: restoreWorkflowVersion
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/restoreWorkflowVersion_200_response"
+          description: Workflow restored to the named version
+        "400":
+          description: Workflow is not draft/paused
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Restore a previous workflow version
+      tags:
+      - Workflows
   /v1/sequences:
     get:
       description: "Returns sequences with enrollment stats. Filter by status, platform,\
@@ -15145,15 +16619,26 @@ paths:
     post:
       description: |
         Create a keyword-triggered DM automation on an Instagram or Facebook account.
-        When someone comments a matching keyword, they automatically receive a DM.
+        When someone comments a matching keyword (or, with `trigger: story_reply`, replies
+        to your Instagram story with one), they automatically receive a DM.
 
-        Two modes:
-          * **Per-post** — set `platformPostId` to scope the automation to one specific post.
-            Only one active per-post automation is allowed per post.
-          * **Account-wide ("any post")** — omit `platformPostId` (and `postId`). The automation
+        Triggers (`trigger`):
+          * `comment` (default): fires on keyword comments on a post or reel.
+          * `story_reply`: fires when someone replies to your Instagram story with a keyword,
+            and answers them with a DM. Set `platformPostId` to a story media id to scope to
+            one story, or omit it to match replies to any story.
+
+        Targeting (comment trigger):
+          * Per-post: set `platformPostId` to scope to one specific post (only one active
+            per-post automation is allowed per post).
+          * Account-wide ("any post"): omit `platformPostId` (and `postId`). The automation
             evaluates every comment on every post on the account. You can stack unlimited
             account-wide automations, each with its own keyword set, and they all run
             independently. Per-post automations take priority on their post.
+
+        Links in the DM's buttons can be click-tracked (`linkTracking`, on by default) and
+        clickers optionally tagged (`clickTag`) for segmentation. Stats returned include
+        delivered, read, and link clicks.
       operationId: createCommentAutomation
       requestBody:
         content:
@@ -18605,6 +20090,189 @@ components:
         `enterprise_required`, redirect to `dashboard_url` (the
         enterprise contact form) so they can talk to sales.
   schemas:
+    WorkflowNode:
+      description: A node in a workflow graph. `config` shape depends on `type`.
+      example:
+        id: id
+        position:
+          x: 0.8008281904610115
+          "y": 6.027456183070403
+        type: trigger
+        config:
+          key: ""
+      properties:
+        id:
+          description: Stable node id referenced by edges
+          type: string
+        type:
+          description: |
+            Node kind. The 16 supported types break into four groups:
+              messaging (send_message),
+              control flow (trigger, condition, delay, wait_for_reply, a_b_split, end),
+              data ops (set_variable, set_field, add_tag, remove_tag, enroll_sequence),
+              integrations (webhook, ai, handoff, start_call).
+          enum:
+          - trigger
+          - send_message
+          - wait_for_reply
+          - condition
+          - set_variable
+          - delay
+          - webhook
+          - ai
+          - handoff
+          - start_call
+          - a_b_split
+          - set_field
+          - enroll_sequence
+          - add_tag
+          - remove_tag
+          - end
+          type: string
+        config:
+          additionalProperties: true
+          description: |
+            Type-specific settings. All string fields support `{{variable}}` interpolation against the run's variable bag (resolved at execution time).
+
+            **trigger**: `{ triggerType: inbound_message|api_call|whatsapp_event, keywords:[string], matchType: any|contains|exact|regex, onlyFirstMessage:boolean, eventType: message_sent|message_delivered|message_read|message_failed|reaction }`. Default `triggerType` is `inbound_message` for legacy nodes. `eventType` is only honored when `triggerType` is `whatsapp_event` (WhatsApp-only).
+
+            **send_message**: `{ messageType: text|template|media|interactive, text, template:{name,language,variableMapping}, media:{mediaType:image|video|audio|document, url,caption}, interactive }`. `template` and `interactive` are WhatsApp-only.
+
+            **wait_for_reply**: `{ timeoutMinutes:int (max 43200), saveAs:string }`. Resume via the `'reply'` edge on inbound, or `'timeout'` edge after `timeoutMinutes` of silence.
+
+            **condition**: `{ rules:[{ id, variable, operator: equals|not_equals|contains|not_contains|starts_with|ends_with|exists|not_exists|matches, value }] }`. First matching rule takes its `id` as the sourceHandle; otherwise `'default'`.
+
+            **set_variable**: `{ assignments:[{ name, value }] }`. Run-scoped (lives only for this execution; use `set_field` for persistent values).
+
+            **delay**: `{ delayMinutes:int (max 43200) }`. Suspends the run, resumes via timer.
+
+            **webhook**: `{ url, method: GET|POST|PUT|PATCH|DELETE, headers, bodyTemplate, saveAs }`. SSRF-guarded (private/loopback/metadata IPs rejected). Response saved as `{ status, ok, body }` to `vars[saveAs]`. Edge: `'success'` on 2xx, `'error'` otherwise.
+
+            **ai**: `{ provider: anthropic|openai|google|mistral|groq, model, preset: smart|tools|cheap, systemPrompt, userPromptTemplate, saveAs, temperature, maxTokens, outputType: text|json, tools:[{ name, description, parameters }] }`. Set `provider` + `model` for BYOK (uses your stored API key); omit `provider` for the legacy Telnyx path. Edges: `'success'`, `'tool:<name>'` (model picked a tool), `'error'`.
+
+            **handoff**: `{ note, assignTo }`. Terminates the run as `exited`, flags the conversation for a human operator.
+
+            **start_call**: `{ to, forwardTo, requirePermissionFirst, recordingEnabled, saveAs }`. WhatsApp-only. `forwardTo` can be `tel:+E164`, `sip:user@host`, or `wss://…` (AI voice agent). Edges: `'success'`, `'permission_required'`, `'failed'`.
+
+            **a_b_split**: `{ percentage: number 0-100 (default 50) }`. Random branch picker. Edges: `'a'` (with probability `percentage/100`), `'b'`.
+
+            **set_field**: `{ field, value }`. Persistent custom field on the Contact (vs `set_variable` which is run-scoped). Field name is sanitized to `[A-Za-z0-9_]`. No-op on `api_call` runs (no contact).
+
+            **enroll_sequence**: `{ sequenceId, saveAs }`. Enrolls the run's contact into a Sequence. Edges: `'success'`, `'error'`.
+
+            **add_tag** / **remove_tag**: `{ tag }`. Push or pull a tag on the Contact. No-op on `api_call` runs.
+
+            **end**: no config. Terminates the run as `completed`.
+          type: object
+        position:
+          $ref: "#/components/schemas/WorkflowNode_position"
+      required:
+      - id
+      - type
+    WorkflowEdge:
+      description: A directed edge between two nodes.
+      example:
+        sourceHandle: sourceHandle
+        id: id
+        source: source
+        target: target
+      properties:
+        id:
+          type: string
+        source:
+          description: Source node id
+          type: string
+        target:
+          description: Target node id
+          type: string
+        sourceHandle:
+          description: |
+            Selects a branch output of a multi-output node. Null (or omitted) = the node's single/default output. Known handles per node type:
+
+              - **condition** — a rule's `id`, or `'default'` (no rule matched)
+              - **wait_for_reply** — `'reply'` (contact replied) | `'timeout'` (no reply in window)
+              - **webhook** — `'success'` (2xx) | `'error'` (non-2xx / fetch failed)
+              - **ai** — `'success'` (text/JSON response) | `'tool:<toolName>'` (model invoked
+                that tool) | `'error'` (upstream failure / non-JSON in JSON mode)
+              - **start_call** — `'success'` | `'permission_required'` | `'failed'`
+              - **a_b_split** — `'a'` | `'b'`
+              - **enroll_sequence** — `'success'` | `'error'`
+          type: string
+          nullable: true
+      required:
+      - id
+      - source
+      - target
+    WorkflowExecutionEvent:
+      description: |
+        One entry in a workflow execution's timeline. Emitted by the executor on every node visit and lifecycle transition, surfaced by `GET /v1/workflows/{workflowId}/executions/ {executionId}/events` for run inspection in the Runs UI.
+      example:
+        sourceHandle: sourceHandle
+        at: 2000-01-23T04:56:07.000+00:00
+        meta:
+          key: ""
+        errorMessage: errorMessage
+        action: execution_started
+        nodeType: nodeType
+        nodeId: nodeId
+        durationMs: 0
+        status: success
+      properties:
+        action:
+          enum:
+          - execution_started
+          - execution_completed
+          - execution_exited
+          - execution_paused
+          - execution_resumed
+          - node_started
+          - node_completed
+          - node_failed
+          - node_skipped
+          type: string
+        status:
+          enum:
+          - success
+          - failed
+          - pending
+          type: string
+          nullable: true
+        nodeId:
+          description: Present on `node_*` events
+          type: string
+          nullable: true
+        nodeType:
+          description: Present on `node_*` events
+          type: string
+          nullable: true
+        sourceHandle:
+          description: The edge handle the executor followed out of this node (see
+            `WorkflowEdge.sourceHandle`)
+          type: string
+          nullable: true
+        durationMs:
+          description: Node run time; present on `node_completed` and `node_failed`
+          type: integer
+          nullable: true
+        errorMessage:
+          description: Failure detail; present on `node_failed` and `execution_exited`
+          type: string
+          nullable: true
+        meta:
+          additionalProperties: true
+          description: |
+            Per-node-type payload. Shape varies — see WorkflowNode `type`. Examples:
+              `send_message` → `{ messageType, text, recipient }`,
+              `webhook` → `{ url, method, statusCode, responseTimeMs, responsePreview }`,
+              `ai` → `{ model, provider, inputTokens, outputTokens, responsePreview }`,
+              `condition` → `{ matchedHandle, rulesEvaluated }`,
+              `a_b_split` → `{ percentage, chosen }`.
+          type: object
+          nullable: true
+        at:
+          description: Event timestamp (UTC)
+          format: date-time
+          type: string
     BulkUploadResult:
       description: |
         Result of a CSV bulk upload. The same shape is returned for `200` (all rows
@@ -18922,6 +20590,55 @@ components:
       required:
       - buttons
       - type
+    WhatsAppSandboxSession:
+      description: |
+        A per-user activation session against the shared WhatsApp sandbox number.
+        Transitions `pending → active` when the inbound webhook receives a reply
+        from the matching phone (the reply itself proves ownership).
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        activatedAt: 2000-01-23T04:56:07.000+00:00
+        phoneE164: "34688246216"
+        id: id
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+        status: pending
+      properties:
+        id:
+          description: Session id. Use this to revoke via DELETE.
+          type: string
+        phoneE164:
+          description: "Digits-only E.164 form (no +, spaces, or dashes)."
+          example: "34688246216"
+          type: string
+        status:
+          description: |
+            `pending` until the phone replies to the activation template, then
+            `active`. Expired sessions are pruned by TTL and never appear in
+            list responses.
+          enum:
+          - pending
+          - active
+          type: string
+        expiresAt:
+          description: |
+            UTC timestamp at which the session becomes invalid. Pending sessions
+            get a 24h window; activated sessions get 7 days.
+          format: date-time
+          type: string
+        activatedAt:
+          description: "When the session transitioned `pending → active`, or null."
+          format: date-time
+          type: string
+          nullable: true
+        createdAt:
+          format: date-time
+          type: string
+          nullable: true
+      required:
+      - expiresAt
+      - id
+      - phoneE164
+      - status
     FoodMenuLabel:
       example:
         displayName: displayName
@@ -19925,6 +21642,9 @@ components:
             - review.updated
             - ad.status_changed
             - whatsapp.template.status_updated
+            - whatsapp.number.activated
+            - whatsapp.number.declined
+            - whatsapp.number.verification_required
             type: string
           type: array
         isActive:
@@ -21211,7 +22931,8 @@ components:
           phoneNumberId: phoneNumberId
           billing:
             metaCostUSD: 6.027456183070403
-            totalCostUSD: 5.637376656633329
+            billableCostUSD: 5.637376656633329
+            totalCostUSD: 2.3021358869347655
             recordingCostUSD: 5.962133916683182
             telnyxCostUSD: 1.4658129805029452
           accountId: accountId
@@ -21611,6 +23332,7 @@ components:
             - US
             - CA
             - GB
+          quoteTweetId: quoteTweetId
           poll:
             duration_minutes: 6077
             options:
@@ -21806,6 +23528,7 @@ components:
               - US
               - CA
               - GB
+            quoteTweetId: quoteTweetId
             poll:
               duration_minutes: 6077
               options:
@@ -21899,6 +23622,7 @@ components:
               - US
               - CA
               - GB
+            quoteTweetId: quoteTweetId
             poll:
               duration_minutes: 6077
               options:
@@ -22213,6 +23937,7 @@ components:
           - US
           - CA
           - GB
+        quoteTweetId: quoteTweetId
         poll:
           duration_minutes: 6077
           options:
@@ -22225,6 +23950,16 @@ components:
           description: "ID of an existing tweet to reply to. The published tweet will\
             \ appear as a reply in that tweet's thread. For threads, only the first\
             \ tweet replies to the target; subsequent tweets chain normally."
+          type: string
+        quoteTweetId:
+          description: "ID (or full status URL) of an existing tweet to quote-repost.\
+            \ The published tweet becomes a quote tweet of the target. Mutually exclusive\
+            \ with media and poll. X only permits quoting your own posts or posts\
+            \ you are mentioned in / part of the conversation thread of; quoting an\
+            \ arbitrary other account's post is rejected by X. Billed at the standard\
+            \ create rate ($0.015), unlike pasting a tweet URL into the text which\
+            \ is billed at the URL rate ($0.20). For threads, applies to the first\
+            \ tweet only."
           type: string
         replySettings:
           description: "Controls who can reply to the tweet. \"following\" allows\
@@ -22736,6 +24471,87 @@ components:
           type: string
       required:
       - channelId
+    DiscordScheduledEvent:
+      description: |
+        Discord guild scheduled event. Returned by /v1/discord/guilds/{guildId}/events endpoints.
+        Fields below are the subset Zernio consumes — Discord may return more (e.g. creator,
+        image hash) which we pass through verbatim.
+      example:
+        image: image
+        privacy_level: 0
+        entity_metadata:
+          location: location
+        description: description
+        entity_id: entity_id
+        scheduled_end_time: 2000-01-23T04:56:07.000+00:00
+        entity_type: 1
+        user_count: 5
+        guild_id: guild_id
+        creator_id: creator_id
+        name: name
+        id: id
+        channel_id: channel_id
+        scheduled_start_time: 2000-01-23T04:56:07.000+00:00
+        status: 6
+      properties:
+        id:
+          description: Event snowflake ID
+          type: string
+        guild_id:
+          type: string
+        channel_id:
+          description: Voice/stage channel ID; null for external events.
+          type: string
+          nullable: true
+        creator_id:
+          type: string
+          nullable: true
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        scheduled_start_time:
+          format: date-time
+          type: string
+        scheduled_end_time:
+          description: Required for external events; optional for voice/stage.
+          format: date-time
+          type: string
+          nullable: true
+        privacy_level:
+          description: Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events.
+          enum:
+          - 2
+          type: integer
+        status:
+          description: "1=SCHEDULED, 2=ACTIVE, 3=COMPLETED, 4=CANCELED"
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          type: integer
+        entity_type:
+          description: "1=STAGE_INSTANCE, 2=VOICE, 3=EXTERNAL"
+          enum:
+          - 1
+          - 2
+          - 3
+          type: integer
+        entity_id:
+          type: string
+          nullable: true
+        entity_metadata:
+          $ref: "#/components/schemas/DiscordScheduledEvent_entity_metadata"
+        user_count:
+          description: Number of members who RSVP'd. Only present when withUserCount=true
+            on list.
+          type: integer
+        image:
+          description: Cover image hash; build URL via cdn.discordapp.com.
+          type: string
+          nullable: true
     QueueSlot:
       example:
         dayOfWeek: 0
@@ -23667,6 +25483,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -23760,6 +25577,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -23913,6 +25731,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -24006,6 +25825,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -24169,6 +25989,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -24262,6 +26083,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -24421,6 +26243,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -24514,6 +26337,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -24676,6 +26500,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -24769,6 +26594,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -24937,6 +26763,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -25030,6 +26857,7 @@ components:
                 - US
                 - CA
                 - GB
+              quoteTweetId: quoteTweetId
               poll:
                 duration_minutes: 6077
                 options:
@@ -34505,6 +36333,604 @@ components:
           items:
             $ref: "#/components/schemas/getDiscordChannels_200_response_channels_inner"
           type: array
+    sendDiscordDirectMessage_request_attachments_inner:
+      properties:
+        type:
+          enum:
+          - image
+          - video
+          - gif
+          - document
+          type: string
+        url:
+          format: uri
+          type: string
+        filename:
+          type: string
+        mimeType:
+          type: string
+        size:
+          type: integer
+      required:
+      - type
+      - url
+    sendDiscordDirectMessage_request:
+      properties:
+        accountId:
+          description: SocialAccount _id of the connected Discord account the bot
+            speaks as. Caller must own the account (directly or via team membership).
+          example: 65a1b2c3d4e5f60718293a4b
+          type: string
+        userId:
+          description: Discord snowflake ID of the recipient (15-21 digits).
+          example: "1234567890123456789"
+          type: string
+        content:
+          description: "Message text, up to 2,000 characters."
+          maxLength: 2000
+          type: string
+        embeds:
+          description: "Up to 10 Discord embeds. Same shape as channel-post embeds\
+            \ (title, description, color, fields, etc.). See DiscordPlatformData.embeds\
+            \ for the embed object schema."
+          items:
+            type: object
+          maxItems: 10
+          type: array
+        attachments:
+          description: "Up to 10 media attachments. Each is `{ type: image|video|gif|document,\
+            \ url, filename?, mimeType?, size? }`."
+          items:
+            $ref: "#/components/schemas/sendDiscordDirectMessage_request_attachments_inner"
+          maxItems: 10
+          type: array
+        tts:
+          description: Send as text-to-speech message.
+          type: boolean
+      required:
+      - accountId
+      - userId
+    sendDiscordDirectMessage_200_response_recipient:
+      example:
+        userId: userId
+        platform: discord
+      properties:
+        userId:
+          type: string
+        platform:
+          example: discord
+          type: string
+    sendDiscordDirectMessage_200_response_account:
+      example:
+        displayName: displayName
+        id: id
+        username: username
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+    sendDiscordDirectMessage_200_response:
+      example:
+        recipient:
+          userId: userId
+          platform: discord
+        messageId: messageId
+        channelId: channelId
+        url: url
+        account:
+          displayName: displayName
+          id: id
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        messageId:
+          description: Discord message snowflake ID
+          type: string
+        channelId:
+          description: DM channel snowflake (Discord auto-creates one per recipient
+            pair)
+          type: string
+        url:
+          description: Direct link to the message — uses Discord's @me path for DMs
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        recipient:
+          $ref: "#/components/schemas/sendDiscordDirectMessage_200_response_recipient"
+        account:
+          $ref: "#/components/schemas/sendDiscordDirectMessage_200_response_account"
+    listDiscordGuildRoles_200_response_data_inner:
+      example:
+        color: 0
+        permissions: permissions
+        managed: true
+        name: name
+        mentionable: true
+        id: id
+        position: 6
+        hoist: true
+      properties:
+        id:
+          description: Role snowflake ID
+          type: string
+        name:
+          type: string
+        color:
+          description: Decimal color (0 = no color). Convert to hex via .toString(16).
+          type: integer
+        position:
+          description: Position in role hierarchy (higher = more authority)
+          type: integer
+        permissions:
+          description: Permissions bitfield as a stringified integer
+          type: string
+        managed:
+          description: True for integration-managed roles (bot roles)
+          type: boolean
+        mentionable:
+          type: boolean
+        hoist:
+          description: True if role is displayed separately in member list
+          type: boolean
+    listDiscordGuildRoles_200_response:
+      example:
+        data:
+        - color: 0
+          permissions: permissions
+          managed: true
+          name: name
+          mentionable: true
+          id: id
+          position: 6
+          hoist: true
+        - color: 0
+          permissions: permissions
+          managed: true
+          name: name
+          mentionable: true
+          id: id
+          position: 6
+          hoist: true
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/listDiscordGuildRoles_200_response_data_inner"
+          type: array
+    listDiscordGuildMembers_200_response_data_inner_user:
+      example:
+        global_name: global_name
+        id: id
+        avatar: avatar
+        username: username
+        discriminator: discriminator
+      properties:
+        id:
+          description: User snowflake
+          type: string
+        username:
+          type: string
+        discriminator:
+          type: string
+        avatar:
+          type: string
+          nullable: true
+        global_name:
+          description: User's display name (post-2023 Discord rebrand)
+          type: string
+          nullable: true
+    listDiscordGuildMembers_200_response_data_inner:
+      example:
+        nick: nick
+        joined_at: 2000-01-23T04:56:07.000+00:00
+        premium_since: 2000-01-23T04:56:07.000+00:00
+        roles:
+        - roles
+        - roles
+        user:
+          global_name: global_name
+          id: id
+          avatar: avatar
+          username: username
+          discriminator: discriminator
+      properties:
+        user:
+          $ref: "#/components/schemas/listDiscordGuildMembers_200_response_data_inner_user"
+        nick:
+          description: Guild-specific nickname
+          type: string
+          nullable: true
+        roles:
+          description: Snowflake IDs of roles assigned to this member
+          items:
+            type: string
+          type: array
+        joined_at:
+          format: date-time
+          type: string
+        premium_since:
+          description: When the user started boosting the server
+          format: date-time
+          type: string
+          nullable: true
+    listDiscordGuildMembers_200_response_pagination:
+      example:
+        nextCursor: nextCursor
+        hasMore: true
+      properties:
+        nextCursor:
+          description: Pass as `after` on the next call. Null when there are no more
+            pages.
+          type: string
+          nullable: true
+        hasMore:
+          type: boolean
+    listDiscordGuildMembers_200_response:
+      example:
+        pagination:
+          nextCursor: nextCursor
+          hasMore: true
+        data:
+        - nick: nick
+          joined_at: 2000-01-23T04:56:07.000+00:00
+          premium_since: 2000-01-23T04:56:07.000+00:00
+          roles:
+          - roles
+          - roles
+          user:
+            global_name: global_name
+            id: id
+            avatar: avatar
+            username: username
+            discriminator: discriminator
+        - nick: nick
+          joined_at: 2000-01-23T04:56:07.000+00:00
+          premium_since: 2000-01-23T04:56:07.000+00:00
+          roles:
+          - roles
+          - roles
+          user:
+            global_name: global_name
+            id: id
+            avatar: avatar
+            username: username
+            discriminator: discriminator
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/listDiscordGuildMembers_200_response_data_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listDiscordGuildMembers_200_response_pagination"
+    addDiscordMemberRole_200_response:
+      example:
+        success: true
+        roleId: roleId
+        operation: role_assigned
+        guildId: guildId
+        userId: userId
+      properties:
+        success:
+          type: boolean
+        operation:
+          enum:
+          - role_assigned
+          type: string
+        guildId:
+          type: string
+        userId:
+          type: string
+        roleId:
+          type: string
+    removeDiscordMemberRole_200_response:
+      example:
+        success: true
+        roleId: roleId
+        operation: role_removed
+        guildId: guildId
+        userId: userId
+      properties:
+        success:
+          type: boolean
+        operation:
+          enum:
+          - role_removed
+          type: string
+        guildId:
+          type: string
+        userId:
+          type: string
+        roleId:
+          type: string
+    listDiscordPinnedMessages_200_response_data_inner:
+      description: Raw Discord Message object — see DiscordPlatformData for embed/attachment
+        shapes.
+      example:
+        attachments:
+        - "{}"
+        - "{}"
+        author: "{}"
+        id: id
+        channel_id: channel_id
+        embeds:
+        - "{}"
+        - "{}"
+        content: content
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        channel_id:
+          type: string
+        content:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        author:
+          type: object
+        attachments:
+          items:
+            type: object
+          type: array
+        embeds:
+          items:
+            type: object
+          type: array
+    listDiscordPinnedMessages_200_response:
+      example:
+        data:
+        - attachments:
+          - "{}"
+          - "{}"
+          author: "{}"
+          id: id
+          channel_id: channel_id
+          embeds:
+          - "{}"
+          - "{}"
+          content: content
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - attachments:
+          - "{}"
+          - "{}"
+          author: "{}"
+          id: id
+          channel_id: channel_id
+          embeds:
+          - "{}"
+          - "{}"
+          content: content
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/listDiscordPinnedMessages_200_response_data_inner"
+          type: array
+    pinDiscordMessage_200_response:
+      example:
+        success: true
+        messageId: messageId
+        operation: message_pinned
+        channelId: channelId
+      properties:
+        success:
+          type: boolean
+        operation:
+          enum:
+          - message_pinned
+          type: string
+        channelId:
+          type: string
+        messageId:
+          type: string
+    unpinDiscordMessage_200_response:
+      example:
+        success: true
+        messageId: messageId
+        operation: message_unpinned
+        channelId: channelId
+      properties:
+        success:
+          type: boolean
+        operation:
+          enum:
+          - message_unpinned
+          type: string
+        channelId:
+          type: string
+        messageId:
+          type: string
+    listDiscordScheduledEvents_200_response:
+      example:
+        data:
+        - image: image
+          privacy_level: 0
+          entity_metadata:
+            location: location
+          description: description
+          entity_id: entity_id
+          scheduled_end_time: 2000-01-23T04:56:07.000+00:00
+          entity_type: 1
+          user_count: 5
+          guild_id: guild_id
+          creator_id: creator_id
+          name: name
+          id: id
+          channel_id: channel_id
+          scheduled_start_time: 2000-01-23T04:56:07.000+00:00
+          status: 6
+        - image: image
+          privacy_level: 0
+          entity_metadata:
+            location: location
+          description: description
+          entity_id: entity_id
+          scheduled_end_time: 2000-01-23T04:56:07.000+00:00
+          entity_type: 1
+          user_count: 5
+          guild_id: guild_id
+          creator_id: creator_id
+          name: name
+          id: id
+          channel_id: channel_id
+          scheduled_start_time: 2000-01-23T04:56:07.000+00:00
+          status: 6
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/DiscordScheduledEvent"
+          type: array
+    createDiscordScheduledEvent_request_entity_oneOf:
+      properties:
+        type:
+          enum:
+          - external
+          type: string
+        location:
+          description: "Where the event takes place (e.g. \"Zoom link\", \"123 Main\
+            \ St\")"
+          maxLength: 100
+          minLength: 1
+          type: string
+        endsAt:
+          format: date-time
+          type: string
+      required:
+      - endsAt
+      - location
+      - type
+    createDiscordScheduledEvent_request_entity_oneOf_1:
+      properties:
+        type:
+          enum:
+          - voice
+          type: string
+        channelId:
+          description: Voice channel snowflake.
+          type: string
+        endsAt:
+          format: date-time
+          type: string
+      required:
+      - channelId
+      - type
+    createDiscordScheduledEvent_request_entity_oneOf_2:
+      properties:
+        type:
+          enum:
+          - stage
+          type: string
+        channelId:
+          description: Stage channel snowflake.
+          type: string
+        endsAt:
+          format: date-time
+          type: string
+      required:
+      - channelId
+      - type
+    createDiscordScheduledEvent_request_entity:
+      oneOf:
+      - $ref: "#/components/schemas/createDiscordScheduledEvent_request_entity_oneOf"
+      - $ref: "#/components/schemas/createDiscordScheduledEvent_request_entity_oneOf_1"
+      - $ref: "#/components/schemas/createDiscordScheduledEvent_request_entity_oneOf_2"
+    createDiscordScheduledEvent_request:
+      properties:
+        accountId:
+          type: string
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        description:
+          maxLength: 1000
+          type: string
+        startsAt:
+          description: ISO 8601 start time. Must be in the future.
+          format: date-time
+          type: string
+        entity:
+          $ref: "#/components/schemas/createDiscordScheduledEvent_request_entity"
+        imageDataUri:
+          description: Optional cover image as a base64 data URI.
+          pattern: "^data:image/(png|jpeg|gif);base64,"
+          type: string
+      required:
+      - accountId
+      - entity
+      - name
+      - startsAt
+    createDiscordScheduledEvent_200_response:
+      example:
+        data:
+          image: image
+          privacy_level: 0
+          entity_metadata:
+            location: location
+          description: description
+          entity_id: entity_id
+          scheduled_end_time: 2000-01-23T04:56:07.000+00:00
+          entity_type: 1
+          user_count: 5
+          guild_id: guild_id
+          creator_id: creator_id
+          name: name
+          id: id
+          channel_id: channel_id
+          scheduled_start_time: 2000-01-23T04:56:07.000+00:00
+          status: 6
+      properties:
+        data:
+          $ref: "#/components/schemas/DiscordScheduledEvent"
+    deleteDiscordScheduledEvent_200_response:
+      example:
+        deleted: deleted
+        success: true
+      properties:
+        success:
+          type: boolean
+        deleted:
+          description: The deleted event's snowflake.
+          type: string
+    updateDiscordScheduledEvent_request:
+      properties:
+        accountId:
+          type: string
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        description:
+          maxLength: 1000
+          type: string
+        startsAt:
+          format: date-time
+          type: string
+        endsAt:
+          format: date-time
+          type: string
+        location:
+          description: For external events.
+          maxLength: 100
+          minLength: 1
+          type: string
+        status:
+          description: "Status transition. Most common: 'cancelled' to cancel an event."
+          enum:
+          - scheduled
+          - active
+          - completed
+          - cancelled
+          type: string
+        imageDataUri:
+          pattern: "^data:image/(png|jpeg|gif);base64,"
+          type: string
+      required:
+      - accountId
     listQueueSlots_200_response_oneOf:
       description: Single queue response (default behavior)
       example:
@@ -34791,6 +37217,9 @@ components:
             - review.updated
             - ad.status_changed
             - whatsapp.template.status_updated
+            - whatsapp.number.activated
+            - whatsapp.number.declined
+            - whatsapp.number.verification_required
             type: string
           minItems: 1
           type: array
@@ -34866,6 +37295,9 @@ components:
             - review.updated
             - ad.status_changed
             - whatsapp.template.status_updated
+            - whatsapp.number.activated
+            - whatsapp.number.declined
+            - whatsapp.number.verification_required
             type: string
           minItems: 1
           type: array
@@ -38158,18 +40590,27 @@ components:
     listWhatsAppCalls_200_response_calls_inner_billing:
       example:
         metaCostUSD: 6.027456183070403
-        totalCostUSD: 5.637376656633329
+        billableCostUSD: 5.637376656633329
+        totalCostUSD: 2.3021358869347655
         recordingCostUSD: 5.962133916683182
         currency: currency
         telnyxCostUSD: 1.4658129805029452
       properties:
         metaCostUSD:
+          description: "Meta per-minute charge, billed by Meta directly to your WABA.\
+            \ Display only; not billed by Zernio."
           type: number
         telnyxCostUSD:
           type: number
         recordingCostUSD:
           type: number
+        billableCostUSD:
+          description: Amount Zernio bills you = Telnyx leg + recording (excludes
+            Meta).
+          type: number
         totalCostUSD:
+          description: Full cost incl. the Meta portion you pay directly. Display
+            only.
           type: number
         currency:
           type: string
@@ -38187,7 +40628,8 @@ components:
         status: ringing
         billing:
           metaCostUSD: 6.027456183070403
-          totalCostUSD: 5.637376656633329
+          billableCostUSD: 5.637376656633329
+          totalCostUSD: 2.3021358869347655
           recordingCostUSD: 5.962133916683182
           currency: currency
           telnyxCostUSD: 1.4658129805029452
@@ -38244,7 +40686,8 @@ components:
           status: ringing
           billing:
             metaCostUSD: 6.027456183070403
-            totalCostUSD: 5.637376656633329
+            billableCostUSD: 5.637376656633329
+            totalCostUSD: 2.3021358869347655
             recordingCostUSD: 5.962133916683182
             currency: currency
             telnyxCostUSD: 1.4658129805029452
@@ -38260,7 +40703,8 @@ components:
           status: ringing
           billing:
             metaCostUSD: 6.027456183070403
-            totalCostUSD: 5.637376656633329
+            billableCostUSD: 5.637376656633329
+            totalCostUSD: 2.3021358869347655
             recordingCostUSD: 5.962133916683182
             currency: currency
             telnyxCostUSD: 1.4658129805029452
@@ -38337,26 +40781,36 @@ components:
       example:
         metaCostUSD: 1.4658129805029452
         metaMinutes: 6
-        totalCostUSD: 2.3021358869347655
+        billableCostUSD: 2.3021358869347655
+        totalCostUSD: 7.061401241503109
         recordingCostUSD: 5.637376656633329
         telnyxCostUSD: 5.962133916683182
       properties:
         metaMinutes:
           type: integer
         metaCostUSD:
+          description: "Estimated Meta per-minute charge, billed by Meta directly\
+            \ to your WABA. Display only; not billed by Zernio."
           type: number
         telnyxCostUSD:
           type: number
         recordingCostUSD:
           type: number
+        billableCostUSD:
+          description: Estimated amount Zernio bills you = Telnyx leg + recording
+            (excludes Meta).
+          type: number
         totalCostUSD:
+          description: Estimated full cost incl. the Meta portion you pay directly.
+            Display only.
           type: number
     getWhatsAppCallEstimate_200_response:
       example:
         breakdown:
           metaCostUSD: 1.4658129805029452
           metaMinutes: 6
-          totalCostUSD: 2.3021358869347655
+          billableCostUSD: 2.3021358869347655
+          totalCostUSD: 7.061401241503109
           recordingCostUSD: 5.637376656633329
           telnyxCostUSD: 5.962133916683182
         perMinuteUsd: 0.8008281904610115
@@ -38718,14 +41172,19 @@ components:
           type: boolean
     getWhatsAppPhoneNumbers_200_response_numbers_inner:
       example:
-        metaPreverifiedId: metaPreverifiedId
         country: country
+        endUserFirstName: endUserFirstName
+        regulatoryDeclineReason: regulatoryDeclineReason
+        provisionedAt: 2000-01-23T04:56:07.000+00:00
+        metaVerificationStatus: metaVerificationStatus
+        monthlyCents: 0
+        metaPreverifiedId: metaPreverifiedId
         createdAt: 2000-01-23T04:56:07.000+00:00
         phoneNumber: phoneNumber
+        endUserLastName: endUserLastName
         profileId: "{}"
-        provisionedAt: 2000-01-23T04:56:07.000+00:00
+        onfidoVerificationUrl: onfidoVerificationUrl
         _id: _id
-        metaVerificationStatus: metaVerificationStatus
         status: pending_payment
       properties:
         _id:
@@ -38737,12 +41196,17 @@ components:
         status:
           enum:
           - pending_payment
+          - pending_regulatory
+          - regulatory_declined
           - provisioning
           - active
           - suspended
           - releasing
           - released
           type: string
+        monthlyCents:
+          description: Per-country monthly price in cents ($2..$25).
+          type: integer
         profileId:
           type: object
         provisionedAt:
@@ -38752,39 +41216,115 @@ components:
           type: string
         metaVerificationStatus:
           type: string
+        onfidoVerificationUrl:
+          description: For regulated (Tier 3/4) numbers with an Onfido ID-verification
+            step — the link to forward to the end user. Set once the order is placed;
+            null otherwise. Poll this field after submitting KYC.
+          type: string
+          nullable: true
+        endUserFirstName:
+          type: string
+          nullable: true
+        endUserLastName:
+          type: string
+          nullable: true
+        regulatoryDeclineReason:
+          description: Reviewer rejection reason when status is regulatory_declined.
+          type: string
+          nullable: true
         createdAt:
           format: date-time
           type: string
+    getWhatsAppPhoneNumbers_200_response_sandbox_template:
+      example:
+        name: sandbox_start
+        language: en
+      properties:
+        name:
+          example: sandbox_start
+          type: string
+        language:
+          example: en
+          type: string
+    getWhatsAppPhoneNumbers_200_response_sandbox:
+      description: |
+        The shared WhatsApp sandbox (one Zernio-owned number, all users test
+        against it). Present when the sandbox is configured; null otherwise.
+        The `accountId` lets you address the sandbox in compose endpoints.
+        `template` is the only template a sandbox send is allowed to use.
+      example:
+        template:
+          name: sandbox_start
+          language: en
+        accountId: accountId
+        phoneNumber: "+12029087457"
+        isSandbox: true
+      properties:
+        phoneNumber:
+          example: "+12029087457"
+          type: string
+        accountId:
+          type: string
+          nullable: true
+        template:
+          $ref: "#/components/schemas/getWhatsAppPhoneNumbers_200_response_sandbox_template"
+        isSandbox:
+          type: boolean
+      nullable: true
     getWhatsAppPhoneNumbers_200_response:
       example:
         numbers:
-        - metaPreverifiedId: metaPreverifiedId
-          country: country
+        - country: country
+          endUserFirstName: endUserFirstName
+          regulatoryDeclineReason: regulatoryDeclineReason
+          provisionedAt: 2000-01-23T04:56:07.000+00:00
+          metaVerificationStatus: metaVerificationStatus
+          monthlyCents: 0
+          metaPreverifiedId: metaPreverifiedId
           createdAt: 2000-01-23T04:56:07.000+00:00
           phoneNumber: phoneNumber
+          endUserLastName: endUserLastName
           profileId: "{}"
-          provisionedAt: 2000-01-23T04:56:07.000+00:00
+          onfidoVerificationUrl: onfidoVerificationUrl
           _id: _id
-          metaVerificationStatus: metaVerificationStatus
           status: pending_payment
-        - metaPreverifiedId: metaPreverifiedId
-          country: country
+        - country: country
+          endUserFirstName: endUserFirstName
+          regulatoryDeclineReason: regulatoryDeclineReason
+          provisionedAt: 2000-01-23T04:56:07.000+00:00
+          metaVerificationStatus: metaVerificationStatus
+          monthlyCents: 0
+          metaPreverifiedId: metaPreverifiedId
           createdAt: 2000-01-23T04:56:07.000+00:00
           phoneNumber: phoneNumber
+          endUserLastName: endUserLastName
           profileId: "{}"
-          provisionedAt: 2000-01-23T04:56:07.000+00:00
+          onfidoVerificationUrl: onfidoVerificationUrl
           _id: _id
-          metaVerificationStatus: metaVerificationStatus
           status: pending_payment
+        sandbox:
+          template:
+            name: sandbox_start
+            language: en
+          accountId: accountId
+          phoneNumber: "+12029087457"
+          isSandbox: true
       properties:
         numbers:
           items:
             $ref: "#/components/schemas/getWhatsAppPhoneNumbers_200_response_numbers_inner"
           type: array
+        sandbox:
+          $ref: "#/components/schemas/getWhatsAppPhoneNumbers_200_response_sandbox"
     purchaseWhatsAppPhoneNumber_request:
       properties:
         profileId:
           description: Profile to associate the number with
+          type: string
+        country:
+          default: US
+          description: |
+            ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: "kyc_required", kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries.
           type: string
       required:
       - profileId
@@ -38827,11 +41367,257 @@ components:
       oneOf:
       - $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_200_response_oneOf"
       - $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_200_response_oneOf_1"
+    purchaseWhatsAppPhoneNumber_202_response:
+      example:
+        country: country
+        kycUrl: kycUrl
+        status: kyc_required
+      properties:
+        status:
+          enum:
+          - kyc_required
+          type: string
+        country:
+          type: string
+        kycUrl:
+          type: string
+    listWhatsAppNumberCountries_200_response_countries_inner:
+      example:
+        code: code
+        tier: 0
+        outboundCallingAvailable: true
+        monthlyCents: 6
+        needsKyc: true
+      properties:
+        code:
+          description: ISO 3166-1 alpha-2
+          type: string
+        tier:
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          type: integer
+        monthlyCents:
+          type: integer
+        needsKyc:
+          type: boolean
+        outboundCallingAvailable:
+          type: boolean
+    listWhatsAppNumberCountries_200_response:
+      example:
+        countries:
+        - code: code
+          tier: 0
+          outboundCallingAvailable: true
+          monthlyCents: 6
+          needsKyc: true
+        - code: code
+          tier: 0
+          outboundCallingAvailable: true
+          monthlyCents: 6
+          needsKyc: true
+      properties:
+        countries:
+          items:
+            $ref: "#/components/schemas/listWhatsAppNumberCountries_200_response_countries_inner"
+          type: array
+    searchAvailableWhatsAppNumbers_200_response_numbers_inner:
+      example:
+        phoneNumber: phoneNumber
+      properties:
+        phoneNumber:
+          type: string
+    searchAvailableWhatsAppNumbers_200_response:
+      example:
+        country: country
+        numberType: numberType
+        numbers:
+        - phoneNumber: phoneNumber
+        - phoneNumber: phoneNumber
+      properties:
+        country:
+          type: string
+        numberType:
+          type: string
+        numbers:
+          items:
+            $ref: "#/components/schemas/searchAvailableWhatsAppNumbers_200_response_numbers_inner"
+          type: array
+    getWhatsAppNumberKycForm_200_response_fields_inner:
+      example:
+        kind: text
+        description: description
+        label: label
+        requirementId: requirementId
+        localTo: localTo
+        example: example
+      properties:
+        requirementId:
+          type: string
+        label:
+          type: string
+        kind:
+          description: "\"action\" = an out-of-band verification (e.g. Onfido); not\
+            \ filled here, fulfilled after the order via a link."
+          enum:
+          - text
+          - date
+          - address
+          - file
+          - action
+          type: string
+        description:
+          description: Plain-English explanation of what to provide.
+          type: string
+          nullable: true
+        example:
+          description: Concrete example value.
+          type: string
+          nullable: true
+        localTo:
+          description: ISO country the value must be local to
+          type: string
+          nullable: true
+    getWhatsAppNumberKycForm_200_response_reusable:
+      description: Present when this account already has an approved verification
+        for the country that can be reused (skip the form).
+      example:
+        available: true
+        fromPhoneNumber: fromPhoneNumber
+      properties:
+        available:
+          type: boolean
+        fromPhoneNumber:
+          type: string
+      nullable: true
+    getWhatsAppNumberKycForm_200_response:
+      example:
+        country: country
+        numberType: numberType
+        fields:
+        - kind: text
+          description: description
+          label: label
+          requirementId: requirementId
+          localTo: localTo
+          example: example
+        - kind: text
+          description: description
+          label: label
+          requirementId: requirementId
+          localTo: localTo
+          example: example
+        reusable:
+          available: true
+          fromPhoneNumber: fromPhoneNumber
+      properties:
+        country:
+          type: string
+        numberType:
+          type: string
+        fields:
+          items:
+            $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response_fields_inner"
+          type: array
+        reusable:
+          $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response_reusable"
+    submitWhatsAppNumberKyc_request_documents_inner:
+      properties:
+        requirementId:
+          type: string
+        filename:
+          type: string
+        base64:
+          type: string
+    submitWhatsAppNumberKyc_request_address:
+      properties:
+        requirementId:
+          type: string
+        country_code:
+          type: string
+        business_name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        street_address:
+          type: string
+        locality:
+          type: string
+        administrative_area:
+          type: string
+        postal_code:
+          type: string
+    submitWhatsAppNumberKyc_request:
+      properties:
+        profileId:
+          type: string
+        country:
+          type: string
+        reuse:
+          description: Reuse a prior approved verification for this country (skips
+            document/field collection; places the order immediately).
+          type: boolean
+        endUserFirstName:
+          description: End user's legal first name. Required when the country has
+            an action/ID-verification (Onfido) requirement.
+          type: string
+        endUserLastName:
+          description: End user's legal last name. Same condition as endUserFirstName.
+          type: string
+        values:
+          additionalProperties:
+            type: string
+          description: requirementId → textual value
+        documents:
+          items:
+            $ref: "#/components/schemas/submitWhatsAppNumberKyc_request_documents_inner"
+          type: array
+        address:
+          $ref: "#/components/schemas/submitWhatsAppNumberKyc_request_address"
+      required:
+      - country
+      - profileId
+    submitWhatsAppNumberKyc_200_response_phoneNumber:
+      example:
+        country: country
+        id: id
+        status: status
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        country:
+          type: string
+    submitWhatsAppNumberKyc_200_response:
+      example:
+        phoneNumber:
+          country: country
+          id: id
+          status: status
+        status: kyc_submitted
+      properties:
+        status:
+          enum:
+          - kyc_submitted
+          - kyc_reused
+          - kyc_already_submitted
+          type: string
+        phoneNumber:
+          $ref: "#/components/schemas/submitWhatsAppNumberKyc_200_response_phoneNumber"
     getWhatsAppPhoneNumber_200_response_phoneNumber:
       example:
         metaPreverifiedId: metaPreverifiedId
         country: country
         phoneNumber: phoneNumber
+        endUserFirstName: endUserFirstName
+        endUserLastName: endUserLastName
+        regulatoryDeclineReason: regulatoryDeclineReason
+        onfidoVerificationUrl: onfidoVerificationUrl
         provisionedAt: 2000-01-23T04:56:07.000+00:00
         id: id
         metaVerificationStatus: metaVerificationStatus
@@ -38844,6 +41630,8 @@ components:
         status:
           enum:
           - pending_payment
+          - pending_regulatory
+          - regulatory_declined
           - provisioning
           - active
           - suspended
@@ -38856,6 +41644,21 @@ components:
           type: string
         metaVerificationStatus:
           type: string
+        onfidoVerificationUrl:
+          description: For a regulated number with an Onfido ID step — the link to
+            forward to the end user. Appears once the order is placed; null otherwise.
+          type: string
+          nullable: true
+        endUserFirstName:
+          type: string
+          nullable: true
+        endUserLastName:
+          type: string
+          nullable: true
+        regulatoryDeclineReason:
+          description: Reviewer rejection reason when status is regulatory_declined.
+          type: string
+          nullable: true
         provisionedAt:
           format: date-time
           type: string
@@ -38865,6 +41668,10 @@ components:
           metaPreverifiedId: metaPreverifiedId
           country: country
           phoneNumber: phoneNumber
+          endUserFirstName: endUserFirstName
+          endUserLastName: endUserLastName
+          regulatoryDeclineReason: regulatoryDeclineReason
+          onfidoVerificationUrl: onfidoVerificationUrl
           provisionedAt: 2000-01-23T04:56:07.000+00:00
           id: id
           metaVerificationStatus: metaVerificationStatus
@@ -38902,6 +41709,57 @@ components:
           type: string
         phoneNumber:
           $ref: "#/components/schemas/releaseWhatsAppPhoneNumber_200_response_phoneNumber"
+    listWhatsAppSandboxSessions_200_response:
+      example:
+        sessions:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          activatedAt: 2000-01-23T04:56:07.000+00:00
+          phoneE164: "34688246216"
+          id: id
+          expiresAt: 2000-01-23T04:56:07.000+00:00
+          status: pending
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          activatedAt: 2000-01-23T04:56:07.000+00:00
+          phoneE164: "34688246216"
+          id: id
+          expiresAt: 2000-01-23T04:56:07.000+00:00
+          status: pending
+        sandboxNumber: "+12029087457"
+      properties:
+        sessions:
+          items:
+            $ref: "#/components/schemas/WhatsAppSandboxSession"
+          type: array
+        sandboxNumber:
+          description: The shared sandbox phone number in E.164 form.
+          example: "+12029087457"
+          type: string
+          nullable: true
+    createWhatsAppSandboxSession_request:
+      properties:
+        phone:
+          description: "Recipient phone in international format. Digits, spaces, dashes\
+            \ and a leading `+` are all accepted; the server normalizes to E.164 digits-only."
+          example: "+34688246216"
+          type: string
+      required:
+      - phone
+    createWhatsAppSandboxSession_200_response:
+      example:
+        session:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          activatedAt: 2000-01-23T04:56:07.000+00:00
+          phoneE164: "34688246216"
+          id: id
+          expiresAt: 2000-01-23T04:56:07.000+00:00
+          status: pending
+        sandboxNumber: "+12029087457"
+      properties:
+        session:
+          $ref: "#/components/schemas/WhatsAppSandboxSession"
+        sandboxNumber:
+          example: "+12029087457"
+          type: string
     listWhatsAppGroupChats_200_response_groups_inner:
       example:
         createdAt: createdAt
@@ -39952,8 +42810,10 @@ components:
           type: string
     getContact_200_response_contact:
       example:
+        messagesReceivedCount: 6
         notes: notes
         avatarUrl: avatarUrl
+        lastMessageSentAt: 2000-01-23T04:56:07.000+00:00
         customFields: "{}"
         isBlocked: true
         tags:
@@ -39967,7 +42827,9 @@ components:
         name: name
         company: company
         id: id
+        lastMessageReceivedAt: 2000-01-23T04:56:07.000+00:00
         email: email
+        messagesSentCount: 0
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -39988,6 +42850,26 @@ components:
           type: boolean
         isBlocked:
           type: boolean
+        messagesSentCount:
+          description: "Messages sent to the contact, derived live from message history\
+            \ across all linked conversations."
+          type: integer
+        messagesReceivedCount:
+          description: "Messages received from the contact, derived live from message\
+            \ history across all linked conversations."
+          type: integer
+        lastMessageSentAt:
+          description: "Timestamp of the most recent outgoing message, or null if\
+            \ none."
+          format: date-time
+          type: string
+          nullable: true
+        lastMessageReceivedAt:
+          description: "Timestamp of the most recent incoming message, or null if\
+            \ none."
+          format: date-time
+          type: string
+          nullable: true
         customFields:
           type: object
         notes:
@@ -40004,6 +42886,7 @@ components:
           type: string
     getContact_200_response_channels_inner:
       example:
+        lastActiveAt: 2000-01-23T04:56:07.000+00:00
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
         isSubscribed: true
@@ -40027,13 +42910,20 @@ components:
           type: boolean
         conversationId:
           type: string
+        lastActiveAt:
+          description: "Most recent message (either direction) in this channel's conversation,\
+            \ or null if none."
+          format: date-time
+          type: string
+          nullable: true
         createdAt:
           format: date-time
           type: string
     getContact_200_response:
       example:
         channels:
-        - accountId: accountId
+        - lastActiveAt: 2000-01-23T04:56:07.000+00:00
+          accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
           isSubscribed: true
           conversationId: conversationId
@@ -40041,7 +42931,8 @@ components:
           id: id
           platform: platform
           platformIdentifier: platformIdentifier
-        - accountId: accountId
+        - lastActiveAt: 2000-01-23T04:56:07.000+00:00
+          accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
           isSubscribed: true
           conversationId: conversationId
@@ -40051,8 +42942,10 @@ components:
           platformIdentifier: platformIdentifier
         success: true
         contact:
+          messagesReceivedCount: 6
           notes: notes
           avatarUrl: avatarUrl
+          lastMessageSentAt: 2000-01-23T04:56:07.000+00:00
           customFields: "{}"
           isBlocked: true
           tags:
@@ -40066,7 +42959,9 @@ components:
           name: name
           company: company
           id: id
+          lastMessageReceivedAt: 2000-01-23T04:56:07.000+00:00
           email: email
+          messagesSentCount: 0
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         success:
@@ -41075,6 +43970,915 @@ components:
         skipped:
           description: Number skipped (duplicates or missing channels)
           type: integer
+    listWorkflows_200_response_workflows_inner:
+      example:
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        totalCompleted: 1
+        accountName: accountName
+        name: name
+        totalExited: 5
+        description: description
+        nodeCount: 0
+        id: id
+        totalStarted: 6
+        platform: platform
+        status: draft
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        platform:
+          type: string
+        accountId:
+          type: string
+        accountName:
+          type: string
+        status:
+          enum:
+          - draft
+          - active
+          - paused
+          type: string
+        nodeCount:
+          type: integer
+        totalStarted:
+          type: integer
+        totalCompleted:
+          type: integer
+        totalExited:
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+    listWorkflows_200_response:
+      example:
+        pagination:
+          total: 1
+          limit: 5
+          hasMore: true
+          skip: 5
+        success: true
+        workflows:
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          totalCompleted: 1
+          accountName: accountName
+          name: name
+          totalExited: 5
+          description: description
+          nodeCount: 0
+          id: id
+          totalStarted: 6
+          platform: platform
+          status: draft
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          totalCompleted: 1
+          accountName: accountName
+          name: name
+          totalExited: 5
+          description: description
+          nodeCount: 0
+          id: id
+          totalStarted: 6
+          platform: platform
+          status: draft
+      properties:
+        success:
+          type: boolean
+        workflows:
+          items:
+            $ref: "#/components/schemas/listWorkflows_200_response_workflows_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listContacts_200_response_pagination"
+    createWorkflow_request:
+      properties:
+        profileId:
+          type: string
+        accountId:
+          type: string
+        platform:
+          default: whatsapp
+          enum:
+          - whatsapp
+          - instagram
+          - facebook
+          - telegram
+          - twitter
+          - bluesky
+          - reddit
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        nodes:
+          items:
+            $ref: "#/components/schemas/WorkflowNode"
+          type: array
+        edges:
+          items:
+            $ref: "#/components/schemas/WorkflowEdge"
+          type: array
+        entryNodeId:
+          description: The trigger node id; derived from the single trigger node if
+            omitted
+          type: string
+      required:
+      - accountId
+      - name
+      - profileId
+    createWorkflow_200_response_workflow:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        entryNodeId: entryNodeId
+        name: name
+        description: description
+        nodeCount: 0
+        id: id
+        platform: platform
+        status: status
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        platform:
+          type: string
+        status:
+          type: string
+        nodeCount:
+          type: integer
+        entryNodeId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+    createWorkflow_200_response:
+      example:
+        workflow:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          entryNodeId: entryNodeId
+          name: name
+          description: description
+          nodeCount: 0
+          id: id
+          platform: platform
+          status: status
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/createWorkflow_200_response_workflow"
+    getWorkflow_200_response_workflow:
+      example:
+        totalCompleted: 5
+        entryNodeId: entryNodeId
+        edges:
+        - sourceHandle: sourceHandle
+          id: id
+          source: source
+          target: target
+        - sourceHandle: sourceHandle
+          id: id
+          source: source
+          target: target
+        description: description
+        platform: platform
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        nodes:
+        - id: id
+          position:
+            x: 0.8008281904610115
+            "y": 6.027456183070403
+          type: trigger
+          config:
+            key: ""
+        - id: id
+          position:
+            x: 0.8008281904610115
+            "y": 6.027456183070403
+          type: trigger
+          config:
+            key: ""
+        profileId: profileId
+        name: name
+        totalExited: 5
+        id: id
+        totalStarted: 1
+        status: draft
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        platform:
+          type: string
+        accountId:
+          type: string
+        profileId:
+          type: string
+        status:
+          enum:
+          - draft
+          - active
+          - paused
+          type: string
+        entryNodeId:
+          type: string
+        nodes:
+          items:
+            $ref: "#/components/schemas/WorkflowNode"
+          type: array
+        edges:
+          items:
+            $ref: "#/components/schemas/WorkflowEdge"
+          type: array
+        totalStarted:
+          type: integer
+        totalCompleted:
+          type: integer
+        totalExited:
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+    getWorkflow_200_response:
+      example:
+        workflow:
+          totalCompleted: 5
+          entryNodeId: entryNodeId
+          edges:
+          - sourceHandle: sourceHandle
+            id: id
+            source: source
+            target: target
+          - sourceHandle: sourceHandle
+            id: id
+            source: source
+            target: target
+          description: description
+          platform: platform
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          nodes:
+          - id: id
+            position:
+              x: 0.8008281904610115
+              "y": 6.027456183070403
+            type: trigger
+            config:
+              key: ""
+          - id: id
+            position:
+              x: 0.8008281904610115
+              "y": 6.027456183070403
+            type: trigger
+            config:
+              key: ""
+          profileId: profileId
+          name: name
+          totalExited: 5
+          id: id
+          totalStarted: 1
+          status: draft
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/getWorkflow_200_response_workflow"
+    updateWorkflow_request:
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        nodes:
+          items:
+            $ref: "#/components/schemas/WorkflowNode"
+          type: array
+        edges:
+          items:
+            $ref: "#/components/schemas/WorkflowEdge"
+          type: array
+        entryNodeId:
+          type: string
+          nullable: true
+        accountId:
+          description: |
+            Reassign the workflow to a different `SocialAccount`. `platform` and `profileId` are derived server-side from the new account (the client never sends them directly). The account must belong to the caller's workspace and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit). Changing this triggers a graph revalidation against the new platform.
+          type: string
+    updateWorkflow_200_response_workflow:
+      example:
+        entryNodeId: entryNodeId
+        name: name
+        description: description
+        nodeCount: 0
+        id: id
+        status: status
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        entryNodeId:
+          type: string
+        nodeCount:
+          type: integer
+        updatedAt:
+          format: date-time
+          type: string
+    updateWorkflow_200_response:
+      example:
+        workflow:
+          entryNodeId: entryNodeId
+          name: name
+          description: description
+          nodeCount: 0
+          id: id
+          status: status
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/updateWorkflow_200_response_workflow"
+    activateWorkflow_200_response_workflow:
+      example:
+        entryNodeId: entryNodeId
+        id: id
+        status: status
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        entryNodeId:
+          type: string
+    activateWorkflow_200_response:
+      example:
+        workflow:
+          entryNodeId: entryNodeId
+          id: id
+          status: status
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/activateWorkflow_200_response_workflow"
+    pauseWorkflow_200_response:
+      example:
+        workflow:
+          id: id
+          status: status
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/cancelBroadcast_200_response_broadcast"
+    listWorkflowExecutions_200_response_executions_inner_waitingFor:
+      example:
+        kind: timer
+        nodeId: nodeId
+      properties:
+        kind:
+          enum:
+          - timer
+          - reply
+          type: string
+        nodeId:
+          type: string
+      nullable: true
+    listWorkflowExecutions_200_response_executions_inner:
+      example:
+        variables:
+          key: ""
+        completedAt: 2000-01-23T04:56:07.000+00:00
+        lastError: lastError
+        conversationId: conversationId
+        platformIdentifier: platformIdentifier
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        waitingFor:
+          kind: timer
+          nodeId: nodeId
+        currentNodeId: currentNodeId
+        id: id
+        resumeAt: 2000-01-23T04:56:07.000+00:00
+        stepCount: 0
+        status: running
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        status:
+          enum:
+          - running
+          - waiting
+          - completed
+          - exited
+          - failed
+          type: string
+        currentNodeId:
+          type: string
+        waitingFor:
+          $ref: "#/components/schemas/listWorkflowExecutions_200_response_executions_inner_waitingFor"
+        variables:
+          additionalProperties: true
+          type: object
+        platformIdentifier:
+          type: string
+        conversationId:
+          type: string
+        stepCount:
+          type: integer
+        lastError:
+          type: string
+          nullable: true
+        resumeAt:
+          format: date-time
+          type: string
+          nullable: true
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        completedAt:
+          format: date-time
+          type: string
+          nullable: true
+    listWorkflowExecutions_200_response:
+      example:
+        executions:
+        - variables:
+            key: ""
+          completedAt: 2000-01-23T04:56:07.000+00:00
+          lastError: lastError
+          conversationId: conversationId
+          platformIdentifier: platformIdentifier
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          waitingFor:
+            kind: timer
+            nodeId: nodeId
+          currentNodeId: currentNodeId
+          id: id
+          resumeAt: 2000-01-23T04:56:07.000+00:00
+          stepCount: 0
+          status: running
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - variables:
+            key: ""
+          completedAt: 2000-01-23T04:56:07.000+00:00
+          lastError: lastError
+          conversationId: conversationId
+          platformIdentifier: platformIdentifier
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          waitingFor:
+            kind: timer
+            nodeId: nodeId
+          currentNodeId: currentNodeId
+          id: id
+          resumeAt: 2000-01-23T04:56:07.000+00:00
+          stepCount: 0
+          status: running
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        pagination:
+          total: 1
+          limit: 5
+          hasMore: true
+          skip: 5
+        success: true
+      properties:
+        success:
+          type: boolean
+        executions:
+          items:
+            $ref: "#/components/schemas/listWorkflowExecutions_200_response_executions_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listContacts_200_response_pagination"
+    triggerWorkflow_request:
+      description: Provide either `to` (WhatsApp phone) or `conversationId`.
+      properties:
+        to:
+          description: Recipient phone (WhatsApp only)
+          type: string
+        conversationId:
+          description: An existing conversation to run in (required for non-WhatsApp
+            workflows)
+          type: string
+        text:
+          description: Simulated inbound text
+          type: string
+    triggerWorkflow_200_response_execution:
+      example:
+        variables:
+          key: ""
+        waitingFor: "{}"
+        conversationId: conversationId
+        currentNodeId: currentNodeId
+        id: id
+        status: status
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        currentNodeId:
+          type: string
+        waitingFor:
+          type: object
+          nullable: true
+        variables:
+          additionalProperties: true
+          type: object
+        conversationId:
+          type: string
+      nullable: true
+    triggerWorkflow_200_response:
+      example:
+        execution:
+          variables:
+            key: ""
+          waitingFor: "{}"
+          conversationId: conversationId
+          currentNodeId: currentNodeId
+          id: id
+          status: status
+        success: true
+      properties:
+        success:
+          type: boolean
+        execution:
+          $ref: "#/components/schemas/triggerWorkflow_200_response_execution"
+    listWorkflowExecutionEvents_200_response_execution:
+      example:
+        completedAt: 2000-01-23T04:56:07.000+00:00
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        status: running
+      properties:
+        id:
+          type: string
+        status:
+          enum:
+          - running
+          - waiting
+          - completed
+          - exited
+          - failed
+          type: string
+        startedAt:
+          format: date-time
+          type: string
+          nullable: true
+        completedAt:
+          format: date-time
+          type: string
+          nullable: true
+    listWorkflowExecutionEvents_200_response:
+      example:
+        execution:
+          completedAt: 2000-01-23T04:56:07.000+00:00
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          status: running
+        success: true
+        events:
+        - sourceHandle: sourceHandle
+          at: 2000-01-23T04:56:07.000+00:00
+          meta:
+            key: ""
+          errorMessage: errorMessage
+          action: execution_started
+          nodeType: nodeType
+          nodeId: nodeId
+          durationMs: 0
+          status: success
+        - sourceHandle: sourceHandle
+          at: 2000-01-23T04:56:07.000+00:00
+          meta:
+            key: ""
+          errorMessage: errorMessage
+          action: execution_started
+          nodeType: nodeType
+          nodeId: nodeId
+          durationMs: 0
+          status: success
+      properties:
+        success:
+          type: boolean
+        execution:
+          $ref: "#/components/schemas/listWorkflowExecutionEvents_200_response_execution"
+        events:
+          description: Events in chronological order (oldest first).
+          items:
+            $ref: "#/components/schemas/WorkflowExecutionEvent"
+          type: array
+    duplicateWorkflow_201_response_workflow:
+      example:
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        profileId: profileId
+        entryNodeId: entryNodeId
+        name: name
+        description: description
+        nodeCount: 0
+        id: id
+        platform: platform
+        status: draft
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          enum:
+          - draft
+          type: string
+        platform:
+          type: string
+        accountId:
+          type: string
+        profileId:
+          type: string
+        entryNodeId:
+          type: string
+          nullable: true
+        nodeCount:
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+    duplicateWorkflow_201_response:
+      example:
+        workflow:
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          profileId: profileId
+          entryNodeId: entryNodeId
+          name: name
+          description: description
+          nodeCount: 0
+          id: id
+          platform: platform
+          status: draft
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/duplicateWorkflow_201_response_workflow"
+    listWorkflowVersions_200_response_versions_inner:
+      example:
+        createdByEmail: createdByEmail
+        restoredFromVersion: 6
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        createdBy: createdBy
+        name: name
+        description: description
+        version: 0
+      properties:
+        version:
+          description: Monotonically increasing version number
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        createdBy:
+          description: User id that authored this version
+          type: string
+          nullable: true
+        createdByEmail:
+          description: Denormalized email so the history UI can render without a join
+          type: string
+          nullable: true
+        restoredFromVersion:
+          description: When non-null
+          type: integer
+          nullable: true
+        createdAt:
+          format: date-time
+          type: string
+    listWorkflowVersions_200_response:
+      example:
+        versions:
+        - createdByEmail: createdByEmail
+          restoredFromVersion: 6
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          createdBy: createdBy
+          name: name
+          description: description
+          version: 0
+        - createdByEmail: createdByEmail
+          restoredFromVersion: 6
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          createdBy: createdBy
+          name: name
+          description: description
+          version: 0
+        success: true
+      properties:
+        success:
+          type: boolean
+        versions:
+          description: Versions in reverse chronological order (newest first).
+          items:
+            $ref: "#/components/schemas/listWorkflowVersions_200_response_versions_inner"
+          type: array
+    getWorkflowVersion_200_response_version:
+      example:
+        entryNodeId: entryNodeId
+        edges:
+        - sourceHandle: sourceHandle
+          id: id
+          source: source
+          target: target
+        - sourceHandle: sourceHandle
+          id: id
+          source: source
+          target: target
+        description: description
+        version: 0
+        platform: platform
+        createdByEmail: createdByEmail
+        accountId: accountId
+        restoredFromVersion: 6
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        nodes:
+        - id: id
+          position:
+            x: 0.8008281904610115
+            "y": 6.027456183070403
+          type: trigger
+          config:
+            key: ""
+        - id: id
+          position:
+            x: 0.8008281904610115
+            "y": 6.027456183070403
+          type: trigger
+          config:
+            key: ""
+        createdBy: createdBy
+        profileId: profileId
+        name: name
+      properties:
+        version:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        entryNodeId:
+          type: string
+          nullable: true
+        nodes:
+          items:
+            $ref: "#/components/schemas/WorkflowNode"
+          type: array
+        edges:
+          items:
+            $ref: "#/components/schemas/WorkflowEdge"
+          type: array
+        platform:
+          type: string
+        accountId:
+          type: string
+        profileId:
+          type: string
+        createdBy:
+          type: string
+          nullable: true
+        createdByEmail:
+          type: string
+          nullable: true
+        restoredFromVersion:
+          type: integer
+          nullable: true
+        createdAt:
+          format: date-time
+          type: string
+    getWorkflowVersion_200_response:
+      example:
+        success: true
+        version:
+          entryNodeId: entryNodeId
+          edges:
+          - sourceHandle: sourceHandle
+            id: id
+            source: source
+            target: target
+          - sourceHandle: sourceHandle
+            id: id
+            source: source
+            target: target
+          description: description
+          version: 0
+          platform: platform
+          createdByEmail: createdByEmail
+          accountId: accountId
+          restoredFromVersion: 6
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          nodes:
+          - id: id
+            position:
+              x: 0.8008281904610115
+              "y": 6.027456183070403
+            type: trigger
+            config:
+              key: ""
+          - id: id
+            position:
+              x: 0.8008281904610115
+              "y": 6.027456183070403
+            type: trigger
+            config:
+              key: ""
+          createdBy: createdBy
+          profileId: profileId
+          name: name
+      properties:
+        success:
+          type: boolean
+        version:
+          $ref: "#/components/schemas/getWorkflowVersion_200_response_version"
+    restoreWorkflowVersion_200_response_workflow:
+      example:
+        entryNodeId: entryNodeId
+        name: name
+        description: description
+        nodeCount: 0
+        id: id
+        status: status
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        entryNodeId:
+          type: string
+          nullable: true
+        nodeCount:
+          type: integer
+        updatedAt:
+          format: date-time
+          type: string
+    restoreWorkflowVersion_200_response:
+      example:
+        restoredFromVersion: 6
+        workflow:
+          entryNodeId: entryNodeId
+          name: name
+          description: description
+          nodeCount: 0
+          id: id
+          status: status
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/restoreWorkflowVersion_200_response_workflow"
+        restoredFromVersion:
+          type: integer
     listSequences_200_response_sequences_inner:
       example:
         exitOnUnsubscribe: true
@@ -41650,9 +45454,13 @@ components:
     listCommentAutomations_200_response_automations_inner_stats:
       example:
         triggered: 0
+        read: 9
         dmsFailed: 1
+        linkClicks: 5
         uniqueContacts: 5
         dmsSent: 6
+        delivered: 7
+        uniqueClicks: 2
       properties:
         triggered:
           type: integer
@@ -41661,6 +45469,18 @@ components:
         dmsFailed:
           type: integer
         uniqueContacts:
+          type: integer
+        linkClicks:
+          description: Total clicks on tracked links (bots/prefetch excluded).
+          type: integer
+        uniqueClicks:
+          description: Distinct people who clicked a tracked link.
+          type: integer
+        delivered:
+          description: DMs confirmed delivered (Messenger; IG emits no delivery receipt).
+          type: integer
+        read:
+          description: DMs confirmed read (IG messaging_seen / Messenger message_reads).
           type: integer
     listCommentAutomations_200_response_automations_inner:
       example:
@@ -41680,15 +45500,22 @@ components:
         - keywords
         - keywords
         commentReply: commentReply
+        trigger: comment
         isActive: true
+        linkTracking: true
         platform: instagram
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
+        clickTag: clickTag
         stats:
           triggered: 0
+          read: 9
           dmsFailed: 1
+          linkClicks: 5
           uniqueContacts: 5
           dmsSent: 6
+          delivered: 7
+          uniqueClicks: 2
         name: name
         postTitle: postTitle
         id: id
@@ -41703,6 +45530,11 @@ components:
           enum:
           - instagram
           - facebook
+          type: string
+        trigger:
+          enum:
+          - comment
+          - story_reply
           type: string
         accountId:
           type: string
@@ -41727,6 +45559,13 @@ components:
             $ref: "#/components/schemas/DmButton"
           type: array
         commentReply:
+          type: string
+        linkTracking:
+          description: Whether link buttons in the DM are wrapped in a tracked redirect
+            to count clicks.
+          type: boolean
+        clickTag:
+          description: Tag applied to a contact when they click a tracked link.
           type: string
         isActive:
           type: boolean
@@ -41754,15 +45593,22 @@ components:
           - keywords
           - keywords
           commentReply: commentReply
+          trigger: comment
           isActive: true
+          linkTracking: true
           platform: instagram
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          clickTag: clickTag
           stats:
             triggered: 0
+            read: 9
             dmsFailed: 1
+            linkClicks: 5
             uniqueContacts: 5
             dmsSent: 6
+            delivered: 7
+            uniqueClicks: 2
           name: name
           postTitle: postTitle
           id: id
@@ -41784,15 +45630,22 @@ components:
           - keywords
           - keywords
           commentReply: commentReply
+          trigger: comment
           isActive: true
+          linkTracking: true
           platform: instagram
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          clickTag: clickTag
           stats:
             triggered: 0
+            read: 9
             dmsFailed: 1
+            linkClicks: 5
             uniqueContacts: 5
             dmsSent: 6
+            delivered: 7
+            uniqueClicks: 2
           name: name
           postTitle: postTitle
           id: id
@@ -41813,9 +45666,18 @@ components:
         accountId:
           description: Instagram or Facebook account ID
           type: string
+        trigger:
+          default: comment
+          description: "What fires the automation. 'comment' (keyword comment on a\
+            \ post) or 'story_reply' (keyword reply to an Instagram story). For 'story_reply',\
+            \ platformPostId is the story media id (omit for any story)."
+          enum:
+          - comment
+          - story_reply
+          type: string
         platformPostId:
-          description: Platform media/post ID. Omit for an account-wide (any-post)
-            automation.
+          description: Platform media/post ID (or story media id when trigger=story_reply).
+            Omit for an account-wide (any-post / any-story) automation.
           type: string
         postId:
           description: Zernio post ID. Required only when also targeting a specific
@@ -41852,6 +45714,16 @@ components:
         commentReply:
           description: Optional public reply to the comment
           type: string
+        linkTracking:
+          default: true
+          description: Wrap link buttons in the DM in a tracked redirect so clicks
+            are counted (Link Clicks / CTR). Pass false to send links exactly as written.
+            Defaults to on.
+          type: boolean
+        clickTag:
+          description: Optional tag applied to a contact when they click a tracked
+            link (requires linkTracking). Lets you segment clickers for broadcasts/sequences.
+          type: string
       required:
       - accountId
       - dmMessage
@@ -41872,7 +45744,6 @@ components:
     createCommentAutomation_200_response_automation:
       example:
         dmMessage: dmMessage
-        createdAt: 2000-01-23T04:56:07.000+00:00
         buttons:
         - payload: payload
           phone: phone
@@ -41888,14 +45759,18 @@ components:
         - keywords
         - keywords
         commentReply: commentReply
+        trigger: comment
+        isActive: true
+        linkTracking: true
+        platform: platform
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        clickTag: clickTag
         stats:
           totalFailed: 1
           totalSent: 6
           totalTriggered: 0
         name: name
         id: id
-        isActive: true
-        platform: platform
         matchMode: exact
         platformPostId: platformPostId
       properties:
@@ -41904,6 +45779,11 @@ components:
         name:
           type: string
         platform:
+          type: string
+        trigger:
+          enum:
+          - comment
+          - story_reply
           type: string
         platformPostId:
           type: string
@@ -41925,6 +45805,10 @@ components:
           type: array
         commentReply:
           type: string
+        linkTracking:
+          type: boolean
+        clickTag:
+          type: string
         isActive:
           type: boolean
         stats:
@@ -41936,7 +45820,6 @@ components:
       example:
         automation:
           dmMessage: dmMessage
-          createdAt: 2000-01-23T04:56:07.000+00:00
           buttons:
           - payload: payload
             phone: phone
@@ -41952,14 +45835,18 @@ components:
           - keywords
           - keywords
           commentReply: commentReply
+          trigger: comment
+          isActive: true
+          linkTracking: true
+          platform: platform
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          clickTag: clickTag
           stats:
             totalFailed: 1
             totalSent: 6
             totalTriggered: 0
           name: name
           id: id
-          isActive: true
-          platform: platform
           matchMode: exact
           platformPostId: platformPostId
         success: true
@@ -41986,11 +45873,14 @@ components:
         - keywords
         - keywords
         commentReply: commentReply
+        trigger: comment
         postId: postId
         isActive: true
+        linkTracking: true
         platform: platform
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
+        clickTag: clickTag
         stats:
           totalFailed: 1
           totalSent: 6
@@ -42007,6 +45897,11 @@ components:
         name:
           type: string
         platform:
+          type: string
+        trigger:
+          enum:
+          - comment
+          - story_reply
           type: string
         accountId:
           type: string
@@ -42033,6 +45928,10 @@ components:
             $ref: "#/components/schemas/DmButton"
           type: array
         commentReply:
+          type: string
+        linkTracking:
+          type: boolean
+        clickTag:
           type: string
         isActive:
           type: boolean
@@ -42111,11 +46010,14 @@ components:
           - keywords
           - keywords
           commentReply: commentReply
+          trigger: comment
           postId: postId
           isActive: true
+          linkTracking: true
           platform: platform
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          clickTag: clickTag
           stats:
             totalFailed: 1
             totalSent: 6
@@ -42179,6 +46081,14 @@ components:
           maxItems: 3
           type: array
         commentReply:
+          type: string
+        linkTracking:
+          description: Wrap link buttons in a tracked redirect to count clicks. Pass
+            false to send links untouched.
+          type: boolean
+        clickTag:
+          description: Tag applied to a contact when they click a tracked link (requires
+            linkTracking). Empty string clears it.
           type: string
         isActive:
           type: boolean
@@ -43997,6 +47907,7 @@ components:
         name: name
         currency: currency
         id: id
+        trigger: comment
         platform: platform
         status: status
       properties:
@@ -44005,6 +47916,11 @@ components:
         name:
           type: string
         platform:
+          type: string
+        trigger:
+          enum:
+          - comment
+          - story_reply
           type: string
         status:
           type: string
@@ -44199,6 +48115,7 @@ components:
           name: name
           currency: currency
           id: id
+          trigger: comment
           platform: platform
           status: status
       properties:
@@ -46701,6 +50618,7 @@ components:
           minLength: 1
           type: string
         radius:
+          minimum: 0
           type: number
         distance_unit:
           enum:
@@ -46725,6 +50643,33 @@ components:
           type: string
       required:
       - key
+    createCtwaAd_request_customLocations_inner:
+      properties:
+        latitude:
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          minimum: 0
+          type: number
+        distanceUnit:
+          enum:
+          - mile
+          - kilometer
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+      required:
+      - distanceUnit
+      - latitude
+      - longitude
+      - radius
     createCtwaAd_request:
       description: |
         In addition to the `required` list, the request must use
@@ -46860,7 +50805,7 @@ components:
             Use for targeting a radius around a specific lat/long when
             no Meta city/region key fits. `distanceUnit` is required.
           items:
-            $ref: "#/components/schemas/createStandaloneAd_request_customLocations_inner"
+            $ref: "#/components/schemas/createCtwaAd_request_customLocations_inner"
           type: array
         ageMin:
           maximum: 65
@@ -47146,6 +51091,74 @@ components:
           type: string
         stats:
           $ref: "#/components/schemas/getTrackingTagStats_200_response_stats"
+    onWhatsAppNumberActivated_request_number:
+      properties:
+        id:
+          type: string
+        phoneNumber:
+          type: string
+        country:
+          type: string
+        profileId:
+          type: string
+    onWhatsAppNumberActivated_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.number.activated
+        timestamp:
+          format: date-time
+          type: string
+        number:
+          $ref: "#/components/schemas/onWhatsAppNumberActivated_request_number"
+    onWhatsAppNumberDeclined_request_number:
+      properties:
+        id: {}
+        phoneNumber: {}
+        country: {}
+        profileId: {}
+    onWhatsAppNumberDeclined_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.number.declined
+        timestamp:
+          format: date-time
+          type: string
+        number:
+          $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
+        reason:
+          type: string
+          nullable: true
+    onWhatsAppNumberVerificationRequired_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.number.verification_required
+        timestamp:
+          format: date-time
+          type: string
+        number:
+          $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
+        verificationUrl:
+          type: string
+    WorkflowNode_position:
+      description: Canvas coordinates (ignored by the executor; used by the visual
+        builder).
+      example:
+        x: 0.8008281904610115
+        "y": 6.027456183070403
+      properties:
+        x:
+          type: number
+        "y":
+          type: number
     BulkUploadResult_results_inner:
       example:
         createdPostId: createdPostId
@@ -48832,17 +52845,27 @@ components:
     WebhookPayloadCallEnded_call_billing:
       example:
         metaCostUSD: 6.027456183070403
-        totalCostUSD: 5.637376656633329
+        billableCostUSD: 5.637376656633329
+        totalCostUSD: 2.3021358869347655
         recordingCostUSD: 5.962133916683182
         telnyxCostUSD: 1.4658129805029452
       properties:
         metaCostUSD:
+          description: Meta per-minute charge. Billed by Meta DIRECTLY to your WhatsApp
+            Business Account payment method (your separate Meta invoice). Zernio does
+            NOT charge this. Display only.
           type: number
         telnyxCostUSD:
           type: number
         recordingCostUSD:
           type: number
+        billableCostUSD:
+          description: The amount Zernio bills you = Telnyx leg + recording. Excludes
+            Meta (billed by Meta directly).
+          type: number
         totalCostUSD:
+          description: "Full economic cost incl. the Meta portion you pay directly\
+            \ (Meta + Telnyx + recording). Display only, not the Zernio-billed amount."
           type: number
     WebhookPayloadCallEnded_call:
       example:
@@ -48852,7 +52875,8 @@ components:
         phoneNumberId: phoneNumberId
         billing:
           metaCostUSD: 6.027456183070403
-          totalCostUSD: 5.637376656633329
+          billableCostUSD: 5.637376656633329
+          totalCostUSD: 2.3021358869347655
           recordingCostUSD: 5.962133916683182
           telnyxCostUSD: 1.4658129805029452
         accountId: accountId
@@ -49552,6 +53576,14 @@ components:
           maximum: 21600
           minimum: 0
           type: integer
+    DiscordScheduledEvent_entity_metadata:
+      example:
+        location: location
+      properties:
+        location:
+          description: External event location string.
+          type: string
+      nullable: true
     SocialAccount_profileId:
       oneOf:
       - type: string

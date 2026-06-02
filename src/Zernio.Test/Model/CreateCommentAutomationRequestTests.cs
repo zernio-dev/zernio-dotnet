@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Trigger'
+        /// </summary>
+        [Fact]
+        public void TriggerTest()
+        {
+            // TODO unit test for the property 'Trigger'
+        }
+
+        /// <summary>
         /// Test the property 'PlatformPostId'
         /// </summary>
         [Fact]
@@ -152,6 +161,24 @@ namespace Zernio.Test.Model
         public void CommentReplyTest()
         {
             // TODO unit test for the property 'CommentReply'
+        }
+
+        /// <summary>
+        /// Test the property 'LinkTracking'
+        /// </summary>
+        [Fact]
+        public void LinkTrackingTest()
+        {
+            // TODO unit test for the property 'LinkTracking'
+        }
+
+        /// <summary>
+        /// Test the property 'ClickTag'
+        /// </summary>
+        [Fact]
+        public void ClickTagTest()
+        {
+            // TODO unit test for the property 'ClickTag'
         }
     }
 }

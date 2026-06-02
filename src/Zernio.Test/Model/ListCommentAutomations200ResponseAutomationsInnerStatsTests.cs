@@ -90,5 +90,41 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'UniqueContacts'
         }
+
+        /// <summary>
+        /// Test the property 'LinkClicks'
+        /// </summary>
+        [Fact]
+        public void LinkClicksTest()
+        {
+            // TODO unit test for the property 'LinkClicks'
+        }
+
+        /// <summary>
+        /// Test the property 'UniqueClicks'
+        /// </summary>
+        [Fact]
+        public void UniqueClicksTest()
+        {
+            // TODO unit test for the property 'UniqueClicks'
+        }
+
+        /// <summary>
+        /// Test the property 'Delivered'
+        /// </summary>
+        [Fact]
+        public void DeliveredTest()
+        {
+            // TODO unit test for the property 'Delivered'
+        }
+
+        /// <summary>
+        /// Test the property 'Read'
+        /// </summary>
+        [Fact]
+        public void ReadTest()
+        {
+            // TODO unit test for the property 'Read'
+        }
     }
 }

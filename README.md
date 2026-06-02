@@ -302,8 +302,21 @@ Class | Method | HTTP request | Description
 *CustomFieldsApi* | [**ListCustomFields**](docs/CustomFieldsApi.md#listcustomfields) | **GET** /v1/custom-fields | List custom field definitions
 *CustomFieldsApi* | [**SetContactFieldValue**](docs/CustomFieldsApi.md#setcontactfieldvalue) | **PUT** /v1/contacts/{contactId}/fields/{slug} | Set custom field value
 *CustomFieldsApi* | [**UpdateCustomField**](docs/CustomFieldsApi.md#updatecustomfield) | **PATCH** /v1/custom-fields/{fieldId} | Update custom field
+*DiscordApi* | [**AddDiscordMemberRole**](docs/DiscordApi.md#adddiscordmemberrole) | **PUT** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Assign a role to a guild member
+*DiscordApi* | [**CreateDiscordScheduledEvent**](docs/DiscordApi.md#creatediscordscheduledevent) | **POST** /v1/discord/guilds/{guildId}/events | Create a Discord scheduled event
+*DiscordApi* | [**DeleteDiscordScheduledEvent**](docs/DiscordApi.md#deletediscordscheduledevent) | **DELETE** /v1/discord/guilds/{guildId}/events/{eventId} | Delete a Discord scheduled event
 *DiscordApi* | [**GetDiscordChannels**](docs/DiscordApi.md#getdiscordchannels) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels
+*DiscordApi* | [**GetDiscordScheduledEvent**](docs/DiscordApi.md#getdiscordscheduledevent) | **GET** /v1/discord/guilds/{guildId}/events/{eventId} | Get a Discord scheduled event
 *DiscordApi* | [**GetDiscordSettings**](docs/DiscordApi.md#getdiscordsettings) | **GET** /v1/accounts/{accountId}/discord-settings | Get Discord account settings
+*DiscordApi* | [**ListDiscordGuildMembers**](docs/DiscordApi.md#listdiscordguildmembers) | **GET** /v1/discord/guilds/{guildId}/members | List Discord guild members
+*DiscordApi* | [**ListDiscordGuildRoles**](docs/DiscordApi.md#listdiscordguildroles) | **GET** /v1/discord/guilds/{guildId}/roles | List Discord guild roles
+*DiscordApi* | [**ListDiscordPinnedMessages**](docs/DiscordApi.md#listdiscordpinnedmessages) | **GET** /v1/discord/channels/{channelId}/pins | List pinned messages in a Discord channel
+*DiscordApi* | [**ListDiscordScheduledEvents**](docs/DiscordApi.md#listdiscordscheduledevents) | **GET** /v1/discord/guilds/{guildId}/events | List Discord scheduled events
+*DiscordApi* | [**PinDiscordMessage**](docs/DiscordApi.md#pindiscordmessage) | **PUT** /v1/discord/channels/{channelId}/pins/{messageId} | Pin a Discord message
+*DiscordApi* | [**RemoveDiscordMemberRole**](docs/DiscordApi.md#removediscordmemberrole) | **DELETE** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Remove a role from a guild member
+*DiscordApi* | [**SendDiscordDirectMessage**](docs/DiscordApi.md#senddiscorddirectmessage) | **POST** /v1/discord/dms | Send a Discord Direct Message
+*DiscordApi* | [**UnpinDiscordMessage**](docs/DiscordApi.md#unpindiscordmessage) | **DELETE** /v1/discord/channels/{channelId}/pins/{messageId} | Unpin a Discord message
+*DiscordApi* | [**UpdateDiscordScheduledEvent**](docs/DiscordApi.md#updatediscordscheduledevent) | **PATCH** /v1/discord/guilds/{guildId}/events/{eventId} | Update a Discord scheduled event
 *DiscordApi* | [**UpdateDiscordSettings**](docs/DiscordApi.md#updatediscordsettings) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
 *GMBAttributesApi* | [**GetGoogleBusinessAttributes**](docs/GMBAttributesApi.md#getgooglebusinessattributes) | **GET** /v1/accounts/{accountId}/gmb-attributes | Get attributes
 *GMBAttributesApi* | [**UpdateGoogleBusinessAttributes**](docs/GMBAttributesApi.md#updategooglebusinessattributes) | **PUT** /v1/accounts/{accountId}/gmb-attributes | Update attributes
@@ -458,11 +471,32 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**UpdateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#updatewhatsappflow) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow
 *WhatsAppFlowsApi* | [**UploadWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#uploadwhatsappflowjson) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppNumberInfo**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappnumberinfo) | **GET** /v1/whatsapp/number-info | Get number status
+*WhatsAppPhoneNumbersApi* | [**GetWhatsAppNumberKycForm**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappnumberkycform) | **GET** /v1/whatsapp/phone-numbers/kyc | Get regulated-number KYC form spec
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappphonenumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppPhoneNumbers**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappphonenumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers
+*WhatsAppPhoneNumbersApi* | [**ListWhatsAppNumberCountries**](docs/WhatsAppPhoneNumbersApi.md#listwhatsappnumbercountries) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries
 *WhatsAppPhoneNumbersApi* | [**PurchaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#purchasewhatsappphonenumber) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number
 *WhatsAppPhoneNumbersApi* | [**ReleaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#releasewhatsappphonenumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
+*WhatsAppPhoneNumbersApi* | [**SearchAvailableWhatsAppNumbers**](docs/WhatsAppPhoneNumbersApi.md#searchavailablewhatsappnumbers) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers to purchase
+*WhatsAppPhoneNumbersApi* | [**SubmitWhatsAppNumberKyc**](docs/WhatsAppPhoneNumbersApi.md#submitwhatsappnumberkyc) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC
+*WhatsAppSandboxApi* | [**CreateWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#createwhatsappsandboxsession) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation for a phone
+*WhatsAppSandboxApi* | [**DeleteWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#deletewhatsappsandboxsession) | **DELETE** /v1/whatsapp/sandbox/sessions/{sessionId} | Revoke a sandbox session
+*WhatsAppSandboxApi* | [**ListWhatsAppSandboxSessions**](docs/WhatsAppSandboxApi.md#listwhatsappsandboxsessions) | **GET** /v1/whatsapp/sandbox/sessions | List your sandbox sessions
 *WhatsAppTemplatesApi* | [**GetWhatsAppLibraryTemplate**](docs/WhatsAppTemplatesApi.md#getwhatsapplibrarytemplate) | **GET** /v1/whatsapp/template-library | Look up a library template
+*WorkflowsApi* | [**ActivateWorkflow**](docs/WorkflowsApi.md#activateworkflow) | **POST** /v1/workflows/{workflowId}/activate | Activate workflow
+*WorkflowsApi* | [**CreateWorkflow**](docs/WorkflowsApi.md#createworkflow) | **POST** /v1/workflows | Create workflow
+*WorkflowsApi* | [**DeleteWorkflow**](docs/WorkflowsApi.md#deleteworkflow) | **DELETE** /v1/workflows/{workflowId} | Delete workflow
+*WorkflowsApi* | [**DuplicateWorkflow**](docs/WorkflowsApi.md#duplicateworkflow) | **POST** /v1/workflows/{workflowId}/duplicate | Duplicate a workflow
+*WorkflowsApi* | [**GetWorkflow**](docs/WorkflowsApi.md#getworkflow) | **GET** /v1/workflows/{workflowId} | Get workflow with graph
+*WorkflowsApi* | [**GetWorkflowVersion**](docs/WorkflowsApi.md#getworkflowversion) | **GET** /v1/workflows/{workflowId}/versions/{version} | Get a specific workflow version
+*WorkflowsApi* | [**ListWorkflowExecutionEvents**](docs/WorkflowsApi.md#listworkflowexecutionevents) | **GET** /v1/workflows/{workflowId}/executions/{executionId}/events | Get an execution's timeline
+*WorkflowsApi* | [**ListWorkflowExecutions**](docs/WorkflowsApi.md#listworkflowexecutions) | **GET** /v1/workflows/{workflowId}/executions | List workflow runs
+*WorkflowsApi* | [**ListWorkflowVersions**](docs/WorkflowsApi.md#listworkflowversions) | **GET** /v1/workflows/{workflowId}/versions | List a workflow's version history
+*WorkflowsApi* | [**ListWorkflows**](docs/WorkflowsApi.md#listworkflows) | **GET** /v1/workflows | List workflows
+*WorkflowsApi* | [**PauseWorkflow**](docs/WorkflowsApi.md#pauseworkflow) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow
+*WorkflowsApi* | [**RestoreWorkflowVersion**](docs/WorkflowsApi.md#restoreworkflowversion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a previous workflow version
+*WorkflowsApi* | [**TriggerWorkflow**](docs/WorkflowsApi.md#triggerworkflow) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run
+*WorkflowsApi* | [**UpdateWorkflow**](docs/WorkflowsApi.md#updateworkflow) | **PATCH** /v1/workflows/{workflowId} | Update workflow
 
 
 <a id="documentation-for-models"></a>
@@ -473,6 +507,8 @@ Class | Method | HTTP request | Description
  - [Model.AccountWithFollowerStatsAllOfAccountStats](docs/AccountWithFollowerStatsAllOfAccountStats.md)
  - [Model.AccountsListResponse](docs/AccountsListResponse.md)
  - [Model.ActivateSequence200Response](docs/ActivateSequence200Response.md)
+ - [Model.ActivateWorkflow200Response](docs/ActivateWorkflow200Response.md)
+ - [Model.ActivateWorkflow200ResponseWorkflow](docs/ActivateWorkflow200ResponseWorkflow.md)
  - [Model.Ad](docs/Ad.md)
  - [Model.AdBudget](docs/AdBudget.md)
  - [Model.AdCampaign](docs/AdCampaign.md)
@@ -496,6 +532,7 @@ Class | Method | HTTP request | Description
  - [Model.AddConversionAssociations200Response](docs/AddConversionAssociations200Response.md)
  - [Model.AddConversionAssociations200ResponseFailedInner](docs/AddConversionAssociations200ResponseFailedInner.md)
  - [Model.AddConversionAssociationsRequest](docs/AddConversionAssociationsRequest.md)
+ - [Model.AddDiscordMemberRole200Response](docs/AddDiscordMemberRole200Response.md)
  - [Model.AddMessageReactionRequest](docs/AddMessageReactionRequest.md)
  - [Model.AddTrackingTagSharedAccount201Response](docs/AddTrackingTagSharedAccount201Response.md)
  - [Model.AddTrackingTagSharedAccountRequest](docs/AddTrackingTagSharedAccountRequest.md)
@@ -593,11 +630,18 @@ Class | Method | HTTP request | Description
  - [Model.CreateCtwaAdRequestCitiesInner](docs/CreateCtwaAdRequestCitiesInner.md)
  - [Model.CreateCtwaAdRequestCreativesInner](docs/CreateCtwaAdRequestCreativesInner.md)
  - [Model.CreateCtwaAdRequestCreativesInnerVideo](docs/CreateCtwaAdRequestCreativesInnerVideo.md)
+ - [Model.CreateCtwaAdRequestCustomLocationsInner](docs/CreateCtwaAdRequestCustomLocationsInner.md)
  - [Model.CreateCtwaAdRequestRegionsInner](docs/CreateCtwaAdRequestRegionsInner.md)
  - [Model.CreateCtwaAdRequestVideo](docs/CreateCtwaAdRequestVideo.md)
  - [Model.CreateCtwaAdRequestZipsInner](docs/CreateCtwaAdRequestZipsInner.md)
  - [Model.CreateCustomField200Response](docs/CreateCustomField200Response.md)
  - [Model.CreateCustomFieldRequest](docs/CreateCustomFieldRequest.md)
+ - [Model.CreateDiscordScheduledEvent200Response](docs/CreateDiscordScheduledEvent200Response.md)
+ - [Model.CreateDiscordScheduledEventRequest](docs/CreateDiscordScheduledEventRequest.md)
+ - [Model.CreateDiscordScheduledEventRequestEntity](docs/CreateDiscordScheduledEventRequestEntity.md)
+ - [Model.CreateDiscordScheduledEventRequestEntityOneOf](docs/CreateDiscordScheduledEventRequestEntityOneOf.md)
+ - [Model.CreateDiscordScheduledEventRequestEntityOneOf1](docs/CreateDiscordScheduledEventRequestEntityOneOf1.md)
+ - [Model.CreateDiscordScheduledEventRequestEntityOneOf2](docs/CreateDiscordScheduledEventRequestEntityOneOf2.md)
  - [Model.CreateGoogleBusinessMedia200Response](docs/CreateGoogleBusinessMedia200Response.md)
  - [Model.CreateGoogleBusinessMediaRequest](docs/CreateGoogleBusinessMediaRequest.md)
  - [Model.CreateGoogleBusinessPlaceAction200Response](docs/CreateGoogleBusinessPlaceAction200Response.md)
@@ -660,16 +704,22 @@ Class | Method | HTTP request | Description
  - [Model.CreateWhatsAppGroupChat201ResponseGroup](docs/CreateWhatsAppGroupChat201ResponseGroup.md)
  - [Model.CreateWhatsAppGroupChatRequest](docs/CreateWhatsAppGroupChatRequest.md)
  - [Model.CreateWhatsAppGroupInviteLink200Response](docs/CreateWhatsAppGroupInviteLink200Response.md)
+ - [Model.CreateWhatsAppSandboxSession200Response](docs/CreateWhatsAppSandboxSession200Response.md)
+ - [Model.CreateWhatsAppSandboxSessionRequest](docs/CreateWhatsAppSandboxSessionRequest.md)
  - [Model.CreateWhatsAppTemplate200Response](docs/CreateWhatsAppTemplate200Response.md)
  - [Model.CreateWhatsAppTemplate200ResponseTemplate](docs/CreateWhatsAppTemplate200ResponseTemplate.md)
  - [Model.CreateWhatsAppTemplateRequest](docs/CreateWhatsAppTemplateRequest.md)
  - [Model.CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInner](docs/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInner.md)
  - [Model.CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUrl](docs/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUrl.md)
+ - [Model.CreateWorkflow200Response](docs/CreateWorkflow200Response.md)
+ - [Model.CreateWorkflow200ResponseWorkflow](docs/CreateWorkflow200ResponseWorkflow.md)
+ - [Model.CreateWorkflowRequest](docs/CreateWorkflowRequest.md)
  - [Model.CtwaMultiResponse](docs/CtwaMultiResponse.md)
  - [Model.CtwaSingleResponse](docs/CtwaSingleResponse.md)
  - [Model.DeleteAccountGroup200Response](docs/DeleteAccountGroup200Response.md)
  - [Model.DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
  - [Model.DeleteAdCampaignRequest](docs/DeleteAdCampaignRequest.md)
+ - [Model.DeleteDiscordScheduledEvent200Response](docs/DeleteDiscordScheduledEvent200Response.md)
  - [Model.DeleteGoogleBusinessMedia200Response](docs/DeleteGoogleBusinessMedia200Response.md)
  - [Model.DeleteGoogleBusinessPlaceAction200Response](docs/DeleteGoogleBusinessPlaceAction200Response.md)
  - [Model.DeleteGoogleBusinessReviewReply200Response](docs/DeleteGoogleBusinessReviewReply200Response.md)
@@ -688,9 +738,13 @@ Class | Method | HTTP request | Description
  - [Model.DiscordPlatformDataPollAnswersInnerPollMedia](docs/DiscordPlatformDataPollAnswersInnerPollMedia.md)
  - [Model.DiscordPlatformDataPollQuestion](docs/DiscordPlatformDataPollQuestion.md)
  - [Model.DiscordPlatformDataThreadFromMessage](docs/DiscordPlatformDataThreadFromMessage.md)
+ - [Model.DiscordScheduledEvent](docs/DiscordScheduledEvent.md)
+ - [Model.DiscordScheduledEventEntityMetadata](docs/DiscordScheduledEventEntityMetadata.md)
  - [Model.DmButton](docs/DmButton.md)
  - [Model.DuplicateAdCampaign200Response](docs/DuplicateAdCampaign200Response.md)
  - [Model.DuplicateAdCampaignRequest](docs/DuplicateAdCampaignRequest.md)
+ - [Model.DuplicateWorkflow201Response](docs/DuplicateWorkflow201Response.md)
+ - [Model.DuplicateWorkflow201ResponseWorkflow](docs/DuplicateWorkflow201ResponseWorkflow.md)
  - [Model.EditInboxMessage200Response](docs/EditInboxMessage200Response.md)
  - [Model.EditInboxMessage200ResponseData](docs/EditInboxMessage200ResponseData.md)
  - [Model.EditInboxMessageRequest](docs/EditInboxMessageRequest.md)
@@ -926,14 +980,23 @@ Class | Method | HTTP request | Description
  - [Model.GetWhatsAppNumberInfo200ResponsePhone](docs/GetWhatsAppNumberInfo200ResponsePhone.md)
  - [Model.GetWhatsAppNumberInfo200ResponsePhoneThroughput](docs/GetWhatsAppNumberInfo200ResponsePhoneThroughput.md)
  - [Model.GetWhatsAppNumberInfo200ResponseWaba](docs/GetWhatsAppNumberInfo200ResponseWaba.md)
+ - [Model.GetWhatsAppNumberKycForm200Response](docs/GetWhatsAppNumberKycForm200Response.md)
+ - [Model.GetWhatsAppNumberKycForm200ResponseFieldsInner](docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md)
+ - [Model.GetWhatsAppNumberKycForm200ResponseReusable](docs/GetWhatsAppNumberKycForm200ResponseReusable.md)
  - [Model.GetWhatsAppPhoneNumber200Response](docs/GetWhatsAppPhoneNumber200Response.md)
  - [Model.GetWhatsAppPhoneNumber200ResponsePhoneNumber](docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md)
  - [Model.GetWhatsAppPhoneNumbers200Response](docs/GetWhatsAppPhoneNumbers200Response.md)
  - [Model.GetWhatsAppPhoneNumbers200ResponseNumbersInner](docs/GetWhatsAppPhoneNumbers200ResponseNumbersInner.md)
+ - [Model.GetWhatsAppPhoneNumbers200ResponseSandbox](docs/GetWhatsAppPhoneNumbers200ResponseSandbox.md)
+ - [Model.GetWhatsAppPhoneNumbers200ResponseSandboxTemplate](docs/GetWhatsAppPhoneNumbers200ResponseSandboxTemplate.md)
  - [Model.GetWhatsAppTemplate200Response](docs/GetWhatsAppTemplate200Response.md)
  - [Model.GetWhatsAppTemplate200ResponseTemplate](docs/GetWhatsAppTemplate200ResponseTemplate.md)
  - [Model.GetWhatsAppTemplates200Response](docs/GetWhatsAppTemplates200Response.md)
  - [Model.GetWhatsAppTemplates200ResponseTemplatesInner](docs/GetWhatsAppTemplates200ResponseTemplatesInner.md)
+ - [Model.GetWorkflow200Response](docs/GetWorkflow200Response.md)
+ - [Model.GetWorkflow200ResponseWorkflow](docs/GetWorkflow200ResponseWorkflow.md)
+ - [Model.GetWorkflowVersion200Response](docs/GetWorkflowVersion200Response.md)
+ - [Model.GetWorkflowVersion200ResponseVersion](docs/GetWorkflowVersion200ResponseVersion.md)
  - [Model.GetYouTubeDailyViews400Response](docs/GetYouTubeDailyViews400Response.md)
  - [Model.GetYouTubeDailyViews403Response](docs/GetYouTubeDailyViews403Response.md)
  - [Model.GetYouTubeDailyViews500Response](docs/GetYouTubeDailyViews500Response.md)
@@ -1016,6 +1079,15 @@ Class | Method | HTTP request | Description
  - [Model.ListConversionDestinations200ResponseDestinationsInner](docs/ListConversionDestinations200ResponseDestinationsInner.md)
  - [Model.ListCustomFields200Response](docs/ListCustomFields200Response.md)
  - [Model.ListCustomFields200ResponseFieldsInner](docs/ListCustomFields200ResponseFieldsInner.md)
+ - [Model.ListDiscordGuildMembers200Response](docs/ListDiscordGuildMembers200Response.md)
+ - [Model.ListDiscordGuildMembers200ResponseDataInner](docs/ListDiscordGuildMembers200ResponseDataInner.md)
+ - [Model.ListDiscordGuildMembers200ResponseDataInnerUser](docs/ListDiscordGuildMembers200ResponseDataInnerUser.md)
+ - [Model.ListDiscordGuildMembers200ResponsePagination](docs/ListDiscordGuildMembers200ResponsePagination.md)
+ - [Model.ListDiscordGuildRoles200Response](docs/ListDiscordGuildRoles200Response.md)
+ - [Model.ListDiscordGuildRoles200ResponseDataInner](docs/ListDiscordGuildRoles200ResponseDataInner.md)
+ - [Model.ListDiscordPinnedMessages200Response](docs/ListDiscordPinnedMessages200Response.md)
+ - [Model.ListDiscordPinnedMessages200ResponseDataInner](docs/ListDiscordPinnedMessages200ResponseDataInner.md)
+ - [Model.ListDiscordScheduledEvents200Response](docs/ListDiscordScheduledEvents200Response.md)
  - [Model.ListFacebookPages200Response](docs/ListFacebookPages200Response.md)
  - [Model.ListFacebookPages200ResponsePagesInner](docs/ListFacebookPages200ResponsePagesInner.md)
  - [Model.ListFormLeads200Response](docs/ListFormLeads200Response.md)
@@ -1082,16 +1154,35 @@ Class | Method | HTTP request | Description
  - [Model.ListWhatsAppGroupChats200ResponsePagingCursors](docs/ListWhatsAppGroupChats200ResponsePagingCursors.md)
  - [Model.ListWhatsAppGroupJoinRequests200Response](docs/ListWhatsAppGroupJoinRequests200Response.md)
  - [Model.ListWhatsAppGroupJoinRequests200ResponseJoinRequestsInner](docs/ListWhatsAppGroupJoinRequests200ResponseJoinRequestsInner.md)
+ - [Model.ListWhatsAppNumberCountries200Response](docs/ListWhatsAppNumberCountries200Response.md)
+ - [Model.ListWhatsAppNumberCountries200ResponseCountriesInner](docs/ListWhatsAppNumberCountries200ResponseCountriesInner.md)
  - [Model.ListWhatsAppPhoneNumbers200Response](docs/ListWhatsAppPhoneNumbers200Response.md)
  - [Model.ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner](docs/ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner.md)
+ - [Model.ListWhatsAppSandboxSessions200Response](docs/ListWhatsAppSandboxSessions200Response.md)
+ - [Model.ListWorkflowExecutionEvents200Response](docs/ListWorkflowExecutionEvents200Response.md)
+ - [Model.ListWorkflowExecutionEvents200ResponseExecution](docs/ListWorkflowExecutionEvents200ResponseExecution.md)
+ - [Model.ListWorkflowExecutions200Response](docs/ListWorkflowExecutions200Response.md)
+ - [Model.ListWorkflowExecutions200ResponseExecutionsInner](docs/ListWorkflowExecutions200ResponseExecutionsInner.md)
+ - [Model.ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor](docs/ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor.md)
+ - [Model.ListWorkflowVersions200Response](docs/ListWorkflowVersions200Response.md)
+ - [Model.ListWorkflowVersions200ResponseVersionsInner](docs/ListWorkflowVersions200ResponseVersionsInner.md)
+ - [Model.ListWorkflows200Response](docs/ListWorkflows200Response.md)
+ - [Model.ListWorkflows200ResponseWorkflowsInner](docs/ListWorkflows200ResponseWorkflowsInner.md)
  - [Model.MarkConversationRead200Response](docs/MarkConversationRead200Response.md)
  - [Model.MediaItem](docs/MediaItem.md)
  - [Model.MediaUploadResponse](docs/MediaUploadResponse.md)
  - [Model.Money](docs/Money.md)
  - [Model.MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
  - [Model.MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
+ - [Model.OnWhatsAppNumberActivatedRequest](docs/OnWhatsAppNumberActivatedRequest.md)
+ - [Model.OnWhatsAppNumberActivatedRequestNumber](docs/OnWhatsAppNumberActivatedRequestNumber.md)
+ - [Model.OnWhatsAppNumberDeclinedRequest](docs/OnWhatsAppNumberDeclinedRequest.md)
+ - [Model.OnWhatsAppNumberDeclinedRequestNumber](docs/OnWhatsAppNumberDeclinedRequestNumber.md)
+ - [Model.OnWhatsAppNumberVerificationRequiredRequest](docs/OnWhatsAppNumberVerificationRequiredRequest.md)
  - [Model.Pagination](docs/Pagination.md)
+ - [Model.PauseWorkflow200Response](docs/PauseWorkflow200Response.md)
  - [Model.Pending](docs/Pending.md)
+ - [Model.PinDiscordMessage200Response](docs/PinDiscordMessage200Response.md)
  - [Model.PinterestPlatformData](docs/PinterestPlatformData.md)
  - [Model.PlatformAnalytics](docs/PlatformAnalytics.md)
  - [Model.PlatformTarget](docs/PlatformTarget.md)
@@ -1117,6 +1208,7 @@ Class | Method | HTTP request | Description
  - [Model.PurchaseWhatsAppPhoneNumber200ResponseOneOf](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf.md)
  - [Model.PurchaseWhatsAppPhoneNumber200ResponseOneOf1](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.md)
  - [Model.PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber.md)
+ - [Model.PurchaseWhatsAppPhoneNumber202Response](docs/PurchaseWhatsAppPhoneNumber202Response.md)
  - [Model.PurchaseWhatsAppPhoneNumberRequest](docs/PurchaseWhatsAppPhoneNumberRequest.md)
  - [Model.QueueDeleteResponse](docs/QueueDeleteResponse.md)
  - [Model.QueueNextSlotResponse](docs/QueueNextSlotResponse.md)
@@ -1134,6 +1226,7 @@ Class | Method | HTTP request | Description
  - [Model.ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber](docs/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.md)
  - [Model.RemoveBookmark200Response](docs/RemoveBookmark200Response.md)
  - [Model.RemoveConversionAssociations200Response](docs/RemoveConversionAssociations200Response.md)
+ - [Model.RemoveDiscordMemberRole200Response](docs/RemoveDiscordMemberRole200Response.md)
  - [Model.RemoveWhatsAppGroupParticipantsRequest](docs/RemoveWhatsAppGroupParticipantsRequest.md)
  - [Model.ReplyToGoogleBusinessReview200Response](docs/ReplyToGoogleBusinessReview200Response.md)
  - [Model.ReplyToGoogleBusinessReviewRequest](docs/ReplyToGoogleBusinessReviewRequest.md)
@@ -1143,6 +1236,8 @@ Class | Method | HTTP request | Description
  - [Model.ReplyToInboxReview200Response](docs/ReplyToInboxReview200Response.md)
  - [Model.ReplyToInboxReview200ResponseReply](docs/ReplyToInboxReview200ResponseReply.md)
  - [Model.ReplyToInboxReviewRequest](docs/ReplyToInboxReviewRequest.md)
+ - [Model.RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
+ - [Model.RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
  - [Model.RetweetPost200Response](docs/RetweetPost200Response.md)
  - [Model.RetweetPostRequest](docs/RetweetPostRequest.md)
  - [Model.ReviewWebhookReview](docs/ReviewWebhookReview.md)
@@ -1156,6 +1251,8 @@ Class | Method | HTTP request | Description
  - [Model.SearchAdInterests200ResponseInterestsInner](docs/SearchAdInterests200ResponseInterestsInner.md)
  - [Model.SearchAdTargeting200Response](docs/SearchAdTargeting200Response.md)
  - [Model.SearchAdTargeting200ResponseResultsInner](docs/SearchAdTargeting200ResponseResultsInner.md)
+ - [Model.SearchAvailableWhatsAppNumbers200Response](docs/SearchAvailableWhatsAppNumbers200Response.md)
+ - [Model.SearchAvailableWhatsAppNumbers200ResponseNumbersInner](docs/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.md)
  - [Model.SearchReddit200Response](docs/SearchReddit200Response.md)
  - [Model.SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [Model.SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)
@@ -1181,6 +1278,11 @@ Class | Method | HTTP request | Description
  - [Model.SendConversions200ResponseFailuresInnerCode](docs/SendConversions200ResponseFailuresInnerCode.md)
  - [Model.SendConversionsRequest](docs/SendConversionsRequest.md)
  - [Model.SendConversionsRequestConsent](docs/SendConversionsRequestConsent.md)
+ - [Model.SendDiscordDirectMessage200Response](docs/SendDiscordDirectMessage200Response.md)
+ - [Model.SendDiscordDirectMessage200ResponseAccount](docs/SendDiscordDirectMessage200ResponseAccount.md)
+ - [Model.SendDiscordDirectMessage200ResponseRecipient](docs/SendDiscordDirectMessage200ResponseRecipient.md)
+ - [Model.SendDiscordDirectMessageRequest](docs/SendDiscordDirectMessageRequest.md)
+ - [Model.SendDiscordDirectMessageRequestAttachmentsInner](docs/SendDiscordDirectMessageRequestAttachmentsInner.md)
  - [Model.SendInboxMessage200Response](docs/SendInboxMessage200Response.md)
  - [Model.SendInboxMessage200ResponseData](docs/SendInboxMessage200ResponseData.md)
  - [Model.SendInboxMessage400Response](docs/SendInboxMessage400Response.md)
@@ -1238,6 +1340,11 @@ Class | Method | HTTP request | Description
  - [Model.StartGoogleBusinessVerification200Response](docs/StartGoogleBusinessVerification200Response.md)
  - [Model.StartGoogleBusinessVerification200ResponseVerification](docs/StartGoogleBusinessVerification200ResponseVerification.md)
  - [Model.StartGoogleBusinessVerificationRequest](docs/StartGoogleBusinessVerificationRequest.md)
+ - [Model.SubmitWhatsAppNumberKyc200Response](docs/SubmitWhatsAppNumberKyc200Response.md)
+ - [Model.SubmitWhatsAppNumberKyc200ResponsePhoneNumber](docs/SubmitWhatsAppNumberKyc200ResponsePhoneNumber.md)
+ - [Model.SubmitWhatsAppNumberKycRequest](docs/SubmitWhatsAppNumberKycRequest.md)
+ - [Model.SubmitWhatsAppNumberKycRequestAddress](docs/SubmitWhatsAppNumberKycRequestAddress.md)
+ - [Model.SubmitWhatsAppNumberKycRequestDocumentsInner](docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md)
  - [Model.TargetingSpec](docs/TargetingSpec.md)
  - [Model.TargetingSpecCitiesInner](docs/TargetingSpecCitiesInner.md)
  - [Model.TargetingSpecCustomLocationsInner](docs/TargetingSpecCustomLocationsInner.md)
@@ -1247,12 +1354,16 @@ Class | Method | HTTP request | Description
  - [Model.ThreadsPlatformData](docs/ThreadsPlatformData.md)
  - [Model.TikTokPlatformData](docs/TikTokPlatformData.md)
  - [Model.TrackingTag](docs/TrackingTag.md)
+ - [Model.TriggerWorkflow200Response](docs/TriggerWorkflow200Response.md)
+ - [Model.TriggerWorkflow200ResponseExecution](docs/TriggerWorkflow200ResponseExecution.md)
+ - [Model.TriggerWorkflowRequest](docs/TriggerWorkflowRequest.md)
  - [Model.TwitterPlatformData](docs/TwitterPlatformData.md)
  - [Model.TwitterPlatformDataPoll](docs/TwitterPlatformDataPoll.md)
  - [Model.TwitterPlatformDataThreadItemsInner](docs/TwitterPlatformDataThreadItemsInner.md)
  - [Model.UndoRetweet200Response](docs/UndoRetweet200Response.md)
  - [Model.UnfollowUser200Response](docs/UnfollowUser200Response.md)
  - [Model.UnlikeInboxComment200Response](docs/UnlikeInboxComment200Response.md)
+ - [Model.UnpinDiscordMessage200Response](docs/UnpinDiscordMessage200Response.md)
  - [Model.UnpublishPost200Response](docs/UnpublishPost200Response.md)
  - [Model.UnpublishPostRequest](docs/UnpublishPostRequest.md)
  - [Model.UpdateAccount200Response](docs/UpdateAccount200Response.md)
@@ -1293,6 +1404,7 @@ Class | Method | HTTP request | Description
  - [Model.UpdateCustomField200Response](docs/UpdateCustomField200Response.md)
  - [Model.UpdateCustomField200ResponseField](docs/UpdateCustomField200ResponseField.md)
  - [Model.UpdateCustomFieldRequest](docs/UpdateCustomFieldRequest.md)
+ - [Model.UpdateDiscordScheduledEventRequest](docs/UpdateDiscordScheduledEventRequest.md)
  - [Model.UpdateDiscordSettings200Response](docs/UpdateDiscordSettings200Response.md)
  - [Model.UpdateDiscordSettings200ResponseAccount](docs/UpdateDiscordSettings200ResponseAccount.md)
  - [Model.UpdateDiscordSettingsRequest](docs/UpdateDiscordSettingsRequest.md)
@@ -1355,6 +1467,9 @@ Class | Method | HTTP request | Description
  - [Model.UpdateWhatsAppTemplate200Response](docs/UpdateWhatsAppTemplate200Response.md)
  - [Model.UpdateWhatsAppTemplate200ResponseTemplate](docs/UpdateWhatsAppTemplate200ResponseTemplate.md)
  - [Model.UpdateWhatsAppTemplateRequest](docs/UpdateWhatsAppTemplateRequest.md)
+ - [Model.UpdateWorkflow200Response](docs/UpdateWorkflow200Response.md)
+ - [Model.UpdateWorkflow200ResponseWorkflow](docs/UpdateWorkflow200ResponseWorkflow.md)
+ - [Model.UpdateWorkflowRequest](docs/UpdateWorkflowRequest.md)
  - [Model.UpdateYoutubeDefaultPlaylist200Response](docs/UpdateYoutubeDefaultPlaylist200Response.md)
  - [Model.UpdateYoutubeDefaultPlaylistRequest](docs/UpdateYoutubeDefaultPlaylistRequest.md)
  - [Model.UploadMediaDirect200Response](docs/UploadMediaDirect200Response.md)
@@ -1464,8 +1579,13 @@ Class | Method | HTTP request | Description
  - [Model.WhatsAppFooterComponent](docs/WhatsAppFooterComponent.md)
  - [Model.WhatsAppHeaderComponent](docs/WhatsAppHeaderComponent.md)
  - [Model.WhatsAppHeaderComponentExample](docs/WhatsAppHeaderComponentExample.md)
+ - [Model.WhatsAppSandboxSession](docs/WhatsAppSandboxSession.md)
  - [Model.WhatsAppTemplateButton](docs/WhatsAppTemplateButton.md)
  - [Model.WhatsAppTemplateComponent](docs/WhatsAppTemplateComponent.md)
+ - [Model.WorkflowEdge](docs/WorkflowEdge.md)
+ - [Model.WorkflowExecutionEvent](docs/WorkflowExecutionEvent.md)
+ - [Model.WorkflowNode](docs/WorkflowNode.md)
+ - [Model.WorkflowNodePosition](docs/WorkflowNodePosition.md)
  - [Model.XApiOperation](docs/XApiOperation.md)
  - [Model.XApiOperationTriggeredByInner](docs/XApiOperationTriggeredByInner.md)
  - [Model.XApiPricing](docs/XApiPricing.md)

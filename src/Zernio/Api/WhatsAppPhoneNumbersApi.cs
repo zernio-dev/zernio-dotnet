@@ -50,10 +50,33 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetWhatsAppNumberInfo200Response</returns>
         ApiResponse<GetWhatsAppNumberInfo200Response> GetWhatsAppNumberInfoWithHttpInfo(string accountId);
         /// <summary>
+        /// Get regulated-number KYC form spec
+        /// </summary>
+        /// <remarks>
+        /// For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"></param>
+        /// <param name="profileId"></param>
+        /// <returns>GetWhatsAppNumberKycForm200Response</returns>
+        GetWhatsAppNumberKycForm200Response GetWhatsAppNumberKycForm(string country, string profileId);
+
+        /// <summary>
+        /// Get regulated-number KYC form spec
+        /// </summary>
+        /// <remarks>
+        /// For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"></param>
+        /// <param name="profileId"></param>
+        /// <returns>ApiResponse of GetWhatsAppNumberKycForm200Response</returns>
+        ApiResponse<GetWhatsAppNumberKycForm200Response> GetWhatsAppNumberKycFormWithHttpInfo(string country, string profileId);
+        /// <summary>
         /// Get phone number
         /// </summary>
         /// <remarks>
-        /// Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="phoneNumberId">Phone number record ID</param>
@@ -64,7 +87,7 @@ namespace Zernio.Api
         /// Get phone number
         /// </summary>
         /// <remarks>
-        /// Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="phoneNumberId">Phone number record ID</param>
@@ -93,6 +116,25 @@ namespace Zernio.Api
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppPhoneNumbers200Response</returns>
         ApiResponse<GetWhatsAppPhoneNumbers200Response> GetWhatsAppPhoneNumbersWithHttpInfo(string? status = default, string? profileId = default);
+        /// <summary>
+        /// List offerable number countries
+        /// </summary>
+        /// <remarks>
+        /// The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ListWhatsAppNumberCountries200Response</returns>
+        ListWhatsAppNumberCountries200Response ListWhatsAppNumberCountries();
+
+        /// <summary>
+        /// List offerable number countries
+        /// </summary>
+        /// <remarks>
+        /// The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ListWhatsAppNumberCountries200Response</returns>
+        ApiResponse<ListWhatsAppNumberCountries200Response> ListWhatsAppNumberCountriesWithHttpInfo();
         /// <summary>
         /// Purchase phone number
         /// </summary>
@@ -135,6 +177,58 @@ namespace Zernio.Api
         /// <param name="phoneNumberId">Phone number record ID</param>
         /// <returns>ApiResponse of ReleaseWhatsAppPhoneNumber200Response</returns>
         ApiResponse<ReleaseWhatsAppPhoneNumber200Response> ReleaseWhatsAppPhoneNumberWithHttpInfo(string phoneNumberId);
+        /// <summary>
+        /// Search available numbers to purchase
+        /// </summary>
+        /// <remarks>
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="type">Number type; defaults to the country&#39;s WhatsApp-safe type (optional)</param>
+        /// <param name="prefix">Area code (optional)</param>
+        /// <param name="locality">City (optional)</param>
+        /// <param name="contains">Pattern to match within the number (optional)</param>
+        /// <param name="limit"> (optional, default to 20)</param>
+        /// <returns>SearchAvailableWhatsAppNumbers200Response</returns>
+        SearchAvailableWhatsAppNumbers200Response SearchAvailableWhatsAppNumbers(string? country = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, int? limit = default);
+
+        /// <summary>
+        /// Search available numbers to purchase
+        /// </summary>
+        /// <remarks>
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="type">Number type; defaults to the country&#39;s WhatsApp-safe type (optional)</param>
+        /// <param name="prefix">Area code (optional)</param>
+        /// <param name="locality">City (optional)</param>
+        /// <param name="contains">Pattern to match within the number (optional)</param>
+        /// <param name="limit"> (optional, default to 20)</param>
+        /// <returns>ApiResponse of SearchAvailableWhatsAppNumbers200Response</returns>
+        ApiResponse<SearchAvailableWhatsAppNumbers200Response> SearchAvailableWhatsAppNumbersWithHttpInfo(string? country = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, int? limit = default);
+        /// <summary>
+        /// Submit regulated-number KYC
+        /// </summary>
+        /// <remarks>
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submitWhatsAppNumberKycRequest"></param>
+        /// <returns>SubmitWhatsAppNumberKyc200Response</returns>
+        SubmitWhatsAppNumberKyc200Response SubmitWhatsAppNumberKyc(SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest);
+
+        /// <summary>
+        /// Submit regulated-number KYC
+        /// </summary>
+        /// <remarks>
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submitWhatsAppNumberKycRequest"></param>
+        /// <returns>ApiResponse of SubmitWhatsAppNumberKyc200Response</returns>
+        ApiResponse<SubmitWhatsAppNumberKyc200Response> SubmitWhatsAppNumberKycWithHttpInfo(SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest);
         #endregion Synchronous Operations
     }
 
@@ -168,10 +262,35 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetWhatsAppNumberInfo200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppNumberInfo200Response>> GetWhatsAppNumberInfoWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get regulated-number KYC form spec
+        /// </summary>
+        /// <remarks>
+        /// For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"></param>
+        /// <param name="profileId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppNumberKycForm200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsAppNumberKycForm200Response> GetWhatsAppNumberKycFormAsync(string country, string profileId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get regulated-number KYC form spec
+        /// </summary>
+        /// <remarks>
+        /// For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"></param>
+        /// <param name="profileId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppNumberKycForm200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppNumberKycForm200Response>> GetWhatsAppNumberKycFormWithHttpInfoAsync(string country, string profileId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get phone number
         /// </summary>
         /// <remarks>
-        /// Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="phoneNumberId">Phone number record ID</param>
@@ -183,7 +302,7 @@ namespace Zernio.Api
         /// Get phone number
         /// </summary>
         /// <remarks>
-        /// Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+        /// Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="phoneNumberId">Phone number record ID</param>
@@ -215,6 +334,27 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppPhoneNumbers200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppPhoneNumbers200Response>> GetWhatsAppPhoneNumbersWithHttpInfoAsync(string? status = default, string? profileId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List offerable number countries
+        /// </summary>
+        /// <remarks>
+        /// The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListWhatsAppNumberCountries200Response</returns>
+        System.Threading.Tasks.Task<ListWhatsAppNumberCountries200Response> ListWhatsAppNumberCountriesAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List offerable number countries
+        /// </summary>
+        /// <remarks>
+        /// The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListWhatsAppNumberCountries200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListWhatsAppNumberCountries200Response>> ListWhatsAppNumberCountriesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Purchase phone number
         /// </summary>
@@ -261,6 +401,62 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ReleaseWhatsAppPhoneNumber200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ReleaseWhatsAppPhoneNumber200Response>> ReleaseWhatsAppPhoneNumberWithHttpInfoAsync(string phoneNumberId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Search available numbers to purchase
+        /// </summary>
+        /// <remarks>
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="type">Number type; defaults to the country&#39;s WhatsApp-safe type (optional)</param>
+        /// <param name="prefix">Area code (optional)</param>
+        /// <param name="locality">City (optional)</param>
+        /// <param name="contains">Pattern to match within the number (optional)</param>
+        /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SearchAvailableWhatsAppNumbers200Response</returns>
+        System.Threading.Tasks.Task<SearchAvailableWhatsAppNumbers200Response> SearchAvailableWhatsAppNumbersAsync(string? country = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Search available numbers to purchase
+        /// </summary>
+        /// <remarks>
+        /// Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="type">Number type; defaults to the country&#39;s WhatsApp-safe type (optional)</param>
+        /// <param name="prefix">Area code (optional)</param>
+        /// <param name="locality">City (optional)</param>
+        /// <param name="contains">Pattern to match within the number (optional)</param>
+        /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SearchAvailableWhatsAppNumbers200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SearchAvailableWhatsAppNumbers200Response>> SearchAvailableWhatsAppNumbersWithHttpInfoAsync(string? country = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Submit regulated-number KYC
+        /// </summary>
+        /// <remarks>
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submitWhatsAppNumberKycRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SubmitWhatsAppNumberKyc200Response</returns>
+        System.Threading.Tasks.Task<SubmitWhatsAppNumberKyc200Response> SubmitWhatsAppNumberKycAsync(SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Submit regulated-number KYC
+        /// </summary>
+        /// <remarks>
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submitWhatsAppNumberKycRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SubmitWhatsAppNumberKyc200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SubmitWhatsAppNumberKyc200Response>> SubmitWhatsAppNumberKycWithHttpInfoAsync(SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -602,7 +798,148 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get phone number Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+        /// Get regulated-number KYC form spec For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"></param>
+        /// <param name="profileId"></param>
+        /// <returns>GetWhatsAppNumberKycForm200Response</returns>
+        public GetWhatsAppNumberKycForm200Response GetWhatsAppNumberKycForm(string country, string profileId)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppNumberKycForm200Response> localVarResponse = GetWhatsAppNumberKycFormWithHttpInfo(country, profileId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get regulated-number KYC form spec For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"></param>
+        /// <param name="profileId"></param>
+        /// <returns>ApiResponse of GetWhatsAppNumberKycForm200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsAppNumberKycForm200Response> GetWhatsAppNumberKycFormWithHttpInfo(string country, string profileId)
+        {
+            // verify the required parameter 'country' is set
+            if (country == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'country' when calling WhatsAppPhoneNumbersApi->GetWhatsAppNumberKycForm");
+
+            // verify the required parameter 'profileId' is set
+            if (profileId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'profileId' when calling WhatsAppPhoneNumbersApi->GetWhatsAppNumberKycForm");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "country", country));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsAppNumberKycForm200Response>("/v1/whatsapp/phone-numbers/kyc", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppNumberKycForm", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get regulated-number KYC form spec For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"></param>
+        /// <param name="profileId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppNumberKycForm200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsAppNumberKycForm200Response> GetWhatsAppNumberKycFormAsync(string country, string profileId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppNumberKycForm200Response> localVarResponse = await GetWhatsAppNumberKycFormWithHttpInfoAsync(country, profileId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get regulated-number KYC form spec For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"></param>
+        /// <param name="profileId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppNumberKycForm200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppNumberKycForm200Response>> GetWhatsAppNumberKycFormWithHttpInfoAsync(string country, string profileId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'country' is set
+            if (country == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'country' when calling WhatsAppPhoneNumbersApi->GetWhatsAppNumberKycForm");
+
+            // verify the required parameter 'profileId' is set
+            if (profileId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'profileId' when calling WhatsAppPhoneNumbersApi->GetWhatsAppNumberKycForm");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "country", country));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppNumberKycForm200Response>("/v1/whatsapp/phone-numbers/kyc", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppNumberKycForm", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="phoneNumberId">Phone number record ID</param>
@@ -614,7 +951,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get phone number Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="phoneNumberId">Phone number record ID</param>
@@ -663,7 +1000,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get phone number Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="phoneNumberId">Phone number record ID</param>
@@ -676,7 +1013,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get phone number Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+        /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="phoneNumberId">Phone number record ID</param>
@@ -859,6 +1196,119 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetWhatsAppPhoneNumbers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List offerable number countries The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ListWhatsAppNumberCountries200Response</returns>
+        public ListWhatsAppNumberCountries200Response ListWhatsAppNumberCountries()
+        {
+            Zernio.Client.ApiResponse<ListWhatsAppNumberCountries200Response> localVarResponse = ListWhatsAppNumberCountriesWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List offerable number countries The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ListWhatsAppNumberCountries200Response</returns>
+        public Zernio.Client.ApiResponse<ListWhatsAppNumberCountries200Response> ListWhatsAppNumberCountriesWithHttpInfo()
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListWhatsAppNumberCountries200Response>("/v1/whatsapp/phone-numbers/countries", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListWhatsAppNumberCountries", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List offerable number countries The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListWhatsAppNumberCountries200Response</returns>
+        public async System.Threading.Tasks.Task<ListWhatsAppNumberCountries200Response> ListWhatsAppNumberCountriesAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListWhatsAppNumberCountries200Response> localVarResponse = await ListWhatsAppNumberCountriesWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List offerable number countries The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListWhatsAppNumberCountries200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListWhatsAppNumberCountries200Response>> ListWhatsAppNumberCountriesWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListWhatsAppNumberCountries200Response>("/v1/whatsapp/phone-numbers/countries", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListWhatsAppNumberCountries", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1115,6 +1565,320 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ReleaseWhatsAppPhoneNumber", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Search available numbers to purchase Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="type">Number type; defaults to the country&#39;s WhatsApp-safe type (optional)</param>
+        /// <param name="prefix">Area code (optional)</param>
+        /// <param name="locality">City (optional)</param>
+        /// <param name="contains">Pattern to match within the number (optional)</param>
+        /// <param name="limit"> (optional, default to 20)</param>
+        /// <returns>SearchAvailableWhatsAppNumbers200Response</returns>
+        public SearchAvailableWhatsAppNumbers200Response SearchAvailableWhatsAppNumbers(string? country = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, int? limit = default)
+        {
+            Zernio.Client.ApiResponse<SearchAvailableWhatsAppNumbers200Response> localVarResponse = SearchAvailableWhatsAppNumbersWithHttpInfo(country, type, prefix, locality, contains, limit);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Search available numbers to purchase Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="type">Number type; defaults to the country&#39;s WhatsApp-safe type (optional)</param>
+        /// <param name="prefix">Area code (optional)</param>
+        /// <param name="locality">City (optional)</param>
+        /// <param name="contains">Pattern to match within the number (optional)</param>
+        /// <param name="limit"> (optional, default to 20)</param>
+        /// <returns>ApiResponse of SearchAvailableWhatsAppNumbers200Response</returns>
+        public Zernio.Client.ApiResponse<SearchAvailableWhatsAppNumbers200Response> SearchAvailableWhatsAppNumbersWithHttpInfo(string? country = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, int? limit = default)
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (country != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "country", country));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+            }
+            if (prefix != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "prefix", prefix));
+            }
+            if (locality != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "locality", locality));
+            }
+            if (contains != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "contains", contains));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<SearchAvailableWhatsAppNumbers200Response>("/v1/whatsapp/phone-numbers/available", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchAvailableWhatsAppNumbers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Search available numbers to purchase Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="type">Number type; defaults to the country&#39;s WhatsApp-safe type (optional)</param>
+        /// <param name="prefix">Area code (optional)</param>
+        /// <param name="locality">City (optional)</param>
+        /// <param name="contains">Pattern to match within the number (optional)</param>
+        /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SearchAvailableWhatsAppNumbers200Response</returns>
+        public async System.Threading.Tasks.Task<SearchAvailableWhatsAppNumbers200Response> SearchAvailableWhatsAppNumbersAsync(string? country = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<SearchAvailableWhatsAppNumbers200Response> localVarResponse = await SearchAvailableWhatsAppNumbersWithHttpInfoAsync(country, type, prefix, locality, contains, limit, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Search available numbers to purchase Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country"> (optional, default to &quot;US&quot;)</param>
+        /// <param name="type">Number type; defaults to the country&#39;s WhatsApp-safe type (optional)</param>
+        /// <param name="prefix">Area code (optional)</param>
+        /// <param name="locality">City (optional)</param>
+        /// <param name="contains">Pattern to match within the number (optional)</param>
+        /// <param name="limit"> (optional, default to 20)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SearchAvailableWhatsAppNumbers200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SearchAvailableWhatsAppNumbers200Response>> SearchAvailableWhatsAppNumbersWithHttpInfoAsync(string? country = default, string? type = default, string? prefix = default, string? locality = default, string? contains = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (country != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "country", country));
+            }
+            if (type != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "type", type));
+            }
+            if (prefix != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "prefix", prefix));
+            }
+            if (locality != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "locality", locality));
+            }
+            if (contains != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "contains", contains));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SearchAvailableWhatsAppNumbers200Response>("/v1/whatsapp/phone-numbers/available", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchAvailableWhatsAppNumbers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submitWhatsAppNumberKycRequest"></param>
+        /// <returns>SubmitWhatsAppNumberKyc200Response</returns>
+        public SubmitWhatsAppNumberKyc200Response SubmitWhatsAppNumberKyc(SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest)
+        {
+            Zernio.Client.ApiResponse<SubmitWhatsAppNumberKyc200Response> localVarResponse = SubmitWhatsAppNumberKycWithHttpInfo(submitWhatsAppNumberKycRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submitWhatsAppNumberKycRequest"></param>
+        /// <returns>ApiResponse of SubmitWhatsAppNumberKyc200Response</returns>
+        public Zernio.Client.ApiResponse<SubmitWhatsAppNumberKyc200Response> SubmitWhatsAppNumberKycWithHttpInfo(SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest)
+        {
+            // verify the required parameter 'submitWhatsAppNumberKycRequest' is set
+            if (submitWhatsAppNumberKycRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'submitWhatsAppNumberKycRequest' when calling WhatsAppPhoneNumbersApi->SubmitWhatsAppNumberKyc");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = submitWhatsAppNumberKycRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<SubmitWhatsAppNumberKyc200Response>("/v1/whatsapp/phone-numbers/kyc", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SubmitWhatsAppNumberKyc", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submitWhatsAppNumberKycRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SubmitWhatsAppNumberKyc200Response</returns>
+        public async System.Threading.Tasks.Task<SubmitWhatsAppNumberKyc200Response> SubmitWhatsAppNumberKycAsync(SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<SubmitWhatsAppNumberKyc200Response> localVarResponse = await SubmitWhatsAppNumberKycWithHttpInfoAsync(submitWhatsAppNumberKycRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="submitWhatsAppNumberKycRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SubmitWhatsAppNumberKyc200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SubmitWhatsAppNumberKyc200Response>> SubmitWhatsAppNumberKycWithHttpInfoAsync(SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'submitWhatsAppNumberKycRequest' is set
+            if (submitWhatsAppNumberKycRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'submitWhatsAppNumberKycRequest' when calling WhatsAppPhoneNumbersApi->SubmitWhatsAppNumberKyc");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = submitWhatsAppNumberKycRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SubmitWhatsAppNumberKyc200Response>("/v1/whatsapp/phone-numbers/kyc", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SubmitWhatsAppNumberKyc", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

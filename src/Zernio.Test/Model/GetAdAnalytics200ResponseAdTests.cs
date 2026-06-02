@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Trigger'
+        /// </summary>
+        [Fact]
+        public void TriggerTest()
+        {
+            // TODO unit test for the property 'Trigger'
+        }
+
+        /// <summary>
         /// Test the property 'Status'
         /// </summary>
         [Fact]
