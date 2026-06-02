@@ -118,6 +118,33 @@ namespace Zernio.Model
         [DataMember(Name = "budgetType", EmitDefaultValue = false)]
         public BudgetTypeEnum? BudgetType { get; set; }
         /// <summary>
+        /// Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
+        /// </summary>
+        /// <value>Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum BudgetLevelEnum
+        {
+            /// <summary>
+            /// Enum Adset for value: adset
+            /// </summary>
+            [EnumMember(Value = "adset")]
+            Adset = 1,
+
+            /// <summary>
+            /// Enum Campaign for value: campaign
+            /// </summary>
+            [EnumMember(Value = "campaign")]
+            Campaign = 2
+        }
+
+
+        /// <summary>
+        /// Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
+        /// </summary>
+        /// <value>Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. </value>
+        [DataMember(Name = "budgetLevel", EmitDefaultValue = false)]
+        public BudgetLevelEnum? BudgetLevel { get; set; }
+        /// <summary>
         /// Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.
         /// </summary>
         /// <value>Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.</value>
@@ -442,6 +469,7 @@ namespace Zernio.Model
         /// <param name="goal">Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted). TikTok-specific: &#x60;conversions&#x60; (website-conversion ad group) requires &#x60;promotedObject.pixelId&#x60; (your TikTok Pixel ID) and accepts an optional &#x60;promotedObject.customEventType&#x60; (a TikTok &#x60;optimization_event&#x60; code like &#x60;ON_WEB_ORDER&#x60;, &#x60;INITIATE_ORDER&#x60;, &#x60;ON_WEB_REGISTER&#x60;, &#x60;FORM&#x60;); to inherit a pixel + event from an existing ad group, pass &#x60;adSetId&#x60; instead. LinkedIn-specific: &#x60;engagement&#x60;, &#x60;traffic&#x60;, &#x60;awareness&#x60;, and &#x60;video_views&#x60; are supported for standalone ads (creates a Direct Sponsored Content single image or single video ad). &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;; &#x60;video_views&#x60; requires the &#x60;video&#x60; field. For &#x60;lead_generation&#x60; / &#x60;conversions&#x60; on LinkedIn — or to promote an existing post — use &#x60;POST /v1/ads/boost&#x60;..</param>
         /// <param name="budgetAmount">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="budgetType">Required on legacy + multi-creative shapes. Inherited on attach..</param>
+        /// <param name="budgetLevel">Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget.  (default to BudgetLevelEnum.Adset).</param>
         /// <param name="currency">currency.</param>
         /// <param name="headline">Required for Meta, Google, Pinterest, and LinkedIn on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100, LinkedIn&#x3D;400. On LinkedIn this is the ad&#39;s headline (the bold text on the creative); for traffic ads it&#39;s the link card title..</param>
         /// <param name="longHeadline">Google Display only — defaults to &#x60;headline&#x60; if omitted. On LinkedIn, reused as the optional secondary description text on traffic (link) ads; omitted if not provided..</param>
@@ -469,9 +497,13 @@ namespace Zernio.Model
         /// <param name="behaviors">Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id..</param>
         /// <param name="incomeTier">Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. .</param>
         /// <param name="languages">Language codes (e.g. [&#39;en&#39;]). Restricts the audience by language..</param>
+        /// <param name="placements">placements.</param>
         /// <param name="savedTargetingId">ID of a &#x60;saved_targeting&#x60; audience (created via POST /v1/ads/audiences). When set, its stored TargetingSpec is expanded as the base targeting; inline fields on this body merge on top. Lets you reuse a named targeting preset without re-sending every field. .</param>
         /// <param name="specialAdCategories">Meta only. Declares the ad&#39;s special category, required for housing, employment, credit, or political/social-issue ads (Meta enforces restricted targeting for these). Note: setting a special category disables income/zip targeting on Meta. .</param>
         /// <param name="endDate">Required for lifetime budgets.</param>
+        /// <param name="startDate">Meta only. Ad-set start time (ISO 8601, e.g. \&quot;2026-06-10T09:00:00Z\&quot;), mapped to the ad set&#39;s &#x60;start_time&#x60;. When omitted the ad starts delivering immediately. For lifetime budgets Meta also requires &#x60;endDate&#x60;. (Same &#x60;schedule.startDate&#x60; semantics already available on &#x60;POST /v1/ads/boost&#x60;.) .</param>
+        /// <param name="instagramAccountId">Meta only. Override the Instagram account the ad is delivered as — pass an Instagram Business Account ID (e.g. 17841...), mapped to the creative&#39;s &#x60;instagram_user_id&#x60;. When omitted we auto-resolve the IG account linked to the connected Facebook Page (the existing default). Useful when a Page has more than one eligible IG account. .</param>
+        /// <param name="dynamicCreative">dynamicCreative.</param>
         /// <param name="audienceId">Custom audience ID for targeting.</param>
         /// <param name="campaignType">Google only (default to CampaignTypeEnum.Display).</param>
         /// <param name="keywords">Google Search only.</param>
@@ -488,7 +520,7 @@ namespace Zernio.Model
         /// <param name="brandIdentity">brandIdentity.</param>
         /// <param name="identityType">TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. .</param>
         /// <param name="promotedObject">promotedObject.</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, string organizationId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<CreateStandaloneAdRequestZipsInner> zips = default, List<CreateStandaloneAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, string savedTargetingId = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, DateTime endDate = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, string organizationId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<CreateStandaloneAdRequestZipsInner> zips = default, List<CreateStandaloneAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -511,6 +543,7 @@ namespace Zernio.Model
             this.Goal = goal;
             this.BudgetAmount = budgetAmount;
             this.BudgetType = budgetType;
+            this.BudgetLevel = budgetLevel;
             this.Currency = currency;
             this.Headline = headline;
             this.LongHeadline = longHeadline;
@@ -538,9 +571,13 @@ namespace Zernio.Model
             this.Behaviors = behaviors;
             this.IncomeTier = incomeTier;
             this.Languages = languages;
+            this.Placements = placements;
             this.SavedTargetingId = savedTargetingId;
             this.SpecialAdCategories = specialAdCategories;
             this.EndDate = endDate;
+            this.StartDate = startDate;
+            this.InstagramAccountId = instagramAccountId;
+            this.DynamicCreative = dynamicCreative;
             this.AudienceId = audienceId;
             this.CampaignType = campaignType;
             this.Keywords = keywords;
@@ -755,6 +792,12 @@ namespace Zernio.Model
         public List<string> Languages { get; set; }
 
         /// <summary>
+        /// Gets or Sets Placements
+        /// </summary>
+        [DataMember(Name = "placements", EmitDefaultValue = false)]
+        public CreateStandaloneAdRequestPlacements Placements { get; set; }
+
+        /// <summary>
         /// ID of a &#x60;saved_targeting&#x60; audience (created via POST /v1/ads/audiences). When set, its stored TargetingSpec is expanded as the base targeting; inline fields on this body merge on top. Lets you reuse a named targeting preset without re-sending every field. 
         /// </summary>
         /// <value>ID of a &#x60;saved_targeting&#x60; audience (created via POST /v1/ads/audiences). When set, its stored TargetingSpec is expanded as the base targeting; inline fields on this body merge on top. Lets you reuse a named targeting preset without re-sending every field. </value>
@@ -774,6 +817,26 @@ namespace Zernio.Model
         /// <value>Required for lifetime budgets</value>
         [DataMember(Name = "endDate", EmitDefaultValue = false)]
         public DateTime EndDate { get; set; }
+
+        /// <summary>
+        /// Meta only. Ad-set start time (ISO 8601, e.g. \&quot;2026-06-10T09:00:00Z\&quot;), mapped to the ad set&#39;s &#x60;start_time&#x60;. When omitted the ad starts delivering immediately. For lifetime budgets Meta also requires &#x60;endDate&#x60;. (Same &#x60;schedule.startDate&#x60; semantics already available on &#x60;POST /v1/ads/boost&#x60;.) 
+        /// </summary>
+        /// <value>Meta only. Ad-set start time (ISO 8601, e.g. \&quot;2026-06-10T09:00:00Z\&quot;), mapped to the ad set&#39;s &#x60;start_time&#x60;. When omitted the ad starts delivering immediately. For lifetime budgets Meta also requires &#x60;endDate&#x60;. (Same &#x60;schedule.startDate&#x60; semantics already available on &#x60;POST /v1/ads/boost&#x60;.) </value>
+        [DataMember(Name = "startDate", EmitDefaultValue = false)]
+        public DateTime StartDate { get; set; }
+
+        /// <summary>
+        /// Meta only. Override the Instagram account the ad is delivered as — pass an Instagram Business Account ID (e.g. 17841...), mapped to the creative&#39;s &#x60;instagram_user_id&#x60;. When omitted we auto-resolve the IG account linked to the connected Facebook Page (the existing default). Useful when a Page has more than one eligible IG account. 
+        /// </summary>
+        /// <value>Meta only. Override the Instagram account the ad is delivered as — pass an Instagram Business Account ID (e.g. 17841...), mapped to the creative&#39;s &#x60;instagram_user_id&#x60;. When omitted we auto-resolve the IG account linked to the connected Facebook Page (the existing default). Useful when a Page has more than one eligible IG account. </value>
+        [DataMember(Name = "instagramAccountId", EmitDefaultValue = false)]
+        public string InstagramAccountId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets DynamicCreative
+        /// </summary>
+        [DataMember(Name = "dynamicCreative", EmitDefaultValue = false)]
+        public CreateStandaloneAdRequestDynamicCreative DynamicCreative { get; set; }
 
         /// <summary>
         /// Custom audience ID for targeting
@@ -864,6 +927,7 @@ namespace Zernio.Model
             sb.Append("  Goal: ").Append(Goal).Append("\n");
             sb.Append("  BudgetAmount: ").Append(BudgetAmount).Append("\n");
             sb.Append("  BudgetType: ").Append(BudgetType).Append("\n");
+            sb.Append("  BudgetLevel: ").Append(BudgetLevel).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");
             sb.Append("  LongHeadline: ").Append(LongHeadline).Append("\n");
@@ -891,9 +955,13 @@ namespace Zernio.Model
             sb.Append("  Behaviors: ").Append(Behaviors).Append("\n");
             sb.Append("  IncomeTier: ").Append(IncomeTier).Append("\n");
             sb.Append("  Languages: ").Append(Languages).Append("\n");
+            sb.Append("  Placements: ").Append(Placements).Append("\n");
             sb.Append("  SavedTargetingId: ").Append(SavedTargetingId).Append("\n");
             sb.Append("  SpecialAdCategories: ").Append(SpecialAdCategories).Append("\n");
             sb.Append("  EndDate: ").Append(EndDate).Append("\n");
+            sb.Append("  StartDate: ").Append(StartDate).Append("\n");
+            sb.Append("  InstagramAccountId: ").Append(InstagramAccountId).Append("\n");
+            sb.Append("  DynamicCreative: ").Append(DynamicCreative).Append("\n");
             sb.Append("  AudienceId: ").Append(AudienceId).Append("\n");
             sb.Append("  CampaignType: ").Append(CampaignType).Append("\n");
             sb.Append("  Keywords: ").Append(Keywords).Append("\n");

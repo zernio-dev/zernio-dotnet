@@ -110,6 +110,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BudgetLevel'
+        /// </summary>
+        [Fact]
+        public void BudgetLevelTest()
+        {
+            // TODO unit test for the property 'BudgetLevel'
+        }
+
+        /// <summary>
         /// Test the property 'Currency'
         /// </summary>
         [Fact]
@@ -353,6 +362,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Placements'
+        /// </summary>
+        [Fact]
+        public void PlacementsTest()
+        {
+            // TODO unit test for the property 'Placements'
+        }
+
+        /// <summary>
         /// Test the property 'SavedTargetingId'
         /// </summary>
         [Fact]
@@ -377,6 +395,33 @@ namespace Zernio.Test.Model
         public void EndDateTest()
         {
             // TODO unit test for the property 'EndDate'
+        }
+
+        /// <summary>
+        /// Test the property 'StartDate'
+        /// </summary>
+        [Fact]
+        public void StartDateTest()
+        {
+            // TODO unit test for the property 'StartDate'
+        }
+
+        /// <summary>
+        /// Test the property 'InstagramAccountId'
+        /// </summary>
+        [Fact]
+        public void InstagramAccountIdTest()
+        {
+            // TODO unit test for the property 'InstagramAccountId'
+        }
+
+        /// <summary>
+        /// Test the property 'DynamicCreative'
+        /// </summary>
+        [Fact]
+        public void DynamicCreativeTest()
+        {
+            // TODO unit test for the property 'DynamicCreative'
         }
 
         /// <summary>
