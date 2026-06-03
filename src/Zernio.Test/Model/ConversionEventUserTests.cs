@@ -128,6 +128,51 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'City'
+        /// </summary>
+        [Fact]
+        public void CityTest()
+        {
+            // TODO unit test for the property 'City'
+        }
+
+        /// <summary>
+        /// Test the property 'State'
+        /// </summary>
+        [Fact]
+        public void StateTest()
+        {
+            // TODO unit test for the property 'State'
+        }
+
+        /// <summary>
+        /// Test the property 'Zip'
+        /// </summary>
+        [Fact]
+        public void ZipTest()
+        {
+            // TODO unit test for the property 'Zip'
+        }
+
+        /// <summary>
+        /// Test the property 'Dob'
+        /// </summary>
+        [Fact]
+        public void DobTest()
+        {
+            // TODO unit test for the property 'Dob'
+        }
+
+        /// <summary>
+        /// Test the property 'Gender'
+        /// </summary>
+        [Fact]
+        public void GenderTest()
+        {
+            // TODO unit test for the property 'Gender'
+        }
+
+        /// <summary>
         /// Test the property 'ClickIds'
         /// </summary>
         [Fact]

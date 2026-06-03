@@ -18,8 +18,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAd**](AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details |
 | [**GetAdAnalytics**](AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**GetAdComments**](AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
+| [**GetAdTrackingTags**](AdsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Read an ad&#39;s click-URL tracking tags |
 | [**GetConversionDestination**](AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Fetch a single conversion destination |
 | [**GetConversionMetrics**](AdsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Fetch attribution metrics for a conversion destination |
+| [**GetConversionsQuality**](AdsApi.md#getconversionsquality) | **GET** /v1/ads/conversions/quality | Read Event Match Quality + coverage for a Meta pixel |
 | [**GetLeadForm**](AdsApi.md#getleadform) | **GET** /v1/ads/lead-forms/{formId} | Get a single Lead Gen form |
 | [**ListAdAccounts**](AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**ListAds**](AdsApi.md#listads) | **GET** /v1/ads | List ads |
@@ -36,6 +38,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**SendConversions**](AdsApi.md#sendconversions) | **POST** /v1/ads/conversions | Send conversion events to an ad platform |
 | [**SendWhatsAppConversion**](AdsApi.md#sendwhatsappconversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
 | [**UpdateAd**](AdsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad |
+| [**UpdateAdTrackingTags**](AdsApi.md#updateadtrackingtags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set/update an ad&#39;s click-URL tracking tags |
 | [**UpdateConversionDestination**](AdsApi.md#updateconversiondestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
 
 <a id="addconversionassociations"></a>
@@ -1484,6 +1487,107 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getadtrackingtags"></a>
+# **GetAdTrackingTags**
+> GetAdTrackingTags200Response GetAdTrackingTags (string adId)
+
+Read an ad's click-URL tracking tags
+
+Unified read of the platform's native click-URL tracking params. - Meta (facebook/instagram): the creative's `url_tags` (and template_url_spec). - Google (googleads): the campaign's `trackingUrlTemplate` + `finalUrlSuffix`.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign's Dynamic UTM `dynamicValueParameters` + `customValueParameters`. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdTrackingTagsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var adId = "adId_example";  // string | Ad id (hex _id, platformAdId, or effective story/media id).
+
+            try
+            {
+                // Read an ad's click-URL tracking tags
+                GetAdTrackingTags200Response result = apiInstance.GetAdTrackingTags(adId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetAdTrackingTags: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdTrackingTagsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Read an ad's click-URL tracking tags
+    ApiResponse<GetAdTrackingTags200Response> response = apiInstance.GetAdTrackingTagsWithHttpInfo(adId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetAdTrackingTagsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adId** | **string** | Ad id (hex _id, platformAdId, or effective story/media id). |  |
+
+### Return type
+
+[**GetAdTrackingTags200Response**](GetAdTrackingTags200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tracking tags for the ad&#39;s platform (shape varies by platform). |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
+| **405** | Platform has no click-URL tracking surface |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getconversiondestination"></a>
 # **GetConversionDestination**
 > CreateConversionDestination201Response GetConversionDestination (string accountId, string destinationId, string adAccountId)
@@ -1703,6 +1807,108 @@ catch (ApiException e)
 | **404** | Account or destination not found. |  -  |
 | **405** | Platform does not support metrics readback. |  -  |
 | **429** | LinkedIn analytics rate limit hit. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getconversionsquality"></a>
+# **GetConversionsQuality**
+> GetConversionsQuality200Response GetConversionsQuality (string accountId, string destinationId)
+
+Read Event Match Quality + coverage for a Meta pixel
+
+Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta's Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetConversionsQualityExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | SocialAccount _id (must be a metaads account).
+            var destinationId = "destinationId_example";  // string | Meta pixel/dataset ID.
+
+            try
+            {
+                // Read Event Match Quality + coverage for a Meta pixel
+                GetConversionsQuality200Response result = apiInstance.GetConversionsQuality(accountId, destinationId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetConversionsQuality: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetConversionsQualityWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Read Event Match Quality + coverage for a Meta pixel
+    ApiResponse<GetConversionsQuality200Response> response = apiInstance.GetConversionsQualityWithHttpInfo(accountId, destinationId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetConversionsQualityWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | SocialAccount _id (must be a metaads account). |  |
+| **destinationId** | **string** | Meta pixel/dataset ID. |  |
+
+### Return type
+
+[**GetConversionsQuality200Response**](GetConversionsQuality200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Match-quality rows, one per event name. |  -  |
+| **401** | Unauthorized |  -  |
+| **405** | Platform does not expose Event Match Quality (non-Meta). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3398,6 +3604,106 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **501** | targeting or creative not supported on the platform (Meta + TikTok only) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updateadtrackingtags"></a>
+# **UpdateAdTrackingTags**
+> void UpdateAdTrackingTags (string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
+
+Set/update an ad's click-URL tracking tags
+
+Unified update. Send only the fields for the ad's platform: - Meta: `urlTags` (array of {key,value}) + `creative` (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: `trackingUrlTemplate` and/or `finalUrlSuffix` (full template strings; account quota applies). - LinkedIn: `dynamicValueParameters` and/or `customValueParameters` (campaign-level Dynamic UTM). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateAdTrackingTagsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var adId = "adId_example";  // string | 
+            var updateAdTrackingTagsRequest = new UpdateAdTrackingTagsRequest(); // UpdateAdTrackingTagsRequest | 
+
+            try
+            {
+                // Set/update an ad's click-URL tracking tags
+                apiInstance.UpdateAdTrackingTags(adId, updateAdTrackingTagsRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.UpdateAdTrackingTags: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateAdTrackingTagsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Set/update an ad's click-URL tracking tags
+    apiInstance.UpdateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.UpdateAdTrackingTagsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adId** | **string** |  |  |
+| **updateAdTrackingTagsRequest** | [**UpdateAdTrackingTagsRequest**](UpdateAdTrackingTagsRequest.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
+| **405** | Platform has no click-URL tracking surface |  -  |
+| **422** | Meta creative cannot be rebuilt (e.g. placement-customized/asset-feed/dark creative) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

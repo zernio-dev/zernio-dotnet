@@ -317,6 +317,7 @@ docs/GetAdAudience200Response.md
 docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
 docs/GetAdComments200ResponsePagination.md
+docs/GetAdTrackingTags200Response.md
 docs/GetAdTree200Response.md
 docs/GetAdsTimeline200Response.md
 docs/GetAdsTimeline200ResponseRowsInner.md
@@ -347,6 +348,9 @@ docs/GetContentDecay200ResponseBucketsInner.md
 docs/GetConversionMetrics200Response.md
 docs/GetConversionMetrics200ResponseRowsInner.md
 docs/GetConversionMetrics200ResponseRowsInnerMetricsValue.md
+docs/GetConversionsQuality200Response.md
+docs/GetConversionsQuality200ResponseRowsInner.md
+docs/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.md
 docs/GetDailyMetrics200Response.md
 docs/GetDailyMetrics200ResponseDailyDataInner.md
 docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md
@@ -930,6 +934,9 @@ docs/UpdateAdSet200Response.md
 docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
 docs/UpdateAdSetStatus200Response.md
+docs/UpdateAdTrackingTagsRequest.md
+docs/UpdateAdTrackingTagsRequestCreative.md
+docs/UpdateAdTrackingTagsRequestUrlTagsInner.md
 docs/UpdateBroadcast200Response.md
 docs/UpdateBroadcast200ResponseBroadcast.md
 docs/UpdateBroadcastRequest.md
@@ -1497,6 +1504,7 @@ src/Zernio.Test/Model/GetAdAudience200ResponseTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseMetaTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseTests.cs
+src/Zernio.Test/Model/GetAdTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTree200ResponseTests.cs
 src/Zernio.Test/Model/GetAdsTimeline200ResponseRowsInnerTests.cs
 src/Zernio.Test/Model/GetAdsTimeline200ResponseTests.cs
@@ -1527,6 +1535,9 @@ src/Zernio.Test/Model/GetContentDecay200ResponseTests.cs
 src/Zernio.Test/Model/GetConversionMetrics200ResponseRowsInnerMetricsValueTests.cs
 src/Zernio.Test/Model/GetConversionMetrics200ResponseRowsInnerTests.cs
 src/Zernio.Test/Model/GetConversionMetrics200ResponseTests.cs
+src/Zernio.Test/Model/GetConversionsQuality200ResponseRowsInnerMatchKeysInnerTests.cs
+src/Zernio.Test/Model/GetConversionsQuality200ResponseRowsInnerTests.cs
+src/Zernio.Test/Model/GetConversionsQuality200ResponseTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponseDailyDataInnerMetricsTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponseDailyDataInnerTests.cs
 src/Zernio.Test/Model/GetDailyMetrics200ResponsePlatformBreakdownInnerTests.cs
@@ -2096,6 +2107,9 @@ src/Zernio.Test/Model/UpdateAdSet200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestBudgetTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestTests.cs
 src/Zernio.Test/Model/UpdateAdSetStatus200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdTrackingTagsRequestCreativeTests.cs
+src/Zernio.Test/Model/UpdateAdTrackingTagsRequestTests.cs
+src/Zernio.Test/Model/UpdateAdTrackingTagsRequestUrlTagsInnerTests.cs
 src/Zernio.Test/Model/UpdateBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/UpdateBroadcast200ResponseTests.cs
 src/Zernio.Test/Model/UpdateBroadcastRequestMessageTests.cs
@@ -2669,6 +2683,7 @@ src/Zernio/Model/GetAdAudience200Response.cs
 src/Zernio/Model/GetAdComments200Response.cs
 src/Zernio/Model/GetAdComments200ResponseMeta.cs
 src/Zernio/Model/GetAdComments200ResponsePagination.cs
+src/Zernio/Model/GetAdTrackingTags200Response.cs
 src/Zernio/Model/GetAdTree200Response.cs
 src/Zernio/Model/GetAdsTimeline200Response.cs
 src/Zernio/Model/GetAdsTimeline200ResponseRowsInner.cs
@@ -2699,6 +2714,9 @@ src/Zernio/Model/GetContentDecay200ResponseBucketsInner.cs
 src/Zernio/Model/GetConversionMetrics200Response.cs
 src/Zernio/Model/GetConversionMetrics200ResponseRowsInner.cs
 src/Zernio/Model/GetConversionMetrics200ResponseRowsInnerMetricsValue.cs
+src/Zernio/Model/GetConversionsQuality200Response.cs
+src/Zernio/Model/GetConversionsQuality200ResponseRowsInner.cs
+src/Zernio/Model/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.cs
 src/Zernio/Model/GetDailyMetrics200Response.cs
 src/Zernio/Model/GetDailyMetrics200ResponseDailyDataInner.cs
 src/Zernio/Model/GetDailyMetrics200ResponseDailyDataInnerMetrics.cs
@@ -3268,6 +3286,9 @@ src/Zernio/Model/UpdateAdSet200Response.cs
 src/Zernio/Model/UpdateAdSetRequest.cs
 src/Zernio/Model/UpdateAdSetRequestBudget.cs
 src/Zernio/Model/UpdateAdSetStatus200Response.cs
+src/Zernio/Model/UpdateAdTrackingTagsRequest.cs
+src/Zernio/Model/UpdateAdTrackingTagsRequestCreative.cs
+src/Zernio/Model/UpdateAdTrackingTagsRequestUrlTagsInner.cs
 src/Zernio/Model/UpdateBroadcast200Response.cs
 src/Zernio/Model/UpdateBroadcast200ResponseBroadcast.cs
 src/Zernio/Model/UpdateBroadcastRequest.cs

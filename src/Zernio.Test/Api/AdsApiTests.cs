@@ -235,6 +235,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetAdTrackingTags
+        /// </summary>
+        [Fact]
+        public void GetAdTrackingTagsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //var response = instance.GetAdTrackingTags(adId);
+            //Assert.IsType<GetAdTrackingTags200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetConversionDestination
         /// </summary>
         [Fact]
@@ -263,6 +275,19 @@ namespace Zernio.Test.Api
             //string? granularity = null;
             //var response = instance.GetConversionMetrics(accountId, destinationId, adAccountId, startDate, endDate, granularity);
             //Assert.IsType<GetConversionMetrics200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetConversionsQuality
+        /// </summary>
+        [Fact]
+        public void GetConversionsQualityTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string destinationId = null;
+            //var response = instance.GetConversionsQuality(accountId, destinationId);
+            //Assert.IsType<GetConversionsQuality200Response>(response);
         }
 
         /// <summary>
@@ -494,6 +519,18 @@ namespace Zernio.Test.Api
             //UpdateAdRequest updateAdRequest = null;
             //var response = instance.UpdateAd(adId, updateAdRequest);
             //Assert.IsType<UpdateAd200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateAdTrackingTags
+        /// </summary>
+        [Fact]
+        public void UpdateAdTrackingTagsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest = null;
+            //instance.UpdateAdTrackingTags(adId, updateAdTrackingTagsRequest);
         }
 
         /// <summary>

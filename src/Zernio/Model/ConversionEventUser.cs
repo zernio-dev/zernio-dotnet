@@ -44,8 +44,13 @@ namespace Zernio.Model
         /// <param name="ipAddress">Client IP address. Sent plaintext..</param>
         /// <param name="userAgent">Client user-agent string. Sent plaintext..</param>
         /// <param name="country">ISO 3166-1 alpha-2 country code, e.g. &#39;us&#39;..</param>
+        /// <param name="city">Meta advanced matching (ct). Plaintext city; normalized + SHA-256 hashed server-side. Meta only..</param>
+        /// <param name="state">Meta advanced matching (st). 2-letter ANSI for US; hashed server-side. Meta only..</param>
+        /// <param name="zip">Meta advanced matching (zp). US uses first 5 digits; hashed server-side. Meta only..</param>
+        /// <param name="dob">Meta advanced matching (db). YYYYMMDD; hashed server-side. Meta only..</param>
+        /// <param name="gender">Meta advanced matching (ge). &#39;f&#39; or &#39;m&#39;; hashed server-side. Meta only..</param>
         /// <param name="clickIds">clickIds.</param>
-        public ConversionEventUser(string email = default, string phone = default, string firstName = default, string lastName = default, string externalId = default, string ipAddress = default, string userAgent = default, string country = default, ConversionEventUserClickIds clickIds = default)
+        public ConversionEventUser(string email = default, string phone = default, string firstName = default, string lastName = default, string externalId = default, string ipAddress = default, string userAgent = default, string country = default, string city = default, string state = default, string zip = default, string dob = default, string gender = default, ConversionEventUserClickIds clickIds = default)
         {
             this.Email = email;
             this.Phone = phone;
@@ -55,6 +60,11 @@ namespace Zernio.Model
             this.IpAddress = ipAddress;
             this.UserAgent = userAgent;
             this.Country = country;
+            this.City = city;
+            this.State = state;
+            this.Zip = zip;
+            this.Dob = dob;
+            this.Gender = gender;
             this.ClickIds = clickIds;
         }
 
@@ -115,6 +125,41 @@ namespace Zernio.Model
         public string Country { get; set; }
 
         /// <summary>
+        /// Meta advanced matching (ct). Plaintext city; normalized + SHA-256 hashed server-side. Meta only.
+        /// </summary>
+        /// <value>Meta advanced matching (ct). Plaintext city; normalized + SHA-256 hashed server-side. Meta only.</value>
+        [DataMember(Name = "city", EmitDefaultValue = false)]
+        public string City { get; set; }
+
+        /// <summary>
+        /// Meta advanced matching (st). 2-letter ANSI for US; hashed server-side. Meta only.
+        /// </summary>
+        /// <value>Meta advanced matching (st). 2-letter ANSI for US; hashed server-side. Meta only.</value>
+        [DataMember(Name = "state", EmitDefaultValue = false)]
+        public string State { get; set; }
+
+        /// <summary>
+        /// Meta advanced matching (zp). US uses first 5 digits; hashed server-side. Meta only.
+        /// </summary>
+        /// <value>Meta advanced matching (zp). US uses first 5 digits; hashed server-side. Meta only.</value>
+        [DataMember(Name = "zip", EmitDefaultValue = false)]
+        public string Zip { get; set; }
+
+        /// <summary>
+        /// Meta advanced matching (db). YYYYMMDD; hashed server-side. Meta only.
+        /// </summary>
+        /// <value>Meta advanced matching (db). YYYYMMDD; hashed server-side. Meta only.</value>
+        [DataMember(Name = "dob", EmitDefaultValue = false)]
+        public string Dob { get; set; }
+
+        /// <summary>
+        /// Meta advanced matching (ge). &#39;f&#39; or &#39;m&#39;; hashed server-side. Meta only.
+        /// </summary>
+        /// <value>Meta advanced matching (ge). &#39;f&#39; or &#39;m&#39;; hashed server-side. Meta only.</value>
+        [DataMember(Name = "gender", EmitDefaultValue = false)]
+        public string Gender { get; set; }
+
+        /// <summary>
         /// Gets or Sets ClickIds
         /// </summary>
         [DataMember(Name = "clickIds", EmitDefaultValue = false)]
@@ -136,6 +181,11 @@ namespace Zernio.Model
             sb.Append("  IpAddress: ").Append(IpAddress).Append("\n");
             sb.Append("  UserAgent: ").Append(UserAgent).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  City: ").Append(City).Append("\n");
+            sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  Zip: ").Append(Zip).Append("\n");
+            sb.Append("  Dob: ").Append(Dob).Append("\n");
+            sb.Append("  Gender: ").Append(Gender).Append("\n");
             sb.Append("  ClickIds: ").Append(ClickIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

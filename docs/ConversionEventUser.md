@@ -13,6 +13,11 @@ Name | Type | Description | Notes
 **IpAddress** | **string** | Client IP address. Sent plaintext. | [optional] 
 **UserAgent** | **string** | Client user-agent string. Sent plaintext. | [optional] 
 **Country** | **string** | ISO 3166-1 alpha-2 country code, e.g. &#39;us&#39;. | [optional] 
+**City** | **string** | Meta advanced matching (ct). Plaintext city; normalized + SHA-256 hashed server-side. Meta only. | [optional] 
+**State** | **string** | Meta advanced matching (st). 2-letter ANSI for US; hashed server-side. Meta only. | [optional] 
+**Zip** | **string** | Meta advanced matching (zp). US uses first 5 digits; hashed server-side. Meta only. | [optional] 
+**Dob** | **string** | Meta advanced matching (db). YYYYMMDD; hashed server-side. Meta only. | [optional] 
+**Gender** | **string** | Meta advanced matching (ge). &#39;f&#39; or &#39;m&#39;; hashed server-side. Meta only. | [optional] 
 **ClickIds** | [**ConversionEventUserClickIds**](ConversionEventUserClickIds.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

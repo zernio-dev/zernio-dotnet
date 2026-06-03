@@ -349,6 +349,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetAdComments200Response</returns>
         ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, string? placement = default, int? limit = default, string? cursor = default);
         /// <summary>
+        /// Read an ad&#39;s click-URL tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <returns>GetAdTrackingTags200Response</returns>
+        GetAdTrackingTags200Response GetAdTrackingTags(string adId);
+
+        /// <summary>
+        /// Read an ad&#39;s click-URL tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <returns>ApiResponse of GetAdTrackingTags200Response</returns>
+        ApiResponse<GetAdTrackingTags200Response> GetAdTrackingTagsWithHttpInfo(string adId);
+        /// <summary>
         /// Fetch a single conversion destination
         /// </summary>
         /// <remarks>
@@ -404,6 +425,29 @@ namespace Zernio.Api
         /// <param name="granularity"> (optional, default to DAILY)</param>
         /// <returns>ApiResponse of GetConversionMetrics200Response</returns>
         ApiResponse<GetConversionMetrics200Response> GetConversionMetricsWithHttpInfo(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default);
+        /// <summary>
+        /// Read Event Match Quality + coverage for a Meta pixel
+        /// </summary>
+        /// <remarks>
+        /// Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
+        /// <param name="destinationId">Meta pixel/dataset ID.</param>
+        /// <returns>GetConversionsQuality200Response</returns>
+        GetConversionsQuality200Response GetConversionsQuality(string accountId, string destinationId);
+
+        /// <summary>
+        /// Read Event Match Quality + coverage for a Meta pixel
+        /// </summary>
+        /// <remarks>
+        /// Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
+        /// <param name="destinationId">Meta pixel/dataset ID.</param>
+        /// <returns>ApiResponse of GetConversionsQuality200Response</returns>
+        ApiResponse<GetConversionsQuality200Response> GetConversionsQualityWithHttpInfo(string accountId, string destinationId);
         /// <summary>
         /// Get a single Lead Gen form
         /// </summary>
@@ -818,6 +862,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateAd200Response</returns>
         ApiResponse<UpdateAd200Response> UpdateAdWithHttpInfo(string adId, UpdateAdRequest updateAdRequest);
         /// <summary>
+        /// Set/update an ad&#39;s click-URL tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <returns></returns>
+        void UpdateAdTrackingTags(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest);
+
+        /// <summary>
+        /// Set/update an ad&#39;s click-URL tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> UpdateAdTrackingTagsWithHttpInfo(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest);
+        /// <summary>
         /// Update a conversion destination
         /// </summary>
         /// <remarks>
@@ -1200,6 +1267,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetAdComments200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Read an ad&#39;s click-URL tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdTrackingTags200Response</returns>
+        System.Threading.Tasks.Task<GetAdTrackingTags200Response> GetAdTrackingTagsAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Read an ad&#39;s click-URL tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdTrackingTags200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdTrackingTags200Response>> GetAdTrackingTagsWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Fetch a single conversion destination
         /// </summary>
         /// <remarks>
@@ -1259,6 +1349,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetConversionMetrics200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetConversionMetrics200Response>> GetConversionMetricsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Read Event Match Quality + coverage for a Meta pixel
+        /// </summary>
+        /// <remarks>
+        /// Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
+        /// <param name="destinationId">Meta pixel/dataset ID.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetConversionsQuality200Response</returns>
+        System.Threading.Tasks.Task<GetConversionsQuality200Response> GetConversionsQualityAsync(string accountId, string destinationId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Read Event Match Quality + coverage for a Meta pixel
+        /// </summary>
+        /// <remarks>
+        /// Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
+        /// <param name="destinationId">Meta pixel/dataset ID.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetConversionsQuality200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetConversionsQuality200Response>> GetConversionsQualityWithHttpInfoAsync(string accountId, string destinationId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a single Lead Gen form
         /// </summary>
@@ -1707,6 +1822,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> UpdateAdWithHttpInfoAsync(string adId, UpdateAdRequest updateAdRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Set/update an ad&#39;s click-URL tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task UpdateAdTrackingTagsAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Set/update an ad&#39;s click-URL tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateAdTrackingTagsWithHttpInfoAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update a conversion destination
         /// </summary>
@@ -3908,6 +4048,133 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Read an ad&#39;s click-URL tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <returns>GetAdTrackingTags200Response</returns>
+        public GetAdTrackingTags200Response GetAdTrackingTags(string adId)
+        {
+            Zernio.Client.ApiResponse<GetAdTrackingTags200Response> localVarResponse = GetAdTrackingTagsWithHttpInfo(adId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read an ad&#39;s click-URL tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <returns>ApiResponse of GetAdTrackingTags200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdTrackingTags200Response> GetAdTrackingTagsWithHttpInfo(string adId)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdsApi->GetAdTrackingTags");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdTrackingTags200Response>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdTrackingTags", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Read an ad&#39;s click-URL tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdTrackingTags200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdTrackingTags200Response> GetAdTrackingTagsAsync(string adId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdTrackingTags200Response> localVarResponse = await GetAdTrackingTagsWithHttpInfoAsync(adId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read an ad&#39;s click-URL tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdTrackingTags200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdTrackingTags200Response>> GetAdTrackingTagsWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdsApi->GetAdTrackingTags");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdTrackingTags200Response>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdTrackingTags", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Fetch a single conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -4249,6 +4516,147 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetConversionMetrics", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Read Event Match Quality + coverage for a Meta pixel Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
+        /// <param name="destinationId">Meta pixel/dataset ID.</param>
+        /// <returns>GetConversionsQuality200Response</returns>
+        public GetConversionsQuality200Response GetConversionsQuality(string accountId, string destinationId)
+        {
+            Zernio.Client.ApiResponse<GetConversionsQuality200Response> localVarResponse = GetConversionsQualityWithHttpInfo(accountId, destinationId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read Event Match Quality + coverage for a Meta pixel Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
+        /// <param name="destinationId">Meta pixel/dataset ID.</param>
+        /// <returns>ApiResponse of GetConversionsQuality200Response</returns>
+        public Zernio.Client.ApiResponse<GetConversionsQuality200Response> GetConversionsQualityWithHttpInfo(string accountId, string destinationId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetConversionsQuality");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->GetConversionsQuality");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "destinationId", destinationId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetConversionsQuality200Response>("/v1/ads/conversions/quality", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetConversionsQuality", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Read Event Match Quality + coverage for a Meta pixel Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
+        /// <param name="destinationId">Meta pixel/dataset ID.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetConversionsQuality200Response</returns>
+        public async System.Threading.Tasks.Task<GetConversionsQuality200Response> GetConversionsQualityAsync(string accountId, string destinationId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetConversionsQuality200Response> localVarResponse = await GetConversionsQualityWithHttpInfoAsync(accountId, destinationId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read Event Match Quality + coverage for a Meta pixel Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
+        /// <param name="destinationId">Meta pixel/dataset ID.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetConversionsQuality200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetConversionsQuality200Response>> GetConversionsQualityWithHttpInfoAsync(string accountId, string destinationId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetConversionsQuality");
+
+            // verify the required parameter 'destinationId' is set
+            if (destinationId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'destinationId' when calling AdsApi->GetConversionsQuality");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "destinationId", destinationId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetConversionsQuality200Response>("/v1/ads/conversions/quality", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetConversionsQuality", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -6775,6 +7183,147 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set/update an ad&#39;s click-URL tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <returns></returns>
+        public void UpdateAdTrackingTags(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
+        {
+            UpdateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest);
+        }
+
+        /// <summary>
+        /// Set/update an ad&#39;s click-URL tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> UpdateAdTrackingTagsWithHttpInfo(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdsApi->UpdateAdTrackingTags");
+
+            // verify the required parameter 'updateAdTrackingTagsRequest' is set
+            if (updateAdTrackingTagsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdTrackingTagsRequest' when calling AdsApi->UpdateAdTrackingTags");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.Data = updateAdTrackingTagsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<Object>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdTrackingTags", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set/update an ad&#39;s click-URL tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task UpdateAdTrackingTagsAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await UpdateAdTrackingTagsWithHttpInfoAsync(adId, updateAdTrackingTagsRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Set/update an ad&#39;s click-URL tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> UpdateAdTrackingTagsWithHttpInfoAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdsApi->UpdateAdTrackingTags");
+
+            // verify the required parameter 'updateAdTrackingTagsRequest' is set
+            if (updateAdTrackingTagsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdTrackingTagsRequest' when calling AdsApi->UpdateAdTrackingTags");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.Data = updateAdTrackingTagsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdTrackingTags", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
