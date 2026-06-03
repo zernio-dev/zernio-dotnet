@@ -57,6 +57,10 @@ jobs:
             --git-user-id=zernio-dev \
             --git-repo-id=zernio-dotnet
 
+      - name: Patch User-Agent to use package version
+        run: |
+          sed -i 's|UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/1.0.0/csharp");|UserAgent = WebUtility.UrlEncode($"Zernio/{typeof(Configuration).Assembly.GetName().Version?.ToString(3) ?? "unknown"}");|' src/Zernio/Client/Configuration.cs
+
       - name: Patch README install instructions
         run: |
           python3 -c "
@@ -162,6 +166,7 @@ jobs:
             --additional-properties=packageName=Late,targetFramework=net8.0,library=httpclient \
             --git-user-id=zernio-dev \
             --git-repo-id=zernio-dotnet
+          sed -i 's|UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/1.0.0/csharp");|UserAgent = WebUtility.UrlEncode($"Late/{typeof(Configuration).Assembly.GetName().Version?.ToString(3) ?? "unknown"}");|' "$LATE_BUILD_DIR/src/Late/Client/Configuration.cs"
           find "$LATE_BUILD_DIR" -name "*.csproj" -exec sed -i "s/<Version>.*<\/Version>/<Version>${{ steps.version.outputs.nuget_version }}<\/Version>/" {} \;
           dotnet build "$LATE_BUILD_DIR" -c Release
           dotnet pack "$LATE_BUILD_DIR" -c Release --no-build -o "$LATE_BUILD_DIR/nupkg-late"
