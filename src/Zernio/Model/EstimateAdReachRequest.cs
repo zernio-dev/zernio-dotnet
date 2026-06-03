@@ -41,10 +41,11 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EstimateAdReachRequest" /> class.
         /// </summary>
-        /// <param name="accountId">Social account ID on the target ad platform. (required).</param>
+        /// <param name="accountId">Zernio social account ID on the target ad platform (the estimate runs against its platform). (required).</param>
+        /// <param name="adAccountId">Required. The platform ad-account ID the reach call runs against (Meta act_..., LinkedIn numeric sponsoredAccount ID, Pinterest ad-account ID, X account ID) - every backing reach API is scoped to one ad account. Get it from GET /v1/ads/accounts. (required).</param>
         /// <param name="spec">The targeting spec to estimate. Same shape used by POST /v1/ads/create. (required).</param>
         /// <param name="optimizationGoal">Optional. The optimization goal the estimate should assume (platform&#39;s own vocabulary, e.g. Meta &#x60;REACH&#x60;, &#x60;LINK_CLICKS&#x60;, &#x60;OFFSITE_CONVERSIONS&#x60;). Some platforms vary the estimate by goal; omit to use the platform default. .</param>
-        public EstimateAdReachRequest(string accountId = default, TargetingSpec spec = default, string optimizationGoal = default)
+        public EstimateAdReachRequest(string accountId = default, string adAccountId = default, TargetingSpec spec = default, string optimizationGoal = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -52,6 +53,12 @@ namespace Zernio.Model
                 throw new ArgumentNullException("accountId is a required property for EstimateAdReachRequest and cannot be null");
             }
             this.AccountId = accountId;
+            // to ensure "adAccountId" is required (not null)
+            if (adAccountId == null)
+            {
+                throw new ArgumentNullException("adAccountId is a required property for EstimateAdReachRequest and cannot be null");
+            }
+            this.AdAccountId = adAccountId;
             // to ensure "spec" is required (not null)
             if (spec == null)
             {
@@ -62,11 +69,18 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Social account ID on the target ad platform.
+        /// Zernio social account ID on the target ad platform (the estimate runs against its platform).
         /// </summary>
-        /// <value>Social account ID on the target ad platform.</value>
+        /// <value>Zernio social account ID on the target ad platform (the estimate runs against its platform).</value>
         [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
         public string AccountId { get; set; }
+
+        /// <summary>
+        /// Required. The platform ad-account ID the reach call runs against (Meta act_..., LinkedIn numeric sponsoredAccount ID, Pinterest ad-account ID, X account ID) - every backing reach API is scoped to one ad account. Get it from GET /v1/ads/accounts.
+        /// </summary>
+        /// <value>Required. The platform ad-account ID the reach call runs against (Meta act_..., LinkedIn numeric sponsoredAccount ID, Pinterest ad-account ID, X account ID) - every backing reach API is scoped to one ad account. Get it from GET /v1/ads/accounts.</value>
+        [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
+        public string AdAccountId { get; set; }
 
         /// <summary>
         /// The targeting spec to estimate. Same shape used by POST /v1/ads/create.
@@ -91,6 +105,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class EstimateAdReachRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  Spec: ").Append(Spec).Append("\n");
             sb.Append("  OptimizationGoal: ").Append(OptimizationGoal).Append("\n");
             sb.Append("}\n");
