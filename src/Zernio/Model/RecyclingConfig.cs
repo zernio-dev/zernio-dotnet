@@ -67,8 +67,8 @@ namespace Zernio.Model
         /// <param name="gap">Number of interval units between each repost. Required when enabling recycling..</param>
         /// <param name="gapFreq">Interval unit for the gap. Defaults to &#39;month&#39;. (default to GapFreqEnum.Month).</param>
         /// <param name="startDate">When to start the recycling cycle. Defaults to the post&#39;s scheduledFor date..</param>
-        /// <param name="expireCount">Stop recycling after this many copies have been created.</param>
-        /// <param name="expireDate">Stop recycling after this date, regardless of count.</param>
+        /// <param name="expireCount">Stop recycling after this many copies have been created. Send null on update to clear this limit..</param>
+        /// <param name="expireDate">Stop recycling after this date, regardless of count. Send null on update to clear this limit..</param>
         /// <param name="contentVariations">Array of content variations for recycled copies. On each recycle, the next variation is used in round-robin order. Recommended for Twitter and Pinterest to avoid duplicate content flags. If omitted, the original post content is used for all recycled copies. Send an empty array [] to clear existing variations. Must have 2+ entries when setting variations. Platform-level customContent still overrides the base content per platform. .</param>
         public RecyclingConfig(bool enabled = true, int gap = default, GapFreqEnum? gapFreq = GapFreqEnum.Month, DateTime startDate = default, int expireCount = default, DateTime expireDate = default, List<string> contentVariations = default)
         {
@@ -106,9 +106,9 @@ namespace Zernio.Model
         public DateTime StartDate { get; set; }
 
         /// <summary>
-        /// Stop recycling after this many copies have been created
+        /// Stop recycling after this many copies have been created. Send null on update to clear this limit.
         /// </summary>
-        /// <value>Stop recycling after this many copies have been created</value>
+        /// <value>Stop recycling after this many copies have been created. Send null on update to clear this limit.</value>
         /*
         <example>5</example>
         */
@@ -116,9 +116,9 @@ namespace Zernio.Model
         public int ExpireCount { get; set; }
 
         /// <summary>
-        /// Stop recycling after this date, regardless of count
+        /// Stop recycling after this date, regardless of count. Send null on update to clear this limit.
         /// </summary>
-        /// <value>Stop recycling after this date, regardless of count</value>
+        /// <value>Stop recycling after this date, regardless of count. Send null on update to clear this limit.</value>
         [DataMember(Name = "expireDate", EmitDefaultValue = false)]
         public DateTime ExpireDate { get; set; }
 

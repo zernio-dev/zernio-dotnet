@@ -1449,6 +1449,7 @@ Class | Method | HTTP request | Description
  - [Model.UpdatePostMetadata200Response](docs/UpdatePostMetadata200Response.md)
  - [Model.UpdatePostMetadataRequest](docs/UpdatePostMetadataRequest.md)
  - [Model.UpdatePostRequest](docs/UpdatePostRequest.md)
+ - [Model.UpdatePostRequestPlatformsInner](docs/UpdatePostRequestPlatformsInner.md)
  - [Model.UpdateProfile200Response](docs/UpdateProfile200Response.md)
  - [Model.UpdateProfileRequest](docs/UpdateProfileRequest.md)
  - [Model.UpdateQueueSlot200Response](docs/UpdateQueueSlot200Response.md)

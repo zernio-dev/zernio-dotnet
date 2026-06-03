@@ -34,22 +34,87 @@ namespace Zernio.Model
     public partial class UpdatePostRequest : IValidatableObject
     {
         /// <summary>
+        /// Defines Visibility
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum VisibilityEnum
+        {
+            /// <summary>
+            /// Enum Public for value: public
+            /// </summary>
+            [EnumMember(Value = "public")]
+            Public = 1,
+
+            /// <summary>
+            /// Enum Private for value: private
+            /// </summary>
+            [EnumMember(Value = "private")]
+            Private = 2,
+
+            /// <summary>
+            /// Enum Unlisted for value: unlisted
+            /// </summary>
+            [EnumMember(Value = "unlisted")]
+            Unlisted = 3
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Visibility
+        /// </summary>
+        [DataMember(Name = "visibility", EmitDefaultValue = false)]
+        public VisibilityEnum? Visibility { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="UpdatePostRequest" /> class.
         /// </summary>
+        /// <param name="title">title.</param>
         /// <param name="content">content.</param>
+        /// <param name="mediaItems">mediaItems.</param>
+        /// <param name="platforms">Target platforms and accounts for this post. Each item must include platform and accountId..</param>
         /// <param name="scheduledFor">scheduledFor.</param>
+        /// <param name="publishNow">publishNow (default to false).</param>
+        /// <param name="isDraft">isDraft.</param>
+        /// <param name="timezone">timezone.</param>
+        /// <param name="visibility">visibility.</param>
+        /// <param name="tags">tags.</param>
+        /// <param name="hashtags">hashtags.</param>
+        /// <param name="mentions">mentions.</param>
+        /// <param name="crosspostingEnabled">crosspostingEnabled.</param>
+        /// <param name="metadata">metadata.</param>
+        /// <param name="queuedFromProfile">Profile ID to schedule via queue..</param>
+        /// <param name="queueId">Specific queue ID to use when scheduling via queue..</param>
         /// <param name="tiktokSettings">Root-level TikTok settings applied to all TikTok platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence..</param>
         /// <param name="facebookSettings">Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence..</param>
         /// <param name="recycling">recycling.</param>
-        public UpdatePostRequest(string content = default, DateTime scheduledFor = default, TikTokPlatformData tiktokSettings = default, FacebookPlatformData facebookSettings = default, RecyclingConfig recycling = default)
+        public UpdatePostRequest(string title = default, string content = default, List<MediaItem> mediaItems = default, List<UpdatePostRequestPlatformsInner> platforms = default, DateTime scheduledFor = default, bool publishNow = false, bool isDraft = default, string timezone = default, VisibilityEnum? visibility = default, List<string> tags = default, List<string> hashtags = default, List<string> mentions = default, bool crosspostingEnabled = default, Dictionary<string, Object> metadata = default, string queuedFromProfile = default, string queueId = default, TikTokPlatformData tiktokSettings = default, FacebookPlatformData facebookSettings = default, RecyclingConfig recycling = default)
         {
+            this.Title = title;
             this.Content = content;
+            this.MediaItems = mediaItems;
+            this.Platforms = platforms;
             this.ScheduledFor = scheduledFor;
+            this.PublishNow = publishNow;
+            this.IsDraft = isDraft;
+            this.Timezone = timezone;
+            this.Visibility = visibility;
+            this.Tags = tags;
+            this.Hashtags = hashtags;
+            this.Mentions = mentions;
+            this.CrosspostingEnabled = crosspostingEnabled;
+            this.Metadata = metadata;
+            this.QueuedFromProfile = queuedFromProfile;
+            this.QueueId = queueId;
             this.TiktokSettings = tiktokSettings;
             this.FacebookSettings = facebookSettings;
             this.Recycling = recycling;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
+
+        /// <summary>
+        /// Gets or Sets Title
+        /// </summary>
+        [DataMember(Name = "title", EmitDefaultValue = false)]
+        public string Title { get; set; }
 
         /// <summary>
         /// Gets or Sets Content
@@ -58,10 +123,85 @@ namespace Zernio.Model
         public string Content { get; set; }
 
         /// <summary>
+        /// Gets or Sets MediaItems
+        /// </summary>
+        [DataMember(Name = "mediaItems", EmitDefaultValue = false)]
+        public List<MediaItem> MediaItems { get; set; }
+
+        /// <summary>
+        /// Target platforms and accounts for this post. Each item must include platform and accountId.
+        /// </summary>
+        /// <value>Target platforms and accounts for this post. Each item must include platform and accountId.</value>
+        [DataMember(Name = "platforms", EmitDefaultValue = false)]
+        public List<UpdatePostRequestPlatformsInner> Platforms { get; set; }
+
+        /// <summary>
         /// Gets or Sets ScheduledFor
         /// </summary>
         [DataMember(Name = "scheduledFor", EmitDefaultValue = false)]
         public DateTime ScheduledFor { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PublishNow
+        /// </summary>
+        [DataMember(Name = "publishNow", EmitDefaultValue = true)]
+        public bool PublishNow { get; set; }
+
+        /// <summary>
+        /// Gets or Sets IsDraft
+        /// </summary>
+        [DataMember(Name = "isDraft", EmitDefaultValue = true)]
+        public bool IsDraft { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Timezone
+        /// </summary>
+        [DataMember(Name = "timezone", EmitDefaultValue = false)]
+        public string Timezone { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Tags
+        /// </summary>
+        [DataMember(Name = "tags", EmitDefaultValue = false)]
+        public List<string> Tags { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Hashtags
+        /// </summary>
+        [DataMember(Name = "hashtags", EmitDefaultValue = false)]
+        public List<string> Hashtags { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Mentions
+        /// </summary>
+        [DataMember(Name = "mentions", EmitDefaultValue = false)]
+        public List<string> Mentions { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CrosspostingEnabled
+        /// </summary>
+        [DataMember(Name = "crosspostingEnabled", EmitDefaultValue = true)]
+        public bool CrosspostingEnabled { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Metadata
+        /// </summary>
+        [DataMember(Name = "metadata", EmitDefaultValue = false)]
+        public Dictionary<string, Object> Metadata { get; set; }
+
+        /// <summary>
+        /// Profile ID to schedule via queue.
+        /// </summary>
+        /// <value>Profile ID to schedule via queue.</value>
+        [DataMember(Name = "queuedFromProfile", EmitDefaultValue = false)]
+        public string QueuedFromProfile { get; set; }
+
+        /// <summary>
+        /// Specific queue ID to use when scheduling via queue.
+        /// </summary>
+        /// <value>Specific queue ID to use when scheduling via queue.</value>
+        [DataMember(Name = "queueId", EmitDefaultValue = false)]
+        public string QueueId { get; set; }
 
         /// <summary>
         /// Root-level TikTok settings applied to all TikTok platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.
@@ -97,8 +237,22 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdatePostRequest {\n");
+            sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Content: ").Append(Content).Append("\n");
+            sb.Append("  MediaItems: ").Append(MediaItems).Append("\n");
+            sb.Append("  Platforms: ").Append(Platforms).Append("\n");
             sb.Append("  ScheduledFor: ").Append(ScheduledFor).Append("\n");
+            sb.Append("  PublishNow: ").Append(PublishNow).Append("\n");
+            sb.Append("  IsDraft: ").Append(IsDraft).Append("\n");
+            sb.Append("  Timezone: ").Append(Timezone).Append("\n");
+            sb.Append("  Visibility: ").Append(Visibility).Append("\n");
+            sb.Append("  Tags: ").Append(Tags).Append("\n");
+            sb.Append("  Hashtags: ").Append(Hashtags).Append("\n");
+            sb.Append("  Mentions: ").Append(Mentions).Append("\n");
+            sb.Append("  CrosspostingEnabled: ").Append(CrosspostingEnabled).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  QueuedFromProfile: ").Append(QueuedFromProfile).Append("\n");
+            sb.Append("  QueueId: ").Append(QueueId).Append("\n");
             sb.Append("  TiktokSettings: ").Append(TiktokSettings).Append("\n");
             sb.Append("  FacebookSettings: ").Append(FacebookSettings).Append("\n");
             sb.Append("  Recycling: ").Append(Recycling).Append("\n");

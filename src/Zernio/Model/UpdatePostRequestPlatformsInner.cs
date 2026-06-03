@@ -28,37 +28,37 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CreatePostRequestPlatformsInner
+    /// UpdatePostRequestPlatformsInner
     /// </summary>
-    [DataContract(Name = "createPost_request_platforms_inner")]
-    public partial class CreatePostRequestPlatformsInner : IValidatableObject
+    [DataContract(Name = "updatePost_request_platforms_inner")]
+    public partial class UpdatePostRequestPlatformsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatePostRequestPlatformsInner" /> class.
+        /// Initializes a new instance of the <see cref="UpdatePostRequestPlatformsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CreatePostRequestPlatformsInner() { }
+        protected UpdatePostRequestPlatformsInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreatePostRequestPlatformsInner" /> class.
+        /// Initializes a new instance of the <see cref="UpdatePostRequestPlatformsInner" /> class.
         /// </summary>
         /// <param name="platform">platform (required).</param>
         /// <param name="accountId">accountId (required).</param>
-        /// <param name="customContent">Platform-specific text override. When set, this content is used instead of the top-level post content for this platform. Useful for tailoring captions per platform (e.g. keeping tweets under 280 characters)..</param>
+        /// <param name="customContent">Platform-specific text override..</param>
         /// <param name="customMedia">customMedia.</param>
-        /// <param name="scheduledFor">Optional per-platform scheduled time override. When omitted, the top-level scheduledFor is used..</param>
+        /// <param name="scheduledFor">Optional per-platform scheduled time override..</param>
         /// <param name="platformSpecificData">platformSpecificData.</param>
-        public CreatePostRequestPlatformsInner(string platform = default, string accountId = default, string customContent = default, List<MediaItem> customMedia = default, DateTime scheduledFor = default, CreatePostRequestPlatformsInnerPlatformSpecificData platformSpecificData = default)
+        public UpdatePostRequestPlatformsInner(string platform = default, string accountId = default, string customContent = default, List<MediaItem> customMedia = default, DateTime scheduledFor = default, Dictionary<string, Object> platformSpecificData = default)
         {
             // to ensure "platform" is required (not null)
             if (platform == null)
             {
-                throw new ArgumentNullException("platform is a required property for CreatePostRequestPlatformsInner and cannot be null");
+                throw new ArgumentNullException("platform is a required property for UpdatePostRequestPlatformsInner and cannot be null");
             }
             this.Platform = platform;
             // to ensure "accountId" is required (not null)
             if (accountId == null)
             {
-                throw new ArgumentNullException("accountId is a required property for CreatePostRequestPlatformsInner and cannot be null");
+                throw new ArgumentNullException("accountId is a required property for UpdatePostRequestPlatformsInner and cannot be null");
             }
             this.AccountId = accountId;
             this.CustomContent = customContent;
@@ -83,9 +83,9 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Platform-specific text override. When set, this content is used instead of the top-level post content for this platform. Useful for tailoring captions per platform (e.g. keeping tweets under 280 characters).
+        /// Platform-specific text override.
         /// </summary>
-        /// <value>Platform-specific text override. When set, this content is used instead of the top-level post content for this platform. Useful for tailoring captions per platform (e.g. keeping tweets under 280 characters).</value>
+        /// <value>Platform-specific text override.</value>
         [DataMember(Name = "customContent", EmitDefaultValue = false)]
         public string CustomContent { get; set; }
 
@@ -96,9 +96,9 @@ namespace Zernio.Model
         public List<MediaItem> CustomMedia { get; set; }
 
         /// <summary>
-        /// Optional per-platform scheduled time override. When omitted, the top-level scheduledFor is used.
+        /// Optional per-platform scheduled time override.
         /// </summary>
-        /// <value>Optional per-platform scheduled time override. When omitted, the top-level scheduledFor is used.</value>
+        /// <value>Optional per-platform scheduled time override.</value>
         [DataMember(Name = "scheduledFor", EmitDefaultValue = false)]
         public DateTime ScheduledFor { get; set; }
 
@@ -106,7 +106,7 @@ namespace Zernio.Model
         /// Gets or Sets PlatformSpecificData
         /// </summary>
         [DataMember(Name = "platformSpecificData", EmitDefaultValue = false)]
-        public CreatePostRequestPlatformsInnerPlatformSpecificData PlatformSpecificData { get; set; }
+        public Dictionary<string, Object> PlatformSpecificData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -115,7 +115,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreatePostRequestPlatformsInner {\n");
+            sb.Append("class UpdatePostRequestPlatformsInner {\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  CustomContent: ").Append(CustomContent).Append("\n");

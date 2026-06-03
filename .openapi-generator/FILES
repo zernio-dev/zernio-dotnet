@@ -987,6 +987,7 @@ docs/UpdatePinterestBoardsRequest.md
 docs/UpdatePostMetadata200Response.md
 docs/UpdatePostMetadataRequest.md
 docs/UpdatePostRequest.md
+docs/UpdatePostRequestPlatformsInner.md
 docs/UpdateProfile200Response.md
 docs/UpdateProfileRequest.md
 docs/UpdateQueueSlot200Response.md
@@ -2151,6 +2152,7 @@ src/Zernio.Test/Model/UpdateLinkedInOrganizationRequestTests.cs
 src/Zernio.Test/Model/UpdatePinterestBoardsRequestTests.cs
 src/Zernio.Test/Model/UpdatePostMetadata200ResponseTests.cs
 src/Zernio.Test/Model/UpdatePostMetadataRequestTests.cs
+src/Zernio.Test/Model/UpdatePostRequestPlatformsInnerTests.cs
 src/Zernio.Test/Model/UpdatePostRequestTests.cs
 src/Zernio.Test/Model/UpdateProfile200ResponseTests.cs
 src/Zernio.Test/Model/UpdateProfileRequestTests.cs
@@ -3323,6 +3325,7 @@ src/Zernio/Model/UpdatePinterestBoardsRequest.cs
 src/Zernio/Model/UpdatePostMetadata200Response.cs
 src/Zernio/Model/UpdatePostMetadataRequest.cs
 src/Zernio/Model/UpdatePostRequest.cs
+src/Zernio/Model/UpdatePostRequestPlatformsInner.cs
 src/Zernio/Model/UpdateProfile200Response.cs
 src/Zernio/Model/UpdateProfileRequest.cs
 src/Zernio/Model/UpdateQueueSlot200Response.cs
