@@ -1,12 +1,14 @@
 # Zernio.Model.CreateStandaloneAdRequestPlacementAssets
-Meta only. Placement asset customization: pin a SPECIFIC image to each placement group on a SINGLE ad (e.g. a 9:16 image on Stories/Reels and a 4:5 on Feed). This is the same thing Meta Ads Manager produces with \"different creative per placement\", mapped to the creative's `asset_feed_spec` + `asset_customization_rules`. It is deterministic pinning, NOT the auto-optimizing pool of `dynamicCreative` (the two are mutually exclusive, and it cannot be combined with `creatives[]` or `adSetId`). The shared copy (headline, body, link, CTA) comes from the top-level single-creative fields (`headline`, `body`, `linkUrl`, `callToAction`) since only the image varies by placement. Each rule's `placements` accepts the same fields as the top-level `placements` object; Meta enforces co-selection rules and returns an actionable error. 
+Meta only. Placement asset customization: pin a SPECIFIC asset (image OR video) to each placement group on a SINGLE ad (e.g. a 9:16 on Stories/Reels and a 4:5 on Feed). The same thing Meta Ads Manager produces with \"different creative per placement\", mapped to the creative's `asset_feed_spec` + `asset_customization_rules`. Deterministic pinning, NOT the auto-optimizing pool of `dynamicCreative` (mutually exclusive, and it cannot be combined with `creatives[]` or `adSetId`). Shared copy (headline, body, link, CTA) comes from the top-level single-creative fields since only the asset varies by placement. Each rule's `placements` accepts the same fields as the top-level `placements` object; Meta enforces co-selection rules and returns an actionable error.  A block is all-image OR all-video, never mixed (Meta's asset_feed_spec carries one ad format). Image mode: `defaultImageUrl` + `rules[].imageUrl`. Video mode: `defaultVideoUrl` + `rules[].videoUrl` (optional `thumbnailUrl`/`defaultThumbnailUrl` posters; Meta auto-generates when omitted). Exactly one catch-all default is required. 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DefaultImageUrl** | **string** | Catch-all image for any placement not matched by a rule. REQUIRED — Meta mandates a default asset customization rule (empty placement spec, lowest priority) on every placement-customized creative.  | 
-**Rules** | [**List&lt;CreateStandaloneAdRequestPlacementAssetsRulesInner&gt;**](CreateStandaloneAdRequestPlacementAssetsRulesInner.md) | One entry per placement group you want to pin a specific image to. | 
+**DefaultImageUrl** | **string** | Image mode. Catch-all image for any placement no rule matches. Required in image mode (Meta mandates a default rule). | [optional] 
+**DefaultVideoUrl** | **string** | Video mode. Catch-all video for any placement no rule matches. Required in video mode. | [optional] 
+**DefaultThumbnailUrl** | **string** | Video mode (optional). Poster image for the default video; Meta auto-generates one when omitted. | [optional] 
+**Rules** | [**List&lt;CreateStandaloneAdRequestPlacementAssetsRulesInner&gt;**](CreateStandaloneAdRequestPlacementAssetsRulesInner.md) | One entry per placement group you want to pin a specific asset to. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

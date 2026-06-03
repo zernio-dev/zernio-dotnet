@@ -41,30 +41,43 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestPlacementAssetsRulesInner" /> class.
         /// </summary>
-        /// <param name="imageUrl">The image to deliver for this rule&#39;s placements. (required).</param>
+        /// <param name="imageUrl">Image mode. The image to deliver for this rule&#39;s placements..</param>
+        /// <param name="videoUrl">Video mode. The video to deliver for this rule&#39;s placements..</param>
+        /// <param name="thumbnailUrl">Video mode (optional). Poster image for this rule&#39;s video; auto-generated when omitted..</param>
         /// <param name="placements">placements (required).</param>
-        public CreateStandaloneAdRequestPlacementAssetsRulesInner(string imageUrl = default, CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements placements = default)
+        public CreateStandaloneAdRequestPlacementAssetsRulesInner(string imageUrl = default, string videoUrl = default, string thumbnailUrl = default, CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements placements = default)
         {
-            // to ensure "imageUrl" is required (not null)
-            if (imageUrl == null)
-            {
-                throw new ArgumentNullException("imageUrl is a required property for CreateStandaloneAdRequestPlacementAssetsRulesInner and cannot be null");
-            }
-            this.ImageUrl = imageUrl;
             // to ensure "placements" is required (not null)
             if (placements == null)
             {
                 throw new ArgumentNullException("placements is a required property for CreateStandaloneAdRequestPlacementAssetsRulesInner and cannot be null");
             }
             this.Placements = placements;
+            this.ImageUrl = imageUrl;
+            this.VideoUrl = videoUrl;
+            this.ThumbnailUrl = thumbnailUrl;
         }
 
         /// <summary>
-        /// The image to deliver for this rule&#39;s placements.
+        /// Image mode. The image to deliver for this rule&#39;s placements.
         /// </summary>
-        /// <value>The image to deliver for this rule&#39;s placements.</value>
-        [DataMember(Name = "imageUrl", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Image mode. The image to deliver for this rule&#39;s placements.</value>
+        [DataMember(Name = "imageUrl", EmitDefaultValue = false)]
         public string ImageUrl { get; set; }
+
+        /// <summary>
+        /// Video mode. The video to deliver for this rule&#39;s placements.
+        /// </summary>
+        /// <value>Video mode. The video to deliver for this rule&#39;s placements.</value>
+        [DataMember(Name = "videoUrl", EmitDefaultValue = false)]
+        public string VideoUrl { get; set; }
+
+        /// <summary>
+        /// Video mode (optional). Poster image for this rule&#39;s video; auto-generated when omitted.
+        /// </summary>
+        /// <value>Video mode (optional). Poster image for this rule&#39;s video; auto-generated when omitted.</value>
+        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
+        public string ThumbnailUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets Placements
@@ -81,6 +94,8 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateStandaloneAdRequestPlacementAssetsRulesInner {\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
+            sb.Append("  VideoUrl: ").Append(VideoUrl).Append("\n");
+            sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
             sb.Append("  Placements: ").Append(Placements).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

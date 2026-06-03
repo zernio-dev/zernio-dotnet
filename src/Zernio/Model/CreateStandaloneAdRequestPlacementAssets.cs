@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Meta only. Placement asset customization: pin a SPECIFIC image to each placement group on a SINGLE ad (e.g. a 9:16 image on Stories/Reels and a 4:5 on Feed). This is the same thing Meta Ads Manager produces with \&quot;different creative per placement\&quot;, mapped to the creative&#39;s &#x60;asset_feed_spec&#x60; + &#x60;asset_customization_rules&#x60;. It is deterministic pinning, NOT the auto-optimizing pool of &#x60;dynamicCreative&#x60; (the two are mutually exclusive, and it cannot be combined with &#x60;creatives[]&#x60; or &#x60;adSetId&#x60;). The shared copy (headline, body, link, CTA) comes from the top-level single-creative fields (&#x60;headline&#x60;, &#x60;body&#x60;, &#x60;linkUrl&#x60;, &#x60;callToAction&#x60;) since only the image varies by placement. Each rule&#39;s &#x60;placements&#x60; accepts the same fields as the top-level &#x60;placements&#x60; object; Meta enforces co-selection rules and returns an actionable error. 
+    /// Meta only. Placement asset customization: pin a SPECIFIC asset (image OR video) to each placement group on a SINGLE ad (e.g. a 9:16 on Stories/Reels and a 4:5 on Feed). The same thing Meta Ads Manager produces with \&quot;different creative per placement\&quot;, mapped to the creative&#39;s &#x60;asset_feed_spec&#x60; + &#x60;asset_customization_rules&#x60;. Deterministic pinning, NOT the auto-optimizing pool of &#x60;dynamicCreative&#x60; (mutually exclusive, and it cannot be combined with &#x60;creatives[]&#x60; or &#x60;adSetId&#x60;). Shared copy (headline, body, link, CTA) comes from the top-level single-creative fields since only the asset varies by placement. Each rule&#39;s &#x60;placements&#x60; accepts the same fields as the top-level &#x60;placements&#x60; object; Meta enforces co-selection rules and returns an actionable error.  A block is all-image OR all-video, never mixed (Meta&#39;s asset_feed_spec carries one ad format). Image mode: &#x60;defaultImageUrl&#x60; + &#x60;rules[].imageUrl&#x60;. Video mode: &#x60;defaultVideoUrl&#x60; + &#x60;rules[].videoUrl&#x60; (optional &#x60;thumbnailUrl&#x60;/&#x60;defaultThumbnailUrl&#x60; posters; Meta auto-generates when omitted). Exactly one catch-all default is required. 
     /// </summary>
     [DataContract(Name = "createStandaloneAd_request_placementAssets")]
     public partial class CreateStandaloneAdRequestPlacementAssets : IValidatableObject
@@ -41,35 +41,48 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestPlacementAssets" /> class.
         /// </summary>
-        /// <param name="defaultImageUrl">Catch-all image for any placement not matched by a rule. REQUIRED — Meta mandates a default asset customization rule (empty placement spec, lowest priority) on every placement-customized creative.  (required).</param>
-        /// <param name="rules">One entry per placement group you want to pin a specific image to. (required).</param>
-        public CreateStandaloneAdRequestPlacementAssets(string defaultImageUrl = default, List<CreateStandaloneAdRequestPlacementAssetsRulesInner> rules = default)
+        /// <param name="defaultImageUrl">Image mode. Catch-all image for any placement no rule matches. Required in image mode (Meta mandates a default rule)..</param>
+        /// <param name="defaultVideoUrl">Video mode. Catch-all video for any placement no rule matches. Required in video mode..</param>
+        /// <param name="defaultThumbnailUrl">Video mode (optional). Poster image for the default video; Meta auto-generates one when omitted..</param>
+        /// <param name="rules">One entry per placement group you want to pin a specific asset to. (required).</param>
+        public CreateStandaloneAdRequestPlacementAssets(string defaultImageUrl = default, string defaultVideoUrl = default, string defaultThumbnailUrl = default, List<CreateStandaloneAdRequestPlacementAssetsRulesInner> rules = default)
         {
-            // to ensure "defaultImageUrl" is required (not null)
-            if (defaultImageUrl == null)
-            {
-                throw new ArgumentNullException("defaultImageUrl is a required property for CreateStandaloneAdRequestPlacementAssets and cannot be null");
-            }
-            this.DefaultImageUrl = defaultImageUrl;
             // to ensure "rules" is required (not null)
             if (rules == null)
             {
                 throw new ArgumentNullException("rules is a required property for CreateStandaloneAdRequestPlacementAssets and cannot be null");
             }
             this.Rules = rules;
+            this.DefaultImageUrl = defaultImageUrl;
+            this.DefaultVideoUrl = defaultVideoUrl;
+            this.DefaultThumbnailUrl = defaultThumbnailUrl;
         }
 
         /// <summary>
-        /// Catch-all image for any placement not matched by a rule. REQUIRED — Meta mandates a default asset customization rule (empty placement spec, lowest priority) on every placement-customized creative. 
+        /// Image mode. Catch-all image for any placement no rule matches. Required in image mode (Meta mandates a default rule).
         /// </summary>
-        /// <value>Catch-all image for any placement not matched by a rule. REQUIRED — Meta mandates a default asset customization rule (empty placement spec, lowest priority) on every placement-customized creative. </value>
-        [DataMember(Name = "defaultImageUrl", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Image mode. Catch-all image for any placement no rule matches. Required in image mode (Meta mandates a default rule).</value>
+        [DataMember(Name = "defaultImageUrl", EmitDefaultValue = false)]
         public string DefaultImageUrl { get; set; }
 
         /// <summary>
-        /// One entry per placement group you want to pin a specific image to.
+        /// Video mode. Catch-all video for any placement no rule matches. Required in video mode.
         /// </summary>
-        /// <value>One entry per placement group you want to pin a specific image to.</value>
+        /// <value>Video mode. Catch-all video for any placement no rule matches. Required in video mode.</value>
+        [DataMember(Name = "defaultVideoUrl", EmitDefaultValue = false)]
+        public string DefaultVideoUrl { get; set; }
+
+        /// <summary>
+        /// Video mode (optional). Poster image for the default video; Meta auto-generates one when omitted.
+        /// </summary>
+        /// <value>Video mode (optional). Poster image for the default video; Meta auto-generates one when omitted.</value>
+        [DataMember(Name = "defaultThumbnailUrl", EmitDefaultValue = false)]
+        public string DefaultThumbnailUrl { get; set; }
+
+        /// <summary>
+        /// One entry per placement group you want to pin a specific asset to.
+        /// </summary>
+        /// <value>One entry per placement group you want to pin a specific asset to.</value>
         [DataMember(Name = "rules", IsRequired = true, EmitDefaultValue = true)]
         public List<CreateStandaloneAdRequestPlacementAssetsRulesInner> Rules { get; set; }
 
@@ -82,6 +95,8 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateStandaloneAdRequestPlacementAssets {\n");
             sb.Append("  DefaultImageUrl: ").Append(DefaultImageUrl).Append("\n");
+            sb.Append("  DefaultVideoUrl: ").Append(DefaultVideoUrl).Append("\n");
+            sb.Append("  DefaultThumbnailUrl: ").Append(DefaultThumbnailUrl).Append("\n");
             sb.Append("  Rules: ").Append(Rules).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
