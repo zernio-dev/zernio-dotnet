@@ -43,7 +43,8 @@ namespace Zernio.Model
         /// <param name="address">address.</param>
         /// <param name="category">category.</param>
         /// <param name="websiteUrl">websiteUrl.</param>
-        public GetGmbLocations200ResponseLocationsInner(string id = default, string name = default, string accountId = default, string accountName = default, string address = default, string category = default, string websiteUrl = default)
+        /// <param name="storeCode">storeCode.</param>
+        public GetGmbLocations200ResponseLocationsInner(string id = default, string name = default, string accountId = default, string accountName = default, string address = default, string category = default, string websiteUrl = default, string storeCode = default)
         {
             this.Id = id;
             this.Name = name;
@@ -52,6 +53,7 @@ namespace Zernio.Model
             this.Address = address;
             this.Category = category;
             this.WebsiteUrl = websiteUrl;
+            this.StoreCode = storeCode;
         }
 
         /// <summary>
@@ -97,6 +99,12 @@ namespace Zernio.Model
         public string WebsiteUrl { get; set; }
 
         /// <summary>
+        /// Gets or Sets StoreCode
+        /// </summary>
+        [DataMember(Name = "storeCode", EmitDefaultValue = false)]
+        public string StoreCode { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -111,6 +119,7 @@ namespace Zernio.Model
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  WebsiteUrl: ").Append(WebsiteUrl).Append("\n");
+            sb.Append("  StoreCode: ").Append(StoreCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

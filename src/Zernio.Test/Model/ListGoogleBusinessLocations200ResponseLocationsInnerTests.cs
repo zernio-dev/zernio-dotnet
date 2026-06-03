@@ -108,5 +108,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Category'
         }
+
+        /// <summary>
+        /// Test the property 'StoreCode'
+        /// </summary>
+        [Fact]
+        public void StoreCodeTest()
+        {
+            // TODO unit test for the property 'StoreCode'
+        }
     }
 }

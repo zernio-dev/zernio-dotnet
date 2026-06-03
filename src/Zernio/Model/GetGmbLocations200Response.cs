@@ -37,11 +37,13 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetGmbLocations200Response" /> class.
         /// </summary>
         /// <param name="locations">locations.</param>
+        /// <param name="hasMore">True when more locations exist than were returned (use search to narrow down)..</param>
         /// <param name="selectedLocationId">selectedLocationId.</param>
         /// <param name="cached">cached.</param>
-        public GetGmbLocations200Response(List<GetGmbLocations200ResponseLocationsInner> locations = default, string selectedLocationId = default, bool cached = default)
+        public GetGmbLocations200Response(List<GetGmbLocations200ResponseLocationsInner> locations = default, bool hasMore = default, string selectedLocationId = default, bool cached = default)
         {
             this.Locations = locations;
+            this.HasMore = hasMore;
             this.SelectedLocationId = selectedLocationId;
             this.Cached = cached;
         }
@@ -51,6 +53,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "locations", EmitDefaultValue = false)]
         public List<GetGmbLocations200ResponseLocationsInner> Locations { get; set; }
+
+        /// <summary>
+        /// True when more locations exist than were returned (use search to narrow down).
+        /// </summary>
+        /// <value>True when more locations exist than were returned (use search to narrow down).</value>
+        [DataMember(Name = "hasMore", EmitDefaultValue = true)]
+        public bool HasMore { get; set; }
 
         /// <summary>
         /// Gets or Sets SelectedLocationId
@@ -73,6 +82,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetGmbLocations200Response {\n");
             sb.Append("  Locations: ").Append(Locations).Append("\n");
+            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("  SelectedLocationId: ").Append(SelectedLocationId).Append("\n");
             sb.Append("  Cached: ").Append(Cached).Append("\n");
             sb.Append("}\n");

@@ -169,7 +169,9 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
-            //var response = instance.GetGmbLocations(accountId);
+            //string? search = null;
+            //string? filter = null;
+            //var response = instance.GetGmbLocations(accountId, search, filter);
             //Assert.IsType<GetGmbLocations200Response>(response);
         }
 
@@ -305,7 +307,9 @@ namespace Zernio.Test.Api
             //string? profileId = null;
             //string? pendingDataToken = null;
             //string? tempToken = null;
-            //var response = instance.ListGoogleBusinessLocations(profileId, pendingDataToken, tempToken);
+            //string? search = null;
+            //string? filter = null;
+            //var response = instance.ListGoogleBusinessLocations(profileId, pendingDataToken, tempToken, search, filter);
             //Assert.IsType<ListGoogleBusinessLocations200Response>(response);
         }
 

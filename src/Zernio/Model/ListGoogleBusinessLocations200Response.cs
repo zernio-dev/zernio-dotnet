@@ -37,9 +37,11 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListGoogleBusinessLocations200Response" /> class.
         /// </summary>
         /// <param name="locations">locations.</param>
-        public ListGoogleBusinessLocations200Response(List<ListGoogleBusinessLocations200ResponseLocationsInner> locations = default)
+        /// <param name="hasMore">True when more locations exist than were returned (the list is bounded). Prompt the user to narrow the result set with search. .</param>
+        public ListGoogleBusinessLocations200Response(List<ListGoogleBusinessLocations200ResponseLocationsInner> locations = default, bool hasMore = default)
         {
             this.Locations = locations;
+            this.HasMore = hasMore;
         }
 
         /// <summary>
@@ -47,6 +49,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "locations", EmitDefaultValue = false)]
         public List<ListGoogleBusinessLocations200ResponseLocationsInner> Locations { get; set; }
+
+        /// <summary>
+        /// True when more locations exist than were returned (the list is bounded). Prompt the user to narrow the result set with search. 
+        /// </summary>
+        /// <value>True when more locations exist than were returned (the list is bounded). Prompt the user to narrow the result set with search. </value>
+        [DataMember(Name = "hasMore", EmitDefaultValue = true)]
+        public bool HasMore { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -57,6 +66,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListGoogleBusinessLocations200Response {\n");
             sb.Append("  Locations: ").Append(Locations).Append("\n");
+            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

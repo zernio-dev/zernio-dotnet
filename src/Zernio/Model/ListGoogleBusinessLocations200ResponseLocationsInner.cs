@@ -42,7 +42,8 @@ namespace Zernio.Model
         /// <param name="accountName">Account name.</param>
         /// <param name="address">Business address.</param>
         /// <param name="category">Business category.</param>
-        public ListGoogleBusinessLocations200ResponseLocationsInner(string id = default, string name = default, string accountId = default, string accountName = default, string address = default, string category = default)
+        /// <param name="storeCode">Store code set on the location in Google Business Profile (if any).</param>
+        public ListGoogleBusinessLocations200ResponseLocationsInner(string id = default, string name = default, string accountId = default, string accountName = default, string address = default, string category = default, string storeCode = default)
         {
             this.Id = id;
             this.Name = name;
@@ -50,6 +51,7 @@ namespace Zernio.Model
             this.AccountName = accountName;
             this.Address = address;
             this.Category = category;
+            this.StoreCode = storeCode;
         }
 
         /// <summary>
@@ -95,6 +97,13 @@ namespace Zernio.Model
         public string Category { get; set; }
 
         /// <summary>
+        /// Store code set on the location in Google Business Profile (if any)
+        /// </summary>
+        /// <value>Store code set on the location in Google Business Profile (if any)</value>
+        [DataMember(Name = "storeCode", EmitDefaultValue = false)]
+        public string StoreCode { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -108,6 +117,7 @@ namespace Zernio.Model
             sb.Append("  AccountName: ").Append(AccountName).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  Category: ").Append(Category).Append("\n");
+            sb.Append("  StoreCode: ").Append(StoreCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

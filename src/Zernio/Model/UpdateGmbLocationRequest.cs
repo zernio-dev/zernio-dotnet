@@ -42,7 +42,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="UpdateGmbLocationRequest" /> class.
         /// </summary>
         /// <param name="selectedLocationId">selectedLocationId (required).</param>
-        public UpdateGmbLocationRequest(string selectedLocationId = default)
+        /// <param name="accountId">Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. .</param>
+        public UpdateGmbLocationRequest(string selectedLocationId = default, string accountId = default)
         {
             // to ensure "selectedLocationId" is required (not null)
             if (selectedLocationId == null)
@@ -50,6 +51,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("selectedLocationId is a required property for UpdateGmbLocationRequest and cannot be null");
             }
             this.SelectedLocationId = selectedLocationId;
+            this.AccountId = accountId;
         }
 
         /// <summary>
@@ -57,6 +59,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "selectedLocationId", IsRequired = true, EmitDefaultValue = true)]
         public string SelectedLocationId { get; set; }
+
+        /// <summary>
+        /// Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. 
+        /// </summary>
+        /// <value>Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. </value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -67,6 +76,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateGmbLocationRequest {\n");
             sb.Append("  SelectedLocationId: ").Append(SelectedLocationId).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

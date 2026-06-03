@@ -222,23 +222,27 @@ namespace Zernio.Api
         /// List GBP locations
         /// </summary>
         /// <remarks>
-        /// Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
         /// <returns>GetGmbLocations200Response</returns>
-        GetGmbLocations200Response GetGmbLocations(string accountId);
+        GetGmbLocations200Response GetGmbLocations(string accountId, string? search = default, string? filter = default);
 
         /// <summary>
         /// List GBP locations
         /// </summary>
         /// <remarks>
-        /// Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
         /// <returns>ApiResponse of GetGmbLocations200Response</returns>
-        ApiResponse<GetGmbLocations200Response> GetGmbLocationsWithHttpInfo(string accountId);
+        ApiResponse<GetGmbLocations200Response> GetGmbLocationsWithHttpInfo(string accountId, string? search = default, string? filter = default);
         /// <summary>
         /// List LinkedIn orgs
         /// </summary>
@@ -465,8 +469,10 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
         /// <param name="pendingDataToken">Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)</param>
         /// <param name="tempToken">Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)</param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)</param>
         /// <returns>ListGoogleBusinessLocations200Response</returns>
-        ListGoogleBusinessLocations200Response ListGoogleBusinessLocations(string? profileId = default, string? pendingDataToken = default, string? tempToken = default);
+        ListGoogleBusinessLocations200Response ListGoogleBusinessLocations(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default);
 
         /// <summary>
         /// List GBP locations
@@ -478,8 +484,10 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
         /// <param name="pendingDataToken">Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)</param>
         /// <param name="tempToken">Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)</param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)</param>
         /// <returns>ApiResponse of ListGoogleBusinessLocations200Response</returns>
-        ApiResponse<ListGoogleBusinessLocations200Response> ListGoogleBusinessLocationsWithHttpInfo(string? profileId = default, string? pendingDataToken = default, string? tempToken = default);
+        ApiResponse<ListGoogleBusinessLocations200Response> ListGoogleBusinessLocationsWithHttpInfo(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default);
         /// <summary>
         /// List LinkedIn orgs
         /// </summary>
@@ -1042,25 +1050,29 @@ namespace Zernio.Api
         /// List GBP locations
         /// </summary>
         /// <remarks>
-        /// Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetGmbLocations200Response</returns>
-        System.Threading.Tasks.Task<GetGmbLocations200Response> GetGmbLocationsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetGmbLocations200Response> GetGmbLocationsAsync(string accountId, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List GBP locations
         /// </summary>
         /// <remarks>
-        /// Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetGmbLocations200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetGmbLocations200Response>> GetGmbLocationsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetGmbLocations200Response>> GetGmbLocationsWithHttpInfoAsync(string accountId, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List LinkedIn orgs
         /// </summary>
@@ -1307,9 +1319,11 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
         /// <param name="pendingDataToken">Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)</param>
         /// <param name="tempToken">Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)</param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListGoogleBusinessLocations200Response</returns>
-        System.Threading.Tasks.Task<ListGoogleBusinessLocations200Response> ListGoogleBusinessLocationsAsync(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListGoogleBusinessLocations200Response> ListGoogleBusinessLocationsAsync(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List GBP locations
@@ -1321,9 +1335,11 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
         /// <param name="pendingDataToken">Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)</param>
         /// <param name="tempToken">Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)</param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListGoogleBusinessLocations200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListGoogleBusinessLocations200Response>> ListGoogleBusinessLocationsWithHttpInfoAsync(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListGoogleBusinessLocations200Response>> ListGoogleBusinessLocationsWithHttpInfoAsync(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List LinkedIn orgs
         /// </summary>
@@ -3071,24 +3087,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
         /// <returns>GetGmbLocations200Response</returns>
-        public GetGmbLocations200Response GetGmbLocations(string accountId)
+        public GetGmbLocations200Response GetGmbLocations(string accountId, string? search = default, string? filter = default)
         {
-            Zernio.Client.ApiResponse<GetGmbLocations200Response> localVarResponse = GetGmbLocationsWithHttpInfo(accountId);
+            Zernio.Client.ApiResponse<GetGmbLocations200Response> localVarResponse = GetGmbLocationsWithHttpInfo(accountId, search, filter);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List GBP locations Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
         /// <returns>ApiResponse of GetGmbLocations200Response</returns>
-        public Zernio.Client.ApiResponse<GetGmbLocations200Response> GetGmbLocationsWithHttpInfo(string accountId)
+        public Zernio.Client.ApiResponse<GetGmbLocations200Response> GetGmbLocationsWithHttpInfo(string accountId, string? search = default, string? filter = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -3111,6 +3131,14 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (search != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "search", search));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -3132,26 +3160,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetGmbLocations200Response</returns>
-        public async System.Threading.Tasks.Task<GetGmbLocations200Response> GetGmbLocationsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetGmbLocations200Response> GetGmbLocationsAsync(string accountId, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetGmbLocations200Response> localVarResponse = await GetGmbLocationsWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetGmbLocations200Response> localVarResponse = await GetGmbLocationsWithHttpInfoAsync(accountId, search, filter, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List GBP locations Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetGmbLocations200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetGmbLocations200Response>> GetGmbLocationsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetGmbLocations200Response>> GetGmbLocationsWithHttpInfoAsync(string accountId, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -3176,6 +3208,14 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (search != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "search", search));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -4528,10 +4568,12 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
         /// <param name="pendingDataToken">Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)</param>
         /// <param name="tempToken">Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)</param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)</param>
         /// <returns>ListGoogleBusinessLocations200Response</returns>
-        public ListGoogleBusinessLocations200Response ListGoogleBusinessLocations(string? profileId = default, string? pendingDataToken = default, string? tempToken = default)
+        public ListGoogleBusinessLocations200Response ListGoogleBusinessLocations(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default)
         {
-            Zernio.Client.ApiResponse<ListGoogleBusinessLocations200Response> localVarResponse = ListGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken);
+            Zernio.Client.ApiResponse<ListGoogleBusinessLocations200Response> localVarResponse = ListGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken, search, filter);
             return localVarResponse.Data;
         }
 
@@ -4542,8 +4584,10 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
         /// <param name="pendingDataToken">Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)</param>
         /// <param name="tempToken">Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)</param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)</param>
         /// <returns>ApiResponse of ListGoogleBusinessLocations200Response</returns>
-        public Zernio.Client.ApiResponse<ListGoogleBusinessLocations200Response> ListGoogleBusinessLocationsWithHttpInfo(string? profileId = default, string? pendingDataToken = default, string? tempToken = default)
+        public Zernio.Client.ApiResponse<ListGoogleBusinessLocations200Response> ListGoogleBusinessLocationsWithHttpInfo(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -4572,6 +4616,14 @@ namespace Zernio.Api
             if (tempToken != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tempToken", tempToken));
+            }
+            if (search != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "search", search));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
             }
 
             // authentication (connectToken) required
@@ -4605,11 +4657,13 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
         /// <param name="pendingDataToken">Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)</param>
         /// <param name="tempToken">Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)</param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListGoogleBusinessLocations200Response</returns>
-        public async System.Threading.Tasks.Task<ListGoogleBusinessLocations200Response> ListGoogleBusinessLocationsAsync(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListGoogleBusinessLocations200Response> ListGoogleBusinessLocationsAsync(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListGoogleBusinessLocations200Response> localVarResponse = await ListGoogleBusinessLocationsWithHttpInfoAsync(profileId, pendingDataToken, tempToken, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListGoogleBusinessLocations200Response> localVarResponse = await ListGoogleBusinessLocationsWithHttpInfoAsync(profileId, pendingDataToken, tempToken, search, filter, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -4620,9 +4674,11 @@ namespace Zernio.Api
         /// <param name="profileId">Profile ID from your connection flow. Required for auth validation when provided. (optional)</param>
         /// <param name="pendingDataToken">Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)</param>
         /// <param name="tempToken">Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)</param>
+        /// <param name="search">Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)</param>
+        /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListGoogleBusinessLocations200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListGoogleBusinessLocations200Response>> ListGoogleBusinessLocationsWithHttpInfoAsync(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListGoogleBusinessLocations200Response>> ListGoogleBusinessLocationsWithHttpInfoAsync(string? profileId = default, string? pendingDataToken = default, string? tempToken = default, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -4653,6 +4709,14 @@ namespace Zernio.Api
             if (tempToken != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "tempToken", tempToken));
+            }
+            if (search != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "search", search));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
             }
 
             // authentication (connectToken) required

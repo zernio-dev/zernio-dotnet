@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Locations** | [**List&lt;GetGmbLocations200ResponseLocationsInner&gt;**](GetGmbLocations200ResponseLocationsInner.md) |  | [optional] 
+**HasMore** | **bool** | True when more locations exist than were returned (use search to narrow down). | [optional] 
 **SelectedLocationId** | **string** |  | [optional] 
 **Cached** | **bool** |  | [optional] 
 

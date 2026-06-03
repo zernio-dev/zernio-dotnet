@@ -877,11 +877,11 @@ catch (ApiException e)
 
 <a id="getgmblocations"></a>
 # **GetGmbLocations**
-> GetGmbLocations200Response GetGmbLocations (string accountId)
+> GetGmbLocations200Response GetGmbLocations (string accountId, string? search = null, string? filter = null)
 
 List GBP locations
 
-Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
 
 ### Example
 ```csharp
@@ -908,11 +908,13 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
+            var search = "search_example";  // string? | Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional) 
+            var filter = "filter_example";  // string? | Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode=\"LH279411\". (optional) 
 
             try
             {
                 // List GBP locations
-                GetGmbLocations200Response result = apiInstance.GetGmbLocations(accountId);
+                GetGmbLocations200Response result = apiInstance.GetGmbLocations(accountId, search, filter);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -933,7 +935,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List GBP locations
-    ApiResponse<GetGmbLocations200Response> response = apiInstance.GetGmbLocationsWithHttpInfo(accountId);
+    ApiResponse<GetGmbLocations200Response> response = apiInstance.GetGmbLocationsWithHttpInfo(accountId, search, filter);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -951,6 +953,8 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
+| **search** | **string?** | Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. | [optional]  |
+| **filter** | **string?** | Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. | [optional]  |
 
 ### Return type
 
@@ -1996,7 +2000,7 @@ catch (ApiException e)
 
 <a id="listgooglebusinesslocations"></a>
 # **ListGoogleBusinessLocations**
-> ListGoogleBusinessLocations200Response ListGoogleBusinessLocations (string? profileId = null, string? pendingDataToken = null, string? tempToken = null)
+> ListGoogleBusinessLocations200Response ListGoogleBusinessLocations (string? profileId = null, string? pendingDataToken = null, string? tempToken = null, string? search = null, string? filter = null)
 
 List GBP locations
 
@@ -2033,11 +2037,13 @@ namespace Example
             var profileId = "profileId_example";  // string? | Profile ID from your connection flow. Required for auth validation when provided. (optional) 
             var pendingDataToken = "pendingDataToken_example";  // string? | Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional) 
             var tempToken = "tempToken_example";  // string? | Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional) 
+            var search = "search_example";  // string? | Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional) 
+            var filter = "filter_example";  // string? | Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode=\"LH279411\". See Google's \"Work with location data\" guide.  (optional) 
 
             try
             {
                 // List GBP locations
-                ListGoogleBusinessLocations200Response result = apiInstance.ListGoogleBusinessLocations(profileId, pendingDataToken, tempToken);
+                ListGoogleBusinessLocations200Response result = apiInstance.ListGoogleBusinessLocations(profileId, pendingDataToken, tempToken, search, filter);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2058,7 +2064,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List GBP locations
-    ApiResponse<ListGoogleBusinessLocations200Response> response = apiInstance.ListGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken);
+    ApiResponse<ListGoogleBusinessLocations200Response> response = apiInstance.ListGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken, search, filter);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2078,6 +2084,8 @@ catch (ApiException e)
 | **profileId** | **string?** | Profile ID from your connection flow. Required for auth validation when provided. | [optional]  |
 | **pendingDataToken** | **string?** | Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. | [optional]  |
 | **tempToken** | **string?** | Legacy. Direct Google access token. Use pendingDataToken instead when available. | [optional]  |
+| **search** | **string?** | Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  | [optional]  |
+| **filter** | **string?** | Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  | [optional]  |
 
 ### Return type
 

@@ -63,5 +63,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Locations'
         }
+
+        /// <summary>
+        /// Test the property 'HasMore'
+        /// </summary>
+        [Fact]
+        public void HasMoreTest()
+        {
+            // TODO unit test for the property 'HasMore'
+        }
     }
 }

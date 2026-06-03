@@ -43,9 +43,10 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="profileId">Profile ID from your connection flow (required).</param>
         /// <param name="locationId">The Google Business location ID selected by the user (required).</param>
+        /// <param name="accountId">Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. .</param>
         /// <param name="pendingDataToken">Token from the OAuth callback redirect (pendingDataToken query param). Tokens and profile data are retrieved server-side from this token. (required).</param>
         /// <param name="redirectUrl">Optional custom redirect URL to return to after selection.</param>
-        public SelectGoogleBusinessLocationRequest(string profileId = default, string locationId = default, string pendingDataToken = default, string redirectUrl = default)
+        public SelectGoogleBusinessLocationRequest(string profileId = default, string locationId = default, string accountId = default, string pendingDataToken = default, string redirectUrl = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -65,6 +66,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("pendingDataToken is a required property for SelectGoogleBusinessLocationRequest and cannot be null");
             }
             this.PendingDataToken = pendingDataToken;
+            this.AccountId = accountId;
             this.RedirectUrl = redirectUrl;
         }
 
@@ -81,6 +83,13 @@ namespace Zernio.Model
         /// <value>The Google Business location ID selected by the user</value>
         [DataMember(Name = "locationId", IsRequired = true, EmitDefaultValue = true)]
         public string LocationId { get; set; }
+
+        /// <summary>
+        /// Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. 
+        /// </summary>
+        /// <value>Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. </value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Token from the OAuth callback redirect (pendingDataToken query param). Tokens and profile data are retrieved server-side from this token.
@@ -106,6 +115,7 @@ namespace Zernio.Model
             sb.Append("class SelectGoogleBusinessLocationRequest {\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  LocationId: ").Append(LocationId).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  PendingDataToken: ").Append(PendingDataToken).Append("\n");
             sb.Append("  RedirectUrl: ").Append(RedirectUrl).Append("\n");
             sb.Append("}\n");
