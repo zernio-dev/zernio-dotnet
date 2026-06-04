@@ -13,6 +13,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ReleaseWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#releasewhatsappphonenumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number |
 | [**SearchAvailableWhatsAppNumbers**](WhatsAppPhoneNumbersApi.md#searchavailablewhatsappnumbers) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers to purchase |
 | [**SubmitWhatsAppNumberKyc**](WhatsAppPhoneNumbersApi.md#submitwhatsappnumberkyc) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC |
+| [**UploadWhatsAppNumberKycDocument**](WhatsAppPhoneNumbersApi.md#uploadwhatsappnumberkycdocument) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document |
 
 <a id="getwhatsappnumberinfo"></a>
 # **GetWhatsAppNumberInfo**
@@ -833,7 +834,7 @@ catch (ApiException e)
 
 Submit regulated-number KYC
 
-Submit the end customer's KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+Submit the end customer's KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via `submissionId`. 
 
 ### Example
 ```csharp
@@ -924,6 +925,108 @@ catch (ApiException e)
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
 | **400** | Validation error (e.g. address not in-country |  -  |
 | **409** | reuse requested but no prior approved verification exists for this country |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="uploadwhatsappnumberkycdocument"></a>
+# **UploadWhatsAppNumberKycDocument**
+> UploadWhatsAppNumberKycDocument200Response UploadWhatsAppNumberKycDocument (string xFilename, FileParameter body)
+
+Upload a single regulated-number KYC document
+
+Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via `documents[].documentId`. Send the RAW file bytes as the request body (not base64); put the filename in the `X-Filename` header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UploadWhatsAppNumberKycDocumentExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppPhoneNumbersApi(httpClient, config, httpClientHandler);
+            var xFilename = "xFilename_example";  // string | URL-encoded original filename.
+            var body = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter | 
+
+            try
+            {
+                // Upload a single regulated-number KYC document
+                UploadWhatsAppNumberKycDocument200Response result = apiInstance.UploadWhatsAppNumberKycDocument(xFilename, body);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppPhoneNumbersApi.UploadWhatsAppNumberKycDocument: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UploadWhatsAppNumberKycDocumentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Upload a single regulated-number KYC document
+    ApiResponse<UploadWhatsAppNumberKycDocument200Response> response = apiInstance.UploadWhatsAppNumberKycDocumentWithHttpInfo(xFilename, body);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppPhoneNumbersApi.UploadWhatsAppNumberKycDocumentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **xFilename** | **string** | URL-encoded original filename. |  |
+| **body** | **FileParameter****FileParameter** |  |  |
+
+### Return type
+
+[**UploadWhatsAppNumberKycDocument200Response**](UploadWhatsAppNumberKycDocument200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/octet-stream
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Document uploaded. |  -  |
+| **400** | Missing X-Filename, empty body, or file too large (over 20MB). |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

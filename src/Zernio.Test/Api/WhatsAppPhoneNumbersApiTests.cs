@@ -167,5 +167,18 @@ namespace Zernio.Test.Api
             //var response = instance.SubmitWhatsAppNumberKyc(submitWhatsAppNumberKycRequest);
             //Assert.IsType<SubmitWhatsAppNumberKyc200Response>(response);
         }
+
+        /// <summary>
+        /// Test UploadWhatsAppNumberKycDocument
+        /// </summary>
+        [Fact]
+        public void UploadWhatsAppNumberKycDocumentTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string xFilename = null;
+            //FileParameter body = null;
+            //var response = instance.UploadWhatsAppNumberKycDocument(xFilename, body);
+            //Assert.IsType<UploadWhatsAppNumberKycDocument200Response>(response);
+        }
     }
 }

@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'SubmissionId'
+        /// </summary>
+        [Fact]
+        public void SubmissionIdTest()
+        {
+            // TODO unit test for the property 'SubmissionId'
+        }
+
+        /// <summary>
         /// Test the property 'Reuse'
         /// </summary>
         [Fact]

@@ -212,7 +212,7 @@ namespace Zernio.Api
         /// Submit regulated-number KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -223,12 +223,35 @@ namespace Zernio.Api
         /// Submit regulated-number KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
         /// <returns>ApiResponse of SubmitWhatsAppNumberKyc200Response</returns>
         ApiResponse<SubmitWhatsAppNumberKyc200Response> SubmitWhatsAppNumberKycWithHttpInfo(SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest);
+        /// <summary>
+        /// Upload a single regulated-number KYC document
+        /// </summary>
+        /// <remarks>
+        /// Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFilename">URL-encoded original filename.</param>
+        /// <param name="body"></param>
+        /// <returns>UploadWhatsAppNumberKycDocument200Response</returns>
+        UploadWhatsAppNumberKycDocument200Response UploadWhatsAppNumberKycDocument(string xFilename, FileParameter body);
+
+        /// <summary>
+        /// Upload a single regulated-number KYC document
+        /// </summary>
+        /// <remarks>
+        /// Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFilename">URL-encoded original filename.</param>
+        /// <param name="body"></param>
+        /// <returns>ApiResponse of UploadWhatsAppNumberKycDocument200Response</returns>
+        ApiResponse<UploadWhatsAppNumberKycDocument200Response> UploadWhatsAppNumberKycDocumentWithHttpInfo(string xFilename, FileParameter body);
         #endregion Synchronous Operations
     }
 
@@ -438,7 +461,7 @@ namespace Zernio.Api
         /// Submit regulated-number KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -450,13 +473,38 @@ namespace Zernio.Api
         /// Submit regulated-number KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SubmitWhatsAppNumberKyc200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SubmitWhatsAppNumberKyc200Response>> SubmitWhatsAppNumberKycWithHttpInfoAsync(SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Upload a single regulated-number KYC document
+        /// </summary>
+        /// <remarks>
+        /// Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFilename">URL-encoded original filename.</param>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UploadWhatsAppNumberKycDocument200Response</returns>
+        System.Threading.Tasks.Task<UploadWhatsAppNumberKycDocument200Response> UploadWhatsAppNumberKycDocumentAsync(string xFilename, FileParameter body, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Upload a single regulated-number KYC document
+        /// </summary>
+        /// <remarks>
+        /// Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFilename">URL-encoded original filename.</param>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UploadWhatsAppNumberKycDocument200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UploadWhatsAppNumberKycDocument200Response>> UploadWhatsAppNumberKycDocumentWithHttpInfoAsync(string xFilename, FileParameter body, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1757,7 +1805,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -1769,7 +1817,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -1819,7 +1867,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -1832,7 +1880,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -1879,6 +1927,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("SubmitWhatsAppNumberKyc", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Upload a single regulated-number KYC document Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFilename">URL-encoded original filename.</param>
+        /// <param name="body"></param>
+        /// <returns>UploadWhatsAppNumberKycDocument200Response</returns>
+        public UploadWhatsAppNumberKycDocument200Response UploadWhatsAppNumberKycDocument(string xFilename, FileParameter body)
+        {
+            Zernio.Client.ApiResponse<UploadWhatsAppNumberKycDocument200Response> localVarResponse = UploadWhatsAppNumberKycDocumentWithHttpInfo(xFilename, body);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload a single regulated-number KYC document Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFilename">URL-encoded original filename.</param>
+        /// <param name="body"></param>
+        /// <returns>ApiResponse of UploadWhatsAppNumberKycDocument200Response</returns>
+        public Zernio.Client.ApiResponse<UploadWhatsAppNumberKycDocument200Response> UploadWhatsAppNumberKycDocumentWithHttpInfo(string xFilename, FileParameter body)
+        {
+            // verify the required parameter 'xFilename' is set
+            if (xFilename == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'xFilename' when calling WhatsAppPhoneNumbersApi->UploadWhatsAppNumberKycDocument");
+
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'body' when calling WhatsAppPhoneNumbersApi->UploadWhatsAppNumberKycDocument");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/octet-stream"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.HeaderParameters.Add("X-Filename", Zernio.Client.ClientUtils.ParameterToString(xFilename)); // header parameter
+            localVarRequestOptions.Data = body;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UploadWhatsAppNumberKycDocument200Response>("/v1/whatsapp/phone-numbers/kyc/upload-document", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UploadWhatsAppNumberKycDocument", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Upload a single regulated-number KYC document Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFilename">URL-encoded original filename.</param>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UploadWhatsAppNumberKycDocument200Response</returns>
+        public async System.Threading.Tasks.Task<UploadWhatsAppNumberKycDocument200Response> UploadWhatsAppNumberKycDocumentAsync(string xFilename, FileParameter body, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UploadWhatsAppNumberKycDocument200Response> localVarResponse = await UploadWhatsAppNumberKycDocumentWithHttpInfoAsync(xFilename, body, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload a single regulated-number KYC document Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="xFilename">URL-encoded original filename.</param>
+        /// <param name="body"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UploadWhatsAppNumberKycDocument200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UploadWhatsAppNumberKycDocument200Response>> UploadWhatsAppNumberKycDocumentWithHttpInfoAsync(string xFilename, FileParameter body, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'xFilename' is set
+            if (xFilename == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'xFilename' when calling WhatsAppPhoneNumbersApi->UploadWhatsAppNumberKycDocument");
+
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'body' when calling WhatsAppPhoneNumbersApi->UploadWhatsAppNumberKycDocument");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/octet-stream"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.HeaderParameters.Add("X-Filename", Zernio.Client.ClientUtils.ParameterToString(xFilename)); // header parameter
+            localVarRequestOptions.Data = body;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UploadWhatsAppNumberKycDocument200Response>("/v1/whatsapp/phone-numbers/kyc/upload-document", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UploadWhatsAppNumberKycDocument", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

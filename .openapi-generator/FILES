@@ -890,6 +890,8 @@ docs/SubmitWhatsAppNumberKyc200ResponsePhoneNumber.md
 docs/SubmitWhatsAppNumberKycRequest.md
 docs/SubmitWhatsAppNumberKycRequestAddress.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md
+docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md
+docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.md
 docs/TargetingSpec.md
 docs/TargetingSpecCitiesInner.md
 docs/TargetingSpecCustomLocationsInner.md
@@ -1030,6 +1032,7 @@ docs/UploadWhatsAppFlowJson200Response.md
 docs/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.md
 docs/UploadWhatsAppFlowJsonRequest.md
 docs/UploadWhatsAppFlowJsonRequestFlowJson.md
+docs/UploadWhatsAppNumberKycDocument200Response.md
 docs/UploadedFile.md
 docs/UploadedOrDerivedAudience.md
 docs/UsageApi.md
@@ -2063,6 +2066,8 @@ src/Zernio.Test/Model/StartGoogleBusinessVerificationRequestTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKyc200ResponsePhoneNumberTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKyc200ResponseTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestAddressTests.cs
+src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1Tests.cs
+src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOfTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestTests.cs
 src/Zernio.Test/Model/TargetingSpecCitiesInnerTests.cs
@@ -2203,6 +2208,7 @@ src/Zernio.Test/Model/UploadWhatsAppFlowJson200ResponseTests.cs
 src/Zernio.Test/Model/UploadWhatsAppFlowJson200ResponseValidationErrorsInnerTests.cs
 src/Zernio.Test/Model/UploadWhatsAppFlowJsonRequestFlowJsonTests.cs
 src/Zernio.Test/Model/UploadWhatsAppFlowJsonRequestTests.cs
+src/Zernio.Test/Model/UploadWhatsAppNumberKycDocument200ResponseTests.cs
 src/Zernio.Test/Model/UploadedFileTests.cs
 src/Zernio.Test/Model/UploadedOrDerivedAudienceTests.cs
 src/Zernio.Test/Model/UsageStatsLimitsTests.cs
@@ -3244,6 +3250,8 @@ src/Zernio/Model/SubmitWhatsAppNumberKyc200ResponsePhoneNumber.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequest.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestAddress.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInner.cs
+src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.cs
+src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.cs
 src/Zernio/Model/TargetingSpec.cs
 src/Zernio/Model/TargetingSpecCitiesInner.cs
 src/Zernio/Model/TargetingSpecCustomLocationsInner.cs
@@ -3382,6 +3390,7 @@ src/Zernio/Model/UploadWhatsAppFlowJson200Response.cs
 src/Zernio/Model/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.cs
 src/Zernio/Model/UploadWhatsAppFlowJsonRequest.cs
 src/Zernio/Model/UploadWhatsAppFlowJsonRequestFlowJson.cs
+src/Zernio/Model/UploadWhatsAppNumberKycDocument200Response.cs
 src/Zernio/Model/UploadedFile.cs
 src/Zernio/Model/UploadedOrDerivedAudience.cs
 src/Zernio/Model/UsageStats.cs
