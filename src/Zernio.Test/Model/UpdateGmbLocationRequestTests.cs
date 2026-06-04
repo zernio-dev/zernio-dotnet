@@ -65,12 +65,12 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'AccountId'
+        /// Test the property 'GoogleAccountId'
         /// </summary>
         [Fact]
-        public void AccountIdTest()
+        public void GoogleAccountIdTest()
         {
-            // TODO unit test for the property 'AccountId'
+            // TODO unit test for the property 'GoogleAccountId'
         }
     }
 }

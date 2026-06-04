@@ -42,8 +42,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="UpdateGmbLocationRequest" /> class.
         /// </summary>
         /// <param name="selectedLocationId">selectedLocationId (required).</param>
-        /// <param name="accountId">Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. .</param>
-        public UpdateGmbLocationRequest(string selectedLocationId = default, string accountId = default)
+        /// <param name="googleAccountId">Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. Named &#x60;googleAccountId&#x60; to disambiguate from the path &#x60;accountId&#x60; (the Zernio account). The legacy field name &#x60;accountId&#x60; is still accepted for backwards compatibility. .</param>
+        public UpdateGmbLocationRequest(string selectedLocationId = default, string googleAccountId = default)
         {
             // to ensure "selectedLocationId" is required (not null)
             if (selectedLocationId == null)
@@ -51,7 +51,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("selectedLocationId is a required property for UpdateGmbLocationRequest and cannot be null");
             }
             this.SelectedLocationId = selectedLocationId;
-            this.AccountId = accountId;
+            this.GoogleAccountId = googleAccountId;
         }
 
         /// <summary>
@@ -61,11 +61,11 @@ namespace Zernio.Model
         public string SelectedLocationId { get; set; }
 
         /// <summary>
-        /// Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. 
+        /// Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. Named &#x60;googleAccountId&#x60; to disambiguate from the path &#x60;accountId&#x60; (the Zernio account). The legacy field name &#x60;accountId&#x60; is still accepted for backwards compatibility. 
         /// </summary>
-        /// <value>Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. </value>
-        [DataMember(Name = "accountId", EmitDefaultValue = false)]
-        public string AccountId { get; set; }
+        /// <value>Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. Named &#x60;googleAccountId&#x60; to disambiguate from the path &#x60;accountId&#x60; (the Zernio account). The legacy field name &#x60;accountId&#x60; is still accepted for backwards compatibility. </value>
+        [DataMember(Name = "googleAccountId", EmitDefaultValue = false)]
+        public string GoogleAccountId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -76,7 +76,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateGmbLocationRequest {\n");
             sb.Append("  SelectedLocationId: ").Append(SelectedLocationId).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  GoogleAccountId: ").Append(GoogleAccountId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
