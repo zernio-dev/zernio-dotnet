@@ -28,33 +28,33 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ActivateSequence200Response
+    /// RemediateWhatsAppNumber200ResponsePhoneNumber
     /// </summary>
-    [DataContract(Name = "activateSequence_200_response")]
-    public partial class ActivateSequence200Response : IValidatableObject
+    [DataContract(Name = "remediateWhatsAppNumber_200_response_phoneNumber")]
+    public partial class RemediateWhatsAppNumber200ResponsePhoneNumber : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ActivateSequence200Response" /> class.
+        /// Initializes a new instance of the <see cref="RemediateWhatsAppNumber200ResponsePhoneNumber" /> class.
         /// </summary>
-        /// <param name="success">success.</param>
-        /// <param name="sequence">sequence.</param>
-        public ActivateSequence200Response(bool success = default, RemediateWhatsAppNumber200ResponsePhoneNumber sequence = default)
+        /// <param name="id">id.</param>
+        /// <param name="status">status.</param>
+        public RemediateWhatsAppNumber200ResponsePhoneNumber(string id = default, string status = default)
         {
-            this.Success = success;
-            this.Sequence = sequence;
+            this.Id = id;
+            this.Status = status;
         }
 
         /// <summary>
-        /// Gets or Sets Success
+        /// Gets or Sets Id
         /// </summary>
-        [DataMember(Name = "success", EmitDefaultValue = true)]
-        public bool Success { get; set; }
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Sequence
+        /// Gets or Sets Status
         /// </summary>
-        [DataMember(Name = "sequence", EmitDefaultValue = false)]
-        public RemediateWhatsAppNumber200ResponsePhoneNumber Sequence { get; set; }
+        [DataMember(Name = "status", EmitDefaultValue = false)]
+        public string Status { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +63,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ActivateSequence200Response {\n");
-            sb.Append("  Success: ").Append(Success).Append("\n");
-            sb.Append("  Sequence: ").Append(Sequence).Append("\n");
+            sb.Append("class RemediateWhatsAppNumber200ResponsePhoneNumber {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

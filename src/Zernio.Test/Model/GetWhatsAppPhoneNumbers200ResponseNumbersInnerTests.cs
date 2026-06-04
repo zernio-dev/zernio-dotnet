@@ -92,6 +92,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RegistrantName'
+        /// </summary>
+        [Fact]
+        public void RegistrantNameTest()
+        {
+            // TODO unit test for the property 'RegistrantName'
+        }
+
+        /// <summary>
+        /// Test the property 'TelnyxOrderId'
+        /// </summary>
+        [Fact]
+        public void TelnyxOrderIdTest()
+        {
+            // TODO unit test for the property 'TelnyxOrderId'
+        }
+
+        /// <summary>
         /// Test the property 'MonthlyCents'
         /// </summary>
         [Fact]

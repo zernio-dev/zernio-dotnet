@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="success">success.</param>
         /// <param name="broadcast">broadcast.</param>
-        public CancelBroadcast200Response(bool success = default, CancelBroadcast200ResponseBroadcast broadcast = default)
+        public CancelBroadcast200Response(bool success = default, RemediateWhatsAppNumber200ResponsePhoneNumber broadcast = default)
         {
             this.Success = success;
             this.Broadcast = broadcast;
@@ -54,7 +54,7 @@ namespace Zernio.Model
         /// Gets or Sets Broadcast
         /// </summary>
         [DataMember(Name = "broadcast", EmitDefaultValue = false)]
-        public CancelBroadcast200ResponseBroadcast Broadcast { get; set; }
+        public RemediateWhatsAppNumber200ResponsePhoneNumber Broadcast { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -28,33 +28,36 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CancelBroadcast200ResponseBroadcast
+    /// RemediateWhatsAppNumber200Response
     /// </summary>
-    [DataContract(Name = "cancelBroadcast_200_response_broadcast")]
-    public partial class CancelBroadcast200ResponseBroadcast : IValidatableObject
+    [DataContract(Name = "remediateWhatsAppNumber_200_response")]
+    public partial class RemediateWhatsAppNumber200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CancelBroadcast200ResponseBroadcast" /> class.
+        /// Initializes a new instance of the <see cref="RemediateWhatsAppNumber200Response" /> class.
         /// </summary>
-        /// <param name="id">id.</param>
         /// <param name="status">status.</param>
-        public CancelBroadcast200ResponseBroadcast(string id = default, string status = default)
+        /// <param name="phoneNumber">phoneNumber.</param>
+        public RemediateWhatsAppNumber200Response(string status = default, RemediateWhatsAppNumber200ResponsePhoneNumber phoneNumber = default)
         {
-            this.Id = id;
             this.Status = status;
+            this.PhoneNumber = phoneNumber;
         }
-
-        /// <summary>
-        /// Gets or Sets Id
-        /// </summary>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
-        public string Id { get; set; }
 
         /// <summary>
         /// Gets or Sets Status
         /// </summary>
+        /*
+        <example>resubmitted</example>
+        */
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PhoneNumber
+        /// </summary>
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        public RemediateWhatsAppNumber200ResponsePhoneNumber PhoneNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +66,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CancelBroadcast200ResponseBroadcast {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("class RemediateWhatsAppNumber200Response {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

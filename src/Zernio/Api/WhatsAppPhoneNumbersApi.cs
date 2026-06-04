@@ -29,6 +29,27 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Check a country&#39;s availability + address constraint
+        /// </summary>
+        /// <remarks>
+        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country">ISO-2 country code.</param>
+        /// <returns>CheckWhatsAppNumberAvailability200Response</returns>
+        CheckWhatsAppNumberAvailability200Response CheckWhatsAppNumberAvailability(string country);
+
+        /// <summary>
+        /// Check a country&#39;s availability + address constraint
+        /// </summary>
+        /// <remarks>
+        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country">ISO-2 country code.</param>
+        /// <returns>ApiResponse of CheckWhatsAppNumberAvailability200Response</returns>
+        ApiResponse<CheckWhatsAppNumberAvailability200Response> CheckWhatsAppNumberAvailabilityWithHttpInfo(string country);
+        /// <summary>
         /// Get number status
         /// </summary>
         /// <remarks>
@@ -73,6 +94,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetWhatsAppNumberKycForm200Response</returns>
         ApiResponse<GetWhatsAppNumberKycForm200Response> GetWhatsAppNumberKycFormWithHttpInfo(string country, string profileId);
         /// <summary>
+        /// Get the declined requirements to fix
+        /// </summary>
+        /// <remarks>
+        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <returns>GetWhatsAppNumberRemediation200Response</returns>
+        GetWhatsAppNumberRemediation200Response GetWhatsAppNumberRemediation(string id);
+
+        /// <summary>
+        /// Get the declined requirements to fix
+        /// </summary>
+        /// <remarks>
+        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <returns>ApiResponse of GetWhatsAppNumberRemediation200Response</returns>
+        ApiResponse<GetWhatsAppNumberRemediation200Response> GetWhatsAppNumberRemediationWithHttpInfo(string id);
+        /// <summary>
         /// Get phone number
         /// </summary>
         /// <remarks>
@@ -100,7 +142,7 @@ namespace Zernio.Api
         /// List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers) (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <returns>GetWhatsAppPhoneNumbers200Response</returns>
         GetWhatsAppPhoneNumbers200Response GetWhatsAppPhoneNumbers(string? status = default, string? profileId = default);
@@ -112,7 +154,7 @@ namespace Zernio.Api
         /// List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers) (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppPhoneNumbers200Response</returns>
         ApiResponse<GetWhatsAppPhoneNumbers200Response> GetWhatsAppPhoneNumbersWithHttpInfo(string? status = default, string? profileId = default);
@@ -178,6 +220,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ReleaseWhatsAppPhoneNumber200Response</returns>
         ApiResponse<ReleaseWhatsAppPhoneNumber200Response> ReleaseWhatsAppPhoneNumberWithHttpInfo(string phoneNumberId);
         /// <summary>
+        /// Fix a declined number and re-submit
+        /// </summary>
+        /// <remarks>
+        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="remediateWhatsAppNumberRequest"></param>
+        /// <returns>RemediateWhatsAppNumber200Response</returns>
+        RemediateWhatsAppNumber200Response RemediateWhatsAppNumber(string id, RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest);
+
+        /// <summary>
+        /// Fix a declined number and re-submit
+        /// </summary>
+        /// <remarks>
+        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="remediateWhatsAppNumberRequest"></param>
+        /// <returns>ApiResponse of RemediateWhatsAppNumber200Response</returns>
+        ApiResponse<RemediateWhatsAppNumber200Response> RemediateWhatsAppNumberWithHttpInfo(string id, RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest);
+        /// <summary>
         /// Search available numbers to purchase
         /// </summary>
         /// <remarks>
@@ -212,7 +277,7 @@ namespace Zernio.Api
         /// Submit regulated-number KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -223,7 +288,7 @@ namespace Zernio.Api
         /// Submit regulated-number KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -261,6 +326,29 @@ namespace Zernio.Api
     public interface IWhatsAppPhoneNumbersApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Check a country&#39;s availability + address constraint
+        /// </summary>
+        /// <remarks>
+        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country">ISO-2 country code.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CheckWhatsAppNumberAvailability200Response</returns>
+        System.Threading.Tasks.Task<CheckWhatsAppNumberAvailability200Response> CheckWhatsAppNumberAvailabilityAsync(string country, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Check a country&#39;s availability + address constraint
+        /// </summary>
+        /// <remarks>
+        /// Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country">ISO-2 country code.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CheckWhatsAppNumberAvailability200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CheckWhatsAppNumberAvailability200Response>> CheckWhatsAppNumberAvailabilityWithHttpInfoAsync(string country, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get number status
         /// </summary>
@@ -310,6 +398,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetWhatsAppNumberKycForm200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppNumberKycForm200Response>> GetWhatsAppNumberKycFormWithHttpInfoAsync(string country, string profileId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get the declined requirements to fix
+        /// </summary>
+        /// <remarks>
+        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppNumberRemediation200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsAppNumberRemediation200Response> GetWhatsAppNumberRemediationAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get the declined requirements to fix
+        /// </summary>
+        /// <remarks>
+        /// For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppNumberRemediation200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppNumberRemediation200Response>> GetWhatsAppNumberRemediationWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get phone number
         /// </summary>
         /// <remarks>
@@ -339,7 +450,7 @@ namespace Zernio.Api
         /// List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers) (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppPhoneNumbers200Response</returns>
@@ -352,7 +463,7 @@ namespace Zernio.Api
         /// List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers) (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppPhoneNumbers200Response)</returns>
@@ -425,6 +536,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ReleaseWhatsAppPhoneNumber200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ReleaseWhatsAppPhoneNumber200Response>> ReleaseWhatsAppPhoneNumberWithHttpInfoAsync(string phoneNumberId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Fix a declined number and re-submit
+        /// </summary>
+        /// <remarks>
+        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="remediateWhatsAppNumberRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemediateWhatsAppNumber200Response</returns>
+        System.Threading.Tasks.Task<RemediateWhatsAppNumber200Response> RemediateWhatsAppNumberAsync(string id, RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Fix a declined number and re-submit
+        /// </summary>
+        /// <remarks>
+        /// Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="remediateWhatsAppNumberRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemediateWhatsAppNumber200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RemediateWhatsAppNumber200Response>> RemediateWhatsAppNumberWithHttpInfoAsync(string id, RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Search available numbers to purchase
         /// </summary>
         /// <remarks>
@@ -461,7 +597,7 @@ namespace Zernio.Api
         /// Submit regulated-number KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -473,7 +609,7 @@ namespace Zernio.Api
         /// Submit regulated-number KYC
         /// </summary>
         /// <remarks>
-        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+        /// Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -716,6 +852,133 @@ namespace Zernio.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Check a country&#39;s availability + address constraint Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country">ISO-2 country code.</param>
+        /// <returns>CheckWhatsAppNumberAvailability200Response</returns>
+        public CheckWhatsAppNumberAvailability200Response CheckWhatsAppNumberAvailability(string country)
+        {
+            Zernio.Client.ApiResponse<CheckWhatsAppNumberAvailability200Response> localVarResponse = CheckWhatsAppNumberAvailabilityWithHttpInfo(country);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Check a country&#39;s availability + address constraint Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country">ISO-2 country code.</param>
+        /// <returns>ApiResponse of CheckWhatsAppNumberAvailability200Response</returns>
+        public Zernio.Client.ApiResponse<CheckWhatsAppNumberAvailability200Response> CheckWhatsAppNumberAvailabilityWithHttpInfo(string country)
+        {
+            // verify the required parameter 'country' is set
+            if (country == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'country' when calling WhatsAppPhoneNumbersApi->CheckWhatsAppNumberAvailability");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "country", country));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<CheckWhatsAppNumberAvailability200Response>("/v1/whatsapp/phone-numbers/availability", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CheckWhatsAppNumberAvailability", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Check a country&#39;s availability + address constraint Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country">ISO-2 country code.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CheckWhatsAppNumberAvailability200Response</returns>
+        public async System.Threading.Tasks.Task<CheckWhatsAppNumberAvailability200Response> CheckWhatsAppNumberAvailabilityAsync(string country, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CheckWhatsAppNumberAvailability200Response> localVarResponse = await CheckWhatsAppNumberAvailabilityWithHttpInfoAsync(country, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Check a country&#39;s availability + address constraint Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="country">ISO-2 country code.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CheckWhatsAppNumberAvailability200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CheckWhatsAppNumberAvailability200Response>> CheckWhatsAppNumberAvailabilityWithHttpInfoAsync(string country, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'country' is set
+            if (country == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'country' when calling WhatsAppPhoneNumbersApi->CheckWhatsAppNumberAvailability");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "country", country));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<CheckWhatsAppNumberAvailability200Response>("/v1/whatsapp/phone-numbers/availability", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CheckWhatsAppNumberAvailability", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
@@ -987,6 +1250,133 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Get the declined requirements to fix For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <returns>GetWhatsAppNumberRemediation200Response</returns>
+        public GetWhatsAppNumberRemediation200Response GetWhatsAppNumberRemediation(string id)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppNumberRemediation200Response> localVarResponse = GetWhatsAppNumberRemediationWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get the declined requirements to fix For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <returns>ApiResponse of GetWhatsAppNumberRemediation200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsAppNumberRemediation200Response> GetWhatsAppNumberRemediationWithHttpInfo(string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppPhoneNumbersApi->GetWhatsAppNumberRemediation");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsAppNumberRemediation200Response>("/v1/whatsapp/phone-numbers/{id}/remediate", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppNumberRemediation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get the declined requirements to fix For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppNumberRemediation200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsAppNumberRemediation200Response> GetWhatsAppNumberRemediationAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppNumberRemediation200Response> localVarResponse = await GetWhatsAppNumberRemediationWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get the declined requirements to fix For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppNumberRemediation200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppNumberRemediation200Response>> GetWhatsAppNumberRemediationWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppPhoneNumbersApi->GetWhatsAppNumberRemediation");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppNumberRemediation200Response>("/v1/whatsapp/phone-numbers/{id}/remediate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppNumberRemediation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get phone number Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1117,7 +1507,7 @@ namespace Zernio.Api
         /// List phone numbers List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers) (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <returns>GetWhatsAppPhoneNumbers200Response</returns>
         public GetWhatsAppPhoneNumbers200Response GetWhatsAppPhoneNumbers(string? status = default, string? profileId = default)
@@ -1130,7 +1520,7 @@ namespace Zernio.Api
         /// List phone numbers List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers) (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppPhoneNumbers200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppPhoneNumbers200Response> GetWhatsAppPhoneNumbersWithHttpInfo(string? status = default, string? profileId = default)
@@ -1183,7 +1573,7 @@ namespace Zernio.Api
         /// List phone numbers List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers) (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppPhoneNumbers200Response</returns>
@@ -1197,7 +1587,7 @@ namespace Zernio.Api
         /// List phone numbers List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="status">Filter by status (by default excludes released numbers) (optional)</param>
+        /// <param name="status">Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)</param>
         /// <param name="profileId">Filter by profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppPhoneNumbers200Response)</returns>
@@ -1620,6 +2010,149 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Fix a declined number and re-submit Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="remediateWhatsAppNumberRequest"></param>
+        /// <returns>RemediateWhatsAppNumber200Response</returns>
+        public RemediateWhatsAppNumber200Response RemediateWhatsAppNumber(string id, RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest)
+        {
+            Zernio.Client.ApiResponse<RemediateWhatsAppNumber200Response> localVarResponse = RemediateWhatsAppNumberWithHttpInfo(id, remediateWhatsAppNumberRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Fix a declined number and re-submit Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="remediateWhatsAppNumberRequest"></param>
+        /// <returns>ApiResponse of RemediateWhatsAppNumber200Response</returns>
+        public Zernio.Client.ApiResponse<RemediateWhatsAppNumber200Response> RemediateWhatsAppNumberWithHttpInfo(string id, RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppPhoneNumbersApi->RemediateWhatsAppNumber");
+
+            // verify the required parameter 'remediateWhatsAppNumberRequest' is set
+            if (remediateWhatsAppNumberRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'remediateWhatsAppNumberRequest' when calling WhatsAppPhoneNumbersApi->RemediateWhatsAppNumber");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = remediateWhatsAppNumberRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<RemediateWhatsAppNumber200Response>("/v1/whatsapp/phone-numbers/{id}/remediate", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemediateWhatsAppNumber", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Fix a declined number and re-submit Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="remediateWhatsAppNumberRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RemediateWhatsAppNumber200Response</returns>
+        public async System.Threading.Tasks.Task<RemediateWhatsAppNumber200Response> RemediateWhatsAppNumberAsync(string id, RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RemediateWhatsAppNumber200Response> localVarResponse = await RemediateWhatsAppNumberWithHttpInfoAsync(id, remediateWhatsAppNumberRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Fix a declined number and re-submit Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="remediateWhatsAppNumberRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RemediateWhatsAppNumber200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RemediateWhatsAppNumber200Response>> RemediateWhatsAppNumberWithHttpInfoAsync(string id, RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppPhoneNumbersApi->RemediateWhatsAppNumber");
+
+            // verify the required parameter 'remediateWhatsAppNumberRequest' is set
+            if (remediateWhatsAppNumberRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'remediateWhatsAppNumberRequest' when calling WhatsAppPhoneNumbersApi->RemediateWhatsAppNumber");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = remediateWhatsAppNumberRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RemediateWhatsAppNumber200Response>("/v1/whatsapp/phone-numbers/{id}/remediate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RemediateWhatsAppNumber", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Search available numbers to purchase Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1805,7 +2338,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -1817,7 +2350,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -1867,7 +2400,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>
@@ -1880,7 +2413,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+        /// Submit regulated-number KYC Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="submitWhatsAppNumberKycRequest"></param>

@@ -28,33 +28,42 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ActivateSequence200Response
+    /// RemediateWhatsAppNumberRequest
     /// </summary>
-    [DataContract(Name = "activateSequence_200_response")]
-    public partial class ActivateSequence200Response : IValidatableObject
+    [DataContract(Name = "remediateWhatsAppNumber_request")]
+    public partial class RemediateWhatsAppNumberRequest : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ActivateSequence200Response" /> class.
+        /// Initializes a new instance of the <see cref="RemediateWhatsAppNumberRequest" /> class.
         /// </summary>
-        /// <param name="success">success.</param>
-        /// <param name="sequence">sequence.</param>
-        public ActivateSequence200Response(bool success = default, RemediateWhatsAppNumber200ResponsePhoneNumber sequence = default)
+        /// <param name="values">values.</param>
+        /// <param name="documents">documents.</param>
+        /// <param name="address">Same shape as the KYC submit address..</param>
+        public RemediateWhatsAppNumberRequest(Dictionary<string, string> values = default, List<RemediateWhatsAppNumberRequestDocumentsInner> documents = default, Object address = default)
         {
-            this.Success = success;
-            this.Sequence = sequence;
+            this.Values = values;
+            this.Documents = documents;
+            this.Address = address;
         }
 
         /// <summary>
-        /// Gets or Sets Success
+        /// Gets or Sets Values
         /// </summary>
-        [DataMember(Name = "success", EmitDefaultValue = true)]
-        public bool Success { get; set; }
+        [DataMember(Name = "values", EmitDefaultValue = false)]
+        public Dictionary<string, string> Values { get; set; }
 
         /// <summary>
-        /// Gets or Sets Sequence
+        /// Gets or Sets Documents
         /// </summary>
-        [DataMember(Name = "sequence", EmitDefaultValue = false)]
-        public RemediateWhatsAppNumber200ResponsePhoneNumber Sequence { get; set; }
+        [DataMember(Name = "documents", EmitDefaultValue = false)]
+        public List<RemediateWhatsAppNumberRequestDocumentsInner> Documents { get; set; }
+
+        /// <summary>
+        /// Same shape as the KYC submit address.
+        /// </summary>
+        /// <value>Same shape as the KYC submit address.</value>
+        [DataMember(Name = "address", EmitDefaultValue = false)]
+        public Object Address { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +72,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ActivateSequence200Response {\n");
-            sb.Append("  Success: ").Append(Success).Append("\n");
-            sb.Append("  Sequence: ").Append(Sequence).Append("\n");
+            sb.Append("class RemediateWhatsAppNumberRequest {\n");
+            sb.Append("  Values: ").Append(Values).Append("\n");
+            sb.Append("  Documents: ").Append(Documents).Append("\n");
+            sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -101,6 +101,8 @@ namespace Zernio.Model
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="country">country.</param>
         /// <param name="status">status.</param>
+        /// <param name="registrantName">For regulated numbers.</param>
+        /// <param name="telnyxOrderId">Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review..</param>
         /// <param name="monthlyCents">Per-country monthly price in cents ($2..$25)..</param>
         /// <param name="profileId">profileId.</param>
         /// <param name="provisionedAt">provisionedAt.</param>
@@ -111,12 +113,14 @@ namespace Zernio.Model
         /// <param name="endUserLastName">endUserLastName.</param>
         /// <param name="regulatoryDeclineReason">Reviewer rejection reason when status is regulatory_declined..</param>
         /// <param name="createdAt">createdAt.</param>
-        public GetWhatsAppPhoneNumbers200ResponseNumbersInner(string id = default, string phoneNumber = default, string country = default, StatusEnum? status = default, int monthlyCents = default, Object profileId = default, DateTime provisionedAt = default, string metaPreverifiedId = default, string metaVerificationStatus = default, string onfidoVerificationUrl = default, string endUserFirstName = default, string endUserLastName = default, string regulatoryDeclineReason = default, DateTime createdAt = default)
+        public GetWhatsAppPhoneNumbers200ResponseNumbersInner(string id = default, string phoneNumber = default, string country = default, StatusEnum? status = default, string registrantName = default, string telnyxOrderId = default, int monthlyCents = default, Object profileId = default, DateTime provisionedAt = default, string metaPreverifiedId = default, string metaVerificationStatus = default, string onfidoVerificationUrl = default, string endUserFirstName = default, string endUserLastName = default, string regulatoryDeclineReason = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.PhoneNumber = phoneNumber;
             this.Country = country;
             this.Status = status;
+            this.RegistrantName = registrantName;
+            this.TelnyxOrderId = telnyxOrderId;
             this.MonthlyCents = monthlyCents;
             this.ProfileId = profileId;
             this.ProvisionedAt = provisionedAt;
@@ -146,6 +150,20 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
+
+        /// <summary>
+        /// For regulated numbers
+        /// </summary>
+        /// <value>For regulated numbers</value>
+        [DataMember(Name = "registrantName", EmitDefaultValue = false)]
+        public string RegistrantName { get; set; }
+
+        /// <summary>
+        /// Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review.
+        /// </summary>
+        /// <value>Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review.</value>
+        [DataMember(Name = "telnyxOrderId", EmitDefaultValue = false)]
+        public string TelnyxOrderId { get; set; }
 
         /// <summary>
         /// Per-country monthly price in cents ($2..$25).
@@ -222,6 +240,8 @@ namespace Zernio.Model
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  RegistrantName: ").Append(RegistrantName).Append("\n");
+            sb.Append("  TelnyxOrderId: ").Append(TelnyxOrderId).Append("\n");
             sb.Append("  MonthlyCents: ").Append(MonthlyCents).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  ProvisionedAt: ").Append(ProvisionedAt).Append("\n");

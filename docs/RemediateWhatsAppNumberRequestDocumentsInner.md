@@ -1,11 +1,13 @@
-# Zernio.Model.ActivateSequence200Response
+# Zernio.Model.RemediateWhatsAppNumberRequestDocumentsInner
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Success** | **bool** |  | [optional] 
-**Sequence** | [**RemediateWhatsAppNumber200ResponsePhoneNumber**](RemediateWhatsAppNumber200ResponsePhoneNumber.md) |  | [optional] 
+**RequirementId** | **string** |  | 
+**Filename** | **string** |  | 
+**Base64** | **string** |  | 
+**DocumentId** | **string** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

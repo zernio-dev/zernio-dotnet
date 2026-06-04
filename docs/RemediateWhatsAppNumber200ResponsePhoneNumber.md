@@ -1,4 +1,4 @@
-# Zernio.Model.CancelBroadcast200ResponseBroadcast
+# Zernio.Model.RemediateWhatsAppNumber200ResponsePhoneNumber
 
 ## Properties
 

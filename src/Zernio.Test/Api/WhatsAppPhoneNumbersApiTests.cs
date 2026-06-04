@@ -55,6 +55,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CheckWhatsAppNumberAvailability
+        /// </summary>
+        [Fact]
+        public void CheckWhatsAppNumberAvailabilityTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string country = null;
+            //var response = instance.CheckWhatsAppNumberAvailability(country);
+            //Assert.IsType<CheckWhatsAppNumberAvailability200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetWhatsAppNumberInfo
         /// </summary>
         [Fact]
@@ -77,6 +89,18 @@ namespace Zernio.Test.Api
             //string profileId = null;
             //var response = instance.GetWhatsAppNumberKycForm(country, profileId);
             //Assert.IsType<GetWhatsAppNumberKycForm200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetWhatsAppNumberRemediation
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppNumberRemediationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //var response = instance.GetWhatsAppNumberRemediation(id);
+            //Assert.IsType<GetWhatsAppNumberRemediation200Response>(response);
         }
 
         /// <summary>
@@ -137,6 +161,19 @@ namespace Zernio.Test.Api
             //string phoneNumberId = null;
             //var response = instance.ReleaseWhatsAppPhoneNumber(phoneNumberId);
             //Assert.IsType<ReleaseWhatsAppPhoneNumber200Response>(response);
+        }
+
+        /// <summary>
+        /// Test RemediateWhatsAppNumber
+        /// </summary>
+        [Fact]
+        public void RemediateWhatsAppNumberTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest = null;
+            //var response = instance.RemediateWhatsAppNumber(id, remediateWhatsAppNumberRequest);
+            //Assert.IsType<RemediateWhatsAppNumber200Response>(response);
         }
 
         /// <summary>

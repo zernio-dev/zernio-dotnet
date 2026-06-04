@@ -473,13 +473,16 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**SendWhatsAppFlowMessage**](docs/WhatsAppFlowsApi.md#sendwhatsappflowmessage) | **POST** /v1/whatsapp/flows/send | Send flow message
 *WhatsAppFlowsApi* | [**UpdateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#updatewhatsappflow) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow
 *WhatsAppFlowsApi* | [**UploadWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#uploadwhatsappflowjson) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
+*WhatsAppPhoneNumbersApi* | [**CheckWhatsAppNumberAvailability**](docs/WhatsAppPhoneNumbersApi.md#checkwhatsappnumberavailability) | **GET** /v1/whatsapp/phone-numbers/availability | Check a country's availability + address constraint
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppNumberInfo**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappnumberinfo) | **GET** /v1/whatsapp/number-info | Get number status
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppNumberKycForm**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappnumberkycform) | **GET** /v1/whatsapp/phone-numbers/kyc | Get regulated-number KYC form spec
+*WhatsAppPhoneNumbersApi* | [**GetWhatsAppNumberRemediation**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappnumberremediation) | **GET** /v1/whatsapp/phone-numbers/{id}/remediate | Get the declined requirements to fix
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappphonenumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppPhoneNumbers**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappphonenumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers
 *WhatsAppPhoneNumbersApi* | [**ListWhatsAppNumberCountries**](docs/WhatsAppPhoneNumbersApi.md#listwhatsappnumbercountries) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries
 *WhatsAppPhoneNumbersApi* | [**PurchaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#purchasewhatsappphonenumber) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number
 *WhatsAppPhoneNumbersApi* | [**ReleaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#releasewhatsappphonenumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
+*WhatsAppPhoneNumbersApi* | [**RemediateWhatsAppNumber**](docs/WhatsAppPhoneNumbersApi.md#remediatewhatsappnumber) | **POST** /v1/whatsapp/phone-numbers/{id}/remediate | Fix a declined number and re-submit
 *WhatsAppPhoneNumbersApi* | [**SearchAvailableWhatsAppNumbers**](docs/WhatsAppPhoneNumbersApi.md#searchavailablewhatsappnumbers) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers to purchase
 *WhatsAppPhoneNumbersApi* | [**SubmitWhatsAppNumberKyc**](docs/WhatsAppPhoneNumbersApi.md#submitwhatsappnumberkyc) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC
 *WhatsAppPhoneNumbersApi* | [**UploadWhatsAppNumberKycDocument**](docs/WhatsAppPhoneNumbersApi.md#uploadwhatsappnumberkycdocument) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document
@@ -580,7 +583,7 @@ Class | Method | HTTP request | Description
  - [Model.BulkUploadResultResultsInner](docs/BulkUploadResultResultsInner.md)
  - [Model.BusinessCenter](docs/BusinessCenter.md)
  - [Model.CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
- - [Model.CancelBroadcast200ResponseBroadcast](docs/CancelBroadcast200ResponseBroadcast.md)
+ - [Model.CheckWhatsAppNumberAvailability200Response](docs/CheckWhatsAppNumberAvailability200Response.md)
  - [Model.CompleteGoogleBusinessVerificationRequest](docs/CompleteGoogleBusinessVerificationRequest.md)
  - [Model.CompleteTelegramConnect200Response](docs/CompleteTelegramConnect200Response.md)
  - [Model.CompleteWhatsAppPhoneSelection200Response](docs/CompleteWhatsAppPhoneSelection200Response.md)
@@ -996,6 +999,7 @@ Class | Method | HTTP request | Description
  - [Model.GetWhatsAppNumberKycForm200Response](docs/GetWhatsAppNumberKycForm200Response.md)
  - [Model.GetWhatsAppNumberKycForm200ResponseFieldsInner](docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md)
  - [Model.GetWhatsAppNumberKycForm200ResponseReusable](docs/GetWhatsAppNumberKycForm200ResponseReusable.md)
+ - [Model.GetWhatsAppNumberRemediation200Response](docs/GetWhatsAppNumberRemediation200Response.md)
  - [Model.GetWhatsAppPhoneNumber200Response](docs/GetWhatsAppPhoneNumber200Response.md)
  - [Model.GetWhatsAppPhoneNumber200ResponsePhoneNumber](docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md)
  - [Model.GetWhatsAppPhoneNumbers200Response](docs/GetWhatsAppPhoneNumbers200Response.md)
@@ -1237,6 +1241,11 @@ Class | Method | HTTP request | Description
  - [Model.RejectWhatsAppGroupJoinRequestsRequest](docs/RejectWhatsAppGroupJoinRequestsRequest.md)
  - [Model.ReleaseWhatsAppPhoneNumber200Response](docs/ReleaseWhatsAppPhoneNumber200Response.md)
  - [Model.ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber](docs/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.md)
+ - [Model.RemediateWhatsAppNumber200Response](docs/RemediateWhatsAppNumber200Response.md)
+ - [Model.RemediateWhatsAppNumber200ResponsePhoneNumber](docs/RemediateWhatsAppNumber200ResponsePhoneNumber.md)
+ - [Model.RemediateWhatsAppNumberRequest](docs/RemediateWhatsAppNumberRequest.md)
+ - [Model.RemediateWhatsAppNumberRequestDocumentsInner](docs/RemediateWhatsAppNumberRequestDocumentsInner.md)
+ - [Model.RemediateWhatsAppNumberRequestDocumentsInnerOneOf](docs/RemediateWhatsAppNumberRequestDocumentsInnerOneOf.md)
  - [Model.RemoveBookmark200Response](docs/RemoveBookmark200Response.md)
  - [Model.RemoveConversionAssociations200Response](docs/RemoveConversionAssociations200Response.md)
  - [Model.RemoveDiscordMemberRole200Response](docs/RemoveDiscordMemberRole200Response.md)
