@@ -138,7 +138,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //CreateStandaloneAdRequest createStandaloneAdRequest = null;
-            //var response = instance.CreateStandaloneAd(createStandaloneAdRequest);
+            //string? idempotencyKey = null;
+            //var response = instance.CreateStandaloneAd(createStandaloneAdRequest, idempotencyKey);
             //Assert.IsType<CreateStandaloneAd201Response>(response);
         }
 
