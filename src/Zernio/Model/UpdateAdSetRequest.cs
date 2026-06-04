@@ -133,14 +133,16 @@ namespace Zernio.Model
         /// <param name="platform">platform (required).</param>
         /// <param name="budget">budget.</param>
         /// <param name="status">Omit if not toggling delivery state.</param>
+        /// <param name="name">Rename the ad set (Meta only; other platforms return 501). At least one of budget/status/bidStrategy/name is required..</param>
         /// <param name="bidStrategy">Ad-set-level bid strategy. Overrides the campaign-level default. Supported on Meta (facebook, instagram) and TikTok. On TikTok the Meta-style enum is mapped to bid_type / bid_price / deep_bid_type automatically. Other platforms (linkedin, pinterest, google, twitter) return 501 Not Implemented when bidStrategy is set. .</param>
         /// <param name="bidAmount">Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. Internally converted to Meta&#39;s smallest-denomination integer. .</param>
         /// <param name="roasAverageFloor">Minimum ROAS as a decimal multiplier (2.0 &#x3D; 2.0x). Required when bidStrategy is LOWEST_COST_WITH_MIN_ROAS. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000. .</param>
-        public UpdateAdSetRequest(PlatformEnum platform = default, UpdateAdSetRequestBudget budget = default, StatusEnum? status = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default)
+        public UpdateAdSetRequest(PlatformEnum platform = default, UpdateAdSetRequestBudget budget = default, StatusEnum? status = default, string name = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default)
         {
             this.Platform = platform;
             this.Budget = budget;
             this.Status = status;
+            this.Name = name;
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
@@ -151,6 +153,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "budget", EmitDefaultValue = false)]
         public UpdateAdSetRequestBudget Budget { get; set; }
+
+        /// <summary>
+        /// Rename the ad set (Meta only; other platforms return 501). At least one of budget/status/bidStrategy/name is required.
+        /// </summary>
+        /// <value>Rename the ad set (Meta only; other platforms return 501). At least one of budget/status/bidStrategy/name is required.</value>
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. Internally converted to Meta&#39;s smallest-denomination integer. 
@@ -177,6 +186,7 @@ namespace Zernio.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
@@ -200,6 +210,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Name (string) maxLength
+            if (this.Name != null && this.Name.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+            }
+
             yield break;
         }
     }

@@ -76,11 +76,13 @@ namespace Zernio.Model
         /// <param name="platform">platform (required).</param>
         /// <param name="budget">budget.</param>
         /// <param name="bidStrategy">Campaign-level default. Ad sets inherit this unless they override..</param>
-        public UpdateAdCampaignRequest(PlatformEnum platform = default, UpdateAdCampaignRequestBudget budget = default, BidStrategy? bidStrategy = default)
+        /// <param name="name">Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name is required..</param>
+        public UpdateAdCampaignRequest(PlatformEnum platform = default, UpdateAdCampaignRequestBudget budget = default, BidStrategy? bidStrategy = default, string name = default)
         {
             this.Platform = platform;
             this.Budget = budget;
             this.BidStrategy = bidStrategy;
+            this.Name = name;
         }
 
         /// <summary>
@@ -88,6 +90,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "budget", EmitDefaultValue = false)]
         public UpdateAdCampaignRequestBudget Budget { get; set; }
+
+        /// <summary>
+        /// Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name is required.
+        /// </summary>
+        /// <value>Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name is required.</value>
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -100,6 +109,7 @@ namespace Zernio.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -120,6 +130,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Name (string) maxLength
+            if (this.Name != null && this.Name.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+            }
+
             yield break;
         }
     }

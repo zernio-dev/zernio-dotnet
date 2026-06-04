@@ -65,7 +65,7 @@ namespace Zernio.Model
         /// <param name="budget">budget.</param>
         /// <param name="targeting">targeting.</param>
         /// <param name="creative">creative.</param>
-        /// <param name="name">name.</param>
+        /// <param name="name">Rename the ad. Now propagated to Meta (POST /{ad-id}); non-Meta platforms return 501..</param>
         public UpdateAdRequest(StatusEnum? status = default, UpdateAdRequestBudget budget = default, UpdateAdRequestTargeting targeting = default, UpdateAdRequestCreative creative = default, string name = default)
         {
             this.Status = status;
@@ -94,8 +94,9 @@ namespace Zernio.Model
         public UpdateAdRequestCreative Creative { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Rename the ad. Now propagated to Meta (POST /{ad-id}); non-Meta platforms return 501.
         /// </summary>
+        /// <value>Rename the ad. Now propagated to Meta (POST /{ad-id}); non-Meta platforms return 501.</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
@@ -132,6 +133,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Name (string) maxLength
+            if (this.Name != null && this.Name.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+            }
+
             yield break;
         }
     }

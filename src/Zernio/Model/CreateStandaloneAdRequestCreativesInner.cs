@@ -114,13 +114,14 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestCreativesInner" /> class.
         /// </summary>
+        /// <param name="name">Exact name for this ad. Falls back to &#x60;&lt;name&gt; #N&#x60; (N &#x3D; 1-based position)..</param>
         /// <param name="headline">headline (required).</param>
         /// <param name="body">body (required).</param>
         /// <param name="imageUrl">Image creative. Mutually exclusive with &#x60;video&#x60;..</param>
         /// <param name="video">video.</param>
         /// <param name="linkUrl">linkUrl (required).</param>
         /// <param name="callToAction">callToAction (required).</param>
-        public CreateStandaloneAdRequestCreativesInner(string headline = default, string body = default, string imageUrl = default, CreateStandaloneAdRequestCreativesInnerVideo video = default, string linkUrl = default, CallToActionEnum callToAction = default)
+        public CreateStandaloneAdRequestCreativesInner(string name = default, string headline = default, string body = default, string imageUrl = default, CreateStandaloneAdRequestCreativesInnerVideo video = default, string linkUrl = default, CallToActionEnum callToAction = default)
         {
             // to ensure "headline" is required (not null)
             if (headline == null)
@@ -141,9 +142,17 @@ namespace Zernio.Model
             }
             this.LinkUrl = linkUrl;
             this.CallToAction = callToAction;
+            this.Name = name;
             this.ImageUrl = imageUrl;
             this.Video = video;
         }
+
+        /// <summary>
+        /// Exact name for this ad. Falls back to &#x60;&lt;name&gt; #N&#x60; (N &#x3D; 1-based position).
+        /// </summary>
+        /// <value>Exact name for this ad. Falls back to &#x60;&lt;name&gt; #N&#x60; (N &#x3D; 1-based position).</value>
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Headline
@@ -184,6 +193,7 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateStandaloneAdRequestCreativesInner {\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
@@ -210,6 +220,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Name (string) maxLength
+            if (this.Name != null && this.Name.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+            }
+
             // Headline (string) maxLength
             if (this.Headline != null && this.Headline.Length > 255)
             {

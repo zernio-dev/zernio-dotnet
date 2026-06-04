@@ -5,6 +5,7 @@ Each creative must supply EXACTLY ONE of `imageUrl` (image creative) or `video` 
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Name** | **string** | Exact name for this ad. Falls back to &#x60;&lt;name&gt; #N&#x60; (N &#x3D; 1-based position). | [optional] 
 **Headline** | **string** |  | 
 **Body** | **string** |  | 
 **ImageUrl** | **string** | Image creative. Mutually exclusive with &#x60;video&#x60;. | [optional] 

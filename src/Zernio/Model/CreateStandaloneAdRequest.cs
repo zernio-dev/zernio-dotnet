@@ -466,6 +466,8 @@ namespace Zernio.Model
         /// <param name="accountId">accountId (required).</param>
         /// <param name="adAccountId">adAccountId (required).</param>
         /// <param name="name">name (required).</param>
+        /// <param name="campaignName">Meta only. Exact campaign name. Overrides the default &#x60;&lt;name&gt; - Campaign&#x60;..</param>
+        /// <param name="adSetName">Meta only. Exact ad set name. Overrides the default &#x60;&lt;name&gt; - Ad Set&#x60;. (For per-ad names on the multi-creative shape, set &#x60;name&#x60; on each &#x60;creatives[]&#x60; entry.).</param>
         /// <param name="goal">Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted). TikTok-specific: &#x60;conversions&#x60; (website-conversion ad group) requires &#x60;promotedObject.pixelId&#x60; (your TikTok Pixel ID) and accepts an optional &#x60;promotedObject.customEventType&#x60; (a TikTok &#x60;optimization_event&#x60; code like &#x60;ON_WEB_ORDER&#x60;, &#x60;INITIATE_ORDER&#x60;, &#x60;ON_WEB_REGISTER&#x60;, &#x60;FORM&#x60;); to inherit a pixel + event from an existing ad group, pass &#x60;adSetId&#x60; instead. LinkedIn-specific: &#x60;engagement&#x60;, &#x60;traffic&#x60;, &#x60;awareness&#x60;, and &#x60;video_views&#x60; are supported for standalone ads (creates a Direct Sponsored Content single image or single video ad). &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;; &#x60;video_views&#x60; requires the &#x60;video&#x60; field. For &#x60;lead_generation&#x60; / &#x60;conversions&#x60; on LinkedIn — or to promote an existing post — use &#x60;POST /v1/ads/boost&#x60;..</param>
         /// <param name="budgetAmount">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="budgetType">Required on legacy + multi-creative shapes. Inherited on attach..</param>
@@ -522,7 +524,7 @@ namespace Zernio.Model
         /// <param name="brandIdentity">brandIdentity.</param>
         /// <param name="identityType">TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. .</param>
         /// <param name="promotedObject">promotedObject.</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, string organizationId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<CreateStandaloneAdRequestZipsInner> zips = default, List<CreateStandaloneAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, Dictionary<string, Object> rawTargeting = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, CreateStandaloneAdRequestPlacementAssets placementAssets = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, string campaignName = default, string adSetName = default, GoalEnum? goal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string businessName = default, string boardId = default, string organizationId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<CreateStandaloneAdRequestZipsInner> zips = default, List<CreateStandaloneAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, Dictionary<string, Object> rawTargeting = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, CreateStandaloneAdRequestPlacementAssets placementAssets = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -542,6 +544,8 @@ namespace Zernio.Model
                 throw new ArgumentNullException("name is a required property for CreateStandaloneAdRequest and cannot be null");
             }
             this.Name = name;
+            this.CampaignName = campaignName;
+            this.AdSetName = adSetName;
             this.Goal = goal;
             this.BudgetAmount = budgetAmount;
             this.BudgetType = budgetType;
@@ -617,6 +621,20 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Meta only. Exact campaign name. Overrides the default &#x60;&lt;name&gt; - Campaign&#x60;.
+        /// </summary>
+        /// <value>Meta only. Exact campaign name. Overrides the default &#x60;&lt;name&gt; - Campaign&#x60;.</value>
+        [DataMember(Name = "campaignName", EmitDefaultValue = false)]
+        public string CampaignName { get; set; }
+
+        /// <summary>
+        /// Meta only. Exact ad set name. Overrides the default &#x60;&lt;name&gt; - Ad Set&#x60;. (For per-ad names on the multi-creative shape, set &#x60;name&#x60; on each &#x60;creatives[]&#x60; entry.)
+        /// </summary>
+        /// <value>Meta only. Exact ad set name. Overrides the default &#x60;&lt;name&gt; - Ad Set&#x60;. (For per-ad names on the multi-creative shape, set &#x60;name&#x60; on each &#x60;creatives[]&#x60; entry.)</value>
+        [DataMember(Name = "adSetName", EmitDefaultValue = false)]
+        public string AdSetName { get; set; }
 
         /// <summary>
         /// Required on legacy + multi-creative shapes. Inherited on attach.
@@ -941,6 +959,8 @@ namespace Zernio.Model
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  AdAccountId: ").Append(AdAccountId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  CampaignName: ").Append(CampaignName).Append("\n");
+            sb.Append("  AdSetName: ").Append(AdSetName).Append("\n");
             sb.Append("  Goal: ").Append(Goal).Append("\n");
             sb.Append("  BudgetAmount: ").Append(BudgetAmount).Append("\n");
             sb.Append("  BudgetType: ").Append(BudgetType).Append("\n");
@@ -1021,6 +1041,18 @@ namespace Zernio.Model
             if (this.Name != null && this.Name.Length > 255)
             {
                 yield return new ValidationResult("Invalid value for Name, length must be less than 255.", new [] { "Name" });
+            }
+
+            // CampaignName (string) maxLength
+            if (this.CampaignName != null && this.CampaignName.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for CampaignName, length must be less than 255.", new [] { "CampaignName" });
+            }
+
+            // AdSetName (string) maxLength
+            if (this.AdSetName != null && this.AdSetName.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for AdSetName, length must be less than 255.", new [] { "AdSetName" });
             }
 
             // LongHeadline (string) maxLength
