@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TrackedSends'
+        /// </summary>
+        [Fact]
+        public void TrackedSendsTest()
+        {
+            // TODO unit test for the property 'TrackedSends'
+        }
+
+        /// <summary>
         /// Test the property 'LinkClicks'
         /// </summary>
         [Fact]

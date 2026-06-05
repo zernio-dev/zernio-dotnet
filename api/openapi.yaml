@@ -47457,13 +47457,14 @@ components:
     listCommentAutomations_200_response_automations_inner_stats:
       example:
         triggered: 0
-        read: 9
+        read: 3
         dmsFailed: 1
-        linkClicks: 5
+        linkClicks: 2
         uniqueContacts: 5
         dmsSent: 6
-        delivered: 7
-        uniqueClicks: 2
+        delivered: 9
+        trackedSends: 5
+        uniqueClicks: 7
       properties:
         triggered:
           type: integer
@@ -47472,6 +47473,11 @@ components:
         dmsFailed:
           type: integer
         uniqueContacts:
+          type: integer
+        trackedSends:
+          description: "DMs sent with a trackable (wrapped) link. CTR denominator:\
+            \ divide clicks by this, not dmsSent. Lags dmsSent for campaigns that\
+            \ predate click tracking."
           type: integer
         linkClicks:
           description: Total clicks on tracked links (bots/prefetch excluded).
@@ -47512,13 +47518,14 @@ components:
         clickTag: clickTag
         stats:
           triggered: 0
-          read: 9
+          read: 3
           dmsFailed: 1
-          linkClicks: 5
+          linkClicks: 2
           uniqueContacts: 5
           dmsSent: 6
-          delivered: 7
-          uniqueClicks: 2
+          delivered: 9
+          trackedSends: 5
+          uniqueClicks: 7
         name: name
         postTitle: postTitle
         id: id
@@ -47605,13 +47612,14 @@ components:
           clickTag: clickTag
           stats:
             triggered: 0
-            read: 9
+            read: 3
             dmsFailed: 1
-            linkClicks: 5
+            linkClicks: 2
             uniqueContacts: 5
             dmsSent: 6
-            delivered: 7
-            uniqueClicks: 2
+            delivered: 9
+            trackedSends: 5
+            uniqueClicks: 7
           name: name
           postTitle: postTitle
           id: id
@@ -47642,13 +47650,14 @@ components:
           clickTag: clickTag
           stats:
             triggered: 0
-            read: 9
+            read: 3
             dmsFailed: 1
-            linkClicks: 5
+            linkClicks: 2
             uniqueContacts: 5
             dmsSent: 6
-            delivered: 7
-            uniqueClicks: 2
+            delivered: 9
+            trackedSends: 5
+            uniqueClicks: 7
           name: name
           postTitle: postTitle
           id: id

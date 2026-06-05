@@ -40,16 +40,18 @@ namespace Zernio.Model
         /// <param name="dmsSent">dmsSent.</param>
         /// <param name="dmsFailed">dmsFailed.</param>
         /// <param name="uniqueContacts">uniqueContacts.</param>
+        /// <param name="trackedSends">DMs sent with a trackable (wrapped) link. CTR denominator: divide clicks by this, not dmsSent. Lags dmsSent for campaigns that predate click tracking..</param>
         /// <param name="linkClicks">Total clicks on tracked links (bots/prefetch excluded)..</param>
         /// <param name="uniqueClicks">Distinct people who clicked a tracked link..</param>
         /// <param name="delivered">DMs confirmed delivered (Messenger; IG emits no delivery receipt)..</param>
         /// <param name="read">DMs confirmed read (IG messaging_seen / Messenger message_reads)..</param>
-        public ListCommentAutomations200ResponseAutomationsInnerStats(int triggered = default, int dmsSent = default, int dmsFailed = default, int uniqueContacts = default, int linkClicks = default, int uniqueClicks = default, int delivered = default, int read = default)
+        public ListCommentAutomations200ResponseAutomationsInnerStats(int triggered = default, int dmsSent = default, int dmsFailed = default, int uniqueContacts = default, int trackedSends = default, int linkClicks = default, int uniqueClicks = default, int delivered = default, int read = default)
         {
             this.Triggered = triggered;
             this.DmsSent = dmsSent;
             this.DmsFailed = dmsFailed;
             this.UniqueContacts = uniqueContacts;
+            this.TrackedSends = trackedSends;
             this.LinkClicks = linkClicks;
             this.UniqueClicks = uniqueClicks;
             this.Delivered = delivered;
@@ -79,6 +81,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "uniqueContacts", EmitDefaultValue = false)]
         public int UniqueContacts { get; set; }
+
+        /// <summary>
+        /// DMs sent with a trackable (wrapped) link. CTR denominator: divide clicks by this, not dmsSent. Lags dmsSent for campaigns that predate click tracking.
+        /// </summary>
+        /// <value>DMs sent with a trackable (wrapped) link. CTR denominator: divide clicks by this, not dmsSent. Lags dmsSent for campaigns that predate click tracking.</value>
+        [DataMember(Name = "trackedSends", EmitDefaultValue = false)]
+        public int TrackedSends { get; set; }
 
         /// <summary>
         /// Total clicks on tracked links (bots/prefetch excluded).
@@ -120,6 +129,7 @@ namespace Zernio.Model
             sb.Append("  DmsSent: ").Append(DmsSent).Append("\n");
             sb.Append("  DmsFailed: ").Append(DmsFailed).Append("\n");
             sb.Append("  UniqueContacts: ").Append(UniqueContacts).Append("\n");
+            sb.Append("  TrackedSends: ").Append(TrackedSends).Append("\n");
             sb.Append("  LinkClicks: ").Append(LinkClicks).Append("\n");
             sb.Append("  UniqueClicks: ").Append(UniqueClicks).Append("\n");
             sb.Append("  Delivered: ").Append(Delivered).Append("\n");

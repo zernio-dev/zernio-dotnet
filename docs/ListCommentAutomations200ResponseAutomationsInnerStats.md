@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **DmsSent** | **int** |  | [optional] 
 **DmsFailed** | **int** |  | [optional] 
 **UniqueContacts** | **int** |  | [optional] 
+**TrackedSends** | **int** | DMs sent with a trackable (wrapped) link. CTR denominator: divide clicks by this, not dmsSent. Lags dmsSent for campaigns that predate click tracking. | [optional] 
 **LinkClicks** | **int** | Total clicks on tracked links (bots/prefetch excluded). | [optional] 
 **UniqueClicks** | **int** | Distinct people who clicked a tracked link. | [optional] 
 **Delivered** | **int** | DMs confirmed delivered (Messenger; IG emits no delivery receipt). | [optional] 
