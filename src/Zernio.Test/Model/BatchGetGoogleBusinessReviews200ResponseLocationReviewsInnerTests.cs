@@ -56,39 +56,21 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'LocationName'
+        /// Test the property 'Name'
         /// </summary>
         [Fact]
-        public void LocationNameTest()
+        public void NameTest()
         {
-            // TODO unit test for the property 'LocationName'
+            // TODO unit test for the property 'Name'
         }
 
         /// <summary>
-        /// Test the property 'Reviews'
+        /// Test the property 'Review'
         /// </summary>
         [Fact]
-        public void ReviewsTest()
+        public void ReviewTest()
         {
-            // TODO unit test for the property 'Reviews'
-        }
-
-        /// <summary>
-        /// Test the property 'AverageRating'
-        /// </summary>
-        [Fact]
-        public void AverageRatingTest()
-        {
-            // TODO unit test for the property 'AverageRating'
-        }
-
-        /// <summary>
-        /// Test the property 'TotalReviewCount'
-        /// </summary>
-        [Fact]
-        public void TotalReviewCountTest()
-        {
-            // TODO unit test for the property 'TotalReviewCount'
+            // TODO unit test for the property 'Review'
         }
     }
 }

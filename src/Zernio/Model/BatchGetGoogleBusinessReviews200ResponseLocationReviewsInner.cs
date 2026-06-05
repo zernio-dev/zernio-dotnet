@@ -36,41 +36,27 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner" /> class.
         /// </summary>
-        /// <param name="locationName">locationName.</param>
-        /// <param name="reviews">reviews.</param>
-        /// <param name="averageRating">averageRating.</param>
-        /// <param name="totalReviewCount">totalReviewCount.</param>
-        public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner(string locationName = default, List<Object> reviews = default, decimal averageRating = default, int totalReviewCount = default)
+        /// <param name="name">Full review resource name (accounts/_*_/locations/_*_/reviews/_*).</param>
+        /// <param name="review">The review object (reviewId.</param>
+        public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner(string name = default, Object review = default)
         {
-            this.LocationName = locationName;
-            this.Reviews = reviews;
-            this.AverageRating = averageRating;
-            this.TotalReviewCount = totalReviewCount;
+            this.Name = name;
+            this.Review = review;
         }
 
         /// <summary>
-        /// Gets or Sets LocationName
+        /// Full review resource name (accounts/_*_/locations/_*_/reviews/_*)
         /// </summary>
-        [DataMember(Name = "locationName", EmitDefaultValue = false)]
-        public string LocationName { get; set; }
+        /// <value>Full review resource name (accounts/_*_/locations/_*_/reviews/_*)</value>
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Reviews
+        /// The review object (reviewId
         /// </summary>
-        [DataMember(Name = "reviews", EmitDefaultValue = false)]
-        public List<Object> Reviews { get; set; }
-
-        /// <summary>
-        /// Gets or Sets AverageRating
-        /// </summary>
-        [DataMember(Name = "averageRating", EmitDefaultValue = false)]
-        public decimal AverageRating { get; set; }
-
-        /// <summary>
-        /// Gets or Sets TotalReviewCount
-        /// </summary>
-        [DataMember(Name = "totalReviewCount", EmitDefaultValue = false)]
-        public int TotalReviewCount { get; set; }
+        /// <value>The review object (reviewId</value>
+        [DataMember(Name = "review", EmitDefaultValue = false)]
+        public Object Review { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -80,10 +66,8 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner {\n");
-            sb.Append("  LocationName: ").Append(LocationName).Append("\n");
-            sb.Append("  Reviews: ").Append(Reviews).Append("\n");
-            sb.Append("  AverageRating: ").Append(AverageRating).Append("\n");
-            sb.Append("  TotalReviewCount: ").Append(TotalReviewCount).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Review: ").Append(Review).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
