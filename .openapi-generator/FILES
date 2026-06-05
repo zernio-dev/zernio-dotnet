@@ -281,6 +281,8 @@ docs/ErrorResponse.md
 docs/EstimateAdReach200Response.md
 docs/EstimateAdReachRequest.md
 docs/Expired.md
+docs/ExternalPostWebhookPost.md
+docs/ExternalPostWebhookPostMediaItemsInner.md
 docs/FacebookPlatformData.md
 docs/FacebookPlatformDataCarouselCardsInner.md
 docs/FetchGoogleBusinessVerificationOptions200Response.md
@@ -1127,6 +1129,7 @@ docs/WebhookPayloadCommentCommentAuthor.md
 docs/WebhookPayloadCommentPost.md
 docs/WebhookPayloadConversationStarted.md
 docs/WebhookPayloadConversationStartedConversation.md
+docs/WebhookPayloadExternalPost.md
 docs/WebhookPayloadLead.md
 docs/WebhookPayloadLeadAccount.md
 docs/WebhookPayloadLeadLead.md
@@ -1512,6 +1515,8 @@ src/Zernio.Test/Model/ErrorResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReach200ResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReachRequestTests.cs
 src/Zernio.Test/Model/ExpiredTests.cs
+src/Zernio.Test/Model/ExternalPostWebhookPostMediaItemsInnerTests.cs
+src/Zernio.Test/Model/ExternalPostWebhookPostTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataTests.cs
 src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInnerTests.cs
@@ -2330,6 +2335,7 @@ src/Zernio.Test/Model/WebhookPayloadCommentPostTests.cs
 src/Zernio.Test/Model/WebhookPayloadCommentTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationStartedConversationTests.cs
 src/Zernio.Test/Model/WebhookPayloadConversationStartedTests.cs
+src/Zernio.Test/Model/WebhookPayloadExternalPostTests.cs
 src/Zernio.Test/Model/WebhookPayloadLeadAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadLeadLeadTests.cs
 src/Zernio.Test/Model/WebhookPayloadLeadTests.cs
@@ -2726,6 +2732,8 @@ src/Zernio/Model/ErrorResponse.cs
 src/Zernio/Model/EstimateAdReach200Response.cs
 src/Zernio/Model/EstimateAdReachRequest.cs
 src/Zernio/Model/Expired.cs
+src/Zernio/Model/ExternalPostWebhookPost.cs
+src/Zernio/Model/ExternalPostWebhookPostMediaItemsInner.cs
 src/Zernio/Model/FacebookPlatformData.cs
 src/Zernio/Model/FacebookPlatformDataCarouselCardsInner.cs
 src/Zernio/Model/FetchGoogleBusinessVerificationOptions200Response.cs
@@ -3545,6 +3553,7 @@ src/Zernio/Model/WebhookPayloadCommentCommentAuthor.cs
 src/Zernio/Model/WebhookPayloadCommentPost.cs
 src/Zernio/Model/WebhookPayloadConversationStarted.cs
 src/Zernio/Model/WebhookPayloadConversationStartedConversation.cs
+src/Zernio/Model/WebhookPayloadExternalPost.cs
 src/Zernio/Model/WebhookPayloadLead.cs
 src/Zernio/Model/WebhookPayloadLeadAccount.cs
 src/Zernio/Model/WebhookPayloadLeadLead.cs

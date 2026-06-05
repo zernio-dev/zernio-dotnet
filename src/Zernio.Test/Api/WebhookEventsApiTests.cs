@@ -264,6 +264,39 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnPostExternalCreated
+        /// </summary>
+        [Fact]
+        public void OnPostExternalCreatedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadExternalPost webhookPayloadExternalPost = null;
+            //instance.OnPostExternalCreated(webhookPayloadExternalPost);
+        }
+
+        /// <summary>
+        /// Test OnPostExternalDeleted
+        /// </summary>
+        [Fact]
+        public void OnPostExternalDeletedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadExternalPost webhookPayloadExternalPost = null;
+            //instance.OnPostExternalDeleted(webhookPayloadExternalPost);
+        }
+
+        /// <summary>
+        /// Test OnPostExternalUpdated
+        /// </summary>
+        [Fact]
+        public void OnPostExternalUpdatedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadExternalPost webhookPayloadExternalPost = null;
+            //instance.OnPostExternalUpdated(webhookPayloadExternalPost);
+        }
+
+        /// <summary>
         /// Test OnPostFailed
         /// </summary>
         [Fact]
