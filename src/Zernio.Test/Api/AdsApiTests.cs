@@ -69,6 +69,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AdjustConversions
+        /// </summary>
+        [Fact]
+        public void AdjustConversionsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //AdjustConversionsRequest adjustConversionsRequest = null;
+            //var response = instance.AdjustConversions(adjustConversionsRequest);
+            //Assert.IsType<AdjustConversions200Response>(response);
+        }
+
+        /// <summary>
         /// Test ArchiveLeadForm
         /// </summary>
         [Fact]
