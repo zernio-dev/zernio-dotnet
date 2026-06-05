@@ -101,6 +101,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AdName'
+        /// </summary>
+        [Fact]
+        public void AdNameTest()
+        {
+            // TODO unit test for the property 'AdName'
+        }
+
+        /// <summary>
+        /// Test the property 'Tracking'
+        /// </summary>
+        [Fact]
+        public void TrackingTest()
+        {
+            // TODO unit test for the property 'Tracking'
+        }
+
+        /// <summary>
         /// Test the property 'Goal'
         /// </summary>
         [Fact]
