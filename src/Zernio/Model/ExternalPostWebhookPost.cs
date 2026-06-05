@@ -73,7 +73,7 @@ namespace Zernio.Model
         /// <param name="publishedAt">publishedAt (required).</param>
         /// <param name="source">Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events. (required).</param>
         /// <param name="deletedAt">Detection time of deletion. Present on post.external.deleted; null/absent otherwise..</param>
-        public ExternalPostWebhookPost(string id = default, string platform = default, string accountId = default, string url = default, string content = default, string mediaType = default, List<ExternalPostWebhookPostMediaItemsInner> mediaItems = default, string thumbnailUrl = default, DateTime publishedAt = default, SourceEnum source = default, DateTime deletedAt = default)
+        public ExternalPostWebhookPost(string id = default, string platform = default, string accountId = default, string url = default, string content = default, string mediaType = default, List<ExternalPostMediaItem> mediaItems = default, string thumbnailUrl = default, DateTime publishedAt = default, SourceEnum source = default, DateTime deletedAt = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -174,7 +174,7 @@ namespace Zernio.Model
         /// Gets or Sets MediaItems
         /// </summary>
         [DataMember(Name = "mediaItems", IsRequired = true, EmitDefaultValue = true)]
-        public List<ExternalPostWebhookPostMediaItemsInner> MediaItems { get; set; }
+        public List<ExternalPostMediaItem> MediaItems { get; set; }
 
         /// <summary>
         /// Gets or Sets ThumbnailUrl

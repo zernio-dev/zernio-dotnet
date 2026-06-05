@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Url** | **string** | Direct URL to the post on the platform, when available. | 
 **Content** | **string** | Post text. May be empty. | 
 **MediaType** | **string** | One of image, video, gif, document, text, carousel. | 
-**MediaItems** | [**List&lt;ExternalPostWebhookPostMediaItemsInner&gt;**](ExternalPostWebhookPostMediaItemsInner.md) |  | 
+**MediaItems** | [**List&lt;ExternalPostMediaItem&gt;**](ExternalPostMediaItem.md) |  | 
 **ThumbnailUrl** | **string** |  | 
 **PublishedAt** | **DateTime** |  | 
 **Source** | **string** | Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events. | 

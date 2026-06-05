@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ExternalPostWebhookPostMediaItemsInner
+    /// A media item on a native (external/synced) post, as carried by post.external.* webhook payloads. Distinct from the richer MediaItem used for Zernio-authored posts: external items are always already-published (url required) and limited to image or video. Kept as a separate schema so the generated SDK model does not collide with MediaItem. 
     /// </summary>
-    [DataContract(Name = "ExternalPostWebhookPost_mediaItems_inner")]
-    public partial class ExternalPostWebhookPostMediaItemsInner : IValidatableObject
+    [DataContract(Name = "ExternalPostMediaItem")]
+    public partial class ExternalPostMediaItem : IValidatableObject
     {
         /// <summary>
         /// Defines Type
@@ -59,23 +59,23 @@ namespace Zernio.Model
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExternalPostWebhookPostMediaItemsInner" /> class.
+        /// Initializes a new instance of the <see cref="ExternalPostMediaItem" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ExternalPostWebhookPostMediaItemsInner() { }
+        protected ExternalPostMediaItem() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExternalPostWebhookPostMediaItemsInner" /> class.
+        /// Initializes a new instance of the <see cref="ExternalPostMediaItem" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
         /// <param name="url">url (required).</param>
         /// <param name="thumbnail">thumbnail.</param>
-        public ExternalPostWebhookPostMediaItemsInner(TypeEnum type = default, string url = default, string thumbnail = default)
+        public ExternalPostMediaItem(TypeEnum type = default, string url = default, string thumbnail = default)
         {
             this.Type = type;
             // to ensure "url" is required (not null)
             if (url == null)
             {
-                throw new ArgumentNullException("url is a required property for ExternalPostWebhookPostMediaItemsInner and cannot be null");
+                throw new ArgumentNullException("url is a required property for ExternalPostMediaItem and cannot be null");
             }
             this.Url = url;
             this.Thumbnail = thumbnail;
@@ -100,7 +100,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ExternalPostWebhookPostMediaItemsInner {\n");
+            sb.Append("class ExternalPostMediaItem {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Thumbnail: ").Append(Thumbnail).Append("\n");

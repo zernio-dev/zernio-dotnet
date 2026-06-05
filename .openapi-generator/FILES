@@ -281,8 +281,8 @@ docs/ErrorResponse.md
 docs/EstimateAdReach200Response.md
 docs/EstimateAdReachRequest.md
 docs/Expired.md
+docs/ExternalPostMediaItem.md
 docs/ExternalPostWebhookPost.md
-docs/ExternalPostWebhookPostMediaItemsInner.md
 docs/FacebookPlatformData.md
 docs/FacebookPlatformDataCarouselCardsInner.md
 docs/FetchGoogleBusinessVerificationOptions200Response.md
@@ -1515,7 +1515,7 @@ src/Zernio.Test/Model/ErrorResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReach200ResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReachRequestTests.cs
 src/Zernio.Test/Model/ExpiredTests.cs
-src/Zernio.Test/Model/ExternalPostWebhookPostMediaItemsInnerTests.cs
+src/Zernio.Test/Model/ExternalPostMediaItemTests.cs
 src/Zernio.Test/Model/ExternalPostWebhookPostTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataTests.cs
@@ -2732,8 +2732,8 @@ src/Zernio/Model/ErrorResponse.cs
 src/Zernio/Model/EstimateAdReach200Response.cs
 src/Zernio/Model/EstimateAdReachRequest.cs
 src/Zernio/Model/Expired.cs
+src/Zernio/Model/ExternalPostMediaItem.cs
 src/Zernio/Model/ExternalPostWebhookPost.cs
-src/Zernio/Model/ExternalPostWebhookPostMediaItemsInner.cs
 src/Zernio/Model/FacebookPlatformData.cs
 src/Zernio/Model/FacebookPlatformDataCarouselCardsInner.cs
 src/Zernio/Model/FetchGoogleBusinessVerificationOptions200Response.cs
