@@ -28,33 +28,49 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// BulkUploadPosts429Response
+    /// GetInboxHeatmap200Response
     /// </summary>
-    [DataContract(Name = "bulkUploadPosts_429_response")]
-    public partial class BulkUploadPosts429Response : IValidatableObject
+    [DataContract(Name = "getInboxHeatmap_200_response")]
+    public partial class GetInboxHeatmap200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BulkUploadPosts429Response" /> class.
+        /// Initializes a new instance of the <see cref="GetInboxHeatmap200Response" /> class.
         /// </summary>
-        /// <param name="error">error.</param>
-        /// <param name="details">details.</param>
-        public BulkUploadPosts429Response(string error = default, Object details = default)
+        /// <param name="success">success.</param>
+        /// <param name="from">from.</param>
+        /// <param name="to">to.</param>
+        /// <param name="buckets">buckets.</param>
+        public GetInboxHeatmap200Response(bool success = default, DateOnly from = default, DateOnly to = default, List<GetInboxHeatmap200ResponseBucketsInner> buckets = default)
         {
-            this.Error = error;
-            this.Details = details;
+            this.Success = success;
+            this.From = from;
+            this.To = to;
+            this.Buckets = buckets;
         }
 
         /// <summary>
-        /// Gets or Sets Error
+        /// Gets or Sets Success
         /// </summary>
-        [DataMember(Name = "error", EmitDefaultValue = false)]
-        public string Error { get; set; }
+        [DataMember(Name = "success", EmitDefaultValue = true)]
+        public bool Success { get; set; }
 
         /// <summary>
-        /// Gets or Sets Details
+        /// Gets or Sets From
         /// </summary>
-        [DataMember(Name = "details", EmitDefaultValue = false)]
-        public Object Details { get; set; }
+        [DataMember(Name = "from", EmitDefaultValue = false)]
+        public DateOnly From { get; set; }
+
+        /// <summary>
+        /// Gets or Sets To
+        /// </summary>
+        [DataMember(Name = "to", EmitDefaultValue = false)]
+        public DateOnly To { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Buckets
+        /// </summary>
+        [DataMember(Name = "buckets", EmitDefaultValue = false)]
+        public List<GetInboxHeatmap200ResponseBucketsInner> Buckets { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -63,9 +79,11 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BulkUploadPosts429Response {\n");
-            sb.Append("  Error: ").Append(Error).Append("\n");
-            sb.Append("  Details: ").Append(Details).Append("\n");
+            sb.Append("class GetInboxHeatmap200Response {\n");
+            sb.Append("  Success: ").Append(Success).Append("\n");
+            sb.Append("  From: ").Append(From).Append("\n");
+            sb.Append("  To: ").Append(To).Append("\n");
+            sb.Append("  Buckets: ").Append(Buckets).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

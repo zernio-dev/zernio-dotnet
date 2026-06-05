@@ -701,6 +701,69 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> OnWhatsAppNumberDeclinedWithHttpInfo(OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest);
         /// <summary>
+        /// WhatsApp number reactivated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReactivatedRequest"></param>
+        /// <returns></returns>
+        void OnWhatsAppNumberReactivated(OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest);
+
+        /// <summary>
+        /// WhatsApp number reactivated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReactivatedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnWhatsAppNumberReactivatedWithHttpInfo(OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest);
+        /// <summary>
+        /// WhatsApp number released event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReleasedRequest"></param>
+        /// <returns></returns>
+        void OnWhatsAppNumberReleased(OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest);
+
+        /// <summary>
+        /// WhatsApp number released event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReleasedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnWhatsAppNumberReleasedWithHttpInfo(OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest);
+        /// <summary>
+        /// WhatsApp number suspended event
+        /// </summary>
+        /// <remarks>
+        /// Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberSuspendedRequest"></param>
+        /// <returns></returns>
+        void OnWhatsAppNumberSuspended(OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest);
+
+        /// <summary>
+        /// WhatsApp number suspended event
+        /// </summary>
+        /// <remarks>
+        /// Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberSuspendedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnWhatsAppNumberSuspendedWithHttpInfo(OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest);
+        /// <summary>
         /// WhatsApp number verification-required event
         /// </summary>
         /// <remarks>
@@ -1487,6 +1550,75 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> OnWhatsAppNumberDeclinedWithHttpInfoAsync(OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// WhatsApp number reactivated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReactivatedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnWhatsAppNumberReactivatedAsync(OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// WhatsApp number reactivated event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReactivatedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnWhatsAppNumberReactivatedWithHttpInfoAsync(OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// WhatsApp number released event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReleasedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnWhatsAppNumberReleasedAsync(OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// WhatsApp number released event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReleasedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnWhatsAppNumberReleasedWithHttpInfoAsync(OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// WhatsApp number suspended event
+        /// </summary>
+        /// <remarks>
+        /// Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberSuspendedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnWhatsAppNumberSuspendedAsync(OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// WhatsApp number suspended event
+        /// </summary>
+        /// <remarks>
+        /// Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberSuspendedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnWhatsAppNumberSuspendedWithHttpInfoAsync(OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// WhatsApp number verification-required event
         /// </summary>
@@ -5740,6 +5872,381 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("OnWhatsAppNumberDeclined", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number reactivated event Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReactivatedRequest"></param>
+        /// <returns></returns>
+        public void OnWhatsAppNumberReactivated(OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest)
+        {
+            OnWhatsAppNumberReactivatedWithHttpInfo(onWhatsAppNumberReactivatedRequest);
+        }
+
+        /// <summary>
+        /// WhatsApp number reactivated event Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReactivatedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnWhatsAppNumberReactivatedWithHttpInfo(OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest)
+        {
+            // verify the required parameter 'onWhatsAppNumberReactivatedRequest' is set
+            if (onWhatsAppNumberReactivatedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberReactivatedRequest' when calling WebhookEventsApi->OnWhatsAppNumberReactivated");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberReactivatedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/whatsapp.number.reactivated", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberReactivated", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number reactivated event Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReactivatedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnWhatsAppNumberReactivatedAsync(OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnWhatsAppNumberReactivatedWithHttpInfoAsync(onWhatsAppNumberReactivatedRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// WhatsApp number reactivated event Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReactivatedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnWhatsAppNumberReactivatedWithHttpInfoAsync(OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'onWhatsAppNumberReactivatedRequest' is set
+            if (onWhatsAppNumberReactivatedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberReactivatedRequest' when calling WebhookEventsApi->OnWhatsAppNumberReactivated");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberReactivatedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/whatsapp.number.reactivated", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberReactivated", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number released event Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReleasedRequest"></param>
+        /// <returns></returns>
+        public void OnWhatsAppNumberReleased(OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest)
+        {
+            OnWhatsAppNumberReleasedWithHttpInfo(onWhatsAppNumberReleasedRequest);
+        }
+
+        /// <summary>
+        /// WhatsApp number released event Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReleasedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnWhatsAppNumberReleasedWithHttpInfo(OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest)
+        {
+            // verify the required parameter 'onWhatsAppNumberReleasedRequest' is set
+            if (onWhatsAppNumberReleasedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberReleasedRequest' when calling WebhookEventsApi->OnWhatsAppNumberReleased");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberReleasedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/whatsapp.number.released", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberReleased", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number released event Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReleasedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnWhatsAppNumberReleasedAsync(OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnWhatsAppNumberReleasedWithHttpInfoAsync(onWhatsAppNumberReleasedRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// WhatsApp number released event Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberReleasedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnWhatsAppNumberReleasedWithHttpInfoAsync(OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'onWhatsAppNumberReleasedRequest' is set
+            if (onWhatsAppNumberReleasedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberReleasedRequest' when calling WebhookEventsApi->OnWhatsAppNumberReleased");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberReleasedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/whatsapp.number.released", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberReleased", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number suspended event Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberSuspendedRequest"></param>
+        /// <returns></returns>
+        public void OnWhatsAppNumberSuspended(OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest)
+        {
+            OnWhatsAppNumberSuspendedWithHttpInfo(onWhatsAppNumberSuspendedRequest);
+        }
+
+        /// <summary>
+        /// WhatsApp number suspended event Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberSuspendedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnWhatsAppNumberSuspendedWithHttpInfo(OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest)
+        {
+            // verify the required parameter 'onWhatsAppNumberSuspendedRequest' is set
+            if (onWhatsAppNumberSuspendedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberSuspendedRequest' when calling WebhookEventsApi->OnWhatsAppNumberSuspended");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberSuspendedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/whatsapp.number.suspended", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberSuspended", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number suspended event Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberSuspendedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnWhatsAppNumberSuspendedAsync(OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnWhatsAppNumberSuspendedWithHttpInfoAsync(onWhatsAppNumberSuspendedRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// WhatsApp number suspended event Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberSuspendedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnWhatsAppNumberSuspendedWithHttpInfoAsync(OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'onWhatsAppNumberSuspendedRequest' is set
+            if (onWhatsAppNumberSuspendedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberSuspendedRequest' when calling WebhookEventsApi->OnWhatsAppNumberSuspended");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberSuspendedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/whatsapp.number.suspended", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberSuspended", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -199,7 +199,25 @@ namespace Zernio.Model
             /// Enum WhatsappNumberVerificationRequired for value: whatsapp.number.verification_required
             /// </summary>
             [EnumMember(Value = "whatsapp.number.verification_required")]
-            WhatsappNumberVerificationRequired = 27
+            WhatsappNumberVerificationRequired = 27,
+
+            /// <summary>
+            /// Enum WhatsappNumberSuspended for value: whatsapp.number.suspended
+            /// </summary>
+            [EnumMember(Value = "whatsapp.number.suspended")]
+            WhatsappNumberSuspended = 28,
+
+            /// <summary>
+            /// Enum WhatsappNumberReactivated for value: whatsapp.number.reactivated
+            /// </summary>
+            [EnumMember(Value = "whatsapp.number.reactivated")]
+            WhatsappNumberReactivated = 29,
+
+            /// <summary>
+            /// Enum WhatsappNumberReleased for value: whatsapp.number.released
+            /// </summary>
+            [EnumMember(Value = "whatsapp.number.released")]
+            WhatsappNumberReleased = 30
         }
 
         /// <summary>
