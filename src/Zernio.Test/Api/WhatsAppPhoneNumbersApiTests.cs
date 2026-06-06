@@ -217,5 +217,17 @@ namespace Zernio.Test.Api
             //var response = instance.UploadWhatsAppNumberKycDocument(xFilename, body);
             //Assert.IsType<UploadWhatsAppNumberKycDocument200Response>(response);
         }
+
+        /// <summary>
+        /// Test ValidateWhatsAppNumberKycAddress
+        /// </summary>
+        [Fact]
+        public void ValidateWhatsAppNumberKycAddressTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest = null;
+            //var response = instance.ValidateWhatsAppNumberKycAddress(validateWhatsAppNumberKycAddressRequest);
+            //Assert.IsType<ValidateWhatsAppNumberKycAddress200Response>(response);
+        }
     }
 }

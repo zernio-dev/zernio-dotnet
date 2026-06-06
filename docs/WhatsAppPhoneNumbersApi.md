@@ -17,6 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**SearchAvailableWhatsAppNumbers**](WhatsAppPhoneNumbersApi.md#searchavailablewhatsappnumbers) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers to purchase |
 | [**SubmitWhatsAppNumberKyc**](WhatsAppPhoneNumbersApi.md#submitwhatsappnumberkyc) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC |
 | [**UploadWhatsAppNumberKycDocument**](WhatsAppPhoneNumbersApi.md#uploadwhatsappnumberkycdocument) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document |
+| [**ValidateWhatsAppNumberKycAddress**](WhatsAppPhoneNumbersApi.md#validatewhatsappnumberkycaddress) | **POST** /v1/whatsapp/phone-numbers/kyc/validate-address | Pre-validate a regulated-number KYC address (Tier 4) |
 
 <a id="checkwhatsappnumberavailability"></a>
 # **CheckWhatsAppNumberAvailability**
@@ -1334,6 +1335,106 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Document uploaded. |  -  |
 | **400** | Missing X-Filename, empty body, or file too large (over 20MB). |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="validatewhatsappnumberkycaddress"></a>
+# **ValidateWhatsAppNumberKycAddress**
+> ValidateWhatsAppNumberKycAddress200Response ValidateWhatsAppNumberKycAddress (ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest)
+
+Pre-validate a regulated-number KYC address (Tier 4)
+
+Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (`administrative_area`) is required by the validator; when it is omitted the pre-check is skipped and `{ ok: true, skipped: true }` is returned (the final submit still validates). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ValidateWhatsAppNumberKycAddressExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppPhoneNumbersApi(httpClient, config, httpClientHandler);
+            var validateWhatsAppNumberKycAddressRequest = new ValidateWhatsAppNumberKycAddressRequest(); // ValidateWhatsAppNumberKycAddressRequest | 
+
+            try
+            {
+                // Pre-validate a regulated-number KYC address (Tier 4)
+                ValidateWhatsAppNumberKycAddress200Response result = apiInstance.ValidateWhatsAppNumberKycAddress(validateWhatsAppNumberKycAddressRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppPhoneNumbersApi.ValidateWhatsAppNumberKycAddress: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ValidateWhatsAppNumberKycAddressWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Pre-validate a regulated-number KYC address (Tier 4)
+    ApiResponse<ValidateWhatsAppNumberKycAddress200Response> response = apiInstance.ValidateWhatsAppNumberKycAddressWithHttpInfo(validateWhatsAppNumberKycAddressRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppPhoneNumbersApi.ValidateWhatsAppNumberKycAddressWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **validateWhatsAppNumberKycAddressRequest** | [**ValidateWhatsAppNumberKycAddressRequest**](ValidateWhatsAppNumberKycAddressRequest.md) |  |  |
+
+### Return type
+
+[**ValidateWhatsAppNumberKycAddress200Response**](ValidateWhatsAppNumberKycAddress200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Address is deliverable, or the pre-check was skipped (no region supplied). |  -  |
+| **400** | The country isn&#39;t offered, or the address could not be verified. When the provider returned usable corrections, &#x60;details.addressSuggestions&#x60; carries them per field for a one-click \&quot;apply suggestion\&quot; card. (Flat error envelope: &#x60;error&#x60; is the human message; &#x60;code&#x60;/&#x60;param&#x60;/&#x60;details&#x60; are top-level siblings.)  |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

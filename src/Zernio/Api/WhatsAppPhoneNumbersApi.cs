@@ -317,6 +317,27 @@ namespace Zernio.Api
         /// <param name="body"></param>
         /// <returns>ApiResponse of UploadWhatsAppNumberKycDocument200Response</returns>
         ApiResponse<UploadWhatsAppNumberKycDocument200Response> UploadWhatsAppNumberKycDocumentWithHttpInfo(string xFilename, FileParameter body);
+        /// <summary>
+        /// Pre-validate a regulated-number KYC address (Tier 4)
+        /// </summary>
+        /// <remarks>
+        /// Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="validateWhatsAppNumberKycAddressRequest"></param>
+        /// <returns>ValidateWhatsAppNumberKycAddress200Response</returns>
+        ValidateWhatsAppNumberKycAddress200Response ValidateWhatsAppNumberKycAddress(ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest);
+
+        /// <summary>
+        /// Pre-validate a regulated-number KYC address (Tier 4)
+        /// </summary>
+        /// <remarks>
+        /// Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="validateWhatsAppNumberKycAddressRequest"></param>
+        /// <returns>ApiResponse of ValidateWhatsAppNumberKycAddress200Response</returns>
+        ApiResponse<ValidateWhatsAppNumberKycAddress200Response> ValidateWhatsAppNumberKycAddressWithHttpInfo(ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest);
         #endregion Synchronous Operations
     }
 
@@ -641,6 +662,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UploadWhatsAppNumberKycDocument200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UploadWhatsAppNumberKycDocument200Response>> UploadWhatsAppNumberKycDocumentWithHttpInfoAsync(string xFilename, FileParameter body, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Pre-validate a regulated-number KYC address (Tier 4)
+        /// </summary>
+        /// <remarks>
+        /// Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="validateWhatsAppNumberKycAddressRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ValidateWhatsAppNumberKycAddress200Response</returns>
+        System.Threading.Tasks.Task<ValidateWhatsAppNumberKycAddress200Response> ValidateWhatsAppNumberKycAddressAsync(ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Pre-validate a regulated-number KYC address (Tier 4)
+        /// </summary>
+        /// <remarks>
+        /// Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="validateWhatsAppNumberKycAddressRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ValidateWhatsAppNumberKycAddress200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ValidateWhatsAppNumberKycAddress200Response>> ValidateWhatsAppNumberKycAddressWithHttpInfoAsync(ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -2603,6 +2647,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UploadWhatsAppNumberKycDocument", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pre-validate a regulated-number KYC address (Tier 4) Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="validateWhatsAppNumberKycAddressRequest"></param>
+        /// <returns>ValidateWhatsAppNumberKycAddress200Response</returns>
+        public ValidateWhatsAppNumberKycAddress200Response ValidateWhatsAppNumberKycAddress(ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest)
+        {
+            Zernio.Client.ApiResponse<ValidateWhatsAppNumberKycAddress200Response> localVarResponse = ValidateWhatsAppNumberKycAddressWithHttpInfo(validateWhatsAppNumberKycAddressRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pre-validate a regulated-number KYC address (Tier 4) Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="validateWhatsAppNumberKycAddressRequest"></param>
+        /// <returns>ApiResponse of ValidateWhatsAppNumberKycAddress200Response</returns>
+        public Zernio.Client.ApiResponse<ValidateWhatsAppNumberKycAddress200Response> ValidateWhatsAppNumberKycAddressWithHttpInfo(ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest)
+        {
+            // verify the required parameter 'validateWhatsAppNumberKycAddressRequest' is set
+            if (validateWhatsAppNumberKycAddressRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'validateWhatsAppNumberKycAddressRequest' when calling WhatsAppPhoneNumbersApi->ValidateWhatsAppNumberKycAddress");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = validateWhatsAppNumberKycAddressRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ValidateWhatsAppNumberKycAddress200Response>("/v1/whatsapp/phone-numbers/kyc/validate-address", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ValidateWhatsAppNumberKycAddress", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pre-validate a regulated-number KYC address (Tier 4) Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="validateWhatsAppNumberKycAddressRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ValidateWhatsAppNumberKycAddress200Response</returns>
+        public async System.Threading.Tasks.Task<ValidateWhatsAppNumberKycAddress200Response> ValidateWhatsAppNumberKycAddressAsync(ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ValidateWhatsAppNumberKycAddress200Response> localVarResponse = await ValidateWhatsAppNumberKycAddressWithHttpInfoAsync(validateWhatsAppNumberKycAddressRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pre-validate a regulated-number KYC address (Tier 4) Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="validateWhatsAppNumberKycAddressRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ValidateWhatsAppNumberKycAddress200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ValidateWhatsAppNumberKycAddress200Response>> ValidateWhatsAppNumberKycAddressWithHttpInfoAsync(ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'validateWhatsAppNumberKycAddressRequest' is set
+            if (validateWhatsAppNumberKycAddressRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'validateWhatsAppNumberKycAddressRequest' when calling WhatsAppPhoneNumbersApi->ValidateWhatsAppNumberKycAddress");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = validateWhatsAppNumberKycAddressRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ValidateWhatsAppNumberKycAddress200Response>("/v1/whatsapp/phone-numbers/kyc/validate-address", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ValidateWhatsAppNumberKycAddress", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

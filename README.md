@@ -494,6 +494,7 @@ Class | Method | HTTP request | Description
 *WhatsAppPhoneNumbersApi* | [**SearchAvailableWhatsAppNumbers**](docs/WhatsAppPhoneNumbersApi.md#searchavailablewhatsappnumbers) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers to purchase
 *WhatsAppPhoneNumbersApi* | [**SubmitWhatsAppNumberKyc**](docs/WhatsAppPhoneNumbersApi.md#submitwhatsappnumberkyc) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC
 *WhatsAppPhoneNumbersApi* | [**UploadWhatsAppNumberKycDocument**](docs/WhatsAppPhoneNumbersApi.md#uploadwhatsappnumberkycdocument) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document
+*WhatsAppPhoneNumbersApi* | [**ValidateWhatsAppNumberKycAddress**](docs/WhatsAppPhoneNumbersApi.md#validatewhatsappnumberkycaddress) | **POST** /v1/whatsapp/phone-numbers/kyc/validate-address | Pre-validate a regulated-number KYC address (Tier 4)
 *WhatsAppSandboxApi* | [**CreateWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#createwhatsappsandboxsession) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation for a phone
 *WhatsAppSandboxApi* | [**DeleteWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#deletewhatsappsandboxsession) | **DELETE** /v1/whatsapp/sandbox/sessions/{sessionId} | Revoke a sandbox session
 *WhatsAppSandboxApi* | [**ListWhatsAppSandboxSessions**](docs/WhatsAppSandboxApi.md#listwhatsappsandboxsessions) | **GET** /v1/whatsapp/sandbox/sessions | List your sandbox sessions
@@ -1575,6 +1576,11 @@ Class | Method | HTTP request | Description
  - [Model.ValidateSubreddit200ResponseOneOf](docs/ValidateSubreddit200ResponseOneOf.md)
  - [Model.ValidateSubreddit200ResponseOneOf1](docs/ValidateSubreddit200ResponseOneOf1.md)
  - [Model.ValidateSubreddit200ResponseOneOfSubreddit](docs/ValidateSubreddit200ResponseOneOfSubreddit.md)
+ - [Model.ValidateWhatsAppNumberKycAddress200Response](docs/ValidateWhatsAppNumberKycAddress200Response.md)
+ - [Model.ValidateWhatsAppNumberKycAddress400Response](docs/ValidateWhatsAppNumberKycAddress400Response.md)
+ - [Model.ValidateWhatsAppNumberKycAddress400ResponseDetails](docs/ValidateWhatsAppNumberKycAddress400ResponseDetails.md)
+ - [Model.ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner](docs/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner.md)
+ - [Model.ValidateWhatsAppNumberKycAddressRequest](docs/ValidateWhatsAppNumberKycAddressRequest.md)
  - [Model.Webhook](docs/Webhook.md)
  - [Model.WebhookPayloadAccountAdsInitialSyncCompleted](docs/WebhookPayloadAccountAdsInitialSyncCompleted.md)
  - [Model.WebhookPayloadAccountAdsInitialSyncCompletedAccount](docs/WebhookPayloadAccountAdsInitialSyncCompletedAccount.md)
