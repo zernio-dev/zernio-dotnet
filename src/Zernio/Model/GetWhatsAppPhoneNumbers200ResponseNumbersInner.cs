@@ -64,28 +64,34 @@ namespace Zernio.Model
             Provisioning = 4,
 
             /// <summary>
+            /// Enum Verifying for value: verifying
+            /// </summary>
+            [EnumMember(Value = "verifying")]
+            Verifying = 5,
+
+            /// <summary>
             /// Enum Active for value: active
             /// </summary>
             [EnumMember(Value = "active")]
-            Active = 5,
+            Active = 6,
 
             /// <summary>
             /// Enum Suspended for value: suspended
             /// </summary>
             [EnumMember(Value = "suspended")]
-            Suspended = 6,
+            Suspended = 7,
 
             /// <summary>
             /// Enum Releasing for value: releasing
             /// </summary>
             [EnumMember(Value = "releasing")]
-            Releasing = 7,
+            Releasing = 8,
 
             /// <summary>
             /// Enum Released for value: released
             /// </summary>
             [EnumMember(Value = "released")]
-            Released = 8
+            Released = 9
         }
 
 
