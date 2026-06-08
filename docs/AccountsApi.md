@@ -530,7 +530,7 @@ catch (ApiException e)
 
 <a id="listaccounts"></a>
 # **ListAccounts**
-> ListAccounts200Response ListAccounts (string? profileId = null, string? platform = null, bool? includeOverLimit = null, int? page = null, int? limit = null)
+> ListAccounts200Response ListAccounts (string? profileId = null, string? platform = null, string? status = null, bool? includeOverLimit = null, int? page = null, int? limit = null)
 
 List accounts
 
@@ -562,6 +562,7 @@ namespace Example
             var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string? | Filter accounts by profile ID (optional) 
             var platform = "platform_example";  // string? | Filter accounts by platform (e.g. \"instagram\", \"twitter\"). (optional) 
+            var status = "connected";  // string? | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional) 
             var includeOverLimit = false;  // bool? | When true, includes accounts from over-limit profiles. (optional)  (default to false)
             var page = 56;  // int? | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional) 
             var limit = 56;  // int? | Page size. Required alongside page for pagination. (optional) 
@@ -569,7 +570,7 @@ namespace Example
             try
             {
                 // List accounts
-                ListAccounts200Response result = apiInstance.ListAccounts(profileId, platform, includeOverLimit, page, limit);
+                ListAccounts200Response result = apiInstance.ListAccounts(profileId, platform, status, includeOverLimit, page, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -590,7 +591,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List accounts
-    ApiResponse<ListAccounts200Response> response = apiInstance.ListAccountsWithHttpInfo(profileId, platform, includeOverLimit, page, limit);
+    ApiResponse<ListAccounts200Response> response = apiInstance.ListAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -609,6 +610,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **profileId** | **string?** | Filter accounts by profile ID | [optional]  |
 | **platform** | **string?** | Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional]  |
+| **status** | **string?** | Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional]  |
 | **includeOverLimit** | **bool?** | When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **page** | **int?** | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. | [optional]  |
 | **limit** | **int?** | Page size. Required alongside page for pagination. | [optional]  |

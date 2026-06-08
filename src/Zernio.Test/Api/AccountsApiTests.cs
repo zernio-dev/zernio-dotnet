@@ -130,10 +130,11 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string? profileId = null;
             //string? platform = null;
+            //string? status = null;
             //bool? includeOverLimit = null;
             //int? page = null;
             //int? limit = null;
-            //var response = instance.ListAccounts(profileId, platform, includeOverLimit, page, limit);
+            //var response = instance.ListAccounts(profileId, platform, status, includeOverLimit, page, limit);
             //Assert.IsType<ListAccounts200Response>(response);
         }
 
