@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Meta only. Required to rebuild the immutable creative when setting urlTags.
+    /// Meta only. OPTIONAL — omit to preserve the existing creative verbatim (default). Provide it only to rebuild the creative explicitly, or for creatives whose object_story_spec Meta strips.
     /// </summary>
     [DataContract(Name = "updateAdTrackingTags_request_creative")]
     public partial class UpdateAdTrackingTagsRequestCreative : IValidatableObject
