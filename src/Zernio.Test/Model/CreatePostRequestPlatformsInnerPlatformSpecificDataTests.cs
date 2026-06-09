@@ -119,6 +119,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PaidPartnership'
+        /// </summary>
+        [Fact]
+        public void PaidPartnershipTest()
+        {
+            // TODO unit test for the property 'PaidPartnership'
+        }
+
+        /// <summary>
+        /// Test the property 'MadeWithAi'
+        /// </summary>
+        [Fact]
+        public void MadeWithAiTest()
+        {
+            // TODO unit test for the property 'MadeWithAi'
+        }
+
+        /// <summary>
+        /// Test the property 'SensitiveMedia'
+        /// </summary>
+        [Fact]
+        public void SensitiveMediaTest()
+        {
+            // TODO unit test for the property 'SensitiveMedia'
+        }
+
+        /// <summary>
         /// Test the property 'TopicTag'
         /// </summary>
         [Fact]
@@ -638,6 +665,42 @@ namespace Zernio.Test.Model
         public void FlairIdTest()
         {
             // TODO unit test for the property 'FlairId'
+        }
+
+        /// <summary>
+        /// Test the property 'FlairText'
+        /// </summary>
+        [Fact]
+        public void FlairTextTest()
+        {
+            // TODO unit test for the property 'FlairText'
+        }
+
+        /// <summary>
+        /// Test the property 'Nsfw'
+        /// </summary>
+        [Fact]
+        public void NsfwTest()
+        {
+            // TODO unit test for the property 'Nsfw'
+        }
+
+        /// <summary>
+        /// Test the property 'Spoiler'
+        /// </summary>
+        [Fact]
+        public void SpoilerTest()
+        {
+            // TODO unit test for the property 'Spoiler'
+        }
+
+        /// <summary>
+        /// Test the property 'Sendreplies'
+        /// </summary>
+        [Fact]
+        public void SendrepliesTest()
+        {
+            // TODO unit test for the property 'Sendreplies'
         }
 
         /// <summary>

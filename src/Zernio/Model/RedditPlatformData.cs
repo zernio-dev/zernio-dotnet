@@ -41,16 +41,24 @@ namespace Zernio.Model
         /// <param name="url">URL for link posts. If provided (and forceSelf is not true), creates a link post instead of a text post..</param>
         /// <param name="forceSelf">When true, creates a text/self post even when a URL or media is provided..</param>
         /// <param name="flairId">Flair ID for the post. Required by some subreddits. Use GET /v1/accounts/{id}/reddit-flairs?subreddit&#x3D;name to list flairs..</param>
+        /// <param name="flairText">Custom flair text, for subreddits that allow free-text flair. Ignored when flairId is provided (flairId wins)..</param>
+        /// <param name="nsfw">Mark the post as NSFW (Not Safe For Work / over 18). (default to false).</param>
+        /// <param name="spoiler">Mark the post as a spoiler. The subreddit must have spoiler tagging enabled for this to take effect. (default to false).</param>
+        /// <param name="sendreplies">Whether to receive inbox replies for comments on this post. Set to false to opt out. (default to true).</param>
         /// <param name="nativeVideo">Controls Reddit&#39;s native video upload flow. When true (default for video mediaItems), the video is uploaded to Reddit&#39;s CDN and submitted with kind&#x3D;video so it renders as an embedded Reddit video player. Reddit transcodes server-side (1080p/30fps cap). Set to false to fall back to a legacy link post. If the subreddit blocks video posts, the upload falls back to a link post automatically.  (default to true).</param>
         /// <param name="videogif">When true (and nativeVideo is active), submits the video as a silent videogif (kind&#x3D;videogif). Use for short looping clips without audio..</param>
         /// <param name="videoPosterUrl">Optional poster/thumbnail image URL for native video posts. If omitted, the first frame of the video is extracted and used automatically..</param>
-        public RedditPlatformData(string subreddit = default, string title = default, string url = default, bool forceSelf = default, string flairId = default, bool nativeVideo = true, bool videogif = default, string videoPosterUrl = default)
+        public RedditPlatformData(string subreddit = default, string title = default, string url = default, bool forceSelf = default, string flairId = default, string flairText = default, bool nsfw = false, bool spoiler = false, bool sendreplies = true, bool nativeVideo = true, bool videogif = default, string videoPosterUrl = default)
         {
             this.Subreddit = subreddit;
             this.Title = title;
             this.Url = url;
             this.ForceSelf = forceSelf;
             this.FlairId = flairId;
+            this.FlairText = flairText;
+            this.Nsfw = nsfw;
+            this.Spoiler = spoiler;
+            this.Sendreplies = sendreplies;
             this.NativeVideo = nativeVideo;
             this.Videogif = videogif;
             this.VideoPosterUrl = videoPosterUrl;
@@ -98,6 +106,34 @@ namespace Zernio.Model
         public string FlairId { get; set; }
 
         /// <summary>
+        /// Custom flair text, for subreddits that allow free-text flair. Ignored when flairId is provided (flairId wins).
+        /// </summary>
+        /// <value>Custom flair text, for subreddits that allow free-text flair. Ignored when flairId is provided (flairId wins).</value>
+        [DataMember(Name = "flairText", EmitDefaultValue = false)]
+        public string FlairText { get; set; }
+
+        /// <summary>
+        /// Mark the post as NSFW (Not Safe For Work / over 18).
+        /// </summary>
+        /// <value>Mark the post as NSFW (Not Safe For Work / over 18).</value>
+        [DataMember(Name = "nsfw", EmitDefaultValue = true)]
+        public bool Nsfw { get; set; }
+
+        /// <summary>
+        /// Mark the post as a spoiler. The subreddit must have spoiler tagging enabled for this to take effect.
+        /// </summary>
+        /// <value>Mark the post as a spoiler. The subreddit must have spoiler tagging enabled for this to take effect.</value>
+        [DataMember(Name = "spoiler", EmitDefaultValue = true)]
+        public bool Spoiler { get; set; }
+
+        /// <summary>
+        /// Whether to receive inbox replies for comments on this post. Set to false to opt out.
+        /// </summary>
+        /// <value>Whether to receive inbox replies for comments on this post. Set to false to opt out.</value>
+        [DataMember(Name = "sendreplies", EmitDefaultValue = true)]
+        public bool Sendreplies { get; set; }
+
+        /// <summary>
         /// Controls Reddit&#39;s native video upload flow. When true (default for video mediaItems), the video is uploaded to Reddit&#39;s CDN and submitted with kind&#x3D;video so it renders as an embedded Reddit video player. Reddit transcodes server-side (1080p/30fps cap). Set to false to fall back to a legacy link post. If the subreddit blocks video posts, the upload falls back to a link post automatically. 
         /// </summary>
         /// <value>Controls Reddit&#39;s native video upload flow. When true (default for video mediaItems), the video is uploaded to Reddit&#39;s CDN and submitted with kind&#x3D;video so it renders as an embedded Reddit video player. Reddit transcodes server-side (1080p/30fps cap). Set to false to fall back to a legacy link post. If the subreddit blocks video posts, the upload falls back to a link post automatically. </value>
@@ -131,6 +167,10 @@ namespace Zernio.Model
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  ForceSelf: ").Append(ForceSelf).Append("\n");
             sb.Append("  FlairId: ").Append(FlairId).Append("\n");
+            sb.Append("  FlairText: ").Append(FlairText).Append("\n");
+            sb.Append("  Nsfw: ").Append(Nsfw).Append("\n");
+            sb.Append("  Spoiler: ").Append(Spoiler).Append("\n");
+            sb.Append("  Sendreplies: ").Append(Sendreplies).Append("\n");
             sb.Append("  NativeVideo: ").Append(NativeVideo).Append("\n");
             sb.Append("  Videogif: ").Append(Videogif).Append("\n");
             sb.Append("  VideoPosterUrl: ").Append(VideoPosterUrl).Append("\n");

@@ -82,7 +82,10 @@ namespace Zernio.Model
         /// <param name="poll">poll.</param>
         /// <param name="longVideo">Enable long video uploads (over 140 seconds) using amplify_video media category. Requires the connected X account to have an active X Premium subscription. When true, videos are uploaded with the amplify_video category which supports longer durations (up to 10 minutes via API). When false or omitted, the standard tweet_video category is used (140 second limit). Note that not all Premium accounts have API long-video access, as X may require separate allowlisting. (default to false).</param>
         /// <param name="geoRestriction">geoRestriction.</param>
-        public TwitterPlatformData(string replyToTweetId = default, string quoteTweetId = default, ReplySettingsEnum? replySettings = default, List<TwitterPlatformDataThreadItemsInner> threadItems = default, TwitterPlatformDataPoll poll = default, bool longVideo = false, GeoRestriction geoRestriction = default)
+        /// <param name="paidPartnership">When true, the post is labeled by X as a paid partnership / paid promotion. For threads, applies to the root tweet only. Field availability may depend on your X API access tier. (default to false).</param>
+        /// <param name="madeWithAi">When true, the post is labeled by X as containing AI-generated media. Per X, this label is for AI-generated media, not AI-written text. For threads, applies to the root tweet only. (default to false).</param>
+        /// <param name="sensitiveMedia">sensitiveMedia.</param>
+        public TwitterPlatformData(string replyToTweetId = default, string quoteTweetId = default, ReplySettingsEnum? replySettings = default, List<TwitterPlatformDataThreadItemsInner> threadItems = default, TwitterPlatformDataPoll poll = default, bool longVideo = false, GeoRestriction geoRestriction = default, bool paidPartnership = false, bool madeWithAi = false, TwitterPlatformDataSensitiveMedia sensitiveMedia = default)
         {
             this.ReplyToTweetId = replyToTweetId;
             this.QuoteTweetId = quoteTweetId;
@@ -91,6 +94,9 @@ namespace Zernio.Model
             this.Poll = poll;
             this.LongVideo = longVideo;
             this.GeoRestriction = geoRestriction;
+            this.PaidPartnership = paidPartnership;
+            this.MadeWithAi = madeWithAi;
+            this.SensitiveMedia = sensitiveMedia;
         }
 
         /// <summary>
@@ -134,6 +140,26 @@ namespace Zernio.Model
         public GeoRestriction GeoRestriction { get; set; }
 
         /// <summary>
+        /// When true, the post is labeled by X as a paid partnership / paid promotion. For threads, applies to the root tweet only. Field availability may depend on your X API access tier.
+        /// </summary>
+        /// <value>When true, the post is labeled by X as a paid partnership / paid promotion. For threads, applies to the root tweet only. Field availability may depend on your X API access tier.</value>
+        [DataMember(Name = "paidPartnership", EmitDefaultValue = true)]
+        public bool PaidPartnership { get; set; }
+
+        /// <summary>
+        /// When true, the post is labeled by X as containing AI-generated media. Per X, this label is for AI-generated media, not AI-written text. For threads, applies to the root tweet only.
+        /// </summary>
+        /// <value>When true, the post is labeled by X as containing AI-generated media. Per X, this label is for AI-generated media, not AI-written text. For threads, applies to the root tweet only.</value>
+        [DataMember(Name = "madeWithAi", EmitDefaultValue = true)]
+        public bool MadeWithAi { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SensitiveMedia
+        /// </summary>
+        [DataMember(Name = "sensitiveMedia", EmitDefaultValue = false)]
+        public TwitterPlatformDataSensitiveMedia SensitiveMedia { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -148,6 +174,9 @@ namespace Zernio.Model
             sb.Append("  Poll: ").Append(Poll).Append("\n");
             sb.Append("  LongVideo: ").Append(LongVideo).Append("\n");
             sb.Append("  GeoRestriction: ").Append(GeoRestriction).Append("\n");
+            sb.Append("  PaidPartnership: ").Append(PaidPartnership).Append("\n");
+            sb.Append("  MadeWithAi: ").Append(MadeWithAi).Append("\n");
+            sb.Append("  SensitiveMedia: ").Append(SensitiveMedia).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -947,6 +947,7 @@ docs/TriggerWorkflowRequest.md
 docs/TwitterEngagementApi.md
 docs/TwitterPlatformData.md
 docs/TwitterPlatformDataPoll.md
+docs/TwitterPlatformDataSensitiveMedia.md
 docs/TwitterPlatformDataThreadItemsInner.md
 docs/UndoRetweet200Response.md
 docs/UnfollowUser200Response.md
@@ -2167,6 +2168,7 @@ src/Zernio.Test/Model/TriggerWorkflow200ResponseExecutionTests.cs
 src/Zernio.Test/Model/TriggerWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/TriggerWorkflowRequestTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataPollTests.cs
+src/Zernio.Test/Model/TwitterPlatformDataSensitiveMediaTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataTests.cs
 src/Zernio.Test/Model/TwitterPlatformDataThreadItemsInnerTests.cs
 src/Zernio.Test/Model/UndoRetweet200ResponseTests.cs
@@ -3395,6 +3397,7 @@ src/Zernio/Model/TriggerWorkflow200ResponseExecution.cs
 src/Zernio/Model/TriggerWorkflowRequest.cs
 src/Zernio/Model/TwitterPlatformData.cs
 src/Zernio/Model/TwitterPlatformDataPoll.cs
+src/Zernio/Model/TwitterPlatformDataSensitiveMedia.cs
 src/Zernio/Model/TwitterPlatformDataThreadItemsInner.cs
 src/Zernio/Model/UndoRetweet200Response.cs
 src/Zernio/Model/UnfollowUser200Response.cs

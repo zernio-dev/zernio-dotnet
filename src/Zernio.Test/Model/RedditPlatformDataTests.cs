@@ -101,6 +101,42 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'FlairText'
+        /// </summary>
+        [Fact]
+        public void FlairTextTest()
+        {
+            // TODO unit test for the property 'FlairText'
+        }
+
+        /// <summary>
+        /// Test the property 'Nsfw'
+        /// </summary>
+        [Fact]
+        public void NsfwTest()
+        {
+            // TODO unit test for the property 'Nsfw'
+        }
+
+        /// <summary>
+        /// Test the property 'Spoiler'
+        /// </summary>
+        [Fact]
+        public void SpoilerTest()
+        {
+            // TODO unit test for the property 'Spoiler'
+        }
+
+        /// <summary>
+        /// Test the property 'Sendreplies'
+        /// </summary>
+        [Fact]
+        public void SendrepliesTest()
+        {
+            // TODO unit test for the property 'Sendreplies'
+        }
+
+        /// <summary>
         /// Test the property 'NativeVideo'
         /// </summary>
         [Fact]

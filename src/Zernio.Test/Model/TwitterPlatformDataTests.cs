@@ -117,5 +117,32 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'GeoRestriction'
         }
+
+        /// <summary>
+        /// Test the property 'PaidPartnership'
+        /// </summary>
+        [Fact]
+        public void PaidPartnershipTest()
+        {
+            // TODO unit test for the property 'PaidPartnership'
+        }
+
+        /// <summary>
+        /// Test the property 'MadeWithAi'
+        /// </summary>
+        [Fact]
+        public void MadeWithAiTest()
+        {
+            // TODO unit test for the property 'MadeWithAi'
+        }
+
+        /// <summary>
+        /// Test the property 'SensitiveMedia'
+        /// </summary>
+        [Fact]
+        public void SensitiveMediaTest()
+        {
+            // TODO unit test for the property 'SensitiveMedia'
+        }
     }
 }

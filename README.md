@@ -1424,6 +1424,7 @@ Class | Method | HTTP request | Description
  - [Model.TriggerWorkflowRequest](docs/TriggerWorkflowRequest.md)
  - [Model.TwitterPlatformData](docs/TwitterPlatformData.md)
  - [Model.TwitterPlatformDataPoll](docs/TwitterPlatformDataPoll.md)
+ - [Model.TwitterPlatformDataSensitiveMedia](docs/TwitterPlatformDataSensitiveMedia.md)
  - [Model.TwitterPlatformDataThreadItemsInner](docs/TwitterPlatformDataThreadItemsInner.md)
  - [Model.UndoRetweet200Response](docs/UndoRetweet200Response.md)
  - [Model.UnfollowUser200Response](docs/UnfollowUser200Response.md)
