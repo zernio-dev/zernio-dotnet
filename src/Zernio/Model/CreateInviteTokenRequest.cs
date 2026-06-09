@@ -61,6 +61,33 @@ namespace Zernio.Model
         [DataMember(Name = "scope", IsRequired = true, EmitDefaultValue = true)]
         public ScopeEnum Scope { get; set; }
         /// <summary>
+        /// Org role granted to the invitee. Defaults to &#39;member&#39;.
+        /// </summary>
+        /// <value>Org role granted to the invitee. Defaults to &#39;member&#39;.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum RoleEnum
+        {
+            /// <summary>
+            /// Enum Member for value: member
+            /// </summary>
+            [EnumMember(Value = "member")]
+            Member = 1,
+
+            /// <summary>
+            /// Enum BillingAdmin for value: billing_admin
+            /// </summary>
+            [EnumMember(Value = "billing_admin")]
+            BillingAdmin = 2
+        }
+
+
+        /// <summary>
+        /// Org role granted to the invitee. Defaults to &#39;member&#39;.
+        /// </summary>
+        /// <value>Org role granted to the invitee. Defaults to &#39;member&#39;.</value>
+        [DataMember(Name = "role", EmitDefaultValue = false)]
+        public RoleEnum? Role { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateInviteTokenRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -70,10 +97,14 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="scope">&#39;all&#39; grants access to all profiles, &#39;profiles&#39; restricts to specific profiles (required).</param>
         /// <param name="profileIds">Required if scope is &#39;profiles&#39;. Array of profile IDs to grant access to..</param>
-        public CreateInviteTokenRequest(ScopeEnum scope = default, List<string> profileIds = default)
+        /// <param name="role">Org role granted to the invitee. Defaults to &#39;member&#39;. (default to RoleEnum.Member).</param>
+        /// <param name="readOnly">When true, the invitee can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts). (default to false).</param>
+        public CreateInviteTokenRequest(ScopeEnum scope = default, List<string> profileIds = default, RoleEnum? role = RoleEnum.Member, bool readOnly = false)
         {
             this.Scope = scope;
             this.ProfileIds = profileIds;
+            this.Role = role;
+            this.ReadOnly = readOnly;
         }
 
         /// <summary>
@@ -82,6 +113,13 @@ namespace Zernio.Model
         /// <value>Required if scope is &#39;profiles&#39;. Array of profile IDs to grant access to.</value>
         [DataMember(Name = "profileIds", EmitDefaultValue = false)]
         public List<string> ProfileIds { get; set; }
+
+        /// <summary>
+        /// When true, the invitee can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).
+        /// </summary>
+        /// <value>When true, the invitee can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).</value>
+        [DataMember(Name = "readOnly", EmitDefaultValue = true)]
+        public bool ReadOnly { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,6 +131,8 @@ namespace Zernio.Model
             sb.Append("class CreateInviteTokenRequest {\n");
             sb.Append("  Scope: ").Append(Scope).Append("\n");
             sb.Append("  ProfileIds: ").Append(ProfileIds).Append("\n");
+            sb.Append("  Role: ").Append(Role).Append("\n");
+            sb.Append("  ReadOnly: ").Append(ReadOnly).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
