@@ -21634,21 +21634,21 @@ components:
           - url
           - phone_number
           - otp
+          - copy_code
           - flow
           - mpm
           - catalog
           type: string
         text:
+          description: Visible button label. Required for all types except copy_code
+            (whose label is fixed by WhatsApp).
           type: string
         url:
           description: Required when type is URL
           format: uri
           type: string
         example:
-          description: Example values for URL suffix variables
-          items:
-            type: string
-          type: array
+          $ref: "#/components/schemas/WhatsAppTemplateButton_example"
         phone_number:
           description: Required when type is phone_number
           type: string
@@ -21676,7 +21676,6 @@ components:
         navigate_screen:
           type: string
       required:
-      - text
       - type
     WhatsAppTemplateComponent:
       discriminator:
@@ -54538,6 +54537,14 @@ components:
         rateLimitedUntil:
           format: date-time
           type: string
+    WhatsAppTemplateButton_example:
+      description: "Example value(s). For URL buttons, an array of URL-suffix samples.\
+        \ For copy_code (marketing) buttons, the coupon code as a string."
+      oneOf:
+      - type: string
+      - items:
+          type: string
+        type: array
     WhatsAppHeaderComponent_example:
       properties:
         header_text:

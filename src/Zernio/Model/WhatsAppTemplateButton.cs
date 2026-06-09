@@ -64,22 +64,28 @@ namespace Zernio.Model
             Otp = 4,
 
             /// <summary>
+            /// Enum CopyCode for value: copy_code
+            /// </summary>
+            [EnumMember(Value = "copy_code")]
+            CopyCode = 5,
+
+            /// <summary>
             /// Enum Flow for value: flow
             /// </summary>
             [EnumMember(Value = "flow")]
-            Flow = 5,
+            Flow = 6,
 
             /// <summary>
             /// Enum Mpm for value: mpm
             /// </summary>
             [EnumMember(Value = "mpm")]
-            Mpm = 6,
+            Mpm = 7,
 
             /// <summary>
             /// Enum Catalog for value: catalog
             /// </summary>
             [EnumMember(Value = "catalog")]
-            Catalog = 7
+            Catalog = 8
         }
 
 
@@ -130,9 +136,9 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="WhatsAppTemplateButton" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
-        /// <param name="text">text (required).</param>
+        /// <param name="text">Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp)..</param>
         /// <param name="url">Required when type is URL.</param>
-        /// <param name="example">Example values for URL suffix variables.</param>
+        /// <param name="example">example.</param>
         /// <param name="phoneNumber">Required when type is phone_number.</param>
         /// <param name="otpType">Required when type is otp.</param>
         /// <param name="autofillText">autofillText.</param>
@@ -143,14 +149,9 @@ namespace Zernio.Model
         /// <param name="flowJson">flowJson.</param>
         /// <param name="flowAction">flowAction.</param>
         /// <param name="navigateScreen">navigateScreen.</param>
-        public WhatsAppTemplateButton(TypeEnum type = default, string text = default, string url = default, List<string> example = default, string phoneNumber = default, OtpTypeEnum? otpType = default, string autofillText = default, string packageName = default, string signatureHash = default, string flowId = default, string flowName = default, string flowJson = default, string flowAction = default, string navigateScreen = default)
+        public WhatsAppTemplateButton(TypeEnum type = default, string text = default, string url = default, WhatsAppTemplateButtonExample example = default, string phoneNumber = default, OtpTypeEnum? otpType = default, string autofillText = default, string packageName = default, string signatureHash = default, string flowId = default, string flowName = default, string flowJson = default, string flowAction = default, string navigateScreen = default)
         {
             this.Type = type;
-            // to ensure "text" is required (not null)
-            if (text == null)
-            {
-                throw new ArgumentNullException("text is a required property for WhatsAppTemplateButton and cannot be null");
-            }
             this.Text = text;
             this.Url = url;
             this.Example = example;
@@ -167,9 +168,10 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Gets or Sets Text
+        /// Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp).
         /// </summary>
-        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp).</value>
+        [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 
         /// <summary>
@@ -180,11 +182,10 @@ namespace Zernio.Model
         public string Url { get; set; }
 
         /// <summary>
-        /// Example values for URL suffix variables
+        /// Gets or Sets Example
         /// </summary>
-        /// <value>Example values for URL suffix variables</value>
         [DataMember(Name = "example", EmitDefaultValue = false)]
-        public List<string> Example { get; set; }
+        public WhatsAppTemplateButtonExample Example { get; set; }
 
         /// <summary>
         /// Required when type is phone_number

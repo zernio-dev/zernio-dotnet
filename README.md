@@ -1662,6 +1662,7 @@ Class | Method | HTTP request | Description
  - [Model.WhatsAppHeaderComponentExample](docs/WhatsAppHeaderComponentExample.md)
  - [Model.WhatsAppSandboxSession](docs/WhatsAppSandboxSession.md)
  - [Model.WhatsAppTemplateButton](docs/WhatsAppTemplateButton.md)
+ - [Model.WhatsAppTemplateButtonExample](docs/WhatsAppTemplateButtonExample.md)
  - [Model.WhatsAppTemplateComponent](docs/WhatsAppTemplateComponent.md)
  - [Model.WorkflowEdge](docs/WorkflowEdge.md)
  - [Model.WorkflowExecutionEvent](docs/WorkflowExecutionEvent.md)
