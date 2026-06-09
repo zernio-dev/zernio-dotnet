@@ -36,7 +36,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Add participants
 
-Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
 
 ### Example
 ```csharp
@@ -139,7 +139,7 @@ catch (ApiException e)
 
 Approve join requests
 
-Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
 
 ### Example
 ```csharp
@@ -344,7 +344,7 @@ catch (ApiException e)
 
 Create group
 
-Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
 
 ### Example
 ```csharp
@@ -443,7 +443,7 @@ catch (ApiException e)
 
 Create invite link
 
-Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
 
 ### Example
 ```csharp
@@ -645,7 +645,7 @@ catch (ApiException e)
 
 Delete group
 
-Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
 
 ### Example
 ```csharp
@@ -1151,7 +1151,7 @@ catch (ApiException e)
 
 Get group info
 
-Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
 
 ### Example
 ```csharp
@@ -1559,7 +1559,7 @@ catch (ApiException e)
 
 List active groups
 
-List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
 
 ### Example
 ```csharp
@@ -1662,7 +1662,7 @@ catch (ApiException e)
 
 List join requests
 
-List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
 
 ### Example
 ```csharp
@@ -1763,7 +1763,7 @@ catch (ApiException e)
 
 Reject join requests
 
-Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
 
 ### Example
 ```csharp
@@ -1866,7 +1866,7 @@ catch (ApiException e)
 
 Remove participants
 
-Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
 
 ### Example
 ```csharp
@@ -2273,7 +2273,7 @@ catch (ApiException e)
 
 Update group settings
 
-Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
 
 ### Example
 ```csharp

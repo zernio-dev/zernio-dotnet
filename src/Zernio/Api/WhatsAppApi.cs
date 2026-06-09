@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Add participants
         /// </summary>
         /// <remarks>
-        /// Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -45,7 +45,7 @@ namespace Zernio.Api
         /// Add participants
         /// </summary>
         /// <remarks>
-        /// Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -57,7 +57,7 @@ namespace Zernio.Api
         /// Approve join requests
         /// </summary>
         /// <remarks>
-        /// Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -70,7 +70,7 @@ namespace Zernio.Api
         /// Approve join requests
         /// </summary>
         /// <remarks>
-        /// Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -103,7 +103,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppGroupChatRequest"></param>
@@ -114,7 +114,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppGroupChatRequest"></param>
@@ -124,7 +124,7 @@ namespace Zernio.Api
         /// Create invite link
         /// </summary>
         /// <remarks>
-        /// Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -136,7 +136,7 @@ namespace Zernio.Api
         /// Create invite link
         /// </summary>
         /// <remarks>
-        /// Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -168,7 +168,7 @@ namespace Zernio.Api
         /// Delete group
         /// </summary>
         /// <remarks>
-        /// Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -180,7 +180,7 @@ namespace Zernio.Api
         /// Delete group
         /// </summary>
         /// <remarks>
-        /// Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -277,7 +277,7 @@ namespace Zernio.Api
         /// Get group info
         /// </summary>
         /// <remarks>
-        /// Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -289,7 +289,7 @@ namespace Zernio.Api
         /// Get group info
         /// </summary>
         /// <remarks>
-        /// Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -367,7 +367,7 @@ namespace Zernio.Api
         /// List active groups
         /// </summary>
         /// <remarks>
-        /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -380,7 +380,7 @@ namespace Zernio.Api
         /// List active groups
         /// </summary>
         /// <remarks>
-        /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -392,7 +392,7 @@ namespace Zernio.Api
         /// List join requests
         /// </summary>
         /// <remarks>
-        /// List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -404,7 +404,7 @@ namespace Zernio.Api
         /// List join requests
         /// </summary>
         /// <remarks>
-        /// List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -415,7 +415,7 @@ namespace Zernio.Api
         /// Reject join requests
         /// </summary>
         /// <remarks>
-        /// Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -428,7 +428,7 @@ namespace Zernio.Api
         /// Reject join requests
         /// </summary>
         /// <remarks>
-        /// Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -440,7 +440,7 @@ namespace Zernio.Api
         /// Remove participants
         /// </summary>
         /// <remarks>
-        /// Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -453,7 +453,7 @@ namespace Zernio.Api
         /// Remove participants
         /// </summary>
         /// <remarks>
-        /// Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -528,7 +528,7 @@ namespace Zernio.Api
         /// Update group settings
         /// </summary>
         /// <remarks>
-        /// Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -541,7 +541,7 @@ namespace Zernio.Api
         /// Update group settings
         /// </summary>
         /// <remarks>
-        /// Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -608,7 +608,7 @@ namespace Zernio.Api
         /// Add participants
         /// </summary>
         /// <remarks>
-        /// Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -622,7 +622,7 @@ namespace Zernio.Api
         /// Add participants
         /// </summary>
         /// <remarks>
-        /// Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -635,7 +635,7 @@ namespace Zernio.Api
         /// Approve join requests
         /// </summary>
         /// <remarks>
-        /// Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -649,7 +649,7 @@ namespace Zernio.Api
         /// Approve join requests
         /// </summary>
         /// <remarks>
-        /// Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -685,7 +685,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppGroupChatRequest"></param>
@@ -697,7 +697,7 @@ namespace Zernio.Api
         /// Create group
         /// </summary>
         /// <remarks>
-        /// Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppGroupChatRequest"></param>
@@ -708,7 +708,7 @@ namespace Zernio.Api
         /// Create invite link
         /// </summary>
         /// <remarks>
-        /// Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -721,7 +721,7 @@ namespace Zernio.Api
         /// Create invite link
         /// </summary>
         /// <remarks>
-        /// Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -756,7 +756,7 @@ namespace Zernio.Api
         /// Delete group
         /// </summary>
         /// <remarks>
-        /// Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -769,7 +769,7 @@ namespace Zernio.Api
         /// Delete group
         /// </summary>
         /// <remarks>
-        /// Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -875,7 +875,7 @@ namespace Zernio.Api
         /// Get group info
         /// </summary>
         /// <remarks>
-        /// Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -888,7 +888,7 @@ namespace Zernio.Api
         /// Get group info
         /// </summary>
         /// <remarks>
-        /// Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -973,7 +973,7 @@ namespace Zernio.Api
         /// List active groups
         /// </summary>
         /// <remarks>
-        /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -987,7 +987,7 @@ namespace Zernio.Api
         /// List active groups
         /// </summary>
         /// <remarks>
-        /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -1000,7 +1000,7 @@ namespace Zernio.Api
         /// List join requests
         /// </summary>
         /// <remarks>
-        /// List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1013,7 +1013,7 @@ namespace Zernio.Api
         /// List join requests
         /// </summary>
         /// <remarks>
-        /// List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1025,7 +1025,7 @@ namespace Zernio.Api
         /// Reject join requests
         /// </summary>
         /// <remarks>
-        /// Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1039,7 +1039,7 @@ namespace Zernio.Api
         /// Reject join requests
         /// </summary>
         /// <remarks>
-        /// Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1052,7 +1052,7 @@ namespace Zernio.Api
         /// Remove participants
         /// </summary>
         /// <remarks>
-        /// Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1066,7 +1066,7 @@ namespace Zernio.Api
         /// Remove participants
         /// </summary>
         /// <remarks>
-        /// Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1148,7 +1148,7 @@ namespace Zernio.Api
         /// Update group settings
         /// </summary>
         /// <remarks>
-        /// Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1162,7 +1162,7 @@ namespace Zernio.Api
         /// Update group settings
         /// </summary>
         /// <remarks>
-        /// Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1435,7 +1435,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add participants Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Add participants Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1449,7 +1449,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add participants Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Add participants Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1511,7 +1511,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add participants Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Add participants Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1526,7 +1526,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Add participants Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Add participants Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1592,7 +1592,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Approve join requests Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Approve join requests Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1606,7 +1606,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Approve join requests Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Approve join requests Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1668,7 +1668,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Approve join requests Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Approve join requests Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1683,7 +1683,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Approve join requests Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Approve join requests Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -1878,7 +1878,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create group Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppGroupChatRequest"></param>
@@ -1890,7 +1890,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create group Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppGroupChatRequest"></param>
@@ -1940,7 +1940,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create group Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppGroupChatRequest"></param>
@@ -1953,7 +1953,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create group Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create group Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppGroupChatRequest"></param>
@@ -2007,7 +2007,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create invite link Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create invite link Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -2020,7 +2020,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create invite link Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create invite link Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -2075,7 +2075,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create invite link Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create invite link Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -2089,7 +2089,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create invite link Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Create invite link Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -2277,7 +2277,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete group Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Delete group Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -2290,7 +2290,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete group Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Delete group Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -2345,7 +2345,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete group Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Delete group Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -2359,7 +2359,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete group Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Delete group Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -2940,7 +2940,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get group info Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Get group info Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -2953,7 +2953,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get group info Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Get group info Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3008,7 +3008,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get group info Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Get group info Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3022,7 +3022,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get group info Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Get group info Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3488,7 +3488,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3502,7 +3502,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3561,7 +3561,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3576,7 +3576,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List active groups List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -3639,7 +3639,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List join requests List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List join requests List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3652,7 +3652,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List join requests List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List join requests List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3707,7 +3707,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List join requests List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List join requests List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3721,7 +3721,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List join requests List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// List join requests List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3780,7 +3780,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reject join requests Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Reject join requests Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3794,7 +3794,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reject join requests Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Reject join requests Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3856,7 +3856,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reject join requests Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Reject join requests Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3871,7 +3871,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Reject join requests Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Reject join requests Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3937,7 +3937,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove participants Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Remove participants Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -3951,7 +3951,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove participants Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Remove participants Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -4013,7 +4013,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove participants Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Remove participants Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -4028,7 +4028,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove participants Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Remove participants Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -4481,7 +4481,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update group settings Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Update group settings Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -4495,7 +4495,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update group settings Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Update group settings Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -4557,7 +4557,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update group settings Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Update group settings Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
@@ -4572,7 +4572,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update group settings Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
+        /// Update group settings Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupId">Group ID</param>
