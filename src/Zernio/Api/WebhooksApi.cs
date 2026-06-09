@@ -71,6 +71,37 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
         ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteWebhookSettingsWithHttpInfo(string id);
         /// <summary>
+        /// List webhook delivery logs
+        /// </summary>
+        /// <remarks>
+        /// Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Maximum number of logs to return (optional, default to 50)</param>
+        /// <param name="skip">Number of logs to skip (offset-based pagination) (optional, default to 0)</param>
+        /// <param name="status">Filter by delivery outcome (optional)</param>
+        /// <param name="varEvent">Filter by event type (e.g. post.published) (optional)</param>
+        /// <param name="webhookId">Filter by webhook configuration ID (optional)</param>
+        /// <param name="eventId">Filter by stable webhook event ID (optional)</param>
+        /// <returns>GetWebhookLogs200Response</returns>
+        GetWebhookLogs200Response GetWebhookLogs(int? limit = default, int? skip = default, string? status = default, string? varEvent = default, string? webhookId = default, string? eventId = default);
+
+        /// <summary>
+        /// List webhook delivery logs
+        /// </summary>
+        /// <remarks>
+        /// Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Maximum number of logs to return (optional, default to 50)</param>
+        /// <param name="skip">Number of logs to skip (offset-based pagination) (optional, default to 0)</param>
+        /// <param name="status">Filter by delivery outcome (optional)</param>
+        /// <param name="varEvent">Filter by event type (e.g. post.published) (optional)</param>
+        /// <param name="webhookId">Filter by webhook configuration ID (optional)</param>
+        /// <param name="eventId">Filter by stable webhook event ID (optional)</param>
+        /// <returns>ApiResponse of GetWebhookLogs200Response</returns>
+        ApiResponse<GetWebhookLogs200Response> GetWebhookLogsWithHttpInfo(int? limit = default, int? skip = default, string? status = default, string? varEvent = default, string? webhookId = default, string? eventId = default);
+        /// <summary>
         /// List webhooks
         /// </summary>
         /// <remarks>
@@ -186,6 +217,39 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteWebhookSettingsWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List webhook delivery logs
+        /// </summary>
+        /// <remarks>
+        /// Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Maximum number of logs to return (optional, default to 50)</param>
+        /// <param name="skip">Number of logs to skip (offset-based pagination) (optional, default to 0)</param>
+        /// <param name="status">Filter by delivery outcome (optional)</param>
+        /// <param name="varEvent">Filter by event type (e.g. post.published) (optional)</param>
+        /// <param name="webhookId">Filter by webhook configuration ID (optional)</param>
+        /// <param name="eventId">Filter by stable webhook event ID (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWebhookLogs200Response</returns>
+        System.Threading.Tasks.Task<GetWebhookLogs200Response> GetWebhookLogsAsync(int? limit = default, int? skip = default, string? status = default, string? varEvent = default, string? webhookId = default, string? eventId = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List webhook delivery logs
+        /// </summary>
+        /// <remarks>
+        /// Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Maximum number of logs to return (optional, default to 50)</param>
+        /// <param name="skip">Number of logs to skip (offset-based pagination) (optional, default to 0)</param>
+        /// <param name="status">Filter by delivery outcome (optional)</param>
+        /// <param name="varEvent">Filter by event type (e.g. post.published) (optional)</param>
+        /// <param name="webhookId">Filter by webhook configuration ID (optional)</param>
+        /// <param name="eventId">Filter by stable webhook event ID (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWebhookLogs200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWebhookLogs200Response>> GetWebhookLogsWithHttpInfoAsync(int? limit = default, int? skip = default, string? status = default, string? varEvent = default, string? webhookId = default, string? eventId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List webhooks
         /// </summary>
@@ -716,6 +780,191 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteWebhookSettings", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List webhook delivery logs Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Maximum number of logs to return (optional, default to 50)</param>
+        /// <param name="skip">Number of logs to skip (offset-based pagination) (optional, default to 0)</param>
+        /// <param name="status">Filter by delivery outcome (optional)</param>
+        /// <param name="varEvent">Filter by event type (e.g. post.published) (optional)</param>
+        /// <param name="webhookId">Filter by webhook configuration ID (optional)</param>
+        /// <param name="eventId">Filter by stable webhook event ID (optional)</param>
+        /// <returns>GetWebhookLogs200Response</returns>
+        public GetWebhookLogs200Response GetWebhookLogs(int? limit = default, int? skip = default, string? status = default, string? varEvent = default, string? webhookId = default, string? eventId = default)
+        {
+            Zernio.Client.ApiResponse<GetWebhookLogs200Response> localVarResponse = GetWebhookLogsWithHttpInfo(limit, skip, status, varEvent, webhookId, eventId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List webhook delivery logs Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Maximum number of logs to return (optional, default to 50)</param>
+        /// <param name="skip">Number of logs to skip (offset-based pagination) (optional, default to 0)</param>
+        /// <param name="status">Filter by delivery outcome (optional)</param>
+        /// <param name="varEvent">Filter by event type (e.g. post.published) (optional)</param>
+        /// <param name="webhookId">Filter by webhook configuration ID (optional)</param>
+        /// <param name="eventId">Filter by stable webhook event ID (optional)</param>
+        /// <returns>ApiResponse of GetWebhookLogs200Response</returns>
+        public Zernio.Client.ApiResponse<GetWebhookLogs200Response> GetWebhookLogsWithHttpInfo(int? limit = default, int? skip = default, string? status = default, string? varEvent = default, string? webhookId = default, string? eventId = default)
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (status != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "status", status));
+            }
+            if (varEvent != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "event", varEvent));
+            }
+            if (webhookId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "webhookId", webhookId));
+            }
+            if (eventId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "eventId", eventId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWebhookLogs200Response>("/v1/webhooks/logs", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWebhookLogs", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List webhook delivery logs Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Maximum number of logs to return (optional, default to 50)</param>
+        /// <param name="skip">Number of logs to skip (offset-based pagination) (optional, default to 0)</param>
+        /// <param name="status">Filter by delivery outcome (optional)</param>
+        /// <param name="varEvent">Filter by event type (e.g. post.published) (optional)</param>
+        /// <param name="webhookId">Filter by webhook configuration ID (optional)</param>
+        /// <param name="eventId">Filter by stable webhook event ID (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWebhookLogs200Response</returns>
+        public async System.Threading.Tasks.Task<GetWebhookLogs200Response> GetWebhookLogsAsync(int? limit = default, int? skip = default, string? status = default, string? varEvent = default, string? webhookId = default, string? eventId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWebhookLogs200Response> localVarResponse = await GetWebhookLogsWithHttpInfoAsync(limit, skip, status, varEvent, webhookId, eventId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List webhook delivery logs Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">Maximum number of logs to return (optional, default to 50)</param>
+        /// <param name="skip">Number of logs to skip (offset-based pagination) (optional, default to 0)</param>
+        /// <param name="status">Filter by delivery outcome (optional)</param>
+        /// <param name="varEvent">Filter by event type (e.g. post.published) (optional)</param>
+        /// <param name="webhookId">Filter by webhook configuration ID (optional)</param>
+        /// <param name="eventId">Filter by stable webhook event ID (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWebhookLogs200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWebhookLogs200Response>> GetWebhookLogsWithHttpInfoAsync(int? limit = default, int? skip = default, string? status = default, string? varEvent = default, string? webhookId = default, string? eventId = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (status != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "status", status));
+            }
+            if (varEvent != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "event", varEvent));
+            }
+            if (webhookId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "webhookId", webhookId));
+            }
+            if (eventId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "eventId", eventId));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWebhookLogs200Response>("/v1/webhooks/logs", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWebhookLogs", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

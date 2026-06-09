@@ -79,6 +79,23 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetWebhookLogs
+        /// </summary>
+        [Fact]
+        public void GetWebhookLogsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? limit = null;
+            //int? skip = null;
+            //string? status = null;
+            //string? varEvent = null;
+            //string? webhookId = null;
+            //string? eventId = null;
+            //var response = instance.GetWebhookLogs(limit, skip, status, varEvent, webhookId, eventId);
+            //Assert.IsType<GetWebhookLogs200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetWebhookSettings
         /// </summary>
         [Fact]

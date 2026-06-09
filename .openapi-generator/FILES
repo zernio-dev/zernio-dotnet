@@ -510,6 +510,8 @@ docs/GetTrackingTagStats200Response.md
 docs/GetTrackingTagStats200ResponseStats.md
 docs/GetUser200Response.md
 docs/GetUser200ResponseUser.md
+docs/GetWebhookLogs200Response.md
+docs/GetWebhookLogs200ResponsePagination.md
 docs/GetWebhookSettings200Response.md
 docs/GetWhatsAppBusinessProfile200Response.md
 docs/GetWhatsAppBusinessProfile200ResponseBusinessProfile.md
@@ -1110,6 +1112,7 @@ docs/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner.m
 docs/ValidateWhatsAppNumberKycAddressRequest.md
 docs/Webhook.md
 docs/WebhookEventsApi.md
+docs/WebhookLog.md
 docs/WebhookPayloadAccountAdsInitialSyncCompleted.md
 docs/WebhookPayloadAccountAdsInitialSyncCompletedAccount.md
 docs/WebhookPayloadAccountAdsInitialSyncCompletedSync.md
@@ -1747,6 +1750,8 @@ src/Zernio.Test/Model/GetTrackingTagStats200ResponseStatsTests.cs
 src/Zernio.Test/Model/GetTrackingTagStats200ResponseTests.cs
 src/Zernio.Test/Model/GetUser200ResponseTests.cs
 src/Zernio.Test/Model/GetUser200ResponseUserTests.cs
+src/Zernio.Test/Model/GetWebhookLogs200ResponsePaginationTests.cs
+src/Zernio.Test/Model/GetWebhookLogs200ResponseTests.cs
 src/Zernio.Test/Model/GetWebhookSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppBusinessProfile200ResponseBusinessProfileTests.cs
 src/Zernio.Test/Model/GetWhatsAppBusinessProfile200ResponseTests.cs
@@ -2327,6 +2332,7 @@ src/Zernio.Test/Model/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressS
 src/Zernio.Test/Model/ValidateWhatsAppNumberKycAddress400ResponseDetailsTests.cs
 src/Zernio.Test/Model/ValidateWhatsAppNumberKycAddress400ResponseTests.cs
 src/Zernio.Test/Model/ValidateWhatsAppNumberKycAddressRequestTests.cs
+src/Zernio.Test/Model/WebhookLogTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedSyncTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedTests.cs
@@ -2975,6 +2981,8 @@ src/Zernio/Model/GetTrackingTagStats200Response.cs
 src/Zernio/Model/GetTrackingTagStats200ResponseStats.cs
 src/Zernio/Model/GetUser200Response.cs
 src/Zernio/Model/GetUser200ResponseUser.cs
+src/Zernio/Model/GetWebhookLogs200Response.cs
+src/Zernio/Model/GetWebhookLogs200ResponsePagination.cs
 src/Zernio/Model/GetWebhookSettings200Response.cs
 src/Zernio/Model/GetWhatsAppBusinessProfile200Response.cs
 src/Zernio/Model/GetWhatsAppBusinessProfile200ResponseBusinessProfile.cs
@@ -3556,6 +3564,7 @@ src/Zernio/Model/ValidateWhatsAppNumberKycAddress400ResponseDetails.cs
 src/Zernio/Model/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner.cs
 src/Zernio/Model/ValidateWhatsAppNumberKycAddressRequest.cs
 src/Zernio/Model/Webhook.cs
+src/Zernio/Model/WebhookLog.cs
 src/Zernio/Model/WebhookPayloadAccountAdsInitialSyncCompleted.cs
 src/Zernio/Model/WebhookPayloadAccountAdsInitialSyncCompletedAccount.cs
 src/Zernio/Model/WebhookPayloadAccountAdsInitialSyncCompletedSync.cs

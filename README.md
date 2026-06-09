@@ -431,6 +431,7 @@ Class | Method | HTTP request | Description
 *ValidateApi* | [**ValidateSubreddit**](docs/ValidateApi.md#validatesubreddit) | **GET** /v1/tools/validate/subreddit | Check subreddit existence
 *WebhooksApi* | [**CreateWebhookSettings**](docs/WebhooksApi.md#createwebhooksettings) | **POST** /v1/webhooks/settings | Create webhook
 *WebhooksApi* | [**DeleteWebhookSettings**](docs/WebhooksApi.md#deletewebhooksettings) | **DELETE** /v1/webhooks/settings | Delete webhook
+*WebhooksApi* | [**GetWebhookLogs**](docs/WebhooksApi.md#getwebhooklogs) | **GET** /v1/webhooks/logs | List webhook delivery logs
 *WebhooksApi* | [**GetWebhookSettings**](docs/WebhooksApi.md#getwebhooksettings) | **GET** /v1/webhooks/settings | List webhooks
 *WebhooksApi* | [**TestWebhook**](docs/WebhooksApi.md#testwebhook) | **POST** /v1/webhooks/test | Send test webhook
 *WebhooksApi* | [**UpdateWebhookSettings**](docs/WebhooksApi.md#updatewebhooksettings) | **PUT** /v1/webhooks/settings | Update webhook
@@ -1002,6 +1003,8 @@ Class | Method | HTTP request | Description
  - [Model.GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)
  - [Model.GetUser200Response](docs/GetUser200Response.md)
  - [Model.GetUser200ResponseUser](docs/GetUser200ResponseUser.md)
+ - [Model.GetWebhookLogs200Response](docs/GetWebhookLogs200Response.md)
+ - [Model.GetWebhookLogs200ResponsePagination](docs/GetWebhookLogs200ResponsePagination.md)
  - [Model.GetWebhookSettings200Response](docs/GetWebhookSettings200Response.md)
  - [Model.GetWhatsAppBusinessProfile200Response](docs/GetWhatsAppBusinessProfile200Response.md)
  - [Model.GetWhatsAppBusinessProfile200ResponseBusinessProfile](docs/GetWhatsAppBusinessProfile200ResponseBusinessProfile.md)
@@ -1583,6 +1586,7 @@ Class | Method | HTTP request | Description
  - [Model.ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner](docs/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner.md)
  - [Model.ValidateWhatsAppNumberKycAddressRequest](docs/ValidateWhatsAppNumberKycAddressRequest.md)
  - [Model.Webhook](docs/Webhook.md)
+ - [Model.WebhookLog](docs/WebhookLog.md)
  - [Model.WebhookPayloadAccountAdsInitialSyncCompleted](docs/WebhookPayloadAccountAdsInitialSyncCompleted.md)
  - [Model.WebhookPayloadAccountAdsInitialSyncCompletedAccount](docs/WebhookPayloadAccountAdsInitialSyncCompletedAccount.md)
  - [Model.WebhookPayloadAccountAdsInitialSyncCompletedSync](docs/WebhookPayloadAccountAdsInitialSyncCompletedSync.md)
