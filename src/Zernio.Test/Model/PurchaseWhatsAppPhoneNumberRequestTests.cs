@@ -72,5 +72,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Country'
         }
+
+        /// <summary>
+        /// Test the property 'PurchaseIntentId'
+        /// </summary>
+        [Fact]
+        public void PurchaseIntentIdTest()
+        {
+            // TODO unit test for the property 'PurchaseIntentId'
+        }
+
+        /// <summary>
+        /// Test the property 'AllowMultiple'
+        /// </summary>
+        [Fact]
+        public void AllowMultipleTest()
+        {
+            // TODO unit test for the property 'AllowMultiple'
+        }
     }
 }

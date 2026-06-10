@@ -59,6 +59,18 @@ namespace Zernio.Model
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PurchaseWhatsAppPhoneNumber200Response" /> class
+        /// with the <see cref="PurchaseWhatsAppPhoneNumber200ResponseOneOf2" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of PurchaseWhatsAppPhoneNumber200ResponseOneOf2.</param>
+        public PurchaseWhatsAppPhoneNumber200Response(PurchaseWhatsAppPhoneNumber200ResponseOneOf2 actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -81,9 +93,13 @@ namespace Zernio.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(PurchaseWhatsAppPhoneNumber200ResponseOneOf2) || value is PurchaseWhatsAppPhoneNumber200ResponseOneOf2)
+                {
+                    this._actualInstance = value;
+                }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: PurchaseWhatsAppPhoneNumber200ResponseOneOf, PurchaseWhatsAppPhoneNumber200ResponseOneOf1");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: PurchaseWhatsAppPhoneNumber200ResponseOneOf, PurchaseWhatsAppPhoneNumber200ResponseOneOf1, PurchaseWhatsAppPhoneNumber200ResponseOneOf2");
                 }
             }
         }
@@ -106,6 +122,16 @@ namespace Zernio.Model
         public PurchaseWhatsAppPhoneNumber200ResponseOneOf1 GetPurchaseWhatsAppPhoneNumber200ResponseOneOf1()
         {
             return (PurchaseWhatsAppPhoneNumber200ResponseOneOf1)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `PurchaseWhatsAppPhoneNumber200ResponseOneOf2`. If the actual instance is not `PurchaseWhatsAppPhoneNumber200ResponseOneOf2`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of PurchaseWhatsAppPhoneNumber200ResponseOneOf2</returns>
+        public PurchaseWhatsAppPhoneNumber200ResponseOneOf2 GetPurchaseWhatsAppPhoneNumber200ResponseOneOf2()
+        {
+            return (PurchaseWhatsAppPhoneNumber200ResponseOneOf2)this.ActualInstance;
         }
 
         /// <summary>
@@ -184,6 +210,26 @@ namespace Zernio.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PurchaseWhatsAppPhoneNumber200ResponseOneOf1: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(PurchaseWhatsAppPhoneNumber200ResponseOneOf2).GetProperty("AdditionalProperties") == null)
+                {
+                    newPurchaseWhatsAppPhoneNumber200Response = new PurchaseWhatsAppPhoneNumber200Response(JsonConvert.DeserializeObject<PurchaseWhatsAppPhoneNumber200ResponseOneOf2>(jsonString, PurchaseWhatsAppPhoneNumber200Response.SerializerSettings));
+                }
+                else
+                {
+                    newPurchaseWhatsAppPhoneNumber200Response = new PurchaseWhatsAppPhoneNumber200Response(JsonConvert.DeserializeObject<PurchaseWhatsAppPhoneNumber200ResponseOneOf2>(jsonString, PurchaseWhatsAppPhoneNumber200Response.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("PurchaseWhatsAppPhoneNumber200ResponseOneOf2");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into PurchaseWhatsAppPhoneNumber200ResponseOneOf2: {1}", jsonString, exception.ToString()));
             }
 
             if (match == 0)

@@ -1,14 +1,11 @@
-# Zernio.Model.PurchaseWhatsAppPhoneNumber200Response
+# Zernio.Model.PurchaseWhatsAppPhoneNumber409Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | **string** |  | [optional] 
-**CheckoutUrl** | **string** |  | [optional] 
-**PhoneNumber** | **string** |  | [optional] 
-**Status** | **string** |  | [optional] 
-**NumberId** | **string** |  | [optional] 
+**Error** | **string** |  | [optional] 
+**Code** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

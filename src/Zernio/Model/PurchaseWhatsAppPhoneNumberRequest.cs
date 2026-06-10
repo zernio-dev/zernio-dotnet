@@ -43,7 +43,9 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="profileId">Profile to associate the number with (required).</param>
         /// <param name="country">ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries.  (default to &quot;US&quot;).</param>
-        public PurchaseWhatsAppPhoneNumberRequest(string profileId = default, string country = @"US")
+        /// <param name="purchaseIntentId">Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. .</param>
+        /// <param name="allowMultiple">Any second purchase within 10 minutes of a previous one is rejected with 409 code PURCHASE_VELOCITY as duplicate protection. Pass true to confirm the additional purchase is intentional (e.g. bulk provisioning).  (default to false).</param>
+        public PurchaseWhatsAppPhoneNumberRequest(string profileId = default, string country = @"US", string purchaseIntentId = default, bool allowMultiple = false)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -53,6 +55,8 @@ namespace Zernio.Model
             this.ProfileId = profileId;
             // use default value if no "country" provided
             this.Country = country ?? @"US";
+            this.PurchaseIntentId = purchaseIntentId;
+            this.AllowMultiple = allowMultiple;
         }
 
         /// <summary>
@@ -70,6 +74,20 @@ namespace Zernio.Model
         public string Country { get; set; }
 
         /// <summary>
+        /// Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. 
+        /// </summary>
+        /// <value>Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. </value>
+        [DataMember(Name = "purchaseIntentId", EmitDefaultValue = false)]
+        public string PurchaseIntentId { get; set; }
+
+        /// <summary>
+        /// Any second purchase within 10 minutes of a previous one is rejected with 409 code PURCHASE_VELOCITY as duplicate protection. Pass true to confirm the additional purchase is intentional (e.g. bulk provisioning). 
+        /// </summary>
+        /// <value>Any second purchase within 10 minutes of a previous one is rejected with 409 code PURCHASE_VELOCITY as duplicate protection. Pass true to confirm the additional purchase is intentional (e.g. bulk provisioning). </value>
+        [DataMember(Name = "allowMultiple", EmitDefaultValue = true)]
+        public bool AllowMultiple { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -79,6 +97,8 @@ namespace Zernio.Model
             sb.Append("class PurchaseWhatsAppPhoneNumberRequest {\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  PurchaseIntentId: ").Append(PurchaseIntentId).Append("\n");
+            sb.Append("  AllowMultiple: ").Append(AllowMultiple).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -99,6 +119,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // PurchaseIntentId (string) maxLength
+            if (this.PurchaseIntentId != null && this.PurchaseIntentId.Length > 100)
+            {
+                yield return new ValidationResult("Invalid value for PurchaseIntentId, length must be less than 100.", new [] { "PurchaseIntentId" });
+            }
+
             yield break;
         }
     }

@@ -81,5 +81,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'PhoneNumber'
         }
+
+        /// <summary>
+        /// Test the property 'Status'
+        /// </summary>
+        [Fact]
+        public void StatusTest()
+        {
+            // TODO unit test for the property 'Status'
+        }
+
+        /// <summary>
+        /// Test the property 'NumberId'
+        /// </summary>
+        [Fact]
+        public void NumberIdTest()
+        {
+            // TODO unit test for the property 'NumberId'
+        }
     }
 }

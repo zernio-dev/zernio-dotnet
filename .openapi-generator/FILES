@@ -789,7 +789,9 @@ docs/PurchaseWhatsAppPhoneNumber200Response.md
 docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf.md
 docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.md
 docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber.md
+docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf2.md
 docs/PurchaseWhatsAppPhoneNumber202Response.md
+docs/PurchaseWhatsAppPhoneNumber409Response.md
 docs/PurchaseWhatsAppPhoneNumberRequest.md
 docs/QueueApi.md
 docs/QueueDeleteResponse.md
@@ -2022,9 +2024,11 @@ src/Zernio.Test/Model/ProfileUpdateResponseTests.cs
 src/Zernio.Test/Model/ProfilesListResponseTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumberTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1Tests.cs
+src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf2Tests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOfTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber202ResponseTests.cs
+src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber409ResponseTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumberRequestTests.cs
 src/Zernio.Test/Model/QueueDeleteResponseTests.cs
 src/Zernio.Test/Model/QueueNextSlotResponseTests.cs
@@ -3259,7 +3263,9 @@ src/Zernio/Model/PurchaseWhatsAppPhoneNumber200Response.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber.cs
+src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf2.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber202Response.cs
+src/Zernio/Model/PurchaseWhatsAppPhoneNumber409Response.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumberRequest.cs
 src/Zernio/Model/QueueDeleteResponse.cs
 src/Zernio/Model/QueueNextSlotResponse.cs
