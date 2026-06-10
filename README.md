@@ -1232,6 +1232,7 @@ Class | Method | HTTP request | Description
  - [Model.Money](docs/Money.md)
  - [Model.MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
  - [Model.MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
+ - [Model.OnWhatsAppNumberActionRequiredRequest](docs/OnWhatsAppNumberActionRequiredRequest.md)
  - [Model.OnWhatsAppNumberActivatedRequest](docs/OnWhatsAppNumberActivatedRequest.md)
  - [Model.OnWhatsAppNumberActivatedRequestNumber](docs/OnWhatsAppNumberActivatedRequestNumber.md)
  - [Model.OnWhatsAppNumberDeclinedRequest](docs/OnWhatsAppNumberDeclinedRequest.md)

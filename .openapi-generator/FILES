@@ -746,6 +746,7 @@ docs/MessagesApi.md
 docs/Money.md
 docs/MoveAccountToProfile200Response.md
 docs/MoveAccountToProfileRequest.md
+docs/OnWhatsAppNumberActionRequiredRequest.md
 docs/OnWhatsAppNumberActivatedRequest.md
 docs/OnWhatsAppNumberActivatedRequestNumber.md
 docs/OnWhatsAppNumberDeclinedRequest.md
@@ -1980,6 +1981,7 @@ src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
 src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveAccountToProfileRequestTests.cs
+src/Zernio.Test/Model/OnWhatsAppNumberActionRequiredRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberActivatedRequestNumberTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberActivatedRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberDeclinedRequestNumberTests.cs
@@ -3212,6 +3214,7 @@ src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/Money.cs
 src/Zernio/Model/MoveAccountToProfile200Response.cs
 src/Zernio/Model/MoveAccountToProfileRequest.cs
+src/Zernio/Model/OnWhatsAppNumberActionRequiredRequest.cs
 src/Zernio/Model/OnWhatsAppNumberActivatedRequest.cs
 src/Zernio/Model/OnWhatsAppNumberActivatedRequestNumber.cs
 src/Zernio/Model/OnWhatsAppNumberDeclinedRequest.cs

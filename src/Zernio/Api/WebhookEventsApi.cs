@@ -722,6 +722,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> OnWebhookTestWithHttpInfo(WebhookPayloadTest webhookPayloadTest);
         /// <summary>
+        /// WhatsApp number action required event
+        /// </summary>
+        /// <remarks>
+        /// Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActionRequiredRequest"></param>
+        /// <returns></returns>
+        void OnWhatsAppNumberActionRequired(OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest);
+
+        /// <summary>
+        /// WhatsApp number action required event
+        /// </summary>
+        /// <remarks>
+        /// Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActionRequiredRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnWhatsAppNumberActionRequiredWithHttpInfo(OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest);
+        /// <summary>
         /// WhatsApp number activated event
         /// </summary>
         /// <remarks>
@@ -1636,6 +1657,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> OnWebhookTestWithHttpInfoAsync(WebhookPayloadTest webhookPayloadTest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// WhatsApp number action required event
+        /// </summary>
+        /// <remarks>
+        /// Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActionRequiredRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnWhatsAppNumberActionRequiredAsync(OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// WhatsApp number action required event
+        /// </summary>
+        /// <remarks>
+        /// Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActionRequiredRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnWhatsAppNumberActionRequiredWithHttpInfoAsync(OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// WhatsApp number activated event
         /// </summary>
@@ -6129,6 +6173,131 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("OnWebhookTest", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number action required event Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActionRequiredRequest"></param>
+        /// <returns></returns>
+        public void OnWhatsAppNumberActionRequired(OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest)
+        {
+            OnWhatsAppNumberActionRequiredWithHttpInfo(onWhatsAppNumberActionRequiredRequest);
+        }
+
+        /// <summary>
+        /// WhatsApp number action required event Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActionRequiredRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnWhatsAppNumberActionRequiredWithHttpInfo(OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest)
+        {
+            // verify the required parameter 'onWhatsAppNumberActionRequiredRequest' is set
+            if (onWhatsAppNumberActionRequiredRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberActionRequiredRequest' when calling WebhookEventsApi->OnWhatsAppNumberActionRequired");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberActionRequiredRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/whatsapp.number.action_required", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberActionRequired", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// WhatsApp number action required event Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActionRequiredRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnWhatsAppNumberActionRequiredAsync(OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnWhatsAppNumberActionRequiredWithHttpInfoAsync(onWhatsAppNumberActionRequiredRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// WhatsApp number action required event Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onWhatsAppNumberActionRequiredRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnWhatsAppNumberActionRequiredWithHttpInfoAsync(OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'onWhatsAppNumberActionRequiredRequest' is set
+            if (onWhatsAppNumberActionRequiredRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onWhatsAppNumberActionRequiredRequest' when calling WebhookEventsApi->OnWhatsAppNumberActionRequired");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onWhatsAppNumberActionRequiredRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/whatsapp.number.action_required", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnWhatsAppNumberActionRequired", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -418,6 +418,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnWhatsAppNumberActionRequired
+        /// </summary>
+        [Fact]
+        public void OnWhatsAppNumberActionRequiredTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest = null;
+            //instance.OnWhatsAppNumberActionRequired(onWhatsAppNumberActionRequiredRequest);
+        }
+
+        /// <summary>
         /// Test OnWhatsAppNumberActivated
         /// </summary>
         [Fact]
