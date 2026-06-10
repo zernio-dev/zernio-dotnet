@@ -372,6 +372,9 @@ docs/GetFollowerStats200Response.md
 docs/GetFollowerStats200ResponseDateRange.md
 docs/GetFollowerStats200ResponseStatsValueInner.md
 docs/GetFollowerStats403Response.md
+docs/GetGmbAttributeMetadata200Response.md
+docs/GetGmbAttributeMetadata200ResponseAttributeMetadataInner.md
+docs/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner.md
 docs/GetGmbLocations200Response.md
 docs/GetGmbLocations200ResponseLocationsInner.md
 docs/GetGoogleBusinessAttributes200Response.md
@@ -1613,6 +1616,9 @@ src/Zernio.Test/Model/GetFollowerStats200ResponseDateRangeTests.cs
 src/Zernio.Test/Model/GetFollowerStats200ResponseStatsValueInnerTests.cs
 src/Zernio.Test/Model/GetFollowerStats200ResponseTests.cs
 src/Zernio.Test/Model/GetFollowerStats403ResponseTests.cs
+src/Zernio.Test/Model/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerTests.cs
+src/Zernio.Test/Model/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInnerTests.cs
+src/Zernio.Test/Model/GetGmbAttributeMetadata200ResponseTests.cs
 src/Zernio.Test/Model/GetGmbLocations200ResponseLocationsInnerTests.cs
 src/Zernio.Test/Model/GetGmbLocations200ResponseTests.cs
 src/Zernio.Test/Model/GetGoogleBusinessAttributes200ResponseAttributesInnerRepeatedEnumValueTests.cs
@@ -2845,6 +2851,9 @@ src/Zernio/Model/GetFollowerStats200Response.cs
 src/Zernio/Model/GetFollowerStats200ResponseDateRange.cs
 src/Zernio/Model/GetFollowerStats200ResponseStatsValueInner.cs
 src/Zernio/Model/GetFollowerStats403Response.cs
+src/Zernio/Model/GetGmbAttributeMetadata200Response.cs
+src/Zernio/Model/GetGmbAttributeMetadata200ResponseAttributeMetadataInner.cs
+src/Zernio/Model/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner.cs
 src/Zernio/Model/GetGmbLocations200Response.cs
 src/Zernio/Model/GetGmbLocations200ResponseLocationsInner.cs
 src/Zernio/Model/GetGoogleBusinessAttributes200Response.cs

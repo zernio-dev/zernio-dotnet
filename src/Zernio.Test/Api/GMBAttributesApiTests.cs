@@ -55,6 +55,24 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetGmbAttributeMetadata
+        /// </summary>
+        [Fact]
+        public void GetGmbAttributeMetadataTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? locationId = null;
+            //string? categoryName = null;
+            //string? regionCode = null;
+            //string? languageCode = null;
+            //int? pageSize = null;
+            //string? pageToken = null;
+            //var response = instance.GetGmbAttributeMetadata(accountId, locationId, categoryName, regionCode, languageCode, pageSize, pageToken);
+            //Assert.IsType<GetGmbAttributeMetadata200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetGoogleBusinessAttributes
         /// </summary>
         [Fact]

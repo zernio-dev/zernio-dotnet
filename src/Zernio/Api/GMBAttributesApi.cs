@@ -29,6 +29,39 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Get attribute metadata
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="locationId">GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)</param>
+        /// <param name="categoryName">Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)</param>
+        /// <param name="regionCode">BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)</param>
+        /// <param name="languageCode">BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)</param>
+        /// <param name="pageSize">Maximum number of attribute metadata items to return. Google defaults to 200. (optional)</param>
+        /// <param name="pageToken">Pagination token from a previous response&#39;s nextPageToken field. (optional)</param>
+        /// <returns>GetGmbAttributeMetadata200Response</returns>
+        GetGmbAttributeMetadata200Response GetGmbAttributeMetadata(string accountId, string? locationId = default, string? categoryName = default, string? regionCode = default, string? languageCode = default, int? pageSize = default, string? pageToken = default);
+
+        /// <summary>
+        /// Get attribute metadata
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="locationId">GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)</param>
+        /// <param name="categoryName">Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)</param>
+        /// <param name="regionCode">BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)</param>
+        /// <param name="languageCode">BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)</param>
+        /// <param name="pageSize">Maximum number of attribute metadata items to return. Google defaults to 200. (optional)</param>
+        /// <param name="pageToken">Pagination token from a previous response&#39;s nextPageToken field. (optional)</param>
+        /// <returns>ApiResponse of GetGmbAttributeMetadata200Response</returns>
+        ApiResponse<GetGmbAttributeMetadata200Response> GetGmbAttributeMetadataWithHttpInfo(string accountId, string? locationId = default, string? categoryName = default, string? regionCode = default, string? languageCode = default, int? pageSize = default, string? pageToken = default);
+        /// <summary>
         /// Get attributes
         /// </summary>
         /// <remarks>
@@ -85,6 +118,41 @@ namespace Zernio.Api
     public interface IGMBAttributesApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Get attribute metadata
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="locationId">GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)</param>
+        /// <param name="categoryName">Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)</param>
+        /// <param name="regionCode">BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)</param>
+        /// <param name="languageCode">BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)</param>
+        /// <param name="pageSize">Maximum number of attribute metadata items to return. Google defaults to 200. (optional)</param>
+        /// <param name="pageToken">Pagination token from a previous response&#39;s nextPageToken field. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetGmbAttributeMetadata200Response</returns>
+        System.Threading.Tasks.Task<GetGmbAttributeMetadata200Response> GetGmbAttributeMetadataAsync(string accountId, string? locationId = default, string? categoryName = default, string? regionCode = default, string? languageCode = default, int? pageSize = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get attribute metadata
+        /// </summary>
+        /// <remarks>
+        /// Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="locationId">GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)</param>
+        /// <param name="categoryName">Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)</param>
+        /// <param name="regionCode">BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)</param>
+        /// <param name="languageCode">BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)</param>
+        /// <param name="pageSize">Maximum number of attribute metadata items to return. Google defaults to 200. (optional)</param>
+        /// <param name="pageToken">Pagination token from a previous response&#39;s nextPageToken field. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetGmbAttributeMetadata200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetGmbAttributeMetadata200Response>> GetGmbAttributeMetadataWithHttpInfoAsync(string accountId, string? locationId = default, string? categoryName = default, string? regionCode = default, string? languageCode = default, int? pageSize = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get attributes
         /// </summary>
@@ -348,6 +416,205 @@ namespace Zernio.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Get attribute metadata Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="locationId">GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)</param>
+        /// <param name="categoryName">Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)</param>
+        /// <param name="regionCode">BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)</param>
+        /// <param name="languageCode">BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)</param>
+        /// <param name="pageSize">Maximum number of attribute metadata items to return. Google defaults to 200. (optional)</param>
+        /// <param name="pageToken">Pagination token from a previous response&#39;s nextPageToken field. (optional)</param>
+        /// <returns>GetGmbAttributeMetadata200Response</returns>
+        public GetGmbAttributeMetadata200Response GetGmbAttributeMetadata(string accountId, string? locationId = default, string? categoryName = default, string? regionCode = default, string? languageCode = default, int? pageSize = default, string? pageToken = default)
+        {
+            Zernio.Client.ApiResponse<GetGmbAttributeMetadata200Response> localVarResponse = GetGmbAttributeMetadataWithHttpInfo(accountId, locationId, categoryName, regionCode, languageCode, pageSize, pageToken);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get attribute metadata Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="locationId">GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)</param>
+        /// <param name="categoryName">Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)</param>
+        /// <param name="regionCode">BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)</param>
+        /// <param name="languageCode">BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)</param>
+        /// <param name="pageSize">Maximum number of attribute metadata items to return. Google defaults to 200. (optional)</param>
+        /// <param name="pageToken">Pagination token from a previous response&#39;s nextPageToken field. (optional)</param>
+        /// <returns>ApiResponse of GetGmbAttributeMetadata200Response</returns>
+        public Zernio.Client.ApiResponse<GetGmbAttributeMetadata200Response> GetGmbAttributeMetadataWithHttpInfo(string accountId, string? locationId = default, string? categoryName = default, string? regionCode = default, string? languageCode = default, int? pageSize = default, string? pageToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBAttributesApi->GetGmbAttributeMetadata");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (locationId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "locationId", locationId));
+            }
+            if (categoryName != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "categoryName", categoryName));
+            }
+            if (regionCode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "regionCode", regionCode));
+            }
+            if (languageCode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "languageCode", languageCode));
+            }
+            if (pageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageSize", pageSize));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetGmbAttributeMetadata200Response>("/v1/accounts/{accountId}/gmb-attribute-metadata", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetGmbAttributeMetadata", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get attribute metadata Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="locationId">GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)</param>
+        /// <param name="categoryName">Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)</param>
+        /// <param name="regionCode">BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)</param>
+        /// <param name="languageCode">BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)</param>
+        /// <param name="pageSize">Maximum number of attribute metadata items to return. Google defaults to 200. (optional)</param>
+        /// <param name="pageToken">Pagination token from a previous response&#39;s nextPageToken field. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetGmbAttributeMetadata200Response</returns>
+        public async System.Threading.Tasks.Task<GetGmbAttributeMetadata200Response> GetGmbAttributeMetadataAsync(string accountId, string? locationId = default, string? categoryName = default, string? regionCode = default, string? languageCode = default, int? pageSize = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetGmbAttributeMetadata200Response> localVarResponse = await GetGmbAttributeMetadataWithHttpInfoAsync(accountId, locationId, categoryName, regionCode, languageCode, pageSize, pageToken, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get attribute metadata Returns metadata about which Google Business Profile attributes are available for a location or business category. Use this endpoint to discover valid attribute names, value types, and allowed enum values before reading or writing via gmb-attributes.  Two mutually exclusive query modes:  **Location mode**: pass &#x60;locationId&#x60; (or rely on the account&#39;s stored &#x60;selectedLocationId&#x60;). Google returns attributes valid for that specific location.  **Category mode**: pass &#x60;categoryName&#x60; (must start with &#x60;categories/&#x60;) and &#x60;regionCode&#x60;. Google returns attributes valid for that category across the given region. &#x60;languageCode&#x60; is optional in category mode.  Both modes support &#x60;pageSize&#x60; and &#x60;pageToken&#x60; for pagination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="locationId">GBP location ID (e.g. \&quot;6257659026299438786\&quot;). If omitted, uses the account&#39;s stored selectedLocationId. Mutually exclusive with categoryName.  (optional)</param>
+        /// <param name="categoryName">Category resource name, must start with \&quot;categories/\&quot; (e.g. \&quot;categories/gcid:plumber\&quot;). Required together with regionCode. Mutually exclusive with locationId.  (optional)</param>
+        /// <param name="regionCode">BCP-47 region code (e.g. \&quot;US\&quot;, \&quot;ES\&quot;). Required when categoryName is provided.  (optional)</param>
+        /// <param name="languageCode">BCP-47 language code for display names (e.g. \&quot;en\&quot;, \&quot;es\&quot;). Optional when categoryName is provided. Omitted from the Google call when not supplied.  (optional)</param>
+        /// <param name="pageSize">Maximum number of attribute metadata items to return. Google defaults to 200. (optional)</param>
+        /// <param name="pageToken">Pagination token from a previous response&#39;s nextPageToken field. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetGmbAttributeMetadata200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetGmbAttributeMetadata200Response>> GetGmbAttributeMetadataWithHttpInfoAsync(string accountId, string? locationId = default, string? categoryName = default, string? regionCode = default, string? languageCode = default, int? pageSize = default, string? pageToken = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling GMBAttributesApi->GetGmbAttributeMetadata");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (locationId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "locationId", locationId));
+            }
+            if (categoryName != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "categoryName", categoryName));
+            }
+            if (regionCode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "regionCode", regionCode));
+            }
+            if (languageCode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "languageCode", languageCode));
+            }
+            if (pageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageSize", pageSize));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetGmbAttributeMetadata200Response>("/v1/accounts/{accountId}/gmb-attribute-metadata", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetGmbAttributeMetadata", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
