@@ -117,11 +117,12 @@ namespace Zernio.Model
         /// <param name="name">Exact name for this ad. Falls back to &#x60;&lt;name&gt; #N&#x60; (N &#x3D; 1-based position)..</param>
         /// <param name="headline">headline (required).</param>
         /// <param name="body">body (required).</param>
+        /// <param name="description">Link description for this ad (link_data.description; video creatives: video_data.link_description). Falls back to the top-level &#x60;description&#x60;; when both are omitted Meta scrapes the destination URL&#39;s OG description..</param>
         /// <param name="imageUrl">Image creative. Mutually exclusive with &#x60;video&#x60;..</param>
         /// <param name="video">video.</param>
         /// <param name="linkUrl">linkUrl (required).</param>
         /// <param name="callToAction">callToAction (required).</param>
-        public CreateStandaloneAdRequestCreativesInner(string name = default, string headline = default, string body = default, string imageUrl = default, CreateStandaloneAdRequestCreativesInnerVideo video = default, string linkUrl = default, CallToActionEnum callToAction = default)
+        public CreateStandaloneAdRequestCreativesInner(string name = default, string headline = default, string body = default, string description = default, string imageUrl = default, CreateStandaloneAdRequestCreativesInnerVideo video = default, string linkUrl = default, CallToActionEnum callToAction = default)
         {
             // to ensure "headline" is required (not null)
             if (headline == null)
@@ -143,6 +144,7 @@ namespace Zernio.Model
             this.LinkUrl = linkUrl;
             this.CallToAction = callToAction;
             this.Name = name;
+            this.Description = description;
             this.ImageUrl = imageUrl;
             this.Video = video;
         }
@@ -165,6 +167,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "body", IsRequired = true, EmitDefaultValue = true)]
         public string Body { get; set; }
+
+        /// <summary>
+        /// Link description for this ad (link_data.description; video creatives: video_data.link_description). Falls back to the top-level &#x60;description&#x60;; when both are omitted Meta scrapes the destination URL&#39;s OG description.
+        /// </summary>
+        /// <value>Link description for this ad (link_data.description; video creatives: video_data.link_description). Falls back to the top-level &#x60;description&#x60;; when both are omitted Meta scrapes the destination URL&#39;s OG description.</value>
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
 
         /// <summary>
         /// Image creative. Mutually exclusive with &#x60;video&#x60;.
@@ -196,6 +205,7 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Headline: ").Append(Headline).Append("\n");
             sb.Append("  Body: ").Append(Body).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  Video: ").Append(Video).Append("\n");
             sb.Append("  LinkUrl: ").Append(LinkUrl).Append("\n");
@@ -230,6 +240,12 @@ namespace Zernio.Model
             if (this.Headline != null && this.Headline.Length > 255)
             {
                 yield return new ValidationResult("Invalid value for Headline, length must be less than 255.", new [] { "Headline" });
+            }
+
+            // Description (string) maxLength
+            if (this.Description != null && this.Description.Length > 255)
+            {
+                yield return new ValidationResult("Invalid value for Description, length must be less than 255.", new [] { "Description" });
             }
 
             yield break;
