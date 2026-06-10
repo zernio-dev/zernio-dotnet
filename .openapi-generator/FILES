@@ -1195,7 +1195,6 @@ docs/WhatsAppPhoneNumbersApi.md
 docs/WhatsAppSandboxApi.md
 docs/WhatsAppSandboxSession.md
 docs/WhatsAppTemplateButton.md
-docs/WhatsAppTemplateButtonExample.md
 docs/WhatsAppTemplateComponent.md
 docs/WhatsAppTemplatesApi.md
 docs/WorkflowEdge.md
@@ -2411,7 +2410,6 @@ src/Zernio.Test/Model/WhatsAppFooterComponentTests.cs
 src/Zernio.Test/Model/WhatsAppHeaderComponentExampleTests.cs
 src/Zernio.Test/Model/WhatsAppHeaderComponentTests.cs
 src/Zernio.Test/Model/WhatsAppSandboxSessionTests.cs
-src/Zernio.Test/Model/WhatsAppTemplateButtonExampleTests.cs
 src/Zernio.Test/Model/WhatsAppTemplateButtonTests.cs
 src/Zernio.Test/Model/WhatsAppTemplateComponentTests.cs
 src/Zernio.Test/Model/WorkflowEdgeTests.cs
@@ -3645,7 +3643,6 @@ src/Zernio/Model/WhatsAppHeaderComponent.cs
 src/Zernio/Model/WhatsAppHeaderComponentExample.cs
 src/Zernio/Model/WhatsAppSandboxSession.cs
 src/Zernio/Model/WhatsAppTemplateButton.cs
-src/Zernio/Model/WhatsAppTemplateButtonExample.cs
 src/Zernio/Model/WhatsAppTemplateComponent.cs
 src/Zernio/Model/WorkflowEdge.cs
 src/Zernio/Model/WorkflowExecutionEvent.cs

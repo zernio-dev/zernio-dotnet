@@ -21648,8 +21648,7 @@ components:
           description: Required when type is URL
           format: uri
           type: string
-        example:
-          $ref: "#/components/schemas/WhatsAppTemplateButton_example"
+        example: {}
         phone_number:
           description: Required when type is phone_number
           type: string
@@ -54606,14 +54605,6 @@ components:
         rateLimitedUntil:
           format: date-time
           type: string
-    WhatsAppTemplateButton_example:
-      description: "Example value(s). For URL buttons, an array of URL-suffix samples.\
-        \ For copy_code (marketing) buttons, the coupon code as a string."
-      oneOf:
-      - type: string
-      - items:
-          type: string
-        type: array
     WhatsAppHeaderComponent_example:
       properties:
         header_text:

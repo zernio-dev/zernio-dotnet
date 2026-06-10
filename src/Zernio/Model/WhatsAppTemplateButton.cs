@@ -149,7 +149,7 @@ namespace Zernio.Model
         /// <param name="flowJson">flowJson.</param>
         /// <param name="flowAction">flowAction.</param>
         /// <param name="navigateScreen">navigateScreen.</param>
-        public WhatsAppTemplateButton(TypeEnum type = default, string text = default, string url = default, WhatsAppTemplateButtonExample example = default, string phoneNumber = default, OtpTypeEnum? otpType = default, string autofillText = default, string packageName = default, string signatureHash = default, string flowId = default, string flowName = default, string flowJson = default, string flowAction = default, string navigateScreen = default)
+        public WhatsAppTemplateButton(TypeEnum type = default, string text = default, string url = default, Object example = default, string phoneNumber = default, OtpTypeEnum? otpType = default, string autofillText = default, string packageName = default, string signatureHash = default, string flowId = default, string flowName = default, string flowJson = default, string flowAction = default, string navigateScreen = default)
         {
             this.Type = type;
             this.Text = text;
@@ -184,8 +184,8 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Example
         /// </summary>
-        [DataMember(Name = "example", EmitDefaultValue = false)]
-        public WhatsAppTemplateButtonExample Example { get; set; }
+        [DataMember(Name = "example", EmitDefaultValue = true)]
+        public Object Example { get; set; }
 
         /// <summary>
         /// Required when type is phone_number
