@@ -51256,16 +51256,20 @@ components:
           format: uri
           type: string
         thumbnailUrl:
-          description: Public URL of a still-image thumbnail for the video. Required
-            by Meta on every video creative (uploaded as an ad image and referenced
-            in object_story_spec.video_data). Ignored by LinkedIn (auto-generated
-            poster frame).
+          description: "Public URL of a still-image thumbnail for the video. OPTIONAL:\
+            \ when omitted on Meta, the poster is auto-generated from Meta's own preferred\
+            \ video thumbnail (the same candidates Ads Manager shows), so video ads\
+            \ publish without supplying one. Provide it to control the poster frame\
+            \ exactly (uploaded as an ad image and referenced in object_story_spec.video_data).\
+            \ Ignored by LinkedIn (auto-generated poster frame)."
           format: uri
           type: string
       required:
       - url
     createStandaloneAd_request_creatives_inner_video:
-      description: Video creative for this entry. Mutually exclusive with `imageUrl`.
+      description: "Video creative for this entry. Mutually exclusive with `imageUrl`.\
+        \ thumbnailUrl is optional — when omitted, the poster is auto-generated from\
+        \ Meta's preferred video thumbnail."
       properties:
         url:
           format: uri
@@ -51274,7 +51278,6 @@ components:
           format: uri
           type: string
       required:
-      - thumbnailUrl
       - url
     createStandaloneAd_request_creatives_inner:
       description: Each creative must supply EXACTLY ONE of `imageUrl` (image creative)

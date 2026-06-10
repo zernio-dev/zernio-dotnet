@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Video creative for this entry. Mutually exclusive with &#x60;imageUrl&#x60;.
+    /// Video creative for this entry. Mutually exclusive with &#x60;imageUrl&#x60;. thumbnailUrl is optional — when omitted, the poster is auto-generated from Meta&#39;s preferred video thumbnail.
     /// </summary>
     [DataContract(Name = "createStandaloneAd_request_creatives_inner_video")]
     public partial class CreateStandaloneAdRequestCreativesInnerVideo : IValidatableObject
@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestCreativesInnerVideo" /> class.
         /// </summary>
         /// <param name="url">url (required).</param>
-        /// <param name="thumbnailUrl">thumbnailUrl (required).</param>
+        /// <param name="thumbnailUrl">thumbnailUrl.</param>
         public CreateStandaloneAdRequestCreativesInnerVideo(string url = default, string thumbnailUrl = default)
         {
             // to ensure "url" is required (not null)
@@ -51,11 +51,6 @@ namespace Zernio.Model
                 throw new ArgumentNullException("url is a required property for CreateStandaloneAdRequestCreativesInnerVideo and cannot be null");
             }
             this.Url = url;
-            // to ensure "thumbnailUrl" is required (not null)
-            if (thumbnailUrl == null)
-            {
-                throw new ArgumentNullException("thumbnailUrl is a required property for CreateStandaloneAdRequestCreativesInnerVideo and cannot be null");
-            }
             this.ThumbnailUrl = thumbnailUrl;
         }
 
@@ -68,7 +63,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets ThumbnailUrl
         /// </summary>
-        [DataMember(Name = "thumbnailUrl", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
         public string ThumbnailUrl { get; set; }
 
         /// <summary>
