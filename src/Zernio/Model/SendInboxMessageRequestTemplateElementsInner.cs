@@ -36,54 +36,72 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestTemplateElementsInner" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SendInboxMessageRequestTemplateElementsInner() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestTemplateElementsInner" /> class.
-        /// </summary>
-        /// <param name="title">Element title (max 80 chars) (required).</param>
-        /// <param name="subtitle">Element subtitle.</param>
-        /// <param name="imageUrl">Element image URL.</param>
-        /// <param name="buttons">buttons.</param>
-        public SendInboxMessageRequestTemplateElementsInner(string title = default, string subtitle = default, string imageUrl = default, List<SendInboxMessageRequestTemplateElementsInnerButtonsInner> buttons = default)
+        /// <param name="title">Element title (max 80 chars). Required for Instagram/Facebook generic templates..</param>
+        /// <param name="subtitle">Element subtitle (Instagram/Facebook only).</param>
+        /// <param name="imageUrl">Element image URL (Instagram/Facebook only).</param>
+        /// <param name="buttons">Element buttons (Instagram/Facebook only).</param>
+        /// <param name="name">WhatsApp only. Name of the approved template to send..</param>
+        /// <param name="language">WhatsApp only. Template language code (e.g. en_US)..</param>
+        /// <param name="components">WhatsApp only. Meta Cloud API send-shape components array, forwarded to Meta verbatim..</param>
+        public SendInboxMessageRequestTemplateElementsInner(string title = default, string subtitle = default, string imageUrl = default, List<SendInboxMessageRequestTemplateElementsInnerButtonsInner> buttons = default, string name = default, string language = default, List<Dictionary<string, Object>> components = default)
         {
-            // to ensure "title" is required (not null)
-            if (title == null)
-            {
-                throw new ArgumentNullException("title is a required property for SendInboxMessageRequestTemplateElementsInner and cannot be null");
-            }
             this.Title = title;
             this.Subtitle = subtitle;
             this.ImageUrl = imageUrl;
             this.Buttons = buttons;
+            this.Name = name;
+            this.Language = language;
+            this.Components = components;
         }
 
         /// <summary>
-        /// Element title (max 80 chars)
+        /// Element title (max 80 chars). Required for Instagram/Facebook generic templates.
         /// </summary>
-        /// <value>Element title (max 80 chars)</value>
-        [DataMember(Name = "title", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Element title (max 80 chars). Required for Instagram/Facebook generic templates.</value>
+        [DataMember(Name = "title", EmitDefaultValue = false)]
         public string Title { get; set; }
 
         /// <summary>
-        /// Element subtitle
+        /// Element subtitle (Instagram/Facebook only)
         /// </summary>
-        /// <value>Element subtitle</value>
+        /// <value>Element subtitle (Instagram/Facebook only)</value>
         [DataMember(Name = "subtitle", EmitDefaultValue = false)]
         public string Subtitle { get; set; }
 
         /// <summary>
-        /// Element image URL
+        /// Element image URL (Instagram/Facebook only)
         /// </summary>
-        /// <value>Element image URL</value>
+        /// <value>Element image URL (Instagram/Facebook only)</value>
         [DataMember(Name = "imageUrl", EmitDefaultValue = false)]
         public string ImageUrl { get; set; }
 
         /// <summary>
-        /// Gets or Sets Buttons
+        /// Element buttons (Instagram/Facebook only)
         /// </summary>
+        /// <value>Element buttons (Instagram/Facebook only)</value>
         [DataMember(Name = "buttons", EmitDefaultValue = false)]
         public List<SendInboxMessageRequestTemplateElementsInnerButtonsInner> Buttons { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. Name of the approved template to send.
+        /// </summary>
+        /// <value>WhatsApp only. Name of the approved template to send.</value>
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. Template language code (e.g. en_US).
+        /// </summary>
+        /// <value>WhatsApp only. Template language code (e.g. en_US).</value>
+        [DataMember(Name = "language", EmitDefaultValue = false)]
+        public string Language { get; set; }
+
+        /// <summary>
+        /// WhatsApp only. Meta Cloud API send-shape components array, forwarded to Meta verbatim.
+        /// </summary>
+        /// <value>WhatsApp only. Meta Cloud API send-shape components array, forwarded to Meta verbatim.</value>
+        [DataMember(Name = "components", EmitDefaultValue = false)]
+        public List<Dictionary<string, Object>> Components { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -97,6 +115,9 @@ namespace Zernio.Model
             sb.Append("  Subtitle: ").Append(Subtitle).Append("\n");
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Language: ").Append(Language).Append("\n");
+            sb.Append("  Components: ").Append(Components).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

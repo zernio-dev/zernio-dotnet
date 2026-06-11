@@ -90,5 +90,32 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Buttons'
         }
+
+        /// <summary>
+        /// Test the property 'Name'
+        /// </summary>
+        [Fact]
+        public void NameTest()
+        {
+            // TODO unit test for the property 'Name'
+        }
+
+        /// <summary>
+        /// Test the property 'Language'
+        /// </summary>
+        [Fact]
+        public void LanguageTest()
+        {
+            // TODO unit test for the property 'Language'
+        }
+
+        /// <summary>
+        /// Test the property 'Components'
+        /// </summary>
+        [Fact]
+        public void ComponentsTest()
+        {
+            // TODO unit test for the property 'Components'
+        }
     }
 }

@@ -360,7 +360,7 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **GET** /v1/logs | List activity logs
 *MediaApi* | [**GetMediaPresignedUrl**](docs/MediaApi.md#getmediapresignedurl) | **POST** /v1/media/presign | Get upload URL
 *MessagesApi* | [**AddMessageReaction**](docs/MessagesApi.md#addmessagereaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
-*MessagesApi* | [**CreateInboxConversation**](docs/MessagesApi.md#createinboxconversation) | **POST** /v1/inbox/conversations | Create conversation
+*MessagesApi* | [**CreateInboxConversation**](docs/MessagesApi.md#createinboxconversation) | **POST** /v1/inbox/conversations | Create conversation (send a WhatsApp template)
 *MessagesApi* | [**DeleteInboxMessage**](docs/MessagesApi.md#deleteinboxmessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**EditInboxMessage**](docs/MessagesApi.md#editinboxmessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message
 *MessagesApi* | [**GetInboxConversation**](docs/MessagesApi.md#getinboxconversation) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation
