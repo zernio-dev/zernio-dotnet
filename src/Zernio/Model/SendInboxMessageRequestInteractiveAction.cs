@@ -71,6 +71,18 @@ namespace Zernio.Model
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveAction" /> class
+        /// with the <see cref="SendInboxMessageRequestInteractiveActionOneOf3" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of SendInboxMessageRequestInteractiveActionOneOf3.</param>
+        public SendInboxMessageRequestInteractiveAction(SendInboxMessageRequestInteractiveActionOneOf3 actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -97,9 +109,13 @@ namespace Zernio.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(SendInboxMessageRequestInteractiveActionOneOf3) || value is SendInboxMessageRequestInteractiveActionOneOf3)
+                {
+                    this._actualInstance = value;
+                }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: SendInboxMessageRequestInteractiveActionOneOf, SendInboxMessageRequestInteractiveActionOneOf1, SendInboxMessageRequestInteractiveActionOneOf2");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: SendInboxMessageRequestInteractiveActionOneOf, SendInboxMessageRequestInteractiveActionOneOf1, SendInboxMessageRequestInteractiveActionOneOf2, SendInboxMessageRequestInteractiveActionOneOf3");
                 }
             }
         }
@@ -132,6 +148,16 @@ namespace Zernio.Model
         public SendInboxMessageRequestInteractiveActionOneOf2 GetSendInboxMessageRequestInteractiveActionOneOf2()
         {
             return (SendInboxMessageRequestInteractiveActionOneOf2)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `SendInboxMessageRequestInteractiveActionOneOf3`. If the actual instance is not `SendInboxMessageRequestInteractiveActionOneOf3`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of SendInboxMessageRequestInteractiveActionOneOf3</returns>
+        public SendInboxMessageRequestInteractiveActionOneOf3 GetSendInboxMessageRequestInteractiveActionOneOf3()
+        {
+            return (SendInboxMessageRequestInteractiveActionOneOf3)this.ActualInstance;
         }
 
         /// <summary>
@@ -230,6 +256,26 @@ namespace Zernio.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SendInboxMessageRequestInteractiveActionOneOf2: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(SendInboxMessageRequestInteractiveActionOneOf3).GetProperty("AdditionalProperties") == null)
+                {
+                    newSendInboxMessageRequestInteractiveAction = new SendInboxMessageRequestInteractiveAction(JsonConvert.DeserializeObject<SendInboxMessageRequestInteractiveActionOneOf3>(jsonString, SendInboxMessageRequestInteractiveAction.SerializerSettings));
+                }
+                else
+                {
+                    newSendInboxMessageRequestInteractiveAction = new SendInboxMessageRequestInteractiveAction(JsonConvert.DeserializeObject<SendInboxMessageRequestInteractiveActionOneOf3>(jsonString, SendInboxMessageRequestInteractiveAction.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("SendInboxMessageRequestInteractiveActionOneOf3");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SendInboxMessageRequestInteractiveActionOneOf3: {1}", jsonString, exception.ToString()));
             }
 
             if (match == 0)

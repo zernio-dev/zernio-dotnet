@@ -440,12 +440,14 @@ Class | Method | HTTP request | Description
 *WebhooksApi* | [**UpdateWebhookSettings**](docs/WebhooksApi.md#updatewebhooksettings) | **PUT** /v1/webhooks/settings | Update webhook
 *WhatsAppApi* | [**AddWhatsAppGroupParticipants**](docs/WhatsAppApi.md#addwhatsappgroupparticipants) | **POST** /v1/whatsapp/wa-groups/{groupId}/participants | Add participants
 *WhatsAppApi* | [**ApproveWhatsAppGroupJoinRequests**](docs/WhatsAppApi.md#approvewhatsappgroupjoinrequests) | **POST** /v1/whatsapp/wa-groups/{groupId}/join-requests | Approve join requests
+*WhatsAppApi* | [**BlockWhatsAppUsers**](docs/WhatsAppApi.md#blockwhatsappusers) | **POST** /v1/whatsapp/block-users | Block users
 *WhatsAppApi* | [**CreateWhatsAppDataset**](docs/WhatsAppApi.md#createwhatsappdataset) | **POST** /v1/whatsapp/dataset | Provision CTWA conversions dataset
 *WhatsAppApi* | [**CreateWhatsAppGroupChat**](docs/WhatsAppApi.md#createwhatsappgroupchat) | **POST** /v1/whatsapp/wa-groups | Create group
 *WhatsAppApi* | [**CreateWhatsAppGroupInviteLink**](docs/WhatsAppApi.md#createwhatsappgroupinvitelink) | **POST** /v1/whatsapp/wa-groups/{groupId}/invite-link | Create invite link
 *WhatsAppApi* | [**CreateWhatsAppTemplate**](docs/WhatsAppApi.md#createwhatsapptemplate) | **POST** /v1/whatsapp/templates | Create template
 *WhatsAppApi* | [**DeleteWhatsAppGroupChat**](docs/WhatsAppApi.md#deletewhatsappgroupchat) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group
 *WhatsAppApi* | [**DeleteWhatsAppTemplate**](docs/WhatsAppApi.md#deletewhatsapptemplate) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template
+*WhatsAppApi* | [**GetWhatsAppBlockedUsers**](docs/WhatsAppApi.md#getwhatsappblockedusers) | **GET** /v1/whatsapp/block-users | List blocked users
 *WhatsAppApi* | [**GetWhatsAppBusinessProfile**](docs/WhatsAppApi.md#getwhatsappbusinessprofile) | **GET** /v1/whatsapp/business-profile | Get business profile
 *WhatsAppApi* | [**GetWhatsAppDataset**](docs/WhatsAppApi.md#getwhatsappdataset) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset
 *WhatsAppApi* | [**GetWhatsAppDisplayName**](docs/WhatsAppApi.md#getwhatsappdisplayname) | **GET** /v1/whatsapp/business-profile/display-name | Get display name status
@@ -458,6 +460,7 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**RejectWhatsAppGroupJoinRequests**](docs/WhatsAppApi.md#rejectwhatsappgroupjoinrequests) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/join-requests | Reject join requests
 *WhatsAppApi* | [**RemoveWhatsAppGroupParticipants**](docs/WhatsAppApi.md#removewhatsappgroupparticipants) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants
 *WhatsAppApi* | [**SendWhatsAppConversion**](docs/WhatsAppApi.md#sendwhatsappconversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
+*WhatsAppApi* | [**UnblockWhatsAppUsers**](docs/WhatsAppApi.md#unblockwhatsappusers) | **DELETE** /v1/whatsapp/block-users | Unblock users
 *WhatsAppApi* | [**UpdateWhatsAppBusinessProfile**](docs/WhatsAppApi.md#updatewhatsappbusinessprofile) | **POST** /v1/whatsapp/business-profile | Update business profile
 *WhatsAppApi* | [**UpdateWhatsAppDisplayName**](docs/WhatsAppApi.md#updatewhatsappdisplayname) | **POST** /v1/whatsapp/business-profile/display-name | Request display name change
 *WhatsAppApi* | [**UpdateWhatsAppGroupChat**](docs/WhatsAppApi.md#updatewhatsappgroupchat) | **POST** /v1/whatsapp/wa-groups/{groupId} | Update group settings
@@ -579,6 +582,10 @@ Class | Method | HTTP request | Description
  - [Model.BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner](docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md)
  - [Model.BatchGetGoogleBusinessReviewsRequest](docs/BatchGetGoogleBusinessReviewsRequest.md)
  - [Model.BidStrategy](docs/BidStrategy.md)
+ - [Model.BlockWhatsAppUsers200Response](docs/BlockWhatsAppUsers200Response.md)
+ - [Model.BlockWhatsAppUsers200ResponseBlockedInner](docs/BlockWhatsAppUsers200ResponseBlockedInner.md)
+ - [Model.BlockWhatsAppUsers200ResponseFailedInner](docs/BlockWhatsAppUsers200ResponseFailedInner.md)
+ - [Model.BlockWhatsAppUsersRequest](docs/BlockWhatsAppUsersRequest.md)
  - [Model.BlueskyPlatformData](docs/BlueskyPlatformData.md)
  - [Model.BookmarkPost200Response](docs/BookmarkPost200Response.md)
  - [Model.BookmarkPostRequest](docs/BookmarkPostRequest.md)
@@ -1012,6 +1019,8 @@ Class | Method | HTTP request | Description
  - [Model.GetWebhookLogs200Response](docs/GetWebhookLogs200Response.md)
  - [Model.GetWebhookLogs200ResponsePagination](docs/GetWebhookLogs200ResponsePagination.md)
  - [Model.GetWebhookSettings200Response](docs/GetWebhookSettings200Response.md)
+ - [Model.GetWhatsAppBlockedUsers200Response](docs/GetWhatsAppBlockedUsers200Response.md)
+ - [Model.GetWhatsAppBlockedUsers200ResponseBlockedUsersInner](docs/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.md)
  - [Model.GetWhatsAppBusinessProfile200Response](docs/GetWhatsAppBusinessProfile200Response.md)
  - [Model.GetWhatsAppBusinessProfile200ResponseBusinessProfile](docs/GetWhatsAppBusinessProfile200ResponseBusinessProfile.md)
  - [Model.GetWhatsAppCall200Response](docs/GetWhatsAppCall200Response.md)
@@ -1380,6 +1389,7 @@ Class | Method | HTTP request | Description
  - [Model.SendInboxMessageRequestInteractiveActionOneOf2](docs/SendInboxMessageRequestInteractiveActionOneOf2.md)
  - [Model.SendInboxMessageRequestInteractiveActionOneOf2Parameters](docs/SendInboxMessageRequestInteractiveActionOneOf2Parameters.md)
  - [Model.SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload](docs/SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload.md)
+ - [Model.SendInboxMessageRequestInteractiveActionOneOf3](docs/SendInboxMessageRequestInteractiveActionOneOf3.md)
  - [Model.SendInboxMessageRequestInteractiveActionOneOfSectionsInner](docs/SendInboxMessageRequestInteractiveActionOneOfSectionsInner.md)
  - [Model.SendInboxMessageRequestInteractiveActionOneOfSectionsInnerRowsInner](docs/SendInboxMessageRequestInteractiveActionOneOfSectionsInnerRowsInner.md)
  - [Model.SendInboxMessageRequestInteractiveBody](docs/SendInboxMessageRequestInteractiveBody.md)
@@ -1443,6 +1453,8 @@ Class | Method | HTTP request | Description
  - [Model.TwitterPlatformDataPoll](docs/TwitterPlatformDataPoll.md)
  - [Model.TwitterPlatformDataSensitiveMedia](docs/TwitterPlatformDataSensitiveMedia.md)
  - [Model.TwitterPlatformDataThreadItemsInner](docs/TwitterPlatformDataThreadItemsInner.md)
+ - [Model.UnblockWhatsAppUsers200Response](docs/UnblockWhatsAppUsers200Response.md)
+ - [Model.UnblockWhatsAppUsersRequest](docs/UnblockWhatsAppUsersRequest.md)
  - [Model.UndoRetweet200Response](docs/UndoRetweet200Response.md)
  - [Model.UnfollowUser200Response](docs/UnfollowUser200Response.md)
  - [Model.UnlikeInboxComment200Response](docs/UnlikeInboxComment200Response.md)

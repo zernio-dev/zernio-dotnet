@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// WhatsApp-only. Rich interactive payload for list messages, CTA URL buttons, and Flow prompts. When set, takes priority over &#x60;buttons&#x60; and &#x60;quickReplies&#x60;. The shape mirrors Meta&#39;s Cloud API &#x60;interactive&#x60; object verbatim, so any payload that works against Meta directly will also work here.  Use &#x60;buttons&#x60; / &#x60;quickReplies&#x60; for simple button replies (WhatsApp&#39;s &#x60;interactive.type: \&quot;button\&quot;&#x60;) — the abstraction caps at 3 buttons and handles the auto-conversion for you. Use this field only for &#x60;list&#x60;, &#x60;cta_url&#x60;, or &#x60;flow&#x60; messages.  Tap events come back via the &#x60;message.received&#x60; webhook with &#x60;metadata.interactiveType&#x60; set to &#x60;list_reply&#x60; or &#x60;nfm_reply&#x60;. 
+    /// WhatsApp-only. Rich interactive payload for list messages, CTA URL buttons, Flow prompts, and location requests. When set, takes priority over &#x60;buttons&#x60; and &#x60;quickReplies&#x60;. The shape mirrors Meta&#39;s Cloud API &#x60;interactive&#x60; object verbatim, so any payload that works against Meta directly will also work here.  Use &#x60;buttons&#x60; / &#x60;quickReplies&#x60; for simple button replies (WhatsApp&#39;s &#x60;interactive.type: \&quot;button\&quot;&#x60;) — the abstraction caps at 3 buttons and handles the auto-conversion for you. Use this field only for &#x60;list&#x60;, &#x60;cta_url&#x60;, &#x60;flow&#x60;, or &#x60;location_request_message&#x60; messages.  For &#x60;location_request_message&#x60;, &#x60;action&#x60; may be omitted (we default it to &#x60;{ \&quot;name\&quot;: \&quot;send_location\&quot; }&#x60;). WhatsApp renders a localized \&quot;Send location\&quot; button; the user&#39;s reply arrives as a regular location message in the conversation.  Tap events come back via the &#x60;message.received&#x60; webhook with &#x60;metadata.interactiveType&#x60; set to &#x60;list_reply&#x60; or &#x60;nfm_reply&#x60;. 
     /// </summary>
     [DataContract(Name = "sendInboxMessage_request_interactive")]
     public partial class SendInboxMessageRequestInteractive : IValidatableObject
@@ -56,7 +56,13 @@ namespace Zernio.Model
             /// Enum Flow for value: flow
             /// </summary>
             [EnumMember(Value = "flow")]
-            Flow = 3
+            Flow = 3,
+
+            /// <summary>
+            /// Enum LocationRequestMessage for value: location_request_message
+            /// </summary>
+            [EnumMember(Value = "location_request_message")]
+            LocationRequestMessage = 4
         }
 
 
@@ -78,7 +84,7 @@ namespace Zernio.Model
         /// <param name="header">header.</param>
         /// <param name="body">body (required).</param>
         /// <param name="footer">footer.</param>
-        /// <param name="action">action (required).</param>
+        /// <param name="action">action.</param>
         public SendInboxMessageRequestInteractive(TypeEnum type = default, SendInboxMessageRequestInteractiveHeader header = default, SendInboxMessageRequestInteractiveBody body = default, SendInboxMessageRequestInteractiveFooter footer = default, SendInboxMessageRequestInteractiveAction action = default)
         {
             this.Type = type;
@@ -88,14 +94,9 @@ namespace Zernio.Model
                 throw new ArgumentNullException("body is a required property for SendInboxMessageRequestInteractive and cannot be null");
             }
             this.Body = body;
-            // to ensure "action" is required (not null)
-            if (action == null)
-            {
-                throw new ArgumentNullException("action is a required property for SendInboxMessageRequestInteractive and cannot be null");
-            }
-            this.Action = action;
             this.Header = header;
             this.Footer = footer;
+            this.Action = action;
         }
 
         /// <summary>
@@ -119,7 +120,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Action
         /// </summary>
-        [DataMember(Name = "action", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "action", EmitDefaultValue = false)]
         public SendInboxMessageRequestInteractiveAction Action { get; set; }
 
         /// <summary>

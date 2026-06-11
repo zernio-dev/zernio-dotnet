@@ -83,6 +83,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test BlockWhatsAppUsers
+        /// </summary>
+        [Fact]
+        public void BlockWhatsAppUsersTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //BlockWhatsAppUsersRequest blockWhatsAppUsersRequest = null;
+            //var response = instance.BlockWhatsAppUsers(blockWhatsAppUsersRequest);
+            //Assert.IsType<BlockWhatsAppUsers200Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateWhatsAppDataset
         /// </summary>
         [Fact]
@@ -155,6 +167,20 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.DeleteWhatsAppTemplate(templateName, accountId);
             //Assert.IsType<UnpublishPost200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetWhatsAppBlockedUsers
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppBlockedUsersTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.GetWhatsAppBlockedUsers(accountId, limit, after);
+            //Assert.IsType<GetWhatsAppBlockedUsers200Response>(response);
         }
 
         /// <summary>
@@ -309,6 +335,18 @@ namespace Zernio.Test.Api
             //SendWhatsAppConversionRequest sendWhatsAppConversionRequest = null;
             //var response = instance.SendWhatsAppConversion(sendWhatsAppConversionRequest);
             //Assert.IsType<SendWhatsAppConversion200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UnblockWhatsAppUsers
+        /// </summary>
+        [Fact]
+        public void UnblockWhatsAppUsersTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest = null;
+            //var response = instance.UnblockWhatsAppUsers(unblockWhatsAppUsersRequest);
+            //Assert.IsType<UnblockWhatsAppUsers200Response>(response);
         }
 
         /// <summary>

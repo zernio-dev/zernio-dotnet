@@ -79,6 +79,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> ApproveWhatsAppGroupJoinRequestsWithHttpInfo(string groupId, string accountId, ApproveWhatsAppGroupJoinRequestsRequest approveWhatsAppGroupJoinRequestsRequest);
         /// <summary>
+        /// Block users
+        /// </summary>
+        /// <remarks>
+        /// Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="blockWhatsAppUsersRequest"></param>
+        /// <returns>BlockWhatsAppUsers200Response</returns>
+        BlockWhatsAppUsers200Response BlockWhatsAppUsers(BlockWhatsAppUsersRequest blockWhatsAppUsersRequest);
+
+        /// <summary>
+        /// Block users
+        /// </summary>
+        /// <remarks>
+        /// Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="blockWhatsAppUsersRequest"></param>
+        /// <returns>ApiResponse of BlockWhatsAppUsers200Response</returns>
+        ApiResponse<BlockWhatsAppUsers200Response> BlockWhatsAppUsersWithHttpInfo(BlockWhatsAppUsersRequest blockWhatsAppUsersRequest);
+        /// <summary>
         /// Provision CTWA conversions dataset
         /// </summary>
         /// <remarks>
@@ -210,6 +231,31 @@ namespace Zernio.Api
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> DeleteWhatsAppTemplateWithHttpInfo(string templateName, string accountId);
+        /// <summary>
+        /// List blocked users
+        /// </summary>
+        /// <remarks>
+        /// List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="limit">Page size. (optional)</param>
+        /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
+        /// <returns>GetWhatsAppBlockedUsers200Response</returns>
+        GetWhatsAppBlockedUsers200Response GetWhatsAppBlockedUsers(string accountId, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// List blocked users
+        /// </summary>
+        /// <remarks>
+        /// List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="limit">Page size. (optional)</param>
+        /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
+        /// <returns>ApiResponse of GetWhatsAppBlockedUsers200Response</returns>
+        ApiResponse<GetWhatsAppBlockedUsers200Response> GetWhatsAppBlockedUsersWithHttpInfo(string accountId, int? limit = default, string? after = default);
         /// <summary>
         /// Get business profile
         /// </summary>
@@ -483,6 +529,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of SendWhatsAppConversion200Response</returns>
         ApiResponse<SendWhatsAppConversion200Response> SendWhatsAppConversionWithHttpInfo(SendWhatsAppConversionRequest sendWhatsAppConversionRequest);
         /// <summary>
+        /// Unblock users
+        /// </summary>
+        /// <remarks>
+        /// Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="unblockWhatsAppUsersRequest"></param>
+        /// <returns>UnblockWhatsAppUsers200Response</returns>
+        UnblockWhatsAppUsers200Response UnblockWhatsAppUsers(UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest);
+
+        /// <summary>
+        /// Unblock users
+        /// </summary>
+        /// <remarks>
+        /// Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="unblockWhatsAppUsersRequest"></param>
+        /// <returns>ApiResponse of UnblockWhatsAppUsers200Response</returns>
+        ApiResponse<UnblockWhatsAppUsers200Response> UnblockWhatsAppUsersWithHttpInfo(UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest);
+        /// <summary>
         /// Update business profile
         /// </summary>
         /// <remarks>
@@ -659,6 +726,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UnpublishPost200Response>> ApproveWhatsAppGroupJoinRequestsWithHttpInfoAsync(string groupId, string accountId, ApproveWhatsAppGroupJoinRequestsRequest approveWhatsAppGroupJoinRequestsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Block users
+        /// </summary>
+        /// <remarks>
+        /// Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="blockWhatsAppUsersRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of BlockWhatsAppUsers200Response</returns>
+        System.Threading.Tasks.Task<BlockWhatsAppUsers200Response> BlockWhatsAppUsersAsync(BlockWhatsAppUsersRequest blockWhatsAppUsersRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Block users
+        /// </summary>
+        /// <remarks>
+        /// Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="blockWhatsAppUsersRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (BlockWhatsAppUsers200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BlockWhatsAppUsers200Response>> BlockWhatsAppUsersWithHttpInfoAsync(BlockWhatsAppUsersRequest blockWhatsAppUsersRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Provision CTWA conversions dataset
         /// </summary>
         /// <remarks>
@@ -802,6 +892,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UnpublishPost200Response>> DeleteWhatsAppTemplateWithHttpInfoAsync(string templateName, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List blocked users
+        /// </summary>
+        /// <remarks>
+        /// List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="limit">Page size. (optional)</param>
+        /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppBlockedUsers200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsAppBlockedUsers200Response> GetWhatsAppBlockedUsersAsync(string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List blocked users
+        /// </summary>
+        /// <remarks>
+        /// List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="limit">Page size. (optional)</param>
+        /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppBlockedUsers200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppBlockedUsers200Response>> GetWhatsAppBlockedUsersWithHttpInfoAsync(string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get business profile
         /// </summary>
@@ -1098,6 +1215,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SendWhatsAppConversion200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SendWhatsAppConversion200Response>> SendWhatsAppConversionWithHttpInfoAsync(SendWhatsAppConversionRequest sendWhatsAppConversionRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Unblock users
+        /// </summary>
+        /// <remarks>
+        /// Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="unblockWhatsAppUsersRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UnblockWhatsAppUsers200Response</returns>
+        System.Threading.Tasks.Task<UnblockWhatsAppUsers200Response> UnblockWhatsAppUsersAsync(UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Unblock users
+        /// </summary>
+        /// <remarks>
+        /// Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="unblockWhatsAppUsersRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UnblockWhatsAppUsers200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UnblockWhatsAppUsers200Response>> UnblockWhatsAppUsersWithHttpInfoAsync(UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update business profile
         /// </summary>
@@ -1742,6 +1882,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ApproveWhatsAppGroupJoinRequests", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Block users Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="blockWhatsAppUsersRequest"></param>
+        /// <returns>BlockWhatsAppUsers200Response</returns>
+        public BlockWhatsAppUsers200Response BlockWhatsAppUsers(BlockWhatsAppUsersRequest blockWhatsAppUsersRequest)
+        {
+            Zernio.Client.ApiResponse<BlockWhatsAppUsers200Response> localVarResponse = BlockWhatsAppUsersWithHttpInfo(blockWhatsAppUsersRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Block users Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="blockWhatsAppUsersRequest"></param>
+        /// <returns>ApiResponse of BlockWhatsAppUsers200Response</returns>
+        public Zernio.Client.ApiResponse<BlockWhatsAppUsers200Response> BlockWhatsAppUsersWithHttpInfo(BlockWhatsAppUsersRequest blockWhatsAppUsersRequest)
+        {
+            // verify the required parameter 'blockWhatsAppUsersRequest' is set
+            if (blockWhatsAppUsersRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'blockWhatsAppUsersRequest' when calling WhatsAppApi->BlockWhatsAppUsers");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = blockWhatsAppUsersRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<BlockWhatsAppUsers200Response>("/v1/whatsapp/block-users", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("BlockWhatsAppUsers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Block users Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="blockWhatsAppUsersRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of BlockWhatsAppUsers200Response</returns>
+        public async System.Threading.Tasks.Task<BlockWhatsAppUsers200Response> BlockWhatsAppUsersAsync(BlockWhatsAppUsersRequest blockWhatsAppUsersRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<BlockWhatsAppUsers200Response> localVarResponse = await BlockWhatsAppUsersWithHttpInfoAsync(blockWhatsAppUsersRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Block users Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="blockWhatsAppUsersRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (BlockWhatsAppUsers200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<BlockWhatsAppUsers200Response>> BlockWhatsAppUsersWithHttpInfoAsync(BlockWhatsAppUsersRequest blockWhatsAppUsersRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'blockWhatsAppUsersRequest' is set
+            if (blockWhatsAppUsersRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'blockWhatsAppUsersRequest' when calling WhatsAppApi->BlockWhatsAppUsers");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = blockWhatsAppUsersRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<BlockWhatsAppUsers200Response>("/v1/whatsapp/block-users", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("BlockWhatsAppUsers", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -2552,6 +2821,157 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteWhatsAppTemplate", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List blocked users List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="limit">Page size. (optional)</param>
+        /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
+        /// <returns>GetWhatsAppBlockedUsers200Response</returns>
+        public GetWhatsAppBlockedUsers200Response GetWhatsAppBlockedUsers(string accountId, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppBlockedUsers200Response> localVarResponse = GetWhatsAppBlockedUsersWithHttpInfo(accountId, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List blocked users List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="limit">Page size. (optional)</param>
+        /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
+        /// <returns>ApiResponse of GetWhatsAppBlockedUsers200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsAppBlockedUsers200Response> GetWhatsAppBlockedUsersWithHttpInfo(string accountId, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsAppBlockedUsers");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsAppBlockedUsers200Response>("/v1/whatsapp/block-users", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppBlockedUsers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List blocked users List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="limit">Page size. (optional)</param>
+        /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppBlockedUsers200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsAppBlockedUsers200Response> GetWhatsAppBlockedUsersAsync(string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppBlockedUsers200Response> localVarResponse = await GetWhatsAppBlockedUsersWithHttpInfoAsync(accountId, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List blocked users List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="limit">Page size. (optional)</param>
+        /// <param name="after">Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppBlockedUsers200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppBlockedUsers200Response>> GetWhatsAppBlockedUsersWithHttpInfoAsync(string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsAppBlockedUsers");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppBlockedUsers200Response>("/v1/whatsapp/block-users", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppBlockedUsers", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -4216,6 +4636,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("SendWhatsAppConversion", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Unblock users Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="unblockWhatsAppUsersRequest"></param>
+        /// <returns>UnblockWhatsAppUsers200Response</returns>
+        public UnblockWhatsAppUsers200Response UnblockWhatsAppUsers(UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest)
+        {
+            Zernio.Client.ApiResponse<UnblockWhatsAppUsers200Response> localVarResponse = UnblockWhatsAppUsersWithHttpInfo(unblockWhatsAppUsersRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Unblock users Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="unblockWhatsAppUsersRequest"></param>
+        /// <returns>ApiResponse of UnblockWhatsAppUsers200Response</returns>
+        public Zernio.Client.ApiResponse<UnblockWhatsAppUsers200Response> UnblockWhatsAppUsersWithHttpInfo(UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest)
+        {
+            // verify the required parameter 'unblockWhatsAppUsersRequest' is set
+            if (unblockWhatsAppUsersRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'unblockWhatsAppUsersRequest' when calling WhatsAppApi->UnblockWhatsAppUsers");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = unblockWhatsAppUsersRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<UnblockWhatsAppUsers200Response>("/v1/whatsapp/block-users", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UnblockWhatsAppUsers", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Unblock users Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="unblockWhatsAppUsersRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UnblockWhatsAppUsers200Response</returns>
+        public async System.Threading.Tasks.Task<UnblockWhatsAppUsers200Response> UnblockWhatsAppUsersAsync(UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UnblockWhatsAppUsers200Response> localVarResponse = await UnblockWhatsAppUsersWithHttpInfoAsync(unblockWhatsAppUsersRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Unblock users Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="unblockWhatsAppUsersRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UnblockWhatsAppUsers200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UnblockWhatsAppUsers200Response>> UnblockWhatsAppUsersWithHttpInfoAsync(UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'unblockWhatsAppUsersRequest' is set
+            if (unblockWhatsAppUsersRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'unblockWhatsAppUsersRequest' when calling WhatsAppApi->UnblockWhatsAppUsers");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = unblockWhatsAppUsersRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UnblockWhatsAppUsers200Response>("/v1/whatsapp/block-users", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UnblockWhatsAppUsers", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
