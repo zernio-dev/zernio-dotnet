@@ -196,6 +196,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**GetConversionsQuality**](docs/AdsApi.md#getconversionsquality) | **GET** /v1/ads/conversions/quality | Read Event Match Quality + coverage for a Meta pixel
 *AdsApi* | [**GetLeadForm**](docs/AdsApi.md#getleadform) | **GET** /v1/ads/lead-forms/{formId} | Get a single Lead Gen form
 *AdsApi* | [**ListAdAccounts**](docs/AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts
+*AdsApi* | [**ListAdCatalogProductSets**](docs/AdsApi.md#listadcatalogproductsets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog's product sets
+*AdsApi* | [**ListAdCatalogs**](docs/AdsApi.md#listadcatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs
 *AdsApi* | [**ListAds**](docs/AdsApi.md#listads) | **GET** /v1/ads | List ads
 *AdsApi* | [**ListAdsBusinessCenters**](docs/AdsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
 *AdsApi* | [**ListConversionAssociations**](docs/AdsApi.md#listconversionassociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List campaigns associated with a conversion destination
@@ -1118,6 +1120,10 @@ Class | Method | HTTP request | Description
  - [Model.ListAdAudiences200Response](docs/ListAdAudiences200Response.md)
  - [Model.ListAdAudiences200ResponseAudiencesInner](docs/ListAdAudiences200ResponseAudiencesInner.md)
  - [Model.ListAdCampaigns200Response](docs/ListAdCampaigns200Response.md)
+ - [Model.ListAdCatalogProductSets200Response](docs/ListAdCatalogProductSets200Response.md)
+ - [Model.ListAdCatalogProductSets200ResponseProductSetsInner](docs/ListAdCatalogProductSets200ResponseProductSetsInner.md)
+ - [Model.ListAdCatalogs200Response](docs/ListAdCatalogs200Response.md)
+ - [Model.ListAdCatalogs200ResponseCatalogsInner](docs/ListAdCatalogs200ResponseCatalogsInner.md)
  - [Model.ListAds200Response](docs/ListAds200Response.md)
  - [Model.ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
  - [Model.ListApiKeys200Response](docs/ListApiKeys200Response.md)

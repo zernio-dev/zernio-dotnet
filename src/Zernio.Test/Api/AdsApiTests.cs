@@ -331,6 +331,32 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListAdCatalogProductSets
+        /// </summary>
+        [Fact]
+        public void ListAdCatalogProductSetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string catalogId = null;
+            //string accountId = null;
+            //var response = instance.ListAdCatalogProductSets(catalogId, accountId);
+            //Assert.IsType<ListAdCatalogProductSets200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListAdCatalogs
+        /// </summary>
+        [Fact]
+        public void ListAdCatalogsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //var response = instance.ListAdCatalogs(accountId, adAccountId);
+            //Assert.IsType<ListAdCatalogs200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAds
         /// </summary>
         [Fact]

@@ -628,6 +628,10 @@ docs/ListAdAccounts200ResponseAccountsInner.md
 docs/ListAdAudiences200Response.md
 docs/ListAdAudiences200ResponseAudiencesInner.md
 docs/ListAdCampaigns200Response.md
+docs/ListAdCatalogProductSets200Response.md
+docs/ListAdCatalogProductSets200ResponseProductSetsInner.md
+docs/ListAdCatalogs200Response.md
+docs/ListAdCatalogs200ResponseCatalogsInner.md
 docs/ListAds200Response.md
 docs/ListAdsBusinessCenters200Response.md
 docs/ListApiKeys200Response.md
@@ -1871,6 +1875,10 @@ src/Zernio.Test/Model/ListAdAccounts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAudiences200ResponseAudiencesInnerTests.cs
 src/Zernio.Test/Model/ListAdAudiences200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCampaigns200ResponseTests.cs
+src/Zernio.Test/Model/ListAdCatalogProductSets200ResponseProductSetsInnerTests.cs
+src/Zernio.Test/Model/ListAdCatalogProductSets200ResponseTests.cs
+src/Zernio.Test/Model/ListAdCatalogs200ResponseCatalogsInnerTests.cs
+src/Zernio.Test/Model/ListAdCatalogs200ResponseTests.cs
 src/Zernio.Test/Model/ListAds200ResponseTests.cs
 src/Zernio.Test/Model/ListAdsBusinessCenters200ResponseTests.cs
 src/Zernio.Test/Model/ListApiKeys200ResponseTests.cs
@@ -3109,6 +3117,10 @@ src/Zernio/Model/ListAdAccounts200ResponseAccountsInner.cs
 src/Zernio/Model/ListAdAudiences200Response.cs
 src/Zernio/Model/ListAdAudiences200ResponseAudiencesInner.cs
 src/Zernio/Model/ListAdCampaigns200Response.cs
+src/Zernio/Model/ListAdCatalogProductSets200Response.cs
+src/Zernio/Model/ListAdCatalogProductSets200ResponseProductSetsInner.cs
+src/Zernio/Model/ListAdCatalogs200Response.cs
+src/Zernio/Model/ListAdCatalogs200ResponseCatalogsInner.cs
 src/Zernio/Model/ListAds200Response.cs
 src/Zernio/Model/ListAdsBusinessCenters200Response.cs
 src/Zernio/Model/ListApiKeys200Response.cs

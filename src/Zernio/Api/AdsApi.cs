@@ -517,6 +517,52 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdAccounts200Response</returns>
         ApiResponse<ListAdAccounts200Response> ListAdAccountsWithHttpInfo(string accountId, string? adAccountId = default, int? limit = default);
         /// <summary>
+        /// List a catalog&#39;s product sets
+        /// </summary>
+        /// <remarks>
+        /// Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="catalogId">Meta product catalog ID (from GET /v1/ads/catalogs)</param>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <returns>ListAdCatalogProductSets200Response</returns>
+        ListAdCatalogProductSets200Response ListAdCatalogProductSets(string catalogId, string accountId);
+
+        /// <summary>
+        /// List a catalog&#39;s product sets
+        /// </summary>
+        /// <remarks>
+        /// Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="catalogId">Meta product catalog ID (from GET /v1/ads/catalogs)</param>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <returns>ApiResponse of ListAdCatalogProductSets200Response</returns>
+        ApiResponse<ListAdCatalogProductSets200Response> ListAdCatalogProductSetsWithHttpInfo(string catalogId, string accountId);
+        /// <summary>
+        /// List Meta product catalogs
+        /// </summary>
+        /// <remarks>
+        /// Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>ListAdCatalogs200Response</returns>
+        ListAdCatalogs200Response ListAdCatalogs(string accountId, string adAccountId);
+
+        /// <summary>
+        /// List Meta product catalogs
+        /// </summary>
+        /// <remarks>
+        /// Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>ApiResponse of ListAdCatalogs200Response</returns>
+        ApiResponse<ListAdCatalogs200Response> ListAdCatalogsWithHttpInfo(string accountId, string adAccountId);
+        /// <summary>
         /// List ads
         /// </summary>
         /// <remarks>
@@ -1474,6 +1520,56 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdAccounts200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdAccounts200Response>> ListAdAccountsWithHttpInfoAsync(string accountId, string? adAccountId = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List a catalog&#39;s product sets
+        /// </summary>
+        /// <remarks>
+        /// Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="catalogId">Meta product catalog ID (from GET /v1/ads/catalogs)</param>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdCatalogProductSets200Response</returns>
+        System.Threading.Tasks.Task<ListAdCatalogProductSets200Response> ListAdCatalogProductSetsAsync(string catalogId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List a catalog&#39;s product sets
+        /// </summary>
+        /// <remarks>
+        /// Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="catalogId">Meta product catalog ID (from GET /v1/ads/catalogs)</param>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdCatalogProductSets200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAdCatalogProductSets200Response>> ListAdCatalogProductSetsWithHttpInfoAsync(string catalogId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List Meta product catalogs
+        /// </summary>
+        /// <remarks>
+        /// Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdCatalogs200Response</returns>
+        System.Threading.Tasks.Task<ListAdCatalogs200Response> ListAdCatalogsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Meta product catalogs
+        /// </summary>
+        /// <remarks>
+        /// Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdCatalogs200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAdCatalogs200Response>> ListAdCatalogsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List ads
         /// </summary>
@@ -5138,6 +5234,288 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAdAccounts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List a catalog&#39;s product sets Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="catalogId">Meta product catalog ID (from GET /v1/ads/catalogs)</param>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <returns>ListAdCatalogProductSets200Response</returns>
+        public ListAdCatalogProductSets200Response ListAdCatalogProductSets(string catalogId, string accountId)
+        {
+            Zernio.Client.ApiResponse<ListAdCatalogProductSets200Response> localVarResponse = ListAdCatalogProductSetsWithHttpInfo(catalogId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List a catalog&#39;s product sets Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="catalogId">Meta product catalog ID (from GET /v1/ads/catalogs)</param>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <returns>ApiResponse of ListAdCatalogProductSets200Response</returns>
+        public Zernio.Client.ApiResponse<ListAdCatalogProductSets200Response> ListAdCatalogProductSetsWithHttpInfo(string catalogId, string accountId)
+        {
+            // verify the required parameter 'catalogId' is set
+            if (catalogId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'catalogId' when calling AdsApi->ListAdCatalogProductSets");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdCatalogProductSets");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("catalogId", Zernio.Client.ClientUtils.ParameterToString(catalogId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAdCatalogProductSets200Response>("/v1/ads/catalogs/{catalogId}/product-sets", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdCatalogProductSets", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List a catalog&#39;s product sets Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="catalogId">Meta product catalog ID (from GET /v1/ads/catalogs)</param>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdCatalogProductSets200Response</returns>
+        public async System.Threading.Tasks.Task<ListAdCatalogProductSets200Response> ListAdCatalogProductSetsAsync(string catalogId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAdCatalogProductSets200Response> localVarResponse = await ListAdCatalogProductSetsWithHttpInfoAsync(catalogId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List a catalog&#39;s product sets Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="catalogId">Meta product catalog ID (from GET /v1/ads/catalogs)</param>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdCatalogProductSets200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdCatalogProductSets200Response>> ListAdCatalogProductSetsWithHttpInfoAsync(string catalogId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'catalogId' is set
+            if (catalogId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'catalogId' when calling AdsApi->ListAdCatalogProductSets");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdCatalogProductSets");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("catalogId", Zernio.Client.ClientUtils.ParameterToString(catalogId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAdCatalogProductSets200Response>("/v1/ads/catalogs/{catalogId}/product-sets", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdCatalogProductSets", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Meta product catalogs Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>ListAdCatalogs200Response</returns>
+        public ListAdCatalogs200Response ListAdCatalogs(string accountId, string adAccountId)
+        {
+            Zernio.Client.ApiResponse<ListAdCatalogs200Response> localVarResponse = ListAdCatalogsWithHttpInfo(accountId, adAccountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Meta product catalogs Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>ApiResponse of ListAdCatalogs200Response</returns>
+        public Zernio.Client.ApiResponse<ListAdCatalogs200Response> ListAdCatalogsWithHttpInfo(string accountId, string adAccountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdCatalogs");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListAdCatalogs");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAdCatalogs200Response>("/v1/ads/catalogs", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdCatalogs", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Meta product catalogs Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdCatalogs200Response</returns>
+        public async System.Threading.Tasks.Task<ListAdCatalogs200Response> ListAdCatalogsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAdCatalogs200Response> localVarResponse = await ListAdCatalogsWithHttpInfoAsync(accountId, adAccountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Meta product catalogs Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A facebook, instagram, or metaads social account ID</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdCatalogs200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdCatalogs200Response>> ListAdCatalogsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdCatalogs");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListAdCatalogs");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAdCatalogs200Response>("/v1/ads/catalogs", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdCatalogs", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -120,9 +120,9 @@ namespace Zernio.Model
         [DataMember(Name = "adType", EmitDefaultValue = false)]
         public AdTypeEnum? AdType { get; set; }
         /// <summary>
-        /// Available goals vary by platform. Meta (Facebook/Instagram) supports all 8 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
+        /// Available goals vary by platform. Meta (Facebook/Instagram) supports all 9 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization and &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
         /// </summary>
-        /// <value>Available goals vary by platform. Meta (Facebook/Instagram) supports all 8 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
+        /// <value>Available goals vary by platform. Meta (Facebook/Instagram) supports all 9 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization and &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum GoalEnum
         {
@@ -172,14 +172,20 @@ namespace Zernio.Model
             /// Enum AppPromotion for value: app_promotion
             /// </summary>
             [EnumMember(Value = "app_promotion")]
-            AppPromotion = 8
+            AppPromotion = 8,
+
+            /// <summary>
+            /// Enum CatalogSales for value: catalog_sales
+            /// </summary>
+            [EnumMember(Value = "catalog_sales")]
+            CatalogSales = 9
         }
 
 
         /// <summary>
-        /// Available goals vary by platform. Meta (Facebook/Instagram) supports all 8 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
+        /// Available goals vary by platform. Meta (Facebook/Instagram) supports all 9 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization and &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
         /// </summary>
-        /// <value>Available goals vary by platform. Meta (Facebook/Instagram) supports all 8 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
+        /// <value>Available goals vary by platform. Meta (Facebook/Instagram) supports all 9 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization and &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.</value>
         [DataMember(Name = "goal", EmitDefaultValue = false)]
         public GoalEnum? Goal { get; set; }
 
@@ -197,7 +203,7 @@ namespace Zernio.Model
         /// <param name="platform">platform.</param>
         /// <param name="status">status.</param>
         /// <param name="adType">adType.</param>
-        /// <param name="goal">Available goals vary by platform. Meta (Facebook/Instagram) supports all 8 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views..</param>
+        /// <param name="goal">Available goals vary by platform. Meta (Facebook/Instagram) supports all 9 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization and &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views..</param>
         /// <param name="isExternal">True for ads synced from platform ad managers.</param>
         /// <param name="budget">budget.</param>
         /// <param name="metrics">metrics.</param>
