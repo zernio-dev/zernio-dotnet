@@ -37,10 +37,12 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetWhatsAppPhoneNumbers200Response" /> class.
         /// </summary>
         /// <param name="numbers">numbers.</param>
+        /// <param name="connected">Connected (bring-your-own) WhatsApp numbers — your own WABA numbers linked via Embedded Signup. Not provisioned or billed by Zernio, so they are not in &#x60;numbers&#x60;; &#x60;accountId&#x60; is the social-account id used by the messaging and inbox endpoints. Included only on the default and &#x60;status&#x3D;active&#x60; views. .</param>
         /// <param name="sandbox">sandbox.</param>
-        public GetWhatsAppPhoneNumbers200Response(List<GetWhatsAppPhoneNumbers200ResponseNumbersInner> numbers = default, GetWhatsAppPhoneNumbers200ResponseSandbox sandbox = default)
+        public GetWhatsAppPhoneNumbers200Response(List<GetWhatsAppPhoneNumbers200ResponseNumbersInner> numbers = default, List<GetWhatsAppPhoneNumbers200ResponseConnectedInner> connected = default, GetWhatsAppPhoneNumbers200ResponseSandbox sandbox = default)
         {
             this.Numbers = numbers;
+            this.Connected = connected;
             this.Sandbox = sandbox;
         }
 
@@ -49,6 +51,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "numbers", EmitDefaultValue = false)]
         public List<GetWhatsAppPhoneNumbers200ResponseNumbersInner> Numbers { get; set; }
+
+        /// <summary>
+        /// Connected (bring-your-own) WhatsApp numbers — your own WABA numbers linked via Embedded Signup. Not provisioned or billed by Zernio, so they are not in &#x60;numbers&#x60;; &#x60;accountId&#x60; is the social-account id used by the messaging and inbox endpoints. Included only on the default and &#x60;status&#x3D;active&#x60; views. 
+        /// </summary>
+        /// <value>Connected (bring-your-own) WhatsApp numbers — your own WABA numbers linked via Embedded Signup. Not provisioned or billed by Zernio, so they are not in &#x60;numbers&#x60;; &#x60;accountId&#x60; is the social-account id used by the messaging and inbox endpoints. Included only on the default and &#x60;status&#x3D;active&#x60; views. </value>
+        [DataMember(Name = "connected", EmitDefaultValue = false)]
+        public List<GetWhatsAppPhoneNumbers200ResponseConnectedInner> Connected { get; set; }
 
         /// <summary>
         /// Gets or Sets Sandbox
@@ -65,6 +74,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetWhatsAppPhoneNumbers200Response {\n");
             sb.Append("  Numbers: ").Append(Numbers).Append("\n");
+            sb.Append("  Connected: ").Append(Connected).Append("\n");
             sb.Append("  Sandbox: ").Append(Sandbox).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

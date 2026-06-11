@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Connected'
+        /// </summary>
+        [Fact]
+        public void ConnectedTest()
+        {
+            // TODO unit test for the property 'Connected'
+        }
+
+        /// <summary>
         /// Test the property 'Sandbox'
         /// </summary>
         [Fact]

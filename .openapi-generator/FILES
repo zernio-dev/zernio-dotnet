@@ -551,6 +551,7 @@ docs/GetWhatsAppNumberRemediation200Response.md
 docs/GetWhatsAppPhoneNumber200Response.md
 docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md
 docs/GetWhatsAppPhoneNumbers200Response.md
+docs/GetWhatsAppPhoneNumbers200ResponseConnectedInner.md
 docs/GetWhatsAppPhoneNumbers200ResponseNumbersInner.md
 docs/GetWhatsAppPhoneNumbers200ResponseSandbox.md
 docs/GetWhatsAppPhoneNumbers200ResponseSandboxTemplate.md
@@ -1796,6 +1797,7 @@ src/Zernio.Test/Model/GetWhatsAppNumberKycForm200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppNumberRemediation200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppPhoneNumber200ResponsePhoneNumberTests.cs
 src/Zernio.Test/Model/GetWhatsAppPhoneNumber200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppPhoneNumbers200ResponseConnectedInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppPhoneNumbers200ResponseNumbersInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppPhoneNumbers200ResponseSandboxTemplateTests.cs
 src/Zernio.Test/Model/GetWhatsAppPhoneNumbers200ResponseSandboxTests.cs
@@ -3034,6 +3036,7 @@ src/Zernio/Model/GetWhatsAppNumberRemediation200Response.cs
 src/Zernio/Model/GetWhatsAppPhoneNumber200Response.cs
 src/Zernio/Model/GetWhatsAppPhoneNumber200ResponsePhoneNumber.cs
 src/Zernio/Model/GetWhatsAppPhoneNumbers200Response.cs
+src/Zernio/Model/GetWhatsAppPhoneNumbers200ResponseConnectedInner.cs
 src/Zernio/Model/GetWhatsAppPhoneNumbers200ResponseNumbersInner.cs
 src/Zernio/Model/GetWhatsAppPhoneNumbers200ResponseSandbox.cs
 src/Zernio/Model/GetWhatsAppPhoneNumbers200ResponseSandboxTemplate.cs
