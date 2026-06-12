@@ -38,10 +38,12 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="available">available.</param>
         /// <param name="fromPhoneNumber">fromPhoneNumber.</param>
-        public GetWhatsAppNumberKycForm200ResponseReusable(bool available = default, string fromPhoneNumber = default)
+        /// <param name="details">Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort — may be empty if the provider lookup fails..</param>
+        public GetWhatsAppNumberKycForm200ResponseReusable(bool available = default, string fromPhoneNumber = default, List<GetWhatsAppNumberKycForm200ResponseReusableDetailsInner> details = default)
         {
             this.Available = available;
             this.FromPhoneNumber = fromPhoneNumber;
+            this.Details = details;
         }
 
         /// <summary>
@@ -57,6 +59,13 @@ namespace Zernio.Model
         public string FromPhoneNumber { get; set; }
 
         /// <summary>
+        /// Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort — may be empty if the provider lookup fails.
+        /// </summary>
+        /// <value>Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort — may be empty if the provider lookup fails.</value>
+        [DataMember(Name = "details", EmitDefaultValue = false)]
+        public List<GetWhatsAppNumberKycForm200ResponseReusableDetailsInner> Details { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -66,6 +75,7 @@ namespace Zernio.Model
             sb.Append("class GetWhatsAppNumberKycForm200ResponseReusable {\n");
             sb.Append("  Available: ").Append(Available).Append("\n");
             sb.Append("  FromPhoneNumber: ").Append(FromPhoneNumber).Append("\n");
+            sb.Append("  Details: ").Append(Details).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
