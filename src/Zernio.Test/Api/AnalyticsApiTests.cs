@@ -119,7 +119,8 @@ namespace Zernio.Test.Api
             //DateTime? fromDate = null;
             //DateTime? toDate = null;
             //string? source = null;
-            //var response = instance.GetDailyMetrics(platform, profileId, accountId, fromDate, toDate, source);
+            //string? attribution = null;
+            //var response = instance.GetDailyMetrics(platform, profileId, accountId, fromDate, toDate, source, attribution);
             //Assert.IsType<GetDailyMetrics200Response>(response);
         }
 

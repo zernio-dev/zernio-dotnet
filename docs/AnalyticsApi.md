@@ -365,7 +365,7 @@ catch (ApiException e)
 
 <a id="getdailymetrics"></a>
 # **GetDailyMetrics**
-> GetDailyMetrics200Response GetDailyMetrics (string? platform = null, string? profileId = null, string? accountId = null, DateTime? fromDate = null, DateTime? toDate = null, string? source = null)
+> GetDailyMetrics200Response GetDailyMetrics (string? platform = null, string? profileId = null, string? accountId = null, DateTime? fromDate = null, DateTime? toDate = null, string? source = null, string? attribution = null)
 
 Get daily aggregated metrics
 
@@ -401,11 +401,12 @@ namespace Example
             var fromDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional) 
             var toDate = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Inclusive end date (ISO 8601). Defaults to now. (optional) 
             var source = "all";  // string? | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms. (optional)  (default to all)
+            var attribution = "publish";  // string? | How each post's engagement is attributed to a day. \"publish\" (default) sums each post's lifetime total on its publish date. \"received\" buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post's publish date.  (optional)  (default to publish)
 
             try
             {
                 // Get daily aggregated metrics
-                GetDailyMetrics200Response result = apiInstance.GetDailyMetrics(platform, profileId, accountId, fromDate, toDate, source);
+                GetDailyMetrics200Response result = apiInstance.GetDailyMetrics(platform, profileId, accountId, fromDate, toDate, source, attribution);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -426,7 +427,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get daily aggregated metrics
-    ApiResponse<GetDailyMetrics200Response> response = apiInstance.GetDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source);
+    ApiResponse<GetDailyMetrics200Response> response = apiInstance.GetDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source, attribution);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -449,6 +450,7 @@ catch (ApiException e)
 | **fromDate** | **DateTime?** | Inclusive start date (ISO 8601). Defaults to 180 days ago. | [optional]  |
 | **toDate** | **DateTime?** | Inclusive end date (ISO 8601). Defaults to now. | [optional]  |
 | **source** | **string?** | Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] |
+| **attribution** | **string?** | How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  | [optional] [default to publish] |
 
 ### Return type
 

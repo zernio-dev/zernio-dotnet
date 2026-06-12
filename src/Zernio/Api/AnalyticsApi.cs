@@ -136,8 +136,9 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end date (ISO 8601). Defaults to now. (optional)</param>
         /// <param name="source">Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)</param>
+        /// <param name="attribution">How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)</param>
         /// <returns>GetDailyMetrics200Response</returns>
-        GetDailyMetrics200Response GetDailyMetrics(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default);
+        GetDailyMetrics200Response GetDailyMetrics(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, string? attribution = default);
 
         /// <summary>
         /// Get daily aggregated metrics
@@ -152,8 +153,9 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end date (ISO 8601). Defaults to now. (optional)</param>
         /// <param name="source">Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)</param>
+        /// <param name="attribution">How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)</param>
         /// <returns>ApiResponse of GetDailyMetrics200Response</returns>
-        ApiResponse<GetDailyMetrics200Response> GetDailyMetricsWithHttpInfo(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default);
+        ApiResponse<GetDailyMetrics200Response> GetDailyMetricsWithHttpInfo(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, string? attribution = default);
         /// <summary>
         /// Get Facebook Page insights
         /// </summary>
@@ -746,9 +748,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end date (ISO 8601). Defaults to now. (optional)</param>
         /// <param name="source">Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)</param>
+        /// <param name="attribution">How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetDailyMetrics200Response</returns>
-        System.Threading.Tasks.Task<GetDailyMetrics200Response> GetDailyMetricsAsync(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetDailyMetrics200Response> GetDailyMetricsAsync(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, string? attribution = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get daily aggregated metrics
@@ -763,9 +766,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end date (ISO 8601). Defaults to now. (optional)</param>
         /// <param name="source">Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)</param>
+        /// <param name="attribution">How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetDailyMetrics200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetDailyMetrics200Response>> GetDailyMetricsWithHttpInfoAsync(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetDailyMetrics200Response>> GetDailyMetricsWithHttpInfoAsync(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, string? attribution = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get Facebook Page insights
         /// </summary>
@@ -2059,10 +2063,11 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end date (ISO 8601). Defaults to now. (optional)</param>
         /// <param name="source">Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)</param>
+        /// <param name="attribution">How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)</param>
         /// <returns>GetDailyMetrics200Response</returns>
-        public GetDailyMetrics200Response GetDailyMetrics(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default)
+        public GetDailyMetrics200Response GetDailyMetrics(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, string? attribution = default)
         {
-            Zernio.Client.ApiResponse<GetDailyMetrics200Response> localVarResponse = GetDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source);
+            Zernio.Client.ApiResponse<GetDailyMetrics200Response> localVarResponse = GetDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source, attribution);
             return localVarResponse.Data;
         }
 
@@ -2076,8 +2081,9 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end date (ISO 8601). Defaults to now. (optional)</param>
         /// <param name="source">Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)</param>
+        /// <param name="attribution">How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)</param>
         /// <returns>ApiResponse of GetDailyMetrics200Response</returns>
-        public Zernio.Client.ApiResponse<GetDailyMetrics200Response> GetDailyMetricsWithHttpInfo(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default)
+        public Zernio.Client.ApiResponse<GetDailyMetrics200Response> GetDailyMetricsWithHttpInfo(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, string? attribution = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -2118,6 +2124,10 @@ namespace Zernio.Api
             if (source != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "source", source));
+            }
+            if (attribution != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "attribution", attribution));
             }
 
             // authentication (bearerAuth) required
@@ -2149,11 +2159,12 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end date (ISO 8601). Defaults to now. (optional)</param>
         /// <param name="source">Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)</param>
+        /// <param name="attribution">How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetDailyMetrics200Response</returns>
-        public async System.Threading.Tasks.Task<GetDailyMetrics200Response> GetDailyMetricsAsync(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetDailyMetrics200Response> GetDailyMetricsAsync(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, string? attribution = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetDailyMetrics200Response> localVarResponse = await GetDailyMetricsWithHttpInfoAsync(platform, profileId, accountId, fromDate, toDate, source, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetDailyMetrics200Response> localVarResponse = await GetDailyMetricsWithHttpInfoAsync(platform, profileId, accountId, fromDate, toDate, source, attribution, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2167,9 +2178,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)</param>
         /// <param name="toDate">Inclusive end date (ISO 8601). Defaults to now. (optional)</param>
         /// <param name="source">Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)</param>
+        /// <param name="attribution">How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetDailyMetrics200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetDailyMetrics200Response>> GetDailyMetricsWithHttpInfoAsync(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetDailyMetrics200Response>> GetDailyMetricsWithHttpInfoAsync(string? platform = default, string? profileId = default, string? accountId = default, DateTime? fromDate = default, DateTime? toDate = default, string? source = default, string? attribution = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -2212,6 +2224,10 @@ namespace Zernio.Api
             if (source != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "source", source));
+            }
+            if (attribution != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "attribution", attribution));
             }
 
             // authentication (bearerAuth) required
