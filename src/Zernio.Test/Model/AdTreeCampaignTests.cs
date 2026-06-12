@@ -227,6 +227,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AdvertisingChannelType'
+        /// </summary>
+        [Fact]
+        public void AdvertisingChannelTypeTest()
+        {
+            // TODO unit test for the property 'AdvertisingChannelType'
+        }
+
+        /// <summary>
         /// Test the property 'PlatformObjective'
         /// </summary>
         [Fact]

@@ -30030,6 +30030,7 @@ components:
           custom_event_type: custom_event_type
           pixel_id: pixel_id
         isBudgetScheduleEnabled: false
+        advertisingChannelType: advertisingChannelType
         currency: currency
         budget:
           amount: 1.4658129805029452
@@ -30478,6 +30479,13 @@ components:
           type: string
         profileId:
           type: string
+        advertisingChannelType:
+          description: "Google-only. Raw campaign.advertising_channel_type (SEARCH,\
+            \ PERFORMANCE_MAX, VIDEO, DEMAND_GEN, DISPLAY, SHOPPING, ...). Serving\
+            \ surface, distinct from platformObjective (advertiser intent). Null/absent\
+            \ for non-Google platforms."
+          type: string
+          nullable: true
         platformObjective:
           description: "Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS,\
             \ OUTCOME_TRAFFIC)"
@@ -30523,6 +30531,7 @@ components:
           custom_event_type: custom_event_type
           pixel_id: pixel_id
         isBudgetScheduleEnabled: false
+        advertisingChannelType: advertisingChannelType
         earliestAd: 2000-01-23T04:56:07.000+00:00
         currency: currency
         budget:
@@ -30643,6 +30652,10 @@ components:
           type: string
         profileId:
           type: string
+        advertisingChannelType:
+          description: Google-only. Raw campaign.advertising_channel_type. See AdTreeCampaign.advertisingChannelType.
+          type: string
+          nullable: true
         platformObjective:
           description: "Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS,\
             \ OUTCOME_TRAFFIC)"
@@ -50015,6 +50028,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
+          advertisingChannelType: advertisingChannelType
           earliestAd: 2000-01-23T04:56:07.000+00:00
           currency: currency
           budget:
@@ -50070,6 +50084,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
+          advertisingChannelType: advertisingChannelType
           earliestAd: 2000-01-23T04:56:07.000+00:00
           currency: currency
           budget:
@@ -50509,6 +50524,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
+          advertisingChannelType: advertisingChannelType
           currency: currency
           budget:
             amount: 1.4658129805029452
@@ -50876,6 +50892,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           isBudgetScheduleEnabled: false
+          advertisingChannelType: advertisingChannelType
           currency: currency
           budget:
             amount: 1.4658129805029452

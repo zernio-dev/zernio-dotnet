@@ -189,6 +189,7 @@ namespace Zernio.Model
         /// <param name="platformAdAccountName">Human-readable advertiser/account name from the platform. Refreshed on every sync..</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="profileId">profileId.</param>
+        /// <param name="advertisingChannelType">Google-only. Raw campaign.advertising_channel_type. See AdTreeCampaign.advertisingChannelType..</param>
         /// <param name="platformObjective">Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC).</param>
         /// <param name="optimizationGoal">Meta optimization goal shared across ad sets, or comma-separated values when ad sets differ (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION).</param>
         /// <param name="bidStrategy">Campaign-level bid strategy. Ad sets inherit this unless they override..</param>
@@ -197,7 +198,7 @@ namespace Zernio.Model
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="earliestAd">earliestAd.</param>
         /// <param name="latestAd">latestAd.</param>
-        public AdCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, ReviewStatusEnum? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, AdCampaignBudget budget = default, AdCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, DateTime earliestAd = default, DateTime latestAd = default)
+        public AdCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, ReviewStatusEnum? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, AdCampaignBudget budget = default, AdCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, DateTime earliestAd = default, DateTime latestAd = default)
         {
             this.PlatformCampaignId = platformCampaignId;
             this.Platform = platform;
@@ -217,6 +218,7 @@ namespace Zernio.Model
             this.PlatformAdAccountName = platformAdAccountName;
             this.AccountId = accountId;
             this.ProfileId = profileId;
+            this.AdvertisingChannelType = advertisingChannelType;
             this.PlatformObjective = platformObjective;
             this.OptimizationGoal = optimizationGoal;
             this.BidStrategy = bidStrategy;
@@ -317,6 +319,13 @@ namespace Zernio.Model
         public string ProfileId { get; set; }
 
         /// <summary>
+        /// Google-only. Raw campaign.advertising_channel_type. See AdTreeCampaign.advertisingChannelType.
+        /// </summary>
+        /// <value>Google-only. Raw campaign.advertising_channel_type. See AdTreeCampaign.advertisingChannelType.</value>
+        [DataMember(Name = "advertisingChannelType", EmitDefaultValue = false)]
+        public string AdvertisingChannelType { get; set; }
+
+        /// <summary>
         /// Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC)
         /// </summary>
         /// <value>Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC)</value>
@@ -388,6 +397,7 @@ namespace Zernio.Model
             sb.Append("  PlatformAdAccountName: ").Append(PlatformAdAccountName).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
+            sb.Append("  AdvertisingChannelType: ").Append(AdvertisingChannelType).Append("\n");
             sb.Append("  PlatformObjective: ").Append(PlatformObjective).Append("\n");
             sb.Append("  OptimizationGoal: ").Append(OptimizationGoal).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
