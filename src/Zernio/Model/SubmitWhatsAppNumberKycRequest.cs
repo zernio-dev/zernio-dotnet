@@ -45,12 +45,13 @@ namespace Zernio.Model
         /// <param name="country">country (required).</param>
         /// <param name="submissionId">Idempotency token for this submission attempt. A retry/double-submit with the same token returns the same number; omit and each call creates a new number..</param>
         /// <param name="reuse">Reuse a prior approved verification for this country (skips document/field collection; places the order immediately)..</param>
+        /// <param name="reuseFrom">Which approved verification to reuse when several exist: the phone number it was originally approved for (GET reusable.options[].fromPhoneNumber). Omitted &#x3D; newest. No match &#x3D; 409..</param>
         /// <param name="endUserFirstName">End user&#39;s legal first name. Required when the country has an action/ID-verification (Onfido) requirement..</param>
         /// <param name="endUserLastName">End user&#39;s legal last name. Same condition as endUserFirstName..</param>
         /// <param name="values">requirementId → textual value.</param>
         /// <param name="documents">One per document requirement. Each is EITHER inline base64 OR a &#x60;documentId&#x60; returned by POST /v1/whatsapp/phone-numbers/kyc/upload-document (use the upload endpoint for large files to stay under the request-size limit)..</param>
         /// <param name="address">address.</param>
-        public SubmitWhatsAppNumberKycRequest(string profileId = default, string country = default, string submissionId = default, bool reuse = default, string endUserFirstName = default, string endUserLastName = default, Dictionary<string, string> values = default, List<SubmitWhatsAppNumberKycRequestDocumentsInner> documents = default, SubmitWhatsAppNumberKycRequestAddress address = default)
+        public SubmitWhatsAppNumberKycRequest(string profileId = default, string country = default, string submissionId = default, bool reuse = default, string reuseFrom = default, string endUserFirstName = default, string endUserLastName = default, Dictionary<string, string> values = default, List<SubmitWhatsAppNumberKycRequestDocumentsInner> documents = default, SubmitWhatsAppNumberKycRequestAddress address = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -66,6 +67,7 @@ namespace Zernio.Model
             this.Country = country;
             this.SubmissionId = submissionId;
             this.Reuse = reuse;
+            this.ReuseFrom = reuseFrom;
             this.EndUserFirstName = endUserFirstName;
             this.EndUserLastName = endUserLastName;
             this.Values = values;
@@ -98,6 +100,13 @@ namespace Zernio.Model
         /// <value>Reuse a prior approved verification for this country (skips document/field collection; places the order immediately).</value>
         [DataMember(Name = "reuse", EmitDefaultValue = true)]
         public bool Reuse { get; set; }
+
+        /// <summary>
+        /// Which approved verification to reuse when several exist: the phone number it was originally approved for (GET reusable.options[].fromPhoneNumber). Omitted &#x3D; newest. No match &#x3D; 409.
+        /// </summary>
+        /// <value>Which approved verification to reuse when several exist: the phone number it was originally approved for (GET reusable.options[].fromPhoneNumber). Omitted &#x3D; newest. No match &#x3D; 409.</value>
+        [DataMember(Name = "reuseFrom", EmitDefaultValue = false)]
+        public string ReuseFrom { get; set; }
 
         /// <summary>
         /// End user&#39;s legal first name. Required when the country has an action/ID-verification (Onfido) requirement.
@@ -145,6 +154,7 @@ namespace Zernio.Model
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  SubmissionId: ").Append(SubmissionId).Append("\n");
             sb.Append("  Reuse: ").Append(Reuse).Append("\n");
+            sb.Append("  ReuseFrom: ").Append(ReuseFrom).Append("\n");
             sb.Append("  EndUserFirstName: ").Append(EndUserFirstName).Append("\n");
             sb.Append("  EndUserLastName: ").Append(EndUserLastName).Append("\n");
             sb.Append("  Values: ").Append(Values).Append("\n");

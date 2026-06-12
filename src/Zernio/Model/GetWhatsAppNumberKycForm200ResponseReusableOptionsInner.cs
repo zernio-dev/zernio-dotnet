@@ -28,31 +28,21 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Present when this account already has an approved verification for the country that can be reused (skip the form). &#x60;fromPhoneNumber&#x60;/&#x60;details&#x60; mirror the newest option; &#x60;options&#x60; lists ALL approved verifications (agencies hold one per end client) — pass the chosen option&#39;s &#x60;fromPhoneNumber&#x60; as &#x60;reuseFrom&#x60; on POST.
+    /// GetWhatsAppNumberKycForm200ResponseReusableOptionsInner
     /// </summary>
-    [DataContract(Name = "getWhatsAppNumberKycForm_200_response_reusable")]
-    public partial class GetWhatsAppNumberKycForm200ResponseReusable : IValidatableObject
+    [DataContract(Name = "getWhatsAppNumberKycForm_200_response_reusable_options_inner")]
+    public partial class GetWhatsAppNumberKycForm200ResponseReusableOptionsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetWhatsAppNumberKycForm200ResponseReusable" /> class.
+        /// Initializes a new instance of the <see cref="GetWhatsAppNumberKycForm200ResponseReusableOptionsInner" /> class.
         /// </summary>
-        /// <param name="available">available.</param>
         /// <param name="fromPhoneNumber">fromPhoneNumber.</param>
-        /// <param name="details">Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort — may be empty if the provider lookup fails..</param>
-        /// <param name="options">One entry per distinct approved verification, newest first..</param>
-        public GetWhatsAppNumberKycForm200ResponseReusable(bool available = default, string fromPhoneNumber = default, List<GetWhatsAppNumberKycForm200ResponseReusableDetailsInner> details = default, List<GetWhatsAppNumberKycForm200ResponseReusableOptionsInner> options = default)
+        /// <param name="details">details.</param>
+        public GetWhatsAppNumberKycForm200ResponseReusableOptionsInner(string fromPhoneNumber = default, List<GetWhatsAppNumberKycForm200ResponseReusableDetailsInner> details = default)
         {
-            this.Available = available;
             this.FromPhoneNumber = fromPhoneNumber;
             this.Details = details;
-            this.Options = options;
         }
-
-        /// <summary>
-        /// Gets or Sets Available
-        /// </summary>
-        [DataMember(Name = "available", EmitDefaultValue = true)]
-        public bool Available { get; set; }
 
         /// <summary>
         /// Gets or Sets FromPhoneNumber
@@ -61,18 +51,10 @@ namespace Zernio.Model
         public string FromPhoneNumber { get; set; }
 
         /// <summary>
-        /// Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort — may be empty if the provider lookup fails.
+        /// Gets or Sets Details
         /// </summary>
-        /// <value>Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort — may be empty if the provider lookup fails.</value>
         [DataMember(Name = "details", EmitDefaultValue = false)]
         public List<GetWhatsAppNumberKycForm200ResponseReusableDetailsInner> Details { get; set; }
-
-        /// <summary>
-        /// One entry per distinct approved verification, newest first.
-        /// </summary>
-        /// <value>One entry per distinct approved verification, newest first.</value>
-        [DataMember(Name = "options", EmitDefaultValue = false)]
-        public List<GetWhatsAppNumberKycForm200ResponseReusableOptionsInner> Options { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -81,11 +63,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetWhatsAppNumberKycForm200ResponseReusable {\n");
-            sb.Append("  Available: ").Append(Available).Append("\n");
+            sb.Append("class GetWhatsAppNumberKycForm200ResponseReusableOptionsInner {\n");
             sb.Append("  FromPhoneNumber: ").Append(FromPhoneNumber).Append("\n");
             sb.Append("  Details: ").Append(Details).Append("\n");
-            sb.Append("  Options: ").Append(Options).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

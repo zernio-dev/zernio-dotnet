@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Country** | **string** |  | 
 **SubmissionId** | **string** | Idempotency token for this submission attempt. A retry/double-submit with the same token returns the same number; omit and each call creates a new number. | [optional] 
 **Reuse** | **bool** | Reuse a prior approved verification for this country (skips document/field collection; places the order immediately). | [optional] 
+**ReuseFrom** | **string** | Which approved verification to reuse when several exist: the phone number it was originally approved for (GET reusable.options[].fromPhoneNumber). Omitted &#x3D; newest. No match &#x3D; 409. | [optional] 
 **EndUserFirstName** | **string** | End user&#39;s legal first name. Required when the country has an action/ID-verification (Onfido) requirement. | [optional] 
 **EndUserLastName** | **string** | End user&#39;s legal last name. Same condition as endUserFirstName. | [optional] 
 **Values** | **Dictionary&lt;string, string&gt;** | requirementId → textual value | [optional] 

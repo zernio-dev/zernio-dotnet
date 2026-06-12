@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ReuseFrom'
+        /// </summary>
+        [Fact]
+        public void ReuseFromTest()
+        {
+            // TODO unit test for the property 'ReuseFrom'
+        }
+
+        /// <summary>
         /// Test the property 'EndUserFirstName'
         /// </summary>
         [Fact]
