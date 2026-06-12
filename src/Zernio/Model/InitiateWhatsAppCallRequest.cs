@@ -34,6 +34,27 @@ namespace Zernio.Model
     public partial class InitiateWhatsAppCallRequest : IValidatableObject
     {
         /// <summary>
+        /// Omit to place a call. Set to send the consent prompt instead.
+        /// </summary>
+        /// <value>Omit to place a call. Set to send the consent prompt instead.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ActionEnum
+        {
+            /// <summary>
+            /// Enum SendCallPermissionRequest for value: send_call_permission_request
+            /// </summary>
+            [EnumMember(Value = "send_call_permission_request")]
+            SendCallPermissionRequest = 1
+        }
+
+
+        /// <summary>
+        /// Omit to place a call. Set to send the consent prompt instead.
+        /// </summary>
+        /// <value>Omit to place a call. Set to send the consent prompt instead.</value>
+        [DataMember(Name = "action", EmitDefaultValue = false)]
+        public ActionEnum? Action { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="InitiateWhatsAppCallRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -43,10 +64,12 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="accountId">accountId (required).</param>
         /// <param name="to">Consumer wa_id (E.164 (required).</param>
+        /// <param name="action">Omit to place a call. Set to send the consent prompt instead..</param>
+        /// <param name="bodyText">Body text shown with the consent prompt (send_call_permission_request only)..</param>
         /// <param name="forwardTo">Per-call destination override. Same accepted shape as the number&#39;s stored forwardTo (tel:+E164, sip:..., wss://...). .</param>
         /// <param name="recordOverride">recordOverride.</param>
         /// <param name="bizOpaqueCallbackData">Accepted for forward compatibility. Not currently echoed back in webhook payloads (SIP-first flow does not pass through Meta&#39;s Graph API where Meta would echo this). .</param>
-        public InitiateWhatsAppCallRequest(string accountId = default, string to = default, string forwardTo = default, bool recordOverride = default, string bizOpaqueCallbackData = default)
+        public InitiateWhatsAppCallRequest(string accountId = default, string to = default, ActionEnum? action = default, string bodyText = default, string forwardTo = default, bool recordOverride = default, string bizOpaqueCallbackData = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -60,6 +83,8 @@ namespace Zernio.Model
                 throw new ArgumentNullException("to is a required property for InitiateWhatsAppCallRequest and cannot be null");
             }
             this.To = to;
+            this.Action = action;
+            this.BodyText = bodyText;
             this.ForwardTo = forwardTo;
             this.RecordOverride = recordOverride;
             this.BizOpaqueCallbackData = bizOpaqueCallbackData;
@@ -77,6 +102,13 @@ namespace Zernio.Model
         /// <value>Consumer wa_id (E.164</value>
         [DataMember(Name = "to", IsRequired = true, EmitDefaultValue = true)]
         public string To { get; set; }
+
+        /// <summary>
+        /// Body text shown with the consent prompt (send_call_permission_request only).
+        /// </summary>
+        /// <value>Body text shown with the consent prompt (send_call_permission_request only).</value>
+        [DataMember(Name = "bodyText", EmitDefaultValue = false)]
+        public string BodyText { get; set; }
 
         /// <summary>
         /// Per-call destination override. Same accepted shape as the number&#39;s stored forwardTo (tel:+E164, sip:..., wss://...). 
@@ -108,6 +140,8 @@ namespace Zernio.Model
             sb.Append("class InitiateWhatsAppCallRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  To: ").Append(To).Append("\n");
+            sb.Append("  Action: ").Append(Action).Append("\n");
+            sb.Append("  BodyText: ").Append(BodyText).Append("\n");
             sb.Append("  ForwardTo: ").Append(ForwardTo).Append("\n");
             sb.Append("  RecordOverride: ").Append(RecordOverride).Append("\n");
             sb.Append("  BizOpaqueCallbackData: ").Append(BizOpaqueCallbackData).Append("\n");
@@ -131,6 +165,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // BodyText (string) maxLength
+            if (this.BodyText != null && this.BodyText.Length > 1024)
+            {
+                yield return new ValidationResult("Invalid value for BodyText, length must be less than 1024.", new [] { "BodyText" });
+            }
+
             // BizOpaqueCallbackData (string) maxLength
             if (this.BizOpaqueCallbackData != null && this.BizOpaqueCallbackData.Length > 512)
             {

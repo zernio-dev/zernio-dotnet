@@ -74,6 +74,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Action'
+        /// </summary>
+        [Fact]
+        public void ActionTest()
+        {
+            // TODO unit test for the property 'Action'
+        }
+
+        /// <summary>
+        /// Test the property 'BodyText'
+        /// </summary>
+        [Fact]
+        public void BodyTextTest()
+        {
+            // TODO unit test for the property 'BodyText'
+        }
+
+        /// <summary>
         /// Test the property 'ForwardTo'
         /// </summary>
         [Fact]
