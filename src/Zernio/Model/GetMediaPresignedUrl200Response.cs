@@ -34,51 +34,18 @@ namespace Zernio.Model
     public partial class GetMediaPresignedUrl200Response : IValidatableObject
     {
         /// <summary>
-        /// Detected file type based on content type
-        /// </summary>
-        /// <value>Detected file type based on content type</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum Image for value: image
-            /// </summary>
-            [EnumMember(Value = "image")]
-            Image = 1,
-
-            /// <summary>
-            /// Enum Video for value: video
-            /// </summary>
-            [EnumMember(Value = "video")]
-            Video = 2,
-
-            /// <summary>
-            /// Enum Document for value: document
-            /// </summary>
-            [EnumMember(Value = "document")]
-            Document = 3
-        }
-
-
-        /// <summary>
-        /// Detected file type based on content type
-        /// </summary>
-        /// <value>Detected file type based on content type</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum? Type { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="GetMediaPresignedUrl200Response" /> class.
         /// </summary>
         /// <param name="uploadUrl">Presigned URL to PUT your file to (expires in 1 hour).</param>
         /// <param name="publicUrl">Public URL where the file will be accessible after upload.</param>
         /// <param name="key">Storage key/path of the file.</param>
-        /// <param name="type">Detected file type based on content type.</param>
-        public GetMediaPresignedUrl200Response(string uploadUrl = default, string publicUrl = default, string key = default, TypeEnum? type = default)
+        /// <param name="expiresIn">Seconds until the presigned uploadUrl expires (always 3600).</param>
+        public GetMediaPresignedUrl200Response(string uploadUrl = default, string publicUrl = default, string key = default, int expiresIn = default)
         {
             this.UploadUrl = uploadUrl;
             this.PublicUrl = publicUrl;
             this.Key = key;
-            this.Type = type;
+            this.ExpiresIn = expiresIn;
         }
 
         /// <summary>
@@ -103,6 +70,13 @@ namespace Zernio.Model
         public string Key { get; set; }
 
         /// <summary>
+        /// Seconds until the presigned uploadUrl expires (always 3600)
+        /// </summary>
+        /// <value>Seconds until the presigned uploadUrl expires (always 3600)</value>
+        [DataMember(Name = "expiresIn", EmitDefaultValue = false)]
+        public int ExpiresIn { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -113,7 +87,7 @@ namespace Zernio.Model
             sb.Append("  UploadUrl: ").Append(UploadUrl).Append("\n");
             sb.Append("  PublicUrl: ").Append(PublicUrl).Append("\n");
             sb.Append("  Key: ").Append(Key).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  ExpiresIn: ").Append(ExpiresIn).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

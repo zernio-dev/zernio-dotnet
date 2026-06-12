@@ -83,12 +83,12 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Type'
+        /// Test the property 'ExpiresIn'
         /// </summary>
         [Fact]
-        public void TypeTest()
+        public void ExpiresInTest()
         {
-            // TODO unit test for the property 'Type'
+            // TODO unit test for the property 'ExpiresIn'
         }
     }
 }
