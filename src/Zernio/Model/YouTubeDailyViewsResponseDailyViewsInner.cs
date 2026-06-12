@@ -40,17 +40,19 @@ namespace Zernio.Model
         /// <param name="views">views.</param>
         /// <param name="estimatedMinutesWatched">estimatedMinutesWatched.</param>
         /// <param name="averageViewDuration">Average view duration in seconds.</param>
+        /// <param name="averageViewPercentage">Average percentage of the video watched per view. Can exceed 100 on Shorts (looping rewatches), so do not clamp it client-side..</param>
         /// <param name="subscribersGained">subscribersGained.</param>
         /// <param name="subscribersLost">subscribersLost.</param>
         /// <param name="likes">likes.</param>
         /// <param name="comments">comments.</param>
         /// <param name="shares">shares.</param>
-        public YouTubeDailyViewsResponseDailyViewsInner(DateOnly date = default, int views = default, decimal estimatedMinutesWatched = default, decimal averageViewDuration = default, int subscribersGained = default, int subscribersLost = default, int likes = default, int comments = default, int shares = default)
+        public YouTubeDailyViewsResponseDailyViewsInner(DateOnly date = default, int views = default, decimal estimatedMinutesWatched = default, decimal averageViewDuration = default, decimal averageViewPercentage = default, int subscribersGained = default, int subscribersLost = default, int likes = default, int comments = default, int shares = default)
         {
             this.Date = date;
             this.Views = views;
             this.EstimatedMinutesWatched = estimatedMinutesWatched;
             this.AverageViewDuration = averageViewDuration;
+            this.AverageViewPercentage = averageViewPercentage;
             this.SubscribersGained = subscribersGained;
             this.SubscribersLost = subscribersLost;
             this.Likes = likes;
@@ -82,6 +84,13 @@ namespace Zernio.Model
         /// <value>Average view duration in seconds</value>
         [DataMember(Name = "averageViewDuration", EmitDefaultValue = false)]
         public decimal AverageViewDuration { get; set; }
+
+        /// <summary>
+        /// Average percentage of the video watched per view. Can exceed 100 on Shorts (looping rewatches), so do not clamp it client-side.
+        /// </summary>
+        /// <value>Average percentage of the video watched per view. Can exceed 100 on Shorts (looping rewatches), so do not clamp it client-side.</value>
+        [DataMember(Name = "averageViewPercentage", EmitDefaultValue = false)]
+        public decimal AverageViewPercentage { get; set; }
 
         /// <summary>
         /// Gets or Sets SubscribersGained
@@ -125,6 +134,7 @@ namespace Zernio.Model
             sb.Append("  Views: ").Append(Views).Append("\n");
             sb.Append("  EstimatedMinutesWatched: ").Append(EstimatedMinutesWatched).Append("\n");
             sb.Append("  AverageViewDuration: ").Append(AverageViewDuration).Append("\n");
+            sb.Append("  AverageViewPercentage: ").Append(AverageViewPercentage).Append("\n");
             sb.Append("  SubscribersGained: ").Append(SubscribersGained).Append("\n");
             sb.Append("  SubscribersLost: ").Append(SubscribersLost).Append("\n");
             sb.Append("  Likes: ").Append(Likes).Append("\n");

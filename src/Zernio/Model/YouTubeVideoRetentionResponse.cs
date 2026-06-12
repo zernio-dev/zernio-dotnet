@@ -28,31 +28,35 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// YouTubeDailyViewsResponse
+    /// YouTubeVideoRetentionResponse
     /// </summary>
-    [DataContract(Name = "YouTubeDailyViewsResponse")]
-    public partial class YouTubeDailyViewsResponse : IValidatableObject
+    [DataContract(Name = "YouTubeVideoRetentionResponse")]
+    public partial class YouTubeVideoRetentionResponse : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="YouTubeDailyViewsResponse" /> class.
+        /// Initializes a new instance of the <see cref="YouTubeVideoRetentionResponse" /> class.
         /// </summary>
         /// <param name="success">success.</param>
+        /// <param name="accountId">The Zernio account ID for the YouTube account.</param>
         /// <param name="videoId">The YouTube video ID.</param>
+        /// <param name="title">Video title.</param>
+        /// <param name="publishedAt">When the video was published on YouTube.</param>
         /// <param name="durationSeconds">Video length in seconds (from YouTube contentDetails.duration).</param>
         /// <param name="dateRange">dateRange.</param>
-        /// <param name="totalViews">Sum of views across all days in the range.</param>
-        /// <param name="dailyViews">dailyViews.</param>
-        /// <param name="lastSyncedAt">When the data was last synced from YouTube.</param>
+        /// <param name="retentionCurve">Up to 100 points covering the video timeline, aggregated over the date range. Empty for videos with very few views..</param>
+        /// <param name="note">Present only when the curve is empty, explaining why.</param>
         /// <param name="scopeStatus">scopeStatus.</param>
-        public YouTubeDailyViewsResponse(bool success = default, string videoId = default, int durationSeconds = default, YouTubeDailyViewsResponseDateRange dateRange = default, int totalViews = default, List<YouTubeDailyViewsResponseDailyViewsInner> dailyViews = default, DateTime lastSyncedAt = default, YouTubeDailyViewsResponseScopeStatus scopeStatus = default)
+        public YouTubeVideoRetentionResponse(bool success = default, string accountId = default, string videoId = default, string title = default, DateTime publishedAt = default, int durationSeconds = default, YouTubeDailyViewsResponseDateRange dateRange = default, List<YouTubeVideoRetentionResponseRetentionCurveInner> retentionCurve = default, string note = default, YouTubeDailyViewsResponseScopeStatus scopeStatus = default)
         {
             this.Success = success;
+            this.AccountId = accountId;
             this.VideoId = videoId;
+            this.Title = title;
+            this.PublishedAt = publishedAt;
             this.DurationSeconds = durationSeconds;
             this.DateRange = dateRange;
-            this.TotalViews = totalViews;
-            this.DailyViews = dailyViews;
-            this.LastSyncedAt = lastSyncedAt;
+            this.RetentionCurve = retentionCurve;
+            this.Note = note;
             this.ScopeStatus = scopeStatus;
         }
 
@@ -66,11 +70,32 @@ namespace Zernio.Model
         public bool Success { get; set; }
 
         /// <summary>
+        /// The Zernio account ID for the YouTube account
+        /// </summary>
+        /// <value>The Zernio account ID for the YouTube account</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
+
+        /// <summary>
         /// The YouTube video ID
         /// </summary>
         /// <value>The YouTube video ID</value>
         [DataMember(Name = "videoId", EmitDefaultValue = false)]
         public string VideoId { get; set; }
+
+        /// <summary>
+        /// Video title
+        /// </summary>
+        /// <value>Video title</value>
+        [DataMember(Name = "title", EmitDefaultValue = false)]
+        public string Title { get; set; }
+
+        /// <summary>
+        /// When the video was published on YouTube
+        /// </summary>
+        /// <value>When the video was published on YouTube</value>
+        [DataMember(Name = "publishedAt", EmitDefaultValue = false)]
+        public DateTime PublishedAt { get; set; }
 
         /// <summary>
         /// Video length in seconds (from YouTube contentDetails.duration)
@@ -86,24 +111,18 @@ namespace Zernio.Model
         public YouTubeDailyViewsResponseDateRange DateRange { get; set; }
 
         /// <summary>
-        /// Sum of views across all days in the range
+        /// Up to 100 points covering the video timeline, aggregated over the date range. Empty for videos with very few views.
         /// </summary>
-        /// <value>Sum of views across all days in the range</value>
-        [DataMember(Name = "totalViews", EmitDefaultValue = false)]
-        public int TotalViews { get; set; }
+        /// <value>Up to 100 points covering the video timeline, aggregated over the date range. Empty for videos with very few views.</value>
+        [DataMember(Name = "retentionCurve", EmitDefaultValue = false)]
+        public List<YouTubeVideoRetentionResponseRetentionCurveInner> RetentionCurve { get; set; }
 
         /// <summary>
-        /// Gets or Sets DailyViews
+        /// Present only when the curve is empty, explaining why
         /// </summary>
-        [DataMember(Name = "dailyViews", EmitDefaultValue = false)]
-        public List<YouTubeDailyViewsResponseDailyViewsInner> DailyViews { get; set; }
-
-        /// <summary>
-        /// When the data was last synced from YouTube
-        /// </summary>
-        /// <value>When the data was last synced from YouTube</value>
-        [DataMember(Name = "lastSyncedAt", EmitDefaultValue = false)]
-        public DateTime LastSyncedAt { get; set; }
+        /// <value>Present only when the curve is empty, explaining why</value>
+        [DataMember(Name = "note", EmitDefaultValue = false)]
+        public string Note { get; set; }
 
         /// <summary>
         /// Gets or Sets ScopeStatus
@@ -118,14 +137,16 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class YouTubeDailyViewsResponse {\n");
+            sb.Append("class YouTubeVideoRetentionResponse {\n");
             sb.Append("  Success: ").Append(Success).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  VideoId: ").Append(VideoId).Append("\n");
+            sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
             sb.Append("  DurationSeconds: ").Append(DurationSeconds).Append("\n");
             sb.Append("  DateRange: ").Append(DateRange).Append("\n");
-            sb.Append("  TotalViews: ").Append(TotalViews).Append("\n");
-            sb.Append("  DailyViews: ").Append(DailyViews).Append("\n");
-            sb.Append("  LastSyncedAt: ").Append(LastSyncedAt).Append("\n");
+            sb.Append("  RetentionCurve: ").Append(RetentionCurve).Append("\n");
+            sb.Append("  Note: ").Append(Note).Append("\n");
             sb.Append("  ScopeStatus: ").Append(ScopeStatus).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

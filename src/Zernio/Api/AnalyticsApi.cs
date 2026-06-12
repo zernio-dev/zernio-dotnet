@@ -625,6 +625,33 @@ namespace Zernio.Api
         /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
         /// <returns>ApiResponse of YouTubeDemographicsResponse</returns>
         ApiResponse<YouTubeDemographicsResponse> GetYouTubeDemographicsWithHttpInfo(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default);
+        /// <summary>
+        /// Get YouTube video retention curve
+        /// </summary>
+        /// <remarks>
+        /// Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
+        /// <param name="accountId">The Zernio account ID for the YouTube account</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <returns>YouTubeVideoRetentionResponse</returns>
+        YouTubeVideoRetentionResponse GetYouTubeVideoRetention(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default);
+
+        /// <summary>
+        /// Get YouTube video retention curve
+        /// </summary>
+        /// <remarks>
+        /// Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
+        /// <param name="accountId">The Zernio account ID for the YouTube account</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <returns>ApiResponse of YouTubeVideoRetentionResponse</returns>
+        ApiResponse<YouTubeVideoRetentionResponse> GetYouTubeVideoRetentionWithHttpInfo(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default);
         #endregion Synchronous Operations
     }
 
@@ -1273,6 +1300,35 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (YouTubeDemographicsResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<YouTubeDemographicsResponse>> GetYouTubeDemographicsWithHttpInfoAsync(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get YouTube video retention curve
+        /// </summary>
+        /// <remarks>
+        /// Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
+        /// <param name="accountId">The Zernio account ID for the YouTube account</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of YouTubeVideoRetentionResponse</returns>
+        System.Threading.Tasks.Task<YouTubeVideoRetentionResponse> GetYouTubeVideoRetentionAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get YouTube video retention curve
+        /// </summary>
+        /// <remarks>
+        /// Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
+        /// <param name="accountId">The Zernio account ID for the YouTube account</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (YouTubeVideoRetentionResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<YouTubeVideoRetentionResponse>> GetYouTubeVideoRetentionWithHttpInfoAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -5077,6 +5133,171 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetYouTubeDemographics", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get YouTube video retention curve Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
+        /// <param name="accountId">The Zernio account ID for the YouTube account</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <returns>YouTubeVideoRetentionResponse</returns>
+        public YouTubeVideoRetentionResponse GetYouTubeVideoRetention(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default)
+        {
+            Zernio.Client.ApiResponse<YouTubeVideoRetentionResponse> localVarResponse = GetYouTubeVideoRetentionWithHttpInfo(videoId, accountId, startDate, endDate);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get YouTube video retention curve Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
+        /// <param name="accountId">The Zernio account ID for the YouTube account</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <returns>ApiResponse of YouTubeVideoRetentionResponse</returns>
+        public Zernio.Client.ApiResponse<YouTubeVideoRetentionResponse> GetYouTubeVideoRetentionWithHttpInfo(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default)
+        {
+            // verify the required parameter 'videoId' is set
+            if (videoId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'videoId' when calling AnalyticsApi->GetYouTubeVideoRetention");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetYouTubeVideoRetention");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "videoId", videoId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (startDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate));
+            }
+            if (endDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<YouTubeVideoRetentionResponse>("/v1/analytics/youtube/video-retention", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetYouTubeVideoRetention", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get YouTube video retention curve Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
+        /// <param name="accountId">The Zernio account ID for the YouTube account</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of YouTubeVideoRetentionResponse</returns>
+        public async System.Threading.Tasks.Task<YouTubeVideoRetentionResponse> GetYouTubeVideoRetentionAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<YouTubeVideoRetentionResponse> localVarResponse = await GetYouTubeVideoRetentionWithHttpInfoAsync(videoId, accountId, startDate, endDate, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get YouTube video retention curve Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
+        /// <param name="accountId">The Zernio account ID for the YouTube account</param>
+        /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (YouTubeVideoRetentionResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<YouTubeVideoRetentionResponse>> GetYouTubeVideoRetentionWithHttpInfoAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'videoId' is set
+            if (videoId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'videoId' when calling AnalyticsApi->GetYouTubeVideoRetention");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetYouTubeVideoRetention");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "videoId", videoId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (startDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "startDate", startDate));
+            }
+            if (endDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "endDate", endDate));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<YouTubeVideoRetentionResponse>("/v1/analytics/youtube/video-retention", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetYouTubeVideoRetention", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

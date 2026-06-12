@@ -575,6 +575,7 @@ docs/GetYouTubeDailyViews403Response.md
 docs/GetYouTubeDailyViews500Response.md
 docs/GetYouTubeDemographics412Response.md
 docs/GetYouTubeDemographics412ResponseScopeStatus.md
+docs/GetYouTubeVideoRetention404Response.md
 docs/GetYoutubePlaylists200Response.md
 docs/GetYoutubePlaylists200ResponsePlaylistsInner.md
 docs/GoogleBusinessPlatformData.md
@@ -1236,6 +1237,8 @@ docs/YouTubeDemographicsResponseDemographicsValueInner.md
 docs/YouTubePlatformData.md
 docs/YouTubeScopeMissingResponse.md
 docs/YouTubeScopeMissingResponseScopeStatus.md
+docs/YouTubeVideoRetentionResponse.md
+docs/YouTubeVideoRetentionResponseRetentionCurveInner.md
 git_push.sh
 src/Zernio.Test/Api/APIKeysApiTests.cs
 src/Zernio.Test/Api/AccountGroupsApiTests.cs
@@ -1836,6 +1839,7 @@ src/Zernio.Test/Model/GetYouTubeDailyViews403ResponseTests.cs
 src/Zernio.Test/Model/GetYouTubeDailyViews500ResponseTests.cs
 src/Zernio.Test/Model/GetYouTubeDemographics412ResponseScopeStatusTests.cs
 src/Zernio.Test/Model/GetYouTubeDemographics412ResponseTests.cs
+src/Zernio.Test/Model/GetYouTubeVideoRetention404ResponseTests.cs
 src/Zernio.Test/Model/GetYoutubePlaylists200ResponsePlaylistsInnerTests.cs
 src/Zernio.Test/Model/GetYoutubePlaylists200ResponseTests.cs
 src/Zernio.Test/Model/GoogleBusinessPlatformDataCallToActionTests.cs
@@ -2470,6 +2474,8 @@ src/Zernio.Test/Model/YouTubeDemographicsResponseTests.cs
 src/Zernio.Test/Model/YouTubePlatformDataTests.cs
 src/Zernio.Test/Model/YouTubeScopeMissingResponseScopeStatusTests.cs
 src/Zernio.Test/Model/YouTubeScopeMissingResponseTests.cs
+src/Zernio.Test/Model/YouTubeVideoRetentionResponseRetentionCurveInnerTests.cs
+src/Zernio.Test/Model/YouTubeVideoRetentionResponseTests.cs
 src/Zernio.Test/Zernio.Test.csproj
 src/Zernio/Api/APIKeysApi.cs
 src/Zernio/Api/AccountGroupsApi.cs
@@ -3088,6 +3094,7 @@ src/Zernio/Model/GetYouTubeDailyViews403Response.cs
 src/Zernio/Model/GetYouTubeDailyViews500Response.cs
 src/Zernio/Model/GetYouTubeDemographics412Response.cs
 src/Zernio/Model/GetYouTubeDemographics412ResponseScopeStatus.cs
+src/Zernio/Model/GetYouTubeVideoRetention404Response.cs
 src/Zernio/Model/GetYoutubePlaylists200Response.cs
 src/Zernio/Model/GetYoutubePlaylists200ResponsePlaylistsInner.cs
 src/Zernio/Model/GoogleBusinessPlatformData.cs
@@ -3722,4 +3729,6 @@ src/Zernio/Model/YouTubeDemographicsResponseDemographicsValueInner.cs
 src/Zernio/Model/YouTubePlatformData.cs
 src/Zernio/Model/YouTubeScopeMissingResponse.cs
 src/Zernio/Model/YouTubeScopeMissingResponseScopeStatus.cs
+src/Zernio/Model/YouTubeVideoRetentionResponse.cs
+src/Zernio/Model/YouTubeVideoRetentionResponseRetentionCurveInner.cs
 src/Zernio/Zernio.csproj

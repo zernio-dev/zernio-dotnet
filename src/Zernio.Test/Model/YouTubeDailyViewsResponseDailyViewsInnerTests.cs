@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AverageViewPercentage'
+        /// </summary>
+        [Fact]
+        public void AverageViewPercentageTest()
+        {
+            // TODO unit test for the property 'AverageViewPercentage'
+        }
+
+        /// <summary>
         /// Test the property 'SubscribersGained'
         /// </summary>
         [Fact]

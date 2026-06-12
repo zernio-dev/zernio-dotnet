@@ -25,6 +25,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetYouTubeChannelInsights**](AnalyticsApi.md#getyoutubechannelinsights) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel-level insights |
 | [**GetYouTubeDailyViews**](AnalyticsApi.md#getyoutubedailyviews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views |
 | [**GetYouTubeDemographics**](AnalyticsApi.md#getyoutubedemographics) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics |
+| [**GetYouTubeVideoRetention**](AnalyticsApi.md#getyoutubevideoretention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve |
 
 <a id="getanalytics"></a>
 # **GetAnalytics**
@@ -2328,6 +2329,117 @@ catch (ApiException e)
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
 | **412** | YouTube Analytics scope not granted |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getyoutubevideoretention"></a>
+# **GetYouTubeVideoRetention**
+> YouTubeVideoRetentionResponse GetYouTubeVideoRetention (string videoId, string accountId, DateOnly? startDate = null, DateOnly? endDate = null)
+
+Get YouTube video retention curve
+
+Returns the audience retention curve for a single YouTube video, plus the video's duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 = worst, 0.5 = median, 1 = best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetYouTubeVideoRetentionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
+            var videoId = "videoId_example";  // string | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
+            var accountId = "accountId_example";  // string | The Zernio account ID for the YouTube account
+            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to the video's publish date (lifetime curve). (optional) 
+            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional) 
+
+            try
+            {
+                // Get YouTube video retention curve
+                YouTubeVideoRetentionResponse result = apiInstance.GetYouTubeVideoRetention(videoId, accountId, startDate, endDate);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AnalyticsApi.GetYouTubeVideoRetention: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetYouTubeVideoRetentionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get YouTube video retention curve
+    ApiResponse<YouTubeVideoRetentionResponse> response = apiInstance.GetYouTubeVideoRetentionWithHttpInfo(videoId, accountId, startDate, endDate);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AnalyticsApi.GetYouTubeVideoRetentionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **videoId** | **string** | The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) |  |
+| **accountId** | **string** | The Zernio account ID for the YouTube account |  |
+| **startDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). | [optional]  |
+| **endDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). | [optional]  |
+
+### Return type
+
+[**YouTubeVideoRetentionResponse**](YouTubeVideoRetentionResponse.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Audience retention curve |  -  |
+| **400** | Bad request (missing or invalid parameters) |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | Access denied to this account |  -  |
+| **404** | Video not found, or it does not belong to this YouTube channel |  -  |
+| **412** | Missing YouTube Analytics scope |  -  |
+| **500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

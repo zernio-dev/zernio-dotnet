@@ -383,5 +383,20 @@ namespace Zernio.Test.Api
             //var response = instance.GetYouTubeDemographics(accountId, breakdown, startDate, endDate);
             //Assert.IsType<YouTubeDemographicsResponse>(response);
         }
+
+        /// <summary>
+        /// Test GetYouTubeVideoRetention
+        /// </summary>
+        [Fact]
+        public void GetYouTubeVideoRetentionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string videoId = null;
+            //string accountId = null;
+            //DateOnly? startDate = null;
+            //DateOnly? endDate = null;
+            //var response = instance.GetYouTubeVideoRetention(videoId, accountId, startDate, endDate);
+            //Assert.IsType<YouTubeVideoRetentionResponse>(response);
+        }
     }
 }
