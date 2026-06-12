@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Flow action. &#x60;type&#x60; on the parent must be &#x60;flow&#x60;.
+    /// Location request action. &#x60;type&#x60; on the parent must be &#x60;location_request_message&#x60;. May be omitted entirely; it is defaulted.
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_3")]
-    public partial class SendInboxMessageRequestInteractiveActionOneOf3 : IValidatableObject
+    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_4")]
+    public partial class SendInboxMessageRequestInteractiveActionOneOf4 : IValidatableObject
     {
         /// <summary>
         /// Defines Name
@@ -40,10 +40,10 @@ namespace Zernio.Model
         public enum NameEnum
         {
             /// <summary>
-            /// Enum Flow for value: flow
+            /// Enum SendLocation for value: send_location
             /// </summary>
-            [EnumMember(Value = "flow")]
-            Flow = 1
+            [EnumMember(Value = "send_location")]
+            SendLocation = 1
         }
 
 
@@ -53,31 +53,18 @@ namespace Zernio.Model
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public NameEnum Name { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf3" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf4" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SendInboxMessageRequestInteractiveActionOneOf3() { }
+        protected SendInboxMessageRequestInteractiveActionOneOf4() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf3" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf4" /> class.
         /// </summary>
         /// <param name="name">name (required).</param>
-        /// <param name="parameters">parameters (required).</param>
-        public SendInboxMessageRequestInteractiveActionOneOf3(NameEnum name = default, SendInboxMessageRequestInteractiveActionOneOf3Parameters parameters = default)
+        public SendInboxMessageRequestInteractiveActionOneOf4(NameEnum name = default)
         {
             this.Name = name;
-            // to ensure "parameters" is required (not null)
-            if (parameters == null)
-            {
-                throw new ArgumentNullException("parameters is a required property for SendInboxMessageRequestInteractiveActionOneOf3 and cannot be null");
-            }
-            this.Parameters = parameters;
         }
-
-        /// <summary>
-        /// Gets or Sets Parameters
-        /// </summary>
-        [DataMember(Name = "parameters", IsRequired = true, EmitDefaultValue = true)]
-        public SendInboxMessageRequestInteractiveActionOneOf3Parameters Parameters { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -86,9 +73,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf3 {\n");
+            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf4 {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Parameters: ").Append(Parameters).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

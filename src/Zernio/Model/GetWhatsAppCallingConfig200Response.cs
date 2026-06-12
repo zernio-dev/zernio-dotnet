@@ -39,16 +39,18 @@ namespace Zernio.Model
         /// <param name="phoneNumberDocId">WhatsAppPhoneNumber Mongo ID (use on /v1/whatsapp/phone-numbers/{id}/calling).</param>
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="callingEnabled">callingEnabled.</param>
+        /// <param name="callDeepLink">Public calling deep link (https://wa.me/call/&lt;number&gt;). Tapping it on a phone starts a WhatsApp voice call to this number. Embed it on websites, emails, or QR codes. Null while calling is disabled; not supported by WhatsApp desktop clients..</param>
         /// <param name="forwardTo">tel:+E164 / sip:... / wss://... destination.</param>
         /// <param name="recordingEnabled">recordingEnabled.</param>
         /// <param name="sipAuthUsername">sipAuthUsername.</param>
         /// <param name="sipAuthPasswordConfigured">True when a SIP digest password is stored. The plaintext is never returned..</param>
         /// <param name="callIconCountries">callIconCountries.</param>
-        public GetWhatsAppCallingConfig200Response(string phoneNumberDocId = default, string phoneNumber = default, bool callingEnabled = default, string forwardTo = default, bool recordingEnabled = default, string sipAuthUsername = default, bool sipAuthPasswordConfigured = default, List<string> callIconCountries = default)
+        public GetWhatsAppCallingConfig200Response(string phoneNumberDocId = default, string phoneNumber = default, bool callingEnabled = default, string callDeepLink = default, string forwardTo = default, bool recordingEnabled = default, string sipAuthUsername = default, bool sipAuthPasswordConfigured = default, List<string> callIconCountries = default)
         {
             this.PhoneNumberDocId = phoneNumberDocId;
             this.PhoneNumber = phoneNumber;
             this.CallingEnabled = callingEnabled;
+            this.CallDeepLink = callDeepLink;
             this.ForwardTo = forwardTo;
             this.RecordingEnabled = recordingEnabled;
             this.SipAuthUsername = sipAuthUsername;
@@ -74,6 +76,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "callingEnabled", EmitDefaultValue = true)]
         public bool CallingEnabled { get; set; }
+
+        /// <summary>
+        /// Public calling deep link (https://wa.me/call/&lt;number&gt;). Tapping it on a phone starts a WhatsApp voice call to this number. Embed it on websites, emails, or QR codes. Null while calling is disabled; not supported by WhatsApp desktop clients.
+        /// </summary>
+        /// <value>Public calling deep link (https://wa.me/call/&lt;number&gt;). Tapping it on a phone starts a WhatsApp voice call to this number. Embed it on websites, emails, or QR codes. Null while calling is disabled; not supported by WhatsApp desktop clients.</value>
+        [DataMember(Name = "callDeepLink", EmitDefaultValue = false)]
+        public string CallDeepLink { get; set; }
 
         /// <summary>
         /// tel:+E164 / sip:... / wss://... destination
@@ -118,6 +127,7 @@ namespace Zernio.Model
             sb.Append("  PhoneNumberDocId: ").Append(PhoneNumberDocId).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  CallingEnabled: ").Append(CallingEnabled).Append("\n");
+            sb.Append("  CallDeepLink: ").Append(CallDeepLink).Append("\n");
             sb.Append("  ForwardTo: ").Append(ForwardTo).Append("\n");
             sb.Append("  RecordingEnabled: ").Append(RecordingEnabled).Append("\n");
             sb.Append("  SipAuthUsername: ").Append(SipAuthUsername).Append("\n");

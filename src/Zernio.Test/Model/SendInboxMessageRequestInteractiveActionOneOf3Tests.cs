@@ -63,5 +63,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Name'
         }
+
+        /// <summary>
+        /// Test the property 'Parameters'
+        /// </summary>
+        [Fact]
+        public void ParametersTest()
+        {
+            // TODO unit test for the property 'Parameters'
+        }
     }
 }

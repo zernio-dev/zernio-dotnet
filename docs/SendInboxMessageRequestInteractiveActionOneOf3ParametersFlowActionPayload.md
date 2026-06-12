@@ -1,4 +1,4 @@
-# Zernio.Model.SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload
+# Zernio.Model.SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload
 Required when flow_action is `navigate`.
 
 ## Properties

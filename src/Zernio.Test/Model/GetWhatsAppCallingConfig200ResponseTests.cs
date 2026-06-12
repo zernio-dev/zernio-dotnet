@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CallDeepLink'
+        /// </summary>
+        [Fact]
+        public void CallDeepLinkTest()
+        {
+            // TODO unit test for the property 'CallDeepLink'
+        }
+
+        /// <summary>
         /// Test the property 'ForwardTo'
         /// </summary>
         [Fact]

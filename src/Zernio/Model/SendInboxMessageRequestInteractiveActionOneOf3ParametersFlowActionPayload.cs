@@ -30,15 +30,15 @@ namespace Zernio.Model
     /// <summary>
     /// Required when flow_action is &#x60;navigate&#x60;.
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_2_parameters_flow_action_payload")]
-    public partial class SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload : IValidatableObject
+    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_3_parameters_flow_action_payload")]
+    public partial class SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload" /> class.
         /// </summary>
         /// <param name="screen">First screen to show..</param>
         /// <param name="data">Optional pre-filled data passed to the screen..</param>
-        public SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload(string screen = default, Dictionary<string, Object> data = default)
+        public SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload(string screen = default, Dictionary<string, Object> data = default)
         {
             this.Screen = screen;
             this.Data = data;
@@ -65,7 +65,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload {\n");
+            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload {\n");
             sb.Append("  Screen: ").Append(Screen).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");

@@ -56,66 +56,30 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'FlowMessageVersion'
+        /// Test the property 'DisplayText'
         /// </summary>
         [Fact]
-        public void FlowMessageVersionTest()
+        public void DisplayTextTest()
         {
-            // TODO unit test for the property 'FlowMessageVersion'
+            // TODO unit test for the property 'DisplayText'
         }
 
         /// <summary>
-        /// Test the property 'FlowToken'
+        /// Test the property 'TtlMinutes'
         /// </summary>
         [Fact]
-        public void FlowTokenTest()
+        public void TtlMinutesTest()
         {
-            // TODO unit test for the property 'FlowToken'
+            // TODO unit test for the property 'TtlMinutes'
         }
 
         /// <summary>
-        /// Test the property 'FlowId'
+        /// Test the property 'Payload'
         /// </summary>
         [Fact]
-        public void FlowIdTest()
+        public void PayloadTest()
         {
-            // TODO unit test for the property 'FlowId'
-        }
-
-        /// <summary>
-        /// Test the property 'FlowCta'
-        /// </summary>
-        [Fact]
-        public void FlowCtaTest()
-        {
-            // TODO unit test for the property 'FlowCta'
-        }
-
-        /// <summary>
-        /// Test the property 'FlowAction'
-        /// </summary>
-        [Fact]
-        public void FlowActionTest()
-        {
-            // TODO unit test for the property 'FlowAction'
-        }
-
-        /// <summary>
-        /// Test the property 'FlowActionPayload'
-        /// </summary>
-        [Fact]
-        public void FlowActionPayloadTest()
-        {
-            // TODO unit test for the property 'FlowActionPayload'
-        }
-
-        /// <summary>
-        /// Test the property 'Mode'
-        /// </summary>
-        [Fact]
-        public void ModeTest()
-        {
-            // TODO unit test for the property 'Mode'
+            // TODO unit test for the property 'Payload'
         }
     }
 }

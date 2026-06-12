@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Flow action. &#x60;type&#x60; on the parent must be &#x60;flow&#x60;.
+    /// Voice-call action. &#x60;type&#x60; on the parent must be &#x60;voice_call&#x60;. Renders WhatsApp&#39;s native call button (requires Calling enabled on the sending number).
     /// </summary>
     [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_2")]
     public partial class SendInboxMessageRequestInteractiveActionOneOf2 : IValidatableObject
@@ -40,10 +40,10 @@ namespace Zernio.Model
         public enum NameEnum
         {
             /// <summary>
-            /// Enum Flow for value: flow
+            /// Enum VoiceCall for value: voice_call
             /// </summary>
-            [EnumMember(Value = "flow")]
-            Flow = 1
+            [EnumMember(Value = "voice_call")]
+            VoiceCall = 1
         }
 
 
@@ -61,22 +61,17 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf2" /> class.
         /// </summary>
         /// <param name="name">name (required).</param>
-        /// <param name="parameters">parameters (required).</param>
+        /// <param name="parameters">parameters.</param>
         public SendInboxMessageRequestInteractiveActionOneOf2(NameEnum name = default, SendInboxMessageRequestInteractiveActionOneOf2Parameters parameters = default)
         {
             this.Name = name;
-            // to ensure "parameters" is required (not null)
-            if (parameters == null)
-            {
-                throw new ArgumentNullException("parameters is a required property for SendInboxMessageRequestInteractiveActionOneOf2 and cannot be null");
-            }
             this.Parameters = parameters;
         }
 
         /// <summary>
         /// Gets or Sets Parameters
         /// </summary>
-        [DataMember(Name = "parameters", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "parameters", EmitDefaultValue = false)]
         public SendInboxMessageRequestInteractiveActionOneOf2Parameters Parameters { get; set; }
 
         /// <summary>

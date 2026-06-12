@@ -28,147 +28,44 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SendInboxMessageRequestInteractiveActionOneOf2Parameters
+    /// All optional.
     /// </summary>
     [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_2_parameters")]
     public partial class SendInboxMessageRequestInteractiveActionOneOf2Parameters : IValidatableObject
     {
         /// <summary>
-        /// Defaults to \&quot;3\&quot; when omitted.
-        /// </summary>
-        /// <value>Defaults to \&quot;3\&quot; when omitted.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FlowMessageVersionEnum
-        {
-            /// <summary>
-            /// Enum _3 for value: 3
-            /// </summary>
-            [EnumMember(Value = "3")]
-            _3 = 1
-        }
-
-
-        /// <summary>
-        /// Defaults to \&quot;3\&quot; when omitted.
-        /// </summary>
-        /// <value>Defaults to \&quot;3\&quot; when omitted.</value>
-        [DataMember(Name = "flow_message_version", EmitDefaultValue = false)]
-        public FlowMessageVersionEnum? FlowMessageVersion { get; set; }
-        /// <summary>
-        /// &#x60;navigate&#x60; sends the user to &#x60;flow_action_payload.screen&#x60;; &#x60;data_exchange&#x60; posts data to your Flow endpoint.
-        /// </summary>
-        /// <value>&#x60;navigate&#x60; sends the user to &#x60;flow_action_payload.screen&#x60;; &#x60;data_exchange&#x60; posts data to your Flow endpoint.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FlowActionEnum
-        {
-            /// <summary>
-            /// Enum Navigate for value: navigate
-            /// </summary>
-            [EnumMember(Value = "navigate")]
-            Navigate = 1,
-
-            /// <summary>
-            /// Enum DataExchange for value: data_exchange
-            /// </summary>
-            [EnumMember(Value = "data_exchange")]
-            DataExchange = 2
-        }
-
-
-        /// <summary>
-        /// &#x60;navigate&#x60; sends the user to &#x60;flow_action_payload.screen&#x60;; &#x60;data_exchange&#x60; posts data to your Flow endpoint.
-        /// </summary>
-        /// <value>&#x60;navigate&#x60; sends the user to &#x60;flow_action_payload.screen&#x60;; &#x60;data_exchange&#x60; posts data to your Flow endpoint.</value>
-        [DataMember(Name = "flow_action", IsRequired = true, EmitDefaultValue = true)]
-        public FlowActionEnum FlowAction { get; set; }
-        /// <summary>
-        /// Set to &#x60;draft&#x60; to test an unpublished Flow.
-        /// </summary>
-        /// <value>Set to &#x60;draft&#x60; to test an unpublished Flow.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ModeEnum
-        {
-            /// <summary>
-            /// Enum Draft for value: draft
-            /// </summary>
-            [EnumMember(Value = "draft")]
-            Draft = 1
-        }
-
-
-        /// <summary>
-        /// Set to &#x60;draft&#x60; to test an unpublished Flow.
-        /// </summary>
-        /// <value>Set to &#x60;draft&#x60; to test an unpublished Flow.</value>
-        [DataMember(Name = "mode", EmitDefaultValue = false)]
-        public ModeEnum? Mode { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf2Parameters" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SendInboxMessageRequestInteractiveActionOneOf2Parameters() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf2Parameters" /> class.
-        /// </summary>
-        /// <param name="flowMessageVersion">Defaults to \&quot;3\&quot; when omitted..</param>
-        /// <param name="flowToken">Opaque token you choose to correlate Flow responses with your own state (max 200 chars). (required).</param>
-        /// <param name="flowId">Published Flow ID from Meta Business Manager. (required).</param>
-        /// <param name="flowCta">Button label that opens the Flow (max 20 chars). (required).</param>
-        /// <param name="flowAction">&#x60;navigate&#x60; sends the user to &#x60;flow_action_payload.screen&#x60;; &#x60;data_exchange&#x60; posts data to your Flow endpoint. (required).</param>
-        /// <param name="flowActionPayload">flowActionPayload.</param>
-        /// <param name="mode">Set to &#x60;draft&#x60; to test an unpublished Flow..</param>
-        public SendInboxMessageRequestInteractiveActionOneOf2Parameters(FlowMessageVersionEnum? flowMessageVersion = default, string flowToken = default, string flowId = default, string flowCta = default, FlowActionEnum flowAction = default, SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload flowActionPayload = default, ModeEnum? mode = default)
+        /// <param name="displayText">Button label. Defaults to \&quot;Call Now\&quot;..</param>
+        /// <param name="ttlMinutes">How long the button stays tappable. Defaults to 10080 (7 days)..</param>
+        /// <param name="payload">Arbitrary string echoed back as &#x60;cta_payload&#x60; on the &#x60;calls&#x60; webhook (connect/terminate) for attribution..</param>
+        public SendInboxMessageRequestInteractiveActionOneOf2Parameters(string displayText = default, int ttlMinutes = default, string payload = default)
         {
-            // to ensure "flowToken" is required (not null)
-            if (flowToken == null)
-            {
-                throw new ArgumentNullException("flowToken is a required property for SendInboxMessageRequestInteractiveActionOneOf2Parameters and cannot be null");
-            }
-            this.FlowToken = flowToken;
-            // to ensure "flowId" is required (not null)
-            if (flowId == null)
-            {
-                throw new ArgumentNullException("flowId is a required property for SendInboxMessageRequestInteractiveActionOneOf2Parameters and cannot be null");
-            }
-            this.FlowId = flowId;
-            // to ensure "flowCta" is required (not null)
-            if (flowCta == null)
-            {
-                throw new ArgumentNullException("flowCta is a required property for SendInboxMessageRequestInteractiveActionOneOf2Parameters and cannot be null");
-            }
-            this.FlowCta = flowCta;
-            this.FlowAction = flowAction;
-            this.FlowMessageVersion = flowMessageVersion;
-            this.FlowActionPayload = flowActionPayload;
-            this.Mode = mode;
+            this.DisplayText = displayText;
+            this.TtlMinutes = ttlMinutes;
+            this.Payload = payload;
         }
 
         /// <summary>
-        /// Opaque token you choose to correlate Flow responses with your own state (max 200 chars).
+        /// Button label. Defaults to \&quot;Call Now\&quot;.
         /// </summary>
-        /// <value>Opaque token you choose to correlate Flow responses with your own state (max 200 chars).</value>
-        [DataMember(Name = "flow_token", IsRequired = true, EmitDefaultValue = true)]
-        public string FlowToken { get; set; }
+        /// <value>Button label. Defaults to \&quot;Call Now\&quot;.</value>
+        [DataMember(Name = "display_text", EmitDefaultValue = false)]
+        public string DisplayText { get; set; }
 
         /// <summary>
-        /// Published Flow ID from Meta Business Manager.
+        /// How long the button stays tappable. Defaults to 10080 (7 days).
         /// </summary>
-        /// <value>Published Flow ID from Meta Business Manager.</value>
-        [DataMember(Name = "flow_id", IsRequired = true, EmitDefaultValue = true)]
-        public string FlowId { get; set; }
+        /// <value>How long the button stays tappable. Defaults to 10080 (7 days).</value>
+        [DataMember(Name = "ttl_minutes", EmitDefaultValue = false)]
+        public int TtlMinutes { get; set; }
 
         /// <summary>
-        /// Button label that opens the Flow (max 20 chars).
+        /// Arbitrary string echoed back as &#x60;cta_payload&#x60; on the &#x60;calls&#x60; webhook (connect/terminate) for attribution.
         /// </summary>
-        /// <value>Button label that opens the Flow (max 20 chars).</value>
-        [DataMember(Name = "flow_cta", IsRequired = true, EmitDefaultValue = true)]
-        public string FlowCta { get; set; }
-
-        /// <summary>
-        /// Gets or Sets FlowActionPayload
-        /// </summary>
-        [DataMember(Name = "flow_action_payload", EmitDefaultValue = false)]
-        public SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload FlowActionPayload { get; set; }
+        /// <value>Arbitrary string echoed back as &#x60;cta_payload&#x60; on the &#x60;calls&#x60; webhook (connect/terminate) for attribution.</value>
+        [DataMember(Name = "payload", EmitDefaultValue = false)]
+        public string Payload { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -178,13 +75,9 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SendInboxMessageRequestInteractiveActionOneOf2Parameters {\n");
-            sb.Append("  FlowMessageVersion: ").Append(FlowMessageVersion).Append("\n");
-            sb.Append("  FlowToken: ").Append(FlowToken).Append("\n");
-            sb.Append("  FlowId: ").Append(FlowId).Append("\n");
-            sb.Append("  FlowCta: ").Append(FlowCta).Append("\n");
-            sb.Append("  FlowAction: ").Append(FlowAction).Append("\n");
-            sb.Append("  FlowActionPayload: ").Append(FlowActionPayload).Append("\n");
-            sb.Append("  Mode: ").Append(Mode).Append("\n");
+            sb.Append("  DisplayText: ").Append(DisplayText).Append("\n");
+            sb.Append("  TtlMinutes: ").Append(TtlMinutes).Append("\n");
+            sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -205,6 +98,30 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // DisplayText (string) maxLength
+            if (this.DisplayText != null && this.DisplayText.Length > 20)
+            {
+                yield return new ValidationResult("Invalid value for DisplayText, length must be less than 20.", new [] { "DisplayText" });
+            }
+
+            // TtlMinutes (int) maximum
+            if (this.TtlMinutes > (int)43200)
+            {
+                yield return new ValidationResult("Invalid value for TtlMinutes, must be a value less than or equal to 43200.", new [] { "TtlMinutes" });
+            }
+
+            // TtlMinutes (int) minimum
+            if (this.TtlMinutes < (int)1)
+            {
+                yield return new ValidationResult("Invalid value for TtlMinutes, must be a value greater than or equal to 1.", new [] { "TtlMinutes" });
+            }
+
+            // Payload (string) maxLength
+            if (this.Payload != null && this.Payload.Length > 512)
+            {
+                yield return new ValidationResult("Invalid value for Payload, length must be less than 512.", new [] { "Payload" });
+            }
+
             yield break;
         }
     }
