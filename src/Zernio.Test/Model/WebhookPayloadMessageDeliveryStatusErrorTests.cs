@@ -81,5 +81,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Message'
         }
+
+        /// <summary>
+        /// Test the property 'Explanation'
+        /// </summary>
+        [Fact]
+        public void ExplanationTest()
+        {
+            // TODO unit test for the property 'Explanation'
+        }
     }
 }

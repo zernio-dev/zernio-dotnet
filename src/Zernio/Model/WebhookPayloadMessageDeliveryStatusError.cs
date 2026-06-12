@@ -39,11 +39,13 @@ namespace Zernio.Model
         /// <param name="code">code.</param>
         /// <param name="title">title.</param>
         /// <param name="message">message.</param>
-        public WebhookPayloadMessageDeliveryStatusError(int code = default, string title = default, string message = default)
+        /// <param name="explanation">Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected). Null for unmapped codes; fall back to title/message. .</param>
+        public WebhookPayloadMessageDeliveryStatusError(int code = default, string title = default, string message = default, string explanation = default)
         {
             this.Code = code;
             this.Title = title;
             this.Message = message;
+            this.Explanation = explanation;
         }
 
         /// <summary>
@@ -65,6 +67,13 @@ namespace Zernio.Model
         public string Message { get; set; }
 
         /// <summary>
+        /// Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected). Null for unmapped codes; fall back to title/message. 
+        /// </summary>
+        /// <value>Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected). Null for unmapped codes; fall back to title/message. </value>
+        [DataMember(Name = "explanation", EmitDefaultValue = false)]
+        public string Explanation { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -75,6 +84,7 @@ namespace Zernio.Model
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  Explanation: ").Append(Explanation).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

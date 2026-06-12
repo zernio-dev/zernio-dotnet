@@ -137,6 +137,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ErrorExplanation'
+        /// </summary>
+        [Fact]
+        public void ErrorExplanationTest()
+        {
+            // TODO unit test for the property 'ErrorExplanation'
+        }
+
+        /// <summary>
         /// Test the property 'SentAt'
         /// </summary>
         [Fact]
