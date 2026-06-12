@@ -170,6 +170,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetWhatsAppBlockStatus
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppBlockStatusTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string user = null;
+            //var response = instance.GetWhatsAppBlockStatus(accountId, user);
+            //Assert.IsType<GetWhatsAppBlockStatus200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetWhatsAppBlockedUsers
         /// </summary>
         [Fact]

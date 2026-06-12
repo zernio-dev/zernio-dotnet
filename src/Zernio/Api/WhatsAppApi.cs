@@ -232,6 +232,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> DeleteWhatsAppTemplateWithHttpInfo(string templateName, string accountId);
         /// <summary>
+        /// Check if a user is blocked
+        /// </summary>
+        /// <remarks>
+        /// Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="user">Consumer wa_id or E.164 phone (leading + optional)</param>
+        /// <returns>GetWhatsAppBlockStatus200Response</returns>
+        GetWhatsAppBlockStatus200Response GetWhatsAppBlockStatus(string accountId, string user);
+
+        /// <summary>
+        /// Check if a user is blocked
+        /// </summary>
+        /// <remarks>
+        /// Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="user">Consumer wa_id or E.164 phone (leading + optional)</param>
+        /// <returns>ApiResponse of GetWhatsAppBlockStatus200Response</returns>
+        ApiResponse<GetWhatsAppBlockStatus200Response> GetWhatsAppBlockStatusWithHttpInfo(string accountId, string user);
+        /// <summary>
         /// List blocked users
         /// </summary>
         /// <remarks>
@@ -892,6 +915,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UnpublishPost200Response>> DeleteWhatsAppTemplateWithHttpInfoAsync(string templateName, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Check if a user is blocked
+        /// </summary>
+        /// <remarks>
+        /// Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="user">Consumer wa_id or E.164 phone (leading + optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppBlockStatus200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsAppBlockStatus200Response> GetWhatsAppBlockStatusAsync(string accountId, string user, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Check if a user is blocked
+        /// </summary>
+        /// <remarks>
+        /// Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="user">Consumer wa_id or E.164 phone (leading + optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppBlockStatus200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppBlockStatus200Response>> GetWhatsAppBlockStatusWithHttpInfoAsync(string accountId, string user, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List blocked users
         /// </summary>
@@ -2821,6 +2869,147 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteWhatsAppTemplate", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Check if a user is blocked Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="user">Consumer wa_id or E.164 phone (leading + optional)</param>
+        /// <returns>GetWhatsAppBlockStatus200Response</returns>
+        public GetWhatsAppBlockStatus200Response GetWhatsAppBlockStatus(string accountId, string user)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppBlockStatus200Response> localVarResponse = GetWhatsAppBlockStatusWithHttpInfo(accountId, user);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Check if a user is blocked Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="user">Consumer wa_id or E.164 phone (leading + optional)</param>
+        /// <returns>ApiResponse of GetWhatsAppBlockStatus200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsAppBlockStatus200Response> GetWhatsAppBlockStatusWithHttpInfo(string accountId, string user)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsAppBlockStatus");
+
+            // verify the required parameter 'user' is set
+            if (user == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'user' when calling WhatsAppApi->GetWhatsAppBlockStatus");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "user", user));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsAppBlockStatus200Response>("/v1/whatsapp/block-users/status", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppBlockStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Check if a user is blocked Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="user">Consumer wa_id or E.164 phone (leading + optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppBlockStatus200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsAppBlockStatus200Response> GetWhatsAppBlockStatusAsync(string accountId, string user, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppBlockStatus200Response> localVarResponse = await GetWhatsAppBlockStatusWithHttpInfoAsync(accountId, user, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Check if a user is blocked Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="user">Consumer wa_id or E.164 phone (leading + optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppBlockStatus200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppBlockStatus200Response>> GetWhatsAppBlockStatusWithHttpInfoAsync(string accountId, string user, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsAppBlockStatus");
+
+            // verify the required parameter 'user' is set
+            if (user == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'user' when calling WhatsAppApi->GetWhatsAppBlockStatus");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "user", user));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppBlockStatus200Response>("/v1/whatsapp/block-users/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppBlockStatus", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

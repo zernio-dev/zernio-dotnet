@@ -520,6 +520,7 @@ docs/GetUser200ResponseUser.md
 docs/GetWebhookLogs200Response.md
 docs/GetWebhookLogs200ResponsePagination.md
 docs/GetWebhookSettings200Response.md
+docs/GetWhatsAppBlockStatus200Response.md
 docs/GetWhatsAppBlockedUsers200Response.md
 docs/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.md
 docs/GetWhatsAppBusinessProfile200Response.md
@@ -1780,6 +1781,7 @@ src/Zernio.Test/Model/GetUser200ResponseUserTests.cs
 src/Zernio.Test/Model/GetWebhookLogs200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetWebhookLogs200ResponseTests.cs
 src/Zernio.Test/Model/GetWebhookSettings200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsAppBlockStatus200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppBlockedUsers200ResponseBlockedUsersInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppBlockedUsers200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppBusinessProfile200ResponseBusinessProfileTests.cs
@@ -3031,6 +3033,7 @@ src/Zernio/Model/GetUser200ResponseUser.cs
 src/Zernio/Model/GetWebhookLogs200Response.cs
 src/Zernio/Model/GetWebhookLogs200ResponsePagination.cs
 src/Zernio/Model/GetWebhookSettings200Response.cs
+src/Zernio/Model/GetWhatsAppBlockStatus200Response.cs
 src/Zernio/Model/GetWhatsAppBlockedUsers200Response.cs
 src/Zernio/Model/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.cs
 src/Zernio/Model/GetWhatsAppBusinessProfile200Response.cs
