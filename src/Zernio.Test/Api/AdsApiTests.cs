@@ -270,7 +270,7 @@ namespace Zernio.Test.Api
             //string destinationId = null;
             //string adAccountId = null;
             //var response = instance.GetConversionDestination(accountId, destinationId, adAccountId);
-            //Assert.IsType<CreateConversionDestination201Response>(response);
+            //Assert.IsType<GetConversionDestination200Response>(response);
         }
 
         /// <summary>
@@ -583,7 +583,7 @@ namespace Zernio.Test.Api
             //string destinationId = null;
             //UpdateConversionDestinationRequest updateConversionDestinationRequest = null;
             //var response = instance.UpdateConversionDestination(accountId, destinationId, updateConversionDestinationRequest);
-            //Assert.IsType<CreateConversionDestination201Response>(response);
+            //Assert.IsType<GetConversionDestination200Response>(response);
         }
     }
 }

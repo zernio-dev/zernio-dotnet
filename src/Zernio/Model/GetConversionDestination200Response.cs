@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CreateConversionDestination201Response
+    /// GetConversionDestination200Response
     /// </summary>
-    [DataContract(Name = "createConversionDestination_201_response")]
-    public partial class CreateConversionDestination201Response : IValidatableObject
+    [DataContract(Name = "getConversionDestination_200_response")]
+    public partial class GetConversionDestination200Response : IValidatableObject
     {
         /// <summary>
         /// Defines Platform
@@ -43,13 +43,7 @@ namespace Zernio.Model
             /// Enum Linkedinads for value: linkedinads
             /// </summary>
             [EnumMember(Value = "linkedinads")]
-            Linkedinads = 1,
-
-            /// <summary>
-            /// Enum Googleads for value: googleads
-            /// </summary>
-            [EnumMember(Value = "googleads")]
-            Googleads = 2
+            Linkedinads = 1
         }
 
 
@@ -59,11 +53,11 @@ namespace Zernio.Model
         [DataMember(Name = "platform", EmitDefaultValue = false)]
         public PlatformEnum? Platform { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateConversionDestination201Response" /> class.
+        /// Initializes a new instance of the <see cref="GetConversionDestination200Response" /> class.
         /// </summary>
         /// <param name="platform">platform.</param>
         /// <param name="destination">destination.</param>
-        public CreateConversionDestination201Response(PlatformEnum? platform = default, ConversionDestination destination = default)
+        public GetConversionDestination200Response(PlatformEnum? platform = default, ConversionDestination destination = default)
         {
             this.Platform = platform;
             this.Destination = destination;
@@ -82,7 +76,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateConversionDestination201Response {\n");
+            sb.Append("class GetConversionDestination200Response {\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Destination: ").Append(Destination).Append("\n");
             sb.Append("}\n");

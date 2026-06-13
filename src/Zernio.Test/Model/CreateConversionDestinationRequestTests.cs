@@ -135,5 +135,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'AutoAssociationType'
         }
+
+        /// <summary>
+        /// Test the property 'CountingType'
+        /// </summary>
+        [Fact]
+        public void CountingTypeTest()
+        {
+            // TODO unit test for the property 'CountingType'
+        }
+
+        /// <summary>
+        /// Test the property 'PrimaryForGoal'
+        /// </summary>
+        [Fact]
+        public void PrimaryForGoalTest()
+        {
+            // TODO unit test for the property 'PrimaryForGoal'
+        }
     }
 }

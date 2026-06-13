@@ -179,7 +179,7 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**AdjustConversions**](docs/AdsApi.md#adjustconversions) | **POST** /v1/ads/conversions/adjustments | Adjust already-uploaded conversions (Google only)
 *AdsApi* | [**ArchiveLeadForm**](docs/AdsApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form
 *AdsApi* | [**BoostPost**](docs/AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad
-*AdsApi* | [**CreateConversionDestination**](docs/AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn)
+*AdsApi* | [**CreateConversionDestination**](docs/AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn, Google Ads)
 *AdsApi* | [**CreateCtwaAd**](docs/AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad(s)
 *AdsApi* | [**CreateLeadForm**](docs/AdsApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a Lead Gen (Instant) form
 *AdsApi* | [**CreateStandaloneAd**](docs/AdsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad
@@ -857,6 +857,7 @@ Class | Method | HTTP request | Description
  - [Model.GetContactChannels200ResponseChannelsInner](docs/GetContactChannels200ResponseChannelsInner.md)
  - [Model.GetContentDecay200Response](docs/GetContentDecay200Response.md)
  - [Model.GetContentDecay200ResponseBucketsInner](docs/GetContentDecay200ResponseBucketsInner.md)
+ - [Model.GetConversionDestination200Response](docs/GetConversionDestination200Response.md)
  - [Model.GetConversionMetrics200Response](docs/GetConversionMetrics200Response.md)
  - [Model.GetConversionMetrics200ResponseRowsInner](docs/GetConversionMetrics200ResponseRowsInner.md)
  - [Model.GetConversionMetrics200ResponseRowsInnerMetricsValue](docs/GetConversionMetrics200ResponseRowsInnerMetricsValue.md)

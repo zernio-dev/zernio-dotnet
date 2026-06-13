@@ -1,5 +1,5 @@
 # Zernio.Model.CreateConversionDestinationRequestValue
-Static conversion value. Used when `valueType=FIXED`. The currency should match the ad account's currency. 
+LinkedIn only. Static conversion value. Used when `valueType=FIXED`. The currency should match the ad account's currency. 
 
 ## Properties
 

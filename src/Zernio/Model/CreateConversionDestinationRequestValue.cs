@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Static conversion value. Used when &#x60;valueType&#x3D;FIXED&#x60;. The currency should match the ad account&#39;s currency. 
+    /// LinkedIn only. Static conversion value. Used when &#x60;valueType&#x3D;FIXED&#x60;. The currency should match the ad account&#39;s currency. 
     /// </summary>
     [DataContract(Name = "createConversionDestination_request_value")]
     public partial class CreateConversionDestinationRequestValue : IValidatableObject

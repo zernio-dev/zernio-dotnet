@@ -8,7 +8,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**AdjustConversions**](AdsApi.md#adjustconversions) | **POST** /v1/ads/conversions/adjustments | Adjust already-uploaded conversions (Google only) |
 | [**ArchiveLeadForm**](AdsApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form |
 | [**BoostPost**](AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad |
-| [**CreateConversionDestination**](AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn) |
+| [**CreateConversionDestination**](AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn, Google Ads) |
 | [**CreateCtwaAd**](AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad(s) |
 | [**CreateLeadForm**](AdsApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a Lead Gen (Instant) form |
 | [**CreateStandaloneAd**](AdsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad |
@@ -462,9 +462,9 @@ catch (ApiException e)
 # **CreateConversionDestination**
 > CreateConversionDestination201Response CreateConversionDestination (string accountId, CreateConversionDestinationRequest createConversionDestinationRequest)
 
-Create a conversion destination (LinkedIn)
+Create a conversion destination (LinkedIn, Google Ads)
 
-Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with `conversionMethod=CONVERSIONS_API` and (by default) auto-associated with all of the ad account's campaigns via `autoAssociationType=ALL_CAMPAIGNS`. Pass `autoAssociationType: NONE` to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for `SUBMIT_APPLICATION`, `PURCHASE`, `ADD_TO_CART`, `QUALIFIED_LEAD`, and `LEAD` rule types; the API rejects other combinations locally. 
+Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with `conversionMethod=CONVERSIONS_API` and (by default) auto-associated with all of the ad account's campaigns via `autoAssociationType=ALL_CAMPAIGNS`. Pass `autoAssociationType: NONE` to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for `SUBMIT_APPLICATION`, `PURCHASE`, `ADD_TO_CART`, `QUALIFIED_LEAD`, and `LEAD` rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with `type=UPLOAD_CLICKS` (required for API-uploaded offline conversions, immutable after creation). The `type` field carries the Google `ConversionActionCategory` enum value, e.g. `PURCHASE`, `SUBSCRIBE_PAID`, `SIGNUP`, `IMPORTED_LEAD`, `BOOK_APPOINTMENT`. Unified standard event names (e.g. `Purchase`, `Subscribe`, `CompleteRegistration`, `Lead`, `Schedule`) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass `primaryForGoal: true` to opt in. 
 
 ### Example
 ```csharp
@@ -490,12 +490,12 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | SocialAccount ID (linkedinads).
+            var accountId = "accountId_example";  // string | SocialAccount ID (linkedinads or googleads).
             var createConversionDestinationRequest = new CreateConversionDestinationRequest(); // CreateConversionDestinationRequest | 
 
             try
             {
-                // Create a conversion destination (LinkedIn)
+                // Create a conversion destination (LinkedIn, Google Ads)
                 CreateConversionDestination201Response result = apiInstance.CreateConversionDestination(accountId, createConversionDestinationRequest);
                 Debug.WriteLine(result);
             }
@@ -516,7 +516,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Create a conversion destination (LinkedIn)
+    // Create a conversion destination (LinkedIn, Google Ads)
     ApiResponse<CreateConversionDestination201Response> response = apiInstance.CreateConversionDestinationWithHttpInfo(accountId, createConversionDestinationRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -534,7 +534,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | SocialAccount ID (linkedinads). |  |
+| **accountId** | **string** | SocialAccount ID (linkedinads or googleads). |  |
 | **createConversionDestinationRequest** | [**CreateConversionDestinationRequest**](CreateConversionDestinationRequest.md) |  |  |
 
 ### Return type
@@ -555,12 +555,12 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Destination created |  -  |
-| **400** | Invalid body or LinkedIn validation failure. |  -  |
+| **400** | Invalid body or platform validation failure. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the connected LinkedIn account lacks the &#x60;rw_conversions&#x60; scope (reconnect required).  |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support destination creation. |  -  |
-| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+| **429** | Rate limit hit. Retry with backoff. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1698,7 +1698,7 @@ catch (ApiException e)
 
 <a id="getconversiondestination"></a>
 # **GetConversionDestination**
-> CreateConversionDestination201Response GetConversionDestination (string accountId, string destinationId, string adAccountId)
+> GetConversionDestination200Response GetConversionDestination (string accountId, string destinationId, string adAccountId)
 
 Fetch a single conversion destination
 
@@ -1735,7 +1735,7 @@ namespace Example
             try
             {
                 // Fetch a single conversion destination
-                CreateConversionDestination201Response result = apiInstance.GetConversionDestination(accountId, destinationId, adAccountId);
+                GetConversionDestination200Response result = apiInstance.GetConversionDestination(accountId, destinationId, adAccountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1756,7 +1756,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Fetch a single conversion destination
-    ApiResponse<CreateConversionDestination201Response> response = apiInstance.GetConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId);
+    ApiResponse<GetConversionDestination200Response> response = apiInstance.GetConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1779,7 +1779,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)
+[**GetConversionDestination200Response**](GetConversionDestination200Response.md)
 
 ### Authorization
 
@@ -4017,7 +4017,7 @@ void (empty response body)
 
 <a id="updateconversiondestination"></a>
 # **UpdateConversionDestination**
-> CreateConversionDestination201Response UpdateConversionDestination (string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest)
+> GetConversionDestination200Response UpdateConversionDestination (string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest)
 
 Update a conversion destination
 
@@ -4054,7 +4054,7 @@ namespace Example
             try
             {
                 // Update a conversion destination
-                CreateConversionDestination201Response result = apiInstance.UpdateConversionDestination(accountId, destinationId, updateConversionDestinationRequest);
+                GetConversionDestination200Response result = apiInstance.UpdateConversionDestination(accountId, destinationId, updateConversionDestinationRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4075,7 +4075,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update a conversion destination
-    ApiResponse<CreateConversionDestination201Response> response = apiInstance.UpdateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest);
+    ApiResponse<GetConversionDestination200Response> response = apiInstance.UpdateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4098,7 +4098,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)
+[**GetConversionDestination200Response**](GetConversionDestination200Response.md)
 
 ### Authorization
 

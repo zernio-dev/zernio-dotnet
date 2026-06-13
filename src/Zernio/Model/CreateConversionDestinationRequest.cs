@@ -34,8 +34,9 @@ namespace Zernio.Model
     public partial class CreateConversionDestinationRequest : IValidatableObject
     {
         /// <summary>
-        /// Defines AttributionType
+        /// LinkedIn only.
         /// </summary>
+        /// <value>LinkedIn only.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AttributionTypeEnum
         {
@@ -54,14 +55,15 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Gets or Sets AttributionType
+        /// LinkedIn only.
         /// </summary>
+        /// <value>LinkedIn only.</value>
         [DataMember(Name = "attributionType", EmitDefaultValue = false)]
         public AttributionTypeEnum? AttributionType { get; set; }
         /// <summary>
-        /// Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types — the API rejects other combinations locally. 
+        /// LinkedIn only. Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types; the API rejects other combinations locally. 
         /// </summary>
-        /// <value>Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types — the API rejects other combinations locally. </value>
+        /// <value>LinkedIn only. Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types; the API rejects other combinations locally. </value>
         public enum PostClickAttributionWindowSizeEnum
         {
             /// <summary>
@@ -92,15 +94,15 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types — the API rejects other combinations locally. 
+        /// LinkedIn only. Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types; the API rejects other combinations locally. 
         /// </summary>
-        /// <value>Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types — the API rejects other combinations locally. </value>
+        /// <value>LinkedIn only. Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types; the API rejects other combinations locally. </value>
         [DataMember(Name = "postClickAttributionWindowSize", EmitDefaultValue = false)]
         public PostClickAttributionWindowSizeEnum? PostClickAttributionWindowSize { get; set; }
         /// <summary>
-        /// Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. 
+        /// LinkedIn only. Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. 
         /// </summary>
-        /// <value>Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. </value>
+        /// <value>LinkedIn only. Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. </value>
         public enum ViewThroughAttributionWindowSizeEnum
         {
             /// <summary>
@@ -131,15 +133,15 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. 
+        /// LinkedIn only. Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. 
         /// </summary>
-        /// <value>Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. </value>
+        /// <value>LinkedIn only. Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. </value>
         [DataMember(Name = "viewThroughAttributionWindowSize", EmitDefaultValue = false)]
         public ViewThroughAttributionWindowSizeEnum? ViewThroughAttributionWindowSize { get; set; }
         /// <summary>
-        /// DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. 
+        /// LinkedIn only. DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. 
         /// </summary>
-        /// <value>DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. </value>
+        /// <value>LinkedIn only. DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ValueTypeEnum
         {
@@ -164,15 +166,15 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. 
+        /// LinkedIn only. DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. 
         /// </summary>
-        /// <value>DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. </value>
+        /// <value>LinkedIn only. DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. </value>
         [DataMember(Name = "valueType", EmitDefaultValue = false)]
         public ValueTypeEnum? ValueType { get; set; }
         /// <summary>
-        /// Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. 
+        /// LinkedIn only. Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. 
         /// </summary>
-        /// <value>Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. </value>
+        /// <value>LinkedIn only. Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AutoAssociationTypeEnum
         {
@@ -197,11 +199,38 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. 
+        /// LinkedIn only. Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. 
         /// </summary>
-        /// <value>Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. </value>
+        /// <value>LinkedIn only. Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. </value>
         [DataMember(Name = "autoAssociationType", EmitDefaultValue = false)]
         public AutoAssociationTypeEnum? AutoAssociationType { get; set; }
+        /// <summary>
+        /// Google Ads only. Whether to count multiple conversions from the same click (MANY_PER_CLICK) or at most one (ONE_PER_CLICK). Defaults to MANY_PER_CLICK if omitted. 
+        /// </summary>
+        /// <value>Google Ads only. Whether to count multiple conversions from the same click (MANY_PER_CLICK) or at most one (ONE_PER_CLICK). Defaults to MANY_PER_CLICK if omitted. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CountingTypeEnum
+        {
+            /// <summary>
+            /// Enum MANYPERCLICK for value: MANY_PER_CLICK
+            /// </summary>
+            [EnumMember(Value = "MANY_PER_CLICK")]
+            MANYPERCLICK = 1,
+
+            /// <summary>
+            /// Enum ONEPERCLICK for value: ONE_PER_CLICK
+            /// </summary>
+            [EnumMember(Value = "ONE_PER_CLICK")]
+            ONEPERCLICK = 2
+        }
+
+
+        /// <summary>
+        /// Google Ads only. Whether to count multiple conversions from the same click (MANY_PER_CLICK) or at most one (ONE_PER_CLICK). Defaults to MANY_PER_CLICK if omitted. 
+        /// </summary>
+        /// <value>Google Ads only. Whether to count multiple conversions from the same click (MANY_PER_CLICK) or at most one (ONE_PER_CLICK). Defaults to MANY_PER_CLICK if omitted. </value>
+        [DataMember(Name = "countingType", EmitDefaultValue = false)]
+        public CountingTypeEnum? CountingType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateConversionDestinationRequest" /> class.
         /// </summary>
@@ -210,16 +239,18 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateConversionDestinationRequest" /> class.
         /// </summary>
-        /// <param name="adAccountId">Sponsored ad account ID. Numeric (e.g. \&quot;5123456\&quot;) or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.  (required).</param>
+        /// <param name="adAccountId">Ad account ID. For LinkedIn: numeric (e.g. \&quot;5123456\&quot;) or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. For Google: numeric customer ID (e.g. \&quot;1234567890\&quot;) or &#x60;customers/{id}&#x60; form.  (required).</param>
         /// <param name="name">name (required).</param>
-        /// <param name="type">Either a unified standard event name (e.g. \&quot;Purchase\&quot;, \&quot;Lead\&quot;, \&quot;AddToCart\&quot;) or a LinkedIn rule type enum value (e.g. \&quot;PURCHASE\&quot;, \&quot;QUALIFIED_LEAD\&quot;). The API maps standard names to LinkedIn enum values automatically.  (required).</param>
-        /// <param name="attributionType">attributionType.</param>
-        /// <param name="postClickAttributionWindowSize">Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types — the API rejects other combinations locally. .</param>
-        /// <param name="viewThroughAttributionWindowSize">Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. .</param>
-        /// <param name="valueType">DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. .</param>
+        /// <param name="type">Conversion type. For LinkedIn: a unified standard event name (e.g. \&quot;Purchase\&quot;, \&quot;Lead\&quot;, \&quot;AddToCart\&quot;) or a LinkedIn rule type enum (e.g. \&quot;PURCHASE\&quot;, \&quot;QUALIFIED_LEAD\&quot;). For Google: a unified standard event name (Purchase, Subscribe, CompleteRegistration, Lead, Schedule) or a Google ConversionActionCategory enum value directly (e.g. \&quot;PURCHASE\&quot;, \&quot;SUBSCRIBE_PAID\&quot;, \&quot;SIGNUP\&quot;, \&quot;IMPORTED_LEAD\&quot;, \&quot;BOOK_APPOINTMENT\&quot;). Unknown values pass through to the platform.  (required).</param>
+        /// <param name="attributionType">LinkedIn only..</param>
+        /// <param name="postClickAttributionWindowSize">LinkedIn only. Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types; the API rejects other combinations locally. .</param>
+        /// <param name="viewThroughAttributionWindowSize">LinkedIn only. Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. .</param>
+        /// <param name="valueType">LinkedIn only. DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. .</param>
         /// <param name="value">value.</param>
-        /// <param name="autoAssociationType">Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association.  (default to AutoAssociationTypeEnum.ALLCAMPAIGNS).</param>
-        public CreateConversionDestinationRequest(string adAccountId = default, string name = default, string type = default, AttributionTypeEnum? attributionType = default, PostClickAttributionWindowSizeEnum? postClickAttributionWindowSize = default, ViewThroughAttributionWindowSizeEnum? viewThroughAttributionWindowSize = default, ValueTypeEnum? valueType = default, CreateConversionDestinationRequestValue value = default, AutoAssociationTypeEnum? autoAssociationType = AutoAssociationTypeEnum.ALLCAMPAIGNS)
+        /// <param name="autoAssociationType">LinkedIn only. Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association.  (default to AutoAssociationTypeEnum.ALLCAMPAIGNS).</param>
+        /// <param name="countingType">Google Ads only. Whether to count multiple conversions from the same click (MANY_PER_CLICK) or at most one (ONE_PER_CLICK). Defaults to MANY_PER_CLICK if omitted. .</param>
+        /// <param name="primaryForGoal">Google Ads only. When true, the conversion action is marked as primary and immediately influences Smart Bidding. Defaults to false (secondary, record-only) to avoid unintentionally steering the customer&#39;s campaigns on creation. .</param>
+        public CreateConversionDestinationRequest(string adAccountId = default, string name = default, string type = default, AttributionTypeEnum? attributionType = default, PostClickAttributionWindowSizeEnum? postClickAttributionWindowSize = default, ViewThroughAttributionWindowSizeEnum? viewThroughAttributionWindowSize = default, ValueTypeEnum? valueType = default, CreateConversionDestinationRequestValue value = default, AutoAssociationTypeEnum? autoAssociationType = AutoAssociationTypeEnum.ALLCAMPAIGNS, CountingTypeEnum? countingType = default, bool primaryForGoal = default)
         {
             // to ensure "adAccountId" is required (not null)
             if (adAccountId == null)
@@ -245,12 +276,14 @@ namespace Zernio.Model
             this.ValueType = valueType;
             this.Value = value;
             this.AutoAssociationType = autoAssociationType;
+            this.CountingType = countingType;
+            this.PrimaryForGoal = primaryForGoal;
         }
 
         /// <summary>
-        /// Sponsored ad account ID. Numeric (e.g. \&quot;5123456\&quot;) or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. 
+        /// Ad account ID. For LinkedIn: numeric (e.g. \&quot;5123456\&quot;) or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. For Google: numeric customer ID (e.g. \&quot;1234567890\&quot;) or &#x60;customers/{id}&#x60; form. 
         /// </summary>
-        /// <value>Sponsored ad account ID. Numeric (e.g. \&quot;5123456\&quot;) or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. </value>
+        /// <value>Ad account ID. For LinkedIn: numeric (e.g. \&quot;5123456\&quot;) or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. For Google: numeric customer ID (e.g. \&quot;1234567890\&quot;) or &#x60;customers/{id}&#x60; form. </value>
         [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
         public string AdAccountId { get; set; }
 
@@ -261,9 +294,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Either a unified standard event name (e.g. \&quot;Purchase\&quot;, \&quot;Lead\&quot;, \&quot;AddToCart\&quot;) or a LinkedIn rule type enum value (e.g. \&quot;PURCHASE\&quot;, \&quot;QUALIFIED_LEAD\&quot;). The API maps standard names to LinkedIn enum values automatically. 
+        /// Conversion type. For LinkedIn: a unified standard event name (e.g. \&quot;Purchase\&quot;, \&quot;Lead\&quot;, \&quot;AddToCart\&quot;) or a LinkedIn rule type enum (e.g. \&quot;PURCHASE\&quot;, \&quot;QUALIFIED_LEAD\&quot;). For Google: a unified standard event name (Purchase, Subscribe, CompleteRegistration, Lead, Schedule) or a Google ConversionActionCategory enum value directly (e.g. \&quot;PURCHASE\&quot;, \&quot;SUBSCRIBE_PAID\&quot;, \&quot;SIGNUP\&quot;, \&quot;IMPORTED_LEAD\&quot;, \&quot;BOOK_APPOINTMENT\&quot;). Unknown values pass through to the platform. 
         /// </summary>
-        /// <value>Either a unified standard event name (e.g. \&quot;Purchase\&quot;, \&quot;Lead\&quot;, \&quot;AddToCart\&quot;) or a LinkedIn rule type enum value (e.g. \&quot;PURCHASE\&quot;, \&quot;QUALIFIED_LEAD\&quot;). The API maps standard names to LinkedIn enum values automatically. </value>
+        /// <value>Conversion type. For LinkedIn: a unified standard event name (e.g. \&quot;Purchase\&quot;, \&quot;Lead\&quot;, \&quot;AddToCart\&quot;) or a LinkedIn rule type enum (e.g. \&quot;PURCHASE\&quot;, \&quot;QUALIFIED_LEAD\&quot;). For Google: a unified standard event name (Purchase, Subscribe, CompleteRegistration, Lead, Schedule) or a Google ConversionActionCategory enum value directly (e.g. \&quot;PURCHASE\&quot;, \&quot;SUBSCRIBE_PAID\&quot;, \&quot;SIGNUP\&quot;, \&quot;IMPORTED_LEAD\&quot;, \&quot;BOOK_APPOINTMENT\&quot;). Unknown values pass through to the platform. </value>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public string Type { get; set; }
 
@@ -272,6 +305,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "value", EmitDefaultValue = false)]
         public CreateConversionDestinationRequestValue Value { get; set; }
+
+        /// <summary>
+        /// Google Ads only. When true, the conversion action is marked as primary and immediately influences Smart Bidding. Defaults to false (secondary, record-only) to avoid unintentionally steering the customer&#39;s campaigns on creation. 
+        /// </summary>
+        /// <value>Google Ads only. When true, the conversion action is marked as primary and immediately influences Smart Bidding. Defaults to false (secondary, record-only) to avoid unintentionally steering the customer&#39;s campaigns on creation. </value>
+        [DataMember(Name = "primaryForGoal", EmitDefaultValue = true)]
+        public bool PrimaryForGoal { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -290,6 +330,8 @@ namespace Zernio.Model
             sb.Append("  ValueType: ").Append(ValueType).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  AutoAssociationType: ").Append(AutoAssociationType).Append("\n");
+            sb.Append("  CountingType: ").Append(CountingType).Append("\n");
+            sb.Append("  PrimaryForGoal: ").Append(PrimaryForGoal).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

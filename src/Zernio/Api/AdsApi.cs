@@ -119,25 +119,25 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateAd200Response</returns>
         ApiResponse<UpdateAd200Response> BoostPostWithHttpInfo(BoostPostRequest boostPostRequest);
         /// <summary>
-        /// Create a conversion destination (LinkedIn)
+        /// Create a conversion destination (LinkedIn, Google Ads)
         /// </summary>
         /// <remarks>
-        /// Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
         /// <param name="createConversionDestinationRequest"></param>
         /// <returns>CreateConversionDestination201Response</returns>
         CreateConversionDestination201Response CreateConversionDestination(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest);
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn)
+        /// Create a conversion destination (LinkedIn, Google Ads)
         /// </summary>
         /// <remarks>
-        /// Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
         /// <param name="createConversionDestinationRequest"></param>
         /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
         ApiResponse<CreateConversionDestination201Response> CreateConversionDestinationWithHttpInfo(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest);
@@ -402,8 +402,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="destinationId"></param>
         /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
-        /// <returns>CreateConversionDestination201Response</returns>
-        CreateConversionDestination201Response GetConversionDestination(string accountId, string destinationId, string adAccountId);
+        /// <returns>GetConversionDestination200Response</returns>
+        GetConversionDestination200Response GetConversionDestination(string accountId, string destinationId, string adAccountId);
 
         /// <summary>
         /// Fetch a single conversion destination
@@ -415,8 +415,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="destinationId"></param>
         /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
-        /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
-        ApiResponse<CreateConversionDestination201Response> GetConversionDestinationWithHttpInfo(string accountId, string destinationId, string adAccountId);
+        /// <returns>ApiResponse of GetConversionDestination200Response</returns>
+        ApiResponse<GetConversionDestination200Response> GetConversionDestinationWithHttpInfo(string accountId, string destinationId, string adAccountId);
         /// <summary>
         /// Fetch attribution metrics for a conversion destination
         /// </summary>
@@ -963,8 +963,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="destinationId"></param>
         /// <param name="updateConversionDestinationRequest"></param>
-        /// <returns>CreateConversionDestination201Response</returns>
-        CreateConversionDestination201Response UpdateConversionDestination(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest);
+        /// <returns>GetConversionDestination200Response</returns>
+        GetConversionDestination200Response UpdateConversionDestination(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest);
 
         /// <summary>
         /// Update a conversion destination
@@ -976,8 +976,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="destinationId"></param>
         /// <param name="updateConversionDestinationRequest"></param>
-        /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
-        ApiResponse<CreateConversionDestination201Response> UpdateConversionDestinationWithHttpInfo(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest);
+        /// <returns>ApiResponse of GetConversionDestination200Response</returns>
+        ApiResponse<GetConversionDestination200Response> UpdateConversionDestinationWithHttpInfo(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest);
         #endregion Synchronous Operations
     }
 
@@ -1086,26 +1086,26 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> BoostPostWithHttpInfoAsync(BoostPostRequest boostPostRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create a conversion destination (LinkedIn)
+        /// Create a conversion destination (LinkedIn, Google Ads)
         /// </summary>
         /// <remarks>
-        /// Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
         /// <param name="createConversionDestinationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateConversionDestination201Response</returns>
         System.Threading.Tasks.Task<CreateConversionDestination201Response> CreateConversionDestinationAsync(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn)
+        /// Create a conversion destination (LinkedIn, Google Ads)
         /// </summary>
         /// <remarks>
-        /// Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
         /// <param name="createConversionDestinationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
@@ -1394,8 +1394,8 @@ namespace Zernio.Api
         /// <param name="destinationId"></param>
         /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateConversionDestination201Response</returns>
-        System.Threading.Tasks.Task<CreateConversionDestination201Response> GetConversionDestinationAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of GetConversionDestination200Response</returns>
+        System.Threading.Tasks.Task<GetConversionDestination200Response> GetConversionDestinationAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Fetch a single conversion destination
@@ -1408,8 +1408,8 @@ namespace Zernio.Api
         /// <param name="destinationId"></param>
         /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CreateConversionDestination201Response>> GetConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (GetConversionDestination200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetConversionDestination200Response>> GetConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Fetch attribution metrics for a conversion destination
         /// </summary>
@@ -2002,8 +2002,8 @@ namespace Zernio.Api
         /// <param name="destinationId"></param>
         /// <param name="updateConversionDestinationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateConversionDestination201Response</returns>
-        System.Threading.Tasks.Task<CreateConversionDestination201Response> UpdateConversionDestinationAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of GetConversionDestination200Response</returns>
+        System.Threading.Tasks.Task<GetConversionDestination200Response> UpdateConversionDestinationAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a conversion destination
@@ -2016,8 +2016,8 @@ namespace Zernio.Api
         /// <param name="destinationId"></param>
         /// <param name="updateConversionDestinationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CreateConversionDestination201Response>> UpdateConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (GetConversionDestination200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetConversionDestination200Response>> UpdateConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -2788,10 +2788,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn) Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// Create a conversion destination (LinkedIn, Google Ads) Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
         /// <param name="createConversionDestinationRequest"></param>
         /// <returns>CreateConversionDestination201Response</returns>
         public CreateConversionDestination201Response CreateConversionDestination(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest)
@@ -2801,10 +2801,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn) Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// Create a conversion destination (LinkedIn, Google Ads) Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
         /// <param name="createConversionDestinationRequest"></param>
         /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
         public Zernio.Client.ApiResponse<CreateConversionDestination201Response> CreateConversionDestinationWithHttpInfo(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest)
@@ -2857,10 +2857,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn) Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// Create a conversion destination (LinkedIn, Google Ads) Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
         /// <param name="createConversionDestinationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateConversionDestination201Response</returns>
@@ -2871,10 +2871,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn) Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+        /// Create a conversion destination (LinkedIn, Google Ads) Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">SocialAccount ID (linkedinads).</param>
+        /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
         /// <param name="createConversionDestinationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
@@ -4466,10 +4466,10 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="destinationId"></param>
         /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
-        /// <returns>CreateConversionDestination201Response</returns>
-        public CreateConversionDestination201Response GetConversionDestination(string accountId, string destinationId, string adAccountId)
+        /// <returns>GetConversionDestination200Response</returns>
+        public GetConversionDestination200Response GetConversionDestination(string accountId, string destinationId, string adAccountId)
         {
-            Zernio.Client.ApiResponse<CreateConversionDestination201Response> localVarResponse = GetConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId);
+            Zernio.Client.ApiResponse<GetConversionDestination200Response> localVarResponse = GetConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId);
             return localVarResponse.Data;
         }
 
@@ -4480,8 +4480,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="destinationId"></param>
         /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
-        /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
-        public Zernio.Client.ApiResponse<CreateConversionDestination201Response> GetConversionDestinationWithHttpInfo(string accountId, string destinationId, string adAccountId)
+        /// <returns>ApiResponse of GetConversionDestination200Response</returns>
+        public Zernio.Client.ApiResponse<GetConversionDestination200Response> GetConversionDestinationWithHttpInfo(string accountId, string destinationId, string adAccountId)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -4523,7 +4523,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<CreateConversionDestination201Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GetConversionDestination200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -4542,10 +4542,10 @@ namespace Zernio.Api
         /// <param name="destinationId"></param>
         /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateConversionDestination201Response</returns>
-        public async System.Threading.Tasks.Task<CreateConversionDestination201Response> GetConversionDestinationAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of GetConversionDestination200Response</returns>
+        public async System.Threading.Tasks.Task<GetConversionDestination200Response> GetConversionDestinationAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<CreateConversionDestination201Response> localVarResponse = await GetConversionDestinationWithHttpInfoAsync(accountId, destinationId, adAccountId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetConversionDestination200Response> localVarResponse = await GetConversionDestinationWithHttpInfoAsync(accountId, destinationId, adAccountId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -4557,8 +4557,8 @@ namespace Zernio.Api
         /// <param name="destinationId"></param>
         /// <param name="adAccountId">Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateConversionDestination201Response>> GetConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (GetConversionDestination200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetConversionDestination200Response>> GetConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -4603,7 +4603,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<CreateConversionDestination201Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetConversionDestination200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -7904,10 +7904,10 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="destinationId"></param>
         /// <param name="updateConversionDestinationRequest"></param>
-        /// <returns>CreateConversionDestination201Response</returns>
-        public CreateConversionDestination201Response UpdateConversionDestination(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest)
+        /// <returns>GetConversionDestination200Response</returns>
+        public GetConversionDestination200Response UpdateConversionDestination(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest)
         {
-            Zernio.Client.ApiResponse<CreateConversionDestination201Response> localVarResponse = UpdateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest);
+            Zernio.Client.ApiResponse<GetConversionDestination200Response> localVarResponse = UpdateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest);
             return localVarResponse.Data;
         }
 
@@ -7918,8 +7918,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="destinationId"></param>
         /// <param name="updateConversionDestinationRequest"></param>
-        /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
-        public Zernio.Client.ApiResponse<CreateConversionDestination201Response> UpdateConversionDestinationWithHttpInfo(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest)
+        /// <returns>ApiResponse of GetConversionDestination200Response</returns>
+        public Zernio.Client.ApiResponse<GetConversionDestination200Response> UpdateConversionDestinationWithHttpInfo(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -7962,7 +7962,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<CreateConversionDestination201Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<GetConversionDestination200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -7981,10 +7981,10 @@ namespace Zernio.Api
         /// <param name="destinationId"></param>
         /// <param name="updateConversionDestinationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateConversionDestination201Response</returns>
-        public async System.Threading.Tasks.Task<CreateConversionDestination201Response> UpdateConversionDestinationAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of GetConversionDestination200Response</returns>
+        public async System.Threading.Tasks.Task<GetConversionDestination200Response> UpdateConversionDestinationAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<CreateConversionDestination201Response> localVarResponse = await UpdateConversionDestinationWithHttpInfoAsync(accountId, destinationId, updateConversionDestinationRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetConversionDestination200Response> localVarResponse = await UpdateConversionDestinationWithHttpInfoAsync(accountId, destinationId, updateConversionDestinationRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -7996,8 +7996,8 @@ namespace Zernio.Api
         /// <param name="destinationId"></param>
         /// <param name="updateConversionDestinationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateConversionDestination201Response>> UpdateConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (GetConversionDestination200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetConversionDestination200Response>> UpdateConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -8043,7 +8043,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<CreateConversionDestination201Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<GetConversionDestination200Response>("/v1/accounts/{accountId}/conversion-destinations/{destinationId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
