@@ -107,10 +107,11 @@ namespace Zernio.Test.Api
             //string? adAccountId = null;
             //string? accountId = null;
             //string? profileId = null;
+            //string? campaignId = null;
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
             //string? sort = null;
-            //var response = instance.GetAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort);
+            //var response = instance.GetAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort);
             //Assert.IsType<GetAdTree200Response>(response);
         }
 

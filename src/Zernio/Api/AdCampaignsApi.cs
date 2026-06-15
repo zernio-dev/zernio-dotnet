@@ -110,11 +110,12 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
-        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <returns>GetAdTree200Response</returns>
-        GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default);
+        GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default);
 
         /// <summary>
         /// Get campaign tree
@@ -131,11 +132,12 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
-        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <returns>ApiResponse of GetAdTree200Response</returns>
-        ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default);
+        ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default);
         /// <summary>
         /// Get daily aggregate ad metrics for an account
         /// </summary>
@@ -393,12 +395,13 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
-        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdTree200Response</returns>
-        System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get campaign tree
@@ -415,12 +418,13 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
-        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdTree200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get daily aggregate ad metrics for an account
         /// </summary>
@@ -1233,13 +1237,14 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
-        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <returns>GetAdTree200Response</returns>
-        public GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default)
+        public GetAdTree200Response GetAdTree(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default)
         {
-            Zernio.Client.ApiResponse<GetAdTree200Response> localVarResponse = GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort);
+            Zernio.Client.ApiResponse<GetAdTree200Response> localVarResponse = GetAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort);
             return localVarResponse.Data;
         }
 
@@ -1255,11 +1260,12 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
-        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <returns>ApiResponse of GetAdTree200Response</returns>
-        public Zernio.Client.ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default)
+        public Zernio.Client.ApiResponse<GetAdTree200Response> GetAdTreeWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1308,6 +1314,10 @@ namespace Zernio.Api
             if (profileId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            }
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
             }
             if (fromDate != null)
             {
@@ -1353,14 +1363,15 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
-        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdTree200Response</returns>
-        public async System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetAdTree200Response> GetAdTreeAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetAdTree200Response> localVarResponse = await GetAdTreeWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetAdTree200Response> localVarResponse = await GetAdTreeWithHttpInfoAsync(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1376,12 +1387,13 @@ namespace Zernio.Api
         /// <param name="adAccountId">Platform ad account ID (optional)</param>
         /// <param name="accountId">Social account ID (optional)</param>
         /// <param name="profileId">Profile ID (optional)</param>
-        /// <param name="fromDate">Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="campaignId">Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)</param>
+        /// <param name="fromDate">Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
         /// <param name="sort">Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdTree200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdTree200Response>> GetAdTreeWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, string? campaignId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? sort = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1432,6 +1444,10 @@ namespace Zernio.Api
             if (profileId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            }
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
             }
             if (fromDate != null)
             {

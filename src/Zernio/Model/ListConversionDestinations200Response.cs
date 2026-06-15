@@ -55,7 +55,13 @@ namespace Zernio.Model
             /// Enum Linkedinads for value: linkedinads
             /// </summary>
             [EnumMember(Value = "linkedinads")]
-            Linkedinads = 3
+            Linkedinads = 3,
+
+            /// <summary>
+            /// Enum Tiktokads for value: tiktokads
+            /// </summary>
+            [EnumMember(Value = "tiktokads")]
+            Tiktokads = 4
         }
 
 
