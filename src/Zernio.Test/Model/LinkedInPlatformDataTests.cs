@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ReshareUrl'
+        /// </summary>
+        [Fact]
+        public void ReshareUrlTest()
+        {
+            // TODO unit test for the property 'ReshareUrl'
+        }
+
+        /// <summary>
         /// Test the property 'GeoRestriction'
         /// </summary>
         [Fact]
