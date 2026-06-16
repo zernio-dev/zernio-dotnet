@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetInboxConversationMessages200ResponseMessagesInnerReactionsInner" /> class.
         /// </summary>
         /// <param name="emoji">emoji.</param>
-        /// <param name="fromMe">true if the connected account reacted.</param>
+        /// <param name="fromMe">true if the connected account reacted, false if the contact did..</param>
         /// <param name="reactedAt">reactedAt.</param>
         public GetInboxConversationMessages200ResponseMessagesInnerReactionsInner(string emoji = default, bool fromMe = default, DateTime reactedAt = default)
         {
@@ -53,9 +53,9 @@ namespace Zernio.Model
         public string Emoji { get; set; }
 
         /// <summary>
-        /// true if the connected account reacted
+        /// true if the connected account reacted, false if the contact did.
         /// </summary>
-        /// <value>true if the connected account reacted</value>
+        /// <value>true if the connected account reacted, false if the contact did.</value>
         [DataMember(Name = "fromMe", EmitDefaultValue = true)]
         public bool FromMe { get; set; }
 

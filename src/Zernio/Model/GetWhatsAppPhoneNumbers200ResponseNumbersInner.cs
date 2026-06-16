@@ -107,7 +107,7 @@ namespace Zernio.Model
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="country">country.</param>
         /// <param name="status">status.</param>
-        /// <param name="registrantName">For regulated numbers.</param>
+        /// <param name="registrantName">For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC..</param>
         /// <param name="telnyxOrderId">Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review..</param>
         /// <param name="monthlyCents">Per-country monthly price in cents ($2..$25)..</param>
         /// <param name="profileId">profileId.</param>
@@ -158,9 +158,9 @@ namespace Zernio.Model
         public string Country { get; set; }
 
         /// <summary>
-        /// For regulated numbers
+        /// For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC.
         /// </summary>
-        /// <value>For regulated numbers</value>
+        /// <value>For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC.</value>
         [DataMember(Name = "registrantName", EmitDefaultValue = false)]
         public string RegistrantName { get; set; }
 

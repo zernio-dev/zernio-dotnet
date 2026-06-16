@@ -129,7 +129,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="to">Consumer wa_id (E.164</param>
+        /// <param name="to">Consumer wa_id (E.164, leading + optional)</param>
         /// <returns>GetWhatsAppCallPermissions200Response</returns>
         GetWhatsAppCallPermissions200Response GetWhatsAppCallPermissions(string accountId, string to);
 
@@ -141,7 +141,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="to">Consumer wa_id (E.164</param>
+        /// <param name="to">Consumer wa_id (E.164, leading + optional)</param>
         /// <returns>ApiResponse of GetWhatsAppCallPermissions200Response</returns>
         ApiResponse<GetWhatsAppCallPermissions200Response> GetWhatsAppCallPermissionsWithHttpInfo(string accountId, string to);
         /// <summary>
@@ -361,7 +361,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="to">Consumer wa_id (E.164</param>
+        /// <param name="to">Consumer wa_id (E.164, leading + optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppCallPermissions200Response</returns>
         System.Threading.Tasks.Task<GetWhatsAppCallPermissions200Response> GetWhatsAppCallPermissionsAsync(string accountId, string to, System.Threading.CancellationToken cancellationToken = default);
@@ -374,7 +374,7 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="to">Consumer wa_id (E.164</param>
+        /// <param name="to">Consumer wa_id (E.164, leading + optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppCallPermissions200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCallPermissions200Response>> GetWhatsAppCallPermissionsWithHttpInfoAsync(string accountId, string to, System.Threading.CancellationToken cancellationToken = default);
@@ -1288,7 +1288,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="to">Consumer wa_id (E.164</param>
+        /// <param name="to">Consumer wa_id (E.164, leading + optional)</param>
         /// <returns>GetWhatsAppCallPermissions200Response</returns>
         public GetWhatsAppCallPermissions200Response GetWhatsAppCallPermissions(string accountId, string to)
         {
@@ -1301,7 +1301,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="to">Consumer wa_id (E.164</param>
+        /// <param name="to">Consumer wa_id (E.164, leading + optional)</param>
         /// <returns>ApiResponse of GetWhatsAppCallPermissions200Response</returns>
         public Zernio.Client.ApiResponse<GetWhatsAppCallPermissions200Response> GetWhatsAppCallPermissionsWithHttpInfo(string accountId, string to)
         {
@@ -1356,7 +1356,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="to">Consumer wa_id (E.164</param>
+        /// <param name="to">Consumer wa_id (E.164, leading + optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppCallPermissions200Response</returns>
         public async System.Threading.Tasks.Task<GetWhatsAppCallPermissions200Response> GetWhatsAppCallPermissionsAsync(string accountId, string to, System.Threading.CancellationToken cancellationToken = default)
@@ -1370,7 +1370,7 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
-        /// <param name="to">Consumer wa_id (E.164</param>
+        /// <param name="to">Consumer wa_id (E.164, leading + optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppCallPermissions200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppCallPermissions200Response>> GetWhatsAppCallPermissionsWithHttpInfoAsync(string accountId, string to, System.Threading.CancellationToken cancellationToken = default)

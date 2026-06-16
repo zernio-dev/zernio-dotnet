@@ -5,7 +5,7 @@ Raw Voice of Merchant state from Google.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasVoiceOfMerchant** | **bool** | True when the listing is verified and published (eligible to surface reviews | [optional] 
+**HasVoiceOfMerchant** | **bool** | True when the listing is verified and published (eligible to surface reviews, edits, etc.). | [optional] 
 **HasBusinessAuthority** | **bool** | True when the authenticated user has owner/manager authority over the listing. | [optional] 
 **Verify** | [**GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify**](GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.md) |  | [optional] 
 

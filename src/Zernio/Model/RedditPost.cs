@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <param name="title">title.</param>
         /// <param name="author">author.</param>
         /// <param name="subreddit">subreddit.</param>
-        /// <param name="url">Post URL (may be a gallery URL.</param>
+        /// <param name="url">Post URL (may be a gallery URL, external link, or self-post URL).</param>
         /// <param name="permalink">Full permalink to the Reddit post.</param>
         /// <param name="selftext">Self-post body text (empty string for link posts).</param>
         /// <param name="createdUtc">Unix timestamp of post creation.</param>
@@ -105,9 +105,9 @@ namespace Zernio.Model
         public string Subreddit { get; set; }
 
         /// <summary>
-        /// Post URL (may be a gallery URL
+        /// Post URL (may be a gallery URL, external link, or self-post URL)
         /// </summary>
-        /// <value>Post URL (may be a gallery URL</value>
+        /// <value>Post URL (may be a gallery URL, external link, or self-post URL)</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 

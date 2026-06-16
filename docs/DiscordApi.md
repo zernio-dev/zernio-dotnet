@@ -848,7 +848,7 @@ catch (ApiException e)
 | **200** | List of guild roles. |  -  |
 | **400** | Invalid accountId or guildId format. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **502** | Discord rejected the request (bot lacks View Channels permission in the guild). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1587,7 +1587,7 @@ catch (ApiException e)
 | **400** | Validation error, OR no updatable fields beyond accountId provided. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Event or Discord account not found. |  -  |
-| **502** | Discord rejected the update (invalid status transition |  -  |
+| **502** | Discord rejected the update (invalid status transition, bot permissions, etc.). |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1688,7 +1688,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Settings updated |  -  |
-| **400** | Invalid request (no changes |  -  |
+| **400** | Invalid request (no changes, invalid channel type, or bot cannot access channel) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found |  -  |
 

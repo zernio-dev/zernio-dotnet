@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="to">Recipient phone (WhatsApp only).</param>
         /// <param name="conversationId">An existing conversation to run in (required for non-WhatsApp workflows).</param>
-        /// <param name="text">Simulated inbound text.</param>
+        /// <param name="text">Simulated inbound text, seeded as the run&#39;s lastMessage variable.</param>
         public TriggerWorkflowRequest(string to = default, string conversationId = default, string text = default)
         {
             this.To = to;
@@ -61,9 +61,9 @@ namespace Zernio.Model
         public string ConversationId { get; set; }
 
         /// <summary>
-        /// Simulated inbound text
+        /// Simulated inbound text, seeded as the run&#39;s lastMessage variable
         /// </summary>
-        /// <value>Simulated inbound text</value>
+        /// <value>Simulated inbound text, seeded as the run&#39;s lastMessage variable</value>
         [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FollowingCount** | **decimal** | Number of accounts being followed | [optional] 
 **MediaCount** | **decimal** | Total media posts (Instagram) | [optional] 
-**VideoCount** | **decimal** | Total videos (YouTube | [optional] 
+**VideoCount** | **decimal** | Total videos (YouTube, TikTok) | [optional] 
 **TweetCount** | **decimal** | Total tweets (X/Twitter) | [optional] 
 **PostsCount** | **decimal** | Total posts (Bluesky) | [optional] 
 **PinCount** | **decimal** | Total pins (Pinterest) | [optional] 

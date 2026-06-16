@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **AccountId** | **string** |  | 
 **ForwardTo** | **string** | tel:+E164 / sip:... / wss://... destination | 
 **SipAuthUsername** | **string** |  | [optional] 
-**SipAuthPassword** | **string** | Stored encrypted | [optional] 
+**SipAuthPassword** | **string** | Stored encrypted, never returned by any endpoint. | [optional] 
 **RecordingEnabled** | **bool** |  | [optional] [default to false]
 **CallIconCountries** | **List&lt;string&gt;** |  | [optional] 
 

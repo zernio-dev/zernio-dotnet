@@ -813,7 +813,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Either a checkout URL (first number) or the provisioned phone number (subsequent numbers).  |  -  |
-| **400** | Plan limit reached |  -  |
+| **400** | Plan limit reached, profileId required, or country not available |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
 | **409** | Duplicate-purchase protection: another number was purchased for this user within the last 10 minutes. Retry with allowMultiple: true to confirm the additional purchase is intentional.  |  -  |
@@ -1232,7 +1232,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
-| **400** | Validation error (e.g. address not in-country |  -  |
+| **400** | Validation error (e.g. address not in-country, file too large) |  -  |
 | **409** | reuse requested but no prior approved verification exists for this country |  -  |
 | **401** | Unauthorized |  -  |
 

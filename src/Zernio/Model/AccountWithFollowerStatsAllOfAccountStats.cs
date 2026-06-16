@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="followingCount">Number of accounts being followed.</param>
         /// <param name="mediaCount">Total media posts (Instagram).</param>
-        /// <param name="videoCount">Total videos (YouTube.</param>
+        /// <param name="videoCount">Total videos (YouTube, TikTok).</param>
         /// <param name="tweetCount">Total tweets (X/Twitter).</param>
         /// <param name="postsCount">Total posts (Bluesky).</param>
         /// <param name="pinCount">Total pins (Pinterest).</param>
@@ -77,9 +77,9 @@ namespace Zernio.Model
         public decimal MediaCount { get; set; }
 
         /// <summary>
-        /// Total videos (YouTube
+        /// Total videos (YouTube, TikTok)
         /// </summary>
-        /// <value>Total videos (YouTube</value>
+        /// <value>Total videos (YouTube, TikTok)</value>
         [DataMember(Name = "videoCount", EmitDefaultValue = false)]
         public decimal VideoCount { get; set; }
 

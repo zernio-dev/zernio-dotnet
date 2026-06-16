@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">Ad account id, in &#x60;act_&lt;digits&gt;&#x60; form. (required).</param>
         /// <param name="name">name.</param>
-        /// <param name="businessId">Business Manager id that owns the ad account.</param>
+        /// <param name="businessId">Business Manager id that owns the ad account, when reported..</param>
         public SharedAdAccount(string id = default, string name = default, string businessId = default)
         {
             // to ensure "id" is required (not null)
@@ -70,9 +70,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Business Manager id that owns the ad account
+        /// Business Manager id that owns the ad account, when reported.
         /// </summary>
-        /// <value>Business Manager id that owns the ad account</value>
+        /// <value>Business Manager id that owns the ad account, when reported.</value>
         [DataMember(Name = "businessId", EmitDefaultValue = false)]
         public string BusinessId { get; set; }
 

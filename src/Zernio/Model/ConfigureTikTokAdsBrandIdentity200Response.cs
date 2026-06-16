@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ConfigureTikTokAdsBrandIdentity200Response" /> class.
         /// </summary>
         /// <param name="success">success.</param>
-        /// <param name="identityId">The TikTok-assigned identity_id.</param>
+        /// <param name="identityId">The TikTok-assigned identity_id, cached on the account..</param>
         /// <param name="displayName">displayName.</param>
         public ConfigureTikTokAdsBrandIdentity200Response(bool success = default, string identityId = default, string displayName = default)
         {
@@ -56,9 +56,9 @@ namespace Zernio.Model
         public bool Success { get; set; }
 
         /// <summary>
-        /// The TikTok-assigned identity_id
+        /// The TikTok-assigned identity_id, cached on the account.
         /// </summary>
-        /// <value>The TikTok-assigned identity_id</value>
+        /// <value>The TikTok-assigned identity_id, cached on the account.</value>
         [DataMember(Name = "identityId", EmitDefaultValue = false)]
         public string IdentityId { get; set; }
 

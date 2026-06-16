@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | **string** |  | 
-**To** | **string** | Consumer wa_id (E.164 | 
+**To** | **string** | Consumer wa_id (E.164, leading + optional) | 
 **Action** | **string** | Omit to place a call. Set to send the consent prompt instead. | [optional] 
 **BodyText** | **string** | Body text shown with the consent prompt (send_call_permission_request only). | [optional] 
 **ForwardTo** | **string** | Per-call destination override. Same accepted shape as the number&#39;s stored forwardTo (tel:+E164, sip:..., wss://...).  | [optional] 

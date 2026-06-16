@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Title** | **string** |  | [optional] 
 **Author** | **string** |  | [optional] 
 **Subreddit** | **string** |  | [optional] 
-**Url** | **string** | Post URL (may be a gallery URL | [optional] 
+**Url** | **string** | Post URL (may be a gallery URL, external link, or self-post URL) | [optional] 
 **Permalink** | **string** | Full permalink to the Reddit post | [optional] 
 **Selftext** | **string** | Self-post body text (empty string for link posts) | [optional] 
 **CreatedUtc** | **decimal** | Unix timestamp of post creation | [optional] 

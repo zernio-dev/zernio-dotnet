@@ -63,7 +63,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="InitiateWhatsAppCallRequest" /> class.
         /// </summary>
         /// <param name="accountId">accountId (required).</param>
-        /// <param name="to">Consumer wa_id (E.164 (required).</param>
+        /// <param name="to">Consumer wa_id (E.164, leading + optional) (required).</param>
         /// <param name="action">Omit to place a call. Set to send the consent prompt instead..</param>
         /// <param name="bodyText">Body text shown with the consent prompt (send_call_permission_request only)..</param>
         /// <param name="forwardTo">Per-call destination override. Same accepted shape as the number&#39;s stored forwardTo (tel:+E164, sip:..., wss://...). .</param>
@@ -97,9 +97,9 @@ namespace Zernio.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Consumer wa_id (E.164
+        /// Consumer wa_id (E.164, leading + optional)
         /// </summary>
-        /// <value>Consumer wa_id (E.164</value>
+        /// <value>Consumer wa_id (E.164, leading + optional)</value>
         [DataMember(Name = "to", IsRequired = true, EmitDefaultValue = true)]
         public string To { get; set; }
 

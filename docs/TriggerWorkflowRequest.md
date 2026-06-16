@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **To** | **string** | Recipient phone (WhatsApp only) | [optional] 
 **ConversationId** | **string** | An existing conversation to run in (required for non-WhatsApp workflows) | [optional] 
-**Text** | **string** | Simulated inbound text | [optional] 
+**Text** | **string** | Simulated inbound text, seeded as the run&#39;s lastMessage variable | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

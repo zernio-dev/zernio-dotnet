@@ -124,7 +124,7 @@ namespace Zernio.Model
         /// <param name="id">Internal conversation ID (required).</param>
         /// <param name="platform">platform (required).</param>
         /// <param name="platformConversationId">platformConversationId (required).</param>
-        /// <param name="participantId">Contact&#39;s platform identifier (IGSID.</param>
+        /// <param name="participantId">Contact&#39;s platform identifier (IGSID, PSID, wa_id, etc.).</param>
         /// <param name="participantName">participantName (required).</param>
         /// <param name="participantUsername">Contact&#39;s handle when the platform exposes one.</param>
         /// <param name="participantPicture">participantPicture.</param>
@@ -172,9 +172,9 @@ namespace Zernio.Model
         public string PlatformConversationId { get; set; }
 
         /// <summary>
-        /// Contact&#39;s platform identifier (IGSID
+        /// Contact&#39;s platform identifier (IGSID, PSID, wa_id, etc.)
         /// </summary>
-        /// <value>Contact&#39;s platform identifier (IGSID</value>
+        /// <value>Contact&#39;s platform identifier (IGSID, PSID, wa_id, etc.)</value>
         [DataMember(Name = "participantId", EmitDefaultValue = false)]
         public string ParticipantId { get; set; }
 

@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="DiscordPlatformDataEmbedsInnerFieldsInner" /> class.
         /// </summary>
         /// <param name="name">Field name (max 256 chars) (required).</param>
-        /// <param name="value">Field value (max 1 (required).</param>
+        /// <param name="value">Field value (max 1,024 chars) (required).</param>
         /// <param name="inline">Display fields side-by-side.</param>
         public DiscordPlatformDataEmbedsInnerFieldsInner(string name = default, string value = default, bool inline = default)
         {
@@ -69,9 +69,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Field value (max 1
+        /// Field value (max 1,024 chars)
         /// </summary>
-        /// <value>Field value (max 1</value>
+        /// <value>Field value (max 1,024 chars)</value>
         [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
         public string Value { get; set; }
 

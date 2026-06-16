@@ -36,7 +36,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState" /> class.
         /// </summary>
-        /// <param name="hasVoiceOfMerchant">True when the listing is verified and published (eligible to surface reviews.</param>
+        /// <param name="hasVoiceOfMerchant">True when the listing is verified and published (eligible to surface reviews, edits, etc.)..</param>
         /// <param name="hasBusinessAuthority">True when the authenticated user has owner/manager authority over the listing..</param>
         /// <param name="verify">verify.</param>
         public GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState(bool hasVoiceOfMerchant = default, bool hasBusinessAuthority = default, GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify verify = default)
@@ -47,9 +47,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// True when the listing is verified and published (eligible to surface reviews
+        /// True when the listing is verified and published (eligible to surface reviews, edits, etc.).
         /// </summary>
-        /// <value>True when the listing is verified and published (eligible to surface reviews</value>
+        /// <value>True when the listing is verified and published (eligible to surface reviews, edits, etc.).</value>
         [DataMember(Name = "hasVoiceOfMerchant", EmitDefaultValue = true)]
         public bool HasVoiceOfMerchant { get; set; }
 

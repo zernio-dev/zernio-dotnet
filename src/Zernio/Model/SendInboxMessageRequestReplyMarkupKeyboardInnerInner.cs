@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestReplyMarkupKeyboardInnerInner" /> class.
         /// </summary>
         /// <param name="text">Button text.</param>
-        /// <param name="callbackData">Callback data (inline_keyboard only.</param>
+        /// <param name="callbackData">Callback data (inline_keyboard only, max 64 bytes).</param>
         /// <param name="url">URL to open (inline_keyboard only).</param>
         public SendInboxMessageRequestReplyMarkupKeyboardInnerInner(string text = default, string callbackData = default, string url = default)
         {
@@ -54,9 +54,9 @@ namespace Zernio.Model
         public string Text { get; set; }
 
         /// <summary>
-        /// Callback data (inline_keyboard only
+        /// Callback data (inline_keyboard only, max 64 bytes)
         /// </summary>
-        /// <value>Callback data (inline_keyboard only</value>
+        /// <value>Callback data (inline_keyboard only, max 64 bytes)</value>
         [DataMember(Name = "callbackData", EmitDefaultValue = false)]
         public string CallbackData { get; set; }
 

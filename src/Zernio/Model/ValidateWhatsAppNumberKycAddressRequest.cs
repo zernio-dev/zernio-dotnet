@@ -44,7 +44,7 @@ namespace Zernio.Model
         /// <param name="country">ISO 3166-1 alpha-2 country code. (required).</param>
         /// <param name="streetAddress">streetAddress (required).</param>
         /// <param name="locality">City / town. (required).</param>
-        /// <param name="administrativeArea">State / province / region. When omitted.</param>
+        /// <param name="administrativeArea">State / province / region. When omitted, the pre-check is skipped (the final submit still validates)..</param>
         /// <param name="postalCode">postalCode (required).</param>
         public ValidateWhatsAppNumberKycAddressRequest(string country = default, string streetAddress = default, string locality = default, string administrativeArea = default, string postalCode = default)
         {
@@ -96,9 +96,9 @@ namespace Zernio.Model
         public string Locality { get; set; }
 
         /// <summary>
-        /// State / province / region. When omitted
+        /// State / province / region. When omitted, the pre-check is skipped (the final submit still validates).
         /// </summary>
-        /// <value>State / province / region. When omitted</value>
+        /// <value>State / province / region. When omitted, the pre-check is skipped (the final submit still validates).</value>
         [DataMember(Name = "administrative_area", EmitDefaultValue = false)]
         public string AdministrativeArea { get; set; }
 

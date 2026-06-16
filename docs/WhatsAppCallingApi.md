@@ -453,7 +453,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | 
-            var to = "to_example";  // string | Consumer wa_id (E.164
+            var to = "to_example";  // string | Consumer wa_id (E.164, leading + optional)
 
             try
             {
@@ -497,7 +497,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** |  |  |
-| **to** | **string** | Consumer wa_id (E.164 |  |
+| **to** | **string** | Consumer wa_id (E.164, leading + optional) |  |
 
 ### Return type
 
@@ -719,7 +719,7 @@ catch (ApiException e)
 | **200** | Call originated; lifecycle continues asynchronously via webhooks. |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | No active call permission — send a permission request first. |  -  |
-| **422** | Calling not enabled |  -  |
+| **422** | Calling not enabled, BIC country blocked, or missing Meta SIP credentials |  -  |
 | **502** | Telnyx-side originate failed; the Call doc has been marked failed. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

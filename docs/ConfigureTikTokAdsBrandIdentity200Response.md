@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Success** | **bool** |  | [optional] 
-**IdentityId** | **string** | The TikTok-assigned identity_id | [optional] 
+**IdentityId** | **string** | The TikTok-assigned identity_id, cached on the account. | [optional] 
 **DisplayName** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner" /> class.
         /// </summary>
         /// <param name="name">Full review resource name (accounts/_*_/locations/_*_/reviews/_*).</param>
-        /// <param name="review">The review object (reviewId.</param>
+        /// <param name="review">The review object (reviewId, starRating, comment, reviewer, createTime, updateTime, reviewReply).</param>
         public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner(string name = default, Object review = default)
         {
             this.Name = name;
@@ -52,9 +52,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// The review object (reviewId
+        /// The review object (reviewId, starRating, comment, reviewer, createTime, updateTime, reviewReply)
         /// </summary>
-        /// <value>The review object (reviewId</value>
+        /// <value>The review object (reviewId, starRating, comment, reviewer, createTime, updateTime, reviewReply)</value>
         [DataMember(Name = "review", EmitDefaultValue = false)]
         public Object Review { get; set; }
 

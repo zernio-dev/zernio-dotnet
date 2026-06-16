@@ -40,10 +40,10 @@ namespace Zernio.Model
         /// <param name="fullname">Fullname with type prefix (e.g. \&quot;t3_1tjtj26\&quot;).</param>
         /// <param name="title">title.</param>
         /// <param name="selftext">Body text for self-posts (empty for link posts).</param>
-        /// <param name="author">Reddit username.</param>
-        /// <param name="subreddit">Subreddit name.</param>
+        /// <param name="author">Reddit username, without the u/ prefix.</param>
+        /// <param name="subreddit">Subreddit name, without the r/ prefix.</param>
         /// <param name="permalink">Absolute URL to the post on reddit.com.</param>
-        /// <param name="url">For link posts.</param>
+        /// <param name="url">For link posts, the external URL; for self-posts, the Reddit permalink.</param>
         /// <param name="score">Net upvotes (upvotes minus downvotes).</param>
         /// <param name="numComments">numComments.</param>
         /// <param name="createdUtc">Unix timestamp in seconds.</param>
@@ -98,16 +98,16 @@ namespace Zernio.Model
         public string Selftext { get; set; }
 
         /// <summary>
-        /// Reddit username
+        /// Reddit username, without the u/ prefix
         /// </summary>
-        /// <value>Reddit username</value>
+        /// <value>Reddit username, without the u/ prefix</value>
         [DataMember(Name = "author", EmitDefaultValue = false)]
         public string Author { get; set; }
 
         /// <summary>
-        /// Subreddit name
+        /// Subreddit name, without the r/ prefix
         /// </summary>
-        /// <value>Subreddit name</value>
+        /// <value>Subreddit name, without the r/ prefix</value>
         [DataMember(Name = "subreddit", EmitDefaultValue = false)]
         public string Subreddit { get; set; }
 
@@ -119,9 +119,9 @@ namespace Zernio.Model
         public string Permalink { get; set; }
 
         /// <summary>
-        /// For link posts
+        /// For link posts, the external URL; for self-posts, the Reddit permalink
         /// </summary>
-        /// <value>For link posts</value>
+        /// <value>For link posts, the external URL; for self-posts, the Reddit permalink</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 

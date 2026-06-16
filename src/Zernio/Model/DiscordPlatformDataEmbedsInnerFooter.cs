@@ -36,7 +36,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DiscordPlatformDataEmbedsInnerFooter" /> class.
         /// </summary>
-        /// <param name="text">Footer text (max 2.</param>
+        /// <param name="text">Footer text (max 2,048 chars).</param>
         /// <param name="iconUrl">iconUrl.</param>
         public DiscordPlatformDataEmbedsInnerFooter(string text = default, string iconUrl = default)
         {
@@ -45,9 +45,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Footer text (max 2
+        /// Footer text (max 2,048 chars)
         /// </summary>
-        /// <value>Footer text (max 2</value>
+        /// <value>Footer text (max 2,048 chars)</value>
         [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 

@@ -44,7 +44,7 @@ namespace Zernio.Model
         /// <param name="accountId">accountId (required).</param>
         /// <param name="forwardTo">tel:+E164 / sip:... / wss://... destination (required).</param>
         /// <param name="sipAuthUsername">sipAuthUsername.</param>
-        /// <param name="sipAuthPassword">Stored encrypted.</param>
+        /// <param name="sipAuthPassword">Stored encrypted, never returned by any endpoint..</param>
         /// <param name="recordingEnabled">recordingEnabled (default to false).</param>
         /// <param name="callIconCountries">callIconCountries.</param>
         public EnableWhatsAppCallingRequest(string accountId = default, string forwardTo = default, string sipAuthUsername = default, string sipAuthPassword = default, bool recordingEnabled = false, List<string> callIconCountries = default)
@@ -87,9 +87,9 @@ namespace Zernio.Model
         public string SipAuthUsername { get; set; }
 
         /// <summary>
-        /// Stored encrypted
+        /// Stored encrypted, never returned by any endpoint.
         /// </summary>
-        /// <value>Stored encrypted</value>
+        /// <value>Stored encrypted, never returned by any endpoint.</value>
         [DataMember(Name = "sipAuthPassword", EmitDefaultValue = false)]
         public string SipAuthPassword { get; set; }
 

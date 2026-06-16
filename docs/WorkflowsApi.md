@@ -215,7 +215,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow created |  -  |
-| **400** | Invalid graph (duplicate node ids |  -  |
+| **400** | Invalid graph (duplicate node ids, edges referencing missing nodes, or a WhatsApp-only node on another platform) |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1228,7 +1228,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow restored to the named version |  -  |
-| **400** | Workflow is not draft/paused |  -  |
+| **400** | Workflow is not draft/paused, or the named version&#39;s graph is invalid for the current platform |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1331,7 +1331,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Run started |  -  |
-| **400** | Missing target |  -  |
+| **400** | Missing target, invalid graph, or &#x60;to&#x60; used on a non-WhatsApp workflow |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1434,7 +1434,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow updated |  -  |
-| **400** | Invalid graph |  -  |
+| **400** | Invalid graph, or a graph edit attempted while the workflow is active |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 

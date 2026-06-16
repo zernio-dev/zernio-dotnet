@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <param name="description">description.</param>
         /// <param name="createdBy">User id that authored this version.</param>
         /// <param name="createdByEmail">Denormalized email so the history UI can render without a join.</param>
-        /// <param name="restoredFromVersion">When non-null.</param>
+        /// <param name="restoredFromVersion">When non-null, this snapshot was created by restoring that version.</param>
         /// <param name="createdAt">createdAt.</param>
         public ListWorkflowVersions200ResponseVersionsInner(int varVersion = default, string name = default, string description = default, string createdBy = default, string createdByEmail = default, int restoredFromVersion = default, DateTime createdAt = default)
         {
@@ -88,9 +88,9 @@ namespace Zernio.Model
         public string CreatedByEmail { get; set; }
 
         /// <summary>
-        /// When non-null
+        /// When non-null, this snapshot was created by restoring that version
         /// </summary>
-        /// <value>When non-null</value>
+        /// <value>When non-null, this snapshot was created by restoring that version</value>
         [DataMember(Name = "restoredFromVersion", EmitDefaultValue = false)]
         public int RestoredFromVersion { get; set; }
 
