@@ -28,31 +28,128 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ErrorResponse
+    /// Canonical error envelope. &#x60;error&#x60; is the human-readable message; &#x60;type&#x60;, &#x60;code&#x60;, &#x60;param&#x60;, &#x60;platform&#x60;, and &#x60;platformError&#x60; are top-level siblings for programmatic handling. For upstream platform failures (&#x60;type: platform_error&#x60;), &#x60;platformError&#x60; carries the provider&#39;s raw payload verbatim (for Meta: &#x60;error_subcode&#x60;, &#x60;error_user_title&#x60;, &#x60;error_user_msg&#x60;). 
     /// </summary>
     [DataContract(Name = "ErrorResponse")]
     public partial class ErrorResponse : IValidatableObject
     {
         /// <summary>
+        /// Error class for programmatic handling.
+        /// </summary>
+        /// <value>Error class for programmatic handling.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum InvalidRequestError for value: invalid_request_error
+            /// </summary>
+            [EnumMember(Value = "invalid_request_error")]
+            InvalidRequestError = 1,
+
+            /// <summary>
+            /// Enum AuthenticationError for value: authentication_error
+            /// </summary>
+            [EnumMember(Value = "authentication_error")]
+            AuthenticationError = 2,
+
+            /// <summary>
+            /// Enum PermissionError for value: permission_error
+            /// </summary>
+            [EnumMember(Value = "permission_error")]
+            PermissionError = 3,
+
+            /// <summary>
+            /// Enum NotFound for value: not_found
+            /// </summary>
+            [EnumMember(Value = "not_found")]
+            NotFound = 4,
+
+            /// <summary>
+            /// Enum RateLimitError for value: rate_limit_error
+            /// </summary>
+            [EnumMember(Value = "rate_limit_error")]
+            RateLimitError = 5,
+
+            /// <summary>
+            /// Enum PlatformError for value: platform_error
+            /// </summary>
+            [EnumMember(Value = "platform_error")]
+            PlatformError = 6,
+
+            /// <summary>
+            /// Enum ApiError for value: api_error
+            /// </summary>
+            [EnumMember(Value = "api_error")]
+            ApiError = 7
+        }
+
+
+        /// <summary>
+        /// Error class for programmatic handling.
+        /// </summary>
+        /// <value>Error class for programmatic handling.</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public TypeEnum? Type { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ErrorResponse" /> class.
         /// </summary>
-        /// <param name="error">error.</param>
-        /// <param name="details">details.</param>
-        public ErrorResponse(string error = default, Dictionary<string, Object> details = default)
+        /// <param name="error">Human-readable error message..</param>
+        /// <param name="type">Error class for programmatic handling..</param>
+        /// <param name="code">Stable machine-readable error code..</param>
+        /// <param name="param">The request field that caused the error, when applicable..</param>
+        /// <param name="platform">Upstream platform (e.g. meta, google, tiktok) — present when type is platform_error..</param>
+        /// <param name="platformError">Raw error payload from the upstream platform, passed through verbatim so integrators can read provider-specific codes. For Meta this includes error_subcode, error_user_title, and error_user_msg. .</param>
+        /// <param name="details">Additional structured context (e.g. field-level validation errors)..</param>
+        public ErrorResponse(string error = default, TypeEnum? type = default, string code = default, string param = default, string platform = default, Dictionary<string, Object> platformError = default, Dictionary<string, Object> details = default)
         {
             this.Error = error;
+            this.Type = type;
+            this.Code = code;
+            this.Param = param;
+            this.Platform = platform;
+            this.PlatformError = platformError;
             this.Details = details;
         }
 
         /// <summary>
-        /// Gets or Sets Error
+        /// Human-readable error message.
         /// </summary>
+        /// <value>Human-readable error message.</value>
         [DataMember(Name = "error", EmitDefaultValue = false)]
         public string Error { get; set; }
 
         /// <summary>
-        /// Gets or Sets Details
+        /// Stable machine-readable error code.
         /// </summary>
+        /// <value>Stable machine-readable error code.</value>
+        [DataMember(Name = "code", EmitDefaultValue = false)]
+        public string Code { get; set; }
+
+        /// <summary>
+        /// The request field that caused the error, when applicable.
+        /// </summary>
+        /// <value>The request field that caused the error, when applicable.</value>
+        [DataMember(Name = "param", EmitDefaultValue = false)]
+        public string Param { get; set; }
+
+        /// <summary>
+        /// Upstream platform (e.g. meta, google, tiktok) — present when type is platform_error.
+        /// </summary>
+        /// <value>Upstream platform (e.g. meta, google, tiktok) — present when type is platform_error.</value>
+        [DataMember(Name = "platform", EmitDefaultValue = false)]
+        public string Platform { get; set; }
+
+        /// <summary>
+        /// Raw error payload from the upstream platform, passed through verbatim so integrators can read provider-specific codes. For Meta this includes error_subcode, error_user_title, and error_user_msg. 
+        /// </summary>
+        /// <value>Raw error payload from the upstream platform, passed through verbatim so integrators can read provider-specific codes. For Meta this includes error_subcode, error_user_title, and error_user_msg. </value>
+        [DataMember(Name = "platformError", EmitDefaultValue = false)]
+        public Dictionary<string, Object> PlatformError { get; set; }
+
+        /// <summary>
+        /// Additional structured context (e.g. field-level validation errors).
+        /// </summary>
+        /// <value>Additional structured context (e.g. field-level validation errors).</value>
         [DataMember(Name = "details", EmitDefaultValue = false)]
         public Dictionary<string, Object> Details { get; set; }
 
@@ -65,6 +162,11 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ErrorResponse {\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Param: ").Append(Param).Append("\n");
+            sb.Append("  Platform: ").Append(Platform).Append("\n");
+            sb.Append("  PlatformError: ").Append(PlatformError).Append("\n");
             sb.Append("  Details: ").Append(Details).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
