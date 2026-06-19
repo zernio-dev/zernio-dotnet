@@ -466,6 +466,9 @@ docs/GetInstagramStoryInsights200Response.md
 docs/GetInstagramStoryInsights200ResponseData.md
 docs/GetInstagramStoryInsights200ResponseDataMetrics.md
 docs/GetLeadForm200Response.md
+docs/GetLeadForm200ResponseForm.md
+docs/GetLeadForm200ResponseFormQuestionsInner.md
+docs/GetLeadForm200ResponseFormThankYouPage.md
 docs/GetLinkedInAggregateAnalytics200Response.md
 docs/GetLinkedInAggregateAnalytics400Response.md
 docs/GetLinkedInAggregateAnalytics402Response.md
@@ -1738,6 +1741,9 @@ src/Zernio.Test/Model/GetInstagramAccountInsights404ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataMetricsTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseTests.cs
+src/Zernio.Test/Model/GetLeadForm200ResponseFormQuestionsInnerTests.cs
+src/Zernio.Test/Model/GetLeadForm200ResponseFormTests.cs
+src/Zernio.Test/Model/GetLeadForm200ResponseFormThankYouPageTests.cs
 src/Zernio.Test/Model/GetLeadForm200ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInAggregateAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInAggregateAnalytics400ResponseTests.cs
@@ -3002,6 +3008,9 @@ src/Zernio/Model/GetInstagramStoryInsights200Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200ResponseData.cs
 src/Zernio/Model/GetInstagramStoryInsights200ResponseDataMetrics.cs
 src/Zernio/Model/GetLeadForm200Response.cs
+src/Zernio/Model/GetLeadForm200ResponseForm.cs
+src/Zernio/Model/GetLeadForm200ResponseFormQuestionsInner.cs
+src/Zernio/Model/GetLeadForm200ResponseFormThankYouPage.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics200Response.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics400Response.cs
 src/Zernio/Model/GetLinkedInAggregateAnalytics402Response.cs

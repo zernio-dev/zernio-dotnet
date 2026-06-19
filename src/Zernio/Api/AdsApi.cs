@@ -844,7 +844,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
         /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
         /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
-        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
         /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <returns>SearchAdTargeting200Response</returns>
@@ -860,7 +860,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
         /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
         /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
-        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
         /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <returns>ApiResponse of SearchAdTargeting200Response</returns>
@@ -1872,7 +1872,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
         /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
         /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
-        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
         /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1889,7 +1889,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
         /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
         /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
-        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
         /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -7173,7 +7173,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
         /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
         /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
-        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
         /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <returns>SearchAdTargeting200Response</returns>
@@ -7190,7 +7190,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
         /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
         /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
-        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
         /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <returns>ApiResponse of SearchAdTargeting200Response</returns>
@@ -7265,7 +7265,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
         /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
         /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
-        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
         /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -7283,7 +7283,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID (a connected account on the target ad platform).</param>
         /// <param name="q">Search query. For geo, the locality name only (no region/country suffix).</param>
         /// <param name="dimension">What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)</param>
-        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
+        /// <param name="geoType">Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)</param>
         /// <param name="countryCode">ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)</param>
         /// <param name="limit">Maximum results to return. (optional, default to 25)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>

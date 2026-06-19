@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="status">status.</param>
         /// <param name="form">form.</param>
-        public GetLeadForm200Response(string status = default, Object form = default)
+        public GetLeadForm200Response(string status = default, GetLeadForm200ResponseForm form = default)
         {
             this.Status = status;
             this.Form = form;
@@ -47,6 +47,9 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Status
         /// </summary>
+        /*
+        <example>success</example>
+        */
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public string Status { get; set; }
 
@@ -54,7 +57,7 @@ namespace Zernio.Model
         /// Gets or Sets Form
         /// </summary>
         [DataMember(Name = "form", EmitDefaultValue = false)]
-        public Object Form { get; set; }
+        public GetLeadForm200ResponseForm Form { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
