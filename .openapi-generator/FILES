@@ -850,6 +850,7 @@ docs/ReviewWebhookReview.md
 docs/ReviewWebhookReviewReply.md
 docs/ReviewWebhookReviewReviewer.md
 docs/ReviewsApi.md
+docs/SMSApi.md
 docs/SavedTargetingAudience.md
 docs/ScheduleBroadcast200Response.md
 docs/ScheduleBroadcast200ResponseBroadcast.md
@@ -930,6 +931,8 @@ docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf.md
 docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf1.md
 docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf2.md
 docs/SendPrivateReplyToCommentRequestQuickRepliesInner.md
+docs/SendSms200Response.md
+docs/SendSmsRequest.md
 docs/SendTypingIndicatorRequest.md
 docs/SendWhatsAppConversion200Response.md
 docs/SendWhatsAppConversionRequest.md
@@ -1280,6 +1283,7 @@ src/Zernio.Test/Api/ProfilesApiTests.cs
 src/Zernio.Test/Api/QueueApiTests.cs
 src/Zernio.Test/Api/RedditSearchApiTests.cs
 src/Zernio.Test/Api/ReviewsApiTests.cs
+src/Zernio.Test/Api/SMSApiTests.cs
 src/Zernio.Test/Api/SequencesApiTests.cs
 src/Zernio.Test/Api/TrackingTagsApiTests.cs
 src/Zernio.Test/Api/TwitterEngagementApiTests.cs
@@ -2187,6 +2191,8 @@ src/Zernio.Test/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOfTests.cs
 src/Zernio.Test/Model/SendPrivateReplyToCommentRequestButtonsInnerTests.cs
 src/Zernio.Test/Model/SendPrivateReplyToCommentRequestQuickRepliesInnerTests.cs
 src/Zernio.Test/Model/SendPrivateReplyToCommentRequestTests.cs
+src/Zernio.Test/Model/SendSms200ResponseTests.cs
+src/Zernio.Test/Model/SendSmsRequestTests.cs
 src/Zernio.Test/Model/SendTypingIndicatorRequestTests.cs
 src/Zernio.Test/Model/SendWhatsAppConversion200ResponseTests.cs
 src/Zernio.Test/Model/SendWhatsAppConversionRequestTests.cs
@@ -2522,6 +2528,7 @@ src/Zernio/Api/ProfilesApi.cs
 src/Zernio/Api/QueueApi.cs
 src/Zernio/Api/RedditSearchApi.cs
 src/Zernio/Api/ReviewsApi.cs
+src/Zernio/Api/SMSApi.cs
 src/Zernio/Api/SequencesApi.cs
 src/Zernio/Api/TrackingTagsApi.cs
 src/Zernio/Api/TwitterEngagementApi.cs
@@ -3447,6 +3454,8 @@ src/Zernio/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOf.cs
 src/Zernio/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOf1.cs
 src/Zernio/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOf2.cs
 src/Zernio/Model/SendPrivateReplyToCommentRequestQuickRepliesInner.cs
+src/Zernio/Model/SendSms200Response.cs
+src/Zernio/Model/SendSmsRequest.cs
 src/Zernio/Model/SendTypingIndicatorRequest.cs
 src/Zernio/Model/SendWhatsAppConversion200Response.cs
 src/Zernio/Model/SendWhatsAppConversionRequest.cs
