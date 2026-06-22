@@ -171,5 +171,50 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'IsOptimizedForQuality'
         }
+
+        /// <summary>
+        /// Test the property 'FormType'
+        /// </summary>
+        [Fact]
+        public void FormTypeTest()
+        {
+            // TODO unit test for the property 'FormType'
+        }
+
+        /// <summary>
+        /// Test the property 'BlockDisplayForNonTargetedViewer'
+        /// </summary>
+        [Fact]
+        public void BlockDisplayForNonTargetedViewerTest()
+        {
+            // TODO unit test for the property 'BlockDisplayForNonTargetedViewer'
+        }
+
+        /// <summary>
+        /// Test the property 'AllowOrganicLeadGen'
+        /// </summary>
+        [Fact]
+        public void AllowOrganicLeadGenTest()
+        {
+            // TODO unit test for the property 'AllowOrganicLeadGen'
+        }
+
+        /// <summary>
+        /// Test the property 'QuestionPageCustomHeadline'
+        /// </summary>
+        [Fact]
+        public void QuestionPageCustomHeadlineTest()
+        {
+            // TODO unit test for the property 'QuestionPageCustomHeadline'
+        }
+
+        /// <summary>
+        /// Test the property 'ContextCard'
+        /// </summary>
+        [Fact]
+        public void ContextCardTest()
+        {
+            // TODO unit test for the property 'ContextCard'
+        }
     }
 }

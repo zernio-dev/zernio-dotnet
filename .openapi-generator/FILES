@@ -177,6 +177,7 @@ docs/CreateInviteToken201Response.md
 docs/CreateInviteTokenRequest.md
 docs/CreateLeadForm200Response.md
 docs/CreateLeadFormRequest.md
+docs/CreateLeadFormRequestContextCard.md
 docs/CreateLeadFormRequestQuestionsInner.md
 docs/CreateLeadFormRequestQuestionsInnerOptionsInner.md
 docs/CreatePost409Response.md
@@ -206,11 +207,13 @@ docs/CreateStandaloneAdRequestCreativesInner.md
 docs/CreateStandaloneAdRequestCreativesInnerVideo.md
 docs/CreateStandaloneAdRequestCustomLocationsInner.md
 docs/CreateStandaloneAdRequestDynamicCreative.md
+docs/CreateStandaloneAdRequestExcludedLocations.md
 docs/CreateStandaloneAdRequestImages.md
 docs/CreateStandaloneAdRequestPlacementAssets.md
 docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md
 docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md
 docs/CreateStandaloneAdRequestPlacements.md
+docs/CreateStandaloneAdRequestPlacesInner.md
 docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestTracking.md
@@ -1462,6 +1465,7 @@ src/Zernio.Test/Model/CreateInboxConversationRequestTests.cs
 src/Zernio.Test/Model/CreateInviteToken201ResponseTests.cs
 src/Zernio.Test/Model/CreateInviteTokenRequestTests.cs
 src/Zernio.Test/Model/CreateLeadForm200ResponseTests.cs
+src/Zernio.Test/Model/CreateLeadFormRequestContextCardTests.cs
 src/Zernio.Test/Model/CreateLeadFormRequestQuestionsInnerOptionsInnerTests.cs
 src/Zernio.Test/Model/CreateLeadFormRequestQuestionsInnerTests.cs
 src/Zernio.Test/Model/CreateLeadFormRequestTests.cs
@@ -1491,11 +1495,13 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCreativesInnerVideoTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestCustomLocationsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestDynamicCreativeTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestExcludedLocationsTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestImagesTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacementsTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementAssetsTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPlacementsTests.cs
+src/Zernio.Test/Model/CreateStandaloneAdRequestPlacesInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestPromotedObjectTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
@@ -2729,6 +2735,7 @@ src/Zernio/Model/CreateInviteToken201Response.cs
 src/Zernio/Model/CreateInviteTokenRequest.cs
 src/Zernio/Model/CreateLeadForm200Response.cs
 src/Zernio/Model/CreateLeadFormRequest.cs
+src/Zernio/Model/CreateLeadFormRequestContextCard.cs
 src/Zernio/Model/CreateLeadFormRequestQuestionsInner.cs
 src/Zernio/Model/CreateLeadFormRequestQuestionsInnerOptionsInner.cs
 src/Zernio/Model/CreatePost409Response.cs
@@ -2758,11 +2765,13 @@ src/Zernio/Model/CreateStandaloneAdRequestCreativesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestCreativesInnerVideo.cs
 src/Zernio/Model/CreateStandaloneAdRequestCustomLocationsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestDynamicCreative.cs
+src/Zernio/Model/CreateStandaloneAdRequestExcludedLocations.cs
 src/Zernio/Model/CreateStandaloneAdRequestImages.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacementAssets.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacementAssetsRulesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.cs
 src/Zernio/Model/CreateStandaloneAdRequestPlacements.cs
+src/Zernio/Model/CreateStandaloneAdRequestPlacesInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestPromotedObject.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestTracking.cs

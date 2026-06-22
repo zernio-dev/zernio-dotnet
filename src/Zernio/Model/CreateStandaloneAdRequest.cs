@@ -570,6 +570,9 @@ namespace Zernio.Model
         /// <param name="zips">Postal/ZIP geo targeting. &#x60;key&#x60; is the platform&#39;s postal location ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;zip. Supported on Meta, Google, TikTok, Pinterest, X..</param>
         /// <param name="metros">DMA / metro-area geo targeting. &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro..</param>
         /// <param name="customLocations">Point-radius (lat/lng) geo targeting. Meta only (custom_locations). Rejected on platforms without radius support..</param>
+        /// <param name="places">Named points of interest (businesses, landmarks). Meta only. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;place. Maps to geo_locations.places..</param>
+        /// <param name="neighborhoods">Named neighbourhood areas. Meta only. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;neighborhood. Maps to geo_locations.neighborhoods..</param>
+        /// <param name="excludedLocations">excludedLocations.</param>
         /// <param name="behaviors">Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id..</param>
         /// <param name="incomeTier">Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. .</param>
         /// <param name="languages">Language codes (e.g. [&#39;en&#39;]). Restricts the audience by language..</param>
@@ -598,7 +601,7 @@ namespace Zernio.Model
         /// <param name="brandIdentity">brandIdentity.</param>
         /// <param name="identityType">TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. .</param>
         /// <param name="promotedObject">promotedObject.</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, string campaignName = default, string adSetName = default, string adName = default, CreateStandaloneAdRequestTracking tracking = default, GoalEnum? goal = default, string optimizationGoal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, string description = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string existingCampaignId = default, string existingCreativeId = default, string businessName = default, string boardId = default, string organizationId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<CreateStandaloneAdRequestZipsInner> zips = default, List<CreateStandaloneAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, Dictionary<string, Object> rawTargeting = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, CreateStandaloneAdRequestPlacementAssets placementAssets = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, string campaignName = default, string adSetName = default, string adName = default, CreateStandaloneAdRequestTracking tracking = default, GoalEnum? goal = default, string optimizationGoal = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = default, CampaignStatusEnum? campaignStatus = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, string description = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string existingCampaignId = default, string existingCreativeId = default, string businessName = default, string boardId = default, string organizationId = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<CreateStandaloneAdRequestZipsInner> zips = default, List<CreateStandaloneAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestPlacesInner> places = default, List<CreateStandaloneAdRequestPlacesInner> neighborhoods = default, CreateStandaloneAdRequestExcludedLocations excludedLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, Dictionary<string, Object> rawTargeting = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, CreateStandaloneAdRequestPlacementAssets placementAssets = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -656,6 +659,9 @@ namespace Zernio.Model
             this.Zips = zips;
             this.Metros = metros;
             this.CustomLocations = customLocations;
+            this.Places = places;
+            this.Neighborhoods = neighborhoods;
+            this.ExcludedLocations = excludedLocations;
             this.Behaviors = behaviors;
             this.IncomeTier = incomeTier;
             this.Languages = languages;
@@ -923,6 +929,26 @@ namespace Zernio.Model
         public List<CreateStandaloneAdRequestCustomLocationsInner> CustomLocations { get; set; }
 
         /// <summary>
+        /// Named points of interest (businesses, landmarks). Meta only. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;place. Maps to geo_locations.places.
+        /// </summary>
+        /// <value>Named points of interest (businesses, landmarks). Meta only. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;place. Maps to geo_locations.places.</value>
+        [DataMember(Name = "places", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestPlacesInner> Places { get; set; }
+
+        /// <summary>
+        /// Named neighbourhood areas. Meta only. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;neighborhood. Maps to geo_locations.neighborhoods.
+        /// </summary>
+        /// <value>Named neighbourhood areas. Meta only. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;neighborhood. Maps to geo_locations.neighborhoods.</value>
+        [DataMember(Name = "neighborhoods", EmitDefaultValue = false)]
+        public List<CreateStandaloneAdRequestPlacesInner> Neighborhoods { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ExcludedLocations
+        /// </summary>
+        [DataMember(Name = "excludedLocations", EmitDefaultValue = false)]
+        public CreateStandaloneAdRequestExcludedLocations ExcludedLocations { get; set; }
+
+        /// <summary>
         /// Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id.
         /// </summary>
         /// <value>Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id.</value>
@@ -1120,6 +1146,9 @@ namespace Zernio.Model
             sb.Append("  Zips: ").Append(Zips).Append("\n");
             sb.Append("  Metros: ").Append(Metros).Append("\n");
             sb.Append("  CustomLocations: ").Append(CustomLocations).Append("\n");
+            sb.Append("  Places: ").Append(Places).Append("\n");
+            sb.Append("  Neighborhoods: ").Append(Neighborhoods).Append("\n");
+            sb.Append("  ExcludedLocations: ").Append(ExcludedLocations).Append("\n");
             sb.Append("  Behaviors: ").Append(Behaviors).Append("\n");
             sb.Append("  IncomeTier: ").Append(IncomeTier).Append("\n");
             sb.Append("  Languages: ").Append(Languages).Append("\n");
