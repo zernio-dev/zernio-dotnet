@@ -643,7 +643,7 @@ catch (ApiException e)
 
 Move account to a different profile
 
-Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account's current profile AND the target profile must be in the key's allowed set. Calls with a target profile outside the key's scope return 403. 
+Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (`profile_platform_conflict`).  For API keys restricted to specific profiles, BOTH the source account's current profile AND the target profile must be in the key's allowed set. Calls with a target profile outside the key's scope return 403. 
 
 ### Example
 ```csharp
@@ -738,6 +738,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | API key does not have access to the source account or target profile |  -  |
 | **404** | Account or target profile not found |  -  |
+| **409** | The target profile already has an account of the same platform (profile_platform_conflict) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
