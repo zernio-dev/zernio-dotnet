@@ -1430,6 +1430,7 @@ Class | Method | HTTP request | Description
  - [Model.StartGoogleBusinessVerification200ResponseVerification](docs/StartGoogleBusinessVerification200ResponseVerification.md)
  - [Model.StartGoogleBusinessVerificationRequest](docs/StartGoogleBusinessVerificationRequest.md)
  - [Model.SubmitWhatsAppNumberKyc200Response](docs/SubmitWhatsAppNumberKyc200Response.md)
+ - [Model.SubmitWhatsAppNumberKyc200ResponseNumbersInner](docs/SubmitWhatsAppNumberKyc200ResponseNumbersInner.md)
  - [Model.SubmitWhatsAppNumberKyc200ResponsePhoneNumber](docs/SubmitWhatsAppNumberKyc200ResponsePhoneNumber.md)
  - [Model.SubmitWhatsAppNumberKycRequest](docs/SubmitWhatsAppNumberKycRequest.md)
  - [Model.SubmitWhatsAppNumberKycRequestAddress](docs/SubmitWhatsAppNumberKycRequestAddress.md)

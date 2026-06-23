@@ -69,10 +69,12 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="status">status.</param>
         /// <param name="phoneNumber">phoneNumber.</param>
-        public SubmitWhatsAppNumberKyc200Response(StatusEnum? status = default, SubmitWhatsAppNumberKyc200ResponsePhoneNumber phoneNumber = default)
+        /// <param name="numbers">Every number provisioned from this submission. Length equals the requested &#x60;quantity&#x60; on full success (fewer if some orders failed; best-effort). The first element mirrors &#x60;phoneNumber&#x60;..</param>
+        public SubmitWhatsAppNumberKyc200Response(StatusEnum? status = default, SubmitWhatsAppNumberKyc200ResponsePhoneNumber phoneNumber = default, List<SubmitWhatsAppNumberKyc200ResponseNumbersInner> numbers = default)
         {
             this.Status = status;
             this.PhoneNumber = phoneNumber;
+            this.Numbers = numbers;
         }
 
         /// <summary>
@@ -80,6 +82,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
         public SubmitWhatsAppNumberKyc200ResponsePhoneNumber PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Every number provisioned from this submission. Length equals the requested &#x60;quantity&#x60; on full success (fewer if some orders failed; best-effort). The first element mirrors &#x60;phoneNumber&#x60;.
+        /// </summary>
+        /// <value>Every number provisioned from this submission. Length equals the requested &#x60;quantity&#x60; on full success (fewer if some orders failed; best-effort). The first element mirrors &#x60;phoneNumber&#x60;.</value>
+        [DataMember(Name = "numbers", EmitDefaultValue = false)]
+        public List<SubmitWhatsAppNumberKyc200ResponseNumbersInner> Numbers { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -91,6 +100,7 @@ namespace Zernio.Model
             sb.Append("class SubmitWhatsAppNumberKyc200Response {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  Numbers: ").Append(Numbers).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

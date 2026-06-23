@@ -44,6 +44,7 @@ namespace Zernio.Model
         /// <param name="profileId">profileId (required).</param>
         /// <param name="country">country (required).</param>
         /// <param name="submissionId">Idempotency token for this submission attempt. A retry/double-submit with the same token returns the same number; omit and each call creates a new number..</param>
+        /// <param name="quantity">Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort). (default to 1).</param>
         /// <param name="reuse">Reuse a prior approved verification for this country (skips document/field collection; places the order immediately)..</param>
         /// <param name="reuseFrom">Which approved verification to reuse when several exist: the phone number it was originally approved for (GET reusable.options[].fromPhoneNumber). Omitted &#x3D; newest. No match &#x3D; 409..</param>
         /// <param name="endUserFirstName">End user&#39;s legal first name. Required when the country has an action/ID-verification (Onfido) requirement..</param>
@@ -51,7 +52,7 @@ namespace Zernio.Model
         /// <param name="values">requirementId → textual value.</param>
         /// <param name="documents">One per document requirement. Each is EITHER inline base64 OR a &#x60;documentId&#x60; returned by POST /v1/whatsapp/phone-numbers/kyc/upload-document (use the upload endpoint for large files to stay under the request-size limit)..</param>
         /// <param name="address">address.</param>
-        public SubmitWhatsAppNumberKycRequest(string profileId = default, string country = default, string submissionId = default, bool reuse = default, string reuseFrom = default, string endUserFirstName = default, string endUserLastName = default, Dictionary<string, string> values = default, List<SubmitWhatsAppNumberKycRequestDocumentsInner> documents = default, SubmitWhatsAppNumberKycRequestAddress address = default)
+        public SubmitWhatsAppNumberKycRequest(string profileId = default, string country = default, string submissionId = default, int quantity = 1, bool reuse = default, string reuseFrom = default, string endUserFirstName = default, string endUserLastName = default, Dictionary<string, string> values = default, List<SubmitWhatsAppNumberKycRequestDocumentsInner> documents = default, SubmitWhatsAppNumberKycRequestAddress address = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -66,6 +67,7 @@ namespace Zernio.Model
             }
             this.Country = country;
             this.SubmissionId = submissionId;
+            this.Quantity = quantity;
             this.Reuse = reuse;
             this.ReuseFrom = reuseFrom;
             this.EndUserFirstName = endUserFirstName;
@@ -93,6 +95,13 @@ namespace Zernio.Model
         /// <value>Idempotency token for this submission attempt. A retry/double-submit with the same token returns the same number; omit and each call creates a new number.</value>
         [DataMember(Name = "submissionId", EmitDefaultValue = false)]
         public string SubmissionId { get; set; }
+
+        /// <summary>
+        /// Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort).
+        /// </summary>
+        /// <value>Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort).</value>
+        [DataMember(Name = "quantity", EmitDefaultValue = false)]
+        public int Quantity { get; set; }
 
         /// <summary>
         /// Reuse a prior approved verification for this country (skips document/field collection; places the order immediately).
@@ -153,6 +162,7 @@ namespace Zernio.Model
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  SubmissionId: ").Append(SubmissionId).Append("\n");
+            sb.Append("  Quantity: ").Append(Quantity).Append("\n");
             sb.Append("  Reuse: ").Append(Reuse).Append("\n");
             sb.Append("  ReuseFrom: ").Append(ReuseFrom).Append("\n");
             sb.Append("  EndUserFirstName: ").Append(EndUserFirstName).Append("\n");
@@ -180,6 +190,18 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Quantity (int) maximum
+            if (this.Quantity > (int)5)
+            {
+                yield return new ValidationResult("Invalid value for Quantity, must be a value less than or equal to 5.", new [] { "Quantity" });
+            }
+
+            // Quantity (int) minimum
+            if (this.Quantity < (int)1)
+            {
+                yield return new ValidationResult("Invalid value for Quantity, must be a value greater than or equal to 1.", new [] { "Quantity" });
+            }
+
             yield break;
         }
     }

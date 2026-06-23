@@ -941,6 +941,7 @@ docs/StartGoogleBusinessVerification200Response.md
 docs/StartGoogleBusinessVerification200ResponseVerification.md
 docs/StartGoogleBusinessVerificationRequest.md
 docs/SubmitWhatsAppNumberKyc200Response.md
+docs/SubmitWhatsAppNumberKyc200ResponseNumbersInner.md
 docs/SubmitWhatsAppNumberKyc200ResponsePhoneNumber.md
 docs/SubmitWhatsAppNumberKycRequest.md
 docs/SubmitWhatsAppNumberKycRequestAddress.md
@@ -2181,6 +2182,7 @@ src/Zernio.Test/Model/SocialAccountTests.cs
 src/Zernio.Test/Model/StartGoogleBusinessVerification200ResponseTests.cs
 src/Zernio.Test/Model/StartGoogleBusinessVerification200ResponseVerificationTests.cs
 src/Zernio.Test/Model/StartGoogleBusinessVerificationRequestTests.cs
+src/Zernio.Test/Model/SubmitWhatsAppNumberKyc200ResponseNumbersInnerTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKyc200ResponsePhoneNumberTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKyc200ResponseTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestAddressTests.cs
@@ -3427,6 +3429,7 @@ src/Zernio/Model/StartGoogleBusinessVerification200Response.cs
 src/Zernio/Model/StartGoogleBusinessVerification200ResponseVerification.cs
 src/Zernio/Model/StartGoogleBusinessVerificationRequest.cs
 src/Zernio/Model/SubmitWhatsAppNumberKyc200Response.cs
+src/Zernio/Model/SubmitWhatsAppNumberKyc200ResponseNumbersInner.cs
 src/Zernio/Model/SubmitWhatsAppNumberKyc200ResponsePhoneNumber.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequest.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestAddress.cs

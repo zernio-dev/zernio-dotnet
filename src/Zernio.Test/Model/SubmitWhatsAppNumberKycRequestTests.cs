@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Quantity'
+        /// </summary>
+        [Fact]
+        public void QuantityTest()
+        {
+            // TODO unit test for the property 'Quantity'
+        }
+
+        /// <summary>
         /// Test the property 'Reuse'
         /// </summary>
         [Fact]

@@ -28,21 +28,23 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// The first/primary number, kept at the top level for backward compatibility. See &#x60;numbers&#x60; for the full set when &#x60;quantity&#x60; &gt; 1.
+    /// SubmitWhatsAppNumberKyc200ResponseNumbersInner
     /// </summary>
-    [DataContract(Name = "submitWhatsAppNumberKyc_200_response_phoneNumber")]
-    public partial class SubmitWhatsAppNumberKyc200ResponsePhoneNumber : IValidatableObject
+    [DataContract(Name = "submitWhatsAppNumberKyc_200_response_numbers_inner")]
+    public partial class SubmitWhatsAppNumberKyc200ResponseNumbersInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubmitWhatsAppNumberKyc200ResponsePhoneNumber" /> class.
+        /// Initializes a new instance of the <see cref="SubmitWhatsAppNumberKyc200ResponseNumbersInner" /> class.
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="status">status.</param>
+        /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="country">country.</param>
-        public SubmitWhatsAppNumberKyc200ResponsePhoneNumber(string id = default, string status = default, string country = default)
+        public SubmitWhatsAppNumberKyc200ResponseNumbersInner(string id = default, string status = default, string phoneNumber = default, string country = default)
         {
             this.Id = id;
             this.Status = status;
+            this.PhoneNumber = phoneNumber;
             this.Country = country;
         }
 
@@ -59,6 +61,12 @@ namespace Zernio.Model
         public string Status { get; set; }
 
         /// <summary>
+        /// Gets or Sets PhoneNumber
+        /// </summary>
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
         /// Gets or Sets Country
         /// </summary>
         [DataMember(Name = "country", EmitDefaultValue = false)]
@@ -71,9 +79,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SubmitWhatsAppNumberKyc200ResponsePhoneNumber {\n");
+            sb.Append("class SubmitWhatsAppNumberKyc200ResponseNumbersInner {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
