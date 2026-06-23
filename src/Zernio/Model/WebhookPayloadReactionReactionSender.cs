@@ -97,7 +97,7 @@ namespace Zernio.Model
         /// WhatsApp only. Sender&#39;s phone number in E.164 format (with leading &#x60;+&#x60;), when available.
         /// </summary>
         /// <value>WhatsApp only. Sender&#39;s phone number in E.164 format (with leading &#x60;+&#x60;), when available.</value>
-        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = true)]
         public string PhoneNumber { get; set; }
 
         /// <summary>

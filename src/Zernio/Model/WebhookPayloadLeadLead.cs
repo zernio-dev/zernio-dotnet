@@ -110,26 +110,26 @@ namespace Zernio.Model
         /// Human-readable form name (best-effort; may be null)
         /// </summary>
         /// <value>Human-readable form name (best-effort; may be null)</value>
-        [DataMember(Name = "formName", EmitDefaultValue = false)]
+        [DataMember(Name = "formName", EmitDefaultValue = true)]
         public string FormName { get; set; }
 
         /// <summary>
         /// Meta ad ID that drove the lead (null for organic/test leads)
         /// </summary>
         /// <value>Meta ad ID that drove the lead (null for organic/test leads)</value>
-        [DataMember(Name = "adId", EmitDefaultValue = false)]
+        [DataMember(Name = "adId", EmitDefaultValue = true)]
         public string AdId { get; set; }
 
         /// <summary>
         /// Gets or Sets AdsetId
         /// </summary>
-        [DataMember(Name = "adsetId", EmitDefaultValue = false)]
+        [DataMember(Name = "adsetId", EmitDefaultValue = true)]
         public string AdsetId { get; set; }
 
         /// <summary>
         /// Gets or Sets CampaignId
         /// </summary>
-        [DataMember(Name = "campaignId", EmitDefaultValue = false)]
+        [DataMember(Name = "campaignId", EmitDefaultValue = true)]
         public string CampaignId { get; set; }
 
         /// <summary>

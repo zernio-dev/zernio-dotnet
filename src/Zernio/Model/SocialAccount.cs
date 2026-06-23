@@ -248,7 +248,7 @@ namespace Zernio.Model
         /// URL to the account&#39;s profile picture on the platform. May be null if the platform does not provide one.
         /// </summary>
         /// <value>URL to the account&#39;s profile picture on the platform. May be null if the platform does not provide one.</value>
-        [DataMember(Name = "profilePicture", EmitDefaultValue = false)]
+        [DataMember(Name = "profilePicture", EmitDefaultValue = true)]
         public string ProfilePicture { get; set; }
 
         /// <summary>
@@ -282,7 +282,7 @@ namespace Zernio.Model
         /// Reference to the parent posting SocialAccount. Set for ads accounts that share or derive from a posting account&#39;s OAuth token. null for standalone ads (Google Ads) and all posting accounts. 
         /// </summary>
         /// <value>Reference to the parent posting SocialAccount. Set for ads accounts that share or derive from a posting account&#39;s OAuth token. null for standalone ads (Google Ads) and all posting accounts. </value>
-        [DataMember(Name = "parentAccountId", EmitDefaultValue = false)]
+        [DataMember(Name = "parentAccountId", EmitDefaultValue = true)]
         public string ParentAccountId { get; set; }
 
         /// <summary>

@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// <param name="totalMessages">totalMessages.</param>
         /// <param name="firstMessageAt">firstMessageAt.</param>
         /// <param name="lastMessageAt">lastMessageAt.</param>
-        public GetInboxConversationAnalytics200ResponseSummary(int received = default, int sent = default, int read = default, int failed = default, int totalMessages = default, DateTime firstMessageAt = default, DateTime lastMessageAt = default)
+        public GetInboxConversationAnalytics200ResponseSummary(int received = default, int sent = default, int read = default, int failed = default, int totalMessages = default, DateTime? firstMessageAt = default, DateTime? lastMessageAt = default)
         {
             this.Received = received;
             this.Sent = sent;
@@ -87,14 +87,14 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets FirstMessageAt
         /// </summary>
-        [DataMember(Name = "firstMessageAt", EmitDefaultValue = false)]
-        public DateTime FirstMessageAt { get; set; }
+        [DataMember(Name = "firstMessageAt", EmitDefaultValue = true)]
+        public DateTime? FirstMessageAt { get; set; }
 
         /// <summary>
         /// Gets or Sets LastMessageAt
         /// </summary>
-        [DataMember(Name = "lastMessageAt", EmitDefaultValue = false)]
-        public DateTime LastMessageAt { get; set; }
+        [DataMember(Name = "lastMessageAt", EmitDefaultValue = true)]
+        public DateTime? LastMessageAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

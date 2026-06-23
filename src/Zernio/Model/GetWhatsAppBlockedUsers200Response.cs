@@ -54,7 +54,7 @@ namespace Zernio.Model
         /// Pass as &#x60;after&#x60; to fetch the next page. Null when there are no more pages.
         /// </summary>
         /// <value>Pass as &#x60;after&#x60; to fetch the next page. Null when there are no more pages.</value>
-        [DataMember(Name = "nextCursor", EmitDefaultValue = false)]
+        [DataMember(Name = "nextCursor", EmitDefaultValue = true)]
         public string NextCursor { get; set; }
 
         /// <summary>

@@ -161,14 +161,14 @@ namespace Zernio.Model
         /// For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC.
         /// </summary>
         /// <value>For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC.</value>
-        [DataMember(Name = "registrantName", EmitDefaultValue = false)]
+        [DataMember(Name = "registrantName", EmitDefaultValue = true)]
         public string RegistrantName { get; set; }
 
         /// <summary>
         /// Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review.
         /// </summary>
         /// <value>Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review.</value>
-        [DataMember(Name = "telnyxOrderId", EmitDefaultValue = false)]
+        [DataMember(Name = "telnyxOrderId", EmitDefaultValue = true)]
         public string TelnyxOrderId { get; set; }
 
         /// <summary>
@@ -206,26 +206,26 @@ namespace Zernio.Model
         /// For regulated (Tier 3/4) numbers with an Onfido ID-verification step — the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC.
         /// </summary>
         /// <value>For regulated (Tier 3/4) numbers with an Onfido ID-verification step — the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC.</value>
-        [DataMember(Name = "onfidoVerificationUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "onfidoVerificationUrl", EmitDefaultValue = true)]
         public string OnfidoVerificationUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets EndUserFirstName
         /// </summary>
-        [DataMember(Name = "endUserFirstName", EmitDefaultValue = false)]
+        [DataMember(Name = "endUserFirstName", EmitDefaultValue = true)]
         public string EndUserFirstName { get; set; }
 
         /// <summary>
         /// Gets or Sets EndUserLastName
         /// </summary>
-        [DataMember(Name = "endUserLastName", EmitDefaultValue = false)]
+        [DataMember(Name = "endUserLastName", EmitDefaultValue = true)]
         public string EndUserLastName { get; set; }
 
         /// <summary>
         /// Reviewer rejection reason when status is regulatory_declined.
         /// </summary>
         /// <value>Reviewer rejection reason when status is regulatory_declined.</value>
-        [DataMember(Name = "regulatoryDeclineReason", EmitDefaultValue = false)]
+        [DataMember(Name = "regulatoryDeclineReason", EmitDefaultValue = true)]
         public string RegulatoryDeclineReason { get; set; }
 
         /// <summary>

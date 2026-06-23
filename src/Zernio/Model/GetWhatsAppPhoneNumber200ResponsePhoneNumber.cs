@@ -163,26 +163,26 @@ namespace Zernio.Model
         /// For a regulated number with an Onfido ID step — the link to forward to the end user. Appears once the order is placed; null otherwise.
         /// </summary>
         /// <value>For a regulated number with an Onfido ID step — the link to forward to the end user. Appears once the order is placed; null otherwise.</value>
-        [DataMember(Name = "onfidoVerificationUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "onfidoVerificationUrl", EmitDefaultValue = true)]
         public string OnfidoVerificationUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets EndUserFirstName
         /// </summary>
-        [DataMember(Name = "endUserFirstName", EmitDefaultValue = false)]
+        [DataMember(Name = "endUserFirstName", EmitDefaultValue = true)]
         public string EndUserFirstName { get; set; }
 
         /// <summary>
         /// Gets or Sets EndUserLastName
         /// </summary>
-        [DataMember(Name = "endUserLastName", EmitDefaultValue = false)]
+        [DataMember(Name = "endUserLastName", EmitDefaultValue = true)]
         public string EndUserLastName { get; set; }
 
         /// <summary>
         /// Reviewer rejection reason when status is regulatory_declined.
         /// </summary>
         /// <value>Reviewer rejection reason when status is regulatory_declined.</value>
-        [DataMember(Name = "regulatoryDeclineReason", EmitDefaultValue = false)]
+        [DataMember(Name = "regulatoryDeclineReason", EmitDefaultValue = true)]
         public string RegulatoryDeclineReason { get; set; }
 
         /// <summary>

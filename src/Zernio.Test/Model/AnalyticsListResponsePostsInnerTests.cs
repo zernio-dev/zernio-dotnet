@@ -155,15 +155,6 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'IsAd'
-        /// </summary>
-        [Fact]
-        public void IsAdTest()
-        {
-            // TODO unit test for the property 'IsAd'
-        }
-
-        /// <summary>
         /// Test the property 'ProfileId'
         /// </summary>
         [Fact]

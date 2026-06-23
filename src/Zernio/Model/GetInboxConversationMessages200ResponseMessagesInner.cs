@@ -70,7 +70,7 @@ namespace Zernio.Model
         /// X/Twitter verified badge type. Only present for Twitter/X messages.
         /// </summary>
         /// <value>X/Twitter verified badge type. Only present for Twitter/X messages.</value>
-        [DataMember(Name = "senderVerifiedType", EmitDefaultValue = false)]
+        [DataMember(Name = "senderVerifiedType", EmitDefaultValue = true)]
         public SenderVerifiedTypeEnum? SenderVerifiedType { get; set; }
         /// <summary>
         /// Defines Direction
@@ -140,7 +140,7 @@ namespace Zernio.Model
         /// Lifecycle status for outgoing messages. Not all platforms emit every state (see webhook support matrix).
         /// </summary>
         /// <value>Lifecycle status for outgoing messages. Not all platforms emit every state (see webhook support matrix).</value>
-        [DataMember(Name = "deliveryStatus", EmitDefaultValue = false)]
+        [DataMember(Name = "deliveryStatus", EmitDefaultValue = true)]
         public DeliveryStatusEnum? DeliveryStatus { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetInboxConversationMessages200ResponseMessagesInner" /> class.
@@ -172,7 +172,7 @@ namespace Zernio.Model
         /// <param name="deliveryError">deliveryError.</param>
         /// <param name="reactions">Emoji reactions on this message (WhatsApp / Telegram). At most one per party in a 1:1 thread..</param>
         /// <param name="metadata">Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. .</param>
-        public GetInboxConversationMessages200ResponseMessagesInner(string id = default, string conversationId = default, string accountId = default, string platform = default, string message = default, string senderId = default, string senderName = default, SenderVerifiedTypeEnum? senderVerifiedType = default, DirectionEnum? direction = default, DateTime createdAt = default, List<GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner> attachments = default, string subject = default, bool storyReply = default, bool isStoryMention = default, bool isEdited = default, DateTime editedAt = default, int editCount = default, List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> editHistory = default, bool isDeleted = default, DateTime deletedAt = default, DeliveryStatusEnum? deliveryStatus = default, DateTime deliveredAt = default, DateTime readAt = default, DateTime sentAt = default, GetInboxConversationMessages200ResponseMessagesInnerDeliveryError deliveryError = default, List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions = default, Dictionary<string, Object> metadata = default)
+        public GetInboxConversationMessages200ResponseMessagesInner(string id = default, string conversationId = default, string accountId = default, string platform = default, string message = default, string senderId = default, string senderName = default, SenderVerifiedTypeEnum? senderVerifiedType = default, DirectionEnum? direction = default, DateTime createdAt = default, List<GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner> attachments = default, string subject = default, bool? storyReply = default, bool? isStoryMention = default, bool isEdited = default, DateTime? editedAt = default, int editCount = default, List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> editHistory = default, bool isDeleted = default, DateTime? deletedAt = default, DeliveryStatusEnum? deliveryStatus = default, DateTime? deliveredAt = default, DateTime? readAt = default, DateTime? sentAt = default, GetInboxConversationMessages200ResponseMessagesInnerDeliveryError deliveryError = default, List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions = default, Dictionary<string, Object> metadata = default)
         {
             this.Id = id;
             this.ConversationId = conversationId;
@@ -242,7 +242,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets SenderName
         /// </summary>
-        [DataMember(Name = "senderName", EmitDefaultValue = false)]
+        [DataMember(Name = "senderName", EmitDefaultValue = true)]
         public string SenderName { get; set; }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace Zernio.Model
         /// Reddit message subject
         /// </summary>
         /// <value>Reddit message subject</value>
-        [DataMember(Name = "subject", EmitDefaultValue = false)]
+        [DataMember(Name = "subject", EmitDefaultValue = true)]
         public string Subject { get; set; }
 
         /// <summary>
@@ -269,14 +269,14 @@ namespace Zernio.Model
         /// </summary>
         /// <value>Instagram story reply</value>
         [DataMember(Name = "storyReply", EmitDefaultValue = true)]
-        public bool StoryReply { get; set; }
+        public bool? StoryReply { get; set; }
 
         /// <summary>
         /// Instagram story mention
         /// </summary>
         /// <value>Instagram story mention</value>
         [DataMember(Name = "isStoryMention", EmitDefaultValue = true)]
-        public bool IsStoryMention { get; set; }
+        public bool? IsStoryMention { get; set; }
 
         /// <summary>
         /// True if the sender has edited this message at least once.
@@ -289,8 +289,8 @@ namespace Zernio.Model
         /// When the most recent edit happened.
         /// </summary>
         /// <value>When the most recent edit happened.</value>
-        [DataMember(Name = "editedAt", EmitDefaultValue = false)]
-        public DateTime EditedAt { get; set; }
+        [DataMember(Name = "editedAt", EmitDefaultValue = true)]
+        public DateTime? EditedAt { get; set; }
 
         /// <summary>
         /// Total number of edits applied.
@@ -316,27 +316,27 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets DeletedAt
         /// </summary>
-        [DataMember(Name = "deletedAt", EmitDefaultValue = false)]
-        public DateTime DeletedAt { get; set; }
+        [DataMember(Name = "deletedAt", EmitDefaultValue = true)]
+        public DateTime? DeletedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets DeliveredAt
         /// </summary>
-        [DataMember(Name = "deliveredAt", EmitDefaultValue = false)]
-        public DateTime DeliveredAt { get; set; }
+        [DataMember(Name = "deliveredAt", EmitDefaultValue = true)]
+        public DateTime? DeliveredAt { get; set; }
 
         /// <summary>
         /// Gets or Sets ReadAt
         /// </summary>
-        [DataMember(Name = "readAt", EmitDefaultValue = false)]
-        public DateTime ReadAt { get; set; }
+        [DataMember(Name = "readAt", EmitDefaultValue = true)]
+        public DateTime? ReadAt { get; set; }
 
         /// <summary>
         /// Original send time for outgoing messages (used for Messenger watermark queries).
         /// </summary>
         /// <value>Original send time for outgoing messages (used for Messenger watermark queries).</value>
-        [DataMember(Name = "sentAt", EmitDefaultValue = false)]
-        public DateTime SentAt { get; set; }
+        [DataMember(Name = "sentAt", EmitDefaultValue = true)]
+        public DateTime? SentAt { get; set; }
 
         /// <summary>
         /// Gets or Sets DeliveryError

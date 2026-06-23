@@ -53,7 +53,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets DefaultPlaylistId
         /// </summary>
-        [DataMember(Name = "defaultPlaylistId", EmitDefaultValue = false)]
+        [DataMember(Name = "defaultPlaylistId", EmitDefaultValue = true)]
         public string DefaultPlaylistId { get; set; }
 
         /// <summary>

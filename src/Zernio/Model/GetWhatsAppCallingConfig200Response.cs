@@ -81,14 +81,14 @@ namespace Zernio.Model
         /// Public calling deep link (https://wa.me/call/&lt;number&gt;). Tapping it on a phone starts a WhatsApp voice call to this number. Embed it on websites, emails, or QR codes. Null while calling is disabled; not supported by WhatsApp desktop clients.
         /// </summary>
         /// <value>Public calling deep link (https://wa.me/call/&lt;number&gt;). Tapping it on a phone starts a WhatsApp voice call to this number. Embed it on websites, emails, or QR codes. Null while calling is disabled; not supported by WhatsApp desktop clients.</value>
-        [DataMember(Name = "callDeepLink", EmitDefaultValue = false)]
+        [DataMember(Name = "callDeepLink", EmitDefaultValue = true)]
         public string CallDeepLink { get; set; }
 
         /// <summary>
         /// tel:+E164 / sip:... / wss://... destination
         /// </summary>
         /// <value>tel:+E164 / sip:... / wss://... destination</value>
-        [DataMember(Name = "forwardTo", EmitDefaultValue = false)]
+        [DataMember(Name = "forwardTo", EmitDefaultValue = true)]
         public string ForwardTo { get; set; }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets SipAuthUsername
         /// </summary>
-        [DataMember(Name = "sipAuthUsername", EmitDefaultValue = false)]
+        [DataMember(Name = "sipAuthUsername", EmitDefaultValue = true)]
         public string SipAuthUsername { get; set; }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets CallIconCountries
         /// </summary>
-        [DataMember(Name = "callIconCountries", EmitDefaultValue = false)]
+        [DataMember(Name = "callIconCountries", EmitDefaultValue = true)]
         public List<string> CallIconCountries { get; set; }
 
         /// <summary>

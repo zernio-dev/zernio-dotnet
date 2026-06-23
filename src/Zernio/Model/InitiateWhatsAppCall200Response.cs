@@ -123,7 +123,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets ForwardTo
         /// </summary>
-        [DataMember(Name = "forwardTo", EmitDefaultValue = false)]
+        [DataMember(Name = "forwardTo", EmitDefaultValue = true)]
         public string ForwardTo { get; set; }
 
         /// <summary>

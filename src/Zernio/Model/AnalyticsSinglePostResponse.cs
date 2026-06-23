@@ -140,7 +140,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets MediaType
         /// </summary>
-        [DataMember(Name = "mediaType", EmitDefaultValue = false)]
+        [DataMember(Name = "mediaType", EmitDefaultValue = true)]
         public MediaTypeEnum? MediaType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AnalyticsSinglePostResponse" /> class.
@@ -161,7 +161,7 @@ namespace Zernio.Model
         /// <param name="thumbnailUrl">thumbnailUrl.</param>
         /// <param name="mediaType">mediaType.</param>
         /// <param name="mediaItems">All media items for this post. Carousel posts contain one entry per slide..</param>
-        public AnalyticsSinglePostResponse(string postId = default, string latePostId = default, StatusEnum? status = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, PostAnalytics analytics = default, List<PlatformAnalytics> platformAnalytics = default, string platform = default, string platformPostUrl = default, bool isExternal = default, SyncStatusEnum? syncStatus = default, string message = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = default)
+        public AnalyticsSinglePostResponse(string postId = default, string latePostId = default, StatusEnum? status = default, string content = default, DateTime scheduledFor = default, DateTime? publishedAt = default, PostAnalytics analytics = default, List<PlatformAnalytics> platformAnalytics = default, string platform = default, string platformPostUrl = default, bool isExternal = default, SyncStatusEnum? syncStatus = default, string message = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = default)
         {
             this.PostId = postId;
             this.LatePostId = latePostId;
@@ -191,7 +191,7 @@ namespace Zernio.Model
         /// Original Zernio post ID if scheduled via Zernio
         /// </summary>
         /// <value>Original Zernio post ID if scheduled via Zernio</value>
-        [DataMember(Name = "latePostId", EmitDefaultValue = false)]
+        [DataMember(Name = "latePostId", EmitDefaultValue = true)]
         public string LatePostId { get; set; }
 
         /// <summary>
@@ -209,8 +209,8 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets PublishedAt
         /// </summary>
-        [DataMember(Name = "publishedAt", EmitDefaultValue = false)]
-        public DateTime PublishedAt { get; set; }
+        [DataMember(Name = "publishedAt", EmitDefaultValue = true)]
+        public DateTime? PublishedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets Analytics
@@ -233,7 +233,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets PlatformPostUrl
         /// </summary>
-        [DataMember(Name = "platformPostUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "platformPostUrl", EmitDefaultValue = true)]
         public string PlatformPostUrl { get; set; }
 
         /// <summary>
@@ -246,13 +246,13 @@ namespace Zernio.Model
         /// Human-readable status message for pending, partial, or failed states
         /// </summary>
         /// <value>Human-readable status message for pending, partial, or failed states</value>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
+        [DataMember(Name = "message", EmitDefaultValue = true)]
         public string Message { get; set; }
 
         /// <summary>
         /// Gets or Sets ThumbnailUrl
         /// </summary>
-        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = true)]
         public string ThumbnailUrl { get; set; }
 
         /// <summary>

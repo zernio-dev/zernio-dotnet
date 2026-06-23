@@ -55,7 +55,7 @@ namespace Zernio.Model
         /// Opaque cursor to fetch the next page. &#x60;null&#x60; on the last page.
         /// </summary>
         /// <value>Opaque cursor to fetch the next page. &#x60;null&#x60; on the last page.</value>
-        [DataMember(Name = "nextCursor", EmitDefaultValue = false)]
+        [DataMember(Name = "nextCursor", EmitDefaultValue = true)]
         public string NextCursor { get; set; }
 
         /// <summary>

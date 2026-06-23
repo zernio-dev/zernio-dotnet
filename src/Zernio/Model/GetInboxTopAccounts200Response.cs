@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="from">from.</param>
         /// <param name="to">to.</param>
         /// <param name="accounts">accounts.</param>
-        public GetInboxTopAccounts200Response(bool success = default, DateOnly from = default, DateOnly to = default, List<GetInboxTopAccounts200ResponseAccountsInner> accounts = default)
+        public GetInboxTopAccounts200Response(bool success = default, DateOnly from = default, DateOnly? to = default, List<GetInboxTopAccounts200ResponseAccountsInner> accounts = default)
         {
             this.Success = success;
             this.From = from;
@@ -63,8 +63,8 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets To
         /// </summary>
-        [DataMember(Name = "to", EmitDefaultValue = false)]
-        public DateOnly To { get; set; }
+        [DataMember(Name = "to", EmitDefaultValue = true)]
+        public DateOnly? To { get; set; }
 
         /// <summary>
         /// Gets or Sets Accounts

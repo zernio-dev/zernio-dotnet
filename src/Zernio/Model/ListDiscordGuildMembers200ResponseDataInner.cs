@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <param name="roles">Snowflake IDs of roles assigned to this member.</param>
         /// <param name="joinedAt">joinedAt.</param>
         /// <param name="premiumSince">When the user started boosting the server.</param>
-        public ListDiscordGuildMembers200ResponseDataInner(ListDiscordGuildMembers200ResponseDataInnerUser user = default, string nick = default, List<string> roles = default, DateTime joinedAt = default, DateTime premiumSince = default)
+        public ListDiscordGuildMembers200ResponseDataInner(ListDiscordGuildMembers200ResponseDataInnerUser user = default, string nick = default, List<string> roles = default, DateTime joinedAt = default, DateTime? premiumSince = default)
         {
             this.User = user;
             this.Nick = nick;
@@ -60,7 +60,7 @@ namespace Zernio.Model
         /// Guild-specific nickname
         /// </summary>
         /// <value>Guild-specific nickname</value>
-        [DataMember(Name = "nick", EmitDefaultValue = false)]
+        [DataMember(Name = "nick", EmitDefaultValue = true)]
         public string Nick { get; set; }
 
         /// <summary>
@@ -80,8 +80,8 @@ namespace Zernio.Model
         /// When the user started boosting the server
         /// </summary>
         /// <value>When the user started boosting the server</value>
-        [DataMember(Name = "premium_since", EmitDefaultValue = false)]
-        public DateTime PremiumSince { get; set; }
+        [DataMember(Name = "premium_since", EmitDefaultValue = true)]
+        public DateTime? PremiumSince { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

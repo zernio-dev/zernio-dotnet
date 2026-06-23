@@ -53,7 +53,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Cursor
         /// </summary>
-        [DataMember(Name = "cursor", EmitDefaultValue = false)]
+        [DataMember(Name = "cursor", EmitDefaultValue = true)]
         public string Cursor { get; set; }
 
         /// <summary>

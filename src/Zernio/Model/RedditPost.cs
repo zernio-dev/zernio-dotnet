@@ -161,7 +161,7 @@ namespace Zernio.Model
         /// Link flair text if set
         /// </summary>
         /// <value>Link flair text if set</value>
-        [DataMember(Name = "flairText", EmitDefaultValue = false)]
+        [DataMember(Name = "flairText", EmitDefaultValue = true)]
         public string FlairText { get; set; }
 
         /// <summary>

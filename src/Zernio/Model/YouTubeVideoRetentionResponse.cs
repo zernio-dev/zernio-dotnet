@@ -46,7 +46,7 @@ namespace Zernio.Model
         /// <param name="retentionCurve">Up to 100 points covering the video timeline, aggregated over the date range. Empty for videos with very few views..</param>
         /// <param name="note">Present only when the curve is empty, explaining why.</param>
         /// <param name="scopeStatus">scopeStatus.</param>
-        public YouTubeVideoRetentionResponse(bool success = default, string accountId = default, string videoId = default, string title = default, DateTime publishedAt = default, int durationSeconds = default, YouTubeDailyViewsResponseDateRange dateRange = default, List<YouTubeVideoRetentionResponseRetentionCurveInner> retentionCurve = default, string note = default, YouTubeDailyViewsResponseScopeStatus scopeStatus = default)
+        public YouTubeVideoRetentionResponse(bool success = default, string accountId = default, string videoId = default, string title = default, DateTime? publishedAt = default, int? durationSeconds = default, YouTubeDailyViewsResponseDateRange dateRange = default, List<YouTubeVideoRetentionResponseRetentionCurveInner> retentionCurve = default, string note = default, YouTubeDailyViewsResponseScopeStatus scopeStatus = default)
         {
             this.Success = success;
             this.AccountId = accountId;
@@ -87,22 +87,22 @@ namespace Zernio.Model
         /// Video title
         /// </summary>
         /// <value>Video title</value>
-        [DataMember(Name = "title", EmitDefaultValue = false)]
+        [DataMember(Name = "title", EmitDefaultValue = true)]
         public string Title { get; set; }
 
         /// <summary>
         /// When the video was published on YouTube
         /// </summary>
         /// <value>When the video was published on YouTube</value>
-        [DataMember(Name = "publishedAt", EmitDefaultValue = false)]
-        public DateTime PublishedAt { get; set; }
+        [DataMember(Name = "publishedAt", EmitDefaultValue = true)]
+        public DateTime? PublishedAt { get; set; }
 
         /// <summary>
         /// Video length in seconds (from YouTube contentDetails.duration)
         /// </summary>
         /// <value>Video length in seconds (from YouTube contentDetails.duration)</value>
-        [DataMember(Name = "durationSeconds", EmitDefaultValue = false)]
-        public int DurationSeconds { get; set; }
+        [DataMember(Name = "durationSeconds", EmitDefaultValue = true)]
+        public int? DurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or Sets DateRange

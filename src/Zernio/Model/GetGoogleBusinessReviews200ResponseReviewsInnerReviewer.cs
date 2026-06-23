@@ -55,7 +55,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets ProfilePhotoUrl
         /// </summary>
-        [DataMember(Name = "profilePhotoUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "profilePhotoUrl", EmitDefaultValue = true)]
         public string ProfilePhotoUrl { get; set; }
 
         /// <summary>

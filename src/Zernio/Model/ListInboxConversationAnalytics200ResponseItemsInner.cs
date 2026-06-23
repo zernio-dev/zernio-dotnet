@@ -81,7 +81,7 @@ namespace Zernio.Model
         /// The Conversation document _id, when a matching doc exists
         /// </summary>
         /// <value>The Conversation document _id, when a matching doc exists</value>
-        [DataMember(Name = "mongoId", EmitDefaultValue = false)]
+        [DataMember(Name = "mongoId", EmitDefaultValue = true)]
         public string MongoId { get; set; }
 
         /// <summary>
@@ -99,26 +99,26 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets ParticipantName
         /// </summary>
-        [DataMember(Name = "participantName", EmitDefaultValue = false)]
+        [DataMember(Name = "participantName", EmitDefaultValue = true)]
         public string ParticipantName { get; set; }
 
         /// <summary>
         /// Gets or Sets ParticipantUsername
         /// </summary>
-        [DataMember(Name = "participantUsername", EmitDefaultValue = false)]
+        [DataMember(Name = "participantUsername", EmitDefaultValue = true)]
         public string ParticipantUsername { get; set; }
 
         /// <summary>
         /// Gets or Sets ParticipantPicture
         /// </summary>
-        [DataMember(Name = "participantPicture", EmitDefaultValue = false)]
+        [DataMember(Name = "participantPicture", EmitDefaultValue = true)]
         public string ParticipantPicture { get; set; }
 
         /// <summary>
         /// Cached preview from the Conversation doc
         /// </summary>
         /// <value>Cached preview from the Conversation doc</value>
-        [DataMember(Name = "lastMessage", EmitDefaultValue = false)]
+        [DataMember(Name = "lastMessage", EmitDefaultValue = true)]
         public string LastMessage { get; set; }
 
         /// <summary>

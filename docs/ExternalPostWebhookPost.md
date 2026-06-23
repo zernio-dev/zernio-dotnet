@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **ThumbnailUrl** | **string** |  | 
 **PublishedAt** | **DateTime** |  | 
 **Source** | **string** | Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events. | 
-**DeletedAt** | **DateTime** | Detection time of deletion. Present on post.external.deleted; null/absent otherwise. | [optional] 
+**DeletedAt** | **DateTime?** | Detection time of deletion. Present on post.external.deleted; null/absent otherwise. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

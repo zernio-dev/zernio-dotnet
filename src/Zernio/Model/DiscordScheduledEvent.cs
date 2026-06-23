@@ -133,7 +133,7 @@ namespace Zernio.Model
         /// <param name="entityMetadata">entityMetadata.</param>
         /// <param name="userCount">Number of members who RSVP&#39;d. Only present when withUserCount&#x3D;true on list..</param>
         /// <param name="image">Cover image hash; build URL via cdn.discordapp.com..</param>
-        public DiscordScheduledEvent(string id = default, string guildId = default, string channelId = default, string creatorId = default, string name = default, string description = default, DateTime scheduledStartTime = default, DateTime scheduledEndTime = default, PrivacyLevelEnum? privacyLevel = default, StatusEnum? status = default, EntityTypeEnum? entityType = default, string entityId = default, DiscordScheduledEventEntityMetadata entityMetadata = default, int userCount = default, string image = default)
+        public DiscordScheduledEvent(string id = default, string guildId = default, string channelId = default, string creatorId = default, string name = default, string description = default, DateTime scheduledStartTime = default, DateTime? scheduledEndTime = default, PrivacyLevelEnum? privacyLevel = default, StatusEnum? status = default, EntityTypeEnum? entityType = default, string entityId = default, DiscordScheduledEventEntityMetadata entityMetadata = default, int userCount = default, string image = default)
         {
             this.Id = id;
             this.GuildId = guildId;
@@ -169,13 +169,13 @@ namespace Zernio.Model
         /// Voice/stage channel ID; null for external events.
         /// </summary>
         /// <value>Voice/stage channel ID; null for external events.</value>
-        [DataMember(Name = "channel_id", EmitDefaultValue = false)]
+        [DataMember(Name = "channel_id", EmitDefaultValue = true)]
         public string ChannelId { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatorId
         /// </summary>
-        [DataMember(Name = "creator_id", EmitDefaultValue = false)]
+        [DataMember(Name = "creator_id", EmitDefaultValue = true)]
         public string CreatorId { get; set; }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
@@ -200,13 +200,13 @@ namespace Zernio.Model
         /// Required for external events; optional for voice/stage.
         /// </summary>
         /// <value>Required for external events; optional for voice/stage.</value>
-        [DataMember(Name = "scheduled_end_time", EmitDefaultValue = false)]
-        public DateTime ScheduledEndTime { get; set; }
+        [DataMember(Name = "scheduled_end_time", EmitDefaultValue = true)]
+        public DateTime? ScheduledEndTime { get; set; }
 
         /// <summary>
         /// Gets or Sets EntityId
         /// </summary>
-        [DataMember(Name = "entity_id", EmitDefaultValue = false)]
+        [DataMember(Name = "entity_id", EmitDefaultValue = true)]
         public string EntityId { get; set; }
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace Zernio.Model
         /// Cover image hash; build URL via cdn.discordapp.com.
         /// </summary>
         /// <value>Cover image hash; build URL via cdn.discordapp.com.</value>
-        [DataMember(Name = "image", EmitDefaultValue = false)]
+        [DataMember(Name = "image", EmitDefaultValue = true)]
         public string Image { get; set; }
 
         /// <summary>

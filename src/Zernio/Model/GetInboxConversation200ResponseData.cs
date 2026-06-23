@@ -95,7 +95,7 @@ namespace Zernio.Model
         /// X/Twitter verified badge type. Only present for Twitter/X conversations.
         /// </summary>
         /// <value>X/Twitter verified badge type. Only present for Twitter/X conversations.</value>
-        [DataMember(Name = "participantVerifiedType", EmitDefaultValue = false)]
+        [DataMember(Name = "participantVerifiedType", EmitDefaultValue = true)]
         public ParticipantVerifiedTypeEnum? ParticipantVerifiedType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetInboxConversation200ResponseData" /> class.
@@ -113,8 +113,7 @@ namespace Zernio.Model
         /// <param name="updatedTime">updatedTime.</param>
         /// <param name="participants">participants.</param>
         /// <param name="instagramProfile">instagramProfile.</param>
-        /// <param name="metadata">Ad-click attribution captured on the first inbound message of the conversation. Only present when the conversation originated from a click-to-message ad. Absent on organic conversations.  Two sources populate this field:   - WhatsApp CTWA (Click-to-WhatsApp): &#x60;ctwa_clid&#x60;, &#x60;ctwa_source_id&#x60;,     &#x60;ctwa_source_url&#x60;, &#x60;ctwa_headline&#x60;, &#x60;ctwa_source_type&#x60;, &#x60;ctwa_captured_at&#x60;.   - Facebook Messenger CTM / Instagram CTD: &#x60;meta_ad_id&#x60;, &#x60;meta_ad_title&#x60;,     &#x60;meta_ad_source&#x60;, &#x60;meta_ad_type&#x60;, &#x60;meta_ad_ref&#x60;, &#x60;meta_ad_captured_at&#x60;,     &#x60;meta_ad_photo_url&#x60;, &#x60;meta_ad_video_url&#x60;, &#x60;meta_ad_post_id&#x60;,     &#x60;meta_ad_product_id&#x60;, &#x60;meta_ad_flow_id&#x60;.  Note: &#x60;meta_ad_photo_url&#x60; and &#x60;meta_ad_video_url&#x60; are Facebook CDN URLs that may expire. Use &#x60;meta_ad_id&#x60; for a permanent reference to the ad (e.g. to link to Meta Ads Manager). .</param>
-        public GetInboxConversation200ResponseData(string id = default, string accountId = default, string accountUsername = default, string platform = default, StatusEnum? status = default, string participantName = default, string participantId = default, ParticipantVerifiedTypeEnum? participantVerifiedType = default, string lastMessage = default, DateTime lastMessageAt = default, DateTime updatedTime = default, List<UpdateFacebookPage200ResponseSelectedPage> participants = default, ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile = default, Dictionary<string, string> metadata = default)
+        public GetInboxConversation200ResponseData(string id = default, string accountId = default, string accountUsername = default, string platform = default, StatusEnum? status = default, string participantName = default, string participantId = default, ParticipantVerifiedTypeEnum? participantVerifiedType = default, string lastMessage = default, DateTime lastMessageAt = default, DateTime updatedTime = default, List<UpdateFacebookPage200ResponseSelectedPage> participants = default, ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile = default)
         {
             this.Id = id;
             this.AccountId = accountId;
@@ -129,7 +128,6 @@ namespace Zernio.Model
             this.UpdatedTime = updatedTime;
             this.Participants = participants;
             this.InstagramProfile = instagramProfile;
-            this.Metadata = metadata;
         }
 
         /// <summary>
@@ -199,13 +197,6 @@ namespace Zernio.Model
         public ListInboxConversations200ResponseDataInnerInstagramProfile InstagramProfile { get; set; }
 
         /// <summary>
-        /// Ad-click attribution captured on the first inbound message of the conversation. Only present when the conversation originated from a click-to-message ad. Absent on organic conversations.  Two sources populate this field:   - WhatsApp CTWA (Click-to-WhatsApp): &#x60;ctwa_clid&#x60;, &#x60;ctwa_source_id&#x60;,     &#x60;ctwa_source_url&#x60;, &#x60;ctwa_headline&#x60;, &#x60;ctwa_source_type&#x60;, &#x60;ctwa_captured_at&#x60;.   - Facebook Messenger CTM / Instagram CTD: &#x60;meta_ad_id&#x60;, &#x60;meta_ad_title&#x60;,     &#x60;meta_ad_source&#x60;, &#x60;meta_ad_type&#x60;, &#x60;meta_ad_ref&#x60;, &#x60;meta_ad_captured_at&#x60;,     &#x60;meta_ad_photo_url&#x60;, &#x60;meta_ad_video_url&#x60;, &#x60;meta_ad_post_id&#x60;,     &#x60;meta_ad_product_id&#x60;, &#x60;meta_ad_flow_id&#x60;.  Note: &#x60;meta_ad_photo_url&#x60; and &#x60;meta_ad_video_url&#x60; are Facebook CDN URLs that may expire. Use &#x60;meta_ad_id&#x60; for a permanent reference to the ad (e.g. to link to Meta Ads Manager). 
-        /// </summary>
-        /// <value>Ad-click attribution captured on the first inbound message of the conversation. Only present when the conversation originated from a click-to-message ad. Absent on organic conversations.  Two sources populate this field:   - WhatsApp CTWA (Click-to-WhatsApp): &#x60;ctwa_clid&#x60;, &#x60;ctwa_source_id&#x60;,     &#x60;ctwa_source_url&#x60;, &#x60;ctwa_headline&#x60;, &#x60;ctwa_source_type&#x60;, &#x60;ctwa_captured_at&#x60;.   - Facebook Messenger CTM / Instagram CTD: &#x60;meta_ad_id&#x60;, &#x60;meta_ad_title&#x60;,     &#x60;meta_ad_source&#x60;, &#x60;meta_ad_type&#x60;, &#x60;meta_ad_ref&#x60;, &#x60;meta_ad_captured_at&#x60;,     &#x60;meta_ad_photo_url&#x60;, &#x60;meta_ad_video_url&#x60;, &#x60;meta_ad_post_id&#x60;,     &#x60;meta_ad_product_id&#x60;, &#x60;meta_ad_flow_id&#x60;.  Note: &#x60;meta_ad_photo_url&#x60; and &#x60;meta_ad_video_url&#x60; are Facebook CDN URLs that may expire. Use &#x60;meta_ad_id&#x60; for a permanent reference to the ad (e.g. to link to Meta Ads Manager). </value>
-        [DataMember(Name = "metadata", EmitDefaultValue = false)]
-        public Dictionary<string, string> Metadata { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -226,7 +217,6 @@ namespace Zernio.Model
             sb.Append("  UpdatedTime: ").Append(UpdatedTime).Append("\n");
             sb.Append("  Participants: ").Append(Participants).Append("\n");
             sb.Append("  InstagramProfile: ").Append(InstagramProfile).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

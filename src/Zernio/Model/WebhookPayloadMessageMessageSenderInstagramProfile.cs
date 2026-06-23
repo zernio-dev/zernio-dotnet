@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="isFollowing">Whether your Instagram business account follows the sender.</param>
         /// <param name="followerCount">The sender&#39;s follower count on Instagram.</param>
         /// <param name="isVerified">Whether the sender is a verified Instagram user.</param>
-        public WebhookPayloadMessageMessageSenderInstagramProfile(bool isFollower = default, bool isFollowing = default, int followerCount = default, bool isVerified = default)
+        public WebhookPayloadMessageMessageSenderInstagramProfile(bool? isFollower = default, bool? isFollowing = default, int? followerCount = default, bool? isVerified = default)
         {
             this.IsFollower = isFollower;
             this.IsFollowing = isFollowing;
@@ -53,28 +53,28 @@ namespace Zernio.Model
         /// </summary>
         /// <value>Whether the sender follows your Instagram business account</value>
         [DataMember(Name = "isFollower", EmitDefaultValue = true)]
-        public bool IsFollower { get; set; }
+        public bool? IsFollower { get; set; }
 
         /// <summary>
         /// Whether your Instagram business account follows the sender
         /// </summary>
         /// <value>Whether your Instagram business account follows the sender</value>
         [DataMember(Name = "isFollowing", EmitDefaultValue = true)]
-        public bool IsFollowing { get; set; }
+        public bool? IsFollowing { get; set; }
 
         /// <summary>
         /// The sender&#39;s follower count on Instagram
         /// </summary>
         /// <value>The sender&#39;s follower count on Instagram</value>
-        [DataMember(Name = "followerCount", EmitDefaultValue = false)]
-        public int FollowerCount { get; set; }
+        [DataMember(Name = "followerCount", EmitDefaultValue = true)]
+        public int? FollowerCount { get; set; }
 
         /// <summary>
         /// Whether the sender is a verified Instagram user
         /// </summary>
         /// <value>Whether the sender is a verified Instagram user</value>
         [DataMember(Name = "isVerified", EmitDefaultValue = true)]
-        public bool IsVerified { get; set; }
+        public bool? IsVerified { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

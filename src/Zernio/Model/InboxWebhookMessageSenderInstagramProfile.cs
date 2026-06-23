@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="isFollowing">isFollowing.</param>
         /// <param name="followerCount">followerCount.</param>
         /// <param name="isVerified">isVerified.</param>
-        public InboxWebhookMessageSenderInstagramProfile(bool isFollower = default, bool isFollowing = default, int followerCount = default, bool isVerified = default)
+        public InboxWebhookMessageSenderInstagramProfile(bool? isFollower = default, bool? isFollowing = default, int? followerCount = default, bool? isVerified = default)
         {
             this.IsFollower = isFollower;
             this.IsFollowing = isFollowing;
@@ -52,25 +52,25 @@ namespace Zernio.Model
         /// Gets or Sets IsFollower
         /// </summary>
         [DataMember(Name = "isFollower", EmitDefaultValue = true)]
-        public bool IsFollower { get; set; }
+        public bool? IsFollower { get; set; }
 
         /// <summary>
         /// Gets or Sets IsFollowing
         /// </summary>
         [DataMember(Name = "isFollowing", EmitDefaultValue = true)]
-        public bool IsFollowing { get; set; }
+        public bool? IsFollowing { get; set; }
 
         /// <summary>
         /// Gets or Sets FollowerCount
         /// </summary>
-        [DataMember(Name = "followerCount", EmitDefaultValue = false)]
-        public int FollowerCount { get; set; }
+        [DataMember(Name = "followerCount", EmitDefaultValue = true)]
+        public int? FollowerCount { get; set; }
 
         /// <summary>
         /// Gets or Sets IsVerified
         /// </summary>
         [DataMember(Name = "isVerified", EmitDefaultValue = true)]
-        public bool IsVerified { get; set; }
+        public bool? IsVerified { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

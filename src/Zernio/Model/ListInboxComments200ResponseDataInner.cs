@@ -130,13 +130,13 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Picture
         /// </summary>
-        [DataMember(Name = "picture", EmitDefaultValue = false)]
+        [DataMember(Name = "picture", EmitDefaultValue = true)]
         public string Picture { get; set; }
 
         /// <summary>
         /// Gets or Sets Permalink
         /// </summary>
-        [DataMember(Name = "permalink", EmitDefaultValue = false)]
+        [DataMember(Name = "permalink", EmitDefaultValue = true)]
         public string Permalink { get; set; }
 
         /// <summary>
@@ -161,14 +161,14 @@ namespace Zernio.Model
         /// Bluesky content identifier
         /// </summary>
         /// <value>Bluesky content identifier</value>
-        [DataMember(Name = "cid", EmitDefaultValue = false)]
+        [DataMember(Name = "cid", EmitDefaultValue = true)]
         public string Cid { get; set; }
 
         /// <summary>
         /// Reddit subreddit name
         /// </summary>
         /// <value>Reddit subreddit name</value>
-        [DataMember(Name = "subreddit", EmitDefaultValue = false)]
+        [DataMember(Name = "subreddit", EmitDefaultValue = true)]
         public string Subreddit { get; set; }
 
         /// <summary>

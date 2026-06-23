@@ -49,7 +49,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name = "id", EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets ProfileImage
         /// </summary>
-        [DataMember(Name = "profileImage", EmitDefaultValue = false)]
+        [DataMember(Name = "profileImage", EmitDefaultValue = true)]
         public string ProfileImage { get; set; }
 
         /// <summary>

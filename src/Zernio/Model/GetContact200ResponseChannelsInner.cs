@@ -45,7 +45,7 @@ namespace Zernio.Model
         /// <param name="conversationId">conversationId.</param>
         /// <param name="lastActiveAt">Most recent message (either direction) in this channel&#39;s conversation, or null if none..</param>
         /// <param name="createdAt">createdAt.</param>
-        public GetContact200ResponseChannelsInner(string id = default, string accountId = default, string platform = default, string platformIdentifier = default, string displayIdentifier = default, bool isSubscribed = default, string conversationId = default, DateTime lastActiveAt = default, DateTime createdAt = default)
+        public GetContact200ResponseChannelsInner(string id = default, string accountId = default, string platform = default, string platformIdentifier = default, string displayIdentifier = default, bool isSubscribed = default, string conversationId = default, DateTime? lastActiveAt = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.AccountId = accountId;
@@ -104,8 +104,8 @@ namespace Zernio.Model
         /// Most recent message (either direction) in this channel&#39;s conversation, or null if none.
         /// </summary>
         /// <value>Most recent message (either direction) in this channel&#39;s conversation, or null if none.</value>
-        [DataMember(Name = "lastActiveAt", EmitDefaultValue = false)]
-        public DateTime LastActiveAt { get; set; }
+        [DataMember(Name = "lastActiveAt", EmitDefaultValue = true)]
+        public DateTime? LastActiveAt { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt

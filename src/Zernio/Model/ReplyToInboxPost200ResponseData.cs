@@ -62,7 +62,7 @@ namespace Zernio.Model
         /// Bluesky CID
         /// </summary>
         /// <value>Bluesky CID</value>
-        [DataMember(Name = "cid", EmitDefaultValue = false)]
+        [DataMember(Name = "cid", EmitDefaultValue = true)]
         public string Cid { get; set; }
 
         /// <summary>

@@ -53,7 +53,7 @@ namespace Zernio.Model
         /// <param name="conversationIds">conversationIds.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public GetContact200ResponseContact(string id = default, string name = default, string email = default, string company = default, string avatarUrl = default, List<string> tags = default, bool isSubscribed = default, bool isBlocked = default, int messagesSentCount = default, int messagesReceivedCount = default, DateTime lastMessageSentAt = default, DateTime lastMessageReceivedAt = default, Object customFields = default, string notes = default, List<string> conversationIds = default, DateTime createdAt = default, DateTime updatedAt = default)
+        public GetContact200ResponseContact(string id = default, string name = default, string email = default, string company = default, string avatarUrl = default, List<string> tags = default, bool isSubscribed = default, bool isBlocked = default, int messagesSentCount = default, int messagesReceivedCount = default, DateTime? lastMessageSentAt = default, DateTime? lastMessageReceivedAt = default, Object customFields = default, string notes = default, List<string> conversationIds = default, DateTime createdAt = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -140,15 +140,15 @@ namespace Zernio.Model
         /// Timestamp of the most recent outgoing message, or null if none.
         /// </summary>
         /// <value>Timestamp of the most recent outgoing message, or null if none.</value>
-        [DataMember(Name = "lastMessageSentAt", EmitDefaultValue = false)]
-        public DateTime LastMessageSentAt { get; set; }
+        [DataMember(Name = "lastMessageSentAt", EmitDefaultValue = true)]
+        public DateTime? LastMessageSentAt { get; set; }
 
         /// <summary>
         /// Timestamp of the most recent incoming message, or null if none.
         /// </summary>
         /// <value>Timestamp of the most recent incoming message, or null if none.</value>
-        [DataMember(Name = "lastMessageReceivedAt", EmitDefaultValue = false)]
-        public DateTime LastMessageReceivedAt { get; set; }
+        [DataMember(Name = "lastMessageReceivedAt", EmitDefaultValue = true)]
+        public DateTime? LastMessageReceivedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets CustomFields

@@ -130,14 +130,14 @@ namespace Zernio.Model
         /// Custom webhook display name (null &#x3D; default \&quot;Zernio\&quot;)
         /// </summary>
         /// <value>Custom webhook display name (null &#x3D; default \&quot;Zernio\&quot;)</value>
-        [DataMember(Name = "webhookUsername", EmitDefaultValue = false)]
+        [DataMember(Name = "webhookUsername", EmitDefaultValue = true)]
         public string WebhookUsername { get; set; }
 
         /// <summary>
         /// Custom webhook avatar URL (null &#x3D; default bot avatar)
         /// </summary>
         /// <value>Custom webhook avatar URL (null &#x3D; default bot avatar)</value>
-        [DataMember(Name = "webhookAvatarUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "webhookAvatarUrl", EmitDefaultValue = true)]
         public string WebhookAvatarUrl { get; set; }
 
         /// <summary>

@@ -55,13 +55,13 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets After
         /// </summary>
-        [DataMember(Name = "after", EmitDefaultValue = false)]
+        [DataMember(Name = "after", EmitDefaultValue = true)]
         public string After { get; set; }
 
         /// <summary>
         /// Gets or Sets Before
         /// </summary>
-        [DataMember(Name = "before", EmitDefaultValue = false)]
+        [DataMember(Name = "before", EmitDefaultValue = true)]
         public string Before { get; set; }
 
         /// <summary>

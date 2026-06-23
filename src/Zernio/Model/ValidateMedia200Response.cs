@@ -75,7 +75,7 @@ namespace Zernio.Model
         /// <param name="sizeFormatted">sizeFormatted.</param>
         /// <param name="type">type.</param>
         /// <param name="platformLimits">Per-platform size limit comparison (only present when size and type are known).</param>
-        public ValidateMedia200Response(bool valid = default, string url = default, string error = default, string contentType = default, int size = default, string sizeFormatted = default, TypeEnum? type = default, Dictionary<string, ValidateMedia200ResponsePlatformLimitsValue> platformLimits = default)
+        public ValidateMedia200Response(bool valid = default, string url = default, string error = default, string contentType = default, int? size = default, string sizeFormatted = default, TypeEnum? type = default, Dictionary<string, ValidateMedia200ResponsePlatformLimitsValue> platformLimits = default)
         {
             this.Valid = valid;
             this.Url = url;
@@ -119,8 +119,8 @@ namespace Zernio.Model
         /// File size in bytes
         /// </summary>
         /// <value>File size in bytes</value>
-        [DataMember(Name = "size", EmitDefaultValue = false)]
-        public int Size { get; set; }
+        [DataMember(Name = "size", EmitDefaultValue = true)]
+        public int? Size { get; set; }
 
         /// <summary>
         /// Gets or Sets SizeFormatted

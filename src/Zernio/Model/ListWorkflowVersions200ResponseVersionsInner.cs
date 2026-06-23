@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// <param name="createdByEmail">Denormalized email so the history UI can render without a join.</param>
         /// <param name="restoredFromVersion">When non-null, this snapshot was created by restoring that version.</param>
         /// <param name="createdAt">createdAt.</param>
-        public ListWorkflowVersions200ResponseVersionsInner(int varVersion = default, string name = default, string description = default, string createdBy = default, string createdByEmail = default, int restoredFromVersion = default, DateTime createdAt = default)
+        public ListWorkflowVersions200ResponseVersionsInner(int varVersion = default, string name = default, string description = default, string createdBy = default, string createdByEmail = default, int? restoredFromVersion = default, DateTime createdAt = default)
         {
             this.VarVersion = varVersion;
             this.Name = name;
@@ -70,29 +70,29 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
         /// User id that authored this version
         /// </summary>
         /// <value>User id that authored this version</value>
-        [DataMember(Name = "createdBy", EmitDefaultValue = false)]
+        [DataMember(Name = "createdBy", EmitDefaultValue = true)]
         public string CreatedBy { get; set; }
 
         /// <summary>
         /// Denormalized email so the history UI can render without a join
         /// </summary>
         /// <value>Denormalized email so the history UI can render without a join</value>
-        [DataMember(Name = "createdByEmail", EmitDefaultValue = false)]
+        [DataMember(Name = "createdByEmail", EmitDefaultValue = true)]
         public string CreatedByEmail { get; set; }
 
         /// <summary>
         /// When non-null, this snapshot was created by restoring that version
         /// </summary>
         /// <value>When non-null, this snapshot was created by restoring that version</value>
-        [DataMember(Name = "restoredFromVersion", EmitDefaultValue = false)]
-        public int RestoredFromVersion { get; set; }
+        [DataMember(Name = "restoredFromVersion", EmitDefaultValue = true)]
+        public int? RestoredFromVersion { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt

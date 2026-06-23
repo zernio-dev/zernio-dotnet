@@ -70,7 +70,7 @@ namespace Zernio.Model
         /// X/Twitter verified badge type. Only present for Twitter/X conversations.
         /// </summary>
         /// <value>X/Twitter verified badge type. Only present for Twitter/X conversations.</value>
-        [DataMember(Name = "participantVerifiedType", EmitDefaultValue = false)]
+        [DataMember(Name = "participantVerifiedType", EmitDefaultValue = true)]
         public ParticipantVerifiedTypeEnum? ParticipantVerifiedType { get; set; }
         /// <summary>
         /// Defines Status
@@ -114,8 +114,7 @@ namespace Zernio.Model
         /// <param name="unreadCount">Number of unread messages.</param>
         /// <param name="url">Direct link to open the conversation on the platform (if available).</param>
         /// <param name="instagramProfile">instagramProfile.</param>
-        /// <param name="metadata">Ad-click attribution captured on the first inbound message of the conversation. Only present when the conversation originated from a click-to-message ad. Absent on organic conversations.  Two sources populate this field:   - WhatsApp CTWA (Click-to-WhatsApp): &#x60;ctwa_clid&#x60;, &#x60;ctwa_source_id&#x60;,     &#x60;ctwa_source_url&#x60;, &#x60;ctwa_headline&#x60;, &#x60;ctwa_source_type&#x60;, &#x60;ctwa_captured_at&#x60;.   - Facebook Messenger CTM / Instagram CTD: &#x60;meta_ad_id&#x60;, &#x60;meta_ad_title&#x60;,     &#x60;meta_ad_source&#x60;, &#x60;meta_ad_type&#x60;, &#x60;meta_ad_ref&#x60;, &#x60;meta_ad_captured_at&#x60;,     &#x60;meta_ad_photo_url&#x60;, &#x60;meta_ad_video_url&#x60;, &#x60;meta_ad_post_id&#x60;,     &#x60;meta_ad_product_id&#x60;, &#x60;meta_ad_flow_id&#x60;.  Note: &#x60;meta_ad_photo_url&#x60; and &#x60;meta_ad_video_url&#x60; are Facebook CDN URLs that may expire. Use &#x60;meta_ad_id&#x60; for a permanent reference to the ad. .</param>
-        public ListInboxConversations200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string participantId = default, string participantName = default, string participantPicture = default, ParticipantVerifiedTypeEnum? participantVerifiedType = default, string lastMessage = default, DateTime updatedTime = default, StatusEnum? status = default, int unreadCount = default, string url = default, ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile = default, Dictionary<string, string> metadata = default)
+        public ListInboxConversations200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string participantId = default, string participantName = default, string participantPicture = default, ParticipantVerifiedTypeEnum? participantVerifiedType = default, string lastMessage = default, DateTime updatedTime = default, StatusEnum? status = default, int? unreadCount = default, string url = default, ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile = default)
         {
             this.Id = id;
             this.Platform = platform;
@@ -131,7 +130,6 @@ namespace Zernio.Model
             this.UnreadCount = unreadCount;
             this.Url = url;
             this.InstagramProfile = instagramProfile;
-            this.Metadata = metadata;
         }
 
         /// <summary>
@@ -173,7 +171,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets ParticipantPicture
         /// </summary>
-        [DataMember(Name = "participantPicture", EmitDefaultValue = false)]
+        [DataMember(Name = "participantPicture", EmitDefaultValue = true)]
         public string ParticipantPicture { get; set; }
 
         /// <summary>
@@ -192,14 +190,14 @@ namespace Zernio.Model
         /// Number of unread messages
         /// </summary>
         /// <value>Number of unread messages</value>
-        [DataMember(Name = "unreadCount", EmitDefaultValue = false)]
-        public int UnreadCount { get; set; }
+        [DataMember(Name = "unreadCount", EmitDefaultValue = true)]
+        public int? UnreadCount { get; set; }
 
         /// <summary>
         /// Direct link to open the conversation on the platform (if available)
         /// </summary>
         /// <value>Direct link to open the conversation on the platform (if available)</value>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
+        [DataMember(Name = "url", EmitDefaultValue = true)]
         public string Url { get; set; }
 
         /// <summary>
@@ -207,13 +205,6 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "instagramProfile", EmitDefaultValue = false)]
         public ListInboxConversations200ResponseDataInnerInstagramProfile InstagramProfile { get; set; }
-
-        /// <summary>
-        /// Ad-click attribution captured on the first inbound message of the conversation. Only present when the conversation originated from a click-to-message ad. Absent on organic conversations.  Two sources populate this field:   - WhatsApp CTWA (Click-to-WhatsApp): &#x60;ctwa_clid&#x60;, &#x60;ctwa_source_id&#x60;,     &#x60;ctwa_source_url&#x60;, &#x60;ctwa_headline&#x60;, &#x60;ctwa_source_type&#x60;, &#x60;ctwa_captured_at&#x60;.   - Facebook Messenger CTM / Instagram CTD: &#x60;meta_ad_id&#x60;, &#x60;meta_ad_title&#x60;,     &#x60;meta_ad_source&#x60;, &#x60;meta_ad_type&#x60;, &#x60;meta_ad_ref&#x60;, &#x60;meta_ad_captured_at&#x60;,     &#x60;meta_ad_photo_url&#x60;, &#x60;meta_ad_video_url&#x60;, &#x60;meta_ad_post_id&#x60;,     &#x60;meta_ad_product_id&#x60;, &#x60;meta_ad_flow_id&#x60;.  Note: &#x60;meta_ad_photo_url&#x60; and &#x60;meta_ad_video_url&#x60; are Facebook CDN URLs that may expire. Use &#x60;meta_ad_id&#x60; for a permanent reference to the ad. 
-        /// </summary>
-        /// <value>Ad-click attribution captured on the first inbound message of the conversation. Only present when the conversation originated from a click-to-message ad. Absent on organic conversations.  Two sources populate this field:   - WhatsApp CTWA (Click-to-WhatsApp): &#x60;ctwa_clid&#x60;, &#x60;ctwa_source_id&#x60;,     &#x60;ctwa_source_url&#x60;, &#x60;ctwa_headline&#x60;, &#x60;ctwa_source_type&#x60;, &#x60;ctwa_captured_at&#x60;.   - Facebook Messenger CTM / Instagram CTD: &#x60;meta_ad_id&#x60;, &#x60;meta_ad_title&#x60;,     &#x60;meta_ad_source&#x60;, &#x60;meta_ad_type&#x60;, &#x60;meta_ad_ref&#x60;, &#x60;meta_ad_captured_at&#x60;,     &#x60;meta_ad_photo_url&#x60;, &#x60;meta_ad_video_url&#x60;, &#x60;meta_ad_post_id&#x60;,     &#x60;meta_ad_product_id&#x60;, &#x60;meta_ad_flow_id&#x60;.  Note: &#x60;meta_ad_photo_url&#x60; and &#x60;meta_ad_video_url&#x60; are Facebook CDN URLs that may expire. Use &#x60;meta_ad_id&#x60; for a permanent reference to the ad. </value>
-        [DataMember(Name = "metadata", EmitDefaultValue = false)]
-        public Dictionary<string, string> Metadata { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -237,7 +228,6 @@ namespace Zernio.Model
             sb.Append("  UnreadCount: ").Append(UnreadCount).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  InstagramProfile: ").Append(InstagramProfile).Append("\n");
-            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

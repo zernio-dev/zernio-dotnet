@@ -80,7 +80,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Picture
         /// </summary>
-        [DataMember(Name = "picture", EmitDefaultValue = false)]
+        [DataMember(Name = "picture", EmitDefaultValue = true)]
         public string Picture { get; set; }
 
         /// <summary>

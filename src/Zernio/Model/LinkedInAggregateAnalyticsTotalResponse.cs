@@ -64,7 +64,7 @@ namespace Zernio.Model
         /// <param name="analytics">analytics.</param>
         /// <param name="note">note.</param>
         /// <param name="lastUpdated">lastUpdated.</param>
-        public LinkedInAggregateAnalyticsTotalResponse(string accountId = default, string platform = default, string accountType = default, string username = default, AggregationEnum? aggregation = default, LinkedInAggregateAnalyticsTotalResponseDateRange dateRange = default, LinkedInAggregateAnalyticsTotalResponseAnalytics analytics = default, string note = default, DateTime lastUpdated = default)
+        public LinkedInAggregateAnalyticsTotalResponse(string accountId = default, string platform = default, string accountType = default, string username = default, AggregationEnum? aggregation = default, YouTubeDailyViewsResponseDateRange dateRange = default, LinkedInAggregateAnalyticsTotalResponseAnalytics analytics = default, string note = default, DateTime lastUpdated = default)
         {
             this.AccountId = accountId;
             this.Platform = platform;
@@ -111,7 +111,7 @@ namespace Zernio.Model
         /// Gets or Sets DateRange
         /// </summary>
         [DataMember(Name = "dateRange", EmitDefaultValue = false)]
-        public LinkedInAggregateAnalyticsTotalResponseDateRange DateRange { get; set; }
+        public YouTubeDailyViewsResponseDateRange DateRange { get; set; }
 
         /// <summary>
         /// Gets or Sets Analytics

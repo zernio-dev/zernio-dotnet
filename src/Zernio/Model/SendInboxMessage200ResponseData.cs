@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="conversationId">Twitter conversation ID.</param>
         /// <param name="sentAt">Bluesky sent timestamp.</param>
         /// <param name="message">Success message (Reddit only).</param>
-        public SendInboxMessage200ResponseData(string messageId = default, string conversationId = default, DateTime sentAt = default, string message = default)
+        public SendInboxMessage200ResponseData(string messageId = default, string conversationId = default, DateTime? sentAt = default, string message = default)
         {
             this.MessageId = messageId;
             this.ConversationId = conversationId;
@@ -59,21 +59,21 @@ namespace Zernio.Model
         /// Twitter conversation ID
         /// </summary>
         /// <value>Twitter conversation ID</value>
-        [DataMember(Name = "conversationId", EmitDefaultValue = false)]
+        [DataMember(Name = "conversationId", EmitDefaultValue = true)]
         public string ConversationId { get; set; }
 
         /// <summary>
         /// Bluesky sent timestamp
         /// </summary>
         /// <value>Bluesky sent timestamp</value>
-        [DataMember(Name = "sentAt", EmitDefaultValue = false)]
-        public DateTime SentAt { get; set; }
+        [DataMember(Name = "sentAt", EmitDefaultValue = true)]
+        public DateTime? SentAt { get; set; }
 
         /// <summary>
         /// Success message (Reddit only)
         /// </summary>
         /// <value>Success message (Reddit only)</value>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
+        [DataMember(Name = "message", EmitDefaultValue = true)]
         public string Message { get; set; }
 
         /// <summary>

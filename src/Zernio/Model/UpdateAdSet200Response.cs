@@ -94,7 +94,7 @@ namespace Zernio.Model
         /// <param name="bidStrategy">bidStrategy.</param>
         /// <param name="bidAmount">bidAmount.</param>
         /// <param name="roasAverageFloor">roasAverageFloor.</param>
-        public UpdateAdSet200Response(AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, StatusEnum? status = default, int statusUpdated = default, int statusSkipped = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default)
+        public UpdateAdSet200Response(AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, StatusEnum? status = default, int statusUpdated = default, int statusSkipped = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default)
         {
             this.Budget = budget;
             this.BudgetLevel = budgetLevel;
@@ -127,14 +127,14 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets BidAmount
         /// </summary>
-        [DataMember(Name = "bidAmount", EmitDefaultValue = false)]
-        public decimal BidAmount { get; set; }
+        [DataMember(Name = "bidAmount", EmitDefaultValue = true)]
+        public decimal? BidAmount { get; set; }
 
         /// <summary>
         /// Gets or Sets RoasAverageFloor
         /// </summary>
-        [DataMember(Name = "roasAverageFloor", EmitDefaultValue = false)]
-        public decimal RoasAverageFloor { get; set; }
+        [DataMember(Name = "roasAverageFloor", EmitDefaultValue = true)]
+        public decimal? RoasAverageFloor { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

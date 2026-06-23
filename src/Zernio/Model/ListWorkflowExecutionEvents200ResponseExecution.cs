@@ -83,7 +83,7 @@ namespace Zernio.Model
         /// <param name="status">status.</param>
         /// <param name="startedAt">startedAt.</param>
         /// <param name="completedAt">completedAt.</param>
-        public ListWorkflowExecutionEvents200ResponseExecution(string id = default, StatusEnum? status = default, DateTime startedAt = default, DateTime completedAt = default)
+        public ListWorkflowExecutionEvents200ResponseExecution(string id = default, StatusEnum? status = default, DateTime? startedAt = default, DateTime? completedAt = default)
         {
             this.Id = id;
             this.Status = status;
@@ -100,14 +100,14 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets StartedAt
         /// </summary>
-        [DataMember(Name = "startedAt", EmitDefaultValue = false)]
-        public DateTime StartedAt { get; set; }
+        [DataMember(Name = "startedAt", EmitDefaultValue = true)]
+        public DateTime? StartedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets CompletedAt
         /// </summary>
-        [DataMember(Name = "completedAt", EmitDefaultValue = false)]
-        public DateTime CompletedAt { get; set; }
+        [DataMember(Name = "completedAt", EmitDefaultValue = true)]
+        public DateTime? CompletedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

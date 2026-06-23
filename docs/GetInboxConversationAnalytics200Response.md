@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **MongoId** | **string** |  | [optional] 
 **Platform** | **string** |  | [optional] 
 **From** | **DateOnly** |  | [optional] 
-**To** | **DateOnly** |  | [optional] 
+**To** | **DateOnly?** |  | [optional] 
 **Summary** | [**GetInboxConversationAnalytics200ResponseSummary**](GetInboxConversationAnalytics200ResponseSummary.md) |  | [optional] 
 **Timeseries** | [**List&lt;GetInboxVolume200ResponseTimeseriesInner&gt;**](GetInboxVolume200ResponseTimeseriesInner.md) |  | [optional] 
 **BySource** | [**List&lt;GetInboxConversationAnalytics200ResponseBySourceInner&gt;**](GetInboxConversationAnalytics200ResponseBySourceInner.md) |  | [optional] 

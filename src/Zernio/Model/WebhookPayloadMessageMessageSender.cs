@@ -106,7 +106,7 @@ namespace Zernio.Model
         /// WhatsApp only. Sender&#39;s phone number in E.164 format (with leading &#x60;+&#x60;).  **Nullable during the BSUID rollout (April 2026+).** WhatsApp users who adopt a username can message businesses without exposing a phone number — this field is omitted for them. Match by &#x60;businessScopedUserId&#x60; instead. See &#x60;docs/whatsapp-bsuid-migration.md&#x60;. 
         /// </summary>
         /// <value>WhatsApp only. Sender&#39;s phone number in E.164 format (with leading &#x60;+&#x60;).  **Nullable during the BSUID rollout (April 2026+).** WhatsApp users who adopt a username can message businesses without exposing a phone number — this field is omitted for them. Match by &#x60;businessScopedUserId&#x60; instead. See &#x60;docs/whatsapp-bsuid-migration.md&#x60;. </value>
-        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = true)]
         public string PhoneNumber { get; set; }
 
         /// <summary>

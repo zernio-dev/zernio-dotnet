@@ -99,23 +99,5 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'AudienceSize'
         }
-
-        /// <summary>
-        /// Test the property 'Latitude'
-        /// </summary>
-        [Fact]
-        public void LatitudeTest()
-        {
-            // TODO unit test for the property 'Latitude'
-        }
-
-        /// <summary>
-        /// Test the property 'Longitude'
-        /// </summary>
-        [Fact]
-        public void LongitudeTest()
-        {
-            // TODO unit test for the property 'Longitude'
-        }
     }
 }

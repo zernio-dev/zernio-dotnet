@@ -39,7 +39,7 @@ namespace Zernio.Model
         /// <param name="status">status.</param>
         /// <param name="reply">reply.</param>
         /// <param name="platform">platform.</param>
-        public ReplyToInboxReview200Response(string status = default, ReplyToInboxReview200ResponseReply reply = default, string platform = default)
+        public ReplyToInboxReview200Response(string status = default, ListInboxReviews200ResponseDataInnerReply reply = default, string platform = default)
         {
             this.Status = status;
             this.Reply = reply;
@@ -56,7 +56,7 @@ namespace Zernio.Model
         /// Gets or Sets Reply
         /// </summary>
         [DataMember(Name = "reply", EmitDefaultValue = false)]
-        public ReplyToInboxReview200ResponseReply Reply { get; set; }
+        public ListInboxReviews200ResponseDataInnerReply Reply { get; set; }
 
         /// <summary>
         /// Gets or Sets Platform

@@ -87,7 +87,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets FormName
         /// </summary>
-        [DataMember(Name = "formName", EmitDefaultValue = false)]
+        [DataMember(Name = "formName", EmitDefaultValue = true)]
         public string FormName { get; set; }
 
         /// <summary>
@@ -99,19 +99,19 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets AdId
         /// </summary>
-        [DataMember(Name = "adId", EmitDefaultValue = false)]
+        [DataMember(Name = "adId", EmitDefaultValue = true)]
         public string AdId { get; set; }
 
         /// <summary>
         /// Gets or Sets AdsetId
         /// </summary>
-        [DataMember(Name = "adsetId", EmitDefaultValue = false)]
+        [DataMember(Name = "adsetId", EmitDefaultValue = true)]
         public string AdsetId { get; set; }
 
         /// <summary>
         /// Gets or Sets CampaignId
         /// </summary>
-        [DataMember(Name = "campaignId", EmitDefaultValue = false)]
+        [DataMember(Name = "campaignId", EmitDefaultValue = true)]
         public string CampaignId { get; set; }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Zernio.Model
         /// ISO 8601.
         /// </summary>
         /// <value>ISO 8601.</value>
-        [DataMember(Name = "createdTime", EmitDefaultValue = false)]
+        [DataMember(Name = "createdTime", EmitDefaultValue = true)]
         public string CreatedTime { get; set; }
 
         /// <summary>

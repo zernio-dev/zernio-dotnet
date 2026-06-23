@@ -65,7 +65,7 @@ namespace Zernio.Model
         /// <param name="skippedMetrics">Metrics that were skipped due to API limitations.</param>
         /// <param name="note">note.</param>
         /// <param name="lastUpdated">lastUpdated.</param>
-        public LinkedInAggregateAnalyticsDailyResponse(string accountId = default, string platform = default, string accountType = default, string username = default, AggregationEnum? aggregation = default, LinkedInAggregateAnalyticsTotalResponseDateRange dateRange = default, LinkedInAggregateAnalyticsDailyResponseAnalytics analytics = default, List<string> skippedMetrics = default, string note = default, DateTime lastUpdated = default)
+        public LinkedInAggregateAnalyticsDailyResponse(string accountId = default, string platform = default, string accountType = default, string username = default, AggregationEnum? aggregation = default, YouTubeDailyViewsResponseDateRange dateRange = default, LinkedInAggregateAnalyticsDailyResponseAnalytics analytics = default, List<string> skippedMetrics = default, string note = default, DateTime lastUpdated = default)
         {
             this.AccountId = accountId;
             this.Platform = platform;
@@ -113,7 +113,7 @@ namespace Zernio.Model
         /// Gets or Sets DateRange
         /// </summary>
         [DataMember(Name = "dateRange", EmitDefaultValue = false)]
-        public LinkedInAggregateAnalyticsTotalResponseDateRange DateRange { get; set; }
+        public YouTubeDailyViewsResponseDateRange DateRange { get; set; }
 
         /// <summary>
         /// Gets or Sets Analytics

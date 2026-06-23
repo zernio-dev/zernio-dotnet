@@ -75,14 +75,14 @@ namespace Zernio.Model
         /// Display name of the recipient
         /// </summary>
         /// <value>Display name of the recipient</value>
-        [DataMember(Name = "participantName", EmitDefaultValue = false)]
+        [DataMember(Name = "participantName", EmitDefaultValue = true)]
         public string ParticipantName { get; set; }
 
         /// <summary>
         /// Twitter username of the recipient
         /// </summary>
         /// <value>Twitter username of the recipient</value>
-        [DataMember(Name = "participantUsername", EmitDefaultValue = false)]
+        [DataMember(Name = "participantUsername", EmitDefaultValue = true)]
         public string ParticipantUsername { get; set; }
 
         /// <summary>

@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <param name="followerCount">The participant&#39;s follower count on Instagram.</param>
         /// <param name="isVerified">Whether the participant is a verified Instagram user.</param>
         /// <param name="fetchedAt">When this profile data was last fetched from Instagram.</param>
-        public ListInboxConversations200ResponseDataInnerInstagramProfile(bool isFollower = default, bool isFollowing = default, int followerCount = default, bool isVerified = default, DateTime fetchedAt = default)
+        public ListInboxConversations200ResponseDataInnerInstagramProfile(bool? isFollower = default, bool? isFollowing = default, int? followerCount = default, bool? isVerified = default, DateTime? fetchedAt = default)
         {
             this.IsFollower = isFollower;
             this.IsFollowing = isFollowing;
@@ -55,35 +55,35 @@ namespace Zernio.Model
         /// </summary>
         /// <value>Whether the participant follows your Instagram business account</value>
         [DataMember(Name = "isFollower", EmitDefaultValue = true)]
-        public bool IsFollower { get; set; }
+        public bool? IsFollower { get; set; }
 
         /// <summary>
         /// Whether your Instagram business account follows the participant
         /// </summary>
         /// <value>Whether your Instagram business account follows the participant</value>
         [DataMember(Name = "isFollowing", EmitDefaultValue = true)]
-        public bool IsFollowing { get; set; }
+        public bool? IsFollowing { get; set; }
 
         /// <summary>
         /// The participant&#39;s follower count on Instagram
         /// </summary>
         /// <value>The participant&#39;s follower count on Instagram</value>
-        [DataMember(Name = "followerCount", EmitDefaultValue = false)]
-        public int FollowerCount { get; set; }
+        [DataMember(Name = "followerCount", EmitDefaultValue = true)]
+        public int? FollowerCount { get; set; }
 
         /// <summary>
         /// Whether the participant is a verified Instagram user
         /// </summary>
         /// <value>Whether the participant is a verified Instagram user</value>
         [DataMember(Name = "isVerified", EmitDefaultValue = true)]
-        public bool IsVerified { get; set; }
+        public bool? IsVerified { get; set; }
 
         /// <summary>
         /// When this profile data was last fetched from Instagram
         /// </summary>
         /// <value>When this profile data was last fetched from Instagram</value>
-        [DataMember(Name = "fetchedAt", EmitDefaultValue = false)]
-        public DateTime FetchedAt { get; set; }
+        [DataMember(Name = "fetchedAt", EmitDefaultValue = true)]
+        public DateTime? FetchedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

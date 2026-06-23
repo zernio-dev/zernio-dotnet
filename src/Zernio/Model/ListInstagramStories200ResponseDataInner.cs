@@ -48,7 +48,7 @@ namespace Zernio.Model
         /// <param name="permalink">Public Instagram permalink to the story (only viewable while live)..</param>
         /// <param name="thumbnailUrl">Thumbnail URL for video stories..</param>
         /// <param name="timestamp">When the story was posted..</param>
-        public ListInstagramStories200ResponseDataInner(string id = default, string mediaType = default, string mediaProductType = default, string mediaUrl = default, string permalink = default, string thumbnailUrl = default, DateTime timestamp = default)
+        public ListInstagramStories200ResponseDataInner(string id = default, string mediaType = default, string mediaProductType = default, string mediaUrl = default, string permalink = default, string thumbnailUrl = default, DateTime? timestamp = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -75,43 +75,43 @@ namespace Zernio.Model
         /// IMAGE / VIDEO / CAROUSEL_ALBUM
         /// </summary>
         /// <value>IMAGE / VIDEO / CAROUSEL_ALBUM</value>
-        [DataMember(Name = "mediaType", EmitDefaultValue = false)]
+        [DataMember(Name = "mediaType", EmitDefaultValue = true)]
         public string MediaType { get; set; }
 
         /// <summary>
         /// Always &#39;STORY&#39; for this endpoint.
         /// </summary>
         /// <value>Always &#39;STORY&#39; for this endpoint.</value>
-        [DataMember(Name = "mediaProductType", EmitDefaultValue = false)]
+        [DataMember(Name = "mediaProductType", EmitDefaultValue = true)]
         public string MediaProductType { get; set; }
 
         /// <summary>
         /// Direct media URL. Null if Meta flagged the story for copyright. URL expires when the story expires.
         /// </summary>
         /// <value>Direct media URL. Null if Meta flagged the story for copyright. URL expires when the story expires.</value>
-        [DataMember(Name = "mediaUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "mediaUrl", EmitDefaultValue = true)]
         public string MediaUrl { get; set; }
 
         /// <summary>
         /// Public Instagram permalink to the story (only viewable while live).
         /// </summary>
         /// <value>Public Instagram permalink to the story (only viewable while live).</value>
-        [DataMember(Name = "permalink", EmitDefaultValue = false)]
+        [DataMember(Name = "permalink", EmitDefaultValue = true)]
         public string Permalink { get; set; }
 
         /// <summary>
         /// Thumbnail URL for video stories.
         /// </summary>
         /// <value>Thumbnail URL for video stories.</value>
-        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "thumbnailUrl", EmitDefaultValue = true)]
         public string ThumbnailUrl { get; set; }
 
         /// <summary>
         /// When the story was posted.
         /// </summary>
         /// <value>When the story was posted.</value>
-        [DataMember(Name = "timestamp", EmitDefaultValue = false)]
-        public DateTime Timestamp { get; set; }
+        [DataMember(Name = "timestamp", EmitDefaultValue = true)]
+        public DateTime? Timestamp { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

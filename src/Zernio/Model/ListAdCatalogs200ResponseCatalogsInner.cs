@@ -64,7 +64,7 @@ namespace Zernio.Model
         /// Catalog vertical (e.g. commerce, vehicles, hotels)
         /// </summary>
         /// <value>Catalog vertical (e.g. commerce, vehicles, hotels)</value>
-        [DataMember(Name = "vertical", EmitDefaultValue = false)]
+        [DataMember(Name = "vertical", EmitDefaultValue = true)]
         public string Vertical { get; set; }
 
         /// <summary>

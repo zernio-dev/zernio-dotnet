@@ -74,7 +74,7 @@ namespace Zernio.Model
         /// <param name="expiresAt">UTC timestamp at which the session becomes invalid. Pending sessions get a 24h window; activated sessions get 7 days.  (required).</param>
         /// <param name="activatedAt">When the session transitioned &#x60;pending → active&#x60;, or null..</param>
         /// <param name="createdAt">createdAt.</param>
-        public WhatsAppSandboxSession(string id = default, string phoneE164 = default, StatusEnum status = default, DateTime expiresAt = default, DateTime activatedAt = default, DateTime createdAt = default)
+        public WhatsAppSandboxSession(string id = default, string phoneE164 = default, StatusEnum status = default, DateTime expiresAt = default, DateTime? activatedAt = default, DateTime? createdAt = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -122,14 +122,14 @@ namespace Zernio.Model
         /// When the session transitioned &#x60;pending → active&#x60;, or null.
         /// </summary>
         /// <value>When the session transitioned &#x60;pending → active&#x60;, or null.</value>
-        [DataMember(Name = "activatedAt", EmitDefaultValue = false)]
-        public DateTime ActivatedAt { get; set; }
+        [DataMember(Name = "activatedAt", EmitDefaultValue = true)]
+        public DateTime? ActivatedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
         /// </summary>
-        [DataMember(Name = "createdAt", EmitDefaultValue = false)]
-        public DateTime CreatedAt { get; set; }
+        [DataMember(Name = "createdAt", EmitDefaultValue = true)]
+        public DateTime? CreatedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

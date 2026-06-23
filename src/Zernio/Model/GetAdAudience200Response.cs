@@ -54,7 +54,7 @@ namespace Zernio.Model
         /// Fresh data from Meta API
         /// </summary>
         /// <value>Fresh data from Meta API</value>
-        [DataMember(Name = "metaData", EmitDefaultValue = false)]
+        [DataMember(Name = "metaData", EmitDefaultValue = true)]
         public Object MetaData { get; set; }
 
         /// <summary>

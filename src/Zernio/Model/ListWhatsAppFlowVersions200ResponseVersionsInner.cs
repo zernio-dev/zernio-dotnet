@@ -67,19 +67,19 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets ParentFlowId
         /// </summary>
-        [DataMember(Name = "parentFlowId", EmitDefaultValue = false)]
+        [DataMember(Name = "parentFlowId", EmitDefaultValue = true)]
         public string ParentFlowId { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or Sets Status
         /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
+        [DataMember(Name = "status", EmitDefaultValue = true)]
         public string Status { get; set; }
 
         /// <summary>

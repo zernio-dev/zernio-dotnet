@@ -77,13 +77,13 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets SipAuthUsername
         /// </summary>
-        [DataMember(Name = "sipAuthUsername", EmitDefaultValue = false)]
+        [DataMember(Name = "sipAuthUsername", EmitDefaultValue = true)]
         public string SipAuthUsername { get; set; }
 
         /// <summary>
         /// Gets or Sets SipAuthPassword
         /// </summary>
-        [DataMember(Name = "sipAuthPassword", EmitDefaultValue = false)]
+        [DataMember(Name = "sipAuthPassword", EmitDefaultValue = true)]
         public string SipAuthPassword { get; set; }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets CallIconCountries
         /// </summary>
-        [DataMember(Name = "callIconCountries", EmitDefaultValue = false)]
+        [DataMember(Name = "callIconCountries", EmitDefaultValue = true)]
         public List<string> CallIconCountries { get; set; }
 
         /// <summary>

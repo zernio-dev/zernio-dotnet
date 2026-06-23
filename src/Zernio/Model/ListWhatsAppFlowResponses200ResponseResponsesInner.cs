@@ -73,25 +73,25 @@ namespace Zernio.Model
         /// Sender wa_id / phone
         /// </summary>
         /// <value>Sender wa_id / phone</value>
-        [DataMember(Name = "from", EmitDefaultValue = false)]
+        [DataMember(Name = "from", EmitDefaultValue = true)]
         public string From { get; set; }
 
         /// <summary>
         /// Gets or Sets SenderName
         /// </summary>
-        [DataMember(Name = "senderName", EmitDefaultValue = false)]
+        [DataMember(Name = "senderName", EmitDefaultValue = true)]
         public string SenderName { get; set; }
 
         /// <summary>
         /// Gets or Sets ConversationId
         /// </summary>
-        [DataMember(Name = "conversationId", EmitDefaultValue = false)]
+        [DataMember(Name = "conversationId", EmitDefaultValue = true)]
         public string ConversationId { get; set; }
 
         /// <summary>
         /// Gets or Sets FlowToken
         /// </summary>
-        [DataMember(Name = "flowToken", EmitDefaultValue = false)]
+        [DataMember(Name = "flowToken", EmitDefaultValue = true)]
         public string FlowToken { get; set; }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Zernio.Model
         /// Raw response_json string
         /// </summary>
         /// <value>Raw response_json string</value>
-        [DataMember(Name = "raw", EmitDefaultValue = false)]
+        [DataMember(Name = "raw", EmitDefaultValue = true)]
         public string Raw { get; set; }
 
         /// <summary>

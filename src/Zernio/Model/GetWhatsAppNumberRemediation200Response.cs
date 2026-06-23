@@ -63,7 +63,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets DeclineReason
         /// </summary>
-        [DataMember(Name = "declineReason", EmitDefaultValue = false)]
+        [DataMember(Name = "declineReason", EmitDefaultValue = true)]
         public string DeclineReason { get; set; }
 
         /// <summary>

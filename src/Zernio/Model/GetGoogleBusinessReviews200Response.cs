@@ -96,7 +96,7 @@ namespace Zernio.Model
         /// Token for next page
         /// </summary>
         /// <value>Token for next page</value>
-        [DataMember(Name = "nextPageToken", EmitDefaultValue = false)]
+        [DataMember(Name = "nextPageToken", EmitDefaultValue = true)]
         public string NextPageToken { get; set; }
 
         /// <summary>

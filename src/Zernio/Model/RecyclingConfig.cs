@@ -70,7 +70,7 @@ namespace Zernio.Model
         /// <param name="expireCount">Stop recycling after this many copies have been created. Send null on update to clear this limit..</param>
         /// <param name="expireDate">Stop recycling after this date, regardless of count. Send null on update to clear this limit..</param>
         /// <param name="contentVariations">Array of content variations for recycled copies. On each recycle, the next variation is used in round-robin order. Recommended for Twitter and Pinterest to avoid duplicate content flags. If omitted, the original post content is used for all recycled copies. Send an empty array [] to clear existing variations. Must have 2+ entries when setting variations. Platform-level customContent still overrides the base content per platform. .</param>
-        public RecyclingConfig(bool enabled = true, int gap = default, GapFreqEnum? gapFreq = GapFreqEnum.Month, DateTime startDate = default, int expireCount = default, DateTime expireDate = default, List<string> contentVariations = default)
+        public RecyclingConfig(bool enabled = true, int gap = default, GapFreqEnum? gapFreq = GapFreqEnum.Month, DateTime startDate = default, int? expireCount = default, DateTime? expireDate = default, List<string> contentVariations = default)
         {
             this.Enabled = enabled;
             this.Gap = gap;
@@ -112,15 +112,15 @@ namespace Zernio.Model
         /*
         <example>5</example>
         */
-        [DataMember(Name = "expireCount", EmitDefaultValue = false)]
-        public int ExpireCount { get; set; }
+        [DataMember(Name = "expireCount", EmitDefaultValue = true)]
+        public int? ExpireCount { get; set; }
 
         /// <summary>
         /// Stop recycling after this date, regardless of count. Send null on update to clear this limit.
         /// </summary>
         /// <value>Stop recycling after this date, regardless of count. Send null on update to clear this limit.</value>
-        [DataMember(Name = "expireDate", EmitDefaultValue = false)]
-        public DateTime ExpireDate { get; set; }
+        [DataMember(Name = "expireDate", EmitDefaultValue = true)]
+        public DateTime? ExpireDate { get; set; }
 
         /// <summary>
         /// Array of content variations for recycled copies. On each recycle, the next variation is used in round-robin order. Recommended for Twitter and Pinterest to avoid duplicate content flags. If omitted, the original post content is used for all recycled copies. Send an empty array [] to clear existing variations. Must have 2+ entries when setting variations. Platform-level customContent still overrides the base content per platform. 
@@ -170,8 +170,8 @@ namespace Zernio.Model
                 yield return new ValidationResult("Invalid value for Gap, must be a value greater than or equal to 1.", new [] { "Gap" });
             }
 
-            // ExpireCount (int) minimum
-            if (this.ExpireCount < (int)1)
+            // ExpireCount (int?) minimum
+            if (this.ExpireCount < (int?)1)
             {
                 yield return new ValidationResult("Invalid value for ExpireCount, must be a value greater than or equal to 1.", new [] { "ExpireCount" });
             }

@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **Platform** | **string** |  | [optional] 
 **PlatformPostUrl** | **string** |  | [optional] 
 **IsExternal** | **bool** |  | [optional] 
-**IsAd** | **bool** | True when the post is an ad creative. False for organic posts or platforms where the signal is unavailable. For now is only available for LinkedIn posts. | [optional] 
 **ProfileId** | **string** |  | [optional] 
 **ThumbnailUrl** | **string** |  | [optional] 
 **MediaType** | **string** |  | [optional] 

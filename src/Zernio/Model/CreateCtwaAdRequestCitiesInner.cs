@@ -130,12 +130,6 @@ namespace Zernio.Model
                 yield return new ValidationResult("Invalid value for Key, length must be greater than 1.", new [] { "Key" });
             }
 
-            // Radius (decimal) minimum
-            if (this.Radius < (decimal)0)
-            {
-                yield return new ValidationResult("Invalid value for Radius, must be a value greater than or equal to 0.", new [] { "Radius" });
-            }
-
             yield break;
         }
     }

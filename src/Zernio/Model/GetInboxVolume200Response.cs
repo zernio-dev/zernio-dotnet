@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// <param name="summary">summary.</param>
         /// <param name="timeseries">timeseries.</param>
         /// <param name="byPlatform">byPlatform.</param>
-        public GetInboxVolume200Response(bool success = default, DateOnly from = default, DateOnly to = default, GetInboxVolume200ResponseSummary summary = default, List<GetInboxVolume200ResponseTimeseriesInner> timeseries = default, List<GetInboxVolume200ResponseByPlatformInner> byPlatform = default)
+        public GetInboxVolume200Response(bool success = default, DateOnly from = default, DateOnly? to = default, GetInboxVolume200ResponseSummary summary = default, List<GetInboxVolume200ResponseTimeseriesInner> timeseries = default, List<GetInboxVolume200ResponseByPlatformInner> byPlatform = default)
         {
             this.Success = success;
             this.From = from;
@@ -67,8 +67,8 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets To
         /// </summary>
-        [DataMember(Name = "to", EmitDefaultValue = false)]
-        public DateOnly To { get; set; }
+        [DataMember(Name = "to", EmitDefaultValue = true)]
+        public DateOnly? To { get; set; }
 
         /// <summary>
         /// Gets or Sets Summary

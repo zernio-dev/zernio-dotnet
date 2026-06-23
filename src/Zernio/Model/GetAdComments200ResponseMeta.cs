@@ -166,7 +166,7 @@ namespace Zernio.Model
         /// Facebook-only. The connected Facebook Page SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible).
         /// </summary>
         /// <value>Facebook-only. The connected Facebook Page SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible).</value>
-        [DataMember(Name = "facebookAccountId", EmitDefaultValue = false)]
+        [DataMember(Name = "facebookAccountId", EmitDefaultValue = true)]
         public string FacebookAccountId { get; set; }
 
         /// <summary>

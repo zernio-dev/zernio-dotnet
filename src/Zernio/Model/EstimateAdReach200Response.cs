@@ -47,7 +47,7 @@ namespace Zernio.Model
         /// <param name="daily">Optional estimated daily reach/results at the given budget, when the platform returns it..</param>
         /// <param name="currency">Currency of any monetary fields in the estimate, when applicable..</param>
         /// <param name="estimateReady">Meta only. False when Meta is still computing the estimate (the audience is too new); retry shortly..</param>
-        public EstimateAdReach200Response(bool available = default, int lower = default, int upper = default, int daily = default, string currency = default, bool estimateReady = default)
+        public EstimateAdReach200Response(bool available = default, int? lower = default, int? upper = default, int? daily = default, string currency = default, bool? estimateReady = default)
         {
             this.Available = available;
             this.Lower = lower;
@@ -68,28 +68,28 @@ namespace Zernio.Model
         /// Lower bound of the estimated reachable audience. Present only when available.
         /// </summary>
         /// <value>Lower bound of the estimated reachable audience. Present only when available.</value>
-        [DataMember(Name = "lower", EmitDefaultValue = false)]
-        public int Lower { get; set; }
+        [DataMember(Name = "lower", EmitDefaultValue = true)]
+        public int? Lower { get; set; }
 
         /// <summary>
         /// Upper bound of the estimated reachable audience. Present only when available.
         /// </summary>
         /// <value>Upper bound of the estimated reachable audience. Present only when available.</value>
-        [DataMember(Name = "upper", EmitDefaultValue = false)]
-        public int Upper { get; set; }
+        [DataMember(Name = "upper", EmitDefaultValue = true)]
+        public int? Upper { get; set; }
 
         /// <summary>
         /// Optional estimated daily reach/results at the given budget, when the platform returns it.
         /// </summary>
         /// <value>Optional estimated daily reach/results at the given budget, when the platform returns it.</value>
-        [DataMember(Name = "daily", EmitDefaultValue = false)]
-        public int Daily { get; set; }
+        [DataMember(Name = "daily", EmitDefaultValue = true)]
+        public int? Daily { get; set; }
 
         /// <summary>
         /// Currency of any monetary fields in the estimate, when applicable.
         /// </summary>
         /// <value>Currency of any monetary fields in the estimate, when applicable.</value>
-        [DataMember(Name = "currency", EmitDefaultValue = false)]
+        [DataMember(Name = "currency", EmitDefaultValue = true)]
         public string Currency { get; set; }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Zernio.Model
         /// </summary>
         /// <value>Meta only. False when Meta is still computing the estimate (the audience is too new); retry shortly.</value>
         [DataMember(Name = "estimateReady", EmitDefaultValue = true)]
-        public bool EstimateReady { get; set; }
+        public bool? EstimateReady { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

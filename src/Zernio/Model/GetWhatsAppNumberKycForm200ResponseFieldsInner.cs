@@ -113,21 +113,21 @@ namespace Zernio.Model
         /// Plain-English explanation of what to provide.
         /// </summary>
         /// <value>Plain-English explanation of what to provide.</value>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
         /// Concrete example value.
         /// </summary>
         /// <value>Concrete example value.</value>
-        [DataMember(Name = "example", EmitDefaultValue = false)]
+        [DataMember(Name = "example", EmitDefaultValue = true)]
         public string Example { get; set; }
 
         /// <summary>
         /// ISO country the value must be local to
         /// </summary>
         /// <value>ISO country the value must be local to</value>
-        [DataMember(Name = "localTo", EmitDefaultValue = false)]
+        [DataMember(Name = "localTo", EmitDefaultValue = true)]
         public string LocalTo { get; set; }
 
         /// <summary>

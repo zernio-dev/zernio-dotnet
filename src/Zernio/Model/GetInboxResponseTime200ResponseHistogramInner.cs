@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="lowerSeconds">lowerSeconds.</param>
         /// <param name="upperSeconds">null on the open-ended last bucket.</param>
         /// <param name="count">count.</param>
-        public GetInboxResponseTime200ResponseHistogramInner(string bucket = default, int lowerSeconds = default, int upperSeconds = default, int count = default)
+        public GetInboxResponseTime200ResponseHistogramInner(string bucket = default, int lowerSeconds = default, int? upperSeconds = default, int count = default)
         {
             this.Bucket = bucket;
             this.LowerSeconds = lowerSeconds;
@@ -65,8 +65,8 @@ namespace Zernio.Model
         /// null on the open-ended last bucket
         /// </summary>
         /// <value>null on the open-ended last bucket</value>
-        [DataMember(Name = "upperSeconds", EmitDefaultValue = false)]
-        public int UpperSeconds { get; set; }
+        [DataMember(Name = "upperSeconds", EmitDefaultValue = true)]
+        public int? UpperSeconds { get; set; }
 
         /// <summary>
         /// Gets or Sets Count

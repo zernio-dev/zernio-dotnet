@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | [optional] 
 **Description** | **string** |  | [optional] 
 **ScheduledStartTime** | **DateTime** |  | [optional] 
-**ScheduledEndTime** | **DateTime** | Required for external events; optional for voice/stage. | [optional] 
+**ScheduledEndTime** | **DateTime?** | Required for external events; optional for voice/stage. | [optional] 
 **PrivacyLevel** | **int** | Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events. | [optional] 
 **Status** | **int** | 1&#x3D;SCHEDULED, 2&#x3D;ACTIVE, 3&#x3D;COMPLETED, 4&#x3D;CANCELED | [optional] 
 **EntityType** | **int** | 1&#x3D;STAGE_INSTANCE, 2&#x3D;VOICE, 3&#x3D;EXTERNAL | [optional] 

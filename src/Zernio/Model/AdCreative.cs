@@ -94,14 +94,14 @@ namespace Zernio.Model
         /// Meta video ID for VIDEO-type ads. Null for non-video ads. Callers that need an embeddable MP4 can call GET /{videoId}?fields&#x3D;source with the page access token.
         /// </summary>
         /// <value>Meta video ID for VIDEO-type ads. Null for non-video ads. Callers that need an embeddable MP4 can call GET /{videoId}?fields&#x3D;source with the page access token.</value>
-        [DataMember(Name = "videoId", EmitDefaultValue = false)]
+        [DataMember(Name = "videoId", EmitDefaultValue = true)]
         public string VideoId { get; set; }
 
         /// <summary>
         /// Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v&#x3D;{videoId}). Null for non-video ads.
         /// </summary>
         /// <value>Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v&#x3D;{videoId}). Null for non-video ads.</value>
-        [DataMember(Name = "videoUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "videoUrl", EmitDefaultValue = true)]
         public string VideoUrl { get; set; }
 
         /// <summary>
@@ -115,35 +115,35 @@ namespace Zernio.Model
         /// Meta creative &#x60;object_story_id&#x60; (the SHARE reference). Frequently absent — Meta omits it for SHARE creatives. Use effectiveObjectStoryId instead.
         /// </summary>
         /// <value>Meta creative &#x60;object_story_id&#x60; (the SHARE reference). Frequently absent — Meta omits it for SHARE creatives. Use effectiveObjectStoryId instead.</value>
-        [DataMember(Name = "objectStoryId", EmitDefaultValue = false)]
+        [DataMember(Name = "objectStoryId", EmitDefaultValue = true)]
         public string ObjectStoryId { get; set; }
 
         /// <summary>
         /// Meta &#x60;effective_object_story_id&#x60; — &#x60;{pageId}_{postId}&#x60; of the Facebook post the ad&#39;s engagement (comments) lives on. Pass to GET /v1/ads?effectiveObjectStoryId&#x3D; to map a Business-Manager-visible post back to this ad; GET /v1/ads/{adId}/comments resolves comments against it.
         /// </summary>
         /// <value>Meta &#x60;effective_object_story_id&#x60; — &#x60;{pageId}_{postId}&#x60; of the Facebook post the ad&#39;s engagement (comments) lives on. Pass to GET /v1/ads?effectiveObjectStoryId&#x3D; to map a Business-Manager-visible post back to this ad; GET /v1/ads/{adId}/comments resolves comments against it.</value>
-        [DataMember(Name = "effectiveObjectStoryId", EmitDefaultValue = false)]
+        [DataMember(Name = "effectiveObjectStoryId", EmitDefaultValue = true)]
         public string EffectiveObjectStoryId { get; set; }
 
         /// <summary>
         /// Meta &#x60;effective_instagram_media_id&#x60; — the Instagram media ID of the boosted post the ad&#39;s engagement lives on. Pass to GET /v1/ads?effectiveInstagramMediaId&#x3D; to map a Business-Manager-visible IG post back to this ad.
         /// </summary>
         /// <value>Meta &#x60;effective_instagram_media_id&#x60; — the Instagram media ID of the boosted post the ad&#39;s engagement lives on. Pass to GET /v1/ads?effectiveInstagramMediaId&#x3D; to map a Business-Manager-visible IG post back to this ad.</value>
-        [DataMember(Name = "effectiveInstagramMediaId", EmitDefaultValue = false)]
+        [DataMember(Name = "effectiveInstagramMediaId", EmitDefaultValue = true)]
         public string EffectiveInstagramMediaId { get; set; }
 
         /// <summary>
         /// Meta &#x60;instagram_user_id&#x60; — the Instagram-scoped business ID that owns the boosted media.
         /// </summary>
         /// <value>Meta &#x60;instagram_user_id&#x60; — the Instagram-scoped business ID that owns the boosted media.</value>
-        [DataMember(Name = "instagramUserId", EmitDefaultValue = false)]
+        [DataMember(Name = "instagramUserId", EmitDefaultValue = true)]
         public string InstagramUserId { get; set; }
 
         /// <summary>
         /// Meta &#x60;instagram_permalink_url&#x60; — public Instagram post URL of the boosted media.
         /// </summary>
         /// <value>Meta &#x60;instagram_permalink_url&#x60; — public Instagram post URL of the boosted media.</value>
-        [DataMember(Name = "instagramPermalinkUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "instagramPermalinkUrl", EmitDefaultValue = true)]
         public string InstagramPermalinkUrl { get; set; }
 
         /// <summary>

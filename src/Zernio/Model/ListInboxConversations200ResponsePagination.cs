@@ -53,7 +53,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets NextCursor
         /// </summary>
-        [DataMember(Name = "nextCursor", EmitDefaultValue = false)]
+        [DataMember(Name = "nextCursor", EmitDefaultValue = true)]
         public string NextCursor { get; set; }
 
         /// <summary>

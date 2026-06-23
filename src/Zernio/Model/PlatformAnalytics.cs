@@ -126,7 +126,7 @@ namespace Zernio.Model
         /// The native post ID on the platform (e.g. Instagram media ID, tweet ID)
         /// </summary>
         /// <value>The native post ID on the platform (e.g. Instagram media ID, tweet ID)</value>
-        [DataMember(Name = "platformPostId", EmitDefaultValue = false)]
+        [DataMember(Name = "platformPostId", EmitDefaultValue = true)]
         public string PlatformPostId { get; set; }
 
         /// <summary>
@@ -138,26 +138,26 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets AccountUsername
         /// </summary>
-        [DataMember(Name = "accountUsername", EmitDefaultValue = false)]
+        [DataMember(Name = "accountUsername", EmitDefaultValue = true)]
         public string AccountUsername { get; set; }
 
         /// <summary>
         /// Gets or Sets Analytics
         /// </summary>
-        [DataMember(Name = "analytics", EmitDefaultValue = false)]
+        [DataMember(Name = "analytics", EmitDefaultValue = true)]
         public PostAnalytics Analytics { get; set; }
 
         /// <summary>
         /// Gets or Sets PlatformPostUrl
         /// </summary>
-        [DataMember(Name = "platformPostUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "platformPostUrl", EmitDefaultValue = true)]
         public string PlatformPostUrl { get; set; }
 
         /// <summary>
         /// Error details when status is failed
         /// </summary>
         /// <value>Error details when status is failed</value>
-        [DataMember(Name = "errorMessage", EmitDefaultValue = false)]
+        [DataMember(Name = "errorMessage", EmitDefaultValue = true)]
         public string ErrorMessage { get; set; }
 
         /// <summary>

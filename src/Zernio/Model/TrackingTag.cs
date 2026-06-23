@@ -132,7 +132,7 @@ namespace Zernio.Model
         /// <param name="creationTime">Unix seconds the tag was created..</param>
         /// <param name="ownerBusinessId">Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account — such tags can&#39;t be shared with other ad accounts. .</param>
         /// <param name="ownerAdAccountId">Ad account id (&#x60;act_...&#x60;) that owns the tag, when reported..</param>
-        public TrackingTag(string id = default, string name = default, PlatformEnum platform = default, KindEnum kind = default, StatusEnum status = default, string code = default, int lastFiredTime = default, bool isUnavailable = default, bool installed = default, int creationTime = default, string ownerBusinessId = default, string ownerAdAccountId = default)
+        public TrackingTag(string id = default, string name = default, PlatformEnum platform = default, KindEnum kind = default, StatusEnum status = default, string code = default, int? lastFiredTime = default, bool isUnavailable = default, bool installed = default, int creationTime = default, string ownerBusinessId = default, string ownerAdAccountId = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -182,8 +182,8 @@ namespace Zernio.Model
         /// Unix seconds of the last event the tag received, or &#x60;null&#x60; if it never fired. The practical \&quot;is it installed and working\&quot; signal. 
         /// </summary>
         /// <value>Unix seconds of the last event the tag received, or &#x60;null&#x60; if it never fired. The practical \&quot;is it installed and working\&quot; signal. </value>
-        [DataMember(Name = "lastFiredTime", EmitDefaultValue = false)]
-        public int LastFiredTime { get; set; }
+        [DataMember(Name = "lastFiredTime", EmitDefaultValue = true)]
+        public int? LastFiredTime { get; set; }
 
         /// <summary>
         /// Whether the tag is in a broken/unavailable state (Meta &#x60;is_unavailable&#x60;).
@@ -210,7 +210,7 @@ namespace Zernio.Model
         /// Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account — such tags can&#39;t be shared with other ad accounts. 
         /// </summary>
         /// <value>Business Manager id that owns the tag, or &#x60;null&#x60; when the tag lives on a personal (non-BM) ad account — such tags can&#39;t be shared with other ad accounts. </value>
-        [DataMember(Name = "ownerBusinessId", EmitDefaultValue = false)]
+        [DataMember(Name = "ownerBusinessId", EmitDefaultValue = true)]
         public string OwnerBusinessId { get; set; }
 
         /// <summary>

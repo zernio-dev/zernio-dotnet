@@ -92,7 +92,7 @@ namespace Zernio.Model
         /// <param name="sentAt">sentAt.</param>
         /// <param name="deliveredAt">deliveredAt.</param>
         /// <param name="readAt">readAt.</param>
-        public ListBroadcastRecipients200ResponseRecipientsInner(string id = default, string contactId = default, string channelId = default, string platformIdentifier = default, string contactName = default, StatusEnum? status = default, string messageId = default, string error = default, int errorCode = default, string errorExplanation = default, DateTime sentAt = default, DateTime deliveredAt = default, DateTime readAt = default)
+        public ListBroadcastRecipients200ResponseRecipientsInner(string id = default, string contactId = default, string channelId = default, string platformIdentifier = default, string contactName = default, StatusEnum? status = default, string messageId = default, string error = default, int? errorCode = default, string errorExplanation = default, DateTime sentAt = default, DateTime deliveredAt = default, DateTime readAt = default)
         {
             this.Id = id;
             this.ContactId = contactId;
@@ -155,14 +155,14 @@ namespace Zernio.Model
         /// Meta WhatsApp error code (e.g. 131049 for antispam, 131021 for invalid phone, 131026 for re-engagement required). Only populated for status&#x3D;failed.
         /// </summary>
         /// <value>Meta WhatsApp error code (e.g. 131049 for antispam, 131021 for invalid phone, 131026 for re-engagement required). Only populated for status&#x3D;failed.</value>
-        [DataMember(Name = "errorCode", EmitDefaultValue = false)]
-        public int ErrorCode { get; set; }
+        [DataMember(Name = "errorCode", EmitDefaultValue = true)]
+        public int? ErrorCode { get; set; }
 
         /// <summary>
         /// Plain-language translation of errorCode (e.g. for 131026, that the recipient has likely opted out of marketing messages). Null for unmapped codes; fall back to error.
         /// </summary>
         /// <value>Plain-language translation of errorCode (e.g. for 131026, that the recipient has likely opted out of marketing messages). Null for unmapped codes; fall back to error.</value>
-        [DataMember(Name = "errorExplanation", EmitDefaultValue = false)]
+        [DataMember(Name = "errorExplanation", EmitDefaultValue = true)]
         public string ErrorExplanation { get; set; }
 
         /// <summary>

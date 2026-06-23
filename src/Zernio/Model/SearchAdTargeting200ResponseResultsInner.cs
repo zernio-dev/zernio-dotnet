@@ -46,9 +46,7 @@ namespace Zernio.Model
         /// <param name="type">What the result is (e.g. city, region, country, zip, metro, interest, behavior, income). (required).</param>
         /// <param name="path">Optional breadcrumb of parent labels (e.g. [&#39;United States&#39;, &#39;California&#39;, &#39;Los Angeles&#39;]). Disambiguates same-named results..</param>
         /// <param name="audienceSize">Optional estimated reachable users for this option, when the platform returns it..</param>
-        /// <param name="latitude">Centre latitude of the location. Populated on Meta geo results (city, neighborhood, place, etc.). Useful for map views..</param>
-        /// <param name="longitude">Centre longitude of the location..</param>
-        public SearchAdTargeting200ResponseResultsInner(string id = default, string name = default, string type = default, List<string> path = default, int audienceSize = default, float latitude = default, float longitude = default)
+        public SearchAdTargeting200ResponseResultsInner(string id = default, string name = default, string type = default, List<string> path = default, int? audienceSize = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -70,8 +68,6 @@ namespace Zernio.Model
             this.Type = type;
             this.Path = path;
             this.AudienceSize = audienceSize;
-            this.Latitude = latitude;
-            this.Longitude = longitude;
         }
 
         /// <summary>
@@ -106,22 +102,8 @@ namespace Zernio.Model
         /// Optional estimated reachable users for this option, when the platform returns it.
         /// </summary>
         /// <value>Optional estimated reachable users for this option, when the platform returns it.</value>
-        [DataMember(Name = "audienceSize", EmitDefaultValue = false)]
-        public int AudienceSize { get; set; }
-
-        /// <summary>
-        /// Centre latitude of the location. Populated on Meta geo results (city, neighborhood, place, etc.). Useful for map views.
-        /// </summary>
-        /// <value>Centre latitude of the location. Populated on Meta geo results (city, neighborhood, place, etc.). Useful for map views.</value>
-        [DataMember(Name = "latitude", EmitDefaultValue = false)]
-        public float Latitude { get; set; }
-
-        /// <summary>
-        /// Centre longitude of the location.
-        /// </summary>
-        /// <value>Centre longitude of the location.</value>
-        [DataMember(Name = "longitude", EmitDefaultValue = false)]
-        public float Longitude { get; set; }
+        [DataMember(Name = "audienceSize", EmitDefaultValue = true)]
+        public int? AudienceSize { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -136,8 +118,6 @@ namespace Zernio.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Path: ").Append(Path).Append("\n");
             sb.Append("  AudienceSize: ").Append(AudienceSize).Append("\n");
-            sb.Append("  Latitude: ").Append(Latitude).Append("\n");
-            sb.Append("  Longitude: ").Append(Longitude).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

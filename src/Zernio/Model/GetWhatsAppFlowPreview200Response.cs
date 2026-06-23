@@ -47,13 +47,13 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets PreviewUrl
         /// </summary>
-        [DataMember(Name = "preview_url", EmitDefaultValue = false)]
+        [DataMember(Name = "preview_url", EmitDefaultValue = true)]
         public string PreviewUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets ExpiresAt
         /// </summary>
-        [DataMember(Name = "expires_at", EmitDefaultValue = false)]
+        [DataMember(Name = "expires_at", EmitDefaultValue = true)]
         public string ExpiresAt { get; set; }
 
         /// <summary>

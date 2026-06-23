@@ -171,14 +171,5 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'InstagramProfile'
         }
-
-        /// <summary>
-        /// Test the property 'Metadata'
-        /// </summary>
-        [Fact]
-        public void MetadataTest()
-        {
-            // TODO unit test for the property 'Metadata'
-        }
     }
 }

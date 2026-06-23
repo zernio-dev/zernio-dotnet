@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// <param name="eventsFailed">Number of events Meta rejected (usually 0)..</param>
         /// <param name="traceId">Meta fbtrace_id for cross-referencing in Events Manager..</param>
         /// <param name="durationMs">durationMs.</param>
-        public ListWhatsAppConversions200ResponseEventsInner(DateTime timestamp = default, string eventName = default, string conversationId = default, int eventsReceived = default, int eventsFailed = default, string traceId = default, int durationMs = default)
+        public ListWhatsAppConversions200ResponseEventsInner(DateTime timestamp = default, string eventName = default, string conversationId = default, int? eventsReceived = default, int? eventsFailed = default, string traceId = default, int? durationMs = default)
         {
             this.Timestamp = timestamp;
             this.EventName = eventName;
@@ -71,35 +71,35 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets ConversationId
         /// </summary>
-        [DataMember(Name = "conversationId", EmitDefaultValue = false)]
+        [DataMember(Name = "conversationId", EmitDefaultValue = true)]
         public string ConversationId { get; set; }
 
         /// <summary>
         /// Number of events Meta accepted on this send (usually 1).
         /// </summary>
         /// <value>Number of events Meta accepted on this send (usually 1).</value>
-        [DataMember(Name = "eventsReceived", EmitDefaultValue = false)]
-        public int EventsReceived { get; set; }
+        [DataMember(Name = "eventsReceived", EmitDefaultValue = true)]
+        public int? EventsReceived { get; set; }
 
         /// <summary>
         /// Number of events Meta rejected (usually 0).
         /// </summary>
         /// <value>Number of events Meta rejected (usually 0).</value>
-        [DataMember(Name = "eventsFailed", EmitDefaultValue = false)]
-        public int EventsFailed { get; set; }
+        [DataMember(Name = "eventsFailed", EmitDefaultValue = true)]
+        public int? EventsFailed { get; set; }
 
         /// <summary>
         /// Meta fbtrace_id for cross-referencing in Events Manager.
         /// </summary>
         /// <value>Meta fbtrace_id for cross-referencing in Events Manager.</value>
-        [DataMember(Name = "traceId", EmitDefaultValue = false)]
+        [DataMember(Name = "traceId", EmitDefaultValue = true)]
         public string TraceId { get; set; }
 
         /// <summary>
         /// Gets or Sets DurationMs
         /// </summary>
-        [DataMember(Name = "durationMs", EmitDefaultValue = false)]
-        public int DurationMs { get; set; }
+        [DataMember(Name = "durationMs", EmitDefaultValue = true)]
+        public int? DurationMs { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

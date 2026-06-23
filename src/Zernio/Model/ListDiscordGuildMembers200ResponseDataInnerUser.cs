@@ -72,14 +72,14 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Avatar
         /// </summary>
-        [DataMember(Name = "avatar", EmitDefaultValue = false)]
+        [DataMember(Name = "avatar", EmitDefaultValue = true)]
         public string Avatar { get; set; }
 
         /// <summary>
         /// User&#39;s display name (post-2023 Discord rebrand)
         /// </summary>
         /// <value>User&#39;s display name (post-2023 Discord rebrand)</value>
-        [DataMember(Name = "global_name", EmitDefaultValue = false)]
+        [DataMember(Name = "global_name", EmitDefaultValue = true)]
         public string GlobalName { get; set; }
 
         /// <summary>

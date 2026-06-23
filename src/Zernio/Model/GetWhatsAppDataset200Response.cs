@@ -46,7 +46,7 @@ namespace Zernio.Model
         /// Meta dataset ID linked to the WABA, or null if not provisioned yet
         /// </summary>
         /// <value>Meta dataset ID linked to the WABA, or null if not provisioned yet</value>
-        [DataMember(Name = "datasetId", EmitDefaultValue = false)]
+        [DataMember(Name = "datasetId", EmitDefaultValue = true)]
         public string DatasetId { get; set; }
 
         /// <summary>

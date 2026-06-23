@@ -79,7 +79,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets EntryNodeId
         /// </summary>
-        [DataMember(Name = "entryNodeId", EmitDefaultValue = false)]
+        [DataMember(Name = "entryNodeId", EmitDefaultValue = true)]
         public string EntryNodeId { get; set; }
 
         /// <summary>

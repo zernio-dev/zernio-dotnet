@@ -164,15 +164,6 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'CampaignStatus'
-        /// </summary>
-        [Fact]
-        public void CampaignStatusTest()
-        {
-            // TODO unit test for the property 'CampaignStatus'
-        }
-
-        /// <summary>
         /// Test the property 'BudgetLevel'
         /// </summary>
         [Fact]
@@ -422,33 +413,6 @@ namespace Zernio.Test.Model
         public void CustomLocationsTest()
         {
             // TODO unit test for the property 'CustomLocations'
-        }
-
-        /// <summary>
-        /// Test the property 'Places'
-        /// </summary>
-        [Fact]
-        public void PlacesTest()
-        {
-            // TODO unit test for the property 'Places'
-        }
-
-        /// <summary>
-        /// Test the property 'Neighborhoods'
-        /// </summary>
-        [Fact]
-        public void NeighborhoodsTest()
-        {
-            // TODO unit test for the property 'Neighborhoods'
-        }
-
-        /// <summary>
-        /// Test the property 'ExcludedLocations'
-        /// </summary>
-        [Fact]
-        public void ExcludedLocationsTest()
-        {
-            // TODO unit test for the property 'ExcludedLocations'
         }
 
         /// <summary>

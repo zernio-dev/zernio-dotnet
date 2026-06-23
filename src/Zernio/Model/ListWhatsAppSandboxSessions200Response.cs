@@ -57,7 +57,7 @@ namespace Zernio.Model
         /*
         <example>+12029087457</example>
         */
-        [DataMember(Name = "sandboxNumber", EmitDefaultValue = false)]
+        [DataMember(Name = "sandboxNumber", EmitDefaultValue = true)]
         public string SandboxNumber { get; set; }
 
         /// <summary>

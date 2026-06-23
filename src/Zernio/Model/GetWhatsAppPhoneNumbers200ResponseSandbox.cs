@@ -60,7 +60,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets AccountId
         /// </summary>
-        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        [DataMember(Name = "accountId", EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>

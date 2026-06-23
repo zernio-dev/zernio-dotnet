@@ -78,7 +78,7 @@ namespace Zernio.Model
         /// <param name="name">name.</param>
         /// <param name="description">description.</param>
         /// <param name="type">type.</param>
-        /// <param name="spec">Present (and the only meaningful payload) when &#x60;type&#x60; is &#x60;saved_targeting&#x60;. Null for uploaded/derived audience types..</param>
+        /// <param name="spec">spec.</param>
         /// <param name="platform">platform.</param>
         /// <param name="size">size.</param>
         /// <param name="status">status.</param>
@@ -98,7 +98,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Id
         /// </summary>
-        [DataMember(Name = "id", EmitDefaultValue = false)]
+        [DataMember(Name = "id", EmitDefaultValue = true)]
         public string Id { get; set; }
 
         /// <summary>
@@ -120,10 +120,9 @@ namespace Zernio.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// Present (and the only meaningful payload) when &#x60;type&#x60; is &#x60;saved_targeting&#x60;. Null for uploaded/derived audience types.
+        /// Gets or Sets Spec
         /// </summary>
-        /// <value>Present (and the only meaningful payload) when &#x60;type&#x60; is &#x60;saved_targeting&#x60;. Null for uploaded/derived audience types.</value>
-        [DataMember(Name = "spec", EmitDefaultValue = false)]
+        [DataMember(Name = "spec", EmitDefaultValue = true)]
         public TargetingSpec Spec { get; set; }
 
         /// <summary>

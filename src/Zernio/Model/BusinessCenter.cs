@@ -39,7 +39,7 @@ namespace Zernio.Model
         /// <param name="bcId">Business Center ID.</param>
         /// <param name="name">Display name set by the BC owner.</param>
         /// <param name="advertiserCount">Number of advertisers reachable under this BC for the calling token. &#x60;null&#x60; when the BC asset walk returned empty or failed (typical for agency apps without full BC asset read scope) — distinct from &#x60;0&#x60;, which would imply the BC genuinely has no advertisers. .</param>
-        public BusinessCenter(string bcId = default, string name = default, int advertiserCount = default)
+        public BusinessCenter(string bcId = default, string name = default, int? advertiserCount = default)
         {
             this.BcId = bcId;
             this.Name = name;
@@ -73,8 +73,8 @@ namespace Zernio.Model
         /*
         <example>23</example>
         */
-        [DataMember(Name = "advertiserCount", EmitDefaultValue = false)]
-        public int AdvertiserCount { get; set; }
+        [DataMember(Name = "advertiserCount", EmitDefaultValue = true)]
+        public int? AdvertiserCount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

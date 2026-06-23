@@ -125,7 +125,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets ReviewUrl
         /// </summary>
-        [DataMember(Name = "reviewUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "reviewUrl", EmitDefaultValue = true)]
         public string ReviewUrl { get; set; }
 
         /// <summary>

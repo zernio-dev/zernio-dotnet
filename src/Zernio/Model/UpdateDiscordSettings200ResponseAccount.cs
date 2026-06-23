@@ -119,13 +119,13 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets WebhookUsername
         /// </summary>
-        [DataMember(Name = "webhookUsername", EmitDefaultValue = false)]
+        [DataMember(Name = "webhookUsername", EmitDefaultValue = true)]
         public string WebhookUsername { get; set; }
 
         /// <summary>
         /// Gets or Sets WebhookAvatarUrl
         /// </summary>
-        [DataMember(Name = "webhookAvatarUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "webhookAvatarUrl", EmitDefaultValue = true)]
         public string WebhookAvatarUrl { get; set; }
 
         /// <summary>

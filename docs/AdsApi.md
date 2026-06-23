@@ -571,7 +571,7 @@ catch (ApiException e)
 
 Create Click-to-WhatsApp ad(s)
 
-Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level `headline`, `body`, and one of   `imageUrl` / `video`. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a `creatives[]` array with N entries   (each carrying its own headline, body, and image/video). Creates   1 campaign + 1 ad set + N ads sharing budget and targeting so Meta   A/Bs the creatives inside a single auction instead of fragmenting   budget across N parallel campaigns. Recommended when launching   multiple creative variants for the same campaign.   Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level `headline`, `body`, and one of `imageUrl` / `video`. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a `creatives[]` array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
 
 ### Example
 ```csharp
@@ -2321,6 +2321,8 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Product sets |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2421,6 +2423,8 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Catalogs |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3530,7 +3534,7 @@ namespace Example
             var accountId = "accountId_example";  // string | Social account ID (a connected account on the target ad platform).
             var q = "q_example";  // string | Search query. For geo, the locality name only (no region/country suffix).
             var dimension = "geo";  // string? | What to search. `geo` resolves locations (scope further with `geoType`), `interest`/`behavior` resolve audience entities, `income` resolves income-tier options. Defaults to `interest` for backward compatibility with the deprecated /v1/ads/interests alias. (optional)  (default to interest)
-            var geoType = "all";  // string? | Only used when `dimension=geo`. The kind of location to resolve. `place` resolves named points of interest (businesses, landmarks). `neighborhood` resolves named neighbourhood areas. Use `all` to search every geo type in a single relevance-ranked call — mirrors Meta's own unified search box. Defaults to `city`. (optional)  (default to city)
+            var geoType = "country";  // string? | Only used when `dimension=geo`. The kind of location to resolve. Defaults to `city`. (optional)  (default to city)
             var countryCode = "countryCode_example";  // string? | ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional) 
             var limit = 25;  // int? | Maximum results to return. (optional)  (default to 25)
 
@@ -3578,7 +3582,7 @@ catch (ApiException e)
 | **accountId** | **string** | Social account ID (a connected account on the target ad platform). |  |
 | **q** | **string** | Search query. For geo, the locality name only (no region/country suffix). |  |
 | **dimension** | **string?** | What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. | [optional] [default to interest] |
-| **geoType** | **string?** | Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks). &#x60;neighborhood&#x60; resolves named neighbourhood areas. Use &#x60;all&#x60; to search every geo type in a single relevance-ranked call — mirrors Meta&#39;s own unified search box. Defaults to &#x60;city&#x60;. | [optional] [default to city] |
+| **geoType** | **string?** | Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. | [optional] [default to city] |
 | **countryCode** | **string?** | ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. | [optional]  |
 | **limit** | **int?** | Maximum results to return. | [optional] [default to 25] |
 

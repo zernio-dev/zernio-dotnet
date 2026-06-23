@@ -34,39 +34,6 @@ namespace Zernio.Model
     public partial class CreateLeadFormRequest : IValidatableObject
     {
         /// <summary>
-        /// Form type. MORE_VOLUME &#x3D; optimized for lead quantity (default). HIGHER_INTENT &#x3D; adds a review/confirmation step before submit. RICH_CREATIVE &#x3D; includes context card and custom headline to educate users before they submit. Supersedes isOptimizedForQuality.
-        /// </summary>
-        /// <value>Form type. MORE_VOLUME &#x3D; optimized for lead quantity (default). HIGHER_INTENT &#x3D; adds a review/confirmation step before submit. RICH_CREATIVE &#x3D; includes context card and custom headline to educate users before they submit. Supersedes isOptimizedForQuality.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FormTypeEnum
-        {
-            /// <summary>
-            /// Enum MOREVOLUME for value: MORE_VOLUME
-            /// </summary>
-            [EnumMember(Value = "MORE_VOLUME")]
-            MOREVOLUME = 1,
-
-            /// <summary>
-            /// Enum HIGHERINTENT for value: HIGHER_INTENT
-            /// </summary>
-            [EnumMember(Value = "HIGHER_INTENT")]
-            HIGHERINTENT = 2,
-
-            /// <summary>
-            /// Enum RICHCREATIVE for value: RICH_CREATIVE
-            /// </summary>
-            [EnumMember(Value = "RICH_CREATIVE")]
-            RICHCREATIVE = 3
-        }
-
-
-        /// <summary>
-        /// Form type. MORE_VOLUME &#x3D; optimized for lead quantity (default). HIGHER_INTENT &#x3D; adds a review/confirmation step before submit. RICH_CREATIVE &#x3D; includes context card and custom headline to educate users before they submit. Supersedes isOptimizedForQuality.
-        /// </summary>
-        /// <value>Form type. MORE_VOLUME &#x3D; optimized for lead quantity (default). HIGHER_INTENT &#x3D; adds a review/confirmation step before submit. RICH_CREATIVE &#x3D; includes context card and custom headline to educate users before they submit. Supersedes isOptimizedForQuality.</value>
-        [DataMember(Name = "formType", EmitDefaultValue = false)]
-        public FormTypeEnum? FormType { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="CreateLeadFormRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -86,13 +53,8 @@ namespace Zernio.Model
         /// <param name="thankYouButtonText">thankYouButtonText.</param>
         /// <param name="thankYouButtonType">thankYouButtonType.</param>
         /// <param name="thankYouWebsiteUrl">thankYouWebsiteUrl.</param>
-        /// <param name="isOptimizedForQuality">Legacy form type toggle. Prefer formType instead. false &#x3D; More Volume, true &#x3D; Higher Intent..</param>
-        /// <param name="formType">Form type. MORE_VOLUME &#x3D; optimized for lead quantity (default). HIGHER_INTENT &#x3D; adds a review/confirmation step before submit. RICH_CREATIVE &#x3D; includes context card and custom headline to educate users before they submit. Supersedes isOptimizedForQuality..</param>
-        /// <param name="blockDisplayForNonTargetedViewer">Sharing setting. true &#x3D; Restricted (only people targeted by the ad can open the form link). false &#x3D; Open (shareable link, default)..</param>
-        /// <param name="allowOrganicLeadGen">Flexible form delivery. true &#x3D; the form can surface organically on the Page (not just as a paid ad). Defaults to false..</param>
-        /// <param name="questionPageCustomHeadline">Custom subheadline shown above the form fields on the questions page (the contact-information section description). Defaults to Meta&#39;s generic copy when omitted..</param>
-        /// <param name="contextCard">contextCard.</param>
-        public CreateLeadFormRequest(string accountId = default, string name = default, List<CreateLeadFormRequestQuestionsInner> questions = default, string privacyPolicyUrl = default, string privacyPolicyLinkText = default, string followUpActionUrl = default, string locale = default, string thankYouTitle = default, string thankYouBody = default, string thankYouButtonText = default, string thankYouButtonType = default, string thankYouWebsiteUrl = default, bool isOptimizedForQuality = default, FormTypeEnum? formType = default, bool blockDisplayForNonTargetedViewer = default, bool allowOrganicLeadGen = default, string questionPageCustomHeadline = default, CreateLeadFormRequestContextCard contextCard = default)
+        /// <param name="isOptimizedForQuality">isOptimizedForQuality.</param>
+        public CreateLeadFormRequest(string accountId = default, string name = default, List<CreateLeadFormRequestQuestionsInner> questions = default, string privacyPolicyUrl = default, string privacyPolicyLinkText = default, string followUpActionUrl = default, string locale = default, string thankYouTitle = default, string thankYouBody = default, string thankYouButtonText = default, string thankYouButtonType = default, string thankYouWebsiteUrl = default, bool isOptimizedForQuality = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -127,11 +89,6 @@ namespace Zernio.Model
             this.ThankYouButtonType = thankYouButtonType;
             this.ThankYouWebsiteUrl = thankYouWebsiteUrl;
             this.IsOptimizedForQuality = isOptimizedForQuality;
-            this.FormType = formType;
-            this.BlockDisplayForNonTargetedViewer = blockDisplayForNonTargetedViewer;
-            this.AllowOrganicLeadGen = allowOrganicLeadGen;
-            this.QuestionPageCustomHeadline = questionPageCustomHeadline;
-            this.ContextCard = contextCard;
         }
 
         /// <summary>
@@ -213,38 +170,10 @@ namespace Zernio.Model
         public string ThankYouWebsiteUrl { get; set; }
 
         /// <summary>
-        /// Legacy form type toggle. Prefer formType instead. false &#x3D; More Volume, true &#x3D; Higher Intent.
+        /// Gets or Sets IsOptimizedForQuality
         /// </summary>
-        /// <value>Legacy form type toggle. Prefer formType instead. false &#x3D; More Volume, true &#x3D; Higher Intent.</value>
         [DataMember(Name = "isOptimizedForQuality", EmitDefaultValue = true)]
         public bool IsOptimizedForQuality { get; set; }
-
-        /// <summary>
-        /// Sharing setting. true &#x3D; Restricted (only people targeted by the ad can open the form link). false &#x3D; Open (shareable link, default).
-        /// </summary>
-        /// <value>Sharing setting. true &#x3D; Restricted (only people targeted by the ad can open the form link). false &#x3D; Open (shareable link, default).</value>
-        [DataMember(Name = "blockDisplayForNonTargetedViewer", EmitDefaultValue = true)]
-        public bool BlockDisplayForNonTargetedViewer { get; set; }
-
-        /// <summary>
-        /// Flexible form delivery. true &#x3D; the form can surface organically on the Page (not just as a paid ad). Defaults to false.
-        /// </summary>
-        /// <value>Flexible form delivery. true &#x3D; the form can surface organically on the Page (not just as a paid ad). Defaults to false.</value>
-        [DataMember(Name = "allowOrganicLeadGen", EmitDefaultValue = true)]
-        public bool AllowOrganicLeadGen { get; set; }
-
-        /// <summary>
-        /// Custom subheadline shown above the form fields on the questions page (the contact-information section description). Defaults to Meta&#39;s generic copy when omitted.
-        /// </summary>
-        /// <value>Custom subheadline shown above the form fields on the questions page (the contact-information section description). Defaults to Meta&#39;s generic copy when omitted.</value>
-        [DataMember(Name = "questionPageCustomHeadline", EmitDefaultValue = false)]
-        public string QuestionPageCustomHeadline { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ContextCard
-        /// </summary>
-        [DataMember(Name = "contextCard", EmitDefaultValue = false)]
-        public CreateLeadFormRequestContextCard ContextCard { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -267,11 +196,6 @@ namespace Zernio.Model
             sb.Append("  ThankYouButtonType: ").Append(ThankYouButtonType).Append("\n");
             sb.Append("  ThankYouWebsiteUrl: ").Append(ThankYouWebsiteUrl).Append("\n");
             sb.Append("  IsOptimizedForQuality: ").Append(IsOptimizedForQuality).Append("\n");
-            sb.Append("  FormType: ").Append(FormType).Append("\n");
-            sb.Append("  BlockDisplayForNonTargetedViewer: ").Append(BlockDisplayForNonTargetedViewer).Append("\n");
-            sb.Append("  AllowOrganicLeadGen: ").Append(AllowOrganicLeadGen).Append("\n");
-            sb.Append("  QuestionPageCustomHeadline: ").Append(QuestionPageCustomHeadline).Append("\n");
-            sb.Append("  ContextCard: ").Append(ContextCard).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

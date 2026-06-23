@@ -70,7 +70,7 @@ namespace Zernio.Model
         /// Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected). Null for unmapped codes; fall back to title/message. 
         /// </summary>
         /// <value>Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected). Null for unmapped codes; fall back to title/message. </value>
-        [DataMember(Name = "explanation", EmitDefaultValue = false)]
+        [DataMember(Name = "explanation", EmitDefaultValue = true)]
         public string Explanation { get; set; }
 
         /// <summary>

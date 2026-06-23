@@ -146,7 +146,7 @@ namespace Zernio.Model
         /// Stripe customer ID, when present.
         /// </summary>
         /// <value>Stripe customer ID, when present.</value>
-        [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        [DataMember(Name = "customerId", EmitDefaultValue = true)]
         public string CustomerId { get; set; }
 
         /// <summary>

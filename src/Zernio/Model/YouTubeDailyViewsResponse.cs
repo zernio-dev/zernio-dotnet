@@ -44,7 +44,7 @@ namespace Zernio.Model
         /// <param name="dailyViews">dailyViews.</param>
         /// <param name="lastSyncedAt">When the data was last synced from YouTube.</param>
         /// <param name="scopeStatus">scopeStatus.</param>
-        public YouTubeDailyViewsResponse(bool success = default, string videoId = default, int durationSeconds = default, YouTubeDailyViewsResponseDateRange dateRange = default, int totalViews = default, List<YouTubeDailyViewsResponseDailyViewsInner> dailyViews = default, DateTime lastSyncedAt = default, YouTubeDailyViewsResponseScopeStatus scopeStatus = default)
+        public YouTubeDailyViewsResponse(bool success = default, string videoId = default, int? durationSeconds = default, YouTubeDailyViewsResponseDateRange dateRange = default, int totalViews = default, List<YouTubeDailyViewsResponseDailyViewsInner> dailyViews = default, DateTime? lastSyncedAt = default, YouTubeDailyViewsResponseScopeStatus scopeStatus = default)
         {
             this.Success = success;
             this.VideoId = videoId;
@@ -76,8 +76,8 @@ namespace Zernio.Model
         /// Video length in seconds (from YouTube contentDetails.duration)
         /// </summary>
         /// <value>Video length in seconds (from YouTube contentDetails.duration)</value>
-        [DataMember(Name = "durationSeconds", EmitDefaultValue = false)]
-        public int DurationSeconds { get; set; }
+        [DataMember(Name = "durationSeconds", EmitDefaultValue = true)]
+        public int? DurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or Sets DateRange
@@ -102,8 +102,8 @@ namespace Zernio.Model
         /// When the data was last synced from YouTube
         /// </summary>
         /// <value>When the data was last synced from YouTube</value>
-        [DataMember(Name = "lastSyncedAt", EmitDefaultValue = false)]
-        public DateTime LastSyncedAt { get; set; }
+        [DataMember(Name = "lastSyncedAt", EmitDefaultValue = true)]
+        public DateTime? LastSyncedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets ScopeStatus

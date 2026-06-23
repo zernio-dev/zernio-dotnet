@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <param name="scheduledPosts">scheduledPosts.</param>
         /// <param name="lastSync">lastSync.</param>
         /// <param name="dataStaleness">dataStaleness.</param>
-        public AnalyticsOverview(int totalPosts = default, int publishedPosts = default, int scheduledPosts = default, DateTime lastSync = default, AnalyticsOverviewDataStaleness dataStaleness = default)
+        public AnalyticsOverview(int totalPosts = default, int publishedPosts = default, int scheduledPosts = default, DateTime? lastSync = default, AnalyticsOverviewDataStaleness dataStaleness = default)
         {
             this.TotalPosts = totalPosts;
             this.PublishedPosts = publishedPosts;
@@ -71,8 +71,8 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets LastSync
         /// </summary>
-        [DataMember(Name = "lastSync", EmitDefaultValue = false)]
-        public DateTime LastSync { get; set; }
+        [DataMember(Name = "lastSync", EmitDefaultValue = true)]
+        public DateTime? LastSync { get; set; }
 
         /// <summary>
         /// Gets or Sets DataStaleness

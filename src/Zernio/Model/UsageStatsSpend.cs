@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="creditsRemainingCents">Free-tier credit remaining in cents. Applied before any charge..</param>
         /// <param name="xSpendCents">Current-period X/Twitter API spend in cents, summed from &#x60;xApiCallsByOperation&#x60; × per-operation prices. Tier-agnostic (covers every price including the $0.200 URL tier). Rounded up for conservative enforcement against &#x60;xSpendLimitCents&#x60;. .</param>
         /// <param name="xSpendLimitCents">Monthly X spend cap set by the account owner, or null if no cap. When current X spend hits this cap, analytics and inbox sync are auto-paused for X accounts. Publishing is never blocked by this cap. .</param>
-        public UsageStatsSpend(int currentPeriodCents = default, int creditsRemainingCents = default, int xSpendCents = default, int xSpendLimitCents = default)
+        public UsageStatsSpend(int currentPeriodCents = default, int creditsRemainingCents = default, int xSpendCents = default, int? xSpendLimitCents = default)
         {
             this.CurrentPeriodCents = currentPeriodCents;
             this.CreditsRemainingCents = creditsRemainingCents;
@@ -73,8 +73,8 @@ namespace Zernio.Model
         /// Monthly X spend cap set by the account owner, or null if no cap. When current X spend hits this cap, analytics and inbox sync are auto-paused for X accounts. Publishing is never blocked by this cap. 
         /// </summary>
         /// <value>Monthly X spend cap set by the account owner, or null if no cap. When current X spend hits this cap, analytics and inbox sync are auto-paused for X accounts. Publishing is never blocked by this cap. </value>
-        [DataMember(Name = "xSpendLimitCents", EmitDefaultValue = false)]
-        public int XSpendLimitCents { get; set; }
+        [DataMember(Name = "xSpendLimitCents", EmitDefaultValue = true)]
+        public int? XSpendLimitCents { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

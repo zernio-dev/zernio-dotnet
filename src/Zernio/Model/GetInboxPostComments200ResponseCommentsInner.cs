@@ -127,7 +127,7 @@ namespace Zernio.Model
         /// Direct link to the comment on the platform (if available)
         /// </summary>
         /// <value>Direct link to the comment on the platform (if available)</value>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
+        [DataMember(Name = "url", EmitDefaultValue = true)]
         public string Url { get; set; }
 
         /// <summary>
@@ -180,35 +180,35 @@ namespace Zernio.Model
         /// Bluesky like URI for unliking
         /// </summary>
         /// <value>Bluesky like URI for unliking</value>
-        [DataMember(Name = "likeUri", EmitDefaultValue = false)]
+        [DataMember(Name = "likeUri", EmitDefaultValue = true)]
         public string LikeUri { get; set; }
 
         /// <summary>
         /// Bluesky content identifier
         /// </summary>
         /// <value>Bluesky content identifier</value>
-        [DataMember(Name = "cid", EmitDefaultValue = false)]
+        [DataMember(Name = "cid", EmitDefaultValue = true)]
         public string Cid { get; set; }
 
         /// <summary>
         /// Parent comment ID for nested replies
         /// </summary>
         /// <value>Parent comment ID for nested replies</value>
-        [DataMember(Name = "parentId", EmitDefaultValue = false)]
+        [DataMember(Name = "parentId", EmitDefaultValue = true)]
         public string ParentId { get; set; }
 
         /// <summary>
         /// Bluesky root post URI
         /// </summary>
         /// <value>Bluesky root post URI</value>
-        [DataMember(Name = "rootUri", EmitDefaultValue = false)]
+        [DataMember(Name = "rootUri", EmitDefaultValue = true)]
         public string RootUri { get; set; }
 
         /// <summary>
         /// Bluesky root post CID
         /// </summary>
         /// <value>Bluesky root post CID</value>
-        [DataMember(Name = "rootCid", EmitDefaultValue = false)]
+        [DataMember(Name = "rootCid", EmitDefaultValue = true)]
         public string RootCid { get; set; }
 
         /// <summary>

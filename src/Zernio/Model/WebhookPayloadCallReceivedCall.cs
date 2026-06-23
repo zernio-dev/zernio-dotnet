@@ -98,7 +98,7 @@ namespace Zernio.Model
         /// Meta wacid.* call id when known
         /// </summary>
         /// <value>Meta wacid.* call id when known</value>
-        [DataMember(Name = "metaCallId", EmitDefaultValue = false)]
+        [DataMember(Name = "metaCallId", EmitDefaultValue = true)]
         public string MetaCallId { get; set; }
 
         /// <summary>

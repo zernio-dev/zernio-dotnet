@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **StatusUpdated** | **int** |  | [optional] 
 **StatusSkipped** | **int** |  | [optional] 
 **BidStrategy** | **BidStrategy** |  | [optional] 
-**BidAmount** | **decimal** |  | [optional] 
-**RoasAverageFloor** | **decimal** |  | [optional] 
+**BidAmount** | **decimal?** |  | [optional] 
+**RoasAverageFloor** | **decimal?** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

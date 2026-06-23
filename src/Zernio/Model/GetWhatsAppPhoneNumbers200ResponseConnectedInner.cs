@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <param name="displayName">displayName.</param>
         /// <param name="profileId">profileId.</param>
         /// <param name="connectedAt">connectedAt.</param>
-        public GetWhatsAppPhoneNumbers200ResponseConnectedInner(string accountId = default, string phoneNumber = default, string displayName = default, string profileId = default, DateTime connectedAt = default)
+        public GetWhatsAppPhoneNumbers200ResponseConnectedInner(string accountId = default, string phoneNumber = default, string displayName = default, string profileId = default, DateTime? connectedAt = default)
         {
             this.AccountId = accountId;
             this.PhoneNumber = phoneNumber;
@@ -59,26 +59,26 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets PhoneNumber
         /// </summary>
-        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = true)]
         public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Gets or Sets DisplayName
         /// </summary>
-        [DataMember(Name = "displayName", EmitDefaultValue = false)]
+        [DataMember(Name = "displayName", EmitDefaultValue = true)]
         public string DisplayName { get; set; }
 
         /// <summary>
         /// Gets or Sets ProfileId
         /// </summary>
-        [DataMember(Name = "profileId", EmitDefaultValue = false)]
+        [DataMember(Name = "profileId", EmitDefaultValue = true)]
         public string ProfileId { get; set; }
 
         /// <summary>
         /// Gets or Sets ConnectedAt
         /// </summary>
-        [DataMember(Name = "connectedAt", EmitDefaultValue = false)]
-        public DateTime ConnectedAt { get; set; }
+        [DataMember(Name = "connectedAt", EmitDefaultValue = true)]
+        public DateTime? ConnectedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

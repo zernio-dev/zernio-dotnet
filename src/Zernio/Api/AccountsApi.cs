@@ -182,7 +182,7 @@ namespace Zernio.Api
         /// Move account to a different profile
         /// </summary>
         /// <remarks>
-        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -194,7 +194,7 @@ namespace Zernio.Api
         /// Move account to a different profile
         /// </summary>
         /// <remarks>
-        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -399,7 +399,7 @@ namespace Zernio.Api
         /// Move account to a different profile
         /// </summary>
         /// <remarks>
-        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -412,7 +412,7 @@ namespace Zernio.Api
         /// Move account to a different profile
         /// </summary>
         /// <remarks>
-        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1559,7 +1559,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1572,7 +1572,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1628,7 +1628,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1642,7 +1642,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>

@@ -74,7 +74,7 @@ namespace Zernio.Model
         /// (Reddit only) Subreddit name
         /// </summary>
         /// <value>(Reddit only) Subreddit name</value>
-        [DataMember(Name = "subreddit", EmitDefaultValue = false)]
+        [DataMember(Name = "subreddit", EmitDefaultValue = true)]
         public string Subreddit { get; set; }
 
         /// <summary>

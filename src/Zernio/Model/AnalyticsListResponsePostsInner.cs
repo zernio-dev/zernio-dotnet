@@ -96,12 +96,11 @@ namespace Zernio.Model
         /// <param name="platform">platform.</param>
         /// <param name="platformPostUrl">platformPostUrl.</param>
         /// <param name="isExternal">isExternal.</param>
-        /// <param name="isAd">True when the post is an ad creative. False for organic posts or platforms where the signal is unavailable. For now is only available for LinkedIn posts..</param>
         /// <param name="profileId">profileId.</param>
         /// <param name="thumbnailUrl">thumbnailUrl.</param>
         /// <param name="mediaType">mediaType.</param>
         /// <param name="mediaItems">All media items for this post. Carousel posts contain one entry per slide..</param>
-        public AnalyticsListResponsePostsInner(string id = default, string latePostId = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, string status = default, PostAnalytics analytics = default, List<PlatformAnalytics> platforms = default, string platform = default, string platformPostUrl = default, bool isExternal = default, bool isAd = default, string profileId = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = default)
+        public AnalyticsListResponsePostsInner(string id = default, string latePostId = default, string content = default, DateTime scheduledFor = default, DateTime publishedAt = default, string status = default, PostAnalytics analytics = default, List<PlatformAnalytics> platforms = default, string platform = default, string platformPostUrl = default, bool isExternal = default, string profileId = default, string thumbnailUrl = default, MediaTypeEnum? mediaType = default, List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = default)
         {
             this.Id = id;
             this.LatePostId = latePostId;
@@ -114,7 +113,6 @@ namespace Zernio.Model
             this.Platform = platform;
             this.PlatformPostUrl = platformPostUrl;
             this.IsExternal = isExternal;
-            this.IsAd = isAd;
             this.ProfileId = profileId;
             this.ThumbnailUrl = thumbnailUrl;
             this.MediaType = mediaType;
@@ -131,7 +129,7 @@ namespace Zernio.Model
         /// Original Zernio post ID if scheduled via Zernio
         /// </summary>
         /// <value>Original Zernio post ID if scheduled via Zernio</value>
-        [DataMember(Name = "latePostId", EmitDefaultValue = false)]
+        [DataMember(Name = "latePostId", EmitDefaultValue = true)]
         public string LatePostId { get; set; }
 
         /// <summary>
@@ -189,16 +187,9 @@ namespace Zernio.Model
         public bool IsExternal { get; set; }
 
         /// <summary>
-        /// True when the post is an ad creative. False for organic posts or platforms where the signal is unavailable. For now is only available for LinkedIn posts.
-        /// </summary>
-        /// <value>True when the post is an ad creative. False for organic posts or platforms where the signal is unavailable. For now is only available for LinkedIn posts.</value>
-        [DataMember(Name = "isAd", EmitDefaultValue = true)]
-        public bool IsAd { get; set; }
-
-        /// <summary>
         /// Gets or Sets ProfileId
         /// </summary>
-        [DataMember(Name = "profileId", EmitDefaultValue = false)]
+        [DataMember(Name = "profileId", EmitDefaultValue = true)]
         public string ProfileId { get; set; }
 
         /// <summary>
@@ -233,7 +224,6 @@ namespace Zernio.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  PlatformPostUrl: ").Append(PlatformPostUrl).Append("\n");
             sb.Append("  IsExternal: ").Append(IsExternal).Append("\n");
-            sb.Append("  IsAd: ").Append(IsAd).Append("\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  ThumbnailUrl: ").Append(ThumbnailUrl).Append("\n");
             sb.Append("  MediaType: ").Append(MediaType).Append("\n");

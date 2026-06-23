@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **AccountType** | **string** |  | [optional] 
 **Username** | **string** |  | [optional] 
 **Aggregation** | **string** |  | [optional] 
-**DateRange** | [**LinkedInAggregateAnalyticsTotalResponseDateRange**](LinkedInAggregateAnalyticsTotalResponseDateRange.md) |  | [optional] 
+**DateRange** | [**YouTubeDailyViewsResponseDateRange**](YouTubeDailyViewsResponseDateRange.md) |  | [optional] 
 **Analytics** | [**LinkedInAggregateAnalyticsTotalResponseAnalytics**](LinkedInAggregateAnalyticsTotalResponseAnalytics.md) |  | [optional] 
 **Note** | **string** |  | [optional] 
 **LastUpdated** | **DateTime** |  | [optional] 

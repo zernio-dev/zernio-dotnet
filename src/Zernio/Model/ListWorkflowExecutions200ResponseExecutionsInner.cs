@@ -92,7 +92,7 @@ namespace Zernio.Model
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
         /// <param name="completedAt">completedAt.</param>
-        public ListWorkflowExecutions200ResponseExecutionsInner(string id = default, StatusEnum? status = default, string currentNodeId = default, ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor waitingFor = default, Dictionary<string, Object> variables = default, string platformIdentifier = default, string conversationId = default, int stepCount = default, string lastError = default, DateTime resumeAt = default, DateTime createdAt = default, DateTime updatedAt = default, DateTime completedAt = default)
+        public ListWorkflowExecutions200ResponseExecutionsInner(string id = default, StatusEnum? status = default, string currentNodeId = default, ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor waitingFor = default, Dictionary<string, Object> variables = default, string platformIdentifier = default, string conversationId = default, int stepCount = default, string lastError = default, DateTime? resumeAt = default, DateTime createdAt = default, DateTime updatedAt = default, DateTime? completedAt = default)
         {
             this.Id = id;
             this.Status = status;
@@ -154,14 +154,14 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets LastError
         /// </summary>
-        [DataMember(Name = "lastError", EmitDefaultValue = false)]
+        [DataMember(Name = "lastError", EmitDefaultValue = true)]
         public string LastError { get; set; }
 
         /// <summary>
         /// Gets or Sets ResumeAt
         /// </summary>
-        [DataMember(Name = "resumeAt", EmitDefaultValue = false)]
-        public DateTime ResumeAt { get; set; }
+        [DataMember(Name = "resumeAt", EmitDefaultValue = true)]
+        public DateTime? ResumeAt { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
@@ -178,8 +178,8 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets CompletedAt
         /// </summary>
-        [DataMember(Name = "completedAt", EmitDefaultValue = false)]
-        public DateTime CompletedAt { get; set; }
+        [DataMember(Name = "completedAt", EmitDefaultValue = true)]
+        public DateTime? CompletedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

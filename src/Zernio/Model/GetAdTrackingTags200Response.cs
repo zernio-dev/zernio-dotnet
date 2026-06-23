@@ -91,42 +91,42 @@ namespace Zernio.Model
         /// Meta: &amp;-joined click-URL params.
         /// </summary>
         /// <value>Meta: &amp;-joined click-URL params.</value>
-        [DataMember(Name = "urlTags", EmitDefaultValue = false)]
+        [DataMember(Name = "urlTags", EmitDefaultValue = true)]
         public string UrlTags { get; set; }
 
         /// <summary>
         /// Meta: third-party click-tracking template (Dynamic Ads).
         /// </summary>
         /// <value>Meta: third-party click-tracking template (Dynamic Ads).</value>
-        [DataMember(Name = "templateUrlSpec", EmitDefaultValue = false)]
+        [DataMember(Name = "templateUrlSpec", EmitDefaultValue = true)]
         public Object TemplateUrlSpec { get; set; }
 
         /// <summary>
         /// Google.
         /// </summary>
         /// <value>Google.</value>
-        [DataMember(Name = "trackingUrlTemplate", EmitDefaultValue = false)]
+        [DataMember(Name = "trackingUrlTemplate", EmitDefaultValue = true)]
         public string TrackingUrlTemplate { get; set; }
 
         /// <summary>
         /// Google.
         /// </summary>
         /// <value>Google.</value>
-        [DataMember(Name = "finalUrlSuffix", EmitDefaultValue = false)]
+        [DataMember(Name = "finalUrlSuffix", EmitDefaultValue = true)]
         public string FinalUrlSuffix { get; set; }
 
         /// <summary>
         /// LinkedIn.
         /// </summary>
         /// <value>LinkedIn.</value>
-        [DataMember(Name = "dynamicValueParameters", EmitDefaultValue = false)]
+        [DataMember(Name = "dynamicValueParameters", EmitDefaultValue = true)]
         public Object DynamicValueParameters { get; set; }
 
         /// <summary>
         /// LinkedIn.
         /// </summary>
         /// <value>LinkedIn.</value>
-        [DataMember(Name = "customValueParameters", EmitDefaultValue = false)]
+        [DataMember(Name = "customValueParameters", EmitDefaultValue = true)]
         public Object CustomValueParameters { get; set; }
 
         /// <summary>

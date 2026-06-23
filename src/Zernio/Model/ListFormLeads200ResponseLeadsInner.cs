@@ -61,13 +61,13 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets CreatedTime
         /// </summary>
-        [DataMember(Name = "createdTime", EmitDefaultValue = false)]
+        [DataMember(Name = "createdTime", EmitDefaultValue = true)]
         public string CreatedTime { get; set; }
 
         /// <summary>
         /// Gets or Sets AdId
         /// </summary>
-        [DataMember(Name = "adId", EmitDefaultValue = false)]
+        [DataMember(Name = "adId", EmitDefaultValue = true)]
         public string AdId { get; set; }
 
         /// <summary>

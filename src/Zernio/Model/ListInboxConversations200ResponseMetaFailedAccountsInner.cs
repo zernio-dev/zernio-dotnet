@@ -42,7 +42,7 @@ namespace Zernio.Model
         /// <param name="error">error.</param>
         /// <param name="code">Error code if available.</param>
         /// <param name="retryAfter">Seconds to wait before retry (rate limits).</param>
-        public ListInboxConversations200ResponseMetaFailedAccountsInner(string accountId = default, string accountUsername = default, string platform = default, string error = default, string code = default, int retryAfter = default)
+        public ListInboxConversations200ResponseMetaFailedAccountsInner(string accountId = default, string accountUsername = default, string platform = default, string error = default, string code = default, int? retryAfter = default)
         {
             this.AccountId = accountId;
             this.AccountUsername = accountUsername;
@@ -61,7 +61,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets AccountUsername
         /// </summary>
-        [DataMember(Name = "accountUsername", EmitDefaultValue = false)]
+        [DataMember(Name = "accountUsername", EmitDefaultValue = true)]
         public string AccountUsername { get; set; }
 
         /// <summary>
@@ -80,15 +80,15 @@ namespace Zernio.Model
         /// Error code if available
         /// </summary>
         /// <value>Error code if available</value>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
+        [DataMember(Name = "code", EmitDefaultValue = true)]
         public string Code { get; set; }
 
         /// <summary>
         /// Seconds to wait before retry (rate limits)
         /// </summary>
         /// <value>Seconds to wait before retry (rate limits)</value>
-        [DataMember(Name = "retryAfter", EmitDefaultValue = false)]
-        public int RetryAfter { get; set; }
+        [DataMember(Name = "retryAfter", EmitDefaultValue = true)]
+        public int? RetryAfter { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -70,7 +70,7 @@ namespace Zernio.Model
         /// X/Twitter verified badge type. Only present for Twitter/X comments.
         /// </summary>
         /// <value>X/Twitter verified badge type. Only present for Twitter/X comments.</value>
-        [DataMember(Name = "verifiedType", EmitDefaultValue = false)]
+        [DataMember(Name = "verifiedType", EmitDefaultValue = true)]
         public VerifiedTypeEnum? VerifiedType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GetInboxPostComments200ResponseCommentsInnerFrom" /> class.
@@ -112,7 +112,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Picture
         /// </summary>
-        [DataMember(Name = "picture", EmitDefaultValue = false)]
+        [DataMember(Name = "picture", EmitDefaultValue = true)]
         public string Picture { get; set; }
 
         /// <summary>

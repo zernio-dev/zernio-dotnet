@@ -92,7 +92,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets MetaCallId
         /// </summary>
-        [DataMember(Name = "metaCallId", EmitDefaultValue = false)]
+        [DataMember(Name = "metaCallId", EmitDefaultValue = true)]
         public string MetaCallId { get; set; }
 
         /// <summary>

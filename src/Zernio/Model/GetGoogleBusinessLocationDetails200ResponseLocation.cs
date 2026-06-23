@@ -54,28 +54,28 @@ namespace Zernio.Model
         /// Business name as set in GBP
         /// </summary>
         /// <value>Business name as set in GBP</value>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
         /// Google Maps Place ID for this location
         /// </summary>
         /// <value>Google Maps Place ID for this location</value>
-        [DataMember(Name = "placeId", EmitDefaultValue = false)]
+        [DataMember(Name = "placeId", EmitDefaultValue = true)]
         public string PlaceId { get; set; }
 
         /// <summary>
         /// Public \&quot;write a review\&quot; URL Google generates for this place
         /// </summary>
         /// <value>Public \&quot;write a review\&quot; URL Google generates for this place</value>
-        [DataMember(Name = "reviewUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "reviewUrl", EmitDefaultValue = true)]
         public string ReviewUrl { get; set; }
 
         /// <summary>
         /// Public Google Maps URL for this location
         /// </summary>
         /// <value>Public Google Maps URL for this location</value>
-        [DataMember(Name = "mapsUri", EmitDefaultValue = false)]
+        [DataMember(Name = "mapsUri", EmitDefaultValue = true)]
         public string MapsUri { get; set; }
 
         /// <summary>

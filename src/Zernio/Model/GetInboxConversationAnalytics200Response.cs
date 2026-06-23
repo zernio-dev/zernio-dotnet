@@ -45,7 +45,7 @@ namespace Zernio.Model
         /// <param name="summary">summary.</param>
         /// <param name="timeseries">timeseries.</param>
         /// <param name="bySource">bySource.</param>
-        public GetInboxConversationAnalytics200Response(bool success = default, string conversationId = default, string mongoId = default, string platform = default, DateOnly from = default, DateOnly to = default, GetInboxConversationAnalytics200ResponseSummary summary = default, List<GetInboxVolume200ResponseTimeseriesInner> timeseries = default, List<GetInboxConversationAnalytics200ResponseBySourceInner> bySource = default)
+        public GetInboxConversationAnalytics200Response(bool success = default, string conversationId = default, string mongoId = default, string platform = default, DateOnly from = default, DateOnly? to = default, GetInboxConversationAnalytics200ResponseSummary summary = default, List<GetInboxVolume200ResponseTimeseriesInner> timeseries = default, List<GetInboxConversationAnalytics200ResponseBySourceInner> bySource = default)
         {
             this.Success = success;
             this.ConversationId = conversationId;
@@ -80,7 +80,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Platform
         /// </summary>
-        [DataMember(Name = "platform", EmitDefaultValue = false)]
+        [DataMember(Name = "platform", EmitDefaultValue = true)]
         public string Platform { get; set; }
 
         /// <summary>
@@ -92,8 +92,8 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets To
         /// </summary>
-        [DataMember(Name = "to", EmitDefaultValue = false)]
-        public DateOnly To { get; set; }
+        [DataMember(Name = "to", EmitDefaultValue = true)]
+        public DateOnly? To { get; set; }
 
         /// <summary>
         /// Gets or Sets Summary

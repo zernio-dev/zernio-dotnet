@@ -49,7 +49,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets DestinationCountry
         /// </summary>
-        [DataMember(Name = "destinationCountry", EmitDefaultValue = false)]
+        [DataMember(Name = "destinationCountry", EmitDefaultValue = true)]
         public string DestinationCountry { get; set; }
 
         /// <summary>

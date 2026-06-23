@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Status** | **string** | Overall post status. \&quot;partial\&quot; when some platforms published and others failed. | [optional] 
 **Content** | **string** |  | [optional] 
 **ScheduledFor** | **DateTime** |  | [optional] 
-**PublishedAt** | **DateTime** |  | [optional] 
+**PublishedAt** | **DateTime?** |  | [optional] 
 **Analytics** | [**PostAnalytics**](PostAnalytics.md) |  | [optional] 
 **PlatformAnalytics** | [**List&lt;PlatformAnalytics&gt;**](PlatformAnalytics.md) |  | [optional] 
 **Platform** | **string** |  | [optional] 

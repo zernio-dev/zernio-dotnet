@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <param name="to">to.</param>
         /// <param name="summary">summary.</param>
         /// <param name="histogram">histogram.</param>
-        public GetInboxResponseTime200Response(bool success = default, DateOnly from = default, DateOnly to = default, GetInboxResponseTime200ResponseSummary summary = default, List<GetInboxResponseTime200ResponseHistogramInner> histogram = default)
+        public GetInboxResponseTime200Response(bool success = default, DateOnly from = default, DateOnly? to = default, GetInboxResponseTime200ResponseSummary summary = default, List<GetInboxResponseTime200ResponseHistogramInner> histogram = default)
         {
             this.Success = success;
             this.From = from;
@@ -65,8 +65,8 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets To
         /// </summary>
-        [DataMember(Name = "to", EmitDefaultValue = false)]
-        public DateOnly To { get; set; }
+        [DataMember(Name = "to", EmitDefaultValue = true)]
+        public DateOnly? To { get; set; }
 
         /// <summary>
         /// Gets or Sets Summary

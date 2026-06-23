@@ -132,7 +132,7 @@ namespace Zernio.Model
         /// Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. 
         /// </summary>
         /// <value>Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. </value>
-        [DataMember(Name = "reviewStatus", EmitDefaultValue = false)]
+        [DataMember(Name = "reviewStatus", EmitDefaultValue = true)]
         public ReviewStatusEnum? ReviewStatus { get; set; }
         /// <summary>
         /// Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity.
@@ -159,14 +159,13 @@ namespace Zernio.Model
         /// Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity.
         /// </summary>
         /// <value>Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity.</value>
-        [DataMember(Name = "budgetLevel", EmitDefaultValue = false)]
+        [DataMember(Name = "budgetLevel", EmitDefaultValue = true)]
         public BudgetLevelEnum? BudgetLevel { get; set; }
 
         /// <summary>
-        /// Campaign-level bid strategy. Ad sets inherit this unless they override.
+        /// Gets or Sets BidStrategy
         /// </summary>
-        /// <value>Campaign-level bid strategy. Ad sets inherit this unless they override.</value>
-        [DataMember(Name = "bidStrategy", EmitDefaultValue = false)]
+        [DataMember(Name = "bidStrategy", EmitDefaultValue = true)]
         public BidStrategy? BidStrategy { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AdTreeCampaign" /> class.
@@ -193,12 +192,12 @@ namespace Zernio.Model
         /// <param name="advertisingChannelType">Google-only. Raw campaign.advertising_channel_type (SEARCH, PERFORMANCE_MAX, VIDEO, DEMAND_GEN, DISPLAY, SHOPPING, ...). Serving surface, distinct from platformObjective (advertiser intent). Null/absent for non-Google platforms..</param>
         /// <param name="platformObjective">Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC).</param>
         /// <param name="optimizationGoal">Meta optimization goal shared across ad sets, or comma-separated values when ad sets differ (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION).</param>
-        /// <param name="bidStrategy">Campaign-level bid strategy. Ad sets inherit this unless they override..</param>
+        /// <param name="bidStrategy">bidStrategy.</param>
         /// <param name="bidAmount">Representative bid cap for the campaign — bubbled up from the top-spending ad set&#39;s &#x60;bid_amount&#x60; (whole currency units). Populated when the ad-set bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP..</param>
         /// <param name="roasAverageFloor">Representative ROAS floor for the campaign — bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x)..</param>
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="adSets">adSets.</param>
-        public AdTreeCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, ReviewStatusEnum? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, int adSetCount = default, AdTreeCampaignBudget budget = default, AdTreeCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, List<AdTreeAdSet> adSets = default)
+        public AdTreeCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, ReviewStatusEnum? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, int adSetCount = default, AdTreeCampaignBudget budget = default, AdTreeCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, List<AdTreeAdSet> adSets = default)
         {
             this.PlatformCampaignId = platformCampaignId;
             this.Platform = platform;
@@ -245,14 +244,14 @@ namespace Zernio.Model
         /// Raw platform-level campaign status (Meta &#x60;effective_status&#x60;: ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct from per-ad &#x60;platformStatus&#x60;.
         /// </summary>
         /// <value>Raw platform-level campaign status (Meta &#x60;effective_status&#x60;: ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct from per-ad &#x60;platformStatus&#x60;.</value>
-        [DataMember(Name = "platformCampaignStatus", EmitDefaultValue = false)]
+        [DataMember(Name = "platformCampaignStatus", EmitDefaultValue = true)]
         public string PlatformCampaignStatus { get; set; }
 
         /// <summary>
         /// Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). Populated only when the platform has delivery issues to report; contains the specific error codes and messages.
         /// </summary>
         /// <value>Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). Populated only when the platform has delivery issues to report; contains the specific error codes and messages.</value>
-        [DataMember(Name = "campaignIssuesInfo", EmitDefaultValue = false)]
+        [DataMember(Name = "campaignIssuesInfo", EmitDefaultValue = true)]
         public List<Object> CampaignIssuesInfo { get; set; }
 
         /// <summary>
@@ -291,7 +290,7 @@ namespace Zernio.Model
         /// ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD.
         /// </summary>
         /// <value>ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD.</value>
-        [DataMember(Name = "currency", EmitDefaultValue = false)]
+        [DataMember(Name = "currency", EmitDefaultValue = true)]
         public string Currency { get; set; }
 
         /// <summary>
@@ -310,7 +309,7 @@ namespace Zernio.Model
         /// Human-readable advertiser/account name from the platform. Refreshed on every sync.
         /// </summary>
         /// <value>Human-readable advertiser/account name from the platform. Refreshed on every sync.</value>
-        [DataMember(Name = "platformAdAccountName", EmitDefaultValue = false)]
+        [DataMember(Name = "platformAdAccountName", EmitDefaultValue = true)]
         public string PlatformAdAccountName { get; set; }
 
         /// <summary>
@@ -329,36 +328,36 @@ namespace Zernio.Model
         /// Google-only. Raw campaign.advertising_channel_type (SEARCH, PERFORMANCE_MAX, VIDEO, DEMAND_GEN, DISPLAY, SHOPPING, ...). Serving surface, distinct from platformObjective (advertiser intent). Null/absent for non-Google platforms.
         /// </summary>
         /// <value>Google-only. Raw campaign.advertising_channel_type (SEARCH, PERFORMANCE_MAX, VIDEO, DEMAND_GEN, DISPLAY, SHOPPING, ...). Serving surface, distinct from platformObjective (advertiser intent). Null/absent for non-Google platforms.</value>
-        [DataMember(Name = "advertisingChannelType", EmitDefaultValue = false)]
+        [DataMember(Name = "advertisingChannelType", EmitDefaultValue = true)]
         public string AdvertisingChannelType { get; set; }
 
         /// <summary>
         /// Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC)
         /// </summary>
         /// <value>Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS, OUTCOME_TRAFFIC)</value>
-        [DataMember(Name = "platformObjective", EmitDefaultValue = false)]
+        [DataMember(Name = "platformObjective", EmitDefaultValue = true)]
         public string PlatformObjective { get; set; }
 
         /// <summary>
         /// Meta optimization goal shared across ad sets, or comma-separated values when ad sets differ (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)
         /// </summary>
         /// <value>Meta optimization goal shared across ad sets, or comma-separated values when ad sets differ (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)</value>
-        [DataMember(Name = "optimizationGoal", EmitDefaultValue = false)]
+        [DataMember(Name = "optimizationGoal", EmitDefaultValue = true)]
         public string OptimizationGoal { get; set; }
 
         /// <summary>
         /// Representative bid cap for the campaign — bubbled up from the top-spending ad set&#39;s &#x60;bid_amount&#x60; (whole currency units). Populated when the ad-set bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP.
         /// </summary>
         /// <value>Representative bid cap for the campaign — bubbled up from the top-spending ad set&#39;s &#x60;bid_amount&#x60; (whole currency units). Populated when the ad-set bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP.</value>
-        [DataMember(Name = "bidAmount", EmitDefaultValue = false)]
-        public decimal BidAmount { get; set; }
+        [DataMember(Name = "bidAmount", EmitDefaultValue = true)]
+        public decimal? BidAmount { get; set; }
 
         /// <summary>
         /// Representative ROAS floor for the campaign — bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x).
         /// </summary>
         /// <value>Representative ROAS floor for the campaign — bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x).</value>
-        [DataMember(Name = "roasAverageFloor", EmitDefaultValue = false)]
-        public decimal RoasAverageFloor { get; set; }
+        [DataMember(Name = "roasAverageFloor", EmitDefaultValue = true)]
+        public decimal? RoasAverageFloor { get; set; }
 
         /// <summary>
         /// Gets or Sets PromotedObject

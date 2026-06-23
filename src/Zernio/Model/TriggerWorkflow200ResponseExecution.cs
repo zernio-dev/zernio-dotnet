@@ -73,7 +73,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets WaitingFor
         /// </summary>
-        [DataMember(Name = "waitingFor", EmitDefaultValue = false)]
+        [DataMember(Name = "waitingFor", EmitDefaultValue = true)]
         public Object WaitingFor { get; set; }
 
         /// <summary>

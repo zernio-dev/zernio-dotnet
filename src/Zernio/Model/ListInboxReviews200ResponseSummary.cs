@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="totalReviews">totalReviews.</param>
         /// <param name="averageRating">averageRating.</param>
-        public ListInboxReviews200ResponseSummary(int totalReviews = default, decimal averageRating = default)
+        public ListInboxReviews200ResponseSummary(int totalReviews = default, decimal? averageRating = default)
         {
             this.TotalReviews = totalReviews;
             this.AverageRating = averageRating;
@@ -53,8 +53,8 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets AverageRating
         /// </summary>
-        [DataMember(Name = "averageRating", EmitDefaultValue = false)]
-        public decimal AverageRating { get; set; }
+        [DataMember(Name = "averageRating", EmitDefaultValue = true)]
+        public decimal? AverageRating { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

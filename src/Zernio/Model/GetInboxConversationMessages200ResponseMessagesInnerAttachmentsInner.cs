@@ -114,13 +114,13 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Filename
         /// </summary>
-        [DataMember(Name = "filename", EmitDefaultValue = false)]
+        [DataMember(Name = "filename", EmitDefaultValue = true)]
         public string Filename { get; set; }
 
         /// <summary>
         /// Gets or Sets PreviewUrl
         /// </summary>
-        [DataMember(Name = "previewUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "previewUrl", EmitDefaultValue = true)]
         public string PreviewUrl { get; set; }
 
         /// <summary>

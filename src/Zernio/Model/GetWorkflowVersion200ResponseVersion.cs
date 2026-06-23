@@ -49,7 +49,7 @@ namespace Zernio.Model
         /// <param name="createdByEmail">createdByEmail.</param>
         /// <param name="restoredFromVersion">restoredFromVersion.</param>
         /// <param name="createdAt">createdAt.</param>
-        public GetWorkflowVersion200ResponseVersion(int varVersion = default, string name = default, string description = default, string entryNodeId = default, List<WorkflowNode> nodes = default, List<WorkflowEdge> edges = default, string platform = default, string accountId = default, string profileId = default, string createdBy = default, string createdByEmail = default, int restoredFromVersion = default, DateTime createdAt = default)
+        public GetWorkflowVersion200ResponseVersion(int varVersion = default, string name = default, string description = default, string entryNodeId = default, List<WorkflowNode> nodes = default, List<WorkflowEdge> edges = default, string platform = default, string accountId = default, string profileId = default, string createdBy = default, string createdByEmail = default, int? restoredFromVersion = default, DateTime createdAt = default)
         {
             this.VarVersion = varVersion;
             this.Name = name;
@@ -81,13 +81,13 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name = "description", EmitDefaultValue = false)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or Sets EntryNodeId
         /// </summary>
-        [DataMember(Name = "entryNodeId", EmitDefaultValue = false)]
+        [DataMember(Name = "entryNodeId", EmitDefaultValue = true)]
         public string EntryNodeId { get; set; }
 
         /// <summary>
@@ -123,20 +123,20 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets CreatedBy
         /// </summary>
-        [DataMember(Name = "createdBy", EmitDefaultValue = false)]
+        [DataMember(Name = "createdBy", EmitDefaultValue = true)]
         public string CreatedBy { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedByEmail
         /// </summary>
-        [DataMember(Name = "createdByEmail", EmitDefaultValue = false)]
+        [DataMember(Name = "createdByEmail", EmitDefaultValue = true)]
         public string CreatedByEmail { get; set; }
 
         /// <summary>
         /// Gets or Sets RestoredFromVersion
         /// </summary>
-        [DataMember(Name = "restoredFromVersion", EmitDefaultValue = false)]
-        public int RestoredFromVersion { get; set; }
+        [DataMember(Name = "restoredFromVersion", EmitDefaultValue = true)]
+        public int? RestoredFromVersion { get; set; }
 
         /// <summary>
         /// Gets or Sets CreatedAt
