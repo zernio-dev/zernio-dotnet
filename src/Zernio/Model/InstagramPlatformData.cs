@@ -67,7 +67,8 @@ namespace Zernio.Model
         /// <param name="thumbOffset">Millisecond offset from video start for the Reel cover frame. Ignored when instagramThumbnail or reelCover is provided. Defaults to 0..</param>
         /// <param name="instagramThumbnail">Custom cover image URL for Instagram Reels (JPG or PNG, publicly accessible). Overrides thumbOffset when provided. Also accepted as reelCover (alias)..</param>
         /// <param name="reelCover">Alias for instagramThumbnail. If both are provided, instagramThumbnail takes priority..</param>
-        public InstagramPlatformData(ContentTypeEnum? contentType = default, bool shareToFeed = true, List<string> collaborators = default, string firstComment = default, InstagramPlatformDataTrialParams trialParams = default, List<InstagramPlatformDataUserTagsInner> userTags = default, string audioName = default, int thumbOffset = default, string instagramThumbnail = default, string reelCover = default)
+        /// <param name="isAiGenerated">When true, the post is labeled by Instagram as containing AI-generated media. Per Meta, this self-disclosure label is for AI-generated media, not AI-written captions. Applies to feed posts, Reels, Stories, and carousels. (default to false).</param>
+        public InstagramPlatformData(ContentTypeEnum? contentType = default, bool shareToFeed = true, List<string> collaborators = default, string firstComment = default, InstagramPlatformDataTrialParams trialParams = default, List<InstagramPlatformDataUserTagsInner> userTags = default, string audioName = default, int thumbOffset = default, string instagramThumbnail = default, string reelCover = default, bool isAiGenerated = false)
         {
             this.ContentType = contentType;
             this.ShareToFeed = shareToFeed;
@@ -79,6 +80,7 @@ namespace Zernio.Model
             this.ThumbOffset = thumbOffset;
             this.InstagramThumbnail = instagramThumbnail;
             this.ReelCover = reelCover;
+            this.IsAiGenerated = isAiGenerated;
         }
 
         /// <summary>
@@ -150,6 +152,13 @@ namespace Zernio.Model
         public string ReelCover { get; set; }
 
         /// <summary>
+        /// When true, the post is labeled by Instagram as containing AI-generated media. Per Meta, this self-disclosure label is for AI-generated media, not AI-written captions. Applies to feed posts, Reels, Stories, and carousels.
+        /// </summary>
+        /// <value>When true, the post is labeled by Instagram as containing AI-generated media. Per Meta, this self-disclosure label is for AI-generated media, not AI-written captions. Applies to feed posts, Reels, Stories, and carousels.</value>
+        [DataMember(Name = "isAiGenerated", EmitDefaultValue = true)]
+        public bool IsAiGenerated { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -167,6 +176,7 @@ namespace Zernio.Model
             sb.Append("  ThumbOffset: ").Append(ThumbOffset).Append("\n");
             sb.Append("  InstagramThumbnail: ").Append(InstagramThumbnail).Append("\n");
             sb.Append("  ReelCover: ").Append(ReelCover).Append("\n");
+            sb.Append("  IsAiGenerated: ").Append(IsAiGenerated).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

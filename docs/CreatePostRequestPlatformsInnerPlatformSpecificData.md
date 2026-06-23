@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **ThumbOffset** | **int** | Millisecond offset from video start for the Reel cover frame. Ignored when instagramThumbnail or reelCover is provided. Defaults to 0. | [optional] 
 **InstagramThumbnail** | **string** | Custom cover image URL for Instagram Reels (JPG or PNG, publicly accessible). Overrides thumbOffset when provided. Also accepted as reelCover (alias). | [optional] 
 **ReelCover** | **string** | Alias for instagramThumbnail. If both are provided, instagramThumbnail takes priority. | [optional] 
+**IsAiGenerated** | **bool** | When true, the post is labeled by Instagram as containing AI-generated media. Per Meta, this self-disclosure label is for AI-generated media, not AI-written captions. Applies to feed posts, Reels, Stories, and carousels. | [optional] [default to false]
 **DocumentTitle** | **string** | Title displayed on LinkedIn document (PDF/carousel) posts. Required by LinkedIn for document posts. If omitted, falls back to the media item title, then the filename. | [optional] 
 **OrganizationUrn** | **string** | Target LinkedIn Organization URN (e.g. \&quot;urn:li:organization:123456789\&quot;). If omitted, uses the default org. Use GET /v1/accounts/{id}/linkedin-organizations to list orgs. | [optional] 
 **DisableLinkPreview** | **bool** | Set to true to disable automatic link previews for URLs in the post content (default is false) | [optional] 

@@ -290,6 +290,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'IsAiGenerated'
+        /// </summary>
+        [Fact]
+        public void IsAiGeneratedTest()
+        {
+            // TODO unit test for the property 'IsAiGenerated'
+        }
+
+        /// <summary>
         /// Test the property 'DocumentTitle'
         /// </summary>
         [Fact]

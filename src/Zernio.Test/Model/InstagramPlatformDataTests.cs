@@ -144,5 +144,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ReelCover'
         }
+
+        /// <summary>
+        /// Test the property 'IsAiGenerated'
+        /// </summary>
+        [Fact]
+        public void IsAiGeneratedTest()
+        {
+            // TODO unit test for the property 'IsAiGenerated'
+        }
     }
 }
