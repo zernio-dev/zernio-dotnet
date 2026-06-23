@@ -36,9 +36,9 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateWhatsAppNumberKycLinkRequestBranding" /> class.
         /// </summary>
-        /// <param name="companyName">Your company name.</param>
+        /// <param name="companyName">Your company name, shown on the hosted page..</param>
         /// <param name="logoUrl">Logo shown above the form..</param>
-        /// <param name="brandColor">Hex color (e.g. \&quot;#1a73e8\&quot;) applied to the primary action..</param>
+        /// <param name="brandColor">Hex color (e.g. #1a73e8) used as a brand accent on the page..</param>
         public CreateWhatsAppNumberKycLinkRequestBranding(string companyName = default, string logoUrl = default, string brandColor = default)
         {
             this.CompanyName = companyName;
@@ -47,9 +47,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Your company name
+        /// Your company name, shown on the hosted page.
         /// </summary>
-        /// <value>Your company name</value>
+        /// <value>Your company name, shown on the hosted page.</value>
         [DataMember(Name = "companyName", EmitDefaultValue = false)]
         public string CompanyName { get; set; }
 
@@ -61,9 +61,9 @@ namespace Zernio.Model
         public string LogoUrl { get; set; }
 
         /// <summary>
-        /// Hex color (e.g. \&quot;#1a73e8\&quot;) applied to the primary action.
+        /// Hex color (e.g. #1a73e8) used as a brand accent on the page.
         /// </summary>
-        /// <value>Hex color (e.g. \&quot;#1a73e8\&quot;) applied to the primary action.</value>
+        /// <value>Hex color (e.g. #1a73e8) used as a brand accent on the page.</value>
         [DataMember(Name = "brandColor", EmitDefaultValue = false)]
         public string BrandColor { get; set; }
 
