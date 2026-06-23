@@ -1628,6 +1628,7 @@ Class | Method | HTTP request | Description
  - [Model.WebhookPayloadCommentAccount](docs/WebhookPayloadCommentAccount.md)
  - [Model.WebhookPayloadCommentComment](docs/WebhookPayloadCommentComment.md)
  - [Model.WebhookPayloadCommentCommentAd](docs/WebhookPayloadCommentCommentAd.md)
+ - [Model.WebhookPayloadCommentCommentAttachment](docs/WebhookPayloadCommentCommentAttachment.md)
  - [Model.WebhookPayloadCommentCommentAuthor](docs/WebhookPayloadCommentCommentAuthor.md)
  - [Model.WebhookPayloadCommentPost](docs/WebhookPayloadCommentPost.md)
  - [Model.WebhookPayloadConversationStarted](docs/WebhookPayloadConversationStarted.md)

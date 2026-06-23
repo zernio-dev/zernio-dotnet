@@ -144,5 +144,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Ad'
         }
+
+        /// <summary>
+        /// Test the property 'Attachment'
+        /// </summary>
+        [Fact]
+        public void AttachmentTest()
+        {
+            // TODO unit test for the property 'Attachment'
+        }
     }
 }
