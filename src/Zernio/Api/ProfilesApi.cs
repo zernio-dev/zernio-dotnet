@@ -57,8 +57,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <returns>DeleteAccountGroup200Response</returns>
-        DeleteAccountGroup200Response DeleteProfile(string profileId);
+        /// <returns>ProfileDeleteResponse</returns>
+        ProfileDeleteResponse DeleteProfile(string profileId);
 
         /// <summary>
         /// Delete profile
@@ -68,8 +68,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <returns>ApiResponse of DeleteAccountGroup200Response</returns>
-        ApiResponse<DeleteAccountGroup200Response> DeleteProfileWithHttpInfo(string profileId);
+        /// <returns>ApiResponse of ProfileDeleteResponse</returns>
+        ApiResponse<ProfileDeleteResponse> DeleteProfileWithHttpInfo(string profileId);
         /// <summary>
         /// Get profile
         /// </summary>
@@ -78,8 +78,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <returns>GetProfile200Response</returns>
-        GetProfile200Response GetProfile(string profileId);
+        /// <returns>ProfileGetResponse</returns>
+        ProfileGetResponse GetProfile(string profileId);
 
         /// <summary>
         /// Get profile
@@ -89,8 +89,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <returns>ApiResponse of GetProfile200Response</returns>
-        ApiResponse<GetProfile200Response> GetProfileWithHttpInfo(string profileId);
+        /// <returns>ApiResponse of ProfileGetResponse</returns>
+        ApiResponse<ProfileGetResponse> GetProfileWithHttpInfo(string profileId);
         /// <summary>
         /// List profiles
         /// </summary>
@@ -121,8 +121,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="updateProfileRequest"></param>
-        /// <returns>UpdateProfile200Response</returns>
-        UpdateProfile200Response UpdateProfile(string profileId, UpdateProfileRequest updateProfileRequest);
+        /// <returns>ProfileUpdateResponse</returns>
+        ProfileUpdateResponse UpdateProfile(string profileId, UpdateProfileRequest updateProfileRequest);
 
         /// <summary>
         /// Update profile
@@ -133,8 +133,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="updateProfileRequest"></param>
-        /// <returns>ApiResponse of UpdateProfile200Response</returns>
-        ApiResponse<UpdateProfile200Response> UpdateProfileWithHttpInfo(string profileId, UpdateProfileRequest updateProfileRequest);
+        /// <returns>ApiResponse of ProfileUpdateResponse</returns>
+        ApiResponse<ProfileUpdateResponse> UpdateProfileWithHttpInfo(string profileId, UpdateProfileRequest updateProfileRequest);
         #endregion Synchronous Operations
     }
 
@@ -176,8 +176,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of DeleteAccountGroup200Response</returns>
-        System.Threading.Tasks.Task<DeleteAccountGroup200Response> DeleteProfileAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ProfileDeleteResponse</returns>
+        System.Threading.Tasks.Task<ProfileDeleteResponse> DeleteProfileAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete profile
@@ -188,8 +188,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (DeleteAccountGroup200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeleteAccountGroup200Response>> DeleteProfileWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ProfileDeleteResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ProfileDeleteResponse>> DeleteProfileWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get profile
         /// </summary>
@@ -199,8 +199,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetProfile200Response</returns>
-        System.Threading.Tasks.Task<GetProfile200Response> GetProfileAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ProfileGetResponse</returns>
+        System.Threading.Tasks.Task<ProfileGetResponse> GetProfileAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get profile
@@ -211,8 +211,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetProfile200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetProfile200Response>> GetProfileWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ProfileGetResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ProfileGetResponse>> GetProfileWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List profiles
         /// </summary>
@@ -246,8 +246,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="updateProfileRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateProfile200Response</returns>
-        System.Threading.Tasks.Task<UpdateProfile200Response> UpdateProfileAsync(string profileId, UpdateProfileRequest updateProfileRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ProfileUpdateResponse</returns>
+        System.Threading.Tasks.Task<ProfileUpdateResponse> UpdateProfileAsync(string profileId, UpdateProfileRequest updateProfileRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update profile
@@ -259,8 +259,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="updateProfileRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateProfile200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateProfile200Response>> UpdateProfileWithHttpInfoAsync(string profileId, UpdateProfileRequest updateProfileRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (ProfileUpdateResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ProfileUpdateResponse>> UpdateProfileWithHttpInfoAsync(string profileId, UpdateProfileRequest updateProfileRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -608,10 +608,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <returns>DeleteAccountGroup200Response</returns>
-        public DeleteAccountGroup200Response DeleteProfile(string profileId)
+        /// <returns>ProfileDeleteResponse</returns>
+        public ProfileDeleteResponse DeleteProfile(string profileId)
         {
-            Zernio.Client.ApiResponse<DeleteAccountGroup200Response> localVarResponse = DeleteProfileWithHttpInfo(profileId);
+            Zernio.Client.ApiResponse<ProfileDeleteResponse> localVarResponse = DeleteProfileWithHttpInfo(profileId);
             return localVarResponse.Data;
         }
 
@@ -620,8 +620,8 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <returns>ApiResponse of DeleteAccountGroup200Response</returns>
-        public Zernio.Client.ApiResponse<DeleteAccountGroup200Response> DeleteProfileWithHttpInfo(string profileId)
+        /// <returns>ApiResponse of ProfileDeleteResponse</returns>
+        public Zernio.Client.ApiResponse<ProfileDeleteResponse> DeleteProfileWithHttpInfo(string profileId)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -653,7 +653,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<DeleteAccountGroup200Response>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<ProfileDeleteResponse>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -670,10 +670,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of DeleteAccountGroup200Response</returns>
-        public async System.Threading.Tasks.Task<DeleteAccountGroup200Response> DeleteProfileAsync(string profileId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ProfileDeleteResponse</returns>
+        public async System.Threading.Tasks.Task<ProfileDeleteResponse> DeleteProfileAsync(string profileId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<DeleteAccountGroup200Response> localVarResponse = await DeleteProfileWithHttpInfoAsync(profileId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ProfileDeleteResponse> localVarResponse = await DeleteProfileWithHttpInfoAsync(profileId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -683,8 +683,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (DeleteAccountGroup200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteAccountGroup200Response>> DeleteProfileWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ProfileDeleteResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ProfileDeleteResponse>> DeleteProfileWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -719,7 +719,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteAccountGroup200Response>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<ProfileDeleteResponse>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -735,10 +735,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <returns>GetProfile200Response</returns>
-        public GetProfile200Response GetProfile(string profileId)
+        /// <returns>ProfileGetResponse</returns>
+        public ProfileGetResponse GetProfile(string profileId)
         {
-            Zernio.Client.ApiResponse<GetProfile200Response> localVarResponse = GetProfileWithHttpInfo(profileId);
+            Zernio.Client.ApiResponse<ProfileGetResponse> localVarResponse = GetProfileWithHttpInfo(profileId);
             return localVarResponse.Data;
         }
 
@@ -747,8 +747,8 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <returns>ApiResponse of GetProfile200Response</returns>
-        public Zernio.Client.ApiResponse<GetProfile200Response> GetProfileWithHttpInfo(string profileId)
+        /// <returns>ApiResponse of ProfileGetResponse</returns>
+        public Zernio.Client.ApiResponse<ProfileGetResponse> GetProfileWithHttpInfo(string profileId)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -780,7 +780,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetProfile200Response>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<ProfileGetResponse>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -797,10 +797,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetProfile200Response</returns>
-        public async System.Threading.Tasks.Task<GetProfile200Response> GetProfileAsync(string profileId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ProfileGetResponse</returns>
+        public async System.Threading.Tasks.Task<ProfileGetResponse> GetProfileAsync(string profileId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetProfile200Response> localVarResponse = await GetProfileWithHttpInfoAsync(profileId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ProfileGetResponse> localVarResponse = await GetProfileWithHttpInfoAsync(profileId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -810,8 +810,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetProfile200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetProfile200Response>> GetProfileWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ProfileGetResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ProfileGetResponse>> GetProfileWithHttpInfoAsync(string profileId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -846,7 +846,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetProfile200Response>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ProfileGetResponse>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -988,10 +988,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="updateProfileRequest"></param>
-        /// <returns>UpdateProfile200Response</returns>
-        public UpdateProfile200Response UpdateProfile(string profileId, UpdateProfileRequest updateProfileRequest)
+        /// <returns>ProfileUpdateResponse</returns>
+        public ProfileUpdateResponse UpdateProfile(string profileId, UpdateProfileRequest updateProfileRequest)
         {
-            Zernio.Client.ApiResponse<UpdateProfile200Response> localVarResponse = UpdateProfileWithHttpInfo(profileId, updateProfileRequest);
+            Zernio.Client.ApiResponse<ProfileUpdateResponse> localVarResponse = UpdateProfileWithHttpInfo(profileId, updateProfileRequest);
             return localVarResponse.Data;
         }
 
@@ -1001,8 +1001,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="updateProfileRequest"></param>
-        /// <returns>ApiResponse of UpdateProfile200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateProfile200Response> UpdateProfileWithHttpInfo(string profileId, UpdateProfileRequest updateProfileRequest)
+        /// <returns>ApiResponse of ProfileUpdateResponse</returns>
+        public Zernio.Client.ApiResponse<ProfileUpdateResponse> UpdateProfileWithHttpInfo(string profileId, UpdateProfileRequest updateProfileRequest)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -1040,7 +1040,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<UpdateProfile200Response>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Put<ProfileUpdateResponse>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1058,10 +1058,10 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="updateProfileRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateProfile200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateProfile200Response> UpdateProfileAsync(string profileId, UpdateProfileRequest updateProfileRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ProfileUpdateResponse</returns>
+        public async System.Threading.Tasks.Task<ProfileUpdateResponse> UpdateProfileAsync(string profileId, UpdateProfileRequest updateProfileRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UpdateProfile200Response> localVarResponse = await UpdateProfileWithHttpInfoAsync(profileId, updateProfileRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ProfileUpdateResponse> localVarResponse = await UpdateProfileWithHttpInfoAsync(profileId, updateProfileRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1072,8 +1072,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="updateProfileRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateProfile200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateProfile200Response>> UpdateProfileWithHttpInfoAsync(string profileId, UpdateProfileRequest updateProfileRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (ProfileUpdateResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ProfileUpdateResponse>> UpdateProfileWithHttpInfoAsync(string profileId, UpdateProfileRequest updateProfileRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -1114,7 +1114,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateProfile200Response>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PutAsync<ProfileUpdateResponse>("/v1/profiles/{profileId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

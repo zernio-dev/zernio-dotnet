@@ -107,8 +107,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)</param>
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
-        /// <returns>GetFollowerStats200Response</returns>
-        GetFollowerStats200Response GetFollowerStats(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default);
+        /// <returns>FollowerStatsResponse</returns>
+        FollowerStatsResponse GetFollowerStats(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default);
 
         /// <summary>
         /// Get follower stats
@@ -122,8 +122,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)</param>
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
-        /// <returns>ApiResponse of GetFollowerStats200Response</returns>
-        ApiResponse<GetFollowerStats200Response> GetFollowerStatsWithHttpInfo(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default);
+        /// <returns>ApiResponse of FollowerStatsResponse</returns>
+        ApiResponse<FollowerStatsResponse> GetFollowerStatsWithHttpInfo(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default);
         /// <summary>
         /// Get TikTok creator info
         /// </summary>
@@ -160,8 +160,8 @@ namespace Zernio.Api
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
         /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
         /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
-        /// <returns>ListAccounts200Response</returns>
-        ListAccounts200Response ListAccounts(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default);
+        /// <returns>AccountsListResponse</returns>
+        AccountsListResponse ListAccounts(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default);
 
         /// <summary>
         /// List accounts
@@ -176,8 +176,8 @@ namespace Zernio.Api
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
         /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
         /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
-        /// <returns>ApiResponse of ListAccounts200Response</returns>
-        ApiResponse<ListAccounts200Response> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default);
+        /// <returns>ApiResponse of AccountsListResponse</returns>
+        ApiResponse<AccountsListResponse> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default);
         /// <summary>
         /// Move account to a different profile
         /// </summary>
@@ -319,8 +319,8 @@ namespace Zernio.Api
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetFollowerStats200Response</returns>
-        System.Threading.Tasks.Task<GetFollowerStats200Response> GetFollowerStatsAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of FollowerStatsResponse</returns>
+        System.Threading.Tasks.Task<FollowerStatsResponse> GetFollowerStatsAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get follower stats
@@ -335,8 +335,8 @@ namespace Zernio.Api
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetFollowerStats200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetFollowerStats200Response>> GetFollowerStatsWithHttpInfoAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (FollowerStatsResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FollowerStatsResponse>> GetFollowerStatsWithHttpInfoAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get TikTok creator info
         /// </summary>
@@ -376,8 +376,8 @@ namespace Zernio.Api
         /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
         /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ListAccounts200Response</returns>
-        System.Threading.Tasks.Task<ListAccounts200Response> ListAccountsAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of AccountsListResponse</returns>
+        System.Threading.Tasks.Task<AccountsListResponse> ListAccountsAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List accounts
@@ -393,8 +393,8 @@ namespace Zernio.Api
         /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
         /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ListAccounts200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListAccounts200Response>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (AccountsListResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AccountsListResponse>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Move account to a different profile
         /// </summary>
@@ -1070,10 +1070,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)</param>
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
-        /// <returns>GetFollowerStats200Response</returns>
-        public GetFollowerStats200Response GetFollowerStats(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default)
+        /// <returns>FollowerStatsResponse</returns>
+        public FollowerStatsResponse GetFollowerStats(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default)
         {
-            Zernio.Client.ApiResponse<GetFollowerStats200Response> localVarResponse = GetFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
+            Zernio.Client.ApiResponse<FollowerStatsResponse> localVarResponse = GetFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
             return localVarResponse.Data;
         }
 
@@ -1086,8 +1086,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)</param>
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
-        /// <returns>ApiResponse of GetFollowerStats200Response</returns>
-        public Zernio.Client.ApiResponse<GetFollowerStats200Response> GetFollowerStatsWithHttpInfo(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default)
+        /// <returns>ApiResponse of FollowerStatsResponse</returns>
+        public Zernio.Client.ApiResponse<FollowerStatsResponse> GetFollowerStatsWithHttpInfo(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1134,7 +1134,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetFollowerStats200Response>("/v1/accounts/follower-stats", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<FollowerStatsResponse>("/v1/accounts/follower-stats", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1155,10 +1155,10 @@ namespace Zernio.Api
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetFollowerStats200Response</returns>
-        public async System.Threading.Tasks.Task<GetFollowerStats200Response> GetFollowerStatsAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of FollowerStatsResponse</returns>
+        public async System.Threading.Tasks.Task<FollowerStatsResponse> GetFollowerStatsAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetFollowerStats200Response> localVarResponse = await GetFollowerStatsWithHttpInfoAsync(accountIds, profileId, fromDate, toDate, granularity, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<FollowerStatsResponse> localVarResponse = await GetFollowerStatsWithHttpInfoAsync(accountIds, profileId, fromDate, toDate, granularity, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1172,8 +1172,8 @@ namespace Zernio.Api
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetFollowerStats200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetFollowerStats200Response>> GetFollowerStatsWithHttpInfoAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (FollowerStatsResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<FollowerStatsResponse>> GetFollowerStatsWithHttpInfoAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1223,7 +1223,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetFollowerStats200Response>("/v1/accounts/follower-stats", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FollowerStatsResponse>("/v1/accounts/follower-stats", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1383,10 +1383,10 @@ namespace Zernio.Api
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
         /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
         /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
-        /// <returns>ListAccounts200Response</returns>
-        public ListAccounts200Response ListAccounts(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default)
+        /// <returns>AccountsListResponse</returns>
+        public AccountsListResponse ListAccounts(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default)
         {
-            Zernio.Client.ApiResponse<ListAccounts200Response> localVarResponse = ListAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit);
+            Zernio.Client.ApiResponse<AccountsListResponse> localVarResponse = ListAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit);
             return localVarResponse.Data;
         }
 
@@ -1400,8 +1400,8 @@ namespace Zernio.Api
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
         /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
         /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
-        /// <returns>ApiResponse of ListAccounts200Response</returns>
-        public Zernio.Client.ApiResponse<ListAccounts200Response> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default)
+        /// <returns>ApiResponse of AccountsListResponse</returns>
+        public Zernio.Client.ApiResponse<AccountsListResponse> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1452,7 +1452,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<ListAccounts200Response>("/v1/accounts", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<AccountsListResponse>("/v1/accounts", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1474,10 +1474,10 @@ namespace Zernio.Api
         /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
         /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ListAccounts200Response</returns>
-        public async System.Threading.Tasks.Task<ListAccounts200Response> ListAccountsAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of AccountsListResponse</returns>
+        public async System.Threading.Tasks.Task<AccountsListResponse> ListAccountsAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListAccounts200Response> localVarResponse = await ListAccountsWithHttpInfoAsync(profileId, platform, status, includeOverLimit, page, limit, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<AccountsListResponse> localVarResponse = await ListAccountsWithHttpInfoAsync(profileId, platform, status, includeOverLimit, page, limit, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1492,8 +1492,8 @@ namespace Zernio.Api
         /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
         /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ListAccounts200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAccounts200Response>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (AccountsListResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AccountsListResponse>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1547,7 +1547,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAccounts200Response>("/v1/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<AccountsListResponse>("/v1/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

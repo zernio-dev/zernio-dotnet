@@ -105,7 +105,7 @@ namespace Zernio.Test.Api
             //DateOnly? toDate = null;
             //string? granularity = null;
             //var response = instance.GetFollowerStats(accountIds, profileId, fromDate, toDate, granularity);
-            //Assert.IsType<GetFollowerStats200Response>(response);
+            //Assert.IsType<FollowerStatsResponse>(response);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Zernio.Test.Api
             //int? page = null;
             //int? limit = null;
             //var response = instance.ListAccounts(profileId, platform, status, includeOverLimit, page, limit);
-            //Assert.IsType<ListAccounts200Response>(response);
+            //Assert.IsType<AccountsListResponse>(response);
         }
 
         /// <summary>

@@ -197,8 +197,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)</param>
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
-        /// <returns>GetFollowerStats200Response</returns>
-        GetFollowerStats200Response GetFollowerStats(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default);
+        /// <returns>FollowerStatsResponse</returns>
+        FollowerStatsResponse GetFollowerStats(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default);
 
         /// <summary>
         /// Get follower stats
@@ -212,8 +212,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)</param>
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
-        /// <returns>ApiResponse of GetFollowerStats200Response</returns>
-        ApiResponse<GetFollowerStats200Response> GetFollowerStatsWithHttpInfo(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default);
+        /// <returns>ApiResponse of FollowerStatsResponse</returns>
+        ApiResponse<FollowerStatsResponse> GetFollowerStatsWithHttpInfo(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default);
         /// <summary>
         /// Get GBP performance metrics
         /// </summary>
@@ -841,8 +841,8 @@ namespace Zernio.Api
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetFollowerStats200Response</returns>
-        System.Threading.Tasks.Task<GetFollowerStats200Response> GetFollowerStatsAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of FollowerStatsResponse</returns>
+        System.Threading.Tasks.Task<FollowerStatsResponse> GetFollowerStatsAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get follower stats
@@ -857,8 +857,8 @@ namespace Zernio.Api
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetFollowerStats200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetFollowerStats200Response>> GetFollowerStatsWithHttpInfoAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (FollowerStatsResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FollowerStatsResponse>> GetFollowerStatsWithHttpInfoAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get GBP performance metrics
         /// </summary>
@@ -2490,10 +2490,10 @@ namespace Zernio.Api
         /// <param name="fromDate">Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)</param>
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
-        /// <returns>GetFollowerStats200Response</returns>
-        public GetFollowerStats200Response GetFollowerStats(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default)
+        /// <returns>FollowerStatsResponse</returns>
+        public FollowerStatsResponse GetFollowerStats(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default)
         {
-            Zernio.Client.ApiResponse<GetFollowerStats200Response> localVarResponse = GetFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
+            Zernio.Client.ApiResponse<FollowerStatsResponse> localVarResponse = GetFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
             return localVarResponse.Data;
         }
 
@@ -2506,8 +2506,8 @@ namespace Zernio.Api
         /// <param name="fromDate">Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)</param>
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
-        /// <returns>ApiResponse of GetFollowerStats200Response</returns>
-        public Zernio.Client.ApiResponse<GetFollowerStats200Response> GetFollowerStatsWithHttpInfo(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default)
+        /// <returns>ApiResponse of FollowerStatsResponse</returns>
+        public Zernio.Client.ApiResponse<FollowerStatsResponse> GetFollowerStatsWithHttpInfo(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -2554,7 +2554,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetFollowerStats200Response>("/v1/accounts/follower-stats", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<FollowerStatsResponse>("/v1/accounts/follower-stats", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2575,10 +2575,10 @@ namespace Zernio.Api
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetFollowerStats200Response</returns>
-        public async System.Threading.Tasks.Task<GetFollowerStats200Response> GetFollowerStatsAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of FollowerStatsResponse</returns>
+        public async System.Threading.Tasks.Task<FollowerStatsResponse> GetFollowerStatsAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetFollowerStats200Response> localVarResponse = await GetFollowerStatsWithHttpInfoAsync(accountIds, profileId, fromDate, toDate, granularity, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<FollowerStatsResponse> localVarResponse = await GetFollowerStatsWithHttpInfoAsync(accountIds, profileId, fromDate, toDate, granularity, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2592,8 +2592,8 @@ namespace Zernio.Api
         /// <param name="toDate">End date in YYYY-MM-DD format (defaults to today) (optional)</param>
         /// <param name="granularity">Data aggregation level (optional, default to daily)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetFollowerStats200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetFollowerStats200Response>> GetFollowerStatsWithHttpInfoAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (FollowerStatsResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<FollowerStatsResponse>> GetFollowerStatsWithHttpInfoAsync(string? accountIds = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -2643,7 +2643,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetFollowerStats200Response>("/v1/accounts/follower-stats", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FollowerStatsResponse>("/v1/accounts/follower-stats", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

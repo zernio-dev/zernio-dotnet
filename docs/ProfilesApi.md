@@ -114,7 +114,7 @@ catch (ApiException e)
 
 <a id="deleteprofile"></a>
 # **DeleteProfile**
-> DeleteAccountGroup200Response DeleteProfile (string profileId)
+> ProfileDeleteResponse DeleteProfile (string profileId)
 
 Delete profile
 
@@ -149,7 +149,7 @@ namespace Example
             try
             {
                 // Delete profile
-                DeleteAccountGroup200Response result = apiInstance.DeleteProfile(profileId);
+                ProfileDeleteResponse result = apiInstance.DeleteProfile(profileId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -170,7 +170,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete profile
-    ApiResponse<DeleteAccountGroup200Response> response = apiInstance.DeleteProfileWithHttpInfo(profileId);
+    ApiResponse<ProfileDeleteResponse> response = apiInstance.DeleteProfileWithHttpInfo(profileId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -191,7 +191,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md)
+[**ProfileDeleteResponse**](ProfileDeleteResponse.md)
 
 ### Authorization
 
@@ -216,7 +216,7 @@ catch (ApiException e)
 
 <a id="getprofile"></a>
 # **GetProfile**
-> GetProfile200Response GetProfile (string profileId)
+> ProfileGetResponse GetProfile (string profileId)
 
 Get profile
 
@@ -251,7 +251,7 @@ namespace Example
             try
             {
                 // Get profile
-                GetProfile200Response result = apiInstance.GetProfile(profileId);
+                ProfileGetResponse result = apiInstance.GetProfile(profileId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -272,7 +272,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get profile
-    ApiResponse<GetProfile200Response> response = apiInstance.GetProfileWithHttpInfo(profileId);
+    ApiResponse<ProfileGetResponse> response = apiInstance.GetProfileWithHttpInfo(profileId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -293,7 +293,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**GetProfile200Response**](GetProfile200Response.md)
+[**ProfileGetResponse**](ProfileGetResponse.md)
 
 ### Authorization
 
@@ -415,7 +415,7 @@ catch (ApiException e)
 
 <a id="updateprofile"></a>
 # **UpdateProfile**
-> UpdateProfile200Response UpdateProfile (string profileId, UpdateProfileRequest updateProfileRequest)
+> ProfileUpdateResponse UpdateProfile (string profileId, UpdateProfileRequest updateProfileRequest)
 
 Update profile
 
@@ -451,7 +451,7 @@ namespace Example
             try
             {
                 // Update profile
-                UpdateProfile200Response result = apiInstance.UpdateProfile(profileId, updateProfileRequest);
+                ProfileUpdateResponse result = apiInstance.UpdateProfile(profileId, updateProfileRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -472,7 +472,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update profile
-    ApiResponse<UpdateProfile200Response> response = apiInstance.UpdateProfileWithHttpInfo(profileId, updateProfileRequest);
+    ApiResponse<ProfileUpdateResponse> response = apiInstance.UpdateProfileWithHttpInfo(profileId, updateProfileRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -494,7 +494,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**UpdateProfile200Response**](UpdateProfile200Response.md)
+[**ProfileUpdateResponse**](ProfileUpdateResponse.md)
 
 ### Authorization
 

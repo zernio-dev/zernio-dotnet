@@ -56,30 +56,21 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Exists'
+        /// Test the property 'Queues'
         /// </summary>
         [Fact]
-        public void ExistsTest()
+        public void QueuesTest()
         {
-            // TODO unit test for the property 'Exists'
+            // TODO unit test for the property 'Queues'
         }
 
         /// <summary>
-        /// Test the property 'Schedule'
+        /// Test the property 'Count'
         /// </summary>
         [Fact]
-        public void ScheduleTest()
+        public void CountTest()
         {
-            // TODO unit test for the property 'Schedule'
-        }
-
-        /// <summary>
-        /// Test the property 'NextSlots'
-        /// </summary>
-        [Fact]
-        public void NextSlotsTest()
-        {
-            // TODO unit test for the property 'NextSlots'
+            // TODO unit test for the property 'Count'
         }
     }
 }

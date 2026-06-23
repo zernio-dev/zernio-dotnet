@@ -153,7 +153,7 @@ namespace Zernio.Test.Api
             //DateOnly? toDate = null;
             //string? granularity = null;
             //var response = instance.GetFollowerStats(accountIds, profileId, fromDate, toDate, granularity);
-            //Assert.IsType<GetFollowerStats200Response>(response);
+            //Assert.IsType<FollowerStatsResponse>(response);
         }
 
         /// <summary>

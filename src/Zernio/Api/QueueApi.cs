@@ -58,8 +58,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="queueId">Queue ID to delete</param>
-        /// <returns>DeleteQueueSlot200Response</returns>
-        DeleteQueueSlot200Response DeleteQueueSlot(string profileId, string queueId);
+        /// <returns>QueueDeleteResponse</returns>
+        QueueDeleteResponse DeleteQueueSlot(string profileId, string queueId);
 
         /// <summary>
         /// Delete schedule
@@ -70,8 +70,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="queueId">Queue ID to delete</param>
-        /// <returns>ApiResponse of DeleteQueueSlot200Response</returns>
-        ApiResponse<DeleteQueueSlot200Response> DeleteQueueSlotWithHttpInfo(string profileId, string queueId);
+        /// <returns>ApiResponse of QueueDeleteResponse</returns>
+        ApiResponse<QueueDeleteResponse> DeleteQueueSlotWithHttpInfo(string profileId, string queueId);
         /// <summary>
         /// Get next available slot
         /// </summary>
@@ -81,8 +81,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="queueId">Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)</param>
-        /// <returns>GetNextQueueSlot200Response</returns>
-        GetNextQueueSlot200Response GetNextQueueSlot(string profileId, string? queueId = default);
+        /// <returns>QueueNextSlotResponse</returns>
+        QueueNextSlotResponse GetNextQueueSlot(string profileId, string? queueId = default);
 
         /// <summary>
         /// Get next available slot
@@ -93,8 +93,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="queueId">Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)</param>
-        /// <returns>ApiResponse of GetNextQueueSlot200Response</returns>
-        ApiResponse<GetNextQueueSlot200Response> GetNextQueueSlotWithHttpInfo(string profileId, string? queueId = default);
+        /// <returns>ApiResponse of QueueNextSlotResponse</returns>
+        ApiResponse<QueueNextSlotResponse> GetNextQueueSlotWithHttpInfo(string profileId, string? queueId = default);
         /// <summary>
         /// List schedules
         /// </summary>
@@ -130,8 +130,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Filter by specific queue ID. Omit to use the default queue. (optional)</param>
         /// <param name="count"> (optional, default to 20)</param>
-        /// <returns>PreviewQueue200Response</returns>
-        PreviewQueue200Response PreviewQueue(string profileId, string? queueId = default, int? count = default);
+        /// <returns>QueuePreviewResponse</returns>
+        QueuePreviewResponse PreviewQueue(string profileId, string? queueId = default, int? count = default);
 
         /// <summary>
         /// Preview upcoming slots
@@ -143,8 +143,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Filter by specific queue ID. Omit to use the default queue. (optional)</param>
         /// <param name="count"> (optional, default to 20)</param>
-        /// <returns>ApiResponse of PreviewQueue200Response</returns>
-        ApiResponse<PreviewQueue200Response> PreviewQueueWithHttpInfo(string profileId, string? queueId = default, int? count = default);
+        /// <returns>ApiResponse of QueuePreviewResponse</returns>
+        ApiResponse<QueuePreviewResponse> PreviewQueueWithHttpInfo(string profileId, string? queueId = default, int? count = default);
         /// <summary>
         /// Update schedule
         /// </summary>
@@ -153,8 +153,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateQueueSlotRequest"></param>
-        /// <returns>UpdateQueueSlot200Response</returns>
-        UpdateQueueSlot200Response UpdateQueueSlot(UpdateQueueSlotRequest updateQueueSlotRequest);
+        /// <returns>QueueUpdateResponse</returns>
+        QueueUpdateResponse UpdateQueueSlot(UpdateQueueSlotRequest updateQueueSlotRequest);
 
         /// <summary>
         /// Update schedule
@@ -164,8 +164,8 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateQueueSlotRequest"></param>
-        /// <returns>ApiResponse of UpdateQueueSlot200Response</returns>
-        ApiResponse<UpdateQueueSlot200Response> UpdateQueueSlotWithHttpInfo(UpdateQueueSlotRequest updateQueueSlotRequest);
+        /// <returns>ApiResponse of QueueUpdateResponse</returns>
+        ApiResponse<QueueUpdateResponse> UpdateQueueSlotWithHttpInfo(UpdateQueueSlotRequest updateQueueSlotRequest);
         #endregion Synchronous Operations
     }
 
@@ -208,8 +208,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Queue ID to delete</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of DeleteQueueSlot200Response</returns>
-        System.Threading.Tasks.Task<DeleteQueueSlot200Response> DeleteQueueSlotAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of QueueDeleteResponse</returns>
+        System.Threading.Tasks.Task<QueueDeleteResponse> DeleteQueueSlotAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete schedule
@@ -221,8 +221,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Queue ID to delete</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (DeleteQueueSlot200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeleteQueueSlot200Response>> DeleteQueueSlotWithHttpInfoAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (QueueDeleteResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<QueueDeleteResponse>> DeleteQueueSlotWithHttpInfoAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get next available slot
         /// </summary>
@@ -233,8 +233,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetNextQueueSlot200Response</returns>
-        System.Threading.Tasks.Task<GetNextQueueSlot200Response> GetNextQueueSlotAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of QueueNextSlotResponse</returns>
+        System.Threading.Tasks.Task<QueueNextSlotResponse> GetNextQueueSlotAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get next available slot
@@ -246,8 +246,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetNextQueueSlot200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetNextQueueSlot200Response>> GetNextQueueSlotWithHttpInfoAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (QueueNextSlotResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<QueueNextSlotResponse>> GetNextQueueSlotWithHttpInfoAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List schedules
         /// </summary>
@@ -286,8 +286,8 @@ namespace Zernio.Api
         /// <param name="queueId">Filter by specific queue ID. Omit to use the default queue. (optional)</param>
         /// <param name="count"> (optional, default to 20)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PreviewQueue200Response</returns>
-        System.Threading.Tasks.Task<PreviewQueue200Response> PreviewQueueAsync(string profileId, string? queueId = default, int? count = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of QueuePreviewResponse</returns>
+        System.Threading.Tasks.Task<QueuePreviewResponse> PreviewQueueAsync(string profileId, string? queueId = default, int? count = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Preview upcoming slots
@@ -300,8 +300,8 @@ namespace Zernio.Api
         /// <param name="queueId">Filter by specific queue ID. Omit to use the default queue. (optional)</param>
         /// <param name="count"> (optional, default to 20)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PreviewQueue200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PreviewQueue200Response>> PreviewQueueWithHttpInfoAsync(string profileId, string? queueId = default, int? count = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (QueuePreviewResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<QueuePreviewResponse>> PreviewQueueWithHttpInfoAsync(string profileId, string? queueId = default, int? count = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update schedule
         /// </summary>
@@ -311,8 +311,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateQueueSlotRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateQueueSlot200Response</returns>
-        System.Threading.Tasks.Task<UpdateQueueSlot200Response> UpdateQueueSlotAsync(UpdateQueueSlotRequest updateQueueSlotRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of QueueUpdateResponse</returns>
+        System.Threading.Tasks.Task<QueueUpdateResponse> UpdateQueueSlotAsync(UpdateQueueSlotRequest updateQueueSlotRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update schedule
@@ -323,8 +323,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateQueueSlotRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateQueueSlot200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateQueueSlot200Response>> UpdateQueueSlotWithHttpInfoAsync(UpdateQueueSlotRequest updateQueueSlotRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (QueueUpdateResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<QueueUpdateResponse>> UpdateQueueSlotWithHttpInfoAsync(UpdateQueueSlotRequest updateQueueSlotRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -673,10 +673,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="queueId">Queue ID to delete</param>
-        /// <returns>DeleteQueueSlot200Response</returns>
-        public DeleteQueueSlot200Response DeleteQueueSlot(string profileId, string queueId)
+        /// <returns>QueueDeleteResponse</returns>
+        public QueueDeleteResponse DeleteQueueSlot(string profileId, string queueId)
         {
-            Zernio.Client.ApiResponse<DeleteQueueSlot200Response> localVarResponse = DeleteQueueSlotWithHttpInfo(profileId, queueId);
+            Zernio.Client.ApiResponse<QueueDeleteResponse> localVarResponse = DeleteQueueSlotWithHttpInfo(profileId, queueId);
             return localVarResponse.Data;
         }
 
@@ -686,8 +686,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="queueId">Queue ID to delete</param>
-        /// <returns>ApiResponse of DeleteQueueSlot200Response</returns>
-        public Zernio.Client.ApiResponse<DeleteQueueSlot200Response> DeleteQueueSlotWithHttpInfo(string profileId, string queueId)
+        /// <returns>ApiResponse of QueueDeleteResponse</returns>
+        public Zernio.Client.ApiResponse<QueueDeleteResponse> DeleteQueueSlotWithHttpInfo(string profileId, string queueId)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -724,7 +724,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<DeleteQueueSlot200Response>("/v1/queue/slots", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<QueueDeleteResponse>("/v1/queue/slots", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -742,10 +742,10 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Queue ID to delete</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of DeleteQueueSlot200Response</returns>
-        public async System.Threading.Tasks.Task<DeleteQueueSlot200Response> DeleteQueueSlotAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of QueueDeleteResponse</returns>
+        public async System.Threading.Tasks.Task<QueueDeleteResponse> DeleteQueueSlotAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<DeleteQueueSlot200Response> localVarResponse = await DeleteQueueSlotWithHttpInfoAsync(profileId, queueId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<QueueDeleteResponse> localVarResponse = await DeleteQueueSlotWithHttpInfoAsync(profileId, queueId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -756,8 +756,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Queue ID to delete</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (DeleteQueueSlot200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteQueueSlot200Response>> DeleteQueueSlotWithHttpInfoAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (QueueDeleteResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueueDeleteResponse>> DeleteQueueSlotWithHttpInfoAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -797,7 +797,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteQueueSlot200Response>("/v1/queue/slots", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<QueueDeleteResponse>("/v1/queue/slots", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -814,10 +814,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="queueId">Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)</param>
-        /// <returns>GetNextQueueSlot200Response</returns>
-        public GetNextQueueSlot200Response GetNextQueueSlot(string profileId, string? queueId = default)
+        /// <returns>QueueNextSlotResponse</returns>
+        public QueueNextSlotResponse GetNextQueueSlot(string profileId, string? queueId = default)
         {
-            Zernio.Client.ApiResponse<GetNextQueueSlot200Response> localVarResponse = GetNextQueueSlotWithHttpInfo(profileId, queueId);
+            Zernio.Client.ApiResponse<QueueNextSlotResponse> localVarResponse = GetNextQueueSlotWithHttpInfo(profileId, queueId);
             return localVarResponse.Data;
         }
 
@@ -827,8 +827,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
         /// <param name="queueId">Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)</param>
-        /// <returns>ApiResponse of GetNextQueueSlot200Response</returns>
-        public Zernio.Client.ApiResponse<GetNextQueueSlot200Response> GetNextQueueSlotWithHttpInfo(string profileId, string? queueId = default)
+        /// <returns>ApiResponse of QueueNextSlotResponse</returns>
+        public Zernio.Client.ApiResponse<QueueNextSlotResponse> GetNextQueueSlotWithHttpInfo(string profileId, string? queueId = default)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -864,7 +864,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetNextQueueSlot200Response>("/v1/queue/next-slot", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<QueueNextSlotResponse>("/v1/queue/next-slot", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -882,10 +882,10 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of GetNextQueueSlot200Response</returns>
-        public async System.Threading.Tasks.Task<GetNextQueueSlot200Response> GetNextQueueSlotAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of QueueNextSlotResponse</returns>
+        public async System.Threading.Tasks.Task<QueueNextSlotResponse> GetNextQueueSlotAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetNextQueueSlot200Response> localVarResponse = await GetNextQueueSlotWithHttpInfoAsync(profileId, queueId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<QueueNextSlotResponse> localVarResponse = await GetNextQueueSlotWithHttpInfoAsync(profileId, queueId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -896,8 +896,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (GetNextQueueSlot200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetNextQueueSlot200Response>> GetNextQueueSlotWithHttpInfoAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (QueueNextSlotResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueueNextSlotResponse>> GetNextQueueSlotWithHttpInfoAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -936,7 +936,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetNextQueueSlot200Response>("/v1/queue/next-slot", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<QueueNextSlotResponse>("/v1/queue/next-slot", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1105,10 +1105,10 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Filter by specific queue ID. Omit to use the default queue. (optional)</param>
         /// <param name="count"> (optional, default to 20)</param>
-        /// <returns>PreviewQueue200Response</returns>
-        public PreviewQueue200Response PreviewQueue(string profileId, string? queueId = default, int? count = default)
+        /// <returns>QueuePreviewResponse</returns>
+        public QueuePreviewResponse PreviewQueue(string profileId, string? queueId = default, int? count = default)
         {
-            Zernio.Client.ApiResponse<PreviewQueue200Response> localVarResponse = PreviewQueueWithHttpInfo(profileId, queueId, count);
+            Zernio.Client.ApiResponse<QueuePreviewResponse> localVarResponse = PreviewQueueWithHttpInfo(profileId, queueId, count);
             return localVarResponse.Data;
         }
 
@@ -1119,8 +1119,8 @@ namespace Zernio.Api
         /// <param name="profileId"></param>
         /// <param name="queueId">Filter by specific queue ID. Omit to use the default queue. (optional)</param>
         /// <param name="count"> (optional, default to 20)</param>
-        /// <returns>ApiResponse of PreviewQueue200Response</returns>
-        public Zernio.Client.ApiResponse<PreviewQueue200Response> PreviewQueueWithHttpInfo(string profileId, string? queueId = default, int? count = default)
+        /// <returns>ApiResponse of QueuePreviewResponse</returns>
+        public Zernio.Client.ApiResponse<QueuePreviewResponse> PreviewQueueWithHttpInfo(string profileId, string? queueId = default, int? count = default)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -1160,7 +1160,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<PreviewQueue200Response>("/v1/queue/preview", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<QueuePreviewResponse>("/v1/queue/preview", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1179,10 +1179,10 @@ namespace Zernio.Api
         /// <param name="queueId">Filter by specific queue ID. Omit to use the default queue. (optional)</param>
         /// <param name="count"> (optional, default to 20)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PreviewQueue200Response</returns>
-        public async System.Threading.Tasks.Task<PreviewQueue200Response> PreviewQueueAsync(string profileId, string? queueId = default, int? count = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of QueuePreviewResponse</returns>
+        public async System.Threading.Tasks.Task<QueuePreviewResponse> PreviewQueueAsync(string profileId, string? queueId = default, int? count = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<PreviewQueue200Response> localVarResponse = await PreviewQueueWithHttpInfoAsync(profileId, queueId, count, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<QueuePreviewResponse> localVarResponse = await PreviewQueueWithHttpInfoAsync(profileId, queueId, count, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1194,8 +1194,8 @@ namespace Zernio.Api
         /// <param name="queueId">Filter by specific queue ID. Omit to use the default queue. (optional)</param>
         /// <param name="count"> (optional, default to 20)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PreviewQueue200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PreviewQueue200Response>> PreviewQueueWithHttpInfoAsync(string profileId, string? queueId = default, int? count = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (QueuePreviewResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueuePreviewResponse>> PreviewQueueWithHttpInfoAsync(string profileId, string? queueId = default, int? count = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
@@ -1238,7 +1238,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<PreviewQueue200Response>("/v1/queue/preview", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<QueuePreviewResponse>("/v1/queue/preview", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1254,10 +1254,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateQueueSlotRequest"></param>
-        /// <returns>UpdateQueueSlot200Response</returns>
-        public UpdateQueueSlot200Response UpdateQueueSlot(UpdateQueueSlotRequest updateQueueSlotRequest)
+        /// <returns>QueueUpdateResponse</returns>
+        public QueueUpdateResponse UpdateQueueSlot(UpdateQueueSlotRequest updateQueueSlotRequest)
         {
-            Zernio.Client.ApiResponse<UpdateQueueSlot200Response> localVarResponse = UpdateQueueSlotWithHttpInfo(updateQueueSlotRequest);
+            Zernio.Client.ApiResponse<QueueUpdateResponse> localVarResponse = UpdateQueueSlotWithHttpInfo(updateQueueSlotRequest);
             return localVarResponse.Data;
         }
 
@@ -1266,8 +1266,8 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateQueueSlotRequest"></param>
-        /// <returns>ApiResponse of UpdateQueueSlot200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateQueueSlot200Response> UpdateQueueSlotWithHttpInfo(UpdateQueueSlotRequest updateQueueSlotRequest)
+        /// <returns>ApiResponse of QueueUpdateResponse</returns>
+        public Zernio.Client.ApiResponse<QueueUpdateResponse> UpdateQueueSlotWithHttpInfo(UpdateQueueSlotRequest updateQueueSlotRequest)
         {
             // verify the required parameter 'updateQueueSlotRequest' is set
             if (updateQueueSlotRequest == null)
@@ -1300,7 +1300,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<UpdateQueueSlot200Response>("/v1/queue/slots", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Put<QueueUpdateResponse>("/v1/queue/slots", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1317,10 +1317,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateQueueSlotRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UpdateQueueSlot200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateQueueSlot200Response> UpdateQueueSlotAsync(UpdateQueueSlotRequest updateQueueSlotRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of QueueUpdateResponse</returns>
+        public async System.Threading.Tasks.Task<QueueUpdateResponse> UpdateQueueSlotAsync(UpdateQueueSlotRequest updateQueueSlotRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UpdateQueueSlot200Response> localVarResponse = await UpdateQueueSlotWithHttpInfoAsync(updateQueueSlotRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<QueueUpdateResponse> localVarResponse = await UpdateQueueSlotWithHttpInfoAsync(updateQueueSlotRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1330,8 +1330,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="updateQueueSlotRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UpdateQueueSlot200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateQueueSlot200Response>> UpdateQueueSlotWithHttpInfoAsync(UpdateQueueSlotRequest updateQueueSlotRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (QueueUpdateResponse)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueueUpdateResponse>> UpdateQueueSlotWithHttpInfoAsync(UpdateQueueSlotRequest updateQueueSlotRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'updateQueueSlotRequest' is set
             if (updateQueueSlotRequest == null)
@@ -1367,7 +1367,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateQueueSlot200Response>("/v1/queue/slots", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PutAsync<QueueUpdateResponse>("/v1/queue/slots", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

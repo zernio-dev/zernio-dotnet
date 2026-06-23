@@ -76,7 +76,7 @@ namespace Zernio.Test.Api
             //string profileId = null;
             //string queueId = null;
             //var response = instance.DeleteQueueSlot(profileId, queueId);
-            //Assert.IsType<DeleteQueueSlot200Response>(response);
+            //Assert.IsType<QueueDeleteResponse>(response);
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Zernio.Test.Api
             //string profileId = null;
             //string? queueId = null;
             //var response = instance.GetNextQueueSlot(profileId, queueId);
-            //Assert.IsType<GetNextQueueSlot200Response>(response);
+            //Assert.IsType<QueueNextSlotResponse>(response);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Zernio.Test.Api
             //string? queueId = null;
             //int? count = null;
             //var response = instance.PreviewQueue(profileId, queueId, count);
-            //Assert.IsType<PreviewQueue200Response>(response);
+            //Assert.IsType<QueuePreviewResponse>(response);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //UpdateQueueSlotRequest updateQueueSlotRequest = null;
             //var response = instance.UpdateQueueSlot(updateQueueSlotRequest);
-            //Assert.IsType<UpdateQueueSlot200Response>(response);
+            //Assert.IsType<QueueUpdateResponse>(response);
         }
     }
 }

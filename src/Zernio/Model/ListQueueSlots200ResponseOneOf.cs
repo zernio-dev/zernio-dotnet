@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Single queue response (default behavior)
+    /// All queues response (when all&#x3D;true)
     /// </summary>
     [DataContract(Name = "listQueueSlots_200_response_oneOf")]
     public partial class ListQueueSlots200ResponseOneOf : IValidatableObject
@@ -36,33 +36,25 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListQueueSlots200ResponseOneOf" /> class.
         /// </summary>
-        /// <param name="exists">exists.</param>
-        /// <param name="schedule">schedule.</param>
-        /// <param name="nextSlots">nextSlots.</param>
-        public ListQueueSlots200ResponseOneOf(bool exists = default, QueueSchedule schedule = default, List<DateTime> nextSlots = default)
+        /// <param name="queues">queues.</param>
+        /// <param name="count">count.</param>
+        public ListQueueSlots200ResponseOneOf(List<QueueSchedule> queues = default, int count = default)
         {
-            this.Exists = exists;
-            this.Schedule = schedule;
-            this.NextSlots = nextSlots;
+            this.Queues = queues;
+            this.Count = count;
         }
 
         /// <summary>
-        /// Gets or Sets Exists
+        /// Gets or Sets Queues
         /// </summary>
-        [DataMember(Name = "exists", EmitDefaultValue = true)]
-        public bool Exists { get; set; }
+        [DataMember(Name = "queues", EmitDefaultValue = false)]
+        public List<QueueSchedule> Queues { get; set; }
 
         /// <summary>
-        /// Gets or Sets Schedule
+        /// Gets or Sets Count
         /// </summary>
-        [DataMember(Name = "schedule", EmitDefaultValue = false)]
-        public QueueSchedule Schedule { get; set; }
-
-        /// <summary>
-        /// Gets or Sets NextSlots
-        /// </summary>
-        [DataMember(Name = "nextSlots", EmitDefaultValue = false)]
-        public List<DateTime> NextSlots { get; set; }
+        [DataMember(Name = "count", EmitDefaultValue = false)]
+        public int Count { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -72,9 +64,8 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListQueueSlots200ResponseOneOf {\n");
-            sb.Append("  Exists: ").Append(Exists).Append("\n");
-            sb.Append("  Schedule: ").Append(Schedule).Append("\n");
-            sb.Append("  NextSlots: ").Append(NextSlots).Append("\n");
+            sb.Append("  Queues: ").Append(Queues).Append("\n");
+            sb.Append("  Count: ").Append(Count).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -9,6 +9,7 @@ docs/AccountSettingsApi.md
 docs/AccountWithFollowerStats.md
 docs/AccountWithFollowerStatsAllOfAccountStats.md
 docs/AccountsApi.md
+docs/AccountsListResponse.md
 docs/ActivateSequence200Response.md
 docs/ActivateWorkflow200Response.md
 docs/ActivateWorkflow200ResponseWorkflow.md
@@ -255,7 +256,6 @@ docs/DeleteGoogleBusinessReviewReply200Response.md
 docs/DeleteInboxComment200Response.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
-docs/DeleteQueueSlot200Response.md
 docs/DiscordApi.md
 docs/DiscordPlatformData.md
 docs/DiscordPlatformDataEmbedsInner.md
@@ -299,6 +299,9 @@ docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md
 docs/FetchGoogleBusinessVerificationOptionsRequest.md
 docs/FollowUser200Response.md
 docs/FollowUserRequest.md
+docs/FollowerStatsResponse.md
+docs/FollowerStatsResponseDateRange.md
+docs/FollowerStatsResponseStatsValueInner.md
 docs/FoodMenu.md
 docs/FoodMenuItem.md
 docs/FoodMenuItemAttributes.md
@@ -372,9 +375,6 @@ docs/GetDiscordSettings200Response.md
 docs/GetDiscordSettings200ResponseAccount.md
 docs/GetFacebookPages200Response.md
 docs/GetFacebookPages200ResponsePagesInner.md
-docs/GetFollowerStats200Response.md
-docs/GetFollowerStats200ResponseDateRange.md
-docs/GetFollowerStats200ResponseStatsValueInner.md
 docs/GetFollowerStats403Response.md
 docs/GetGmbAttributeMetadata200Response.md
 docs/GetGmbAttributeMetadata200ResponseAttributeMetadataInner.md
@@ -484,7 +484,6 @@ docs/GetLinkedInPostReactions400Response.md
 docs/GetMediaPresignedUrl200Response.md
 docs/GetMediaPresignedUrlRequest.md
 docs/GetMessengerMenu200Response.md
-docs/GetNextQueueSlot200Response.md
 docs/GetPendingOAuthData200Response.md
 docs/GetPendingOAuthData200ResponseOrganizationsInner.md
 docs/GetPinterestBoards200Response.md
@@ -496,7 +495,6 @@ docs/GetPostTimeline403Response.md
 docs/GetPostTimeline404Response.md
 docs/GetPostingFrequency200Response.md
 docs/GetPostingFrequency200ResponseFrequencyInner.md
-docs/GetProfile200Response.md
 docs/GetRedditFlairs200Response.md
 docs/GetRedditFlairs200ResponseFlairsInner.md
 docs/GetRedditSubreddits200Response.md
@@ -631,7 +629,6 @@ docs/LinkedInMentionsApi.md
 docs/LinkedInPlatformData.md
 docs/ListAccountGroups200Response.md
 docs/ListAccountGroups200ResponseGroupsInner.md
-docs/ListAccounts200Response.md
 docs/ListAdAccounts200Response.md
 docs/ListAdAccounts200ResponseAccountsInner.md
 docs/ListAdAudiences200Response.md
@@ -712,7 +709,6 @@ docs/ListPinterestBoardsForSelection200Response.md
 docs/ListPinterestBoardsForSelection200ResponseBoardsInner.md
 docs/ListQueueSlots200Response.md
 docs/ListQueueSlots200ResponseOneOf.md
-docs/ListQueueSlots200ResponseOneOf1.md
 docs/ListSequenceEnrollments200Response.md
 docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md
 docs/ListSequences200Response.md
@@ -758,6 +754,7 @@ docs/LogsApi.md
 docs/MarkConversationRead200Response.md
 docs/MediaApi.md
 docs/MediaItem.md
+docs/MediaUploadResponse.md
 docs/MessagesApi.md
 docs/Money.md
 docs/MoveAccountToProfile200Response.md
@@ -791,9 +788,11 @@ docs/PostUpdateResponse.md
 docs/PostUserId.md
 docs/PostsApi.md
 docs/PostsListResponse.md
-docs/PreviewQueue200Response.md
 docs/Profile.md
 docs/ProfileCreateResponse.md
+docs/ProfileDeleteResponse.md
+docs/ProfileGetResponse.md
+docs/ProfileUpdateResponse.md
 docs/ProfilesApi.md
 docs/ProfilesListResponse.md
 docs/PurchaseWhatsAppPhoneNumber200Response.md
@@ -805,8 +804,13 @@ docs/PurchaseWhatsAppPhoneNumber202Response.md
 docs/PurchaseWhatsAppPhoneNumber409Response.md
 docs/PurchaseWhatsAppPhoneNumberRequest.md
 docs/QueueApi.md
+docs/QueueDeleteResponse.md
+docs/QueueNextSlotResponse.md
+docs/QueuePreviewResponse.md
 docs/QueueSchedule.md
 docs/QueueSlot.md
+docs/QueueSlotsResponse.md
+docs/QueueUpdateResponse.md
 docs/RecyclingConfig.md
 docs/RecyclingState.md
 docs/RedditPlatformData.md
@@ -1056,9 +1060,7 @@ docs/UpdatePostMetadata200Response.md
 docs/UpdatePostMetadataRequest.md
 docs/UpdatePostRequest.md
 docs/UpdatePostRequestPlatformsInner.md
-docs/UpdateProfile200Response.md
 docs/UpdateProfileRequest.md
-docs/UpdateQueueSlot200Response.md
 docs/UpdateQueueSlotRequest.md
 docs/UpdateRedditSubredditsRequest.md
 docs/UpdateSequence200Response.md
@@ -1085,11 +1087,14 @@ docs/UpdateWorkflowRequest.md
 docs/UpdateYoutubeDefaultPlaylist200Response.md
 docs/UpdateYoutubeDefaultPlaylistRequest.md
 docs/UploadMediaDirect200Response.md
+docs/UploadTokenResponse.md
+docs/UploadTokenStatusResponse.md
 docs/UploadWhatsAppFlowJson200Response.md
 docs/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.md
 docs/UploadWhatsAppFlowJsonRequest.md
 docs/UploadWhatsAppFlowJsonRequestFlowJson.md
 docs/UploadWhatsAppNumberKycDocument200Response.md
+docs/UploadedFile.md
 docs/UploadedOrDerivedAudience.md
 docs/UsageApi.md
 docs/UsageStats.md
@@ -1098,7 +1103,9 @@ docs/UsageStatsSpend.md
 docs/UsageStatsUsage.md
 docs/UsageStatsUsageXApiCalls.md
 docs/User.md
+docs/UserGetResponse.md
 docs/UsersApi.md
+docs/UsersListResponse.md
 docs/ValidateApi.md
 docs/ValidateMedia200Response.md
 docs/ValidateMedia200ResponsePlatformLimitsValue.md
@@ -1283,6 +1290,7 @@ src/Zernio.Test/Api/WhatsAppTemplatesApiTests.cs
 src/Zernio.Test/Api/WorkflowsApiTests.cs
 src/Zernio.Test/Model/AccountWithFollowerStatsAllOfAccountStatsTests.cs
 src/Zernio.Test/Model/AccountWithFollowerStatsTests.cs
+src/Zernio.Test/Model/AccountsListResponseTests.cs
 src/Zernio.Test/Model/ActivateSequence200ResponseTests.cs
 src/Zernio.Test/Model/ActivateWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/ActivateWorkflow200ResponseWorkflowTests.cs
@@ -1519,7 +1527,6 @@ src/Zernio.Test/Model/DeleteGoogleBusinessReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
-src/Zernio.Test/Model/DeleteQueueSlot200ResponseTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataEmbedsInnerAuthorTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataEmbedsInnerFieldsInnerTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataEmbedsInnerFooterTests.cs
@@ -1562,6 +1569,9 @@ src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptions200ResponseTests.cs
 src/Zernio.Test/Model/FetchGoogleBusinessVerificationOptionsRequestTests.cs
 src/Zernio.Test/Model/FollowUser200ResponseTests.cs
 src/Zernio.Test/Model/FollowUserRequestTests.cs
+src/Zernio.Test/Model/FollowerStatsResponseDateRangeTests.cs
+src/Zernio.Test/Model/FollowerStatsResponseStatsValueInnerTests.cs
+src/Zernio.Test/Model/FollowerStatsResponseTests.cs
 src/Zernio.Test/Model/FoodMenuItemAttributesTests.cs
 src/Zernio.Test/Model/FoodMenuItemOptionsInnerTests.cs
 src/Zernio.Test/Model/FoodMenuItemTests.cs
@@ -1627,9 +1637,6 @@ src/Zernio.Test/Model/GetDiscordSettings200ResponseAccountTests.cs
 src/Zernio.Test/Model/GetDiscordSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/GetFacebookPages200ResponseTests.cs
-src/Zernio.Test/Model/GetFollowerStats200ResponseDateRangeTests.cs
-src/Zernio.Test/Model/GetFollowerStats200ResponseStatsValueInnerTests.cs
-src/Zernio.Test/Model/GetFollowerStats200ResponseTests.cs
 src/Zernio.Test/Model/GetFollowerStats403ResponseTests.cs
 src/Zernio.Test/Model/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerTests.cs
 src/Zernio.Test/Model/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInnerTests.cs
@@ -1739,7 +1746,6 @@ src/Zernio.Test/Model/GetLinkedInPostReactions400ResponseTests.cs
 src/Zernio.Test/Model/GetMediaPresignedUrl200ResponseTests.cs
 src/Zernio.Test/Model/GetMediaPresignedUrlRequestTests.cs
 src/Zernio.Test/Model/GetMessengerMenu200ResponseTests.cs
-src/Zernio.Test/Model/GetNextQueueSlot200ResponseTests.cs
 src/Zernio.Test/Model/GetPendingOAuthData200ResponseOrganizationsInnerTests.cs
 src/Zernio.Test/Model/GetPendingOAuthData200ResponseTests.cs
 src/Zernio.Test/Model/GetPinterestBoards200ResponseBoardsInnerTests.cs
@@ -1751,7 +1757,6 @@ src/Zernio.Test/Model/GetPostTimeline403ResponseTests.cs
 src/Zernio.Test/Model/GetPostTimeline404ResponseTests.cs
 src/Zernio.Test/Model/GetPostingFrequency200ResponseFrequencyInnerTests.cs
 src/Zernio.Test/Model/GetPostingFrequency200ResponseTests.cs
-src/Zernio.Test/Model/GetProfile200ResponseTests.cs
 src/Zernio.Test/Model/GetRedditFlairs200ResponseFlairsInnerTests.cs
 src/Zernio.Test/Model/GetRedditFlairs200ResponseTests.cs
 src/Zernio.Test/Model/GetRedditSubreddits200ResponseSubredditsInnerTests.cs
@@ -1882,7 +1887,6 @@ src/Zernio.Test/Model/LinkedInAggregateAnalyticsTotalResponseTests.cs
 src/Zernio.Test/Model/LinkedInPlatformDataTests.cs
 src/Zernio.Test/Model/ListAccountGroups200ResponseGroupsInnerTests.cs
 src/Zernio.Test/Model/ListAccountGroups200ResponseTests.cs
-src/Zernio.Test/Model/ListAccounts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAccounts200ResponseAccountsInnerTests.cs
 src/Zernio.Test/Model/ListAdAccounts200ResponseTests.cs
 src/Zernio.Test/Model/ListAdAudiences200ResponseAudiencesInnerTests.cs
@@ -1961,7 +1965,6 @@ src/Zernio.Test/Model/ListLogs200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListLogs200ResponseTests.cs
 src/Zernio.Test/Model/ListPinterestBoardsForSelection200ResponseBoardsInnerTests.cs
 src/Zernio.Test/Model/ListPinterestBoardsForSelection200ResponseTests.cs
-src/Zernio.Test/Model/ListQueueSlots200ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/ListQueueSlots200ResponseOneOfTests.cs
 src/Zernio.Test/Model/ListQueueSlots200ResponseTests.cs
 src/Zernio.Test/Model/ListSequenceEnrollments200ResponseEnrollmentsInnerTests.cs
@@ -2007,6 +2010,7 @@ src/Zernio.Test/Model/ListWorkflows200ResponseTests.cs
 src/Zernio.Test/Model/ListWorkflows200ResponseWorkflowsInnerTests.cs
 src/Zernio.Test/Model/MarkConversationRead200ResponseTests.cs
 src/Zernio.Test/Model/MediaItemTests.cs
+src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
 src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveAccountToProfileRequestTests.cs
@@ -2038,9 +2042,11 @@ src/Zernio.Test/Model/PostTests.cs
 src/Zernio.Test/Model/PostUpdateResponseTests.cs
 src/Zernio.Test/Model/PostUserIdTests.cs
 src/Zernio.Test/Model/PostsListResponseTests.cs
-src/Zernio.Test/Model/PreviewQueue200ResponseTests.cs
 src/Zernio.Test/Model/ProfileCreateResponseTests.cs
+src/Zernio.Test/Model/ProfileDeleteResponseTests.cs
+src/Zernio.Test/Model/ProfileGetResponseTests.cs
 src/Zernio.Test/Model/ProfileTests.cs
+src/Zernio.Test/Model/ProfileUpdateResponseTests.cs
 src/Zernio.Test/Model/ProfilesListResponseTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumberTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1Tests.cs
@@ -2050,8 +2056,13 @@ src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber202ResponseTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber409ResponseTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumberRequestTests.cs
+src/Zernio.Test/Model/QueueDeleteResponseTests.cs
+src/Zernio.Test/Model/QueueNextSlotResponseTests.cs
+src/Zernio.Test/Model/QueuePreviewResponseTests.cs
 src/Zernio.Test/Model/QueueScheduleTests.cs
 src/Zernio.Test/Model/QueueSlotTests.cs
+src/Zernio.Test/Model/QueueSlotsResponseTests.cs
+src/Zernio.Test/Model/QueueUpdateResponseTests.cs
 src/Zernio.Test/Model/RecyclingConfigTests.cs
 src/Zernio.Test/Model/RecyclingStateTests.cs
 src/Zernio.Test/Model/RedditPlatformDataTests.cs
@@ -2296,9 +2307,7 @@ src/Zernio.Test/Model/UpdatePostMetadata200ResponseTests.cs
 src/Zernio.Test/Model/UpdatePostMetadataRequestTests.cs
 src/Zernio.Test/Model/UpdatePostRequestPlatformsInnerTests.cs
 src/Zernio.Test/Model/UpdatePostRequestTests.cs
-src/Zernio.Test/Model/UpdateProfile200ResponseTests.cs
 src/Zernio.Test/Model/UpdateProfileRequestTests.cs
-src/Zernio.Test/Model/UpdateQueueSlot200ResponseTests.cs
 src/Zernio.Test/Model/UpdateQueueSlotRequestTests.cs
 src/Zernio.Test/Model/UpdateRedditSubredditsRequestTests.cs
 src/Zernio.Test/Model/UpdateSequence200ResponseSequenceTests.cs
@@ -2325,18 +2334,23 @@ src/Zernio.Test/Model/UpdateWorkflowRequestTests.cs
 src/Zernio.Test/Model/UpdateYoutubeDefaultPlaylist200ResponseTests.cs
 src/Zernio.Test/Model/UpdateYoutubeDefaultPlaylistRequestTests.cs
 src/Zernio.Test/Model/UploadMediaDirect200ResponseTests.cs
+src/Zernio.Test/Model/UploadTokenResponseTests.cs
+src/Zernio.Test/Model/UploadTokenStatusResponseTests.cs
 src/Zernio.Test/Model/UploadWhatsAppFlowJson200ResponseTests.cs
 src/Zernio.Test/Model/UploadWhatsAppFlowJson200ResponseValidationErrorsInnerTests.cs
 src/Zernio.Test/Model/UploadWhatsAppFlowJsonRequestFlowJsonTests.cs
 src/Zernio.Test/Model/UploadWhatsAppFlowJsonRequestTests.cs
 src/Zernio.Test/Model/UploadWhatsAppNumberKycDocument200ResponseTests.cs
+src/Zernio.Test/Model/UploadedFileTests.cs
 src/Zernio.Test/Model/UploadedOrDerivedAudienceTests.cs
 src/Zernio.Test/Model/UsageStatsLimitsTests.cs
 src/Zernio.Test/Model/UsageStatsSpendTests.cs
 src/Zernio.Test/Model/UsageStatsTests.cs
 src/Zernio.Test/Model/UsageStatsUsageTests.cs
 src/Zernio.Test/Model/UsageStatsUsageXApiCallsTests.cs
+src/Zernio.Test/Model/UserGetResponseTests.cs
 src/Zernio.Test/Model/UserTests.cs
+src/Zernio.Test/Model/UsersListResponseTests.cs
 src/Zernio.Test/Model/ValidateMedia200ResponsePlatformLimitsValueTests.cs
 src/Zernio.Test/Model/ValidateMedia200ResponseTests.cs
 src/Zernio.Test/Model/ValidateMediaRequestTests.cs
@@ -2529,6 +2543,7 @@ src/Zernio/Client/WebRequestPathBuilder.cs
 src/Zernio/Model/AbstractOpenAPISchema.cs
 src/Zernio/Model/AccountWithFollowerStats.cs
 src/Zernio/Model/AccountWithFollowerStatsAllOfAccountStats.cs
+src/Zernio/Model/AccountsListResponse.cs
 src/Zernio/Model/ActivateSequence200Response.cs
 src/Zernio/Model/ActivateWorkflow200Response.cs
 src/Zernio/Model/ActivateWorkflow200ResponseWorkflow.cs
@@ -2765,7 +2780,6 @@ src/Zernio/Model/DeleteGoogleBusinessReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxComment200Response.cs
 src/Zernio/Model/DeleteInboxReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
-src/Zernio/Model/DeleteQueueSlot200Response.cs
 src/Zernio/Model/DiscordPlatformData.cs
 src/Zernio/Model/DiscordPlatformDataEmbedsInner.cs
 src/Zernio/Model/DiscordPlatformDataEmbedsInnerAuthor.cs
@@ -2808,6 +2822,9 @@ src/Zernio/Model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.c
 src/Zernio/Model/FetchGoogleBusinessVerificationOptionsRequest.cs
 src/Zernio/Model/FollowUser200Response.cs
 src/Zernio/Model/FollowUserRequest.cs
+src/Zernio/Model/FollowerStatsResponse.cs
+src/Zernio/Model/FollowerStatsResponseDateRange.cs
+src/Zernio/Model/FollowerStatsResponseStatsValueInner.cs
 src/Zernio/Model/FoodMenu.cs
 src/Zernio/Model/FoodMenuItem.cs
 src/Zernio/Model/FoodMenuItemAttributes.cs
@@ -2873,9 +2890,6 @@ src/Zernio/Model/GetDiscordSettings200Response.cs
 src/Zernio/Model/GetDiscordSettings200ResponseAccount.cs
 src/Zernio/Model/GetFacebookPages200Response.cs
 src/Zernio/Model/GetFacebookPages200ResponsePagesInner.cs
-src/Zernio/Model/GetFollowerStats200Response.cs
-src/Zernio/Model/GetFollowerStats200ResponseDateRange.cs
-src/Zernio/Model/GetFollowerStats200ResponseStatsValueInner.cs
 src/Zernio/Model/GetFollowerStats403Response.cs
 src/Zernio/Model/GetGmbAttributeMetadata200Response.cs
 src/Zernio/Model/GetGmbAttributeMetadata200ResponseAttributeMetadataInner.cs
@@ -2985,7 +2999,6 @@ src/Zernio/Model/GetLinkedInPostReactions400Response.cs
 src/Zernio/Model/GetMediaPresignedUrl200Response.cs
 src/Zernio/Model/GetMediaPresignedUrlRequest.cs
 src/Zernio/Model/GetMessengerMenu200Response.cs
-src/Zernio/Model/GetNextQueueSlot200Response.cs
 src/Zernio/Model/GetPendingOAuthData200Response.cs
 src/Zernio/Model/GetPendingOAuthData200ResponseOrganizationsInner.cs
 src/Zernio/Model/GetPinterestBoards200Response.cs
@@ -2997,7 +3010,6 @@ src/Zernio/Model/GetPostTimeline403Response.cs
 src/Zernio/Model/GetPostTimeline404Response.cs
 src/Zernio/Model/GetPostingFrequency200Response.cs
 src/Zernio/Model/GetPostingFrequency200ResponseFrequencyInner.cs
-src/Zernio/Model/GetProfile200Response.cs
 src/Zernio/Model/GetRedditFlairs200Response.cs
 src/Zernio/Model/GetRedditFlairs200ResponseFlairsInner.cs
 src/Zernio/Model/GetRedditSubreddits200Response.cs
@@ -3128,7 +3140,6 @@ src/Zernio/Model/LinkedInAggregateAnalyticsTotalResponseAnalytics.cs
 src/Zernio/Model/LinkedInPlatformData.cs
 src/Zernio/Model/ListAccountGroups200Response.cs
 src/Zernio/Model/ListAccountGroups200ResponseGroupsInner.cs
-src/Zernio/Model/ListAccounts200Response.cs
 src/Zernio/Model/ListAdAccounts200Response.cs
 src/Zernio/Model/ListAdAccounts200ResponseAccountsInner.cs
 src/Zernio/Model/ListAdAudiences200Response.cs
@@ -3209,7 +3220,6 @@ src/Zernio/Model/ListPinterestBoardsForSelection200Response.cs
 src/Zernio/Model/ListPinterestBoardsForSelection200ResponseBoardsInner.cs
 src/Zernio/Model/ListQueueSlots200Response.cs
 src/Zernio/Model/ListQueueSlots200ResponseOneOf.cs
-src/Zernio/Model/ListQueueSlots200ResponseOneOf1.cs
 src/Zernio/Model/ListSequenceEnrollments200Response.cs
 src/Zernio/Model/ListSequenceEnrollments200ResponseEnrollmentsInner.cs
 src/Zernio/Model/ListSequences200Response.cs
@@ -3253,6 +3263,7 @@ src/Zernio/Model/ListWorkflows200Response.cs
 src/Zernio/Model/ListWorkflows200ResponseWorkflowsInner.cs
 src/Zernio/Model/MarkConversationRead200Response.cs
 src/Zernio/Model/MediaItem.cs
+src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/Money.cs
 src/Zernio/Model/MoveAccountToProfile200Response.cs
 src/Zernio/Model/MoveAccountToProfileRequest.cs
@@ -3284,9 +3295,11 @@ src/Zernio/Model/PostRetryResponse.cs
 src/Zernio/Model/PostUpdateResponse.cs
 src/Zernio/Model/PostUserId.cs
 src/Zernio/Model/PostsListResponse.cs
-src/Zernio/Model/PreviewQueue200Response.cs
 src/Zernio/Model/Profile.cs
 src/Zernio/Model/ProfileCreateResponse.cs
+src/Zernio/Model/ProfileDeleteResponse.cs
+src/Zernio/Model/ProfileGetResponse.cs
+src/Zernio/Model/ProfileUpdateResponse.cs
 src/Zernio/Model/ProfilesListResponse.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber200Response.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf.cs
@@ -3296,8 +3309,13 @@ src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf2.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber202Response.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumber409Response.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumberRequest.cs
+src/Zernio/Model/QueueDeleteResponse.cs
+src/Zernio/Model/QueueNextSlotResponse.cs
+src/Zernio/Model/QueuePreviewResponse.cs
 src/Zernio/Model/QueueSchedule.cs
 src/Zernio/Model/QueueSlot.cs
+src/Zernio/Model/QueueSlotsResponse.cs
+src/Zernio/Model/QueueUpdateResponse.cs
 src/Zernio/Model/RecyclingConfig.cs
 src/Zernio/Model/RecyclingState.cs
 src/Zernio/Model/RedditPlatformData.cs
@@ -3542,9 +3560,7 @@ src/Zernio/Model/UpdatePostMetadata200Response.cs
 src/Zernio/Model/UpdatePostMetadataRequest.cs
 src/Zernio/Model/UpdatePostRequest.cs
 src/Zernio/Model/UpdatePostRequestPlatformsInner.cs
-src/Zernio/Model/UpdateProfile200Response.cs
 src/Zernio/Model/UpdateProfileRequest.cs
-src/Zernio/Model/UpdateQueueSlot200Response.cs
 src/Zernio/Model/UpdateQueueSlotRequest.cs
 src/Zernio/Model/UpdateRedditSubredditsRequest.cs
 src/Zernio/Model/UpdateSequence200Response.cs
@@ -3571,11 +3587,14 @@ src/Zernio/Model/UpdateWorkflowRequest.cs
 src/Zernio/Model/UpdateYoutubeDefaultPlaylist200Response.cs
 src/Zernio/Model/UpdateYoutubeDefaultPlaylistRequest.cs
 src/Zernio/Model/UploadMediaDirect200Response.cs
+src/Zernio/Model/UploadTokenResponse.cs
+src/Zernio/Model/UploadTokenStatusResponse.cs
 src/Zernio/Model/UploadWhatsAppFlowJson200Response.cs
 src/Zernio/Model/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.cs
 src/Zernio/Model/UploadWhatsAppFlowJsonRequest.cs
 src/Zernio/Model/UploadWhatsAppFlowJsonRequestFlowJson.cs
 src/Zernio/Model/UploadWhatsAppNumberKycDocument200Response.cs
+src/Zernio/Model/UploadedFile.cs
 src/Zernio/Model/UploadedOrDerivedAudience.cs
 src/Zernio/Model/UsageStats.cs
 src/Zernio/Model/UsageStatsLimits.cs
@@ -3583,6 +3602,8 @@ src/Zernio/Model/UsageStatsSpend.cs
 src/Zernio/Model/UsageStatsUsage.cs
 src/Zernio/Model/UsageStatsUsageXApiCalls.cs
 src/Zernio/Model/User.cs
+src/Zernio/Model/UserGetResponse.cs
+src/Zernio/Model/UsersListResponse.cs
 src/Zernio/Model/ValidateMedia200Response.cs
 src/Zernio/Model/ValidateMedia200ResponsePlatformLimitsValue.cs
 src/Zernio/Model/ValidateMediaRequest.cs

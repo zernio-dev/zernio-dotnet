@@ -37,10 +37,10 @@ namespace Zernio.Model
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ListQueueSlots200Response" /> class
-        /// with the <see cref="ListQueueSlots200ResponseOneOf" /> class
+        /// with the <see cref="QueueSlotsResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of ListQueueSlots200ResponseOneOf.</param>
-        public ListQueueSlots200Response(ListQueueSlots200ResponseOneOf actualInstance)
+        /// <param name="actualInstance">An instance of QueueSlotsResponse.</param>
+        public ListQueueSlots200Response(QueueSlotsResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -49,10 +49,10 @@ namespace Zernio.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ListQueueSlots200Response" /> class
-        /// with the <see cref="ListQueueSlots200ResponseOneOf1" /> class
+        /// with the <see cref="ListQueueSlots200ResponseOneOf" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of ListQueueSlots200ResponseOneOf1.</param>
-        public ListQueueSlots200Response(ListQueueSlots200ResponseOneOf1 actualInstance)
+        /// <param name="actualInstance">An instance of ListQueueSlots200ResponseOneOf.</param>
+        public ListQueueSlots200Response(ListQueueSlots200ResponseOneOf actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -77,15 +77,25 @@ namespace Zernio.Model
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(ListQueueSlots200ResponseOneOf1) || value is ListQueueSlots200ResponseOneOf1)
+                else if (value.GetType() == typeof(QueueSlotsResponse) || value is QueueSlotsResponse)
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: ListQueueSlots200ResponseOneOf, ListQueueSlots200ResponseOneOf1");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: ListQueueSlots200ResponseOneOf, QueueSlotsResponse");
                 }
             }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `QueueSlotsResponse`. If the actual instance is not `QueueSlotsResponse`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of QueueSlotsResponse</returns>
+        public QueueSlotsResponse GetQueueSlotsResponse()
+        {
+            return (QueueSlotsResponse)this.ActualInstance;
         }
 
         /// <summary>
@@ -96,16 +106,6 @@ namespace Zernio.Model
         public ListQueueSlots200ResponseOneOf GetListQueueSlots200ResponseOneOf()
         {
             return (ListQueueSlots200ResponseOneOf)this.ActualInstance;
-        }
-
-        /// <summary>
-        /// Get the actual instance of `ListQueueSlots200ResponseOneOf1`. If the actual instance is not `ListQueueSlots200ResponseOneOf1`,
-        /// the InvalidClassException will be thrown
-        /// </summary>
-        /// <returns>An instance of ListQueueSlots200ResponseOneOf1</returns>
-        public ListQueueSlots200ResponseOneOf1 GetListQueueSlots200ResponseOneOf1()
-        {
-            return (ListQueueSlots200ResponseOneOf1)this.ActualInstance;
         }
 
         /// <summary>
@@ -169,21 +169,21 @@ namespace Zernio.Model
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(ListQueueSlots200ResponseOneOf1).GetProperty("AdditionalProperties") == null)
+                if (typeof(QueueSlotsResponse).GetProperty("AdditionalProperties") == null)
                 {
-                    newListQueueSlots200Response = new ListQueueSlots200Response(JsonConvert.DeserializeObject<ListQueueSlots200ResponseOneOf1>(jsonString, ListQueueSlots200Response.SerializerSettings));
+                    newListQueueSlots200Response = new ListQueueSlots200Response(JsonConvert.DeserializeObject<QueueSlotsResponse>(jsonString, ListQueueSlots200Response.SerializerSettings));
                 }
                 else
                 {
-                    newListQueueSlots200Response = new ListQueueSlots200Response(JsonConvert.DeserializeObject<ListQueueSlots200ResponseOneOf1>(jsonString, ListQueueSlots200Response.AdditionalPropertiesSerializerSettings));
+                    newListQueueSlots200Response = new ListQueueSlots200Response(JsonConvert.DeserializeObject<QueueSlotsResponse>(jsonString, ListQueueSlots200Response.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("ListQueueSlots200ResponseOneOf1");
+                matchedTypes.Add("QueueSlotsResponse");
                 match++;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into ListQueueSlots200ResponseOneOf1: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into QueueSlotsResponse: {1}", jsonString, exception.ToString()));
             }
 
             if (match == 0)

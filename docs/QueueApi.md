@@ -114,7 +114,7 @@ catch (ApiException e)
 
 <a id="deletequeueslot"></a>
 # **DeleteQueueSlot**
-> DeleteQueueSlot200Response DeleteQueueSlot (string profileId, string queueId)
+> QueueDeleteResponse DeleteQueueSlot (string profileId, string queueId)
 
 Delete schedule
 
@@ -150,7 +150,7 @@ namespace Example
             try
             {
                 // Delete schedule
-                DeleteQueueSlot200Response result = apiInstance.DeleteQueueSlot(profileId, queueId);
+                QueueDeleteResponse result = apiInstance.DeleteQueueSlot(profileId, queueId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -171,7 +171,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Delete schedule
-    ApiResponse<DeleteQueueSlot200Response> response = apiInstance.DeleteQueueSlotWithHttpInfo(profileId, queueId);
+    ApiResponse<QueueDeleteResponse> response = apiInstance.DeleteQueueSlotWithHttpInfo(profileId, queueId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -193,7 +193,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**DeleteQueueSlot200Response**](DeleteQueueSlot200Response.md)
+[**QueueDeleteResponse**](QueueDeleteResponse.md)
 
 ### Authorization
 
@@ -216,7 +216,7 @@ catch (ApiException e)
 
 <a id="getnextqueueslot"></a>
 # **GetNextQueueSlot**
-> GetNextQueueSlot200Response GetNextQueueSlot (string profileId, string? queueId = null)
+> QueueNextSlotResponse GetNextQueueSlot (string profileId, string? queueId = null)
 
 Get next available slot
 
@@ -252,7 +252,7 @@ namespace Example
             try
             {
                 // Get next available slot
-                GetNextQueueSlot200Response result = apiInstance.GetNextQueueSlot(profileId, queueId);
+                QueueNextSlotResponse result = apiInstance.GetNextQueueSlot(profileId, queueId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -273,7 +273,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get next available slot
-    ApiResponse<GetNextQueueSlot200Response> response = apiInstance.GetNextQueueSlotWithHttpInfo(profileId, queueId);
+    ApiResponse<QueueNextSlotResponse> response = apiInstance.GetNextQueueSlotWithHttpInfo(profileId, queueId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -295,7 +295,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**GetNextQueueSlot200Response**](GetNextQueueSlot200Response.md)
+[**QueueNextSlotResponse**](QueueNextSlotResponse.md)
 
 ### Authorization
 
@@ -424,7 +424,7 @@ catch (ApiException e)
 
 <a id="previewqueue"></a>
 # **PreviewQueue**
-> PreviewQueue200Response PreviewQueue (string profileId, string? queueId = null, int? count = null)
+> QueuePreviewResponse PreviewQueue (string profileId, string? queueId = null, int? count = null)
 
 Preview upcoming slots
 
@@ -461,7 +461,7 @@ namespace Example
             try
             {
                 // Preview upcoming slots
-                PreviewQueue200Response result = apiInstance.PreviewQueue(profileId, queueId, count);
+                QueuePreviewResponse result = apiInstance.PreviewQueue(profileId, queueId, count);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -482,7 +482,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Preview upcoming slots
-    ApiResponse<PreviewQueue200Response> response = apiInstance.PreviewQueueWithHttpInfo(profileId, queueId, count);
+    ApiResponse<QueuePreviewResponse> response = apiInstance.PreviewQueueWithHttpInfo(profileId, queueId, count);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -505,7 +505,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**PreviewQueue200Response**](PreviewQueue200Response.md)
+[**QueuePreviewResponse**](QueuePreviewResponse.md)
 
 ### Authorization
 
@@ -529,7 +529,7 @@ catch (ApiException e)
 
 <a id="updatequeueslot"></a>
 # **UpdateQueueSlot**
-> UpdateQueueSlot200Response UpdateQueueSlot (UpdateQueueSlotRequest updateQueueSlotRequest)
+> QueueUpdateResponse UpdateQueueSlot (UpdateQueueSlotRequest updateQueueSlotRequest)
 
 Update schedule
 
@@ -564,7 +564,7 @@ namespace Example
             try
             {
                 // Update schedule
-                UpdateQueueSlot200Response result = apiInstance.UpdateQueueSlot(updateQueueSlotRequest);
+                QueueUpdateResponse result = apiInstance.UpdateQueueSlot(updateQueueSlotRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -585,7 +585,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update schedule
-    ApiResponse<UpdateQueueSlot200Response> response = apiInstance.UpdateQueueSlotWithHttpInfo(updateQueueSlotRequest);
+    ApiResponse<QueueUpdateResponse> response = apiInstance.UpdateQueueSlotWithHttpInfo(updateQueueSlotRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -606,7 +606,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**UpdateQueueSlot200Response**](UpdateQueueSlot200Response.md)
+[**QueueUpdateResponse**](QueueUpdateResponse.md)
 
 ### Authorization
 

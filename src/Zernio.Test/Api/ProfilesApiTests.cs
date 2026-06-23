@@ -75,7 +75,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string profileId = null;
             //var response = instance.DeleteProfile(profileId);
-            //Assert.IsType<DeleteAccountGroup200Response>(response);
+            //Assert.IsType<ProfileDeleteResponse>(response);
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string profileId = null;
             //var response = instance.GetProfile(profileId);
-            //Assert.IsType<GetProfile200Response>(response);
+            //Assert.IsType<ProfileGetResponse>(response);
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Zernio.Test.Api
             //string profileId = null;
             //UpdateProfileRequest updateProfileRequest = null;
             //var response = instance.UpdateProfile(profileId, updateProfileRequest);
-            //Assert.IsType<UpdateProfile200Response>(response);
+            //Assert.IsType<ProfileUpdateResponse>(response);
         }
     }
 }

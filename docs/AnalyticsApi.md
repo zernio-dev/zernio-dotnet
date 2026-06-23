@@ -588,7 +588,7 @@ catch (ApiException e)
 
 <a id="getfollowerstats"></a>
 # **GetFollowerStats**
-> GetFollowerStats200Response GetFollowerStats (string? accountIds = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? granularity = null)
+> FollowerStatsResponse GetFollowerStats (string? accountIds = null, string? profileId = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? granularity = null)
 
 Get follower stats
 
@@ -627,7 +627,7 @@ namespace Example
             try
             {
                 // Get follower stats
-                GetFollowerStats200Response result = apiInstance.GetFollowerStats(accountIds, profileId, fromDate, toDate, granularity);
+                FollowerStatsResponse result = apiInstance.GetFollowerStats(accountIds, profileId, fromDate, toDate, granularity);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -648,7 +648,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get follower stats
-    ApiResponse<GetFollowerStats200Response> response = apiInstance.GetFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
+    ApiResponse<FollowerStatsResponse> response = apiInstance.GetFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -673,7 +673,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**GetFollowerStats200Response**](GetFollowerStats200Response.md)
+[**FollowerStatsResponse**](FollowerStatsResponse.md)
 
 ### Authorization
 
