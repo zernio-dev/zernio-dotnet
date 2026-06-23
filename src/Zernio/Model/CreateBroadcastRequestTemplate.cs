@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="language">language.</param>
         /// <param name="components">components.</param>
         /// <param name="variableMapping">Maps template variable positions (\&quot;1\&quot;, \&quot;2\&quot;) to contact fields or static values. Resolved per recipient at send time..</param>
-        public CreateBroadcastRequestTemplate(string name = default, string language = default, List<Object> components = default, Dictionary<string, CreateBroadcastRequestTemplateVariableMappingValue> variableMapping = default)
+        public CreateBroadcastRequestTemplate(string name = default, string language = default, List<Dictionary<string, Object>> components = default, Dictionary<string, CreateBroadcastRequestTemplateVariableMappingValue> variableMapping = default)
         {
             this.Name = name;
             this.Language = language;
@@ -64,7 +64,7 @@ namespace Zernio.Model
         /// Gets or Sets Components
         /// </summary>
         [DataMember(Name = "components", EmitDefaultValue = false)]
-        public List<Object> Components { get; set; }
+        public List<Dictionary<string, Object>> Components { get; set; }
 
         /// <summary>
         /// Maps template variable positions (\&quot;1\&quot;, \&quot;2\&quot;) to contact fields or static values. Resolved per recipient at send time.
