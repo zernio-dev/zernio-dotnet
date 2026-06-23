@@ -5,6 +5,7 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**CheckWhatsAppNumberAvailability**](WhatsAppPhoneNumbersApi.md#checkwhatsappnumberavailability) | **GET** /v1/whatsapp/phone-numbers/availability | Check a country&#39;s availability + address constraint |
+| [**CreateWhatsAppNumberKycLink**](WhatsAppPhoneNumbersApi.md#createwhatsappnumberkyclink) | **POST** /v1/whatsapp/phone-numbers/kyc/share | Create a hosted KYC link |
 | [**GetWhatsAppNumberInfo**](WhatsAppPhoneNumbersApi.md#getwhatsappnumberinfo) | **GET** /v1/whatsapp/number-info | Get number status |
 | [**GetWhatsAppNumberKycForm**](WhatsAppPhoneNumbersApi.md#getwhatsappnumberkycform) | **GET** /v1/whatsapp/phone-numbers/kyc | Get regulated-number KYC form spec |
 | [**GetWhatsAppNumberRemediation**](WhatsAppPhoneNumbersApi.md#getwhatsappnumberremediation) | **GET** /v1/whatsapp/phone-numbers/{id}/remediate | Get the declined requirements to fix |
@@ -115,6 +116,106 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Availability + address constraint. |  -  |
 | **400** | Country not offerable |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createwhatsappnumberkyclink"></a>
+# **CreateWhatsAppNumberKycLink**
+> CreateWhatsAppNumberKycLink200Response CreateWhatsAppNumberKycLink (CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest)
+
+Create a hosted KYC link
+
+Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with `branding` (your company name, logo, brand color). Supply `redirect_url` to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the `whatsapp.number.kyc_submitted` webhook to react when the form is completed. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateWhatsAppNumberKycLinkExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppPhoneNumbersApi(httpClient, config, httpClientHandler);
+            var createWhatsAppNumberKycLinkRequest = new CreateWhatsAppNumberKycLinkRequest(); // CreateWhatsAppNumberKycLinkRequest | 
+
+            try
+            {
+                // Create a hosted KYC link
+                CreateWhatsAppNumberKycLink200Response result = apiInstance.CreateWhatsAppNumberKycLink(createWhatsAppNumberKycLinkRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppPhoneNumbersApi.CreateWhatsAppNumberKycLink: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateWhatsAppNumberKycLinkWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a hosted KYC link
+    ApiResponse<CreateWhatsAppNumberKycLink200Response> response = apiInstance.CreateWhatsAppNumberKycLinkWithHttpInfo(createWhatsAppNumberKycLinkRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppPhoneNumbersApi.CreateWhatsAppNumberKycLinkWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createWhatsAppNumberKycLinkRequest** | [**CreateWhatsAppNumberKycLinkRequest**](CreateWhatsAppNumberKycLinkRequest.md) |  |  |
+
+### Return type
+
+[**CreateWhatsAppNumberKycLink200Response**](CreateWhatsAppNumberKycLink200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Hosted KYC link created. |  -  |
+| **400** | Country does not require KYC (not a regulated country). |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

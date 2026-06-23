@@ -229,6 +229,9 @@ docs/CreateWhatsAppGroupChat201Response.md
 docs/CreateWhatsAppGroupChat201ResponseGroup.md
 docs/CreateWhatsAppGroupChatRequest.md
 docs/CreateWhatsAppGroupInviteLink200Response.md
+docs/CreateWhatsAppNumberKycLink200Response.md
+docs/CreateWhatsAppNumberKycLinkRequest.md
+docs/CreateWhatsAppNumberKycLinkRequestBranding.md
 docs/CreateWhatsAppSandboxSession200Response.md
 docs/CreateWhatsAppSandboxSessionRequest.md
 docs/CreateWhatsAppTemplate200Response.md
@@ -764,6 +767,7 @@ docs/OnWhatsAppNumberActivatedRequest.md
 docs/OnWhatsAppNumberActivatedRequestNumber.md
 docs/OnWhatsAppNumberDeclinedRequest.md
 docs/OnWhatsAppNumberDeclinedRequestNumber.md
+docs/OnWhatsAppNumberKycSubmittedRequest.md
 docs/OnWhatsAppNumberReactivatedRequest.md
 docs/OnWhatsAppNumberReleasedRequest.md
 docs/OnWhatsAppNumberSuspendedRequest.md
@@ -1489,6 +1493,9 @@ src/Zernio.Test/Model/CreateWhatsAppGroupChat201ResponseGroupTests.cs
 src/Zernio.Test/Model/CreateWhatsAppGroupChat201ResponseTests.cs
 src/Zernio.Test/Model/CreateWhatsAppGroupChatRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppGroupInviteLink200ResponseTests.cs
+src/Zernio.Test/Model/CreateWhatsAppNumberKycLink200ResponseTests.cs
+src/Zernio.Test/Model/CreateWhatsAppNumberKycLinkRequestBrandingTests.cs
+src/Zernio.Test/Model/CreateWhatsAppNumberKycLinkRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppSandboxSession200ResponseTests.cs
 src/Zernio.Test/Model/CreateWhatsAppSandboxSessionRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppTemplate200ResponseTemplateTests.cs
@@ -2007,6 +2014,7 @@ src/Zernio.Test/Model/OnWhatsAppNumberActivatedRequestNumberTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberActivatedRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberDeclinedRequestNumberTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberDeclinedRequestTests.cs
+src/Zernio.Test/Model/OnWhatsAppNumberKycSubmittedRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberReactivatedRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberReleasedRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberSuspendedRequestTests.cs
@@ -2730,6 +2738,9 @@ src/Zernio/Model/CreateWhatsAppGroupChat201Response.cs
 src/Zernio/Model/CreateWhatsAppGroupChat201ResponseGroup.cs
 src/Zernio/Model/CreateWhatsAppGroupChatRequest.cs
 src/Zernio/Model/CreateWhatsAppGroupInviteLink200Response.cs
+src/Zernio/Model/CreateWhatsAppNumberKycLink200Response.cs
+src/Zernio/Model/CreateWhatsAppNumberKycLinkRequest.cs
+src/Zernio/Model/CreateWhatsAppNumberKycLinkRequestBranding.cs
 src/Zernio/Model/CreateWhatsAppSandboxSession200Response.cs
 src/Zernio/Model/CreateWhatsAppSandboxSessionRequest.cs
 src/Zernio/Model/CreateWhatsAppTemplate200Response.cs
@@ -3248,6 +3259,7 @@ src/Zernio/Model/OnWhatsAppNumberActivatedRequest.cs
 src/Zernio/Model/OnWhatsAppNumberActivatedRequestNumber.cs
 src/Zernio/Model/OnWhatsAppNumberDeclinedRequest.cs
 src/Zernio/Model/OnWhatsAppNumberDeclinedRequestNumber.cs
+src/Zernio/Model/OnWhatsAppNumberKycSubmittedRequest.cs
 src/Zernio/Model/OnWhatsAppNumberReactivatedRequest.cs
 src/Zernio/Model/OnWhatsAppNumberReleasedRequest.cs
 src/Zernio/Model/OnWhatsAppNumberSuspendedRequest.cs

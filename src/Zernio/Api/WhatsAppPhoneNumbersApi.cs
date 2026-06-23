@@ -50,6 +50,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CheckWhatsAppNumberAvailability200Response</returns>
         ApiResponse<CheckWhatsAppNumberAvailability200Response> CheckWhatsAppNumberAvailabilityWithHttpInfo(string country);
         /// <summary>
+        /// Create a hosted KYC link
+        /// </summary>
+        /// <remarks>
+        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWhatsAppNumberKycLinkRequest"></param>
+        /// <returns>CreateWhatsAppNumberKycLink200Response</returns>
+        CreateWhatsAppNumberKycLink200Response CreateWhatsAppNumberKycLink(CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest);
+
+        /// <summary>
+        /// Create a hosted KYC link
+        /// </summary>
+        /// <remarks>
+        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWhatsAppNumberKycLinkRequest"></param>
+        /// <returns>ApiResponse of CreateWhatsAppNumberKycLink200Response</returns>
+        ApiResponse<CreateWhatsAppNumberKycLink200Response> CreateWhatsAppNumberKycLinkWithHttpInfo(CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest);
+        /// <summary>
         /// Get number status
         /// </summary>
         /// <remarks>
@@ -370,6 +391,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CheckWhatsAppNumberAvailability200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CheckWhatsAppNumberAvailability200Response>> CheckWhatsAppNumberAvailabilityWithHttpInfoAsync(string country, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a hosted KYC link
+        /// </summary>
+        /// <remarks>
+        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWhatsAppNumberKycLinkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateWhatsAppNumberKycLink200Response</returns>
+        System.Threading.Tasks.Task<CreateWhatsAppNumberKycLink200Response> CreateWhatsAppNumberKycLinkAsync(CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a hosted KYC link
+        /// </summary>
+        /// <remarks>
+        /// Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWhatsAppNumberKycLinkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateWhatsAppNumberKycLink200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateWhatsAppNumberKycLink200Response>> CreateWhatsAppNumberKycLinkWithHttpInfoAsync(CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get number status
         /// </summary>
@@ -1019,6 +1063,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CheckWhatsAppNumberAvailability", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWhatsAppNumberKycLinkRequest"></param>
+        /// <returns>CreateWhatsAppNumberKycLink200Response</returns>
+        public CreateWhatsAppNumberKycLink200Response CreateWhatsAppNumberKycLink(CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest)
+        {
+            Zernio.Client.ApiResponse<CreateWhatsAppNumberKycLink200Response> localVarResponse = CreateWhatsAppNumberKycLinkWithHttpInfo(createWhatsAppNumberKycLinkRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWhatsAppNumberKycLinkRequest"></param>
+        /// <returns>ApiResponse of CreateWhatsAppNumberKycLink200Response</returns>
+        public Zernio.Client.ApiResponse<CreateWhatsAppNumberKycLink200Response> CreateWhatsAppNumberKycLinkWithHttpInfo(CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest)
+        {
+            // verify the required parameter 'createWhatsAppNumberKycLinkRequest' is set
+            if (createWhatsAppNumberKycLinkRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createWhatsAppNumberKycLinkRequest' when calling WhatsAppPhoneNumbersApi->CreateWhatsAppNumberKycLink");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createWhatsAppNumberKycLinkRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateWhatsAppNumberKycLink200Response>("/v1/whatsapp/phone-numbers/kyc/share", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateWhatsAppNumberKycLink", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWhatsAppNumberKycLinkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateWhatsAppNumberKycLink200Response</returns>
+        public async System.Threading.Tasks.Task<CreateWhatsAppNumberKycLink200Response> CreateWhatsAppNumberKycLinkAsync(CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateWhatsAppNumberKycLink200Response> localVarResponse = await CreateWhatsAppNumberKycLinkWithHttpInfoAsync(createWhatsAppNumberKycLinkRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a hosted KYC link Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createWhatsAppNumberKycLinkRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateWhatsAppNumberKycLink200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateWhatsAppNumberKycLink200Response>> CreateWhatsAppNumberKycLinkWithHttpInfoAsync(CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createWhatsAppNumberKycLinkRequest' is set
+            if (createWhatsAppNumberKycLinkRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createWhatsAppNumberKycLinkRequest' when calling WhatsAppPhoneNumbersApi->CreateWhatsAppNumberKycLink");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createWhatsAppNumberKycLinkRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateWhatsAppNumberKycLink200Response>("/v1/whatsapp/phone-numbers/kyc/share", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateWhatsAppNumberKycLink", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

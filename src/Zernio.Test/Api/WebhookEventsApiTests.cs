@@ -451,6 +451,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnWhatsAppNumberKycSubmitted
+        /// </summary>
+        [Fact]
+        public void OnWhatsAppNumberKycSubmittedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //OnWhatsAppNumberKycSubmittedRequest onWhatsAppNumberKycSubmittedRequest = null;
+            //instance.OnWhatsAppNumberKycSubmitted(onWhatsAppNumberKycSubmittedRequest);
+        }
+
+        /// <summary>
         /// Test OnWhatsAppNumberReactivated
         /// </summary>
         [Fact]

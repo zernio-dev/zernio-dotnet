@@ -491,6 +491,7 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**UpdateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#updatewhatsappflow) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow
 *WhatsAppFlowsApi* | [**UploadWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#uploadwhatsappflowjson) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
 *WhatsAppPhoneNumbersApi* | [**CheckWhatsAppNumberAvailability**](docs/WhatsAppPhoneNumbersApi.md#checkwhatsappnumberavailability) | **GET** /v1/whatsapp/phone-numbers/availability | Check a country's availability + address constraint
+*WhatsAppPhoneNumbersApi* | [**CreateWhatsAppNumberKycLink**](docs/WhatsAppPhoneNumbersApi.md#createwhatsappnumberkyclink) | **POST** /v1/whatsapp/phone-numbers/kyc/share | Create a hosted KYC link
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppNumberInfo**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappnumberinfo) | **GET** /v1/whatsapp/number-info | Get number status
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppNumberKycForm**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappnumberkycform) | **GET** /v1/whatsapp/phone-numbers/kyc | Get regulated-number KYC form spec
 *WhatsAppPhoneNumbersApi* | [**GetWhatsAppNumberRemediation**](docs/WhatsAppPhoneNumbersApi.md#getwhatsappnumberremediation) | **GET** /v1/whatsapp/phone-numbers/{id}/remediate | Get the declined requirements to fix
@@ -740,6 +741,9 @@ Class | Method | HTTP request | Description
  - [Model.CreateWhatsAppGroupChat201ResponseGroup](docs/CreateWhatsAppGroupChat201ResponseGroup.md)
  - [Model.CreateWhatsAppGroupChatRequest](docs/CreateWhatsAppGroupChatRequest.md)
  - [Model.CreateWhatsAppGroupInviteLink200Response](docs/CreateWhatsAppGroupInviteLink200Response.md)
+ - [Model.CreateWhatsAppNumberKycLink200Response](docs/CreateWhatsAppNumberKycLink200Response.md)
+ - [Model.CreateWhatsAppNumberKycLinkRequest](docs/CreateWhatsAppNumberKycLinkRequest.md)
+ - [Model.CreateWhatsAppNumberKycLinkRequestBranding](docs/CreateWhatsAppNumberKycLinkRequestBranding.md)
  - [Model.CreateWhatsAppSandboxSession200Response](docs/CreateWhatsAppSandboxSession200Response.md)
  - [Model.CreateWhatsAppSandboxSessionRequest](docs/CreateWhatsAppSandboxSessionRequest.md)
  - [Model.CreateWhatsAppTemplate200Response](docs/CreateWhatsAppTemplate200Response.md)
@@ -1258,6 +1262,7 @@ Class | Method | HTTP request | Description
  - [Model.OnWhatsAppNumberActivatedRequestNumber](docs/OnWhatsAppNumberActivatedRequestNumber.md)
  - [Model.OnWhatsAppNumberDeclinedRequest](docs/OnWhatsAppNumberDeclinedRequest.md)
  - [Model.OnWhatsAppNumberDeclinedRequestNumber](docs/OnWhatsAppNumberDeclinedRequestNumber.md)
+ - [Model.OnWhatsAppNumberKycSubmittedRequest](docs/OnWhatsAppNumberKycSubmittedRequest.md)
  - [Model.OnWhatsAppNumberReactivatedRequest](docs/OnWhatsAppNumberReactivatedRequest.md)
  - [Model.OnWhatsAppNumberReleasedRequest](docs/OnWhatsAppNumberReleasedRequest.md)
  - [Model.OnWhatsAppNumberSuspendedRequest](docs/OnWhatsAppNumberSuspendedRequest.md)

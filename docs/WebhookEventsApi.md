@@ -40,6 +40,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnWhatsAppNumberActionRequired**](WebhookEventsApi.md#onwhatsappnumberactionrequired) | **POST** /whatsapp.number.action_required | WhatsApp number action required event |
 | [**OnWhatsAppNumberActivated**](WebhookEventsApi.md#onwhatsappnumberactivated) | **POST** /whatsapp.number.activated | WhatsApp number activated event |
 | [**OnWhatsAppNumberDeclined**](WebhookEventsApi.md#onwhatsappnumberdeclined) | **POST** /whatsapp.number.declined | WhatsApp number declined event |
+| [**OnWhatsAppNumberKycSubmitted**](WebhookEventsApi.md#onwhatsappnumberkycsubmitted) | **POST** /whatsapp.number.kyc_submitted | WhatsApp number KYC submitted event |
 | [**OnWhatsAppNumberReactivated**](WebhookEventsApi.md#onwhatsappnumberreactivated) | **POST** /whatsapp.number.reactivated | WhatsApp number reactivated event |
 | [**OnWhatsAppNumberReleased**](WebhookEventsApi.md#onwhatsappnumberreleased) | **POST** /whatsapp.number.released | WhatsApp number released event |
 | [**OnWhatsAppNumberSuspended**](WebhookEventsApi.md#onwhatsappnumbersuspended) | **POST** /whatsapp.number.suspended | WhatsApp number suspended event |
@@ -3408,6 +3409,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **onWhatsAppNumberDeclinedRequest** | [**OnWhatsAppNumberDeclinedRequest**](OnWhatsAppNumberDeclinedRequest.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onwhatsappnumberkycsubmitted"></a>
+# **OnWhatsAppNumberKycSubmitted**
+> void OnWhatsAppNumberKycSubmitted (OnWhatsAppNumberKycSubmittedRequest onWhatsAppNumberKycSubmittedRequest)
+
+WhatsApp number KYC submitted event
+
+Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; `whatsapp.number.activated` or `whatsapp.number.declined` follows once the provider rules on it. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnWhatsAppNumberKycSubmittedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var onWhatsAppNumberKycSubmittedRequest = new OnWhatsAppNumberKycSubmittedRequest(); // OnWhatsAppNumberKycSubmittedRequest | 
+
+            try
+            {
+                // WhatsApp number KYC submitted event
+                apiInstance.OnWhatsAppNumberKycSubmitted(onWhatsAppNumberKycSubmittedRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnWhatsAppNumberKycSubmitted: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnWhatsAppNumberKycSubmittedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // WhatsApp number KYC submitted event
+    apiInstance.OnWhatsAppNumberKycSubmittedWithHttpInfo(onWhatsAppNumberKycSubmittedRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnWhatsAppNumberKycSubmittedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **onWhatsAppNumberKycSubmittedRequest** | [**OnWhatsAppNumberKycSubmittedRequest**](OnWhatsAppNumberKycSubmittedRequest.md) |  |  |
 
 ### Return type
 

@@ -67,6 +67,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateWhatsAppNumberKycLink
+        /// </summary>
+        [Fact]
+        public void CreateWhatsAppNumberKycLinkTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest = null;
+            //var response = instance.CreateWhatsAppNumberKycLink(createWhatsAppNumberKycLinkRequest);
+            //Assert.IsType<CreateWhatsAppNumberKycLink200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetWhatsAppNumberInfo
         /// </summary>
         [Fact]

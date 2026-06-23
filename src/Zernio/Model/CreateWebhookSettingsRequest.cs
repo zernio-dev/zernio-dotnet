@@ -241,7 +241,13 @@ namespace Zernio.Model
             /// Enum WhatsappNumberReleased for value: whatsapp.number.released
             /// </summary>
             [EnumMember(Value = "whatsapp.number.released")]
-            WhatsappNumberReleased = 34
+            WhatsappNumberReleased = 34,
+
+            /// <summary>
+            /// Enum WhatsappNumberKycSubmitted for value: whatsapp.number.kyc_submitted
+            /// </summary>
+            [EnumMember(Value = "whatsapp.number.kyc_submitted")]
+            WhatsappNumberKycSubmitted = 35
         }
 
         /// <summary>
