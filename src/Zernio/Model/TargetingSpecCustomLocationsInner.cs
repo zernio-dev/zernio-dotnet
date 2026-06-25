@@ -71,7 +71,7 @@ namespace Zernio.Model
         /// <param name="radius">Positive radius around the point. (required).</param>
         /// <param name="distanceUnit">distanceUnit (required).</param>
         /// <param name="name">name.</param>
-        /// <param name="address">address.</param>
+        /// <param name="address">Optional label, sent to Meta as &#x60;address_string&#x60;. latitude/longitude take precedence for the pin location..</param>
         public TargetingSpecCustomLocationsInner(decimal latitude = default, decimal longitude = default, decimal radius = default, DistanceUnitEnum distanceUnit = default, string name = default, string address = default)
         {
             this.Latitude = latitude;
@@ -108,8 +108,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Address
+        /// Optional label, sent to Meta as &#x60;address_string&#x60;. latitude/longitude take precedence for the pin location.
         /// </summary>
+        /// <value>Optional label, sent to Meta as &#x60;address_string&#x60;. latitude/longitude take precedence for the pin location.</value>
         [DataMember(Name = "address", EmitDefaultValue = false)]
         public string Address { get; set; }
 

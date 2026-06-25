@@ -956,6 +956,8 @@ docs/TargetingSpec.md
 docs/TargetingSpecCitiesInner.md
 docs/TargetingSpecCustomLocationsInner.md
 docs/TargetingSpecExcludedLocations.md
+docs/TargetingSpecExcludedLocationsCitiesInner.md
+docs/TargetingSpecExcludedLocationsPlacesInner.md
 docs/TelegramPlatformData.md
 docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
@@ -2203,6 +2205,8 @@ src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestTests.cs
 src/Zernio.Test/Model/TargetingSpecCitiesInnerTests.cs
 src/Zernio.Test/Model/TargetingSpecCustomLocationsInnerTests.cs
+src/Zernio.Test/Model/TargetingSpecExcludedLocationsCitiesInnerTests.cs
+src/Zernio.Test/Model/TargetingSpecExcludedLocationsPlacesInnerTests.cs
 src/Zernio.Test/Model/TargetingSpecExcludedLocationsTests.cs
 src/Zernio.Test/Model/TargetingSpecTests.cs
 src/Zernio.Test/Model/TelegramPlatformDataTests.cs
@@ -3458,6 +3462,8 @@ src/Zernio/Model/TargetingSpec.cs
 src/Zernio/Model/TargetingSpecCitiesInner.cs
 src/Zernio/Model/TargetingSpecCustomLocationsInner.cs
 src/Zernio/Model/TargetingSpecExcludedLocations.cs
+src/Zernio/Model/TargetingSpecExcludedLocationsCitiesInner.cs
+src/Zernio/Model/TargetingSpecExcludedLocationsPlacesInner.cs
 src/Zernio/Model/TelegramPlatformData.cs
 src/Zernio/Model/TestWebhookRequest.cs
 src/Zernio/Model/ThreadsPlatformData.cs

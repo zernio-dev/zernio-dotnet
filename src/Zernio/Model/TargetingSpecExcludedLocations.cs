@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Geo to exclude from the audience. A subset of the inclusion geo shape.
+    /// Geo to exclude from the audience. Mirrors the inclusion geo shape: excluded cities can carry a radius catchment and excluded custom (lat/lng) pins are supported, both on Meta (excluded_geo_locations).
     /// </summary>
     [DataContract(Name = "TargetingSpec_excludedLocations")]
     public partial class TargetingSpecExcludedLocations : IValidatableObject
@@ -38,14 +38,20 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="countries">countries.</param>
         /// <param name="regions">regions.</param>
-        /// <param name="cities">cities.</param>
+        /// <param name="cities">Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities..</param>
         /// <param name="zips">zips.</param>
-        public TargetingSpecExcludedLocations(List<string> countries = default, List<CreateStandaloneAdRequestZipsInner> regions = default, List<CreateStandaloneAdRequestZipsInner> cities = default, List<CreateStandaloneAdRequestZipsInner> zips = default)
+        /// <param name="places">Named points of interest to exclude. &#x60;key&#x60; from /v1/ads/targeting/search..</param>
+        /// <param name="neighborhoods">Named neighbourhood areas to exclude. &#x60;key&#x60; from /v1/ads/targeting/search..</param>
+        /// <param name="customLocations">Point-radius (lat/lng) pins to exclude (Meta excluded_geo_locations.custom_locations). Mirrors the inclusion customLocations shape..</param>
+        public TargetingSpecExcludedLocations(List<string> countries = default, List<CreateStandaloneAdRequestZipsInner> regions = default, List<TargetingSpecExcludedLocationsCitiesInner> cities = default, List<CreateStandaloneAdRequestZipsInner> zips = default, List<TargetingSpecExcludedLocationsPlacesInner> places = default, List<TargetingSpecExcludedLocationsPlacesInner> neighborhoods = default, List<TargetingSpecCustomLocationsInner> customLocations = default)
         {
             this.Countries = countries;
             this.Regions = regions;
             this.Cities = cities;
             this.Zips = zips;
+            this.Places = places;
+            this.Neighborhoods = neighborhoods;
+            this.CustomLocations = customLocations;
         }
 
         /// <summary>
@@ -61,16 +67,38 @@ namespace Zernio.Model
         public List<CreateStandaloneAdRequestZipsInner> Regions { get; set; }
 
         /// <summary>
-        /// Gets or Sets Cities
+        /// Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities.
         /// </summary>
+        /// <value>Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities.</value>
         [DataMember(Name = "cities", EmitDefaultValue = false)]
-        public List<CreateStandaloneAdRequestZipsInner> Cities { get; set; }
+        public List<TargetingSpecExcludedLocationsCitiesInner> Cities { get; set; }
 
         /// <summary>
         /// Gets or Sets Zips
         /// </summary>
         [DataMember(Name = "zips", EmitDefaultValue = false)]
         public List<CreateStandaloneAdRequestZipsInner> Zips { get; set; }
+
+        /// <summary>
+        /// Named points of interest to exclude. &#x60;key&#x60; from /v1/ads/targeting/search.
+        /// </summary>
+        /// <value>Named points of interest to exclude. &#x60;key&#x60; from /v1/ads/targeting/search.</value>
+        [DataMember(Name = "places", EmitDefaultValue = false)]
+        public List<TargetingSpecExcludedLocationsPlacesInner> Places { get; set; }
+
+        /// <summary>
+        /// Named neighbourhood areas to exclude. &#x60;key&#x60; from /v1/ads/targeting/search.
+        /// </summary>
+        /// <value>Named neighbourhood areas to exclude. &#x60;key&#x60; from /v1/ads/targeting/search.</value>
+        [DataMember(Name = "neighborhoods", EmitDefaultValue = false)]
+        public List<TargetingSpecExcludedLocationsPlacesInner> Neighborhoods { get; set; }
+
+        /// <summary>
+        /// Point-radius (lat/lng) pins to exclude (Meta excluded_geo_locations.custom_locations). Mirrors the inclusion customLocations shape.
+        /// </summary>
+        /// <value>Point-radius (lat/lng) pins to exclude (Meta excluded_geo_locations.custom_locations). Mirrors the inclusion customLocations shape.</value>
+        [DataMember(Name = "customLocations", EmitDefaultValue = false)]
+        public List<TargetingSpecCustomLocationsInner> CustomLocations { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -84,6 +112,9 @@ namespace Zernio.Model
             sb.Append("  Regions: ").Append(Regions).Append("\n");
             sb.Append("  Cities: ").Append(Cities).Append("\n");
             sb.Append("  Zips: ").Append(Zips).Append("\n");
+            sb.Append("  Places: ").Append(Places).Append("\n");
+            sb.Append("  Neighborhoods: ").Append(Neighborhoods).Append("\n");
+            sb.Append("  CustomLocations: ").Append(CustomLocations).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

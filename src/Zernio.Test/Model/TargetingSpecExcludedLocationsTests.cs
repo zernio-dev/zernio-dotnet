@@ -90,5 +90,32 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Zips'
         }
+
+        /// <summary>
+        /// Test the property 'Places'
+        /// </summary>
+        [Fact]
+        public void PlacesTest()
+        {
+            // TODO unit test for the property 'Places'
+        }
+
+        /// <summary>
+        /// Test the property 'Neighborhoods'
+        /// </summary>
+        [Fact]
+        public void NeighborhoodsTest()
+        {
+            // TODO unit test for the property 'Neighborhoods'
+        }
+
+        /// <summary>
+        /// Test the property 'CustomLocations'
+        /// </summary>
+        [Fact]
+        public void CustomLocationsTest()
+        {
+            // TODO unit test for the property 'CustomLocations'
+        }
     }
 }

@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// TargetingSpecCitiesInner
+    /// TargetingSpecExcludedLocationsCitiesInner
     /// </summary>
-    [DataContract(Name = "TargetingSpec_cities_inner")]
-    public partial class TargetingSpecCitiesInner : IValidatableObject
+    [DataContract(Name = "TargetingSpec_excludedLocations_cities_inner")]
+    public partial class TargetingSpecExcludedLocationsCitiesInner : IValidatableObject
     {
         /// <summary>
         /// Required if radius is set.
@@ -61,26 +61,24 @@ namespace Zernio.Model
         [DataMember(Name = "distance_unit", EmitDefaultValue = false)]
         public DistanceUnitEnum? DistanceUnit { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TargetingSpecCitiesInner" /> class.
+        /// Initializes a new instance of the <see cref="TargetingSpecExcludedLocationsCitiesInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected TargetingSpecCitiesInner() { }
+        protected TargetingSpecExcludedLocationsCitiesInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TargetingSpecCitiesInner" /> class.
+        /// Initializes a new instance of the <see cref="TargetingSpecExcludedLocationsCitiesInner" /> class.
         /// </summary>
         /// <param name="key">key (required).</param>
-        /// <param name="name">name.</param>
-        /// <param name="radius">Radius around the city. Requires distance_unit..</param>
+        /// <param name="radius">Radius around the excluded city. Requires distance_unit..</param>
         /// <param name="distanceUnit">Required if radius is set..</param>
-        public TargetingSpecCitiesInner(string key = default, string name = default, decimal radius = default, DistanceUnitEnum? distanceUnit = default)
+        public TargetingSpecExcludedLocationsCitiesInner(string key = default, decimal radius = default, DistanceUnitEnum? distanceUnit = default)
         {
             // to ensure "key" is required (not null)
             if (key == null)
             {
-                throw new ArgumentNullException("key is a required property for TargetingSpecCitiesInner and cannot be null");
+                throw new ArgumentNullException("key is a required property for TargetingSpecExcludedLocationsCitiesInner and cannot be null");
             }
             this.Key = key;
-            this.Name = name;
             this.Radius = radius;
             this.DistanceUnit = distanceUnit;
         }
@@ -92,15 +90,9 @@ namespace Zernio.Model
         public string Key { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Radius around the excluded city. Requires distance_unit.
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Radius around the city. Requires distance_unit.
-        /// </summary>
-        /// <value>Radius around the city. Requires distance_unit.</value>
+        /// <value>Radius around the excluded city. Requires distance_unit.</value>
         [DataMember(Name = "radius", EmitDefaultValue = false)]
         public decimal Radius { get; set; }
 
@@ -111,9 +103,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TargetingSpecCitiesInner {\n");
+            sb.Append("class TargetingSpecExcludedLocationsCitiesInner {\n");
             sb.Append("  Key: ").Append(Key).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Radius: ").Append(Radius).Append("\n");
             sb.Append("  DistanceUnit: ").Append(DistanceUnit).Append("\n");
             sb.Append("}\n");
