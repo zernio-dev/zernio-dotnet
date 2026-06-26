@@ -79,6 +79,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetAccountPosts
+        /// </summary>
+        [Fact]
+        public void GetAccountPostsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //bool? excludeUnlisted = null;
+            //var response = instance.GetAccountPosts(accountId, excludeUnlisted);
+            //Assert.IsType<GetAccountPosts200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetAllAccountsHealth
         /// </summary>
         [Fact]

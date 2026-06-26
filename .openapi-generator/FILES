@@ -321,6 +321,9 @@ docs/GetAccountHealth200Response.md
 docs/GetAccountHealth200ResponsePermissions.md
 docs/GetAccountHealth200ResponsePermissionsPostingInner.md
 docs/GetAccountHealth200ResponseTokenStatus.md
+docs/GetAccountPosts200Response.md
+docs/GetAccountPosts200ResponsePostsInner.md
+docs/GetAccountPosts401Response.md
 docs/GetAd200Response.md
 docs/GetAdAnalytics200Response.md
 docs/GetAdAnalytics200ResponseAd.md
@@ -1585,6 +1588,9 @@ src/Zernio.Test/Model/GetAccountHealth200ResponsePermissionsPostingInnerTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponsePermissionsTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponseTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponseTokenStatusTests.cs
+src/Zernio.Test/Model/GetAccountPosts200ResponsePostsInnerTests.cs
+src/Zernio.Test/Model/GetAccountPosts200ResponseTests.cs
+src/Zernio.Test/Model/GetAccountPosts401ResponseTests.cs
 src/Zernio.Test/Model/GetAd200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAnalytics200ResponseAdTests.cs
 src/Zernio.Test/Model/GetAdAnalytics200ResponseAnalyticsDailyInnerTests.cs
@@ -2840,6 +2846,9 @@ src/Zernio/Model/GetAccountHealth200Response.cs
 src/Zernio/Model/GetAccountHealth200ResponsePermissions.cs
 src/Zernio/Model/GetAccountHealth200ResponsePermissionsPostingInner.cs
 src/Zernio/Model/GetAccountHealth200ResponseTokenStatus.cs
+src/Zernio/Model/GetAccountPosts200Response.cs
+src/Zernio/Model/GetAccountPosts200ResponsePostsInner.cs
+src/Zernio/Model/GetAccountPosts401Response.cs
 src/Zernio/Model/GetAd200Response.cs
 src/Zernio/Model/GetAdAnalytics200Response.cs
 src/Zernio/Model/GetAdAnalytics200ResponseAd.cs

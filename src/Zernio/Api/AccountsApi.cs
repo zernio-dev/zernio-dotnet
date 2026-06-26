@@ -71,6 +71,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetAccountHealth200Response</returns>
         ApiResponse<GetAccountHealth200Response> GetAccountHealthWithHttpInfo(string accountId);
         /// <summary>
+        /// List posts for an account
+        /// </summary>
+        /// <remarks>
+        /// Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="excludeUnlisted">YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)</param>
+        /// <returns>GetAccountPosts200Response</returns>
+        GetAccountPosts200Response GetAccountPosts(string accountId, bool? excludeUnlisted = default);
+
+        /// <summary>
+        /// List posts for an account
+        /// </summary>
+        /// <remarks>
+        /// Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="excludeUnlisted">YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)</param>
+        /// <returns>ApiResponse of GetAccountPosts200Response</returns>
+        ApiResponse<GetAccountPosts200Response> GetAccountPostsWithHttpInfo(string accountId, bool? excludeUnlisted = default);
+        /// <summary>
         /// Check accounts health
         /// </summary>
         /// <remarks>
@@ -279,6 +302,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAccountHealth200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAccountHealth200Response>> GetAccountHealthWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List posts for an account
+        /// </summary>
+        /// <remarks>
+        /// Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="excludeUnlisted">YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAccountPosts200Response</returns>
+        System.Threading.Tasks.Task<GetAccountPosts200Response> GetAccountPostsAsync(string accountId, bool? excludeUnlisted = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List posts for an account
+        /// </summary>
+        /// <remarks>
+        /// Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="excludeUnlisted">YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAccountPosts200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAccountPosts200Response>> GetAccountPostsWithHttpInfoAsync(string accountId, bool? excludeUnlisted = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Check accounts health
         /// </summary>
@@ -906,6 +954,145 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAccountHealth", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List posts for an account Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="excludeUnlisted">YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)</param>
+        /// <returns>GetAccountPosts200Response</returns>
+        public GetAccountPosts200Response GetAccountPosts(string accountId, bool? excludeUnlisted = default)
+        {
+            Zernio.Client.ApiResponse<GetAccountPosts200Response> localVarResponse = GetAccountPostsWithHttpInfo(accountId, excludeUnlisted);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List posts for an account Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="excludeUnlisted">YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)</param>
+        /// <returns>ApiResponse of GetAccountPosts200Response</returns>
+        public Zernio.Client.ApiResponse<GetAccountPosts200Response> GetAccountPostsWithHttpInfo(string accountId, bool? excludeUnlisted = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetAccountPosts");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (excludeUnlisted != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "excludeUnlisted", excludeUnlisted));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAccountPosts200Response>("/v1/accounts/{accountId}/posts", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAccountPosts", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List posts for an account Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="excludeUnlisted">YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAccountPosts200Response</returns>
+        public async System.Threading.Tasks.Task<GetAccountPosts200Response> GetAccountPostsAsync(string accountId, bool? excludeUnlisted = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAccountPosts200Response> localVarResponse = await GetAccountPostsWithHttpInfoAsync(accountId, excludeUnlisted, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List posts for an account Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="excludeUnlisted">YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAccountPosts200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAccountPosts200Response>> GetAccountPostsWithHttpInfoAsync(string accountId, bool? excludeUnlisted = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AccountsApi->GetAccountPosts");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            if (excludeUnlisted != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "excludeUnlisted", excludeUnlisted));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAccountPosts200Response>("/v1/accounts/{accountId}/posts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAccountPosts", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
