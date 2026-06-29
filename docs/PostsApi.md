@@ -534,7 +534,7 @@ catch (ApiException e)
 
 <a id="listposts"></a>
 # **ListPosts**
-> PostsListResponse ListPosts (int? page = null, int? limit = null, string? status = null, string? platform = null, string? profileId = null, string? createdBy = null, DateOnly? dateFrom = null, DateOnly? dateTo = null, bool? includeHidden = null, string? search = null, string? sortBy = null, string? accountId = null)
+> PostsListResponse ListPosts (int? page = null, int? limit = null, string? source = null, string? status = null, string? platform = null, string? profileId = null, string? createdBy = null, DateOnly? dateFrom = null, DateOnly? dateTo = null, bool? includeHidden = null, string? search = null, string? sortBy = null, string? accountId = null)
 
 List posts
 
@@ -566,6 +566,7 @@ namespace Example
             var apiInstance = new PostsApi(httpClient, config, httpClientHandler);
             var page = 1;  // int? | Page number (1-based) (optional)  (default to 1)
             var limit = 10;  // int? | Page size (optional)  (default to 10)
+            var source = "zernio";  // string? | Which collection to read. `zernio` (default) returns posts authored through Zernio. `external` returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with `accountId` and paginate via `page`/`limit` to walk the full synced history (we keep up to the last ~12 months per account). (optional)  (default to zernio)
             var status = "draft";  // string? |  (optional) 
             var platform = twitter;  // string? |  (optional) 
             var profileId = "profileId_example";  // string? |  (optional) 
@@ -580,7 +581,7 @@ namespace Example
             try
             {
                 // List posts
-                PostsListResponse result = apiInstance.ListPosts(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+                PostsListResponse result = apiInstance.ListPosts(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -601,7 +602,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List posts
-    ApiResponse<PostsListResponse> response = apiInstance.ListPostsWithHttpInfo(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+    ApiResponse<PostsListResponse> response = apiInstance.ListPostsWithHttpInfo(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -620,6 +621,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **page** | **int?** | Page number (1-based) | [optional] [default to 1] |
 | **limit** | **int?** | Page size | [optional] [default to 10] |
+| **source** | **string?** | Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] |
 | **status** | **string?** |  | [optional]  |
 | **platform** | **string?** |  | [optional]  |
 | **profileId** | **string?** |  | [optional]  |

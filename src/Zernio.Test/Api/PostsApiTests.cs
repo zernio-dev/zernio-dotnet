@@ -126,6 +126,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //int? page = null;
             //int? limit = null;
+            //string? source = null;
             //string? status = null;
             //string? platform = null;
             //string? profileId = null;
@@ -136,7 +137,7 @@ namespace Zernio.Test.Api
             //string? search = null;
             //string? sortBy = null;
             //string? accountId = null;
-            //var response = instance.ListPosts(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+            //var response = instance.ListPosts(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
             //Assert.IsType<PostsListResponse>(response);
         }
 

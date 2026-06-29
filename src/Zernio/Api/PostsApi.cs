@@ -148,6 +148,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Page size (optional, default to 10)</param>
+        /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId"> (optional)</param>
@@ -159,7 +160,7 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
         /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <returns>PostsListResponse</returns>
-        PostsListResponse ListPosts(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default);
+        PostsListResponse ListPosts(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default);
 
         /// <summary>
         /// List posts
@@ -170,6 +171,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Page size (optional, default to 10)</param>
+        /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId"> (optional)</param>
@@ -181,7 +183,7 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
         /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <returns>ApiResponse of PostsListResponse</returns>
-        ApiResponse<PostsListResponse> ListPostsWithHttpInfo(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default);
+        ApiResponse<PostsListResponse> ListPostsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default);
         /// <summary>
         /// Retry failed post
         /// </summary>
@@ -411,6 +413,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Page size (optional, default to 10)</param>
+        /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId"> (optional)</param>
@@ -423,7 +426,7 @@ namespace Zernio.Api
         /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PostsListResponse</returns>
-        System.Threading.Tasks.Task<PostsListResponse> ListPostsAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<PostsListResponse> ListPostsAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List posts
@@ -434,6 +437,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Page size (optional, default to 10)</param>
+        /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId"> (optional)</param>
@@ -446,7 +450,7 @@ namespace Zernio.Api
         /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PostsListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PostsListResponse>> ListPostsWithHttpInfoAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<PostsListResponse>> ListPostsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Retry failed post
         /// </summary>
@@ -1441,6 +1445,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Page size (optional, default to 10)</param>
+        /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId"> (optional)</param>
@@ -1452,9 +1457,9 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
         /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <returns>PostsListResponse</returns>
-        public PostsListResponse ListPosts(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default)
+        public PostsListResponse ListPosts(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default)
         {
-            Zernio.Client.ApiResponse<PostsListResponse> localVarResponse = ListPostsWithHttpInfo(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+            Zernio.Client.ApiResponse<PostsListResponse> localVarResponse = ListPostsWithHttpInfo(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
             return localVarResponse.Data;
         }
 
@@ -1464,6 +1469,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Page size (optional, default to 10)</param>
+        /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId"> (optional)</param>
@@ -1475,7 +1481,7 @@ namespace Zernio.Api
         /// <param name="sortBy">Sort order for results. (optional, default to scheduled-desc)</param>
         /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <returns>ApiResponse of PostsListResponse</returns>
-        public Zernio.Client.ApiResponse<PostsListResponse> ListPostsWithHttpInfo(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default)
+        public Zernio.Client.ApiResponse<PostsListResponse> ListPostsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1500,6 +1506,10 @@ namespace Zernio.Api
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (source != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "source", source));
             }
             if (status != null)
             {
@@ -1567,6 +1577,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Page size (optional, default to 10)</param>
+        /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId"> (optional)</param>
@@ -1579,9 +1590,9 @@ namespace Zernio.Api
         /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PostsListResponse</returns>
-        public async System.Threading.Tasks.Task<PostsListResponse> ListPostsAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<PostsListResponse> ListPostsAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<PostsListResponse> localVarResponse = await ListPostsWithHttpInfoAsync(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<PostsListResponse> localVarResponse = await ListPostsWithHttpInfoAsync(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1591,6 +1602,7 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="page">Page number (1-based) (optional, default to 1)</param>
         /// <param name="limit">Page size (optional, default to 10)</param>
+        /// <param name="source">Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)</param>
         /// <param name="status"> (optional)</param>
         /// <param name="platform"> (optional)</param>
         /// <param name="profileId"> (optional)</param>
@@ -1603,7 +1615,7 @@ namespace Zernio.Api
         /// <param name="accountId">Filter posts to those published via a specific social account (24-char hex ObjectId). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PostsListResponse)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PostsListResponse>> ListPostsWithHttpInfoAsync(int? page = default, int? limit = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PostsListResponse>> ListPostsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? status = default, string? platform = default, string? profileId = default, string? createdBy = default, DateOnly? dateFrom = default, DateOnly? dateTo = default, bool? includeHidden = default, string? search = default, string? sortBy = default, string? accountId = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1630,6 +1642,10 @@ namespace Zernio.Api
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (source != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "source", source));
             }
             if (status != null)
             {
