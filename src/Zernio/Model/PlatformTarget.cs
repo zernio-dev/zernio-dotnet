@@ -34,6 +34,33 @@ namespace Zernio.Model
     public partial class PlatformTarget : IValidatableObject
     {
         /// <summary>
+        /// Graduation strategy the trial reel was launched with. Present only when isTrialReel is true.
+        /// </summary>
+        /// <value>Graduation strategy the trial reel was launched with. Present only when isTrialReel is true.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TrialGraduationStrategyEnum
+        {
+            /// <summary>
+            /// Enum MANUAL for value: MANUAL
+            /// </summary>
+            [EnumMember(Value = "MANUAL")]
+            MANUAL = 1,
+
+            /// <summary>
+            /// Enum SSPERFORMANCE for value: SS_PERFORMANCE
+            /// </summary>
+            [EnumMember(Value = "SS_PERFORMANCE")]
+            SSPERFORMANCE = 2
+        }
+
+
+        /// <summary>
+        /// Graduation strategy the trial reel was launched with. Present only when isTrialReel is true.
+        /// </summary>
+        /// <value>Graduation strategy the trial reel was launched with. Present only when isTrialReel is true.</value>
+        [DataMember(Name = "trialGraduationStrategy", EmitDefaultValue = false)]
+        public TrialGraduationStrategyEnum? TrialGraduationStrategy { get; set; }
+        /// <summary>
         /// Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), system_error (Zernio infra), unknown
         /// </summary>
         /// <value>Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), system_error (Zernio infra), unknown</value>
@@ -142,10 +169,12 @@ namespace Zernio.Model
         /// <param name="platformPostId">The native post ID on the platform (populated after successful publish).</param>
         /// <param name="platformPostUrl">Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time..</param>
         /// <param name="publishedAt">Timestamp when the post was published to this platform.</param>
+        /// <param name="isTrialReel">Present and true only when this Instagram reel was launched as a Trial through Zernio (created with platformSpecificData.trialParams). Use it to segment trial reels in analytics. Note: Instagram&#39;s Graph API exposes no readable trial field, so this reflects creation-time intent only. It indicates the reel STARTED as a trial, not whether or when it graduated..</param>
+        /// <param name="trialGraduationStrategy">Graduation strategy the trial reel was launched with. Present only when isTrialReel is true..</param>
         /// <param name="errorMessage">Human-readable error message when status is failed. Contains platform-specific error details explaining why the publish failed..</param>
         /// <param name="errorCategory">Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), system_error (Zernio infra), unknown.</param>
         /// <param name="errorSource">Who caused the error: user (fix content/reconnect), platform (outage/API change), system (Zernio issue, rare).</param>
-        public PlatformTarget(string platform = default, PlatformTargetAccountId accountId = default, string customContent = default, List<MediaItem> customMedia = default, DateTime scheduledFor = default, PlatformTargetPlatformSpecificData platformSpecificData = default, string status = default, string platformPostId = default, string platformPostUrl = default, DateTime publishedAt = default, string errorMessage = default, ErrorCategoryEnum? errorCategory = default, ErrorSourceEnum? errorSource = default)
+        public PlatformTarget(string platform = default, PlatformTargetAccountId accountId = default, string customContent = default, List<MediaItem> customMedia = default, DateTime scheduledFor = default, PlatformTargetPlatformSpecificData platformSpecificData = default, string status = default, string platformPostId = default, string platformPostUrl = default, DateTime publishedAt = default, bool isTrialReel = default, TrialGraduationStrategyEnum? trialGraduationStrategy = default, string errorMessage = default, ErrorCategoryEnum? errorCategory = default, ErrorSourceEnum? errorSource = default)
         {
             this.Platform = platform;
             this.AccountId = accountId;
@@ -157,6 +186,8 @@ namespace Zernio.Model
             this.PlatformPostId = platformPostId;
             this.PlatformPostUrl = platformPostUrl;
             this.PublishedAt = publishedAt;
+            this.IsTrialReel = isTrialReel;
+            this.TrialGraduationStrategy = trialGraduationStrategy;
             this.ErrorMessage = errorMessage;
             this.ErrorCategory = errorCategory;
             this.ErrorSource = errorSource;
@@ -242,6 +273,13 @@ namespace Zernio.Model
         public DateTime PublishedAt { get; set; }
 
         /// <summary>
+        /// Present and true only when this Instagram reel was launched as a Trial through Zernio (created with platformSpecificData.trialParams). Use it to segment trial reels in analytics. Note: Instagram&#39;s Graph API exposes no readable trial field, so this reflects creation-time intent only. It indicates the reel STARTED as a trial, not whether or when it graduated.
+        /// </summary>
+        /// <value>Present and true only when this Instagram reel was launched as a Trial through Zernio (created with platformSpecificData.trialParams). Use it to segment trial reels in analytics. Note: Instagram&#39;s Graph API exposes no readable trial field, so this reflects creation-time intent only. It indicates the reel STARTED as a trial, not whether or when it graduated.</value>
+        [DataMember(Name = "isTrialReel", EmitDefaultValue = true)]
+        public bool IsTrialReel { get; set; }
+
+        /// <summary>
         /// Human-readable error message when status is failed. Contains platform-specific error details explaining why the publish failed.
         /// </summary>
         /// <value>Human-readable error message when status is failed. Contains platform-specific error details explaining why the publish failed.</value>
@@ -266,6 +304,8 @@ namespace Zernio.Model
             sb.Append("  PlatformPostId: ").Append(PlatformPostId).Append("\n");
             sb.Append("  PlatformPostUrl: ").Append(PlatformPostUrl).Append("\n");
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
+            sb.Append("  IsTrialReel: ").Append(IsTrialReel).Append("\n");
+            sb.Append("  TrialGraduationStrategy: ").Append(TrialGraduationStrategy).Append("\n");
             sb.Append("  ErrorMessage: ").Append(ErrorMessage).Append("\n");
             sb.Append("  ErrorCategory: ").Append(ErrorCategory).Append("\n");
             sb.Append("  ErrorSource: ").Append(ErrorSource).Append("\n");

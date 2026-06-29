@@ -146,6 +146,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'IsTrialReel'
+        /// </summary>
+        [Fact]
+        public void IsTrialReelTest()
+        {
+            // TODO unit test for the property 'IsTrialReel'
+        }
+
+        /// <summary>
+        /// Test the property 'TrialGraduationStrategy'
+        /// </summary>
+        [Fact]
+        public void TrialGraduationStrategyTest()
+        {
+            // TODO unit test for the property 'TrialGraduationStrategy'
+        }
+
+        /// <summary>
         /// Test the property 'ErrorMessage'
         /// </summary>
         [Fact]
