@@ -5,8 +5,8 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**CompleteTelegramConnect**](ConnectApi.md#completetelegramconnect) | **PATCH** /v1/connect/telegram | Check Telegram status |
-| [**CompleteWhatsAppPhoneSelection**](ConnectApi.md#completewhatsappphoneselection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete WhatsApp phone number selection |
-| [**ConfigureTikTokAdsBrandIdentity**](ConnectApi.md#configuretiktokadsbrandidentity) | **PATCH** /v1/connect/tiktok-ads | Configure TikTok Ads Brand Identity |
+| [**CompleteWhatsAppPhoneSelection**](ConnectApi.md#completewhatsappphoneselection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection |
+| [**ConfigureTikTokAdsBrandIdentity**](ConnectApi.md#configuretiktokadsbrandidentity) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity |
 | [**ConnectAds**](ConnectApi.md#connectads) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform |
 | [**ConnectBlueskyCredentials**](ConnectApi.md#connectblueskycredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account |
 | [**ConnectWhatsAppCredentials**](ConnectApi.md#connectwhatsappcredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
@@ -27,7 +27,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListLinkedInOrganizations**](ConnectApi.md#listlinkedinorganizations) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs |
 | [**ListPinterestBoardsForSelection**](ConnectApi.md#listpinterestboardsforselection) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards |
 | [**ListSnapchatProfiles**](ConnectApi.md#listsnapchatprofiles) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles |
-| [**ListWhatsAppPhoneNumbers**](ConnectApi.md#listwhatsappphonenumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List WhatsApp phone numbers for selection |
+| [**ListWhatsAppPhoneNumbers**](ConnectApi.md#listwhatsappphonenumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection |
 | [**SelectFacebookPage**](ConnectApi.md#selectfacebookpage) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**SelectGoogleBusinessLocation**](ConnectApi.md#selectgooglebusinesslocation) | **POST** /v1/connect/googlebusiness/select-location | Select GBP location |
 | [**SelectLinkedInOrganization**](ConnectApi.md#selectlinkedinorganization) | **POST** /v1/connect/linkedin/select-organization | Select LinkedIn org |
@@ -145,7 +145,7 @@ catch (ApiException e)
 # **CompleteWhatsAppPhoneSelection**
 > CompleteWhatsAppPhoneSelection200Response CompleteWhatsAppPhoneSelection (CompleteWhatsAppPhoneSelectionRequest completeWhatsAppPhoneSelectionRequest, string? xConnectToken = null)
 
-Complete WhatsApp phone number selection
+Complete number selection
 
 Bind a specific WhatsApp phone number to the Zernio profile after the user picks one from `listWhatsAppPhoneNumbers`. Exchanges the short-lived OAuth token for a long-lived token, subscribes the WABA to webhooks, and creates the SocialAccount. 
 
@@ -178,7 +178,7 @@ namespace Example
 
             try
             {
-                // Complete WhatsApp phone number selection
+                // Complete number selection
                 CompleteWhatsAppPhoneSelection200Response result = apiInstance.CompleteWhatsAppPhoneSelection(completeWhatsAppPhoneSelectionRequest, xConnectToken);
                 Debug.WriteLine(result);
             }
@@ -199,7 +199,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Complete WhatsApp phone number selection
+    // Complete number selection
     ApiResponse<CompleteWhatsAppPhoneSelection200Response> response = apiInstance.CompleteWhatsAppPhoneSelectionWithHttpInfo(completeWhatsAppPhoneSelectionRequest, xConnectToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -250,7 +250,7 @@ catch (ApiException e)
 # **ConfigureTikTokAdsBrandIdentity**
 > ConfigureTikTokAdsBrandIdentity200Response ConfigureTikTokAdsBrandIdentity (ConfigureTikTokAdsBrandIdentityRequest configureTikTokAdsBrandIdentityRequest)
 
-Configure TikTok Ads Brand Identity
+Set TikTok brand identity
 
 Set or update the Brand Identity (display name + avatar) for a `tiktokads` SocialAccount. TikTok requires every ad to carry an `identity_id + identity_type` pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via `/v2/identity/create/`, and caches the resulting `identity_id` on the account so subsequent `POST /v1/ads/create` calls can opt into it via `identityType: 'CUSTOMIZED_USER'`.  Configurable on every `tiktokads` account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok's side (harmless, no billing impact).  Alternative: pass `brandIdentity` directly on `POST /v1/ads/create` to configure on first ad creation in a single round-trip. 
 
@@ -282,7 +282,7 @@ namespace Example
 
             try
             {
-                // Configure TikTok Ads Brand Identity
+                // Set TikTok brand identity
                 ConfigureTikTokAdsBrandIdentity200Response result = apiInstance.ConfigureTikTokAdsBrandIdentity(configureTikTokAdsBrandIdentityRequest);
                 Debug.WriteLine(result);
             }
@@ -303,7 +303,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Configure TikTok Ads Brand Identity
+    // Set TikTok brand identity
     ApiResponse<ConfigureTikTokAdsBrandIdentity200Response> response = apiInstance.ConfigureTikTokAdsBrandIdentityWithHttpInfo(configureTikTokAdsBrandIdentityRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -2429,7 +2429,7 @@ catch (ApiException e)
 # **ListWhatsAppPhoneNumbers**
 > ListWhatsAppPhoneNumbers200Response ListWhatsAppPhoneNumbers (string profileId, string tempToken, string? xConnectToken = null)
 
-List WhatsApp phone numbers for selection
+List numbers for selection
 
 Fetch the WhatsApp phone numbers available across the user's WhatsApp Business Accounts (WABAs) after a headless OAuth flow.  WhatsApp OAuth grants access at the WABA level. When a connected WABA has 2 or more phone numbers, you must call this endpoint to list them and then `POST /v1/connect/whatsapp/select-phone-number` to bind one to the Zernio profile. Single-phone WABAs auto-complete during the OAuth callback and never reach this endpoint.  Use the `profileId` and `tempToken` returned in the headless redirect (`step=select_phone_number`).  Alternative: if you already know `wabaId` and `phoneNumberId` (e.g. from Meta Business Suite), use `connectWhatsAppCredentials` instead, which skips this two-step flow. 
 
@@ -2463,7 +2463,7 @@ namespace Example
 
             try
             {
-                // List WhatsApp phone numbers for selection
+                // List numbers for selection
                 ListWhatsAppPhoneNumbers200Response result = apiInstance.ListWhatsAppPhoneNumbers(profileId, tempToken, xConnectToken);
                 Debug.WriteLine(result);
             }
@@ -2484,7 +2484,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // List WhatsApp phone numbers for selection
+    // List numbers for selection
     ApiResponse<ListWhatsAppPhoneNumbers200Response> response = apiInstance.ListWhatsAppPhoneNumbersWithHttpInfo(profileId, tempToken, xConnectToken);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

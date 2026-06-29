@@ -10,7 +10,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetFollowerStats**](AccountsApi.md#getfollowerstats) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**GetTikTokCreatorInfo**](AccountsApi.md#gettiktokcreatorinfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
 | [**ListAccounts**](AccountsApi.md#listaccounts) | **GET** /v1/accounts | List accounts |
-| [**MoveAccountToProfile**](AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to a different profile |
+| [**MoveAccountToProfile**](AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
 | [**UpdateAccount**](AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account |
 
 <a id="deleteaccount"></a>
@@ -641,7 +641,7 @@ catch (ApiException e)
 # **MoveAccountToProfile**
 > MoveAccountToProfile200Response MoveAccountToProfile (string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest)
 
-Move account to a different profile
+Move account to another profile
 
 Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account's current profile AND the target profile must be in the key's allowed set. Calls with a target profile outside the key's scope return 403. 
 
@@ -674,7 +674,7 @@ namespace Example
 
             try
             {
-                // Move account to a different profile
+                // Move account to another profile
                 MoveAccountToProfile200Response result = apiInstance.MoveAccountToProfile(accountId, moveAccountToProfileRequest);
                 Debug.WriteLine(result);
             }
@@ -695,7 +695,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Move account to a different profile
+    // Move account to another profile
     ApiResponse<MoveAccountToProfile200Response> response = apiInstance.MoveAccountToProfileWithHttpInfo(accountId, moveAccountToProfileRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

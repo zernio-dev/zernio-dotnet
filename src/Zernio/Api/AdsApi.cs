@@ -29,7 +29,7 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Associate campaigns with a conversion destination
+        /// Associate campaigns
         /// </summary>
         /// <remarks>
         /// Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
@@ -42,7 +42,7 @@ namespace Zernio.Api
         AddConversionAssociations200Response AddConversionAssociations(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest);
 
         /// <summary>
-        /// Associate campaigns with a conversion destination
+        /// Associate campaigns
         /// </summary>
         /// <remarks>
         /// Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
@@ -54,7 +54,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AddConversionAssociations200Response</returns>
         ApiResponse<AddConversionAssociations200Response> AddConversionAssociationsWithHttpInfo(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest);
         /// <summary>
-        /// Adjust already-uploaded conversions (Google only)
+        /// Adjust uploaded conversions
         /// </summary>
         /// <remarks>
         /// Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
@@ -65,7 +65,7 @@ namespace Zernio.Api
         AdjustConversions200Response AdjustConversions(AdjustConversionsRequest adjustConversionsRequest);
 
         /// <summary>
-        /// Adjust already-uploaded conversions (Google only)
+        /// Adjust uploaded conversions
         /// </summary>
         /// <remarks>
         /// Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
@@ -75,7 +75,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AdjustConversions200Response</returns>
         ApiResponse<AdjustConversions200Response> AdjustConversionsWithHttpInfo(AdjustConversionsRequest adjustConversionsRequest);
         /// <summary>
-        /// Archive a Lead Gen form
+        /// Archive a lead form
         /// </summary>
         /// <remarks>
         /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
@@ -87,7 +87,7 @@ namespace Zernio.Api
         ArchiveLeadForm200Response ArchiveLeadForm(string formId, string accountId);
 
         /// <summary>
-        /// Archive a Lead Gen form
+        /// Archive a lead form
         /// </summary>
         /// <remarks>
         /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
@@ -119,7 +119,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateAd200Response</returns>
         ApiResponse<UpdateAd200Response> BoostPostWithHttpInfo(BoostPostRequest boostPostRequest);
         /// <summary>
-        /// Create a conversion destination (LinkedIn, Google Ads)
+        /// Create a conversion destination
         /// </summary>
         /// <remarks>
         /// Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
@@ -131,7 +131,7 @@ namespace Zernio.Api
         CreateConversionDestination201Response CreateConversionDestination(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest);
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn, Google Ads)
+        /// Create a conversion destination
         /// </summary>
         /// <remarks>
         /// Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
@@ -142,7 +142,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
         ApiResponse<CreateConversionDestination201Response> CreateConversionDestinationWithHttpInfo(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest);
         /// <summary>
-        /// Create Click-to-WhatsApp ad(s)
+        /// Create Click-to-WhatsApp ad
         /// </summary>
         /// <remarks>
         /// Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
@@ -153,7 +153,7 @@ namespace Zernio.Api
         CreateCtwaAd201Response CreateCtwaAd(CreateCtwaAdRequest createCtwaAdRequest);
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad(s)
+        /// Create Click-to-WhatsApp ad
         /// </summary>
         /// <remarks>
         /// Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
@@ -163,7 +163,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateCtwaAd201Response</returns>
         ApiResponse<CreateCtwaAd201Response> CreateCtwaAdWithHttpInfo(CreateCtwaAdRequest createCtwaAdRequest);
         /// <summary>
-        /// Create a Lead Gen (Instant) form
+        /// Create a lead form
         /// </summary>
         /// <remarks>
         /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
@@ -174,7 +174,7 @@ namespace Zernio.Api
         CreateLeadForm200Response CreateLeadForm(CreateLeadFormRequest createLeadFormRequest);
 
         /// <summary>
-        /// Create a Lead Gen (Instant) form
+        /// Create a lead form
         /// </summary>
         /// <remarks>
         /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
@@ -207,7 +207,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateStandaloneAd201Response</returns>
         ApiResponse<CreateStandaloneAd201Response> CreateStandaloneAdWithHttpInfo(CreateStandaloneAdRequest createStandaloneAdRequest, string? idempotencyKey = default);
         /// <summary>
-        /// Create a synthetic test lead
+        /// Create a test lead
         /// </summary>
         /// <remarks>
         /// Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
@@ -219,7 +219,7 @@ namespace Zernio.Api
         CreateTestLead200Response CreateTestLead(string formId, CreateTestLeadRequest createTestLeadRequest);
 
         /// <summary>
-        /// Create a synthetic test lead
+        /// Create a test lead
         /// </summary>
         /// <remarks>
         /// Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
@@ -251,7 +251,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of DeleteAccountGroup200Response</returns>
         ApiResponse<DeleteAccountGroup200Response> DeleteAdWithHttpInfo(string adId);
         /// <summary>
-        /// Soft-delete a conversion destination
+        /// Delete a conversion destination
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
@@ -264,7 +264,7 @@ namespace Zernio.Api
         void DeleteConversionDestination(string accountId, string destinationId, string? adAccountId = default);
 
         /// <summary>
-        /// Soft-delete a conversion destination
+        /// Delete a conversion destination
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
@@ -372,7 +372,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetAdComments200Response</returns>
         ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, string? placement = default, int? limit = default, string? cursor = default);
         /// <summary>
-        /// Read an ad&#39;s click-URL tracking tags
+        /// Get ad tracking tags
         /// </summary>
         /// <remarks>
         /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
@@ -383,7 +383,7 @@ namespace Zernio.Api
         GetAdTrackingTags200Response GetAdTrackingTags(string adId);
 
         /// <summary>
-        /// Read an ad&#39;s click-URL tracking tags
+        /// Get ad tracking tags
         /// </summary>
         /// <remarks>
         /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
@@ -393,7 +393,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetAdTrackingTags200Response</returns>
         ApiResponse<GetAdTrackingTags200Response> GetAdTrackingTagsWithHttpInfo(string adId);
         /// <summary>
-        /// Fetch a single conversion destination
+        /// Get a conversion destination
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
@@ -406,7 +406,7 @@ namespace Zernio.Api
         GetConversionDestination200Response GetConversionDestination(string accountId, string destinationId, string adAccountId);
 
         /// <summary>
-        /// Fetch a single conversion destination
+        /// Get a conversion destination
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
@@ -418,7 +418,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetConversionDestination200Response</returns>
         ApiResponse<GetConversionDestination200Response> GetConversionDestinationWithHttpInfo(string accountId, string destinationId, string adAccountId);
         /// <summary>
-        /// Fetch attribution metrics for a conversion destination
+        /// Get attribution metrics
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
@@ -434,7 +434,7 @@ namespace Zernio.Api
         GetConversionMetrics200Response GetConversionMetrics(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default);
 
         /// <summary>
-        /// Fetch attribution metrics for a conversion destination
+        /// Get attribution metrics
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
@@ -449,7 +449,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetConversionMetrics200Response</returns>
         ApiResponse<GetConversionMetrics200Response> GetConversionMetricsWithHttpInfo(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default);
         /// <summary>
-        /// Read Event Match Quality + coverage for a Meta pixel
+        /// Get Event Match Quality
         /// </summary>
         /// <remarks>
         /// Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
@@ -461,7 +461,7 @@ namespace Zernio.Api
         GetConversionsQuality200Response GetConversionsQuality(string accountId, string destinationId);
 
         /// <summary>
-        /// Read Event Match Quality + coverage for a Meta pixel
+        /// Get Event Match Quality
         /// </summary>
         /// <remarks>
         /// Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
@@ -472,7 +472,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetConversionsQuality200Response</returns>
         ApiResponse<GetConversionsQuality200Response> GetConversionsQualityWithHttpInfo(string accountId, string destinationId);
         /// <summary>
-        /// Get a single Lead Gen form
+        /// Get a lead form
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -481,7 +481,7 @@ namespace Zernio.Api
         GetLeadForm200Response GetLeadForm(string formId, string accountId);
 
         /// <summary>
-        /// Get a single Lead Gen form
+        /// Get a lead form
         /// </summary>
         /// <remarks>
         /// 
@@ -631,7 +631,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdsBusinessCenters200Response</returns>
         ApiResponse<ListAdsBusinessCenters200Response> ListAdsBusinessCentersWithHttpInfo(string accountId);
         /// <summary>
-        /// List campaigns associated with a conversion destination
+        /// List associated campaigns
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
@@ -644,7 +644,7 @@ namespace Zernio.Api
         ListConversionAssociations200Response ListConversionAssociations(string accountId, string destinationId, string adAccountId);
 
         /// <summary>
-        /// List campaigns associated with a conversion destination
+        /// List associated campaigns
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
@@ -656,7 +656,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListConversionAssociations200Response</returns>
         ApiResponse<ListConversionAssociations200Response> ListConversionAssociationsWithHttpInfo(string accountId, string destinationId, string adAccountId);
         /// <summary>
-        /// List destinations for the Conversions API
+        /// List conversion destinations
         /// </summary>
         /// <remarks>
         /// Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
@@ -667,7 +667,7 @@ namespace Zernio.Api
         ListConversionDestinations200Response ListConversionDestinations(string accountId);
 
         /// <summary>
-        /// List destinations for the Conversions API
+        /// List conversion destinations
         /// </summary>
         /// <remarks>
         /// Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
@@ -706,7 +706,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListFormLeads200Response</returns>
         ApiResponse<ListFormLeads200Response> ListFormLeadsWithHttpInfo(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default);
         /// <summary>
-        /// List Lead Gen (Instant) forms
+        /// List lead forms
         /// </summary>
         /// <remarks>
         /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
@@ -719,7 +719,7 @@ namespace Zernio.Api
         ListLeadForms200Response ListLeadForms(string accountId, int? limit = default, string? cursor = default);
 
         /// <summary>
-        /// List Lead Gen (Instant) forms
+        /// List lead forms
         /// </summary>
         /// <remarks>
         /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
@@ -731,7 +731,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListLeadForms200Response</returns>
         ApiResponse<ListLeadForms200Response> ListLeadFormsWithHttpInfo(string accountId, int? limit = default, string? cursor = default);
         /// <summary>
-        /// List submitted leads (cross-form CRM view)
+        /// List submitted leads
         /// </summary>
         /// <remarks>
         /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
@@ -746,7 +746,7 @@ namespace Zernio.Api
         ListLeads200Response ListLeads(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default);
 
         /// <summary>
-        /// List submitted leads (cross-form CRM view)
+        /// List submitted leads
         /// </summary>
         /// <remarks>
         /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
@@ -760,7 +760,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListLeads200Response</returns>
         ApiResponse<ListLeads200Response> ListLeadsWithHttpInfo(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default);
         /// <summary>
-        /// List recent WhatsApp conversion events
+        /// List conversion events
         /// </summary>
         /// <remarks>
         /// Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
@@ -772,7 +772,7 @@ namespace Zernio.Api
         ListWhatsAppConversions200Response ListWhatsAppConversions(string accountId, int? limit = default);
 
         /// <summary>
-        /// List recent WhatsApp conversion events
+        /// List conversion events
         /// </summary>
         /// <remarks>
         /// Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
@@ -783,7 +783,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListWhatsAppConversions200Response</returns>
         ApiResponse<ListWhatsAppConversions200Response> ListWhatsAppConversionsWithHttpInfo(string accountId, int? limit = default);
         /// <summary>
-        /// Remove campaign↔conversion associations
+        /// Remove associated campaigns
         /// </summary>
         /// <remarks>
         /// Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
@@ -797,7 +797,7 @@ namespace Zernio.Api
         RemoveConversionAssociations200Response RemoveConversionAssociations(string accountId, string destinationId, string adAccountId, string campaignIds);
 
         /// <summary>
-        /// Remove campaign↔conversion associations
+        /// Remove associated campaigns
         /// </summary>
         /// <remarks>
         /// Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
@@ -810,7 +810,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of RemoveConversionAssociations200Response</returns>
         ApiResponse<RemoveConversionAssociations200Response> RemoveConversionAssociationsWithHttpInfo(string accountId, string destinationId, string adAccountId, string campaignIds);
         /// <summary>
-        /// Search targeting interests (deprecated)
+        /// Search targeting interests
         /// </summary>
         /// <remarks>
         /// Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
@@ -823,7 +823,7 @@ namespace Zernio.Api
         SearchAdInterests200Response SearchAdInterests(string q, string accountId);
 
         /// <summary>
-        /// Search targeting interests (deprecated)
+        /// Search targeting interests
         /// </summary>
         /// <remarks>
         /// Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
@@ -866,7 +866,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of SearchAdTargeting200Response</returns>
         ApiResponse<SearchAdTargeting200Response> SearchAdTargetingWithHttpInfo(string accountId, string q, string? dimension = default, string? geoType = default, string? countryCode = default, int? limit = default);
         /// <summary>
-        /// Send conversion events to an ad platform
+        /// Send conversion events
         /// </summary>
         /// <remarks>
         /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
@@ -877,7 +877,7 @@ namespace Zernio.Api
         SendConversions200Response SendConversions(SendConversionsRequest sendConversionsRequest);
 
         /// <summary>
-        /// Send conversion events to an ad platform
+        /// Send conversion events
         /// </summary>
         /// <remarks>
         /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
@@ -931,7 +931,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateAd200Response</returns>
         ApiResponse<UpdateAd200Response> UpdateAdWithHttpInfo(string adId, UpdateAdRequest updateAdRequest);
         /// <summary>
-        /// Set/update an ad&#39;s click-URL tracking tags
+        /// Set ad tracking tags
         /// </summary>
         /// <remarks>
         /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
@@ -943,7 +943,7 @@ namespace Zernio.Api
         void UpdateAdTrackingTags(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest);
 
         /// <summary>
-        /// Set/update an ad&#39;s click-URL tracking tags
+        /// Set ad tracking tags
         /// </summary>
         /// <remarks>
         /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
@@ -988,7 +988,7 @@ namespace Zernio.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Associate campaigns with a conversion destination
+        /// Associate campaigns
         /// </summary>
         /// <remarks>
         /// Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
@@ -1002,7 +1002,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<AddConversionAssociations200Response> AddConversionAssociationsAsync(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Associate campaigns with a conversion destination
+        /// Associate campaigns
         /// </summary>
         /// <remarks>
         /// Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
@@ -1015,7 +1015,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AddConversionAssociations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AddConversionAssociations200Response>> AddConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, AddConversionAssociationsRequest addConversionAssociationsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Adjust already-uploaded conversions (Google only)
+        /// Adjust uploaded conversions
         /// </summary>
         /// <remarks>
         /// Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
@@ -1027,7 +1027,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<AdjustConversions200Response> AdjustConversionsAsync(AdjustConversionsRequest adjustConversionsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Adjust already-uploaded conversions (Google only)
+        /// Adjust uploaded conversions
         /// </summary>
         /// <remarks>
         /// Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
@@ -1038,7 +1038,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AdjustConversions200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AdjustConversions200Response>> AdjustConversionsWithHttpInfoAsync(AdjustConversionsRequest adjustConversionsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Archive a Lead Gen form
+        /// Archive a lead form
         /// </summary>
         /// <remarks>
         /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
@@ -1051,7 +1051,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ArchiveLeadForm200Response> ArchiveLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Archive a Lead Gen form
+        /// Archive a lead form
         /// </summary>
         /// <remarks>
         /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
@@ -1086,7 +1086,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> BoostPostWithHttpInfoAsync(BoostPostRequest boostPostRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create a conversion destination (LinkedIn, Google Ads)
+        /// Create a conversion destination
         /// </summary>
         /// <remarks>
         /// Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
@@ -1099,7 +1099,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<CreateConversionDestination201Response> CreateConversionDestinationAsync(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn, Google Ads)
+        /// Create a conversion destination
         /// </summary>
         /// <remarks>
         /// Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
@@ -1111,7 +1111,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateConversionDestination201Response>> CreateConversionDestinationWithHttpInfoAsync(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create Click-to-WhatsApp ad(s)
+        /// Create Click-to-WhatsApp ad
         /// </summary>
         /// <remarks>
         /// Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
@@ -1123,7 +1123,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<CreateCtwaAd201Response> CreateCtwaAdAsync(CreateCtwaAdRequest createCtwaAdRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad(s)
+        /// Create Click-to-WhatsApp ad
         /// </summary>
         /// <remarks>
         /// Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
@@ -1134,7 +1134,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateCtwaAd201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateCtwaAd201Response>> CreateCtwaAdWithHttpInfoAsync(CreateCtwaAdRequest createCtwaAdRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create a Lead Gen (Instant) form
+        /// Create a lead form
         /// </summary>
         /// <remarks>
         /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
@@ -1146,7 +1146,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<CreateLeadForm200Response> CreateLeadFormAsync(CreateLeadFormRequest createLeadFormRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Create a Lead Gen (Instant) form
+        /// Create a lead form
         /// </summary>
         /// <remarks>
         /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
@@ -1182,7 +1182,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateStandaloneAd201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateStandaloneAd201Response>> CreateStandaloneAdWithHttpInfoAsync(CreateStandaloneAdRequest createStandaloneAdRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create a synthetic test lead
+        /// Create a test lead
         /// </summary>
         /// <remarks>
         /// Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
@@ -1195,7 +1195,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<CreateTestLead200Response> CreateTestLeadAsync(string formId, CreateTestLeadRequest createTestLeadRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Create a synthetic test lead
+        /// Create a test lead
         /// </summary>
         /// <remarks>
         /// Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
@@ -1230,7 +1230,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (DeleteAccountGroup200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteAccountGroup200Response>> DeleteAdWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Soft-delete a conversion destination
+        /// Delete a conversion destination
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
@@ -1244,7 +1244,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task DeleteConversionDestinationAsync(string accountId, string destinationId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Soft-delete a conversion destination
+        /// Delete a conversion destination
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
@@ -1361,7 +1361,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetAdComments200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Read an ad&#39;s click-URL tracking tags
+        /// Get ad tracking tags
         /// </summary>
         /// <remarks>
         /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
@@ -1373,7 +1373,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GetAdTrackingTags200Response> GetAdTrackingTagsAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Read an ad&#39;s click-URL tracking tags
+        /// Get ad tracking tags
         /// </summary>
         /// <remarks>
         /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
@@ -1384,7 +1384,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetAdTrackingTags200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdTrackingTags200Response>> GetAdTrackingTagsWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Fetch a single conversion destination
+        /// Get a conversion destination
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
@@ -1398,7 +1398,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GetConversionDestination200Response> GetConversionDestinationAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Fetch a single conversion destination
+        /// Get a conversion destination
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
@@ -1411,7 +1411,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetConversionDestination200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetConversionDestination200Response>> GetConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Fetch attribution metrics for a conversion destination
+        /// Get attribution metrics
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
@@ -1428,7 +1428,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GetConversionMetrics200Response> GetConversionMetricsAsync(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Fetch attribution metrics for a conversion destination
+        /// Get attribution metrics
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
@@ -1444,7 +1444,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetConversionMetrics200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetConversionMetrics200Response>> GetConversionMetricsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, string startDate, string? endDate = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Read Event Match Quality + coverage for a Meta pixel
+        /// Get Event Match Quality
         /// </summary>
         /// <remarks>
         /// Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
@@ -1457,7 +1457,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GetConversionsQuality200Response> GetConversionsQualityAsync(string accountId, string destinationId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Read Event Match Quality + coverage for a Meta pixel
+        /// Get Event Match Quality
         /// </summary>
         /// <remarks>
         /// Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
@@ -1469,7 +1469,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetConversionsQuality200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetConversionsQuality200Response>> GetConversionsQualityWithHttpInfoAsync(string accountId, string destinationId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get a single Lead Gen form
+        /// Get a lead form
         /// </summary>
         /// <remarks>
         /// 
@@ -1482,7 +1482,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GetLeadForm200Response> GetLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get a single Lead Gen form
+        /// Get a lead form
         /// </summary>
         /// <remarks>
         /// 
@@ -1643,7 +1643,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListAdsBusinessCenters200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdsBusinessCenters200Response>> ListAdsBusinessCentersWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List campaigns associated with a conversion destination
+        /// List associated campaigns
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
@@ -1657,7 +1657,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ListConversionAssociations200Response> ListConversionAssociationsAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List campaigns associated with a conversion destination
+        /// List associated campaigns
         /// </summary>
         /// <remarks>
         /// LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
@@ -1670,7 +1670,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListConversionAssociations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListConversionAssociations200Response>> ListConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List destinations for the Conversions API
+        /// List conversion destinations
         /// </summary>
         /// <remarks>
         /// Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
@@ -1682,7 +1682,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ListConversionDestinations200Response> ListConversionDestinationsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List destinations for the Conversions API
+        /// List conversion destinations
         /// </summary>
         /// <remarks>
         /// Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
@@ -1724,7 +1724,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListFormLeads200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListFormLeads200Response>> ListFormLeadsWithHttpInfoAsync(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List Lead Gen (Instant) forms
+        /// List lead forms
         /// </summary>
         /// <remarks>
         /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
@@ -1738,7 +1738,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ListLeadForms200Response> ListLeadFormsAsync(string accountId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List Lead Gen (Instant) forms
+        /// List lead forms
         /// </summary>
         /// <remarks>
         /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
@@ -1751,7 +1751,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListLeadForms200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListLeadForms200Response>> ListLeadFormsWithHttpInfoAsync(string accountId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List submitted leads (cross-form CRM view)
+        /// List submitted leads
         /// </summary>
         /// <remarks>
         /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
@@ -1767,7 +1767,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ListLeads200Response> ListLeadsAsync(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List submitted leads (cross-form CRM view)
+        /// List submitted leads
         /// </summary>
         /// <remarks>
         /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
@@ -1782,7 +1782,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListLeads200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListLeads200Response>> ListLeadsWithHttpInfoAsync(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List recent WhatsApp conversion events
+        /// List conversion events
         /// </summary>
         /// <remarks>
         /// Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
@@ -1795,7 +1795,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ListWhatsAppConversions200Response> ListWhatsAppConversionsAsync(string accountId, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List recent WhatsApp conversion events
+        /// List conversion events
         /// </summary>
         /// <remarks>
         /// Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
@@ -1807,7 +1807,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListWhatsAppConversions200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListWhatsAppConversions200Response>> ListWhatsAppConversionsWithHttpInfoAsync(string accountId, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Remove campaign↔conversion associations
+        /// Remove associated campaigns
         /// </summary>
         /// <remarks>
         /// Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
@@ -1822,7 +1822,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<RemoveConversionAssociations200Response> RemoveConversionAssociationsAsync(string accountId, string destinationId, string adAccountId, string campaignIds, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Remove campaign↔conversion associations
+        /// Remove associated campaigns
         /// </summary>
         /// <remarks>
         /// Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
@@ -1836,7 +1836,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (RemoveConversionAssociations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RemoveConversionAssociations200Response>> RemoveConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, string campaignIds, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Search targeting interests (deprecated)
+        /// Search targeting interests
         /// </summary>
         /// <remarks>
         /// Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
@@ -1850,7 +1850,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<SearchAdInterests200Response> SearchAdInterestsAsync(string q, string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Search targeting interests (deprecated)
+        /// Search targeting interests
         /// </summary>
         /// <remarks>
         /// Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
@@ -1896,7 +1896,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (SearchAdTargeting200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SearchAdTargeting200Response>> SearchAdTargetingWithHttpInfoAsync(string accountId, string q, string? dimension = default, string? geoType = default, string? countryCode = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Send conversion events to an ad platform
+        /// Send conversion events
         /// </summary>
         /// <remarks>
         /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
@@ -1908,7 +1908,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<SendConversions200Response> SendConversionsAsync(SendConversionsRequest sendConversionsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Send conversion events to an ad platform
+        /// Send conversion events
         /// </summary>
         /// <remarks>
         /// Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
@@ -1967,7 +1967,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> UpdateAdWithHttpInfoAsync(string adId, UpdateAdRequest updateAdRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Set/update an ad&#39;s click-URL tracking tags
+        /// Set ad tracking tags
         /// </summary>
         /// <remarks>
         /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
@@ -1980,7 +1980,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task UpdateAdTrackingTagsAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Set/update an ad&#39;s click-URL tracking tags
+        /// Set ad tracking tags
         /// </summary>
         /// <remarks>
         /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
@@ -2232,7 +2232,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Associate campaigns with a conversion destination Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// Associate campaigns Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -2246,7 +2246,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Associate campaigns with a conversion destination Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// Associate campaigns Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -2308,7 +2308,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Associate campaigns with a conversion destination Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// Associate campaigns Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -2323,7 +2323,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Associate campaigns with a conversion destination Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+        /// Associate campaigns Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -2389,7 +2389,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Adjust already-uploaded conversions (Google only) Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+        /// Adjust uploaded conversions Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adjustConversionsRequest"></param>
@@ -2401,7 +2401,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Adjust already-uploaded conversions (Google only) Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+        /// Adjust uploaded conversions Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adjustConversionsRequest"></param>
@@ -2451,7 +2451,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Adjust already-uploaded conversions (Google only) Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+        /// Adjust uploaded conversions Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adjustConversionsRequest"></param>
@@ -2464,7 +2464,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Adjust already-uploaded conversions (Google only) Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+        /// Adjust uploaded conversions Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adjustConversionsRequest"></param>
@@ -2518,7 +2518,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a Lead Gen form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Archive a lead form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -2531,7 +2531,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a Lead Gen form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Archive a lead form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -2586,7 +2586,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a Lead Gen form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Archive a lead form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -2600,7 +2600,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a Lead Gen form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Archive a lead form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -2788,7 +2788,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn, Google Ads) Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
+        /// Create a conversion destination Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
@@ -2801,7 +2801,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn, Google Ads) Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
+        /// Create a conversion destination Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
@@ -2857,7 +2857,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn, Google Ads) Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
+        /// Create a conversion destination Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
@@ -2871,7 +2871,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a conversion destination (LinkedIn, Google Ads) Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
+        /// Create a conversion destination Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount ID (linkedinads or googleads).</param>
@@ -2931,7 +2931,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad(s) Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Create Click-to-WhatsApp ad Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCtwaAdRequest"></param>
@@ -2943,7 +2943,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad(s) Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Create Click-to-WhatsApp ad Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCtwaAdRequest"></param>
@@ -2993,7 +2993,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad(s) Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Create Click-to-WhatsApp ad Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCtwaAdRequest"></param>
@@ -3006,7 +3006,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad(s) Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Create Click-to-WhatsApp ad Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCtwaAdRequest"></param>
@@ -3060,7 +3060,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Lead Gen (Instant) form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -3072,7 +3072,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Lead Gen (Instant) form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -3122,7 +3122,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Lead Gen (Instant) form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -3135,7 +3135,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a Lead Gen (Instant) form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -3330,7 +3330,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a synthetic test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// Create a test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -3343,7 +3343,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a synthetic test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// Create a test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -3399,7 +3399,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a synthetic test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// Create a test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -3413,7 +3413,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a synthetic test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+        /// Create a test lead Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -3600,7 +3600,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Soft-delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// Delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -3613,7 +3613,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Soft-delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// Delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -3673,7 +3673,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Soft-delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// Delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -3687,7 +3687,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Soft-delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+        /// Delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4333,7 +4333,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read an ad&#39;s click-URL tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// Get ad tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
@@ -4345,7 +4345,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read an ad&#39;s click-URL tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// Get ad tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
@@ -4394,7 +4394,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read an ad&#39;s click-URL tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// Get ad tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
@@ -4407,7 +4407,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read an ad&#39;s click-URL tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// Get ad tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
@@ -4460,7 +4460,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Fetch a single conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// Get a conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4474,7 +4474,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Fetch a single conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// Get a conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4535,7 +4535,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Fetch a single conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// Get a conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4550,7 +4550,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Fetch a single conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+        /// Get a conversion destination LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4615,7 +4615,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Fetch attribution metrics for a conversion destination LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// Get attribution metrics LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4632,7 +4632,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Fetch attribution metrics for a conversion destination LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// Get attribution metrics LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4709,7 +4709,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Fetch attribution metrics for a conversion destination LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// Get attribution metrics LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4727,7 +4727,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Fetch attribution metrics for a conversion destination LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+        /// Get attribution metrics LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -4808,7 +4808,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read Event Match Quality + coverage for a Meta pixel Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// Get Event Match Quality Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
@@ -4821,7 +4821,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read Event Match Quality + coverage for a Meta pixel Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// Get Event Match Quality Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
@@ -4876,7 +4876,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read Event Match Quality + coverage for a Meta pixel Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// Get Event Match Quality Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
@@ -4890,7 +4890,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Read Event Match Quality + coverage for a Meta pixel Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+        /// Get Event Match Quality Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount _id (must be a metaads account).</param>
@@ -4949,7 +4949,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a single Lead Gen form 
+        /// Get a lead form 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -4962,7 +4962,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a single Lead Gen form 
+        /// Get a lead form 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -5017,7 +5017,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a single Lead Gen form 
+        /// Get a lead form 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -5031,7 +5031,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a single Lead Gen form 
+        /// Get a lead form 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId"></param>
@@ -5931,7 +5931,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List campaigns associated with a conversion destination LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+        /// List associated campaigns LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -5945,7 +5945,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List campaigns associated with a conversion destination LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+        /// List associated campaigns LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -6006,7 +6006,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List campaigns associated with a conversion destination LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+        /// List associated campaigns LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -6021,7 +6021,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List campaigns associated with a conversion destination LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+        /// List associated campaigns LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -6086,7 +6086,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List destinations for the Conversions API Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+        /// List conversion destinations Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount ID (metaads, googleads, linkedinads, or tiktokads).</param>
@@ -6098,7 +6098,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List destinations for the Conversions API Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+        /// List conversion destinations Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount ID (metaads, googleads, linkedinads, or tiktokads).</param>
@@ -6147,7 +6147,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List destinations for the Conversions API Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+        /// List conversion destinations Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount ID (metaads, googleads, linkedinads, or tiktokads).</param>
@@ -6160,7 +6160,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List destinations for the Conversions API Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+        /// List conversion destinations Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">SocialAccount ID (metaads, googleads, linkedinads, or tiktokads).</param>
@@ -6390,7 +6390,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Lead Gen (Instant) forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// List lead forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Connected facebook account id.</param>
@@ -6404,7 +6404,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Lead Gen (Instant) forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// List lead forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Connected facebook account id.</param>
@@ -6463,7 +6463,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Lead Gen (Instant) forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// List lead forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Connected facebook account id.</param>
@@ -6478,7 +6478,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List Lead Gen (Instant) forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// List lead forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">Connected facebook account id.</param>
@@ -6541,7 +6541,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List submitted leads (cross-form CRM view) Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// List submitted leads Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
@@ -6557,7 +6557,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List submitted leads (cross-form CRM view) Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// List submitted leads Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
@@ -6625,7 +6625,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List submitted leads (cross-form CRM view) Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// List submitted leads Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
@@ -6642,7 +6642,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List submitted leads (cross-form CRM view) Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// List submitted leads Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
@@ -6714,7 +6714,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List recent WhatsApp conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
+        /// List conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -6727,7 +6727,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List recent WhatsApp conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
+        /// List conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -6781,7 +6781,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List recent WhatsApp conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
+        /// List conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -6795,7 +6795,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List recent WhatsApp conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
+        /// List conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -6853,7 +6853,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove campaign↔conversion associations Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// Remove associated campaigns Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -6868,7 +6868,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove campaign↔conversion associations Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// Remove associated campaigns Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -6935,7 +6935,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove campaign↔conversion associations Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// Remove associated campaigns Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -6951,7 +6951,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Remove campaign↔conversion associations Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+        /// Remove associated campaigns Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -7022,7 +7022,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search targeting interests (deprecated) Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
+        /// Search targeting interests Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
@@ -7036,7 +7036,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search targeting interests (deprecated) Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
+        /// Search targeting interests Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
@@ -7092,7 +7092,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search targeting interests (deprecated) Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
+        /// Search targeting interests Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
@@ -7107,7 +7107,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Search targeting interests (deprecated) Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
+        /// Search targeting interests Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="q">Search query</param>
@@ -7356,7 +7356,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
+        /// Send conversion events Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -7368,7 +7368,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
+        /// Send conversion events Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -7418,7 +7418,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
+        /// Send conversion events Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -7431,7 +7431,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Send conversion events to an ad platform Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
+        /// Send conversion events Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; — OFFLINE conversions only  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sendConversionsRequest"></param>
@@ -7757,7 +7757,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Set/update an ad&#39;s click-URL tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// Set ad tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -7769,7 +7769,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Set/update an ad&#39;s click-URL tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// Set ad tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -7825,7 +7825,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Set/update an ad&#39;s click-URL tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// Set ad tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>
@@ -7838,7 +7838,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Set/update an ad&#39;s click-URL tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// Set ad tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="adId"></param>

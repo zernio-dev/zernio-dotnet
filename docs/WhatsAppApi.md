@@ -7,7 +7,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**AddWhatsAppGroupParticipants**](WhatsAppApi.md#addwhatsappgroupparticipants) | **POST** /v1/whatsapp/wa-groups/{groupId}/participants | Add participants |
 | [**ApproveWhatsAppGroupJoinRequests**](WhatsAppApi.md#approvewhatsappgroupjoinrequests) | **POST** /v1/whatsapp/wa-groups/{groupId}/join-requests | Approve join requests |
 | [**BlockWhatsAppUsers**](WhatsAppApi.md#blockwhatsappusers) | **POST** /v1/whatsapp/block-users | Block users |
-| [**CreateWhatsAppDataset**](WhatsAppApi.md#createwhatsappdataset) | **POST** /v1/whatsapp/dataset | Provision CTWA conversions dataset |
+| [**CreateWhatsAppDataset**](WhatsAppApi.md#createwhatsappdataset) | **POST** /v1/whatsapp/dataset | Provision CTWA dataset |
 | [**CreateWhatsAppGroupChat**](WhatsAppApi.md#createwhatsappgroupchat) | **POST** /v1/whatsapp/wa-groups | Create group |
 | [**CreateWhatsAppGroupInviteLink**](WhatsAppApi.md#createwhatsappgroupinvitelink) | **POST** /v1/whatsapp/wa-groups/{groupId}/invite-link | Create invite link |
 | [**CreateWhatsAppTemplate**](WhatsAppApi.md#createwhatsapptemplate) | **POST** /v1/whatsapp/templates | Create template |
@@ -21,7 +21,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetWhatsAppGroupChat**](WhatsAppApi.md#getwhatsappgroupchat) | **GET** /v1/whatsapp/wa-groups/{groupId} | Get group info |
 | [**GetWhatsAppTemplate**](WhatsAppApi.md#getwhatsapptemplate) | **GET** /v1/whatsapp/templates/{templateName} | Get template |
 | [**GetWhatsAppTemplates**](WhatsAppApi.md#getwhatsapptemplates) | **GET** /v1/whatsapp/templates | List templates |
-| [**ListWhatsAppConversions**](WhatsAppApi.md#listwhatsappconversions) | **GET** /v1/whatsapp/conversions | List recent WhatsApp conversion events |
+| [**ListWhatsAppConversions**](WhatsAppApi.md#listwhatsappconversions) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**ListWhatsAppGroupChats**](WhatsAppApi.md#listwhatsappgroupchats) | **GET** /v1/whatsapp/wa-groups | List active groups |
 | [**ListWhatsAppGroupJoinRequests**](WhatsAppApi.md#listwhatsappgroupjoinrequests) | **GET** /v1/whatsapp/wa-groups/{groupId}/join-requests | List join requests |
 | [**RejectWhatsAppGroupJoinRequests**](WhatsAppApi.md#rejectwhatsappgroupjoinrequests) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/join-requests | Reject join requests |
@@ -344,7 +344,7 @@ catch (ApiException e)
 # **CreateWhatsAppDataset**
 > CreateWhatsAppDataset200Response CreateWhatsAppDataset (CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest)
 
-Provision CTWA conversions dataset
+Provision CTWA dataset
 
 Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as `metadata.metaCapiDatasetId`.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with `created: false`.  Requires the connected WhatsApp account's token to carry the `whatsapp_business_manage_events` permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
 
@@ -376,7 +376,7 @@ namespace Example
 
             try
             {
-                // Provision CTWA conversions dataset
+                // Provision CTWA dataset
                 CreateWhatsAppDataset200Response result = apiInstance.CreateWhatsAppDataset(createWhatsAppDatasetRequest);
                 Debug.WriteLine(result);
             }
@@ -397,7 +397,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Provision CTWA conversions dataset
+    // Provision CTWA dataset
     ApiResponse<CreateWhatsAppDataset200Response> response = apiInstance.CreateWhatsAppDatasetWithHttpInfo(createWhatsAppDatasetRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -1765,7 +1765,7 @@ catch (ApiException e)
 # **ListWhatsAppConversions**
 > ListWhatsAppConversions200Response ListWhatsAppConversions (string accountId, int? limit = null)
 
-List recent WhatsApp conversion events
+List conversion events
 
 Returns the most recent conversion events sent through `POST /v1/whatsapp/conversions` for the given WhatsApp account. Sourced from delivery logs (Axiom `late` dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \"recent activity\" panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: `eventName`, `conversationId`, `eventsReceived`, `eventsFailed`, `traceId`, `durationMs`, and the wall-clock `timestamp`. 
 
@@ -1798,7 +1798,7 @@ namespace Example
 
             try
             {
-                // List recent WhatsApp conversion events
+                // List conversion events
                 ListWhatsAppConversions200Response result = apiInstance.ListWhatsAppConversions(accountId, limit);
                 Debug.WriteLine(result);
             }
@@ -1819,7 +1819,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // List recent WhatsApp conversion events
+    // List conversion events
     ApiResponse<ListWhatsAppConversions200Response> response = apiInstance.ListWhatsAppConversionsWithHttpInfo(accountId, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

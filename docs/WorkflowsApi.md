@@ -15,7 +15,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListWorkflowVersions**](WorkflowsApi.md#listworkflowversions) | **GET** /v1/workflows/{workflowId}/versions | List a workflow&#39;s version history |
 | [**ListWorkflows**](WorkflowsApi.md#listworkflows) | **GET** /v1/workflows | List workflows |
 | [**PauseWorkflow**](WorkflowsApi.md#pauseworkflow) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow |
-| [**RestoreWorkflowVersion**](WorkflowsApi.md#restoreworkflowversion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a previous workflow version |
+| [**RestoreWorkflowVersion**](WorkflowsApi.md#restoreworkflowversion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version |
 | [**TriggerWorkflow**](WorkflowsApi.md#triggerworkflow) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run |
 | [**UpdateWorkflow**](WorkflowsApi.md#updateworkflow) | **PATCH** /v1/workflows/{workflowId} | Update workflow |
 
@@ -1135,7 +1135,7 @@ catch (ApiException e)
 # **RestoreWorkflowVersion**
 > RestoreWorkflowVersion200Response RestoreWorkflowVersion (string workflowId, int version)
 
-Restore a previous workflow version
+Restore a workflow version
 
 Replace the current graph with the named version's snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in `draft` or `paused` status (same gate as a normal graph edit). The returned workflow carries `restoredFromVersion` so the UI can surface which version was rolled back to. 
 
@@ -1168,7 +1168,7 @@ namespace Example
 
             try
             {
-                // Restore a previous workflow version
+                // Restore a workflow version
                 RestoreWorkflowVersion200Response result = apiInstance.RestoreWorkflowVersion(workflowId, version);
                 Debug.WriteLine(result);
             }
@@ -1189,7 +1189,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Restore a previous workflow version
+    // Restore a workflow version
     ApiResponse<RestoreWorkflowVersion200Response> response = apiInstance.RestoreWorkflowVersionWithHttpInfo(workflowId, version);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

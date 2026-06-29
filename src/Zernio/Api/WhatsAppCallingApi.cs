@@ -95,7 +95,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetWhatsAppCall200Response</returns>
         ApiResponse<GetWhatsAppCall200Response> GetWhatsAppCallWithHttpInfo(string callId, string accountId);
         /// <summary>
-        /// Estimate per-minute cost for a destination
+        /// Estimate per-minute cost
         /// </summary>
         /// <remarks>
         /// Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
@@ -109,7 +109,7 @@ namespace Zernio.Api
         GetWhatsAppCallEstimate200Response GetWhatsAppCallEstimate(string accountId, string to, int? minutes = default, bool? recording = default);
 
         /// <summary>
-        /// Estimate per-minute cost for a destination
+        /// Estimate per-minute cost
         /// </summary>
         /// <remarks>
         /// Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
@@ -122,7 +122,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetWhatsAppCallEstimate200Response</returns>
         ApiResponse<GetWhatsAppCallEstimate200Response> GetWhatsAppCallEstimateWithHttpInfo(string accountId, string to, int? minutes = default, bool? recording = default);
         /// <summary>
-        /// Check call permission for a consumer
+        /// Check call permission
         /// </summary>
         /// <remarks>
         /// Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
@@ -134,7 +134,7 @@ namespace Zernio.Api
         GetWhatsAppCallPermissions200Response GetWhatsAppCallPermissions(string accountId, string to);
 
         /// <summary>
-        /// Check call permission for a consumer
+        /// Check call permission
         /// </summary>
         /// <remarks>
         /// Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
@@ -325,7 +325,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetWhatsAppCall200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCall200Response>> GetWhatsAppCallWithHttpInfoAsync(string callId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Estimate per-minute cost for a destination
+        /// Estimate per-minute cost
         /// </summary>
         /// <remarks>
         /// Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
@@ -340,7 +340,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GetWhatsAppCallEstimate200Response> GetWhatsAppCallEstimateAsync(string accountId, string to, int? minutes = default, bool? recording = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Estimate per-minute cost for a destination
+        /// Estimate per-minute cost
         /// </summary>
         /// <remarks>
         /// Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
@@ -354,7 +354,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetWhatsAppCallEstimate200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCallEstimate200Response>> GetWhatsAppCallEstimateWithHttpInfoAsync(string accountId, string to, int? minutes = default, bool? recording = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Check call permission for a consumer
+        /// Check call permission
         /// </summary>
         /// <remarks>
         /// Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
@@ -367,7 +367,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GetWhatsAppCallPermissions200Response> GetWhatsAppCallPermissionsAsync(string accountId, string to, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Check call permission for a consumer
+        /// Check call permission
         /// </summary>
         /// <remarks>
         /// Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
@@ -1119,7 +1119,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Estimate per-minute cost for a destination Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
+        /// Estimate per-minute cost Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1134,7 +1134,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Estimate per-minute cost for a destination Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
+        /// Estimate per-minute cost Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1199,7 +1199,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Estimate per-minute cost for a destination Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
+        /// Estimate per-minute cost Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1215,7 +1215,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Estimate per-minute cost for a destination Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
+        /// Estimate per-minute cost Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1284,7 +1284,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check call permission for a consumer Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
+        /// Check call permission Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1297,7 +1297,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check call permission for a consumer Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
+        /// Check call permission Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1352,7 +1352,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check call permission for a consumer Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
+        /// Check call permission Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1366,7 +1366,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Check call permission for a consumer Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
+        /// Check call permission Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>

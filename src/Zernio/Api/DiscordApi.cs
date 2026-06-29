@@ -218,7 +218,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListDiscordGuildRoles200Response</returns>
         ApiResponse<ListDiscordGuildRoles200Response> ListDiscordGuildRolesWithHttpInfo(string guildId, string accountId);
         /// <summary>
-        /// List pinned messages in a Discord channel
+        /// List pinned messages
         /// </summary>
         /// <remarks>
         /// Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
@@ -230,7 +230,7 @@ namespace Zernio.Api
         ListDiscordPinnedMessages200Response ListDiscordPinnedMessages(string channelId, string accountId);
 
         /// <summary>
-        /// List pinned messages in a Discord channel
+        /// List pinned messages
         /// </summary>
         /// <remarks>
         /// Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
@@ -629,7 +629,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListDiscordGuildRoles200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListDiscordGuildRoles200Response>> ListDiscordGuildRolesWithHttpInfoAsync(string guildId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List pinned messages in a Discord channel
+        /// List pinned messages
         /// </summary>
         /// <remarks>
         /// Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
@@ -642,7 +642,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ListDiscordPinnedMessages200Response> ListDiscordPinnedMessagesAsync(string channelId, string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List pinned messages in a Discord channel
+        /// List pinned messages
         /// </summary>
         /// <remarks>
         /// Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
@@ -2234,7 +2234,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List pinned messages in a Discord channel Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// List pinned messages Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId">Discord channel snowflake.</param>
@@ -2247,7 +2247,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List pinned messages in a Discord channel Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// List pinned messages Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId">Discord channel snowflake.</param>
@@ -2302,7 +2302,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List pinned messages in a Discord channel Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// List pinned messages Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId">Discord channel snowflake.</param>
@@ -2316,7 +2316,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List pinned messages in a Discord channel Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
+        /// List pinned messages Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId">Discord channel snowflake.</param>

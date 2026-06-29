@@ -29,7 +29,7 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Get analytics for a single conversation
+        /// Get conversation analytics
         /// </summary>
         /// <remarks>
         /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
@@ -42,7 +42,7 @@ namespace Zernio.Api
         GetInboxConversationAnalytics200Response GetInboxConversationAnalytics(string conversationId, DateOnly fromDate, DateOnly? toDate = default);
 
         /// <summary>
-        /// Get analytics for a single conversation
+        /// Get conversation analytics
         /// </summary>
         /// <remarks>
         /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
@@ -54,7 +54,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetInboxConversationAnalytics200Response</returns>
         ApiResponse<GetInboxConversationAnalytics200Response> GetInboxConversationAnalyticsWithHttpInfo(string conversationId, DateOnly fromDate, DateOnly? toDate = default);
         /// <summary>
-        /// Get inbox day-of-week × hour-of-day heatmap
+        /// Get day × hour heatmap
         /// </summary>
         /// <remarks>
         /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
@@ -71,7 +71,7 @@ namespace Zernio.Api
         GetInboxHeatmap200Response GetInboxHeatmap(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? accountId = default, string? source = default, string? action = default);
 
         /// <summary>
-        /// Get inbox day-of-week × hour-of-day heatmap
+        /// Get day × hour heatmap
         /// </summary>
         /// <remarks>
         /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
@@ -207,7 +207,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetInboxVolume200Response</returns>
         ApiResponse<GetInboxVolume200Response> GetInboxVolumeWithHttpInfo(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? accountId = default, string? source = default);
         /// <summary>
-        /// List conversations with inbox analytics
+        /// List conversation analytics
         /// </summary>
         /// <remarks>
         /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
@@ -227,7 +227,7 @@ namespace Zernio.Api
         ListInboxConversationAnalytics200Response ListInboxConversationAnalytics(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? accountId = default, string? source = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default);
 
         /// <summary>
-        /// List conversations with inbox analytics
+        /// List conversation analytics
         /// </summary>
         /// <remarks>
         /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
@@ -255,7 +255,7 @@ namespace Zernio.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Get analytics for a single conversation
+        /// Get conversation analytics
         /// </summary>
         /// <remarks>
         /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
@@ -269,7 +269,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GetInboxConversationAnalytics200Response> GetInboxConversationAnalyticsAsync(string conversationId, DateOnly fromDate, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get analytics for a single conversation
+        /// Get conversation analytics
         /// </summary>
         /// <remarks>
         /// Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
@@ -282,7 +282,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetInboxConversationAnalytics200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetInboxConversationAnalytics200Response>> GetInboxConversationAnalyticsWithHttpInfoAsync(string conversationId, DateOnly fromDate, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get inbox day-of-week × hour-of-day heatmap
+        /// Get day × hour heatmap
         /// </summary>
         /// <remarks>
         /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
@@ -300,7 +300,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GetInboxHeatmap200Response> GetInboxHeatmapAsync(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? accountId = default, string? source = default, string? action = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get inbox day-of-week × hour-of-day heatmap
+        /// Get day × hour heatmap
         /// </summary>
         /// <remarks>
         /// Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
@@ -445,7 +445,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetInboxVolume200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetInboxVolume200Response>> GetInboxVolumeWithHttpInfoAsync(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? accountId = default, string? source = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List conversations with inbox analytics
+        /// List conversation analytics
         /// </summary>
         /// <remarks>
         /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
@@ -466,7 +466,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<ListInboxConversationAnalytics200Response> ListInboxConversationAnalyticsAsync(DateOnly fromDate, DateOnly? toDate = default, string? profileId = default, string? platform = default, string? accountId = default, string? source = default, int? limit = default, int? page = default, string? sortBy = default, string? order = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// List conversations with inbox analytics
+        /// List conversation analytics
         /// </summary>
         /// <remarks>
         /// Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
@@ -699,7 +699,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get analytics for a single conversation Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -713,7 +713,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get analytics for a single conversation Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -769,7 +769,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get analytics for a single conversation Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -784,7 +784,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get analytics for a single conversation Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+        /// Get conversation analytics Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="conversationId">Mongo _id or platformConversationId.</param>
@@ -844,7 +844,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get inbox day-of-week × hour-of-day heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -862,7 +862,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get inbox day-of-week × hour-of-day heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -937,7 +937,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get inbox day-of-week × hour-of-day heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -956,7 +956,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get inbox day-of-week × hour-of-day heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
+        /// Get day × hour heatmap Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The &#x60;dow&#x60; field follows ClickHouse&#39;s &#x60;toDayOfWeek&#x60; convention (1 &#x3D; Monday … 7 &#x3D; Sunday). Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1727,7 +1727,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversations with inbox analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1748,7 +1748,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversations with inbox analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1838,7 +1838,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversations with inbox analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>
@@ -1860,7 +1860,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List conversations with inbox analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
+        /// List conversation analytics Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation&#39;s participant info (&#x60;participantName&#x60;, &#x60;participantUsername&#x60;, &#x60;participantPicture&#x60;) and last-message preview by joining the Conversation document scoped to the caller&#39;s team. Max date range is 365 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fromDate"></param>

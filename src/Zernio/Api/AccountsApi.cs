@@ -179,7 +179,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AccountsListResponse</returns>
         ApiResponse<AccountsListResponse> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default);
         /// <summary>
-        /// Move account to a different profile
+        /// Move account to another profile
         /// </summary>
         /// <remarks>
         /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
@@ -191,7 +191,7 @@ namespace Zernio.Api
         MoveAccountToProfile200Response MoveAccountToProfile(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest);
 
         /// <summary>
-        /// Move account to a different profile
+        /// Move account to another profile
         /// </summary>
         /// <remarks>
         /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
@@ -396,7 +396,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AccountsListResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<AccountsListResponse>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Move account to a different profile
+        /// Move account to another profile
         /// </summary>
         /// <remarks>
         /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
@@ -409,7 +409,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<MoveAccountToProfile200Response> MoveAccountToProfileAsync(string accountId, MoveAccountToProfileRequest moveAccountToProfileRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Move account to a different profile
+        /// Move account to another profile
         /// </summary>
         /// <remarks>
         /// Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
@@ -1559,7 +1559,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Move account to another profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1572,7 +1572,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Move account to another profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1628,7 +1628,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Move account to another profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1642,7 +1642,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Move account to a different profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+        /// Move account to another profile Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>

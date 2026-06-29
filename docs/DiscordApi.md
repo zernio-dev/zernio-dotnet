@@ -12,7 +12,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetDiscordSettings**](DiscordApi.md#getdiscordsettings) | **GET** /v1/accounts/{accountId}/discord-settings | Get Discord account settings |
 | [**ListDiscordGuildMembers**](DiscordApi.md#listdiscordguildmembers) | **GET** /v1/discord/guilds/{guildId}/members | List Discord guild members |
 | [**ListDiscordGuildRoles**](DiscordApi.md#listdiscordguildroles) | **GET** /v1/discord/guilds/{guildId}/roles | List Discord guild roles |
-| [**ListDiscordPinnedMessages**](DiscordApi.md#listdiscordpinnedmessages) | **GET** /v1/discord/channels/{channelId}/pins | List pinned messages in a Discord channel |
+| [**ListDiscordPinnedMessages**](DiscordApi.md#listdiscordpinnedmessages) | **GET** /v1/discord/channels/{channelId}/pins | List pinned messages |
 | [**ListDiscordScheduledEvents**](DiscordApi.md#listdiscordscheduledevents) | **GET** /v1/discord/guilds/{guildId}/events | List Discord scheduled events |
 | [**PinDiscordMessage**](DiscordApi.md#pindiscordmessage) | **PUT** /v1/discord/channels/{channelId}/pins/{messageId} | Pin a Discord message |
 | [**RemoveDiscordMemberRole**](DiscordApi.md#removediscordmemberrole) | **DELETE** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Remove a role from a guild member |
@@ -857,7 +857,7 @@ catch (ApiException e)
 # **ListDiscordPinnedMessages**
 > ListDiscordPinnedMessages200Response ListDiscordPinnedMessages (string channelId, string accountId)
 
-List pinned messages in a Discord channel
+List pinned messages
 
 Returns the channel's pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
 
@@ -890,7 +890,7 @@ namespace Example
 
             try
             {
-                // List pinned messages in a Discord channel
+                // List pinned messages
                 ListDiscordPinnedMessages200Response result = apiInstance.ListDiscordPinnedMessages(channelId, accountId);
                 Debug.WriteLine(result);
             }
@@ -911,7 +911,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // List pinned messages in a Discord channel
+    // List pinned messages
     ApiResponse<ListDiscordPinnedMessages200Response> response = apiInstance.ListDiscordPinnedMessagesWithHttpInfo(channelId, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

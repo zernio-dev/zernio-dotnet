@@ -16,13 +16,13 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetInstagramDemographics**](AnalyticsApi.md#getinstagramdemographics) | **GET** /v1/analytics/instagram/demographics | Get Instagram demographics |
 | [**GetInstagramFollowerHistory**](AnalyticsApi.md#getinstagramfollowerhistory) | **GET** /v1/analytics/instagram/follower-history | Get Instagram follower history |
 | [**GetLinkedInAggregateAnalytics**](AnalyticsApi.md#getlinkedinaggregateanalytics) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats |
-| [**GetLinkedInOrgAggregateAnalytics**](AnalyticsApi.md#getlinkedinorgaggregateanalytics) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn organization page aggregate analytics |
+| [**GetLinkedInOrgAggregateAnalytics**](AnalyticsApi.md#getlinkedinorgaggregateanalytics) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn org analytics |
 | [**GetLinkedInPostAnalytics**](AnalyticsApi.md#getlinkedinpostanalytics) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats |
 | [**GetLinkedInPostReactions**](AnalyticsApi.md#getlinkedinpostreactions) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions |
 | [**GetPostTimeline**](AnalyticsApi.md#getposttimeline) | **GET** /v1/analytics/post-timeline | Get post analytics timeline |
 | [**GetPostingFrequency**](AnalyticsApi.md#getpostingfrequency) | **GET** /v1/analytics/posting-frequency | Get frequency vs engagement |
 | [**GetTikTokAccountInsights**](AnalyticsApi.md#gettiktokaccountinsights) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights |
-| [**GetYouTubeChannelInsights**](AnalyticsApi.md#getyoutubechannelinsights) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel-level insights |
+| [**GetYouTubeChannelInsights**](AnalyticsApi.md#getyoutubechannelinsights) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel insights |
 | [**GetYouTubeDailyViews**](AnalyticsApi.md#getyoutubedailyviews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views |
 | [**GetYouTubeDemographics**](AnalyticsApi.md#getyoutubedemographics) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics |
 | [**GetYouTubeVideoRetention**](AnalyticsApi.md#getyoutubevideoretention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve |
@@ -1355,7 +1355,7 @@ catch (ApiException e)
 # **GetLinkedInOrgAggregateAnalytics**
 > InstagramAccountInsightsResponse GetLinkedInOrgAggregateAnalytics (string accountId, string? metrics = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
 
-Get LinkedIn organization page aggregate analytics
+Get LinkedIn org analytics
 
 Returns aggregate analytics for a LinkedIn organization page. Parallel to /v1/accounts/{id}/linkedin-aggregate-analytics (which handles personal accounts only). Backed by LinkedIn's organizationalEntityShareStatistics, organizationalEntityFollowerStatistics, and organizationPageStatistics endpoints.  Response shape matches /v1/analytics/instagram/account-insights. Max 89 days, defaults to last 30 days. Requires the Analytics add-on.  Scope requirements: r_organization_social, r_organization_followers, and r_organization_admin must all be present on the account. Accounts connected before these scopes were included in the OAuth flow will return 412 with a reauth hint.  Enforced by this endpoint:   - Page-view metrics accept only metricType=total_value (LinkedIn omits per-day     segmentation even when the API is called with DAY granularity, so a time-series     response would be meaningless).   - Date range capped at 89 days.  LinkedIn-side platform limits (not re-enforced here, but worth knowing for larger ranges in a future release):   - Follower stats: rolling 12-month window, end must be no later than 2 days ago.   - Share stats: rolling 12-month window. 
 
@@ -1391,7 +1391,7 @@ namespace Example
 
             try
             {
-                // Get LinkedIn organization page aggregate analytics
+                // Get LinkedIn org analytics
                 InstagramAccountInsightsResponse result = apiInstance.GetLinkedInOrgAggregateAnalytics(accountId, metrics, since, until, metricType);
                 Debug.WriteLine(result);
             }
@@ -1412,7 +1412,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get LinkedIn organization page aggregate analytics
+    // Get LinkedIn org analytics
     ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetLinkedInOrgAggregateAnalyticsWithHttpInfo(accountId, metrics, since, until, metricType);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -2005,7 +2005,7 @@ catch (ApiException e)
 # **GetYouTubeChannelInsights**
 > InstagramAccountInsightsResponse GetYouTubeChannelInsights (string accountId, string? metrics = null, DateOnly? since = null, DateOnly? until = null, string? metricType = null)
 
-Get YouTube channel-level insights
+Get YouTube channel insights
 
 Returns channel-scoped aggregate metrics from YouTube Analytics API v2. Saves you from looping /v1/analytics/youtube/daily-views over every video when you only need channel totals.  Response shape matches /v1/analytics/instagram/account-insights so the same client handling works. Requires yt-analytics.readonly scope (412 with reauthorizeUrl if missing). Data has a 2-3 day delay (endDate is clamped accordingly). Max 89 days, defaults to last 30 days. Requires the Analytics add-on.  NOT exposed: impressions (Studio thumbnail impressions) and impressionsClickThroughRate. YouTube Analytics API v2 does not expose these for any principal type, not channel owners, not Partner Program channels, not content owners with CMS access. The only way to get them is Studio CSV export. This is a Google-side limitation. 
 
@@ -2041,7 +2041,7 @@ namespace Example
 
             try
             {
-                // Get YouTube channel-level insights
+                // Get YouTube channel insights
                 InstagramAccountInsightsResponse result = apiInstance.GetYouTubeChannelInsights(accountId, metrics, since, until, metricType);
                 Debug.WriteLine(result);
             }
@@ -2062,7 +2062,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get YouTube channel-level insights
+    // Get YouTube channel insights
     ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.GetYouTubeChannelInsightsWithHttpInfo(accountId, metrics, since, until, metricType);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

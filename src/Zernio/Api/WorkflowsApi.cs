@@ -276,7 +276,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of PauseWorkflow200Response</returns>
         ApiResponse<PauseWorkflow200Response> PauseWorkflowWithHttpInfo(string workflowId);
         /// <summary>
-        /// Restore a previous workflow version
+        /// Restore a workflow version
         /// </summary>
         /// <remarks>
         /// Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
@@ -288,7 +288,7 @@ namespace Zernio.Api
         RestoreWorkflowVersion200Response RestoreWorkflowVersion(string workflowId, int version);
 
         /// <summary>
-        /// Restore a previous workflow version
+        /// Restore a workflow version
         /// </summary>
         /// <remarks>
         /// Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
@@ -623,7 +623,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (PauseWorkflow200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<PauseWorkflow200Response>> PauseWorkflowWithHttpInfoAsync(string workflowId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Restore a previous workflow version
+        /// Restore a workflow version
         /// </summary>
         /// <remarks>
         /// Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
@@ -636,7 +636,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<RestoreWorkflowVersion200Response> RestoreWorkflowVersionAsync(string workflowId, int version, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Restore a previous workflow version
+        /// Restore a workflow version
         /// </summary>
         /// <remarks>
         /// Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
@@ -2398,7 +2398,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Restore a previous workflow version Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+        /// Restore a workflow version Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="workflowId"></param>
@@ -2411,7 +2411,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Restore a previous workflow version Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+        /// Restore a workflow version Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="workflowId"></param>
@@ -2462,7 +2462,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Restore a previous workflow version Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+        /// Restore a workflow version Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="workflowId"></param>
@@ -2476,7 +2476,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Restore a previous workflow version Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+        /// Restore a workflow version Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="workflowId"></param>

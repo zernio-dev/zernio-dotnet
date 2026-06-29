@@ -29,7 +29,7 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Start a sandbox activation for a phone
+        /// Start a sandbox activation
         /// </summary>
         /// <remarks>
         /// Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
@@ -40,7 +40,7 @@ namespace Zernio.Api
         CreateWhatsAppSandboxSession200Response CreateWhatsAppSandboxSession(CreateWhatsAppSandboxSessionRequest createWhatsAppSandboxSessionRequest);
 
         /// <summary>
-        /// Start a sandbox activation for a phone
+        /// Start a sandbox activation
         /// </summary>
         /// <remarks>
         /// Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
@@ -99,7 +99,7 @@ namespace Zernio.Api
     {
         #region Asynchronous Operations
         /// <summary>
-        /// Start a sandbox activation for a phone
+        /// Start a sandbox activation
         /// </summary>
         /// <remarks>
         /// Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
@@ -111,7 +111,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<CreateWhatsAppSandboxSession200Response> CreateWhatsAppSandboxSessionAsync(CreateWhatsAppSandboxSessionRequest createWhatsAppSandboxSessionRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Start a sandbox activation for a phone
+        /// Start a sandbox activation
         /// </summary>
         /// <remarks>
         /// Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
@@ -379,7 +379,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Start a sandbox activation for a phone Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
+        /// Start a sandbox activation Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppSandboxSessionRequest"></param>
@@ -391,7 +391,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Start a sandbox activation for a phone Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
+        /// Start a sandbox activation Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppSandboxSessionRequest"></param>
@@ -441,7 +441,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Start a sandbox activation for a phone Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
+        /// Start a sandbox activation Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppSandboxSessionRequest"></param>
@@ -454,7 +454,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Start a sandbox activation for a phone Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
+        /// Start a sandbox activation Creates (or refreshes) a pending sandbox session for the given phone and immediately fires the verified sandbox template from the shared sandbox number to that phone. The session activates when the phone owner replies to that WhatsApp message — the reply itself is proof of ownership.  One phone per user: if the caller already has a non-expired session for a DIFFERENT phone, the request is rejected with &#x60;invalid_field_value&#x60; (the message names the existing phone so it can be revoked first). Re-creating a session for the SAME phone is idempotent and refreshes the verification template.  If Meta rejects the template send (not a WhatsApp number, paused WABA, token issue), the pending row is rolled back and the Meta error message is returned in &#x60;error&#x60; so the caller knows why. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWhatsAppSandboxSessionRequest"></param>

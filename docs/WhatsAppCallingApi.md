@@ -7,8 +7,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**DisableWhatsAppCalling**](WhatsAppCallingApi.md#disablewhatsappcalling) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number |
 | [**EnableWhatsAppCalling**](WhatsAppCallingApi.md#enablewhatsappcalling) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number |
 | [**GetWhatsAppCall**](WhatsAppCallingApi.md#getwhatsappcall) | **GET** /v1/whatsapp/calls/{callId} | Get a single call |
-| [**GetWhatsAppCallEstimate**](WhatsAppCallingApi.md#getwhatsappcallestimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost for a destination |
-| [**GetWhatsAppCallPermissions**](WhatsAppCallingApi.md#getwhatsappcallpermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission for a consumer |
+| [**GetWhatsAppCallEstimate**](WhatsAppCallingApi.md#getwhatsappcallestimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost |
+| [**GetWhatsAppCallPermissions**](WhatsAppCallingApi.md#getwhatsappcallpermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission |
 | [**GetWhatsAppCallingConfig**](WhatsAppCallingApi.md#getwhatsappcallingconfig) | **GET** /v1/whatsapp/calling | Get calling config for an account |
 | [**InitiateWhatsAppCall**](WhatsAppCallingApi.md#initiatewhatsappcall) | **POST** /v1/whatsapp/calls | Initiate outbound call |
 | [**ListWhatsAppCalls**](WhatsAppCallingApi.md#listwhatsappcalls) | **GET** /v1/whatsapp/calls | List call history for an account |
@@ -319,7 +319,7 @@ catch (ApiException e)
 # **GetWhatsAppCallEstimate**
 > GetWhatsAppCallEstimate200Response GetWhatsAppCallEstimate (string accountId, string to, int? minutes = null, bool? recording = null)
 
-Estimate per-minute cost for a destination
+Estimate per-minute cost
 
 Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
 
@@ -354,7 +354,7 @@ namespace Example
 
             try
             {
-                // Estimate per-minute cost for a destination
+                // Estimate per-minute cost
                 GetWhatsAppCallEstimate200Response result = apiInstance.GetWhatsAppCallEstimate(accountId, to, minutes, recording);
                 Debug.WriteLine(result);
             }
@@ -375,7 +375,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Estimate per-minute cost for a destination
+    // Estimate per-minute cost
     ApiResponse<GetWhatsAppCallEstimate200Response> response = apiInstance.GetWhatsAppCallEstimateWithHttpInfo(accountId, to, minutes, recording);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -424,7 +424,7 @@ catch (ApiException e)
 # **GetWhatsAppCallPermissions**
 > GetWhatsAppCallPermissions200Response GetWhatsAppCallPermissions (string accountId, string to)
 
-Check call permission for a consumer
+Check call permission
 
 Returns the permission state and the list of available actions for a given consumer wa_id (e.g. `start_call`, `send_call_permission_request`). Use this before placing a call to decide whether to prompt for consent first. 
 
@@ -457,7 +457,7 @@ namespace Example
 
             try
             {
-                // Check call permission for a consumer
+                // Check call permission
                 GetWhatsAppCallPermissions200Response result = apiInstance.GetWhatsAppCallPermissions(accountId, to);
                 Debug.WriteLine(result);
             }
@@ -478,7 +478,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Check call permission for a consumer
+    // Check call permission
     ApiResponse<GetWhatsAppCallPermissions200Response> response = apiInstance.GetWhatsAppCallPermissionsWithHttpInfo(accountId, to);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

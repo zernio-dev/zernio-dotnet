@@ -4,19 +4,19 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**GetInboxConversationAnalytics**](InboxAnalyticsApi.md#getinboxconversationanalytics) | **GET** /v1/analytics/inbox/conversations/{conversationId} | Get analytics for a single conversation |
-| [**GetInboxHeatmap**](InboxAnalyticsApi.md#getinboxheatmap) | **GET** /v1/analytics/inbox/heatmap | Get inbox day-of-week × hour-of-day heatmap |
+| [**GetInboxConversationAnalytics**](InboxAnalyticsApi.md#getinboxconversationanalytics) | **GET** /v1/analytics/inbox/conversations/{conversationId} | Get conversation analytics |
+| [**GetInboxHeatmap**](InboxAnalyticsApi.md#getinboxheatmap) | **GET** /v1/analytics/inbox/heatmap | Get day × hour heatmap |
 | [**GetInboxResponseTime**](InboxAnalyticsApi.md#getinboxresponsetime) | **GET** /v1/analytics/inbox/response-time | Get inbox response-time stats |
 | [**GetInboxSourceBreakdown**](InboxAnalyticsApi.md#getinboxsourcebreakdown) | **GET** /v1/analytics/inbox/source-breakdown | Get inbox source breakdown |
 | [**GetInboxTopAccounts**](InboxAnalyticsApi.md#getinboxtopaccounts) | **GET** /v1/analytics/inbox/top-accounts | Get top accounts by inbox volume |
 | [**GetInboxVolume**](InboxAnalyticsApi.md#getinboxvolume) | **GET** /v1/analytics/inbox/volume | Get inbox messaging volume |
-| [**ListInboxConversationAnalytics**](InboxAnalyticsApi.md#listinboxconversationanalytics) | **GET** /v1/analytics/inbox/conversations | List conversations with inbox analytics |
+| [**ListInboxConversationAnalytics**](InboxAnalyticsApi.md#listinboxconversationanalytics) | **GET** /v1/analytics/inbox/conversations | List conversation analytics |
 
 <a id="getinboxconversationanalytics"></a>
 # **GetInboxConversationAnalytics**
 > GetInboxConversationAnalytics200Response GetInboxConversationAnalytics (string conversationId, DateOnly fromDate, DateOnly? toDate = null)
 
-Get analytics for a single conversation
+Get conversation analytics
 
 Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline — one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo `_id` of the Conversation document OR its `platformConversationId` (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller's team before the Tinybird query fires.  Max date range is 365 days. 
 
@@ -50,7 +50,7 @@ namespace Example
 
             try
             {
-                // Get analytics for a single conversation
+                // Get conversation analytics
                 GetInboxConversationAnalytics200Response result = apiInstance.GetInboxConversationAnalytics(conversationId, fromDate, toDate);
                 Debug.WriteLine(result);
             }
@@ -71,7 +71,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get analytics for a single conversation
+    // Get conversation analytics
     ApiResponse<GetInboxConversationAnalytics200Response> response = apiInstance.GetInboxConversationAnalyticsWithHttpInfo(conversationId, fromDate, toDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -122,7 +122,7 @@ catch (ApiException e)
 # **GetInboxHeatmap**
 > GetInboxHeatmap200Response GetInboxHeatmap (DateOnly fromDate, DateOnly? toDate = null, string? profileId = null, string? platform = null, string? accountId = null, string? source = null, string? action = null)
 
-Get inbox day-of-week × hour-of-day heatmap
+Get day × hour heatmap
 
 Day-of-week × hour-of-day breakdown of inbox messages. Buckets are sparse — only cells with at least one event are returned; clients zero-fill the rest to render the full 7×24 grid. The `dow` field follows ClickHouse's `toDayOfWeek` convention (1 = Monday … 7 = Sunday). Max date range is 365 days. 
 
@@ -160,7 +160,7 @@ namespace Example
 
             try
             {
-                // Get inbox day-of-week × hour-of-day heatmap
+                // Get day × hour heatmap
                 GetInboxHeatmap200Response result = apiInstance.GetInboxHeatmap(fromDate, toDate, profileId, platform, accountId, source, action);
                 Debug.WriteLine(result);
             }
@@ -181,7 +181,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get inbox day-of-week × hour-of-day heatmap
+    // Get day × hour heatmap
     ApiResponse<GetInboxHeatmap200Response> response = apiInstance.GetInboxHeatmapWithHttpInfo(fromDate, toDate, profileId, platform, accountId, source, action);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -675,7 +675,7 @@ catch (ApiException e)
 # **ListInboxConversationAnalytics**
 > ListInboxConversationAnalytics200Response ListInboxConversationAnalytics (DateOnly fromDate, DateOnly? toDate = null, string? profileId = null, string? platform = null, string? accountId = null, string? source = null, int? limit = null, int? page = null, string? sortBy = null, string? order = null)
 
-List conversations with inbox analytics
+List conversation analytics
 
 Per-conversation listing with per-row totals + first/last message timestamps. The inbox analog of GET /v1/analytics (posts listing) — same filter shape, same pagination, same sort/order semantics. Use as the entry point for the per-conversation analytics drawer at /v1/analytics/inbox/conversations/{conversationId}.  Rows are enriched with the conversation's participant info (`participantName`, `participantUsername`, `participantPicture`) and last-message preview by joining the Conversation document scoped to the caller's team. Max date range is 365 days. 
 
@@ -716,7 +716,7 @@ namespace Example
 
             try
             {
-                // List conversations with inbox analytics
+                // List conversation analytics
                 ListInboxConversationAnalytics200Response result = apiInstance.ListInboxConversationAnalytics(fromDate, toDate, profileId, platform, accountId, source, limit, page, sortBy, order);
                 Debug.WriteLine(result);
             }
@@ -737,7 +737,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // List conversations with inbox analytics
+    // List conversation analytics
     ApiResponse<ListInboxConversationAnalytics200Response> response = apiInstance.ListInboxConversationAnalyticsWithHttpInfo(fromDate, toDate, profileId, platform, accountId, source, limit, page, sortBy, order);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
