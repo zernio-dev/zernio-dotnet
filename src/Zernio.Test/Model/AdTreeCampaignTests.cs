@@ -297,5 +297,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'AdSets'
         }
+
+        /// <summary>
+        /// Test the property 'Daily'
+        /// </summary>
+        [Fact]
+        public void DailyTest()
+        {
+            // TODO unit test for the property 'Daily'
+        }
     }
 }

@@ -191,6 +191,7 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**GetAdAnalytics**](docs/AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
 *AdsApi* | [**GetAdComments**](docs/AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdsApi* | [**GetAdTrackingTags**](docs/AdsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
+*AdsApi* | [**GetCampaignAnalytics**](docs/AdsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
 *AdsApi* | [**GetConversionDestination**](docs/AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
 *AdsApi* | [**GetConversionMetrics**](docs/AdsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
 *AdsApi* | [**GetConversionsQuality**](docs/AdsApi.md#getconversionsquality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
@@ -540,6 +541,7 @@ Class | Method | HTTP request | Description
  - [Model.AdCampaignBudget](docs/AdCampaignBudget.md)
  - [Model.AdCampaignCampaignBudget](docs/AdCampaignCampaignBudget.md)
  - [Model.AdCreative](docs/AdCreative.md)
+ - [Model.AdDailyMetrics](docs/AdDailyMetrics.md)
  - [Model.AdMetrics](docs/AdMetrics.md)
  - [Model.AdPromotedObject](docs/AdPromotedObject.md)
  - [Model.AdSchedule](docs/AdSchedule.md)
@@ -826,8 +828,6 @@ Class | Method | HTTP request | Description
  - [Model.GetAd200Response](docs/GetAd200Response.md)
  - [Model.GetAdAnalytics200Response](docs/GetAdAnalytics200Response.md)
  - [Model.GetAdAnalytics200ResponseAd](docs/GetAdAnalytics200ResponseAd.md)
- - [Model.GetAdAnalytics200ResponseAnalytics](docs/GetAdAnalytics200ResponseAnalytics.md)
- - [Model.GetAdAnalytics200ResponseAnalyticsDailyInner](docs/GetAdAnalytics200ResponseAnalyticsDailyInner.md)
  - [Model.GetAdAudience200Response](docs/GetAdAudience200Response.md)
  - [Model.GetAdComments200Response](docs/GetAdComments200Response.md)
  - [Model.GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
@@ -849,6 +849,10 @@ Class | Method | HTTP request | Description
  - [Model.GetBroadcast200ResponseBroadcast](docs/GetBroadcast200ResponseBroadcast.md)
  - [Model.GetBroadcast200ResponseBroadcastMessage](docs/GetBroadcast200ResponseBroadcastMessage.md)
  - [Model.GetBroadcast200ResponseBroadcastTemplate](docs/GetBroadcast200ResponseBroadcastTemplate.md)
+ - [Model.GetCampaignAnalytics200Response](docs/GetCampaignAnalytics200Response.md)
+ - [Model.GetCampaignAnalytics200ResponseAnalytics](docs/GetCampaignAnalytics200ResponseAnalytics.md)
+ - [Model.GetCampaignAnalytics200ResponseAnalyticsDailyInner](docs/GetCampaignAnalytics200ResponseAnalyticsDailyInner.md)
+ - [Model.GetCampaignAnalytics200ResponseCampaign](docs/GetCampaignAnalytics200ResponseCampaign.md)
  - [Model.GetCommentAutomation200Response](docs/GetCommentAutomation200Response.md)
  - [Model.GetCommentAutomation200ResponseAutomation](docs/GetCommentAutomation200ResponseAutomation.md)
  - [Model.GetCommentAutomation200ResponseLogsInner](docs/GetCommentAutomation200ResponseLogsInner.md)

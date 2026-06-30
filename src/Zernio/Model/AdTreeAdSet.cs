@@ -61,8 +61,9 @@ namespace Zernio.Model
         /// <param name="bidAmount">Bid cap in whole currency units. Populated when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP..</param>
         /// <param name="roasAverageFloor">Minimum ROAS as a decimal multiplier (2.0 &#x3D; 2.0x). Populated when bidStrategy is LOWEST_COST_WITH_MIN_ROAS..</param>
         /// <param name="promotedObject">promotedObject.</param>
-        /// <param name="ads">Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent)..</param>
-        public AdTreeAdSet(string platformAdSetId = default, string adSetName = default, AdStatus? status = default, int adCount = default, AdTreeAdSetBudget budget = default, AdTreeAdSetAdSetBudget adSetBudget = default, AdMetrics metrics = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeAdSetPromotedObject promotedObject = default, List<Ad> ads = default)
+        /// <param name="ads">Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent). When &#x60;timeIncrement&#x3D;1&amp;dailyLevel&#x3D;ad&#x60;, each entry also carries a &#x60;daily[]&#x60; array of &#x60;AdDailyMetrics&#x60;..</param>
+        /// <param name="daily">Per-day metric series for this ad set. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; and &#x60;dailyLevel&#x60; is &#x60;adset&#x60; or &#x60;ad&#x60;..</param>
+        public AdTreeAdSet(string platformAdSetId = default, string adSetName = default, AdStatus? status = default, int adCount = default, AdTreeAdSetBudget budget = default, AdTreeAdSetAdSetBudget adSetBudget = default, AdMetrics metrics = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeAdSetPromotedObject promotedObject = default, List<Ad> ads = default, List<AdDailyMetrics> daily = default)
         {
             this.PlatformAdSetId = platformAdSetId;
             this.AdSetName = adSetName;
@@ -77,6 +78,7 @@ namespace Zernio.Model
             this.RoasAverageFloor = roasAverageFloor;
             this.PromotedObject = promotedObject;
             this.Ads = ads;
+            this.Daily = daily;
         }
 
         /// <summary>
@@ -143,11 +145,18 @@ namespace Zernio.Model
         public AdTreeAdSetPromotedObject PromotedObject { get; set; }
 
         /// <summary>
-        /// Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent).
+        /// Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent). When &#x60;timeIncrement&#x3D;1&amp;dailyLevel&#x3D;ad&#x60;, each entry also carries a &#x60;daily[]&#x60; array of &#x60;AdDailyMetrics&#x60;.
         /// </summary>
-        /// <value>Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent).</value>
+        /// <value>Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent). When &#x60;timeIncrement&#x3D;1&amp;dailyLevel&#x3D;ad&#x60;, each entry also carries a &#x60;daily[]&#x60; array of &#x60;AdDailyMetrics&#x60;.</value>
         [DataMember(Name = "ads", EmitDefaultValue = false)]
         public List<Ad> Ads { get; set; }
+
+        /// <summary>
+        /// Per-day metric series for this ad set. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; and &#x60;dailyLevel&#x60; is &#x60;adset&#x60; or &#x60;ad&#x60;.
+        /// </summary>
+        /// <value>Per-day metric series for this ad set. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; and &#x60;dailyLevel&#x60; is &#x60;adset&#x60; or &#x60;ad&#x60;.</value>
+        [DataMember(Name = "daily", EmitDefaultValue = false)]
+        public List<AdDailyMetrics> Daily { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -170,6 +179,7 @@ namespace Zernio.Model
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
             sb.Append("  PromotedObject: ").Append(PromotedObject).Append("\n");
             sb.Append("  Ads: ").Append(Ads).Append("\n");
+            sb.Append("  Daily: ").Append(Daily).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

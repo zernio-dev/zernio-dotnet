@@ -393,6 +393,35 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetAdTrackingTags200Response</returns>
         ApiResponse<GetAdTrackingTags200Response> GetAdTrackingTagsWithHttpInfo(string adId);
         /// <summary>
+        /// Get campaign analytics
+        /// </summary>
+        /// <remarks>
+        /// Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign id (platformCampaignId).</param>
+        /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <returns>GetCampaignAnalytics200Response</returns>
+        GetCampaignAnalytics200Response GetCampaignAnalytics(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
+
+        /// <summary>
+        /// Get campaign analytics
+        /// </summary>
+        /// <remarks>
+        /// Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign id (platformCampaignId).</param>
+        /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <returns>ApiResponse of GetCampaignAnalytics200Response</returns>
+        ApiResponse<GetCampaignAnalytics200Response> GetCampaignAnalyticsWithHttpInfo(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
+        /// <summary>
         /// Get a conversion destination
         /// </summary>
         /// <remarks>
@@ -1383,6 +1412,37 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdTrackingTags200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdTrackingTags200Response>> GetAdTrackingTagsWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get campaign analytics
+        /// </summary>
+        /// <remarks>
+        /// Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign id (platformCampaignId).</param>
+        /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetCampaignAnalytics200Response</returns>
+        System.Threading.Tasks.Task<GetCampaignAnalytics200Response> GetCampaignAnalyticsAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get campaign analytics
+        /// </summary>
+        /// <remarks>
+        /// Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign id (platformCampaignId).</param>
+        /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetCampaignAnalytics200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetCampaignAnalytics200Response>> GetCampaignAnalyticsWithHttpInfoAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a conversion destination
         /// </summary>
@@ -4453,6 +4513,181 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAdTrackingTags", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get campaign analytics Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign id (platformCampaignId).</param>
+        /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <returns>GetCampaignAnalytics200Response</returns>
+        public GetCampaignAnalytics200Response GetCampaignAnalytics(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
+        {
+            Zernio.Client.ApiResponse<GetCampaignAnalytics200Response> localVarResponse = GetCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get campaign analytics Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign id (platformCampaignId).</param>
+        /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <returns>ApiResponse of GetCampaignAnalytics200Response</returns>
+        public Zernio.Client.ApiResponse<GetCampaignAnalytics200Response> GetCampaignAnalyticsWithHttpInfo(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdsApi->GetCampaignAnalytics");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (breakdowns != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "breakdowns", breakdowns));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetCampaignAnalytics200Response>("/v1/ads/campaigns/{campaignId}/analytics", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetCampaignAnalytics", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get campaign analytics Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign id (platformCampaignId).</param>
+        /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetCampaignAnalytics200Response</returns>
+        public async System.Threading.Tasks.Task<GetCampaignAnalytics200Response> GetCampaignAnalyticsAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetCampaignAnalytics200Response> localVarResponse = await GetCampaignAnalyticsWithHttpInfoAsync(campaignId, platform, fromDate, toDate, breakdowns, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get campaign analytics Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="campaignId">Platform campaign id (platformCampaignId).</param>
+        /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
+        /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
+        /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetCampaignAnalytics200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetCampaignAnalytics200Response>> GetCampaignAnalyticsWithHttpInfoAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'campaignId' is set
+            if (campaignId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'campaignId' when calling AdsApi->GetCampaignAnalytics");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("campaignId", Zernio.Client.ClientUtils.ParameterToString(campaignId)); // path parameter
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (breakdowns != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "breakdowns", breakdowns));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetCampaignAnalytics200Response>("/v1/ads/campaigns/{campaignId}/analytics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetCampaignAnalytics", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

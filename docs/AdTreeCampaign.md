@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **RoasAverageFloor** | **decimal?** | Representative ROAS floor for the campaign — bubbled up from the top-spending ad set. Decimal multiplier (2.0 &#x3D; 2.0x). | [optional] 
 **PromotedObject** | [**AdTreeCampaignPromotedObject**](AdTreeCampaignPromotedObject.md) |  | [optional] 
 **AdSets** | [**List&lt;AdTreeAdSet&gt;**](AdTreeAdSet.md) |  | [optional] 
+**Daily** | [**List&lt;AdDailyMetrics&gt;**](AdDailyMetrics.md) | Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend — summing its additive fields reproduces the campaign &#x60;metrics&#x60; total. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

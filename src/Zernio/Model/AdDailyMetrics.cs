@@ -28,13 +28,13 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetAdAnalytics200ResponseAnalyticsDailyInner
+    /// One day of metrics. Same fields as &#x60;AdMetrics&#x60; plus the &#x60;date&#x60; they apply to. Returned inside a node&#39;s &#x60;daily[]&#x60; when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60;. Rate metrics (ctr/cpc/cpm/costPerConversion/ roas) are recomputed per day from that day&#39;s sums, so summing the additive fields across a node&#39;s &#x60;daily[]&#x60; reproduces its aggregated &#x60;metrics&#x60; total. 
     /// </summary>
-    [DataContract(Name = "getAdAnalytics_200_response_analytics_daily_inner")]
-    public partial class GetAdAnalytics200ResponseAnalyticsDailyInner : IValidatableObject
+    [DataContract(Name = "AdDailyMetrics")]
+    public partial class AdDailyMetrics : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetAdAnalytics200ResponseAnalyticsDailyInner" /> class.
+        /// Initializes a new instance of the <see cref="AdDailyMetrics" /> class.
         /// </summary>
         /// <param name="spend">spend.</param>
         /// <param name="impressions">impressions.</param>
@@ -51,8 +51,8 @@ namespace Zernio.Model
         /// <param name="purchaseValue">Convenience sum of purchase-type action values — picked from &#x60;actionValues&#x60; via the same priority list as &#x60;conversions&#x60; so both fields describe the same events. In ad-account native currency. 0 when the campaign has no purchase event configured. Meta-only..</param>
         /// <param name="roas">Return on ad spend — derived as &#x60;purchaseValue / spend&#x60;. 0 when &#x60;spend&#x60; is 0. Equivalent to Meta&#39;s &#x60;purchase_roas&#x60; under default attribution. At ad-set and campaign levels this is recomputed from summed purchaseValue + spend (NOT averaged across children) so it&#39;s mathematically correct at every rollup level..</param>
         /// <param name="lastSyncedAt">Present on individual ads only, not on campaign aggregations.</param>
-        /// <param name="date">date.</param>
-        public GetAdAnalytics200ResponseAnalyticsDailyInner(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, int conversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, DateTime lastSyncedAt = default, DateOnly date = default)
+        /// <param name="date">Calendar day (YYYY-MM-DD) these metrics apply to..</param>
+        public AdDailyMetrics(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, int conversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, DateTime lastSyncedAt = default, DateOnly date = default)
         {
             this.Spend = spend;
             this.Impressions = impressions;
@@ -179,8 +179,9 @@ namespace Zernio.Model
         public DateTime LastSyncedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Date
+        /// Calendar day (YYYY-MM-DD) these metrics apply to.
         /// </summary>
+        /// <value>Calendar day (YYYY-MM-DD) these metrics apply to.</value>
         [DataMember(Name = "date", EmitDefaultValue = false)]
         public DateOnly Date { get; set; }
 
@@ -191,7 +192,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetAdAnalytics200ResponseAnalyticsDailyInner {\n");
+            sb.Append("class AdDailyMetrics {\n");
             sb.Append("  Spend: ").Append(Spend).Append("\n");
             sb.Append("  Impressions: ").Append(Impressions).Append("\n");
             sb.Append("  Reach: ").Append(Reach).Append("\n");

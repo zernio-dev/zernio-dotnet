@@ -260,6 +260,22 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetCampaignAnalytics
+        /// </summary>
+        [Fact]
+        public void GetCampaignAnalyticsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string campaignId = null;
+            //string? platform = null;
+            //DateOnly? fromDate = null;
+            //DateOnly? toDate = null;
+            //string? breakdowns = null;
+            //var response = instance.GetCampaignAnalytics(campaignId, platform, fromDate, toDate, breakdowns);
+            //Assert.IsType<GetCampaignAnalytics200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetConversionDestination
         /// </summary>
         [Fact]

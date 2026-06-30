@@ -28,27 +28,27 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetAdAnalytics200Response
+    /// GetCampaignAnalytics200Response
     /// </summary>
-    [DataContract(Name = "getAdAnalytics_200_response")]
-    public partial class GetAdAnalytics200Response : IValidatableObject
+    [DataContract(Name = "getCampaignAnalytics_200_response")]
+    public partial class GetCampaignAnalytics200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetAdAnalytics200Response" /> class.
+        /// Initializes a new instance of the <see cref="GetCampaignAnalytics200Response" /> class.
         /// </summary>
-        /// <param name="ad">ad.</param>
+        /// <param name="campaign">campaign.</param>
         /// <param name="analytics">analytics.</param>
-        public GetAdAnalytics200Response(GetAdAnalytics200ResponseAd ad = default, GetCampaignAnalytics200ResponseAnalytics analytics = default)
+        public GetCampaignAnalytics200Response(GetCampaignAnalytics200ResponseCampaign campaign = default, GetCampaignAnalytics200ResponseAnalytics analytics = default)
         {
-            this.Ad = ad;
+            this.Campaign = campaign;
             this.Analytics = analytics;
         }
 
         /// <summary>
-        /// Gets or Sets Ad
+        /// Gets or Sets Campaign
         /// </summary>
-        [DataMember(Name = "ad", EmitDefaultValue = false)]
-        public GetAdAnalytics200ResponseAd Ad { get; set; }
+        [DataMember(Name = "campaign", EmitDefaultValue = false)]
+        public GetCampaignAnalytics200ResponseCampaign Campaign { get; set; }
 
         /// <summary>
         /// Gets or Sets Analytics
@@ -63,8 +63,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetAdAnalytics200Response {\n");
-            sb.Append("  Ad: ").Append(Ad).Append("\n");
+            sb.Append("class GetCampaignAnalytics200Response {\n");
+            sb.Append("  Campaign: ").Append(Campaign).Append("\n");
             sb.Append("  Analytics: ").Append(Analytics).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

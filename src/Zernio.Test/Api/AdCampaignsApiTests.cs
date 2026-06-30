@@ -111,7 +111,9 @@ namespace Zernio.Test.Api
             //DateOnly? fromDate = null;
             //DateOnly? toDate = null;
             //string? sort = null;
-            //var response = instance.GetAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort);
+            //int? timeIncrement = null;
+            //string? dailyLevel = null;
+            //var response = instance.GetAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, timeIncrement, dailyLevel);
             //Assert.IsType<GetAdTree200Response>(response);
         }
 

@@ -28,18 +28,18 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetAdAnalytics200ResponseAnalytics
+    /// GetCampaignAnalytics200ResponseAnalytics
     /// </summary>
-    [DataContract(Name = "getAdAnalytics_200_response_analytics")]
-    public partial class GetAdAnalytics200ResponseAnalytics : IValidatableObject
+    [DataContract(Name = "getCampaignAnalytics_200_response_analytics")]
+    public partial class GetCampaignAnalytics200ResponseAnalytics : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetAdAnalytics200ResponseAnalytics" /> class.
+        /// Initializes a new instance of the <see cref="GetCampaignAnalytics200ResponseAnalytics" /> class.
         /// </summary>
         /// <param name="summary">summary.</param>
         /// <param name="daily">daily.</param>
         /// <param name="breakdowns">breakdowns.</param>
-        public GetAdAnalytics200ResponseAnalytics(AdMetrics summary = default, List<GetAdAnalytics200ResponseAnalyticsDailyInner> daily = default, Dictionary<string, List<Object>> breakdowns = default)
+        public GetCampaignAnalytics200ResponseAnalytics(AdMetrics summary = default, List<GetCampaignAnalytics200ResponseAnalyticsDailyInner> daily = default, Dictionary<string, List<Object>> breakdowns = default)
         {
             this.Summary = summary;
             this.Daily = daily;
@@ -56,7 +56,7 @@ namespace Zernio.Model
         /// Gets or Sets Daily
         /// </summary>
         [DataMember(Name = "daily", EmitDefaultValue = false)]
-        public List<GetAdAnalytics200ResponseAnalyticsDailyInner> Daily { get; set; }
+        public List<GetCampaignAnalytics200ResponseAnalyticsDailyInner> Daily { get; set; }
 
         /// <summary>
         /// Gets or Sets Breakdowns
@@ -71,7 +71,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetAdAnalytics200ResponseAnalytics {\n");
+            sb.Append("class GetCampaignAnalytics200ResponseAnalytics {\n");
             sb.Append("  Summary: ").Append(Summary).Append("\n");
             sb.Append("  Daily: ").Append(Daily).Append("\n");
             sb.Append("  Breakdowns: ").Append(Breakdowns).Append("\n");

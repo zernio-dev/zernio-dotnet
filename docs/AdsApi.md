@@ -20,6 +20,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAdAnalytics**](AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**GetAdComments**](AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**GetAdTrackingTags**](AdsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
+| [**GetCampaignAnalytics**](AdsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**GetConversionDestination**](AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
 | [**GetConversionMetrics**](AdsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
 | [**GetConversionsQuality**](AdsApi.md#getconversionsquality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
@@ -1694,6 +1695,115 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | Ad not found |  -  |
 | **405** | Platform has no click-URL tracking surface |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getcampaignanalytics"></a>
+# **GetCampaignAnalytics**
+> GetCampaignAnalytics200Response GetCampaignAnalytics (string campaignId, string? platform = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? breakdowns = null)
+
+Get campaign analytics
+
+Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign's ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. `campaignId` is the platform campaign id; pass `platform` when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetCampaignAnalyticsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var campaignId = "campaignId_example";  // string | Platform campaign id (platformCampaignId).
+            var platform = "platform_example";  // string? | Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional) 
+            var breakdowns = "breakdowns_example";  // string? | Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional) 
+
+            try
+            {
+                // Get campaign analytics
+                GetCampaignAnalytics200Response result = apiInstance.GetCampaignAnalytics(campaignId, platform, fromDate, toDate, breakdowns);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetCampaignAnalytics: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetCampaignAnalyticsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get campaign analytics
+    ApiResponse<GetCampaignAnalytics200Response> response = apiInstance.GetCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetCampaignAnalyticsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **campaignId** | **string** | Platform campaign id (platformCampaignId). |  |
+| **platform** | **string?** | Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). | [optional]  |
+| **fromDate** | **DateOnly?** | Start of date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional]  |
+| **toDate** | **DateOnly?** | End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional]  |
+| **breakdowns** | **string?** | Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. | [optional]  |
+
+### Return type
+
+[**GetCampaignAnalytics200Response**](GetCampaignAnalytics200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Campaign analytics |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

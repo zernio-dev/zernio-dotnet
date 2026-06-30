@@ -1,4 +1,4 @@
-# Zernio.Model.GetAdAnalytics200ResponseAnalyticsDailyInner
+# Zernio.Model.GetCampaignAnalytics200ResponseAnalyticsDailyInner
 
 ## Properties
 

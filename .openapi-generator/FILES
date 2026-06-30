@@ -21,6 +21,7 @@ docs/AdCampaignBudget.md
 docs/AdCampaignCampaignBudget.md
 docs/AdCampaignsApi.md
 docs/AdCreative.md
+docs/AdDailyMetrics.md
 docs/AdMetrics.md
 docs/AdPromotedObject.md
 docs/AdSchedule.md
@@ -324,8 +325,6 @@ docs/GetAccountHealth200ResponseTokenStatus.md
 docs/GetAd200Response.md
 docs/GetAdAnalytics200Response.md
 docs/GetAdAnalytics200ResponseAd.md
-docs/GetAdAnalytics200ResponseAnalytics.md
-docs/GetAdAnalytics200ResponseAnalyticsDailyInner.md
 docs/GetAdAudience200Response.md
 docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
@@ -347,6 +346,10 @@ docs/GetBroadcast200Response.md
 docs/GetBroadcast200ResponseBroadcast.md
 docs/GetBroadcast200ResponseBroadcastMessage.md
 docs/GetBroadcast200ResponseBroadcastTemplate.md
+docs/GetCampaignAnalytics200Response.md
+docs/GetCampaignAnalytics200ResponseAnalytics.md
+docs/GetCampaignAnalytics200ResponseAnalyticsDailyInner.md
+docs/GetCampaignAnalytics200ResponseCampaign.md
 docs/GetCommentAutomation200Response.md
 docs/GetCommentAutomation200ResponseAutomation.md
 docs/GetCommentAutomation200ResponseLogsInner.md
@@ -1301,6 +1304,7 @@ src/Zernio.Test/Model/AdCampaignBudgetTests.cs
 src/Zernio.Test/Model/AdCampaignCampaignBudgetTests.cs
 src/Zernio.Test/Model/AdCampaignTests.cs
 src/Zernio.Test/Model/AdCreativeTests.cs
+src/Zernio.Test/Model/AdDailyMetricsTests.cs
 src/Zernio.Test/Model/AdMetricsTests.cs
 src/Zernio.Test/Model/AdPromotedObjectTests.cs
 src/Zernio.Test/Model/AdScheduleTests.cs
@@ -1587,8 +1591,6 @@ src/Zernio.Test/Model/GetAccountHealth200ResponseTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponseTokenStatusTests.cs
 src/Zernio.Test/Model/GetAd200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAnalytics200ResponseAdTests.cs
-src/Zernio.Test/Model/GetAdAnalytics200ResponseAnalyticsDailyInnerTests.cs
-src/Zernio.Test/Model/GetAdAnalytics200ResponseAnalyticsTests.cs
 src/Zernio.Test/Model/GetAdAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAudience200ResponseTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseMetaTests.cs
@@ -1611,6 +1613,10 @@ src/Zernio.Test/Model/GetBroadcast200ResponseBroadcastMessageTests.cs
 src/Zernio.Test/Model/GetBroadcast200ResponseBroadcastTemplateTests.cs
 src/Zernio.Test/Model/GetBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/GetBroadcast200ResponseTests.cs
+src/Zernio.Test/Model/GetCampaignAnalytics200ResponseAnalyticsDailyInnerTests.cs
+src/Zernio.Test/Model/GetCampaignAnalytics200ResponseAnalyticsTests.cs
+src/Zernio.Test/Model/GetCampaignAnalytics200ResponseCampaignTests.cs
+src/Zernio.Test/Model/GetCampaignAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseAutomationTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseLogsInnerTests.cs
 src/Zernio.Test/Model/GetCommentAutomation200ResponseTests.cs
@@ -2557,6 +2563,7 @@ src/Zernio/Model/AdCampaign.cs
 src/Zernio/Model/AdCampaignBudget.cs
 src/Zernio/Model/AdCampaignCampaignBudget.cs
 src/Zernio/Model/AdCreative.cs
+src/Zernio/Model/AdDailyMetrics.cs
 src/Zernio/Model/AdMetrics.cs
 src/Zernio/Model/AdPromotedObject.cs
 src/Zernio/Model/AdSchedule.cs
@@ -2843,8 +2850,6 @@ src/Zernio/Model/GetAccountHealth200ResponseTokenStatus.cs
 src/Zernio/Model/GetAd200Response.cs
 src/Zernio/Model/GetAdAnalytics200Response.cs
 src/Zernio/Model/GetAdAnalytics200ResponseAd.cs
-src/Zernio/Model/GetAdAnalytics200ResponseAnalytics.cs
-src/Zernio/Model/GetAdAnalytics200ResponseAnalyticsDailyInner.cs
 src/Zernio/Model/GetAdAudience200Response.cs
 src/Zernio/Model/GetAdComments200Response.cs
 src/Zernio/Model/GetAdComments200ResponseMeta.cs
@@ -2866,6 +2871,10 @@ src/Zernio/Model/GetBroadcast200Response.cs
 src/Zernio/Model/GetBroadcast200ResponseBroadcast.cs
 src/Zernio/Model/GetBroadcast200ResponseBroadcastMessage.cs
 src/Zernio/Model/GetBroadcast200ResponseBroadcastTemplate.cs
+src/Zernio/Model/GetCampaignAnalytics200Response.cs
+src/Zernio/Model/GetCampaignAnalytics200ResponseAnalytics.cs
+src/Zernio/Model/GetCampaignAnalytics200ResponseAnalyticsDailyInner.cs
+src/Zernio/Model/GetCampaignAnalytics200ResponseCampaign.cs
 src/Zernio/Model/GetCommentAutomation200Response.cs
 src/Zernio/Model/GetCommentAutomation200ResponseAutomation.cs
 src/Zernio/Model/GetCommentAutomation200ResponseLogsInner.cs
