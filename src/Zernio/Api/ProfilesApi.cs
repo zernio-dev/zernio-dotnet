@@ -53,7 +53,7 @@ namespace Zernio.Api
         /// Delete profile
         /// </summary>
         /// <remarks>
-        /// Permanently deletes a profile by ID.
+        /// Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
@@ -64,7 +64,7 @@ namespace Zernio.Api
         /// Delete profile
         /// </summary>
         /// <remarks>
-        /// Permanently deletes a profile by ID.
+        /// Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
@@ -171,7 +171,7 @@ namespace Zernio.Api
         /// Delete profile
         /// </summary>
         /// <remarks>
-        /// Permanently deletes a profile by ID.
+        /// Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
@@ -183,7 +183,7 @@ namespace Zernio.Api
         /// Delete profile
         /// </summary>
         /// <remarks>
-        /// Permanently deletes a profile by ID.
+        /// Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
@@ -604,7 +604,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete profile Permanently deletes a profile by ID.
+        /// Delete profile Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
@@ -616,7 +616,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete profile Permanently deletes a profile by ID.
+        /// Delete profile Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
@@ -665,7 +665,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete profile Permanently deletes a profile by ID.
+        /// Delete profile Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
@@ -678,7 +678,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete profile Permanently deletes a profile by ID.
+        /// Delete profile Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
