@@ -363,6 +363,7 @@ Class | Method | HTTP request | Description
 *LinkedInMentionsApi* | [**GetLinkedInMentions**](docs/LinkedInMentionsApi.md#getlinkedinmentions) | **GET** /v1/accounts/{accountId}/linkedin-mentions | Resolve LinkedIn mention
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **GET** /v1/logs | List activity logs
 *MediaApi* | [**GetMediaPresignedUrl**](docs/MediaApi.md#getmediapresignedurl) | **POST** /v1/media/presign | Get upload URL
+*MentionsApi* | [**ListInboxMentions**](docs/MentionsApi.md#listinboxmentions) | **GET** /v1/inbox/mentions | List mentions
 *MessagesApi* | [**AddMessageReaction**](docs/MessagesApi.md#addmessagereaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**CreateInboxConversation**](docs/MessagesApi.md#createinboxconversation) | **POST** /v1/inbox/conversations | Create conversation
 *MessagesApi* | [**DeleteInboxMessage**](docs/MessagesApi.md#deleteinboxmessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
@@ -1192,6 +1193,10 @@ Class | Method | HTTP request | Description
  - [Model.ListInboxConversations200ResponseMeta](docs/ListInboxConversations200ResponseMeta.md)
  - [Model.ListInboxConversations200ResponseMetaFailedAccountsInner](docs/ListInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [Model.ListInboxConversations200ResponsePagination](docs/ListInboxConversations200ResponsePagination.md)
+ - [Model.ListInboxMentions200Response](docs/ListInboxMentions200Response.md)
+ - [Model.ListInboxMentions200ResponseDataInner](docs/ListInboxMentions200ResponseDataInner.md)
+ - [Model.ListInboxMentions200ResponseMeta](docs/ListInboxMentions200ResponseMeta.md)
+ - [Model.ListInboxMentions200ResponsePagination](docs/ListInboxMentions200ResponsePagination.md)
  - [Model.ListInboxReviews200Response](docs/ListInboxReviews200Response.md)
  - [Model.ListInboxReviews200ResponseDataInner](docs/ListInboxReviews200ResponseDataInner.md)
  - [Model.ListInboxReviews200ResponseDataInnerReply](docs/ListInboxReviews200ResponseDataInnerReply.md)
