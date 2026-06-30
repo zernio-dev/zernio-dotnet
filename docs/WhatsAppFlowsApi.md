@@ -224,7 +224,7 @@ catch (ApiException e)
 
 <a id="deprecatewhatsappflow"></a>
 # **DeprecateWhatsAppFlow**
-> UpdateYoutubeDefaultPlaylist200Response DeprecateWhatsAppFlow (string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest)
+> UpdateYoutubeDefaultPlaylist200Response DeprecateWhatsAppFlow (string flowId, DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest)
 
 Deprecate flow
 
@@ -255,12 +255,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
             var flowId = "flowId_example";  // string | Flow ID
-            var createWhatsAppDatasetRequest = new CreateWhatsAppDatasetRequest(); // CreateWhatsAppDatasetRequest | 
+            var deleteWhatsappBusinessUsernameRequest = new DeleteWhatsappBusinessUsernameRequest(); // DeleteWhatsappBusinessUsernameRequest | 
 
             try
             {
                 // Deprecate flow
-                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.DeprecateWhatsAppFlow(flowId, createWhatsAppDatasetRequest);
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.DeprecateWhatsAppFlow(flowId, deleteWhatsappBusinessUsernameRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -281,7 +281,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Deprecate flow
-    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.DeprecateWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest);
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.DeprecateWhatsAppFlowWithHttpInfo(flowId, deleteWhatsappBusinessUsernameRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -299,7 +299,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flowId** | **string** | Flow ID |  |
-| **createWhatsAppDatasetRequest** | [**CreateWhatsAppDatasetRequest**](CreateWhatsAppDatasetRequest.md) |  |  |
+| **deleteWhatsappBusinessUsernameRequest** | [**DeleteWhatsappBusinessUsernameRequest**](DeleteWhatsappBusinessUsernameRequest.md) |  |  |
 
 ### Return type
 
@@ -944,7 +944,7 @@ catch (ApiException e)
 
 <a id="publishwhatsappflow"></a>
 # **PublishWhatsAppFlow**
-> UpdateYoutubeDefaultPlaylist200Response PublishWhatsAppFlow (string flowId, CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest)
+> UpdateYoutubeDefaultPlaylist200Response PublishWhatsAppFlow (string flowId, DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest)
 
 Publish flow
 
@@ -975,12 +975,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppFlowsApi(httpClient, config, httpClientHandler);
             var flowId = "flowId_example";  // string | Flow ID
-            var createWhatsAppDatasetRequest = new CreateWhatsAppDatasetRequest(); // CreateWhatsAppDatasetRequest | 
+            var deleteWhatsappBusinessUsernameRequest = new DeleteWhatsappBusinessUsernameRequest(); // DeleteWhatsappBusinessUsernameRequest | 
 
             try
             {
                 // Publish flow
-                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.PublishWhatsAppFlow(flowId, createWhatsAppDatasetRequest);
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.PublishWhatsAppFlow(flowId, deleteWhatsappBusinessUsernameRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1001,7 +1001,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Publish flow
-    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.PublishWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest);
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.PublishWhatsAppFlowWithHttpInfo(flowId, deleteWhatsappBusinessUsernameRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1019,7 +1019,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **flowId** | **string** | Flow ID |  |
-| **createWhatsAppDatasetRequest** | [**CreateWhatsAppDatasetRequest**](CreateWhatsAppDatasetRequest.md) |  |  |
+| **deleteWhatsappBusinessUsernameRequest** | [**DeleteWhatsappBusinessUsernameRequest**](DeleteWhatsappBusinessUsernameRequest.md) |  |  |
 
 ### Return type
 

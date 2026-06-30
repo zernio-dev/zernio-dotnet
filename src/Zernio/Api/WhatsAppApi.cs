@@ -106,9 +106,9 @@ namespace Zernio.Api
         /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createWhatsAppDatasetRequest"></param>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
         /// <returns>CreateWhatsAppDataset200Response</returns>
-        CreateWhatsAppDataset200Response CreateWhatsAppDataset(CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest);
+        CreateWhatsAppDataset200Response CreateWhatsAppDataset(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest);
 
         /// <summary>
         /// Provision CTWA dataset
@@ -117,9 +117,9 @@ namespace Zernio.Api
         /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createWhatsAppDatasetRequest"></param>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
         /// <returns>ApiResponse of CreateWhatsAppDataset200Response</returns>
-        ApiResponse<CreateWhatsAppDataset200Response> CreateWhatsAppDatasetWithHttpInfo(CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest);
+        ApiResponse<CreateWhatsAppDataset200Response> CreateWhatsAppDatasetWithHttpInfo(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest);
         /// <summary>
         /// Create group
         /// </summary>
@@ -231,6 +231,27 @@ namespace Zernio.Api
         /// <param name="accountId">WhatsApp social account ID</param>
         /// <returns>ApiResponse of UnpublishPost200Response</returns>
         ApiResponse<UnpublishPost200Response> DeleteWhatsAppTemplateWithHttpInfo(string templateName, string accountId);
+        /// <summary>
+        /// Delete business username
+        /// </summary>
+        /// <remarks>
+        /// Release the currently claimed WhatsApp Business username from the account. After deletion the username becomes available for other accounts to claim. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response DeleteWhatsappBusinessUsername(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest);
+
+        /// <summary>
+        /// Delete business username
+        /// </summary>
+        /// <remarks>
+        /// Release the currently claimed WhatsApp Business username from the account. After deletion the username becomes available for other accounts to claim. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteWhatsappBusinessUsernameWithHttpInfo(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest);
         /// <summary>
         /// Check if a user is blocked
         /// </summary>
@@ -410,6 +431,48 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetWhatsAppTemplates200Response</returns>
         ApiResponse<GetWhatsAppTemplates200Response> GetWhatsAppTemplatesWithHttpInfo(string accountId);
         /// <summary>
+        /// Get business username
+        /// </summary>
+        /// <remarks>
+        /// Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>GetWhatsappBusinessUsername200Response</returns>
+        GetWhatsappBusinessUsername200Response GetWhatsappBusinessUsername(string accountId);
+
+        /// <summary>
+        /// Get business username
+        /// </summary>
+        /// <remarks>
+        /// Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ApiResponse of GetWhatsappBusinessUsername200Response</returns>
+        ApiResponse<GetWhatsappBusinessUsername200Response> GetWhatsappBusinessUsernameWithHttpInfo(string accountId);
+        /// <summary>
+        /// Get username suggestions
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>GetWhatsappBusinessUsernameSuggestions200Response</returns>
+        GetWhatsappBusinessUsernameSuggestions200Response GetWhatsappBusinessUsernameSuggestions(string accountId);
+
+        /// <summary>
+        /// Get username suggestions
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ApiResponse of GetWhatsappBusinessUsernameSuggestions200Response</returns>
+        ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response> GetWhatsappBusinessUsernameSuggestionsWithHttpInfo(string accountId);
+        /// <summary>
         /// List conversion events
         /// </summary>
         /// <remarks>
@@ -551,6 +614,27 @@ namespace Zernio.Api
         /// <param name="sendWhatsAppConversionRequest"></param>
         /// <returns>ApiResponse of SendWhatsAppConversion200Response</returns>
         ApiResponse<SendWhatsAppConversion200Response> SendWhatsAppConversionWithHttpInfo(SendWhatsAppConversionRequest sendWhatsAppConversionRequest);
+        /// <summary>
+        /// Set business username
+        /// </summary>
+        /// <remarks>
+        /// Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no &#x60;www&#x60; prefix, no domain TLD suffix (e.g. &#x60;.com&#x60;).  If the desired username is currently held by another account, pass &#x60;transferAction: \&quot;force_transfer\&quot;&#x60; to request a transfer. On failure the API returns a standard error envelope with one of these codes: &#x60;whatsapp_username_unavailable&#x60; (already taken and transfer not requested), &#x60;whatsapp_username_ineligible&#x60; (account not eligible to claim a username), or &#x60;whatsapp_username_transfer_required&#x60; (username is held elsewhere; retry with &#x60;force_transfer&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setWhatsappBusinessUsernameRequest"></param>
+        /// <returns>SetWhatsappBusinessUsername200Response</returns>
+        SetWhatsappBusinessUsername200Response SetWhatsappBusinessUsername(SetWhatsappBusinessUsernameRequest setWhatsappBusinessUsernameRequest);
+
+        /// <summary>
+        /// Set business username
+        /// </summary>
+        /// <remarks>
+        /// Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no &#x60;www&#x60; prefix, no domain TLD suffix (e.g. &#x60;.com&#x60;).  If the desired username is currently held by another account, pass &#x60;transferAction: \&quot;force_transfer\&quot;&#x60; to request a transfer. On failure the API returns a standard error envelope with one of these codes: &#x60;whatsapp_username_unavailable&#x60; (already taken and transfer not requested), &#x60;whatsapp_username_ineligible&#x60; (account not eligible to claim a username), or &#x60;whatsapp_username_transfer_required&#x60; (username is held elsewhere; retry with &#x60;force_transfer&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setWhatsappBusinessUsernameRequest"></param>
+        /// <returns>ApiResponse of SetWhatsappBusinessUsername200Response</returns>
+        ApiResponse<SetWhatsappBusinessUsername200Response> SetWhatsappBusinessUsernameWithHttpInfo(SetWhatsappBusinessUsernameRequest setWhatsappBusinessUsernameRequest);
         /// <summary>
         /// Unblock users
         /// </summary>
@@ -778,10 +862,10 @@ namespace Zernio.Api
         /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createWhatsAppDatasetRequest"></param>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateWhatsAppDataset200Response</returns>
-        System.Threading.Tasks.Task<CreateWhatsAppDataset200Response> CreateWhatsAppDatasetAsync(CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<CreateWhatsAppDataset200Response> CreateWhatsAppDatasetAsync(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Provision CTWA dataset
@@ -790,10 +874,10 @@ namespace Zernio.Api
         /// Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createWhatsAppDatasetRequest"></param>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateWhatsAppDataset200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CreateWhatsAppDataset200Response>> CreateWhatsAppDatasetWithHttpInfoAsync(CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<CreateWhatsAppDataset200Response>> CreateWhatsAppDatasetWithHttpInfoAsync(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create group
         /// </summary>
@@ -915,6 +999,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UnpublishPost200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UnpublishPost200Response>> DeleteWhatsAppTemplateWithHttpInfoAsync(string templateName, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete business username
+        /// </summary>
+        /// <remarks>
+        /// Release the currently claimed WhatsApp Business username from the account. After deletion the username becomes available for other accounts to claim. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteWhatsappBusinessUsernameAsync(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete business username
+        /// </summary>
+        /// <remarks>
+        /// Release the currently claimed WhatsApp Business username from the account. After deletion the username becomes available for other accounts to claim. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteWhatsappBusinessUsernameWithHttpInfoAsync(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Check if a user is blocked
         /// </summary>
@@ -1110,6 +1217,52 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetWhatsAppTemplates200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppTemplates200Response>> GetWhatsAppTemplatesWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get business username
+        /// </summary>
+        /// <remarks>
+        /// Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsappBusinessUsername200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsappBusinessUsername200Response> GetWhatsappBusinessUsernameAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get business username
+        /// </summary>
+        /// <remarks>
+        /// Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsappBusinessUsername200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsappBusinessUsername200Response>> GetWhatsappBusinessUsernameWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get username suggestions
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsappBusinessUsernameSuggestions200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsappBusinessUsernameSuggestions200Response> GetWhatsappBusinessUsernameSuggestionsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get username suggestions
+        /// </summary>
+        /// <remarks>
+        /// Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsappBusinessUsernameSuggestions200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response>> GetWhatsappBusinessUsernameSuggestionsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List conversion events
         /// </summary>
         /// <remarks>
@@ -1263,6 +1416,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SendWhatsAppConversion200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SendWhatsAppConversion200Response>> SendWhatsAppConversionWithHttpInfoAsync(SendWhatsAppConversionRequest sendWhatsAppConversionRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Set business username
+        /// </summary>
+        /// <remarks>
+        /// Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no &#x60;www&#x60; prefix, no domain TLD suffix (e.g. &#x60;.com&#x60;).  If the desired username is currently held by another account, pass &#x60;transferAction: \&quot;force_transfer\&quot;&#x60; to request a transfer. On failure the API returns a standard error envelope with one of these codes: &#x60;whatsapp_username_unavailable&#x60; (already taken and transfer not requested), &#x60;whatsapp_username_ineligible&#x60; (account not eligible to claim a username), or &#x60;whatsapp_username_transfer_required&#x60; (username is held elsewhere; retry with &#x60;force_transfer&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setWhatsappBusinessUsernameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SetWhatsappBusinessUsername200Response</returns>
+        System.Threading.Tasks.Task<SetWhatsappBusinessUsername200Response> SetWhatsappBusinessUsernameAsync(SetWhatsappBusinessUsernameRequest setWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Set business username
+        /// </summary>
+        /// <remarks>
+        /// Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no &#x60;www&#x60; prefix, no domain TLD suffix (e.g. &#x60;.com&#x60;).  If the desired username is currently held by another account, pass &#x60;transferAction: \&quot;force_transfer\&quot;&#x60; to request a transfer. On failure the API returns a standard error envelope with one of these codes: &#x60;whatsapp_username_unavailable&#x60; (already taken and transfer not requested), &#x60;whatsapp_username_ineligible&#x60; (account not eligible to claim a username), or &#x60;whatsapp_username_transfer_required&#x60; (username is held elsewhere; retry with &#x60;force_transfer&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setWhatsappBusinessUsernameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SetWhatsappBusinessUsername200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SetWhatsappBusinessUsername200Response>> SetWhatsappBusinessUsernameWithHttpInfoAsync(SetWhatsappBusinessUsernameRequest setWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Unblock users
         /// </summary>
@@ -2069,11 +2245,11 @@ namespace Zernio.Api
         /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createWhatsAppDatasetRequest"></param>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
         /// <returns>CreateWhatsAppDataset200Response</returns>
-        public CreateWhatsAppDataset200Response CreateWhatsAppDataset(CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest)
+        public CreateWhatsAppDataset200Response CreateWhatsAppDataset(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest)
         {
-            Zernio.Client.ApiResponse<CreateWhatsAppDataset200Response> localVarResponse = CreateWhatsAppDatasetWithHttpInfo(createWhatsAppDatasetRequest);
+            Zernio.Client.ApiResponse<CreateWhatsAppDataset200Response> localVarResponse = CreateWhatsAppDatasetWithHttpInfo(deleteWhatsappBusinessUsernameRequest);
             return localVarResponse.Data;
         }
 
@@ -2081,13 +2257,13 @@ namespace Zernio.Api
         /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createWhatsAppDatasetRequest"></param>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
         /// <returns>ApiResponse of CreateWhatsAppDataset200Response</returns>
-        public Zernio.Client.ApiResponse<CreateWhatsAppDataset200Response> CreateWhatsAppDatasetWithHttpInfo(CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest)
+        public Zernio.Client.ApiResponse<CreateWhatsAppDataset200Response> CreateWhatsAppDatasetWithHttpInfo(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest)
         {
-            // verify the required parameter 'createWhatsAppDatasetRequest' is set
-            if (createWhatsAppDatasetRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createWhatsAppDatasetRequest' when calling WhatsAppApi->CreateWhatsAppDataset");
+            // verify the required parameter 'deleteWhatsappBusinessUsernameRequest' is set
+            if (deleteWhatsappBusinessUsernameRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'deleteWhatsappBusinessUsernameRequest' when calling WhatsAppApi->CreateWhatsAppDataset");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -2106,7 +2282,7 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = createWhatsAppDatasetRequest;
+            localVarRequestOptions.Data = deleteWhatsappBusinessUsernameRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -2131,12 +2307,12 @@ namespace Zernio.Api
         /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createWhatsAppDatasetRequest"></param>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateWhatsAppDataset200Response</returns>
-        public async System.Threading.Tasks.Task<CreateWhatsAppDataset200Response> CreateWhatsAppDatasetAsync(CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<CreateWhatsAppDataset200Response> CreateWhatsAppDatasetAsync(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<CreateWhatsAppDataset200Response> localVarResponse = await CreateWhatsAppDatasetWithHttpInfoAsync(createWhatsAppDatasetRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<CreateWhatsAppDataset200Response> localVarResponse = await CreateWhatsAppDatasetWithHttpInfoAsync(deleteWhatsappBusinessUsernameRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2144,14 +2320,14 @@ namespace Zernio.Api
         /// Provision CTWA dataset Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createWhatsAppDatasetRequest"></param>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateWhatsAppDataset200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateWhatsAppDataset200Response>> CreateWhatsAppDatasetWithHttpInfoAsync(CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateWhatsAppDataset200Response>> CreateWhatsAppDatasetWithHttpInfoAsync(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            // verify the required parameter 'createWhatsAppDatasetRequest' is set
-            if (createWhatsAppDatasetRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createWhatsAppDatasetRequest' when calling WhatsAppApi->CreateWhatsAppDataset");
+            // verify the required parameter 'deleteWhatsappBusinessUsernameRequest' is set
+            if (deleteWhatsappBusinessUsernameRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'deleteWhatsappBusinessUsernameRequest' when calling WhatsAppApi->CreateWhatsAppDataset");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -2172,7 +2348,7 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = createWhatsAppDatasetRequest;
+            localVarRequestOptions.Data = deleteWhatsappBusinessUsernameRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -2869,6 +3045,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteWhatsAppTemplate", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete business username Release the currently claimed WhatsApp Business username from the account. After deletion the username becomes available for other accounts to claim. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response DeleteWhatsappBusinessUsername(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = DeleteWhatsappBusinessUsernameWithHttpInfo(deleteWhatsappBusinessUsernameRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete business username Release the currently claimed WhatsApp Business username from the account. After deletion the username becomes available for other accounts to claim. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteWhatsappBusinessUsernameWithHttpInfo(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest)
+        {
+            // verify the required parameter 'deleteWhatsappBusinessUsernameRequest' is set
+            if (deleteWhatsappBusinessUsernameRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'deleteWhatsappBusinessUsernameRequest' when calling WhatsAppApi->DeleteWhatsappBusinessUsername");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = deleteWhatsappBusinessUsernameRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<UpdateYoutubeDefaultPlaylist200Response>("/v1/whatsapp/business-profile/username", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteWhatsappBusinessUsername", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete business username Release the currently claimed WhatsApp Business username from the account. After deletion the username becomes available for other accounts to claim. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteWhatsappBusinessUsernameAsync(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await DeleteWhatsappBusinessUsernameWithHttpInfoAsync(deleteWhatsappBusinessUsernameRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete business username Release the currently claimed WhatsApp Business username from the account. After deletion the username becomes available for other accounts to claim. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="deleteWhatsappBusinessUsernameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteWhatsappBusinessUsernameWithHttpInfoAsync(DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'deleteWhatsappBusinessUsernameRequest' is set
+            if (deleteWhatsappBusinessUsernameRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'deleteWhatsappBusinessUsernameRequest' when calling WhatsAppApi->DeleteWhatsappBusinessUsername");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = deleteWhatsappBusinessUsernameRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/whatsapp/business-profile/username", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteWhatsappBusinessUsername", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -3958,6 +4263,260 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Get business username Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>GetWhatsappBusinessUsername200Response</returns>
+        public GetWhatsappBusinessUsername200Response GetWhatsappBusinessUsername(string accountId)
+        {
+            Zernio.Client.ApiResponse<GetWhatsappBusinessUsername200Response> localVarResponse = GetWhatsappBusinessUsernameWithHttpInfo(accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get business username Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ApiResponse of GetWhatsappBusinessUsername200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsappBusinessUsername200Response> GetWhatsappBusinessUsernameWithHttpInfo(string accountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsappBusinessUsername");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsappBusinessUsername200Response>("/v1/whatsapp/business-profile/username", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsappBusinessUsername", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get business username Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsappBusinessUsername200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsappBusinessUsername200Response> GetWhatsappBusinessUsernameAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsappBusinessUsername200Response> localVarResponse = await GetWhatsappBusinessUsernameWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get business username Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsappBusinessUsername200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsappBusinessUsername200Response>> GetWhatsappBusinessUsernameWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsappBusinessUsername");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsappBusinessUsername200Response>("/v1/whatsapp/business-profile/username", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsappBusinessUsername", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get username suggestions Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>GetWhatsappBusinessUsernameSuggestions200Response</returns>
+        public GetWhatsappBusinessUsernameSuggestions200Response GetWhatsappBusinessUsernameSuggestions(string accountId)
+        {
+            Zernio.Client.ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response> localVarResponse = GetWhatsappBusinessUsernameSuggestionsWithHttpInfo(accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get username suggestions Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <returns>ApiResponse of GetWhatsappBusinessUsernameSuggestions200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response> GetWhatsappBusinessUsernameSuggestionsWithHttpInfo(string accountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsappBusinessUsernameSuggestions");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsappBusinessUsernameSuggestions200Response>("/v1/whatsapp/business-profile/username/suggestions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsappBusinessUsernameSuggestions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get username suggestions Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsappBusinessUsernameSuggestions200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsappBusinessUsernameSuggestions200Response> GetWhatsappBusinessUsernameSuggestionsAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response> localVarResponse = await GetWhatsappBusinessUsernameSuggestionsWithHttpInfoAsync(accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get username suggestions Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">WhatsApp social account ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsappBusinessUsernameSuggestions200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response>> GetWhatsappBusinessUsernameSuggestionsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsappBusinessUsernameSuggestions");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsappBusinessUsernameSuggestions200Response>("/v1/whatsapp/business-profile/username/suggestions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsappBusinessUsernameSuggestions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// List conversion events Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -4825,6 +5384,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("SendWhatsAppConversion", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set business username Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no &#x60;www&#x60; prefix, no domain TLD suffix (e.g. &#x60;.com&#x60;).  If the desired username is currently held by another account, pass &#x60;transferAction: \&quot;force_transfer\&quot;&#x60; to request a transfer. On failure the API returns a standard error envelope with one of these codes: &#x60;whatsapp_username_unavailable&#x60; (already taken and transfer not requested), &#x60;whatsapp_username_ineligible&#x60; (account not eligible to claim a username), or &#x60;whatsapp_username_transfer_required&#x60; (username is held elsewhere; retry with &#x60;force_transfer&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setWhatsappBusinessUsernameRequest"></param>
+        /// <returns>SetWhatsappBusinessUsername200Response</returns>
+        public SetWhatsappBusinessUsername200Response SetWhatsappBusinessUsername(SetWhatsappBusinessUsernameRequest setWhatsappBusinessUsernameRequest)
+        {
+            Zernio.Client.ApiResponse<SetWhatsappBusinessUsername200Response> localVarResponse = SetWhatsappBusinessUsernameWithHttpInfo(setWhatsappBusinessUsernameRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set business username Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no &#x60;www&#x60; prefix, no domain TLD suffix (e.g. &#x60;.com&#x60;).  If the desired username is currently held by another account, pass &#x60;transferAction: \&quot;force_transfer\&quot;&#x60; to request a transfer. On failure the API returns a standard error envelope with one of these codes: &#x60;whatsapp_username_unavailable&#x60; (already taken and transfer not requested), &#x60;whatsapp_username_ineligible&#x60; (account not eligible to claim a username), or &#x60;whatsapp_username_transfer_required&#x60; (username is held elsewhere; retry with &#x60;force_transfer&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setWhatsappBusinessUsernameRequest"></param>
+        /// <returns>ApiResponse of SetWhatsappBusinessUsername200Response</returns>
+        public Zernio.Client.ApiResponse<SetWhatsappBusinessUsername200Response> SetWhatsappBusinessUsernameWithHttpInfo(SetWhatsappBusinessUsernameRequest setWhatsappBusinessUsernameRequest)
+        {
+            // verify the required parameter 'setWhatsappBusinessUsernameRequest' is set
+            if (setWhatsappBusinessUsernameRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setWhatsappBusinessUsernameRequest' when calling WhatsAppApi->SetWhatsappBusinessUsername");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = setWhatsappBusinessUsernameRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<SetWhatsappBusinessUsername200Response>("/v1/whatsapp/business-profile/username", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetWhatsappBusinessUsername", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set business username Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no &#x60;www&#x60; prefix, no domain TLD suffix (e.g. &#x60;.com&#x60;).  If the desired username is currently held by another account, pass &#x60;transferAction: \&quot;force_transfer\&quot;&#x60; to request a transfer. On failure the API returns a standard error envelope with one of these codes: &#x60;whatsapp_username_unavailable&#x60; (already taken and transfer not requested), &#x60;whatsapp_username_ineligible&#x60; (account not eligible to claim a username), or &#x60;whatsapp_username_transfer_required&#x60; (username is held elsewhere; retry with &#x60;force_transfer&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setWhatsappBusinessUsernameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SetWhatsappBusinessUsername200Response</returns>
+        public async System.Threading.Tasks.Task<SetWhatsappBusinessUsername200Response> SetWhatsappBusinessUsernameAsync(SetWhatsappBusinessUsernameRequest setWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<SetWhatsappBusinessUsername200Response> localVarResponse = await SetWhatsappBusinessUsernameWithHttpInfoAsync(setWhatsappBusinessUsernameRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set business username Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no &#x60;www&#x60; prefix, no domain TLD suffix (e.g. &#x60;.com&#x60;).  If the desired username is currently held by another account, pass &#x60;transferAction: \&quot;force_transfer\&quot;&#x60; to request a transfer. On failure the API returns a standard error envelope with one of these codes: &#x60;whatsapp_username_unavailable&#x60; (already taken and transfer not requested), &#x60;whatsapp_username_ineligible&#x60; (account not eligible to claim a username), or &#x60;whatsapp_username_transfer_required&#x60; (username is held elsewhere; retry with &#x60;force_transfer&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="setWhatsappBusinessUsernameRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SetWhatsappBusinessUsername200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SetWhatsappBusinessUsername200Response>> SetWhatsappBusinessUsernameWithHttpInfoAsync(SetWhatsappBusinessUsernameRequest setWhatsappBusinessUsernameRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'setWhatsappBusinessUsernameRequest' is set
+            if (setWhatsappBusinessUsernameRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setWhatsappBusinessUsernameRequest' when calling WhatsAppApi->SetWhatsappBusinessUsername");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = setWhatsappBusinessUsernameRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<SetWhatsappBusinessUsername200Response>("/v1/whatsapp/business-profile/username", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetWhatsappBusinessUsername", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

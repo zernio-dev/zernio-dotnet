@@ -28,36 +28,34 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CreateWhatsAppDatasetRequest
+    /// GetWhatsappBusinessUsernameSuggestions200Response
     /// </summary>
-    [DataContract(Name = "createWhatsAppDataset_request")]
-    public partial class CreateWhatsAppDatasetRequest : IValidatableObject
+    [DataContract(Name = "getWhatsappBusinessUsernameSuggestions_200_response")]
+    public partial class GetWhatsappBusinessUsernameSuggestions200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateWhatsAppDatasetRequest" /> class.
+        /// Initializes a new instance of the <see cref="GetWhatsappBusinessUsernameSuggestions200Response" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected CreateWhatsAppDatasetRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CreateWhatsAppDatasetRequest" /> class.
-        /// </summary>
-        /// <param name="accountId">WhatsApp social account ID (required).</param>
-        public CreateWhatsAppDatasetRequest(string accountId = default)
+        /// <param name="success">success.</param>
+        /// <param name="suggestions">List of available username suggestions.</param>
+        public GetWhatsappBusinessUsernameSuggestions200Response(bool success = default, List<string> suggestions = default)
         {
-            // to ensure "accountId" is required (not null)
-            if (accountId == null)
-            {
-                throw new ArgumentNullException("accountId is a required property for CreateWhatsAppDatasetRequest and cannot be null");
-            }
-            this.AccountId = accountId;
+            this.Success = success;
+            this.Suggestions = suggestions;
         }
 
         /// <summary>
-        /// WhatsApp social account ID
+        /// Gets or Sets Success
         /// </summary>
-        /// <value>WhatsApp social account ID</value>
-        [DataMember(Name = "accountId", IsRequired = true, EmitDefaultValue = true)]
-        public string AccountId { get; set; }
+        [DataMember(Name = "success", EmitDefaultValue = true)]
+        public bool Success { get; set; }
+
+        /// <summary>
+        /// List of available username suggestions
+        /// </summary>
+        /// <value>List of available username suggestions</value>
+        [DataMember(Name = "suggestions", EmitDefaultValue = false)]
+        public List<string> Suggestions { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,8 +64,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateWhatsAppDatasetRequest {\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("class GetWhatsappBusinessUsernameSuggestions200Response {\n");
+            sb.Append("  Success: ").Append(Success).Append("\n");
+            sb.Append("  Suggestions: ").Append(Suggestions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

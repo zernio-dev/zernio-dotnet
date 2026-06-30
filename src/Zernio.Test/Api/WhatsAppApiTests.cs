@@ -101,8 +101,8 @@ namespace Zernio.Test.Api
         public void CreateWhatsAppDatasetTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest = null;
-            //var response = instance.CreateWhatsAppDataset(createWhatsAppDatasetRequest);
+            //DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest = null;
+            //var response = instance.CreateWhatsAppDataset(deleteWhatsappBusinessUsernameRequest);
             //Assert.IsType<CreateWhatsAppDataset200Response>(response);
         }
 
@@ -167,6 +167,18 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.DeleteWhatsAppTemplate(templateName, accountId);
             //Assert.IsType<UnpublishPost200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteWhatsappBusinessUsername
+        /// </summary>
+        [Fact]
+        public void DeleteWhatsappBusinessUsernameTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest = null;
+            //var response = instance.DeleteWhatsappBusinessUsername(deleteWhatsappBusinessUsernameRequest);
+            //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
         }
 
         /// <summary>
@@ -271,6 +283,30 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetWhatsappBusinessUsername
+        /// </summary>
+        [Fact]
+        public void GetWhatsappBusinessUsernameTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.GetWhatsappBusinessUsername(accountId);
+            //Assert.IsType<GetWhatsappBusinessUsername200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetWhatsappBusinessUsernameSuggestions
+        /// </summary>
+        [Fact]
+        public void GetWhatsappBusinessUsernameSuggestionsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.GetWhatsappBusinessUsernameSuggestions(accountId);
+            //Assert.IsType<GetWhatsappBusinessUsernameSuggestions200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListWhatsAppConversions
         /// </summary>
         [Fact]
@@ -348,6 +384,18 @@ namespace Zernio.Test.Api
             //SendWhatsAppConversionRequest sendWhatsAppConversionRequest = null;
             //var response = instance.SendWhatsAppConversion(sendWhatsAppConversionRequest);
             //Assert.IsType<SendWhatsAppConversion200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SetWhatsappBusinessUsername
+        /// </summary>
+        [Fact]
+        public void SetWhatsappBusinessUsernameTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //SetWhatsappBusinessUsernameRequest setWhatsappBusinessUsernameRequest = null;
+            //var response = instance.SetWhatsappBusinessUsername(setWhatsappBusinessUsernameRequest);
+            //Assert.IsType<SetWhatsappBusinessUsername200Response>(response);
         }
 
         /// <summary>

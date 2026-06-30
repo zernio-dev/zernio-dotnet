@@ -223,7 +223,6 @@ docs/CreateTrackingTag201Response.md
 docs/CreateTrackingTagRequest.md
 docs/CreateWebhookSettingsRequest.md
 docs/CreateWhatsAppDataset200Response.md
-docs/CreateWhatsAppDatasetRequest.md
 docs/CreateWhatsAppFlow200Response.md
 docs/CreateWhatsAppFlow200ResponseFlow.md
 docs/CreateWhatsAppFlowRequest.md
@@ -257,6 +256,7 @@ docs/DeleteGoogleBusinessReviewReply200Response.md
 docs/DeleteInboxComment200Response.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
+docs/DeleteWhatsappBusinessUsernameRequest.md
 docs/DiscordApi.md
 docs/DiscordPlatformData.md
 docs/DiscordPlatformDataEmbedsInner.md
@@ -569,6 +569,8 @@ docs/GetWhatsAppTemplate200Response.md
 docs/GetWhatsAppTemplate200ResponseTemplate.md
 docs/GetWhatsAppTemplates200Response.md
 docs/GetWhatsAppTemplates200ResponseTemplatesInner.md
+docs/GetWhatsappBusinessUsername200Response.md
+docs/GetWhatsappBusinessUsernameSuggestions200Response.md
 docs/GetWorkflow200Response.md
 docs/GetWorkflow200ResponseWorkflow.md
 docs/GetWorkflowVersion200Response.md
@@ -945,6 +947,8 @@ docs/SetInstagramIceBreakersRequestIceBreakersInner.md
 docs/SetMessengerMenuRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
+docs/SetWhatsappBusinessUsername200Response.md
+docs/SetWhatsappBusinessUsernameRequest.md
 docs/SharedAdAccount.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
@@ -1506,7 +1510,6 @@ src/Zernio.Test/Model/CreateTrackingTag201ResponseTests.cs
 src/Zernio.Test/Model/CreateTrackingTagRequestTests.cs
 src/Zernio.Test/Model/CreateWebhookSettingsRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppDataset200ResponseTests.cs
-src/Zernio.Test/Model/CreateWhatsAppDatasetRequestTests.cs
 src/Zernio.Test/Model/CreateWhatsAppFlow200ResponseFlowTests.cs
 src/Zernio.Test/Model/CreateWhatsAppFlow200ResponseTests.cs
 src/Zernio.Test/Model/CreateWhatsAppFlowRequestTests.cs
@@ -1539,6 +1542,7 @@ src/Zernio.Test/Model/DeleteGoogleBusinessReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
+src/Zernio.Test/Model/DeleteWhatsappBusinessUsernameRequestTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataEmbedsInnerAuthorTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataEmbedsInnerFieldsInnerTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataEmbedsInnerFooterTests.cs
@@ -1842,6 +1846,8 @@ src/Zernio.Test/Model/GetWhatsAppTemplate200ResponseTemplateTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplate200ResponseTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplates200ResponseTemplatesInnerTests.cs
 src/Zernio.Test/Model/GetWhatsAppTemplates200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsappBusinessUsername200ResponseTests.cs
+src/Zernio.Test/Model/GetWhatsappBusinessUsernameSuggestions200ResponseTests.cs
 src/Zernio.Test/Model/GetWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/GetWorkflow200ResponseWorkflowTests.cs
 src/Zernio.Test/Model/GetWorkflowVersion200ResponseTests.cs
@@ -2204,6 +2210,8 @@ src/Zernio.Test/Model/SetInstagramIceBreakersRequestTests.cs
 src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestCommandsInnerTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestTests.cs
+src/Zernio.Test/Model/SetWhatsappBusinessUsername200ResponseTests.cs
+src/Zernio.Test/Model/SetWhatsappBusinessUsernameRequestTests.cs
 src/Zernio.Test/Model/SharedAdAccountTests.cs
 src/Zernio.Test/Model/SnapchatPlatformDataTests.cs
 src/Zernio.Test/Model/SocialAccountProfileIdTests.cs
@@ -2769,7 +2777,6 @@ src/Zernio/Model/CreateTrackingTag201Response.cs
 src/Zernio/Model/CreateTrackingTagRequest.cs
 src/Zernio/Model/CreateWebhookSettingsRequest.cs
 src/Zernio/Model/CreateWhatsAppDataset200Response.cs
-src/Zernio/Model/CreateWhatsAppDatasetRequest.cs
 src/Zernio/Model/CreateWhatsAppFlow200Response.cs
 src/Zernio/Model/CreateWhatsAppFlow200ResponseFlow.cs
 src/Zernio/Model/CreateWhatsAppFlowRequest.cs
@@ -2802,6 +2809,7 @@ src/Zernio/Model/DeleteGoogleBusinessReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxComment200Response.cs
 src/Zernio/Model/DeleteInboxReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
+src/Zernio/Model/DeleteWhatsappBusinessUsernameRequest.cs
 src/Zernio/Model/DiscordPlatformData.cs
 src/Zernio/Model/DiscordPlatformDataEmbedsInner.cs
 src/Zernio/Model/DiscordPlatformDataEmbedsInnerAuthor.cs
@@ -3105,6 +3113,8 @@ src/Zernio/Model/GetWhatsAppTemplate200Response.cs
 src/Zernio/Model/GetWhatsAppTemplate200ResponseTemplate.cs
 src/Zernio/Model/GetWhatsAppTemplates200Response.cs
 src/Zernio/Model/GetWhatsAppTemplates200ResponseTemplatesInner.cs
+src/Zernio/Model/GetWhatsappBusinessUsername200Response.cs
+src/Zernio/Model/GetWhatsappBusinessUsernameSuggestions200Response.cs
 src/Zernio/Model/GetWorkflow200Response.cs
 src/Zernio/Model/GetWorkflow200ResponseWorkflow.cs
 src/Zernio/Model/GetWorkflowVersion200Response.cs
@@ -3467,6 +3477,8 @@ src/Zernio/Model/SetInstagramIceBreakersRequestIceBreakersInner.cs
 src/Zernio/Model/SetMessengerMenuRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequestCommandsInner.cs
+src/Zernio/Model/SetWhatsappBusinessUsername200Response.cs
+src/Zernio/Model/SetWhatsappBusinessUsernameRequest.cs
 src/Zernio/Model/SharedAdAccount.cs
 src/Zernio/Model/SnapchatPlatformData.cs
 src/Zernio/Model/SocialAccount.cs
