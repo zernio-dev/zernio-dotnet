@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AttachmentName'
+        /// </summary>
+        [Fact]
+        public void AttachmentNameTest()
+        {
+            // TODO unit test for the property 'AttachmentName'
+        }
+
+        /// <summary>
         /// Test the property 'VoiceNote'
         /// </summary>
         [Fact]
