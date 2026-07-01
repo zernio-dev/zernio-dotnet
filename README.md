@@ -237,6 +237,7 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**GetYouTubeDailyViews**](docs/AnalyticsApi.md#getyoutubedailyviews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views
 *AnalyticsApi* | [**GetYouTubeDemographics**](docs/AnalyticsApi.md#getyoutubedemographics) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics
 *AnalyticsApi* | [**GetYouTubeVideoRetention**](docs/AnalyticsApi.md#getyoutubevideoretention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve
+*AnalyticsApi* | [**SyncExternalPosts**](docs/AnalyticsApi.md#syncexternalposts) | **POST** /v1/posts/sync-external | Sync an external post
 *BroadcastsApi* | [**AddBroadcastRecipients**](docs/BroadcastsApi.md#addbroadcastrecipients) | **POST** /v1/broadcasts/{broadcastId}/recipients | Add recipients to a broadcast
 *BroadcastsApi* | [**CancelBroadcast**](docs/BroadcastsApi.md#cancelbroadcast) | **POST** /v1/broadcasts/{broadcastId}/cancel | Cancel broadcast
 *BroadcastsApi* | [**CreateBroadcast**](docs/BroadcastsApi.md#createbroadcast) | **POST** /v1/broadcasts | Create broadcast draft
@@ -384,7 +385,6 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**GetPost**](docs/PostsApi.md#getpost) | **GET** /v1/posts/{postId} | Get post
 *PostsApi* | [**ListPosts**](docs/PostsApi.md#listposts) | **GET** /v1/posts | List posts
 *PostsApi* | [**RetryPost**](docs/PostsApi.md#retrypost) | **POST** /v1/posts/{postId}/retry | Retry failed post
-*PostsApi* | [**SyncExternalPosts**](docs/PostsApi.md#syncexternalposts) | **POST** /v1/posts/sync-external | Sync an external post
 *PostsApi* | [**UnpublishPost**](docs/PostsApi.md#unpublishpost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**UpdatePost**](docs/PostsApi.md#updatepost) | **PUT** /v1/posts/{postId} | Update post
 *PostsApi* | [**UpdatePostMetadata**](docs/PostsApi.md#updatepostmetadata) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata

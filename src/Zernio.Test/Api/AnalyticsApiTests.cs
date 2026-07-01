@@ -398,5 +398,17 @@ namespace Zernio.Test.Api
             //var response = instance.GetYouTubeVideoRetention(videoId, accountId, startDate, endDate);
             //Assert.IsType<YouTubeVideoRetentionResponse>(response);
         }
+
+        /// <summary>
+        /// Test SyncExternalPosts
+        /// </summary>
+        [Fact]
+        public void SyncExternalPostsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //SyncExternalPostsRequest syncExternalPostsRequest = null;
+            //var response = instance.SyncExternalPosts(syncExternalPostsRequest);
+            //Assert.IsType<SyncExternalPosts200Response>(response);
+        }
     }
 }

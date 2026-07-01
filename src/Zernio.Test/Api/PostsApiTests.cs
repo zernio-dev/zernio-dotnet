@@ -154,18 +154,6 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
-        /// Test SyncExternalPosts
-        /// </summary>
-        [Fact]
-        public void SyncExternalPostsTest()
-        {
-            // TODO uncomment below to test the method and replace null with proper value
-            //SyncExternalPostsRequest syncExternalPostsRequest = null;
-            //var response = instance.SyncExternalPosts(syncExternalPostsRequest);
-            //Assert.IsType<SyncExternalPosts200Response>(response);
-        }
-
-        /// <summary>
         /// Test UnpublishPost
         /// </summary>
         [Fact]
