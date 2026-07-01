@@ -384,6 +384,7 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**GetPost**](docs/PostsApi.md#getpost) | **GET** /v1/posts/{postId} | Get post
 *PostsApi* | [**ListPosts**](docs/PostsApi.md#listposts) | **GET** /v1/posts | List posts
 *PostsApi* | [**RetryPost**](docs/PostsApi.md#retrypost) | **POST** /v1/posts/{postId}/retry | Retry failed post
+*PostsApi* | [**SyncExternalPosts**](docs/PostsApi.md#syncexternalposts) | **POST** /v1/posts/sync-external | Sync or verify an external post on demand
 *PostsApi* | [**UnpublishPost**](docs/PostsApi.md#unpublishpost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**UpdatePost**](docs/PostsApi.md#updatepost) | **PUT** /v1/posts/{postId} | Update post
 *PostsApi* | [**UpdatePostMetadata**](docs/PostsApi.md#updatepostmetadata) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata
@@ -808,6 +809,8 @@ Class | Method | HTTP request | Description
  - [Model.EstimateAdReachRequest](docs/EstimateAdReachRequest.md)
  - [Model.Expired](docs/Expired.md)
  - [Model.ExternalPostMediaItem](docs/ExternalPostMediaItem.md)
+ - [Model.ExternalPostSummary](docs/ExternalPostSummary.md)
+ - [Model.ExternalPostSummaryAnalytics](docs/ExternalPostSummaryAnalytics.md)
  - [Model.ExternalPostWebhookPost](docs/ExternalPostWebhookPost.md)
  - [Model.FacebookPlatformData](docs/FacebookPlatformData.md)
  - [Model.FacebookPlatformDataCarouselCardsInner](docs/FacebookPlatformDataCarouselCardsInner.md)
@@ -1458,6 +1461,9 @@ Class | Method | HTTP request | Description
  - [Model.SubmitWhatsAppNumberKycRequestDocumentsInner](docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md)
  - [Model.SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf](docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md)
  - [Model.SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1](docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.md)
+ - [Model.SyncExternalPosts200Response](docs/SyncExternalPosts200Response.md)
+ - [Model.SyncExternalPosts200ResponseSynced](docs/SyncExternalPosts200ResponseSynced.md)
+ - [Model.SyncExternalPostsRequest](docs/SyncExternalPostsRequest.md)
  - [Model.TargetingSpec](docs/TargetingSpec.md)
  - [Model.TargetingSpecCitiesInner](docs/TargetingSpecCitiesInner.md)
  - [Model.TargetingSpecCustomLocationsInner](docs/TargetingSpecCustomLocationsInner.md)

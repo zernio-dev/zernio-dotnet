@@ -292,6 +292,8 @@ docs/EstimateAdReach200Response.md
 docs/EstimateAdReachRequest.md
 docs/Expired.md
 docs/ExternalPostMediaItem.md
+docs/ExternalPostSummary.md
+docs/ExternalPostSummaryAnalytics.md
 docs/ExternalPostWebhookPost.md
 docs/FacebookPlatformData.md
 docs/FacebookPlatformDataCarouselCardsInner.md
@@ -964,6 +966,9 @@ docs/SubmitWhatsAppNumberKycRequestAddress.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.md
+docs/SyncExternalPosts200Response.md
+docs/SyncExternalPosts200ResponseSynced.md
+docs/SyncExternalPostsRequest.md
 docs/TargetingSpec.md
 docs/TargetingSpecCitiesInner.md
 docs/TargetingSpecCustomLocationsInner.md
@@ -1577,6 +1582,8 @@ src/Zernio.Test/Model/EstimateAdReach200ResponseTests.cs
 src/Zernio.Test/Model/EstimateAdReachRequestTests.cs
 src/Zernio.Test/Model/ExpiredTests.cs
 src/Zernio.Test/Model/ExternalPostMediaItemTests.cs
+src/Zernio.Test/Model/ExternalPostSummaryAnalyticsTests.cs
+src/Zernio.Test/Model/ExternalPostSummaryTests.cs
 src/Zernio.Test/Model/ExternalPostWebhookPostTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataCarouselCardsInnerTests.cs
 src/Zernio.Test/Model/FacebookPlatformDataTests.cs
@@ -2227,6 +2234,9 @@ src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1Tests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOfTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerTests.cs
 src/Zernio.Test/Model/SubmitWhatsAppNumberKycRequestTests.cs
+src/Zernio.Test/Model/SyncExternalPosts200ResponseSyncedTests.cs
+src/Zernio.Test/Model/SyncExternalPosts200ResponseTests.cs
+src/Zernio.Test/Model/SyncExternalPostsRequestTests.cs
 src/Zernio.Test/Model/TargetingSpecCitiesInnerTests.cs
 src/Zernio.Test/Model/TargetingSpecCustomLocationsInnerTests.cs
 src/Zernio.Test/Model/TargetingSpecExcludedLocationsCitiesInnerTests.cs
@@ -2844,6 +2854,8 @@ src/Zernio/Model/EstimateAdReach200Response.cs
 src/Zernio/Model/EstimateAdReachRequest.cs
 src/Zernio/Model/Expired.cs
 src/Zernio/Model/ExternalPostMediaItem.cs
+src/Zernio/Model/ExternalPostSummary.cs
+src/Zernio/Model/ExternalPostSummaryAnalytics.cs
 src/Zernio/Model/ExternalPostWebhookPost.cs
 src/Zernio/Model/FacebookPlatformData.cs
 src/Zernio/Model/FacebookPlatformDataCarouselCardsInner.cs
@@ -3494,6 +3506,9 @@ src/Zernio/Model/SubmitWhatsAppNumberKycRequestAddress.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInner.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.cs
 src/Zernio/Model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.cs
+src/Zernio/Model/SyncExternalPosts200Response.cs
+src/Zernio/Model/SyncExternalPosts200ResponseSynced.cs
+src/Zernio/Model/SyncExternalPostsRequest.cs
 src/Zernio/Model/TargetingSpec.cs
 src/Zernio/Model/TargetingSpecCitiesInner.cs
 src/Zernio/Model/TargetingSpecCustomLocationsInner.cs
