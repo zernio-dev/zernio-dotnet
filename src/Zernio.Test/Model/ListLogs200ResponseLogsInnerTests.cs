@@ -189,5 +189,59 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Metadata'
         }
+
+        /// <summary>
+        /// Test the property 'RequestId'
+        /// </summary>
+        [Fact]
+        public void RequestIdTest()
+        {
+            // TODO unit test for the property 'RequestId'
+        }
+
+        /// <summary>
+        /// Test the property 'ApiKeyId'
+        /// </summary>
+        [Fact]
+        public void ApiKeyIdTest()
+        {
+            // TODO unit test for the property 'ApiKeyId'
+        }
+
+        /// <summary>
+        /// Test the property 'Method'
+        /// </summary>
+        [Fact]
+        public void MethodTest()
+        {
+            // TODO unit test for the property 'Method'
+        }
+
+        /// <summary>
+        /// Test the property 'Path'
+        /// </summary>
+        [Fact]
+        public void PathTest()
+        {
+            // TODO unit test for the property 'Path'
+        }
+
+        /// <summary>
+        /// Test the property 'IpAddress'
+        /// </summary>
+        [Fact]
+        public void IpAddressTest()
+        {
+            // TODO unit test for the property 'IpAddress'
+        }
+
+        /// <summary>
+        /// Test the property 'UserAgent'
+        /// </summary>
+        [Fact]
+        public void UserAgentTest()
+        {
+            // TODO unit test for the property 'UserAgent'
+        }
     }
 }

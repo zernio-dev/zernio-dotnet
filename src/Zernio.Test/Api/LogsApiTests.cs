@@ -69,7 +69,15 @@ namespace Zernio.Test.Api
             //int? days = null;
             //int? limit = null;
             //int? skip = null;
-            //var response = instance.ListLogs(type, status, platform, action, search, days, limit, skip);
+            //string? accountId = null;
+            //string? varEvent = null;
+            //string? requestId = null;
+            //DateTime? from = null;
+            //DateTime? to = null;
+            //int? statusCode = null;
+            //string? apiKeyId = null;
+            //bool? includeReadReceipts = null;
+            //var response = instance.ListLogs(type, status, platform, action, search, days, limit, skip, accountId, varEvent, requestId, from, to, statusCode, apiKeyId, includeReadReceipts);
             //Assert.IsType<ListLogs200Response>(response);
         }
     }

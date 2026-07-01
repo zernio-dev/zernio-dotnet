@@ -88,7 +88,13 @@ namespace Zernio.Model
         /// <param name="responseBody">Response JSON (truncated to 10KB).</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="metadata">Additional context as JSON string.</param>
-        public ListLogs200ResponseLogsInner(string type = default, string action = default, string userId = default, string platform = default, string accountId = default, StatusEnum? status = default, int statusCode = default, string errorMessage = default, string errorCode = default, int durationMs = default, string endpoint = default, string requestBody = default, string responseBody = default, DateTime createdAt = default, string metadata = default)
+        /// <param name="requestId">Correlation ID linking every log from one API request (api_request logs).</param>
+        /// <param name="apiKeyId">The API key that made the request (api_request logs).</param>
+        /// <param name="method">HTTP method (api_request logs).</param>
+        /// <param name="path">Request path (api_request logs).</param>
+        /// <param name="ipAddress">Client IP address (api_request logs).</param>
+        /// <param name="userAgent">Client user-agent (api_request logs).</param>
+        public ListLogs200ResponseLogsInner(string type = default, string action = default, string userId = default, string platform = default, string accountId = default, StatusEnum? status = default, int statusCode = default, string errorMessage = default, string errorCode = default, int durationMs = default, string endpoint = default, string requestBody = default, string responseBody = default, DateTime createdAt = default, string metadata = default, string requestId = default, string apiKeyId = default, string method = default, string path = default, string ipAddress = default, string userAgent = default)
         {
             this.Type = type;
             this.Action = action;
@@ -105,6 +111,12 @@ namespace Zernio.Model
             this.ResponseBody = responseBody;
             this.CreatedAt = createdAt;
             this.Metadata = metadata;
+            this.RequestId = requestId;
+            this.ApiKeyId = apiKeyId;
+            this.Method = method;
+            this.Path = path;
+            this.IpAddress = ipAddress;
+            this.UserAgent = userAgent;
         }
 
         /// <summary>
@@ -198,6 +210,48 @@ namespace Zernio.Model
         public string Metadata { get; set; }
 
         /// <summary>
+        /// Correlation ID linking every log from one API request (api_request logs)
+        /// </summary>
+        /// <value>Correlation ID linking every log from one API request (api_request logs)</value>
+        [DataMember(Name = "request_id", EmitDefaultValue = false)]
+        public string RequestId { get; set; }
+
+        /// <summary>
+        /// The API key that made the request (api_request logs)
+        /// </summary>
+        /// <value>The API key that made the request (api_request logs)</value>
+        [DataMember(Name = "api_key_id", EmitDefaultValue = false)]
+        public string ApiKeyId { get; set; }
+
+        /// <summary>
+        /// HTTP method (api_request logs)
+        /// </summary>
+        /// <value>HTTP method (api_request logs)</value>
+        [DataMember(Name = "method", EmitDefaultValue = false)]
+        public string Method { get; set; }
+
+        /// <summary>
+        /// Request path (api_request logs)
+        /// </summary>
+        /// <value>Request path (api_request logs)</value>
+        [DataMember(Name = "path", EmitDefaultValue = false)]
+        public string Path { get; set; }
+
+        /// <summary>
+        /// Client IP address (api_request logs)
+        /// </summary>
+        /// <value>Client IP address (api_request logs)</value>
+        [DataMember(Name = "ip_address", EmitDefaultValue = false)]
+        public string IpAddress { get; set; }
+
+        /// <summary>
+        /// Client user-agent (api_request logs)
+        /// </summary>
+        /// <value>Client user-agent (api_request logs)</value>
+        [DataMember(Name = "user_agent", EmitDefaultValue = false)]
+        public string UserAgent { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -220,6 +274,12 @@ namespace Zernio.Model
             sb.Append("  ResponseBody: ").Append(ResponseBody).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  RequestId: ").Append(RequestId).Append("\n");
+            sb.Append("  ApiKeyId: ").Append(ApiKeyId).Append("\n");
+            sb.Append("  Method: ").Append(Method).Append("\n");
+            sb.Append("  Path: ").Append(Path).Append("\n");
+            sb.Append("  IpAddress: ").Append(IpAddress).Append("\n");
+            sb.Append("  UserAgent: ").Append(UserAgent).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -35,7 +35,7 @@ namespace Zernio.Api
         /// Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="type">Log category to query (optional, default to publishing)</param>
+        /// <param name="type">Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)</param>
         /// <param name="status">Filter by status (optional)</param>
         /// <param name="platform">Filter by platform (optional)</param>
         /// <param name="action">Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)</param>
@@ -43,8 +43,16 @@ namespace Zernio.Api
         /// <param name="days">Number of days to look back (max 90) (optional, default to 90)</param>
         /// <param name="limit">Maximum number of logs to return (max 100) (optional, default to 50)</param>
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
+        /// <param name="accountId">Filter by connected account ID (optional)</param>
+        /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
+        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
+        /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
+        /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
+        /// <param name="apiKeyId">Filter by the API key that made the request (api_request logs) (optional)</param>
+        /// <param name="includeReadReceipts">Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)</param>
         /// <returns>ListLogs200Response</returns>
-        ListLogs200Response ListLogs(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default);
+        ListLogs200Response ListLogs(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, string? accountId = default, string? varEvent = default, string? requestId = default, DateTime? from = default, DateTime? to = default, int? statusCode = default, string? apiKeyId = default, bool? includeReadReceipts = default);
 
         /// <summary>
         /// List activity logs
@@ -53,7 +61,7 @@ namespace Zernio.Api
         /// Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="type">Log category to query (optional, default to publishing)</param>
+        /// <param name="type">Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)</param>
         /// <param name="status">Filter by status (optional)</param>
         /// <param name="platform">Filter by platform (optional)</param>
         /// <param name="action">Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)</param>
@@ -61,8 +69,16 @@ namespace Zernio.Api
         /// <param name="days">Number of days to look back (max 90) (optional, default to 90)</param>
         /// <param name="limit">Maximum number of logs to return (max 100) (optional, default to 50)</param>
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
+        /// <param name="accountId">Filter by connected account ID (optional)</param>
+        /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
+        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
+        /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
+        /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
+        /// <param name="apiKeyId">Filter by the API key that made the request (api_request logs) (optional)</param>
+        /// <param name="includeReadReceipts">Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)</param>
         /// <returns>ApiResponse of ListLogs200Response</returns>
-        ApiResponse<ListLogs200Response> ListLogsWithHttpInfo(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default);
+        ApiResponse<ListLogs200Response> ListLogsWithHttpInfo(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, string? accountId = default, string? varEvent = default, string? requestId = default, DateTime? from = default, DateTime? to = default, int? statusCode = default, string? apiKeyId = default, bool? includeReadReceipts = default);
         #endregion Synchronous Operations
     }
 
@@ -79,7 +95,7 @@ namespace Zernio.Api
         /// Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="type">Log category to query (optional, default to publishing)</param>
+        /// <param name="type">Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)</param>
         /// <param name="status">Filter by status (optional)</param>
         /// <param name="platform">Filter by platform (optional)</param>
         /// <param name="action">Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)</param>
@@ -87,9 +103,17 @@ namespace Zernio.Api
         /// <param name="days">Number of days to look back (max 90) (optional, default to 90)</param>
         /// <param name="limit">Maximum number of logs to return (max 100) (optional, default to 50)</param>
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
+        /// <param name="accountId">Filter by connected account ID (optional)</param>
+        /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
+        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
+        /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
+        /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
+        /// <param name="apiKeyId">Filter by the API key that made the request (api_request logs) (optional)</param>
+        /// <param name="includeReadReceipts">Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLogs200Response</returns>
-        System.Threading.Tasks.Task<ListLogs200Response> ListLogsAsync(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListLogs200Response> ListLogsAsync(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, string? accountId = default, string? varEvent = default, string? requestId = default, DateTime? from = default, DateTime? to = default, int? statusCode = default, string? apiKeyId = default, bool? includeReadReceipts = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List activity logs
@@ -98,7 +122,7 @@ namespace Zernio.Api
         /// Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="type">Log category to query (optional, default to publishing)</param>
+        /// <param name="type">Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)</param>
         /// <param name="status">Filter by status (optional)</param>
         /// <param name="platform">Filter by platform (optional)</param>
         /// <param name="action">Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)</param>
@@ -106,9 +130,17 @@ namespace Zernio.Api
         /// <param name="days">Number of days to look back (max 90) (optional, default to 90)</param>
         /// <param name="limit">Maximum number of logs to return (max 100) (optional, default to 50)</param>
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
+        /// <param name="accountId">Filter by connected account ID (optional)</param>
+        /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
+        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
+        /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
+        /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
+        /// <param name="apiKeyId">Filter by the API key that made the request (api_request logs) (optional)</param>
+        /// <param name="includeReadReceipts">Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLogs200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListLogs200Response>> ListLogsWithHttpInfoAsync(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListLogs200Response>> ListLogsWithHttpInfoAsync(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, string? accountId = default, string? varEvent = default, string? requestId = default, DateTime? from = default, DateTime? to = default, int? statusCode = default, string? apiKeyId = default, bool? includeReadReceipts = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -326,7 +358,7 @@ namespace Zernio.Api
         /// List activity logs Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="type">Log category to query (optional, default to publishing)</param>
+        /// <param name="type">Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)</param>
         /// <param name="status">Filter by status (optional)</param>
         /// <param name="platform">Filter by platform (optional)</param>
         /// <param name="action">Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)</param>
@@ -334,10 +366,18 @@ namespace Zernio.Api
         /// <param name="days">Number of days to look back (max 90) (optional, default to 90)</param>
         /// <param name="limit">Maximum number of logs to return (max 100) (optional, default to 50)</param>
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
+        /// <param name="accountId">Filter by connected account ID (optional)</param>
+        /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
+        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
+        /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
+        /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
+        /// <param name="apiKeyId">Filter by the API key that made the request (api_request logs) (optional)</param>
+        /// <param name="includeReadReceipts">Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)</param>
         /// <returns>ListLogs200Response</returns>
-        public ListLogs200Response ListLogs(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default)
+        public ListLogs200Response ListLogs(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, string? accountId = default, string? varEvent = default, string? requestId = default, DateTime? from = default, DateTime? to = default, int? statusCode = default, string? apiKeyId = default, bool? includeReadReceipts = default)
         {
-            Zernio.Client.ApiResponse<ListLogs200Response> localVarResponse = ListLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip);
+            Zernio.Client.ApiResponse<ListLogs200Response> localVarResponse = ListLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, varEvent, requestId, from, to, statusCode, apiKeyId, includeReadReceipts);
             return localVarResponse.Data;
         }
 
@@ -345,7 +385,7 @@ namespace Zernio.Api
         /// List activity logs Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="type">Log category to query (optional, default to publishing)</param>
+        /// <param name="type">Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)</param>
         /// <param name="status">Filter by status (optional)</param>
         /// <param name="platform">Filter by platform (optional)</param>
         /// <param name="action">Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)</param>
@@ -353,8 +393,16 @@ namespace Zernio.Api
         /// <param name="days">Number of days to look back (max 90) (optional, default to 90)</param>
         /// <param name="limit">Maximum number of logs to return (max 100) (optional, default to 50)</param>
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
+        /// <param name="accountId">Filter by connected account ID (optional)</param>
+        /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
+        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
+        /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
+        /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
+        /// <param name="apiKeyId">Filter by the API key that made the request (api_request logs) (optional)</param>
+        /// <param name="includeReadReceipts">Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)</param>
         /// <returns>ApiResponse of ListLogs200Response</returns>
-        public Zernio.Client.ApiResponse<ListLogs200Response> ListLogsWithHttpInfo(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default)
+        public Zernio.Client.ApiResponse<ListLogs200Response> ListLogsWithHttpInfo(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, string? accountId = default, string? varEvent = default, string? requestId = default, DateTime? from = default, DateTime? to = default, int? statusCode = default, string? apiKeyId = default, bool? includeReadReceipts = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -403,6 +451,38 @@ namespace Zernio.Api
             if (skip != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "account_id", accountId));
+            }
+            if (varEvent != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "event", varEvent));
+            }
+            if (requestId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "request_id", requestId));
+            }
+            if (from != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "from", from));
+            }
+            if (to != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "to", to));
+            }
+            if (statusCode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "status_code", statusCode));
+            }
+            if (apiKeyId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "api_key_id", apiKeyId));
+            }
+            if (includeReadReceipts != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "include_read_receipts", includeReadReceipts));
             }
 
             // authentication (bearerAuth) required
@@ -428,7 +508,7 @@ namespace Zernio.Api
         /// List activity logs Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="type">Log category to query (optional, default to publishing)</param>
+        /// <param name="type">Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)</param>
         /// <param name="status">Filter by status (optional)</param>
         /// <param name="platform">Filter by platform (optional)</param>
         /// <param name="action">Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)</param>
@@ -436,11 +516,19 @@ namespace Zernio.Api
         /// <param name="days">Number of days to look back (max 90) (optional, default to 90)</param>
         /// <param name="limit">Maximum number of logs to return (max 100) (optional, default to 50)</param>
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
+        /// <param name="accountId">Filter by connected account ID (optional)</param>
+        /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
+        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
+        /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
+        /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
+        /// <param name="apiKeyId">Filter by the API key that made the request (api_request logs) (optional)</param>
+        /// <param name="includeReadReceipts">Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLogs200Response</returns>
-        public async System.Threading.Tasks.Task<ListLogs200Response> ListLogsAsync(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListLogs200Response> ListLogsAsync(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, string? accountId = default, string? varEvent = default, string? requestId = default, DateTime? from = default, DateTime? to = default, int? statusCode = default, string? apiKeyId = default, bool? includeReadReceipts = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListLogs200Response> localVarResponse = await ListLogsWithHttpInfoAsync(type, status, platform, action, search, days, limit, skip, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListLogs200Response> localVarResponse = await ListLogsWithHttpInfoAsync(type, status, platform, action, search, days, limit, skip, accountId, varEvent, requestId, from, to, statusCode, apiKeyId, includeReadReceipts, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -448,7 +536,7 @@ namespace Zernio.Api
         /// List activity logs Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="type">Log category to query (optional, default to publishing)</param>
+        /// <param name="type">Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)</param>
         /// <param name="status">Filter by status (optional)</param>
         /// <param name="platform">Filter by platform (optional)</param>
         /// <param name="action">Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)</param>
@@ -456,9 +544,17 @@ namespace Zernio.Api
         /// <param name="days">Number of days to look back (max 90) (optional, default to 90)</param>
         /// <param name="limit">Maximum number of logs to return (max 100) (optional, default to 50)</param>
         /// <param name="skip">Number of logs to skip (for pagination) (optional, default to 0)</param>
+        /// <param name="accountId">Filter by connected account ID (optional)</param>
+        /// <param name="varEvent">Filter webhook logs by event (e.g. post.published, message.received) (optional)</param>
+        /// <param name="requestId">Correlation ID — returns every log spawned by a single API request (optional)</param>
+        /// <param name="from">Precise start instant (ISO 8601); narrows within the day range (optional)</param>
+        /// <param name="to">Precise end instant (ISO 8601) (optional)</param>
+        /// <param name="statusCode">Filter by exact HTTP status code (api_request logs) (optional)</param>
+        /// <param name="apiKeyId">Filter by the API key that made the request (api_request logs) (optional)</param>
+        /// <param name="includeReadReceipts">Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLogs200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLogs200Response>> ListLogsWithHttpInfoAsync(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLogs200Response>> ListLogsWithHttpInfoAsync(string? type = default, string? status = default, string? platform = default, string? action = default, string? search = default, int? days = default, int? limit = default, int? skip = default, string? accountId = default, string? varEvent = default, string? requestId = default, DateTime? from = default, DateTime? to = default, int? statusCode = default, string? apiKeyId = default, bool? includeReadReceipts = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -509,6 +605,38 @@ namespace Zernio.Api
             if (skip != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "account_id", accountId));
+            }
+            if (varEvent != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "event", varEvent));
+            }
+            if (requestId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "request_id", requestId));
+            }
+            if (from != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "from", from));
+            }
+            if (to != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "to", to));
+            }
+            if (statusCode != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "status_code", statusCode));
+            }
+            if (apiKeyId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "api_key_id", apiKeyId));
+            }
+            if (includeReadReceipts != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "include_read_receipts", includeReadReceipts));
             }
 
             // authentication (bearerAuth) required
