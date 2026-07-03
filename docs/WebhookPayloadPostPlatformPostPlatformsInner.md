@@ -1,4 +1,4 @@
-# Zernio.Model.WebhookPayloadPostPostPlatformsInner
+# Zernio.Model.WebhookPayloadPostPlatformPostPlatformsInner
 
 ## Properties
 
@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Platform** | **string** |  | 
 **Status** | **string** |  | 
-**AccountId** | **string** | SocialAccount id this platform target published through. Use it to route events by connected account (e.g. separate staging vs production endpoints). A post can span multiple accounts. | [optional] 
+**AccountId** | **string** | SocialAccount id this platform target published through. On post.platform.* events see also the top-level &#x60;account&#x60; block. | [optional] 
 **PlatformPostId** | **string** |  | [optional] 
 **PublishedUrl** | **string** |  | [optional] 
 **Error** | **string** |  | [optional] 

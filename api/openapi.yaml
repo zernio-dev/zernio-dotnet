@@ -24297,12 +24297,14 @@ components:
           content: content
           status: status
           platforms:
-          - publishedUrl: publishedUrl
+          - accountId: accountId
+            publishedUrl: publishedUrl
             error: error
             platform: platform
             status: status
             platformPostId: platformPostId
-          - publishedUrl: publishedUrl
+          - accountId: accountId
+            publishedUrl: publishedUrl
             error: error
             platform: platform
             status: status
@@ -24351,12 +24353,14 @@ components:
           content: content
           status: status
           platforms:
-          - publishedUrl: publishedUrl
+          - accountId: accountId
+            publishedUrl: publishedUrl
             error: error
             platform: platform
             status: status
             platformPostId: platformPostId
-          - publishedUrl: publishedUrl
+          - accountId: accountId
+            publishedUrl: publishedUrl
             error: error
             platform: platform
             status: status
@@ -57910,6 +57914,7 @@ components:
           type: string
     WebhookPayloadPost_post_platforms_inner:
       example:
+        accountId: accountId
         publishedUrl: publishedUrl
         error: error
         platform: platform
@@ -57919,6 +57924,11 @@ components:
         platform:
           type: string
         status:
+          type: string
+        accountId:
+          description: SocialAccount id this platform target published through. Use
+            it to route events by connected account (e.g. separate staging vs production
+            endpoints). A post can span multiple accounts.
           type: string
         platformPostId:
           type: string
@@ -57937,12 +57947,14 @@ components:
         content: content
         status: status
         platforms:
-        - publishedUrl: publishedUrl
+        - accountId: accountId
+          publishedUrl: publishedUrl
           error: error
           platform: platform
           status: status
           platformPostId: platformPostId
-        - publishedUrl: publishedUrl
+        - accountId: accountId
+          publishedUrl: publishedUrl
           error: error
           platform: platform
           status: status
@@ -57970,6 +57982,32 @@ components:
       - platforms
       - scheduledFor
       - status
+    WebhookPayloadPostPlatform_post_platforms_inner:
+      example:
+        accountId: accountId
+        publishedUrl: publishedUrl
+        error: error
+        platform: platform
+        status: status
+        platformPostId: platformPostId
+      properties:
+        platform:
+          type: string
+        status:
+          type: string
+        accountId:
+          description: SocialAccount id this platform target published through. On
+            post.platform.* events see also the top-level `account` block.
+          type: string
+        platformPostId:
+          type: string
+        publishedUrl:
+          type: string
+        error:
+          type: string
+      required:
+      - platform
+      - status
     WebhookPayloadPostPlatform_post:
       example:
         publishedAt: 2000-01-23T04:56:07.000+00:00
@@ -57978,12 +58016,14 @@ components:
         content: content
         status: status
         platforms:
-        - publishedUrl: publishedUrl
+        - accountId: accountId
+          publishedUrl: publishedUrl
           error: error
           platform: platform
           status: status
           platformPostId: platformPostId
-        - publishedUrl: publishedUrl
+        - accountId: accountId
+          publishedUrl: publishedUrl
           error: error
           platform: platform
           status: status
@@ -58007,7 +58047,7 @@ components:
           type: string
         platforms:
           items:
-            $ref: "#/components/schemas/WebhookPayloadPost_post_platforms_inner"
+            $ref: "#/components/schemas/WebhookPayloadPostPlatform_post_platforms_inner"
           type: array
       required:
       - content

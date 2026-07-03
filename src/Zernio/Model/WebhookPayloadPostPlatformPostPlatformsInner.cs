@@ -28,37 +28,37 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// WebhookPayloadPostPostPlatformsInner
+    /// WebhookPayloadPostPlatformPostPlatformsInner
     /// </summary>
-    [DataContract(Name = "WebhookPayloadPost_post_platforms_inner")]
-    public partial class WebhookPayloadPostPostPlatformsInner : IValidatableObject
+    [DataContract(Name = "WebhookPayloadPostPlatform_post_platforms_inner")]
+    public partial class WebhookPayloadPostPlatformPostPlatformsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookPayloadPostPostPlatformsInner" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadPostPlatformPostPlatformsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected WebhookPayloadPostPostPlatformsInner() { }
+        protected WebhookPayloadPostPlatformPostPlatformsInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebhookPayloadPostPostPlatformsInner" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadPostPlatformPostPlatformsInner" /> class.
         /// </summary>
         /// <param name="platform">platform (required).</param>
         /// <param name="status">status (required).</param>
-        /// <param name="accountId">SocialAccount id this platform target published through. Use it to route events by connected account (e.g. separate staging vs production endpoints). A post can span multiple accounts..</param>
+        /// <param name="accountId">SocialAccount id this platform target published through. On post.platform.* events see also the top-level &#x60;account&#x60; block..</param>
         /// <param name="platformPostId">platformPostId.</param>
         /// <param name="publishedUrl">publishedUrl.</param>
         /// <param name="error">error.</param>
-        public WebhookPayloadPostPostPlatformsInner(string platform = default, string status = default, string accountId = default, string platformPostId = default, string publishedUrl = default, string error = default)
+        public WebhookPayloadPostPlatformPostPlatformsInner(string platform = default, string status = default, string accountId = default, string platformPostId = default, string publishedUrl = default, string error = default)
         {
             // to ensure "platform" is required (not null)
             if (platform == null)
             {
-                throw new ArgumentNullException("platform is a required property for WebhookPayloadPostPostPlatformsInner and cannot be null");
+                throw new ArgumentNullException("platform is a required property for WebhookPayloadPostPlatformPostPlatformsInner and cannot be null");
             }
             this.Platform = platform;
             // to ensure "status" is required (not null)
             if (status == null)
             {
-                throw new ArgumentNullException("status is a required property for WebhookPayloadPostPostPlatformsInner and cannot be null");
+                throw new ArgumentNullException("status is a required property for WebhookPayloadPostPlatformPostPlatformsInner and cannot be null");
             }
             this.Status = status;
             this.AccountId = accountId;
@@ -80,9 +80,9 @@ namespace Zernio.Model
         public string Status { get; set; }
 
         /// <summary>
-        /// SocialAccount id this platform target published through. Use it to route events by connected account (e.g. separate staging vs production endpoints). A post can span multiple accounts.
+        /// SocialAccount id this platform target published through. On post.platform.* events see also the top-level &#x60;account&#x60; block.
         /// </summary>
-        /// <value>SocialAccount id this platform target published through. Use it to route events by connected account (e.g. separate staging vs production endpoints). A post can span multiple accounts.</value>
+        /// <value>SocialAccount id this platform target published through. On post.platform.* events see also the top-level &#x60;account&#x60; block.</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
 
@@ -111,7 +111,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class WebhookPayloadPostPostPlatformsInner {\n");
+            sb.Append("class WebhookPayloadPostPlatformPostPlatformsInner {\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");

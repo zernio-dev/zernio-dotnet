@@ -47,7 +47,7 @@ namespace Zernio.Model
         /// <param name="scheduledFor">scheduledFor (required).</param>
         /// <param name="publishedAt">publishedAt.</param>
         /// <param name="platforms">platforms (required).</param>
-        public WebhookPayloadPostPlatformPost(string id = default, string content = default, string status = default, DateTime scheduledFor = default, DateTime publishedAt = default, List<WebhookPayloadPostPostPlatformsInner> platforms = default)
+        public WebhookPayloadPostPlatformPost(string id = default, string content = default, string status = default, DateTime scheduledFor = default, DateTime publishedAt = default, List<WebhookPayloadPostPlatformPostPlatformsInner> platforms = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -112,7 +112,7 @@ namespace Zernio.Model
         /// Gets or Sets Platforms
         /// </summary>
         [DataMember(Name = "platforms", IsRequired = true, EmitDefaultValue = true)]
-        public List<WebhookPayloadPostPostPlatformsInner> Platforms { get; set; }
+        public List<WebhookPayloadPostPlatformPostPlatformsInner> Platforms { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
