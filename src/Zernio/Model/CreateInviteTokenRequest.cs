@@ -61,36 +61,42 @@ namespace Zernio.Model
         [DataMember(Name = "scope", IsRequired = true, EmitDefaultValue = true)]
         public ScopeEnum Scope { get; set; }
         /// <summary>
-        /// Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).
+        /// Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;admin&#39; can manage the team (invite/remove members, change roles and access) but not billing, ownership transfer or account deletion. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).
         /// </summary>
-        /// <value>Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).</value>
+        /// <value>Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;admin&#39; can manage the team (invite/remove members, change roles and access) but not billing, ownership transfer or account deletion. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum RoleEnum
         {
             /// <summary>
+            /// Enum Admin for value: admin
+            /// </summary>
+            [EnumMember(Value = "admin")]
+            Admin = 1,
+
+            /// <summary>
             /// Enum Member for value: member
             /// </summary>
             [EnumMember(Value = "member")]
-            Member = 1,
+            Member = 2,
 
             /// <summary>
             /// Enum BillingAdmin for value: billing_admin
             /// </summary>
             [EnumMember(Value = "billing_admin")]
-            BillingAdmin = 2,
+            BillingAdmin = 3,
 
             /// <summary>
             /// Enum Viewer for value: viewer
             /// </summary>
             [EnumMember(Value = "viewer")]
-            Viewer = 3
+            Viewer = 4
         }
 
 
         /// <summary>
-        /// Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).
+        /// Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;admin&#39; can manage the team (invite/remove members, change roles and access) but not billing, ownership transfer or account deletion. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).
         /// </summary>
-        /// <value>Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).</value>
+        /// <value>Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;admin&#39; can manage the team (invite/remove members, change roles and access) but not billing, ownership transfer or account deletion. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).</value>
         [DataMember(Name = "role", EmitDefaultValue = false)]
         public RoleEnum? Role { get; set; }
         /// <summary>
@@ -103,8 +109,8 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="scope">&#39;all&#39; grants access to all profiles, &#39;profiles&#39; restricts to specific profiles (required).</param>
         /// <param name="profileIds">Required if scope is &#39;profiles&#39;. Array of profile IDs to grant access to..</param>
-        /// <param name="role">Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts). (default to RoleEnum.Member).</param>
-        /// <param name="readOnly">Deprecated. Use role &#39;viewer&#39; instead. When true, the invite is created with role &#39;viewer&#39;. Cannot be combined with role &#39;billing_admin&#39;..</param>
+        /// <param name="role">Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;admin&#39; can manage the team (invite/remove members, change roles and access) but not billing, ownership transfer or account deletion. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts). (default to RoleEnum.Member).</param>
+        /// <param name="readOnly">Deprecated. Use role &#39;viewer&#39; instead. When true, the invite is created with role &#39;viewer&#39;. Cannot be combined with role &#39;billing_admin&#39; or &#39;admin&#39;..</param>
         public CreateInviteTokenRequest(ScopeEnum scope = default, List<string> profileIds = default, RoleEnum? role = RoleEnum.Member, bool readOnly = default)
         {
             this.Scope = scope;
@@ -121,9 +127,9 @@ namespace Zernio.Model
         public List<string> ProfileIds { get; set; }
 
         /// <summary>
-        /// Deprecated. Use role &#39;viewer&#39; instead. When true, the invite is created with role &#39;viewer&#39;. Cannot be combined with role &#39;billing_admin&#39;.
+        /// Deprecated. Use role &#39;viewer&#39; instead. When true, the invite is created with role &#39;viewer&#39;. Cannot be combined with role &#39;billing_admin&#39; or &#39;admin&#39;.
         /// </summary>
-        /// <value>Deprecated. Use role &#39;viewer&#39; instead. When true, the invite is created with role &#39;viewer&#39;. Cannot be combined with role &#39;billing_admin&#39;.</value>
+        /// <value>Deprecated. Use role &#39;viewer&#39; instead. When true, the invite is created with role &#39;viewer&#39;. Cannot be combined with role &#39;billing_admin&#39; or &#39;admin&#39;.</value>
         [DataMember(Name = "readOnly", EmitDefaultValue = true)]
         [Obsolete]
         public bool ReadOnly { get; set; }
