@@ -108,5 +108,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'LocalTo'
         }
+
+        /// <summary>
+        /// Test the property 'Audience'
+        /// </summary>
+        [Fact]
+        public void AudienceTest()
+        {
+            // TODO unit test for the property 'Audience'
+        }
     }
 }

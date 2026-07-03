@@ -79,6 +79,33 @@ namespace Zernio.Model
         [DataMember(Name = "kind", EmitDefaultValue = false)]
         public KindEnum? Kind { get; set; }
         /// <summary>
+        /// When set, the requirement applies ONLY to this end-user type — provide it for that type and OMIT it for the other (e.g. Brazil: \&quot;Cartão CNPJ\&quot; is business-only, \&quot;CPF\&quot; and \&quot;ID/Passport Copy\&quot; are personal-only). Submitting both sets makes the regulator ask whether the number is for personal or business use and stalls the review. Pass &#x60;entityType&#x60; on POST so the server drops the inapplicable set.
+        /// </summary>
+        /// <value>When set, the requirement applies ONLY to this end-user type — provide it for that type and OMIT it for the other (e.g. Brazil: \&quot;Cartão CNPJ\&quot; is business-only, \&quot;CPF\&quot; and \&quot;ID/Passport Copy\&quot; are personal-only). Submitting both sets makes the regulator ask whether the number is for personal or business use and stalls the review. Pass &#x60;entityType&#x60; on POST so the server drops the inapplicable set.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum AudienceEnum
+        {
+            /// <summary>
+            /// Enum Business for value: business
+            /// </summary>
+            [EnumMember(Value = "business")]
+            Business = 1,
+
+            /// <summary>
+            /// Enum Individual for value: individual
+            /// </summary>
+            [EnumMember(Value = "individual")]
+            Individual = 2
+        }
+
+
+        /// <summary>
+        /// When set, the requirement applies ONLY to this end-user type — provide it for that type and OMIT it for the other (e.g. Brazil: \&quot;Cartão CNPJ\&quot; is business-only, \&quot;CPF\&quot; and \&quot;ID/Passport Copy\&quot; are personal-only). Submitting both sets makes the regulator ask whether the number is for personal or business use and stalls the review. Pass &#x60;entityType&#x60; on POST so the server drops the inapplicable set.
+        /// </summary>
+        /// <value>When set, the requirement applies ONLY to this end-user type — provide it for that type and OMIT it for the other (e.g. Brazil: \&quot;Cartão CNPJ\&quot; is business-only, \&quot;CPF\&quot; and \&quot;ID/Passport Copy\&quot; are personal-only). Submitting both sets makes the regulator ask whether the number is for personal or business use and stalls the review. Pass &#x60;entityType&#x60; on POST so the server drops the inapplicable set.</value>
+        [DataMember(Name = "audience", EmitDefaultValue = true)]
+        public AudienceEnum? Audience { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="GetWhatsAppNumberKycForm200ResponseFieldsInner" /> class.
         /// </summary>
         /// <param name="requirementId">requirementId.</param>
@@ -87,7 +114,8 @@ namespace Zernio.Model
         /// <param name="description">Plain-English explanation of what to provide..</param>
         /// <param name="example">Concrete example value..</param>
         /// <param name="localTo">ISO country the value must be local to.</param>
-        public GetWhatsAppNumberKycForm200ResponseFieldsInner(string requirementId = default, string label = default, KindEnum? kind = default, string description = default, string example = default, string localTo = default)
+        /// <param name="audience">When set, the requirement applies ONLY to this end-user type — provide it for that type and OMIT it for the other (e.g. Brazil: \&quot;Cartão CNPJ\&quot; is business-only, \&quot;CPF\&quot; and \&quot;ID/Passport Copy\&quot; are personal-only). Submitting both sets makes the regulator ask whether the number is for personal or business use and stalls the review. Pass &#x60;entityType&#x60; on POST so the server drops the inapplicable set..</param>
+        public GetWhatsAppNumberKycForm200ResponseFieldsInner(string requirementId = default, string label = default, KindEnum? kind = default, string description = default, string example = default, string localTo = default, AudienceEnum? audience = default)
         {
             this.RequirementId = requirementId;
             this.Label = label;
@@ -95,6 +123,7 @@ namespace Zernio.Model
             this.Description = description;
             this.Example = example;
             this.LocalTo = localTo;
+            this.Audience = audience;
         }
 
         /// <summary>
@@ -144,6 +173,7 @@ namespace Zernio.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Example: ").Append(Example).Append("\n");
             sb.Append("  LocalTo: ").Append(LocalTo).Append("\n");
+            sb.Append("  Audience: ").Append(Audience).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
