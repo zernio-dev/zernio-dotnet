@@ -42,10 +42,11 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="InboxWebhookAccount" /> class.
         /// </summary>
         /// <param name="id">Social account ID (required).</param>
+        /// <param name="accountId">Social account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility..</param>
         /// <param name="platform">platform (required).</param>
         /// <param name="username">username (required).</param>
         /// <param name="displayName">displayName.</param>
-        public InboxWebhookAccount(string id = default, string platform = default, string username = default, string displayName = default)
+        public InboxWebhookAccount(string id = default, string accountId = default, string platform = default, string username = default, string displayName = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -65,6 +66,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("username is a required property for InboxWebhookAccount and cannot be null");
             }
             this.Username = username;
+            this.AccountId = accountId;
             this.DisplayName = displayName;
         }
 
@@ -74,6 +76,13 @@ namespace Zernio.Model
         /// <value>Social account ID</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Social account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility.
+        /// </summary>
+        /// <value>Social account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Gets or Sets Platform
@@ -102,6 +111,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class InboxWebhookAccount {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");

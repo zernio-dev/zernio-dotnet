@@ -42,9 +42,10 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="WebhookPayloadCommentAccount" /> class.
         /// </summary>
         /// <param name="id">Social account ID (required).</param>
+        /// <param name="accountId">Social account ID (same as id); canonical field for account filtering..</param>
         /// <param name="platform">platform (required).</param>
         /// <param name="username">username (required).</param>
-        public WebhookPayloadCommentAccount(string id = default, string platform = default, string username = default)
+        public WebhookPayloadCommentAccount(string id = default, string accountId = default, string platform = default, string username = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -64,6 +65,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("username is a required property for WebhookPayloadCommentAccount and cannot be null");
             }
             this.Username = username;
+            this.AccountId = accountId;
         }
 
         /// <summary>
@@ -72,6 +74,13 @@ namespace Zernio.Model
         /// <value>Social account ID</value>
         [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Social account ID (same as id); canonical field for account filtering.
+        /// </summary>
+        /// <value>Social account ID (same as id); canonical field for account filtering.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Gets or Sets Platform
@@ -94,6 +103,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class WebhookPayloadCommentAccount {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("}\n");

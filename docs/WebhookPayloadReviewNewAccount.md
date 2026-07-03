@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | 
+**AccountId** | **string** | Social account ID (same as id); canonical field for account filtering. | [optional] 
 **Platform** | **string** |  | 
 **Username** | **string** |  | 
 

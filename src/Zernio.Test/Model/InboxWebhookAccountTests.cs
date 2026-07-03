@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AccountId'
+        /// </summary>
+        [Fact]
+        public void AccountIdTest()
+        {
+            // TODO unit test for the property 'AccountId'
+        }
+
+        /// <summary>
         /// Test the property 'Platform'
         /// </summary>
         [Fact]

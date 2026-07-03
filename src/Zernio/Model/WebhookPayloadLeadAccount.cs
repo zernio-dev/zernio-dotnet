@@ -61,8 +61,9 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="WebhookPayloadLeadAccount" /> class.
         /// </summary>
         /// <param name="id">Social account ID (the facebook account owning the Page) (required).</param>
+        /// <param name="accountId">Social account ID (same as id); canonical field for account filtering..</param>
         /// <param name="platform">platform (required).</param>
-        public WebhookPayloadLeadAccount(string id = default, PlatformEnum platform = default)
+        public WebhookPayloadLeadAccount(string id = default, string accountId = default, PlatformEnum platform = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -71,6 +72,7 @@ namespace Zernio.Model
             }
             this.Id = id;
             this.Platform = platform;
+            this.AccountId = accountId;
         }
 
         /// <summary>
@@ -81,6 +83,13 @@ namespace Zernio.Model
         public string Id { get; set; }
 
         /// <summary>
+        /// Social account ID (same as id); canonical field for account filtering.
+        /// </summary>
+        /// <value>Social account ID (same as id); canonical field for account filtering.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -89,6 +98,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class WebhookPayloadLeadAccount {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
