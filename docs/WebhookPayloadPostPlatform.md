@@ -1,5 +1,5 @@
 # Zernio.Model.WebhookPayloadPostPlatform
-Webhook payload for the per-platform terminal events `post.platform.published` and `post.platform.failed`. Fires once per platform target inside a post as that platform reaches a terminal state (published or permanent failure). The `post` envelope mirrors the shape of `WebhookPayloadPost` so consumers can reuse rendering logic; the `platform` block identifies which specific platform transitioned; the `account` block identifies the connected social account behind that platform-write. 
+Webhook payload for the per-platform terminal events `post.platform.published` and `post.platform.failed`, and for `post.tiktok.url_resolved` (same shape, fired when a published TikTok post's public URL is backfilled). Terminal events fire once per platform target inside a post as that platform reaches a terminal state (published or permanent failure). The `post` envelope mirrors the shape of `WebhookPayloadPost` so consumers can reuse rendering logic; the `platform` block identifies which specific platform transitioned; the `account` block identifies the connected social account behind that platform-write. 
 
 ## Properties
 

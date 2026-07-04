@@ -374,6 +374,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnPostTikTokUrlResolved
+        /// </summary>
+        [Fact]
+        public void OnPostTikTokUrlResolvedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadPostPlatform webhookPayloadPostPlatform = null;
+            //instance.OnPostTikTokUrlResolved(webhookPayloadPostPlatform);
+        }
+
+        /// <summary>
         /// Test OnReactionReceived
         /// </summary>
         [Fact]

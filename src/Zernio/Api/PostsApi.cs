@@ -232,7 +232,7 @@ namespace Zernio.Api
         /// Update post
         /// </summary>
         /// <remarks>
-        /// Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
+        /// Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -244,7 +244,7 @@ namespace Zernio.Api
         /// Update post
         /// </summary>
         /// <remarks>
-        /// Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
+        /// Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -503,7 +503,7 @@ namespace Zernio.Api
         /// Update post
         /// </summary>
         /// <remarks>
-        /// Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
+        /// Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -516,7 +516,7 @@ namespace Zernio.Api
         /// Update post
         /// </summary>
         /// <remarks>
-        /// Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
+        /// Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -1979,7 +1979,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update post Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
+        /// Update post Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -1992,7 +1992,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update post Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
+        /// Update post Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -2048,7 +2048,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update post Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
+        /// Update post Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>
@@ -2062,7 +2062,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update post Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
+        /// Update post Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated.  To promote a draft to scheduled, send &#x60;isDraft: false&#x60; together with &#x60;scheduledFor&#x60; (or &#x60;publishNow: true&#x60;, or &#x60;queuedFromProfile&#x60;). If &#x60;isDraft&#x60; is omitted the post keeps its current draft status, so sending only &#x60;scheduledFor&#x60; to a draft returns 200 but the post remains a draft. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="postId"></param>

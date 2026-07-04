@@ -73,7 +73,7 @@ namespace Zernio.Model
         /// <param name="platforms">Target platforms and accounts for this post. Each item must include platform and accountId..</param>
         /// <param name="scheduledFor">scheduledFor.</param>
         /// <param name="publishNow">publishNow (default to false).</param>
-        /// <param name="isDraft">isDraft.</param>
+        /// <param name="isDraft">When omitted, the post keeps its current draft status. Send &#x60;false&#x60; to promote a draft to scheduled (combined with &#x60;scheduledFor&#x60;, &#x60;publishNow&#x60;, or a queue)..</param>
         /// <param name="timezone">timezone.</param>
         /// <param name="visibility">visibility.</param>
         /// <param name="tags">tags.</param>
@@ -148,8 +148,9 @@ namespace Zernio.Model
         public bool PublishNow { get; set; }
 
         /// <summary>
-        /// Gets or Sets IsDraft
+        /// When omitted, the post keeps its current draft status. Send &#x60;false&#x60; to promote a draft to scheduled (combined with &#x60;scheduledFor&#x60;, &#x60;publishNow&#x60;, or a queue).
         /// </summary>
+        /// <value>When omitted, the post keeps its current draft status. Send &#x60;false&#x60; to promote a draft to scheduled (combined with &#x60;scheduledFor&#x60;, &#x60;publishNow&#x60;, or a queue).</value>
         [DataMember(Name = "isDraft", EmitDefaultValue = true)]
         public bool IsDraft { get; set; }
 

@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Webhook payload for the per-platform terminal events &#x60;post.platform.published&#x60; and &#x60;post.platform.failed&#x60;. Fires once per platform target inside a post as that platform reaches a terminal state (published or permanent failure). The &#x60;post&#x60; envelope mirrors the shape of &#x60;WebhookPayloadPost&#x60; so consumers can reuse rendering logic; the &#x60;platform&#x60; block identifies which specific platform transitioned; the &#x60;account&#x60; block identifies the connected social account behind that platform-write. 
+    /// Webhook payload for the per-platform terminal events &#x60;post.platform.published&#x60; and &#x60;post.platform.failed&#x60;, and for &#x60;post.tiktok.url_resolved&#x60; (same shape, fired when a published TikTok post&#39;s public URL is backfilled). Terminal events fire once per platform target inside a post as that platform reaches a terminal state (published or permanent failure). The &#x60;post&#x60; envelope mirrors the shape of &#x60;WebhookPayloadPost&#x60; so consumers can reuse rendering logic; the &#x60;platform&#x60; block identifies which specific platform transitioned; the &#x60;account&#x60; block identifies the connected social account behind that platform-write. 
     /// </summary>
     [DataContract(Name = "WebhookPayloadPostPlatform")]
     public partial class WebhookPayloadPostPlatform : IValidatableObject
@@ -49,7 +49,13 @@ namespace Zernio.Model
             /// Enum PostPlatformFailed for value: post.platform.failed
             /// </summary>
             [EnumMember(Value = "post.platform.failed")]
-            PostPlatformFailed = 2
+            PostPlatformFailed = 2,
+
+            /// <summary>
+            /// Enum PostTiktokUrlResolved for value: post.tiktok.url_resolved
+            /// </summary>
+            [EnumMember(Value = "post.tiktok.url_resolved")]
+            PostTiktokUrlResolved = 3
         }
 
 
