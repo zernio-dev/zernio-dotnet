@@ -50,8 +50,17 @@ namespace Zernio.Model
         /// <param name="actionValues">Monetary mirror of &#x60;actions&#x60;, from Meta&#39;s Insights &#x60;action_values[]&#x60; array. Same keying — values are the revenue attributed to each action_type, in ad-account native currency (same unit as &#x60;spend&#x60;; see the campaign node&#39;s &#x60;currency&#x60; field). Use this to compute revenue-per-event (e.g. avg purchase value). Meta-only; other platforms return {}..</param>
         /// <param name="purchaseValue">Convenience sum of purchase-type action values — picked from &#x60;actionValues&#x60; via the same priority list as &#x60;conversions&#x60; so both fields describe the same events. In ad-account native currency. 0 when the campaign has no purchase event configured. Meta-only..</param>
         /// <param name="roas">Return on ad spend — derived as &#x60;purchaseValue / spend&#x60;. 0 when &#x60;spend&#x60; is 0. Equivalent to Meta&#39;s &#x60;purchase_roas&#x60; under default attribution. At ad-set and campaign levels this is recomputed from summed purchaseValue + spend (NOT averaged across children) so it&#39;s mathematically correct at every rollup level..</param>
+        /// <param name="videoPlayActions">Meta video ads only (0 for non-video ads and other platforms), like all video* fields below. Number of times the video started playing (Meta &#x60;video_play_actions&#x60;), summed over the date range and across children at ad-set/campaign level..</param>
+        /// <param name="video30SecWatchedActions">Views of at least 30 seconds (or to the end, for shorter videos). Meta &#x60;video_30_sec_watched_actions&#x60;..</param>
+        /// <param name="videoThruplayWatchedActions">ThruPlays (watched to completion, or at least 15 seconds). Meta &#x60;video_thruplay_watched_actions&#x60;..</param>
+        /// <param name="videoP25WatchedActions">Views reaching 25% of the video&#39;s length. With the other percentile fields, powers hook/hold/drop-off analysis (e.g. hook rate &#x3D; videoP25WatchedActions / videoPlayActions). Meta &#x60;video_p25_watched_actions&#x60;..</param>
+        /// <param name="videoP50WatchedActions">Views reaching 50% of the video&#39;s length. Meta &#x60;video_p50_watched_actions&#x60;..</param>
+        /// <param name="videoP75WatchedActions">Views reaching 75% of the video&#39;s length. Meta &#x60;video_p75_watched_actions&#x60;..</param>
+        /// <param name="videoP95WatchedActions">Views reaching 95% of the video&#39;s length. Meta &#x60;video_p95_watched_actions&#x60;..</param>
+        /// <param name="videoP100WatchedActions">Views reaching 100% of the video&#39;s length. Meta &#x60;video_p100_watched_actions&#x60;..</param>
+        /// <param name="videoAvgTimeWatchedActions">Average seconds watched per play (Meta &#x60;video_avg_time_watched_actions&#x60;). Aggregated over date ranges and across children as a play-weighted average (total watch time / total plays), never a plain average of averages..</param>
         /// <param name="lastSyncedAt">Present on individual ads only, not on campaign aggregations.</param>
-        public AdMetrics(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, int conversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, DateTime lastSyncedAt = default)
+        public AdMetrics(decimal spend = default, int impressions = default, int reach = default, int clicks = default, decimal ctr = default, decimal cpc = default, decimal cpm = default, int engagement = default, int conversions = default, decimal costPerConversion = default, Dictionary<string, int> actions = default, Dictionary<string, decimal> actionValues = default, decimal purchaseValue = default, decimal roas = default, int videoPlayActions = default, int video30SecWatchedActions = default, int videoThruplayWatchedActions = default, int videoP25WatchedActions = default, int videoP50WatchedActions = default, int videoP75WatchedActions = default, int videoP95WatchedActions = default, int videoP100WatchedActions = default, decimal videoAvgTimeWatchedActions = default, DateTime lastSyncedAt = default)
         {
             this.Spend = spend;
             this.Impressions = impressions;
@@ -67,6 +76,15 @@ namespace Zernio.Model
             this.ActionValues = actionValues;
             this.PurchaseValue = purchaseValue;
             this.Roas = roas;
+            this.VideoPlayActions = videoPlayActions;
+            this.Video30SecWatchedActions = video30SecWatchedActions;
+            this.VideoThruplayWatchedActions = videoThruplayWatchedActions;
+            this.VideoP25WatchedActions = videoP25WatchedActions;
+            this.VideoP50WatchedActions = videoP50WatchedActions;
+            this.VideoP75WatchedActions = videoP75WatchedActions;
+            this.VideoP95WatchedActions = videoP95WatchedActions;
+            this.VideoP100WatchedActions = videoP100WatchedActions;
+            this.VideoAvgTimeWatchedActions = videoAvgTimeWatchedActions;
             this.LastSyncedAt = lastSyncedAt;
         }
 
@@ -170,6 +188,69 @@ namespace Zernio.Model
         public decimal Roas { get; set; }
 
         /// <summary>
+        /// Meta video ads only (0 for non-video ads and other platforms), like all video* fields below. Number of times the video started playing (Meta &#x60;video_play_actions&#x60;), summed over the date range and across children at ad-set/campaign level.
+        /// </summary>
+        /// <value>Meta video ads only (0 for non-video ads and other platforms), like all video* fields below. Number of times the video started playing (Meta &#x60;video_play_actions&#x60;), summed over the date range and across children at ad-set/campaign level.</value>
+        [DataMember(Name = "videoPlayActions", EmitDefaultValue = false)]
+        public int VideoPlayActions { get; set; }
+
+        /// <summary>
+        /// Views of at least 30 seconds (or to the end, for shorter videos). Meta &#x60;video_30_sec_watched_actions&#x60;.
+        /// </summary>
+        /// <value>Views of at least 30 seconds (or to the end, for shorter videos). Meta &#x60;video_30_sec_watched_actions&#x60;.</value>
+        [DataMember(Name = "video30SecWatchedActions", EmitDefaultValue = false)]
+        public int Video30SecWatchedActions { get; set; }
+
+        /// <summary>
+        /// ThruPlays (watched to completion, or at least 15 seconds). Meta &#x60;video_thruplay_watched_actions&#x60;.
+        /// </summary>
+        /// <value>ThruPlays (watched to completion, or at least 15 seconds). Meta &#x60;video_thruplay_watched_actions&#x60;.</value>
+        [DataMember(Name = "videoThruplayWatchedActions", EmitDefaultValue = false)]
+        public int VideoThruplayWatchedActions { get; set; }
+
+        /// <summary>
+        /// Views reaching 25% of the video&#39;s length. With the other percentile fields, powers hook/hold/drop-off analysis (e.g. hook rate &#x3D; videoP25WatchedActions / videoPlayActions). Meta &#x60;video_p25_watched_actions&#x60;.
+        /// </summary>
+        /// <value>Views reaching 25% of the video&#39;s length. With the other percentile fields, powers hook/hold/drop-off analysis (e.g. hook rate &#x3D; videoP25WatchedActions / videoPlayActions). Meta &#x60;video_p25_watched_actions&#x60;.</value>
+        [DataMember(Name = "videoP25WatchedActions", EmitDefaultValue = false)]
+        public int VideoP25WatchedActions { get; set; }
+
+        /// <summary>
+        /// Views reaching 50% of the video&#39;s length. Meta &#x60;video_p50_watched_actions&#x60;.
+        /// </summary>
+        /// <value>Views reaching 50% of the video&#39;s length. Meta &#x60;video_p50_watched_actions&#x60;.</value>
+        [DataMember(Name = "videoP50WatchedActions", EmitDefaultValue = false)]
+        public int VideoP50WatchedActions { get; set; }
+
+        /// <summary>
+        /// Views reaching 75% of the video&#39;s length. Meta &#x60;video_p75_watched_actions&#x60;.
+        /// </summary>
+        /// <value>Views reaching 75% of the video&#39;s length. Meta &#x60;video_p75_watched_actions&#x60;.</value>
+        [DataMember(Name = "videoP75WatchedActions", EmitDefaultValue = false)]
+        public int VideoP75WatchedActions { get; set; }
+
+        /// <summary>
+        /// Views reaching 95% of the video&#39;s length. Meta &#x60;video_p95_watched_actions&#x60;.
+        /// </summary>
+        /// <value>Views reaching 95% of the video&#39;s length. Meta &#x60;video_p95_watched_actions&#x60;.</value>
+        [DataMember(Name = "videoP95WatchedActions", EmitDefaultValue = false)]
+        public int VideoP95WatchedActions { get; set; }
+
+        /// <summary>
+        /// Views reaching 100% of the video&#39;s length. Meta &#x60;video_p100_watched_actions&#x60;.
+        /// </summary>
+        /// <value>Views reaching 100% of the video&#39;s length. Meta &#x60;video_p100_watched_actions&#x60;.</value>
+        [DataMember(Name = "videoP100WatchedActions", EmitDefaultValue = false)]
+        public int VideoP100WatchedActions { get; set; }
+
+        /// <summary>
+        /// Average seconds watched per play (Meta &#x60;video_avg_time_watched_actions&#x60;). Aggregated over date ranges and across children as a play-weighted average (total watch time / total plays), never a plain average of averages.
+        /// </summary>
+        /// <value>Average seconds watched per play (Meta &#x60;video_avg_time_watched_actions&#x60;). Aggregated over date ranges and across children as a play-weighted average (total watch time / total plays), never a plain average of averages.</value>
+        [DataMember(Name = "videoAvgTimeWatchedActions", EmitDefaultValue = false)]
+        public decimal VideoAvgTimeWatchedActions { get; set; }
+
+        /// <summary>
         /// Present on individual ads only, not on campaign aggregations
         /// </summary>
         /// <value>Present on individual ads only, not on campaign aggregations</value>
@@ -198,6 +279,15 @@ namespace Zernio.Model
             sb.Append("  ActionValues: ").Append(ActionValues).Append("\n");
             sb.Append("  PurchaseValue: ").Append(PurchaseValue).Append("\n");
             sb.Append("  Roas: ").Append(Roas).Append("\n");
+            sb.Append("  VideoPlayActions: ").Append(VideoPlayActions).Append("\n");
+            sb.Append("  Video30SecWatchedActions: ").Append(Video30SecWatchedActions).Append("\n");
+            sb.Append("  VideoThruplayWatchedActions: ").Append(VideoThruplayWatchedActions).Append("\n");
+            sb.Append("  VideoP25WatchedActions: ").Append(VideoP25WatchedActions).Append("\n");
+            sb.Append("  VideoP50WatchedActions: ").Append(VideoP50WatchedActions).Append("\n");
+            sb.Append("  VideoP75WatchedActions: ").Append(VideoP75WatchedActions).Append("\n");
+            sb.Append("  VideoP95WatchedActions: ").Append(VideoP95WatchedActions).Append("\n");
+            sb.Append("  VideoP100WatchedActions: ").Append(VideoP100WatchedActions).Append("\n");
+            sb.Append("  VideoAvgTimeWatchedActions: ").Append(VideoAvgTimeWatchedActions).Append("\n");
             sb.Append("  LastSyncedAt: ").Append(LastSyncedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

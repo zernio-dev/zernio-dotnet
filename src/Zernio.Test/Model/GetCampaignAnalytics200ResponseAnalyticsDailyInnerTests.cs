@@ -182,6 +182,87 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'VideoPlayActions'
+        /// </summary>
+        [Fact]
+        public void VideoPlayActionsTest()
+        {
+            // TODO unit test for the property 'VideoPlayActions'
+        }
+
+        /// <summary>
+        /// Test the property 'Video30SecWatchedActions'
+        /// </summary>
+        [Fact]
+        public void Video30SecWatchedActionsTest()
+        {
+            // TODO unit test for the property 'Video30SecWatchedActions'
+        }
+
+        /// <summary>
+        /// Test the property 'VideoThruplayWatchedActions'
+        /// </summary>
+        [Fact]
+        public void VideoThruplayWatchedActionsTest()
+        {
+            // TODO unit test for the property 'VideoThruplayWatchedActions'
+        }
+
+        /// <summary>
+        /// Test the property 'VideoP25WatchedActions'
+        /// </summary>
+        [Fact]
+        public void VideoP25WatchedActionsTest()
+        {
+            // TODO unit test for the property 'VideoP25WatchedActions'
+        }
+
+        /// <summary>
+        /// Test the property 'VideoP50WatchedActions'
+        /// </summary>
+        [Fact]
+        public void VideoP50WatchedActionsTest()
+        {
+            // TODO unit test for the property 'VideoP50WatchedActions'
+        }
+
+        /// <summary>
+        /// Test the property 'VideoP75WatchedActions'
+        /// </summary>
+        [Fact]
+        public void VideoP75WatchedActionsTest()
+        {
+            // TODO unit test for the property 'VideoP75WatchedActions'
+        }
+
+        /// <summary>
+        /// Test the property 'VideoP95WatchedActions'
+        /// </summary>
+        [Fact]
+        public void VideoP95WatchedActionsTest()
+        {
+            // TODO unit test for the property 'VideoP95WatchedActions'
+        }
+
+        /// <summary>
+        /// Test the property 'VideoP100WatchedActions'
+        /// </summary>
+        [Fact]
+        public void VideoP100WatchedActionsTest()
+        {
+            // TODO unit test for the property 'VideoP100WatchedActions'
+        }
+
+        /// <summary>
+        /// Test the property 'VideoAvgTimeWatchedActions'
+        /// </summary>
+        [Fact]
+        public void VideoAvgTimeWatchedActionsTest()
+        {
+            // TODO unit test for the property 'VideoAvgTimeWatchedActions'
+        }
+
+        /// <summary>
         /// Test the property 'LastSyncedAt'
         /// </summary>
         [Fact]
