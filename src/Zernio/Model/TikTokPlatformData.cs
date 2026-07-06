@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class TikTokPlatformData : IValidatableObject
     {
         /// <summary>
-        /// Type of commercial content disclosure
+        /// Type of commercial content disclosure. Sufficient on its own: \&quot;brand_organic\&quot; (\&quot;Your Brand\&quot;) implies isBrandOrganicPost and \&quot;brand_content\&quot; (\&quot;Branded Content\&quot;, paid partnership) implies brandPartnerPromote, so you don&#39;t need to send the boolean flags separately. Branded content cannot be posted with privacyLevel SELF_ONLY. 
         /// </summary>
-        /// <value>Type of commercial content disclosure</value>
+        /// <value>Type of commercial content disclosure. Sufficient on its own: \&quot;brand_organic\&quot; (\&quot;Your Brand\&quot;) implies isBrandOrganicPost and \&quot;brand_content\&quot; (\&quot;Branded Content\&quot;, paid partnership) implies brandPartnerPromote, so you don&#39;t need to send the boolean flags separately. Branded content cannot be posted with privacyLevel SELF_ONLY. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CommercialContentTypeEnum
         {
@@ -61,9 +61,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Type of commercial content disclosure
+        /// Type of commercial content disclosure. Sufficient on its own: \&quot;brand_organic\&quot; (\&quot;Your Brand\&quot;) implies isBrandOrganicPost and \&quot;brand_content\&quot; (\&quot;Branded Content\&quot;, paid partnership) implies brandPartnerPromote, so you don&#39;t need to send the boolean flags separately. Branded content cannot be posted with privacyLevel SELF_ONLY. 
         /// </summary>
-        /// <value>Type of commercial content disclosure</value>
+        /// <value>Type of commercial content disclosure. Sufficient on its own: \&quot;brand_organic\&quot; (\&quot;Your Brand\&quot;) implies isBrandOrganicPost and \&quot;brand_content\&quot; (\&quot;Branded Content\&quot;, paid partnership) implies brandPartnerPromote, so you don&#39;t need to send the boolean flags separately. Branded content cannot be posted with privacyLevel SELF_ONLY. </value>
         [DataMember(Name = "commercialContentType", EmitDefaultValue = false)]
         public CommercialContentTypeEnum? CommercialContentType { get; set; }
         /// <summary>
@@ -101,9 +101,9 @@ namespace Zernio.Model
         /// <param name="allowComment">Allow comments on the post.</param>
         /// <param name="allowDuet">Allow duets (required for video posts).</param>
         /// <param name="allowStitch">Allow stitches (required for video posts).</param>
-        /// <param name="commercialContentType">Type of commercial content disclosure.</param>
-        /// <param name="brandPartnerPromote">Whether the post promotes a brand partner.</param>
-        /// <param name="isBrandOrganicPost">Whether the post is a brand organic post.</param>
+        /// <param name="commercialContentType">Type of commercial content disclosure. Sufficient on its own: \&quot;brand_organic\&quot; (\&quot;Your Brand\&quot;) implies isBrandOrganicPost and \&quot;brand_content\&quot; (\&quot;Branded Content\&quot;, paid partnership) implies brandPartnerPromote, so you don&#39;t need to send the boolean flags separately. Branded content cannot be posted with privacyLevel SELF_ONLY. .</param>
+        /// <param name="brandPartnerPromote">Whether the post promotes a brand partner (branded content / paid partnership). Only needed to disclose BOTH types at once (set it alongside commercialContentType \&quot;brand_organic\&quot;), or to override the value implied by commercialContentType. .</param>
+        /// <param name="isBrandOrganicPost">Whether the post promotes the creator&#39;s own brand (brand organic). Only needed to disclose BOTH types at once (set it alongside commercialContentType \&quot;brand_content\&quot;), or to override the value implied by commercialContentType. .</param>
         /// <param name="contentPreviewConfirmed">User has confirmed they previewed the content.</param>
         /// <param name="expressConsentGiven">User has given express consent for posting.</param>
         /// <param name="mediaType">Optional override. Defaults based on provided media items..</param>
@@ -170,16 +170,16 @@ namespace Zernio.Model
         public bool AllowStitch { get; set; }
 
         /// <summary>
-        /// Whether the post promotes a brand partner
+        /// Whether the post promotes a brand partner (branded content / paid partnership). Only needed to disclose BOTH types at once (set it alongside commercialContentType \&quot;brand_organic\&quot;), or to override the value implied by commercialContentType. 
         /// </summary>
-        /// <value>Whether the post promotes a brand partner</value>
+        /// <value>Whether the post promotes a brand partner (branded content / paid partnership). Only needed to disclose BOTH types at once (set it alongside commercialContentType \&quot;brand_organic\&quot;), or to override the value implied by commercialContentType. </value>
         [DataMember(Name = "brandPartnerPromote", EmitDefaultValue = true)]
         public bool BrandPartnerPromote { get; set; }
 
         /// <summary>
-        /// Whether the post is a brand organic post
+        /// Whether the post promotes the creator&#39;s own brand (brand organic). Only needed to disclose BOTH types at once (set it alongside commercialContentType \&quot;brand_content\&quot;), or to override the value implied by commercialContentType. 
         /// </summary>
-        /// <value>Whether the post is a brand organic post</value>
+        /// <value>Whether the post promotes the creator&#39;s own brand (brand organic). Only needed to disclose BOTH types at once (set it alongside commercialContentType \&quot;brand_content\&quot;), or to override the value implied by commercialContentType. </value>
         [DataMember(Name = "isBrandOrganicPost", EmitDefaultValue = true)]
         public bool IsBrandOrganicPost { get; set; }
 
