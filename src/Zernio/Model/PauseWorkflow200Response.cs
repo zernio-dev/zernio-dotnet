@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="success">success.</param>
         /// <param name="workflow">workflow.</param>
-        public PauseWorkflow200Response(bool success = default, RemediateWhatsAppNumber200ResponsePhoneNumber workflow = default)
+        public PauseWorkflow200Response(bool success = default, RemediatePhoneNumber200ResponsePhoneNumber workflow = default)
         {
             this.Success = success;
             this.Workflow = workflow;
@@ -54,7 +54,7 @@ namespace Zernio.Model
         /// Gets or Sets Workflow
         /// </summary>
         [DataMember(Name = "workflow", EmitDefaultValue = false)]
-        public RemediateWhatsAppNumber200ResponsePhoneNumber Workflow { get; set; }
+        public RemediatePhoneNumber200ResponsePhoneNumber Workflow { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -767,7 +767,7 @@ namespace Zernio.Api
         /// WhatsApp number activated event
         /// </summary>
         /// <remarks>
-        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/phone-numbers. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberActivatedRequest"></param>
@@ -778,7 +778,7 @@ namespace Zernio.Api
         /// WhatsApp number activated event
         /// </summary>
         /// <remarks>
-        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/phone-numbers. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberActivatedRequest"></param>
@@ -809,7 +809,7 @@ namespace Zernio.Api
         /// WhatsApp number KYC submitted event
         /// </summary>
         /// <remarks>
-        /// Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+        /// Fired when an end customer completes a hosted KYC share link (POST /v1/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberKycSubmittedRequest"></param>
@@ -820,7 +820,7 @@ namespace Zernio.Api
         /// WhatsApp number KYC submitted event
         /// </summary>
         /// <remarks>
-        /// Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+        /// Fired when an end customer completes a hosted KYC share link (POST /v1/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberKycSubmittedRequest"></param>
@@ -1749,7 +1749,7 @@ namespace Zernio.Api
         /// WhatsApp number activated event
         /// </summary>
         /// <remarks>
-        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/phone-numbers. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberActivatedRequest"></param>
@@ -1761,7 +1761,7 @@ namespace Zernio.Api
         /// WhatsApp number activated event
         /// </summary>
         /// <remarks>
-        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/phone-numbers. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberActivatedRequest"></param>
@@ -1795,7 +1795,7 @@ namespace Zernio.Api
         /// WhatsApp number KYC submitted event
         /// </summary>
         /// <remarks>
-        /// Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+        /// Fired when an end customer completes a hosted KYC share link (POST /v1/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberKycSubmittedRequest"></param>
@@ -1807,7 +1807,7 @@ namespace Zernio.Api
         /// WhatsApp number KYC submitted event
         /// </summary>
         /// <remarks>
-        /// Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+        /// Fired when an end customer completes a hosted KYC share link (POST /v1/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberKycSubmittedRequest"></param>
@@ -6518,7 +6518,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/phone-numbers. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberActivatedRequest"></param>
@@ -6529,7 +6529,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/phone-numbers. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberActivatedRequest"></param>
@@ -6578,7 +6578,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/phone-numbers. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberActivatedRequest"></param>
@@ -6590,7 +6590,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+        /// WhatsApp number activated event Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/phone-numbers. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberActivatedRequest"></param>
@@ -6768,7 +6768,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// WhatsApp number KYC submitted event Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+        /// WhatsApp number KYC submitted event Fired when an end customer completes a hosted KYC share link (POST /v1/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberKycSubmittedRequest"></param>
@@ -6779,7 +6779,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// WhatsApp number KYC submitted event Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+        /// WhatsApp number KYC submitted event Fired when an end customer completes a hosted KYC share link (POST /v1/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberKycSubmittedRequest"></param>
@@ -6828,7 +6828,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// WhatsApp number KYC submitted event Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+        /// WhatsApp number KYC submitted event Fired when an end customer completes a hosted KYC share link (POST /v1/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberKycSubmittedRequest"></param>
@@ -6840,7 +6840,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// WhatsApp number KYC submitted event Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+        /// WhatsApp number KYC submitted event Fired when an end customer completes a hosted KYC share link (POST /v1/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="onWhatsAppNumberKycSubmittedRequest"></param>

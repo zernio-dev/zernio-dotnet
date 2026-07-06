@@ -89,7 +89,7 @@ namespace Zernio.Model
         /// The current username, or null if none is set
         /// </summary>
         /// <value>The current username, or null if none is set</value>
-        [DataMember(Name = "username", EmitDefaultValue = false)]
+        [DataMember(Name = "username", EmitDefaultValue = true)]
         public string Username { get; set; }
 
         /// <summary>

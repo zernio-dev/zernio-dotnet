@@ -4,15 +4,20 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**DisableWhatsAppCalling**](WhatsAppCallingApi.md#disablewhatsappcalling) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number |
-| [**EnableWhatsAppCalling**](WhatsAppCallingApi.md#enablewhatsappcalling) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number |
+| [**DisableWhatsAppCalling**](WhatsAppCallingApi.md#disablewhatsappcalling) | **DELETE** /v1/phone-numbers/{id}/whatsapp/calling | Disable calling on a number |
+| [**DisableWhatsAppCallingLegacy**](WhatsAppCallingApi.md#disablewhatsappcallinglegacy) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number |
+| [**EnableWhatsAppCalling**](WhatsAppCallingApi.md#enablewhatsappcalling) | **POST** /v1/phone-numbers/{id}/whatsapp/calling | Enable calling on a number |
+| [**EnableWhatsAppCallingLegacy**](WhatsAppCallingApi.md#enablewhatsappcallinglegacy) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number |
 | [**GetWhatsAppCall**](WhatsAppCallingApi.md#getwhatsappcall) | **GET** /v1/whatsapp/calls/{callId} | Get a single call |
 | [**GetWhatsAppCallEstimate**](WhatsAppCallingApi.md#getwhatsappcallestimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost |
 | [**GetWhatsAppCallPermissions**](WhatsAppCallingApi.md#getwhatsappcallpermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission |
+| [**GetWhatsAppCallRecording**](WhatsAppCallingApi.md#getwhatsappcallrecording) | **GET** /v1/whatsapp/calls/{callId}/recording | Get a call recording |
+| [**GetWhatsAppCalling**](WhatsAppCallingApi.md#getwhatsappcalling) | **GET** /v1/phone-numbers/{id}/whatsapp/calling | Get calling config for a number |
 | [**GetWhatsAppCallingConfig**](WhatsAppCallingApi.md#getwhatsappcallingconfig) | **GET** /v1/whatsapp/calling | Get calling config for an account |
 | [**InitiateWhatsAppCall**](WhatsAppCallingApi.md#initiatewhatsappcall) | **POST** /v1/whatsapp/calls | Initiate outbound call |
 | [**ListWhatsAppCalls**](WhatsAppCallingApi.md#listwhatsappcalls) | **GET** /v1/whatsapp/calls | List call history for an account |
-| [**UpdateWhatsAppCalling**](WhatsAppCallingApi.md#updatewhatsappcalling) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config |
+| [**UpdateWhatsAppCalling**](WhatsAppCallingApi.md#updatewhatsappcalling) | **PATCH** /v1/phone-numbers/{id}/whatsapp/calling | Update calling config |
+| [**UpdateWhatsAppCallingLegacy**](WhatsAppCallingApi.md#updatewhatsappcallinglegacy) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config |
 
 <a id="disablewhatsappcalling"></a>
 # **DisableWhatsAppCalling**
@@ -108,13 +113,111 @@ void (empty response body)
 |-------------|-------------|------------------|
 | **200** | Disabled |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Phone number not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="disablewhatsappcallinglegacy"></a>
+# **DisableWhatsAppCallingLegacy**
+> void DisableWhatsAppCallingLegacy (string id, string accountId)
+
+Disable calling on a number
+
+Deprecated alias of `/v1/phone-numbers/{id}/whatsapp/calling`; same contract. New integrations should use that path.  Disable calling. Sends calling.status=DISABLED to Meta (best-effort) and flips the local `callingEnabled` flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DisableWhatsAppCallingLegacyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+            var accountId = "accountId_example";  // string | 
+
+            try
+            {
+                // Disable calling on a number
+                apiInstance.DisableWhatsAppCallingLegacy(id, accountId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppCallingApi.DisableWhatsAppCallingLegacy: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DisableWhatsAppCallingLegacyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Disable calling on a number
+    apiInstance.DisableWhatsAppCallingLegacyWithHttpInfo(id, accountId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppCallingApi.DisableWhatsAppCallingLegacyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+| **accountId** | **string** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Disabled |  -  |
+| **401** | Unauthorized |  -  |
 | **404** | WhatsApp phone number not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="enablewhatsappcalling"></a>
 # **EnableWhatsAppCalling**
-> EnableWhatsAppCalling200Response EnableWhatsAppCalling (string id, EnableWhatsAppCallingRequest enableWhatsAppCallingRequest)
+> EnableWhatsAppCallingLegacy200Response EnableWhatsAppCalling (string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest)
 
 Enable calling on a number
 
@@ -144,13 +247,13 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
-            var id = "id_example";  // string | WhatsAppPhoneNumber Mongo ID
-            var enableWhatsAppCallingRequest = new EnableWhatsAppCallingRequest(); // EnableWhatsAppCallingRequest | 
+            var id = "id_example";  // string | Phone number record ID (from GET /v1/phone-numbers).
+            var enableWhatsAppCallingLegacyRequest = new EnableWhatsAppCallingLegacyRequest(); // EnableWhatsAppCallingLegacyRequest | 
 
             try
             {
                 // Enable calling on a number
-                EnableWhatsAppCalling200Response result = apiInstance.EnableWhatsAppCalling(id, enableWhatsAppCallingRequest);
+                EnableWhatsAppCallingLegacy200Response result = apiInstance.EnableWhatsAppCalling(id, enableWhatsAppCallingLegacyRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -171,7 +274,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Enable calling on a number
-    ApiResponse<EnableWhatsAppCalling200Response> response = apiInstance.EnableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingRequest);
+    ApiResponse<EnableWhatsAppCallingLegacy200Response> response = apiInstance.EnableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingLegacyRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -188,12 +291,115 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **id** | **string** | WhatsAppPhoneNumber Mongo ID |  |
-| **enableWhatsAppCallingRequest** | [**EnableWhatsAppCallingRequest**](EnableWhatsAppCallingRequest.md) |  |  |
+| **id** | **string** | Phone number record ID (from GET /v1/phone-numbers). |  |
+| **enableWhatsAppCallingLegacyRequest** | [**EnableWhatsAppCallingLegacyRequest**](EnableWhatsAppCallingLegacyRequest.md) |  |  |
 
 ### Return type
 
-[**EnableWhatsAppCalling200Response**](EnableWhatsAppCalling200Response.md)
+[**EnableWhatsAppCallingLegacy200Response**](EnableWhatsAppCallingLegacy200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Calling enabled |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Phone number not found |  -  |
+| **422** | Not eligible to enable calling: not on usage-based billing, or the number&#39;s messaging limit is below Meta&#39;s ~2,000-daily-recipient threshold (TIER_250). Warm the number up to raise the limit. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="enablewhatsappcallinglegacy"></a>
+# **EnableWhatsAppCallingLegacy**
+> EnableWhatsAppCallingLegacy200Response EnableWhatsAppCallingLegacy (string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest)
+
+Enable calling on a number
+
+Deprecated alias of `/v1/phone-numbers/{id}/whatsapp/calling`; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status=ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer's forward-to destination. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class EnableWhatsAppCallingLegacyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | WhatsAppPhoneNumber Mongo ID
+            var enableWhatsAppCallingLegacyRequest = new EnableWhatsAppCallingLegacyRequest(); // EnableWhatsAppCallingLegacyRequest | 
+
+            try
+            {
+                // Enable calling on a number
+                EnableWhatsAppCallingLegacy200Response result = apiInstance.EnableWhatsAppCallingLegacy(id, enableWhatsAppCallingLegacyRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppCallingApi.EnableWhatsAppCallingLegacy: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the EnableWhatsAppCallingLegacyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Enable calling on a number
+    ApiResponse<EnableWhatsAppCallingLegacy200Response> response = apiInstance.EnableWhatsAppCallingLegacyWithHttpInfo(id, enableWhatsAppCallingLegacyRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppCallingApi.EnableWhatsAppCallingLegacyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | WhatsAppPhoneNumber Mongo ID |  |
+| **enableWhatsAppCallingLegacyRequest** | [**EnableWhatsAppCallingLegacyRequest**](EnableWhatsAppCallingLegacyRequest.md) |  |  |
+
+### Return type
+
+[**EnableWhatsAppCallingLegacy200Response**](EnableWhatsAppCallingLegacy200Response.md)
 
 ### Authorization
 
@@ -522,13 +728,219 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getwhatsappcallrecording"></a>
+# **GetWhatsAppCallRecording**
+> GetWhatsAppCallRecording200Response GetWhatsAppCallRecording (string callId, string accountId, string? varAs = null)
+
+Get a call recording
+
+Resolves a fresh, playable MP3 URL for the call's recording. Provider-signed recording URLs expire ~10 minutes after signing, so the `recordingUrl` stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds `302 Found` redirecting to the fresh URL (point an `<audio>` element or a link straight at this endpoint); pass `as=json` to receive `{ url }` instead. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetWhatsAppCallRecordingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
+            var callId = "callId_example";  // string | 
+            var accountId = "accountId_example";  // string | 
+            var varAs = "json";  // string? | `json` returns `{ url }` instead of a 302 redirect. (optional) 
+
+            try
+            {
+                // Get a call recording
+                GetWhatsAppCallRecording200Response result = apiInstance.GetWhatsAppCallRecording(callId, accountId, varAs);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppCallingApi.GetWhatsAppCallRecording: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetWhatsAppCallRecordingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a call recording
+    ApiResponse<GetWhatsAppCallRecording200Response> response = apiInstance.GetWhatsAppCallRecordingWithHttpInfo(callId, accountId, varAs);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppCallingApi.GetWhatsAppCallRecordingWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **callId** | **string** |  |  |
+| **accountId** | **string** |  |  |
+| **varAs** | **string?** | &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. | [optional]  |
+
+### Return type
+
+[**GetWhatsAppCallRecording200Response**](GetWhatsAppCallRecording200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **302** | Redirect to a freshly-signed recording URL. |  -  |
+| **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Call not found, or no recording is available for this call |  -  |
+| **502** | Recording provider lookup failed |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getwhatsappcalling"></a>
+# **GetWhatsAppCalling**
+> GetWhatsAppCalling200Response GetWhatsAppCalling (string id)
+
+Get calling config for a number
+
+The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (`GET /v1/whatsapp/calling?accountId=`) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetWhatsAppCallingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | Phone number record ID (from GET /v1/phone-numbers).
+
+            try
+            {
+                // Get calling config for a number
+                GetWhatsAppCalling200Response result = apiInstance.GetWhatsAppCalling(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppCallingApi.GetWhatsAppCalling: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetWhatsAppCallingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get calling config for a number
+    ApiResponse<GetWhatsAppCalling200Response> response = apiInstance.GetWhatsAppCallingWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppCallingApi.GetWhatsAppCallingWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | Phone number record ID (from GET /v1/phone-numbers). |  |
+
+### Return type
+
+[**GetWhatsAppCalling200Response**](GetWhatsAppCalling200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Calling config |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getwhatsappcallingconfig"></a>
 # **GetWhatsAppCallingConfig**
 > GetWhatsAppCallingConfig200Response GetWhatsAppCallingConfig (string accountId)
 
 Get calling config for an account
 
-Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as `{id}` on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as `{id}` on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
 
 ### Example
 ```csharp
@@ -624,11 +1036,11 @@ catch (ApiException e)
 
 <a id="initiatewhatsappcall"></a>
 # **InitiateWhatsAppCall**
-> InitiateWhatsAppCall200Response InitiateWhatsAppCall (InitiateWhatsAppCallRequest initiateWhatsAppCallRequest)
+> InitiateWhatsAppCall200Response InitiateWhatsAppCall (InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = null)
 
 Initiate outbound call
 
-Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only `accountId` and `to`.  To send the consumer the call-consent prompt instead of placing a call, pass `action: \"send_call_permission_request\"` (+ optional `bodyText`). The consumer must tap Allow in WhatsApp before `start_call` is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only `accountId` and `to`.  To send the consumer the call-consent prompt instead of placing a call, pass `action: \"send_call_permission_request\"` (+ optional `bodyText`). The consumer must tap Allow in WhatsApp before `start_call` is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an `Idempotency-Key` header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
 
 ### Example
 ```csharp
@@ -655,11 +1067,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
             var initiateWhatsAppCallRequest = new InitiateWhatsAppCallRequest(); // InitiateWhatsAppCallRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional) 
 
             try
             {
                 // Initiate outbound call
-                InitiateWhatsAppCall200Response result = apiInstance.InitiateWhatsAppCall(initiateWhatsAppCallRequest);
+                InitiateWhatsAppCall200Response result = apiInstance.InitiateWhatsAppCall(initiateWhatsAppCallRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -680,7 +1093,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Initiate outbound call
-    ApiResponse<InitiateWhatsAppCall200Response> response = apiInstance.InitiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest);
+    ApiResponse<InitiateWhatsAppCall200Response> response = apiInstance.InitiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -698,6 +1111,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **initiateWhatsAppCallRequest** | [**InitiateWhatsAppCallRequest**](InitiateWhatsAppCallRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional]  |
 
 ### Return type
 
@@ -726,11 +1140,11 @@ catch (ApiException e)
 
 <a id="listwhatsappcalls"></a>
 # **ListWhatsAppCalls**
-> ListWhatsAppCalls200Response ListWhatsAppCalls (string accountId, string? status = null, string? direction = null, DateTime? since = null, DateTime? until = null, int? limit = null)
+> ListWhatsAppCalls200Response ListWhatsAppCalls (string accountId, string? status = null, string? direction = null, DateTime? since = null, DateTime? until = null, DateTime? before = null, int? limit = null)
 
 List call history for an account
 
-Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned `nextCursor` as `before` to fetch the next page (same scheme as `GET /v1/calls`). `since`/`until` remain as absolute range filters and combine with the cursor. 
 
 ### Example
 ```csharp
@@ -761,12 +1175,13 @@ namespace Example
             var direction = "inbound";  // string? |  (optional) 
             var since = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? |  (optional) 
             var until = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? |  (optional) 
+            var before = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Return calls with startedAt strictly before this instant (use the previous page's nextCursor). (optional) 
             var limit = 56;  // int? |  (optional) 
 
             try
             {
                 // List call history for an account
-                ListWhatsAppCalls200Response result = apiInstance.ListWhatsAppCalls(accountId, status, direction, since, until, limit);
+                ListWhatsAppCalls200Response result = apiInstance.ListWhatsAppCalls(accountId, status, direction, since, until, before, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -787,7 +1202,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List call history for an account
-    ApiResponse<ListWhatsAppCalls200Response> response = apiInstance.ListWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, limit);
+    ApiResponse<ListWhatsAppCalls200Response> response = apiInstance.ListWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, before, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -809,6 +1224,7 @@ catch (ApiException e)
 | **direction** | **string?** |  | [optional]  |
 | **since** | **DateTime?** |  | [optional]  |
 | **until** | **DateTime?** |  | [optional]  |
+| **before** | **DateTime?** | Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). | [optional]  |
 | **limit** | **int?** |  | [optional]  |
 
 ### Return type
@@ -835,7 +1251,7 @@ catch (ApiException e)
 
 <a id="updatewhatsappcalling"></a>
 # **UpdateWhatsAppCalling**
-> void UpdateWhatsAppCalling (string id, UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest)
+> void UpdateWhatsAppCalling (string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest)
 
 Update calling config
 
@@ -866,12 +1282,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
             var id = "id_example";  // string | 
-            var updateWhatsAppCallingRequest = new UpdateWhatsAppCallingRequest(); // UpdateWhatsAppCallingRequest | 
+            var updateWhatsAppCallingLegacyRequest = new UpdateWhatsAppCallingLegacyRequest(); // UpdateWhatsAppCallingLegacyRequest | 
 
             try
             {
                 // Update calling config
-                apiInstance.UpdateWhatsAppCalling(id, updateWhatsAppCallingRequest);
+                apiInstance.UpdateWhatsAppCalling(id, updateWhatsAppCallingLegacyRequest);
             }
             catch (ApiException  e)
             {
@@ -891,7 +1307,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update calling config
-    apiInstance.UpdateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingRequest);
+    apiInstance.UpdateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingLegacyRequest);
 }
 catch (ApiException e)
 {
@@ -906,7 +1322,106 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **id** | **string** |  |  |
-| **updateWhatsAppCallingRequest** | [**UpdateWhatsAppCallingRequest**](UpdateWhatsAppCallingRequest.md) |  |  |
+| **updateWhatsAppCallingLegacyRequest** | [**UpdateWhatsAppCallingLegacyRequest**](UpdateWhatsAppCallingLegacyRequest.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Phone number not found |  -  |
+| **422** | Calling must be enabled before settings can be updated |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updatewhatsappcallinglegacy"></a>
+# **UpdateWhatsAppCallingLegacy**
+> void UpdateWhatsAppCallingLegacy (string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest)
+
+Update calling config
+
+Deprecated alias of `/v1/phone-numbers/{id}/whatsapp/calling`; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; `undefined` leaves the stored value alone, explicit `null` clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateWhatsAppCallingLegacyExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+            var updateWhatsAppCallingLegacyRequest = new UpdateWhatsAppCallingLegacyRequest(); // UpdateWhatsAppCallingLegacyRequest | 
+
+            try
+            {
+                // Update calling config
+                apiInstance.UpdateWhatsAppCallingLegacy(id, updateWhatsAppCallingLegacyRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppCallingApi.UpdateWhatsAppCallingLegacy: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateWhatsAppCallingLegacyWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update calling config
+    apiInstance.UpdateWhatsAppCallingLegacyWithHttpInfo(id, updateWhatsAppCallingLegacyRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppCallingApi.UpdateWhatsAppCallingLegacyWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+| **updateWhatsAppCallingLegacyRequest** | [**UpdateWhatsAppCallingLegacyRequest**](UpdateWhatsAppCallingLegacyRequest.md) |  |  |
 
 ### Return type
 

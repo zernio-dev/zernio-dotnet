@@ -36,7 +36,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetWhatsAppCallingConfig200Response" /> class.
         /// </summary>
-        /// <param name="phoneNumberDocId">WhatsAppPhoneNumber Mongo ID (use on /v1/whatsapp/phone-numbers/{id}/calling).</param>
+        /// <param name="phoneNumberDocId">Phone number record ID (use on /v1/phone-numbers/{id}/whatsapp/calling).</param>
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="callingEnabled">callingEnabled.</param>
         /// <param name="callDeepLink">Public calling deep link (https://wa.me/call/&lt;number&gt;). Tapping it on a phone starts a WhatsApp voice call to this number. Embed it on websites, emails, or QR codes. Null while calling is disabled; not supported by WhatsApp desktop clients..</param>
@@ -59,9 +59,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// WhatsAppPhoneNumber Mongo ID (use on /v1/whatsapp/phone-numbers/{id}/calling)
+        /// Phone number record ID (use on /v1/phone-numbers/{id}/whatsapp/calling)
         /// </summary>
-        /// <value>WhatsAppPhoneNumber Mongo ID (use on /v1/whatsapp/phone-numbers/{id}/calling)</value>
+        /// <value>Phone number record ID (use on /v1/phone-numbers/{id}/whatsapp/calling)</value>
         [DataMember(Name = "phoneNumberDocId", EmitDefaultValue = false)]
         public string PhoneNumberDocId { get; set; }
 

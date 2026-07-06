@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="numberType">numberType.</param>
         /// <param name="fields">fields.</param>
         /// <param name="reusable">reusable.</param>
-        public GetWhatsAppNumberKycForm200Response(string country = default, string numberType = default, List<GetWhatsAppNumberKycForm200ResponseFieldsInner> fields = default, GetWhatsAppNumberKycForm200ResponseReusable reusable = default)
+        public GetWhatsAppNumberKycForm200Response(string country = default, string numberType = default, List<GetWhatsAppNumberKycForm200ResponseFieldsInner> fields = default, GetPhoneNumberKycForm200ResponseReusable reusable = default)
         {
             this.Country = country;
             this.NumberType = numberType;
@@ -70,7 +70,7 @@ namespace Zernio.Model
         /// Gets or Sets Reusable
         /// </summary>
         [DataMember(Name = "reusable", EmitDefaultValue = false)]
-        public GetWhatsAppNumberKycForm200ResponseReusable Reusable { get; set; }
+        public GetPhoneNumberKycForm200ResponseReusable Reusable { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

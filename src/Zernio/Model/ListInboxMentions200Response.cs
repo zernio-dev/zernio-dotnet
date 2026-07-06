@@ -39,7 +39,7 @@ namespace Zernio.Model
         /// <param name="data">data.</param>
         /// <param name="pagination">pagination.</param>
         /// <param name="meta">meta.</param>
-        public ListInboxMentions200Response(List<ListInboxMentions200ResponseDataInner> data = default, ListInboxMentions200ResponsePagination pagination = default, ListInboxMentions200ResponseMeta meta = default)
+        public ListInboxMentions200Response(List<ListInboxMentions200ResponseDataInner> data = default, GetInboxPostComments200ResponsePagination pagination = default, ListInboxMentions200ResponseMeta meta = default)
         {
             this.Data = data;
             this.Pagination = pagination;
@@ -56,7 +56,7 @@ namespace Zernio.Model
         /// Gets or Sets Pagination
         /// </summary>
         [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public ListInboxMentions200ResponsePagination Pagination { get; set; }
+        public GetInboxPostComments200ResponsePagination Pagination { get; set; }
 
         /// <summary>
         /// Gets or Sets Meta

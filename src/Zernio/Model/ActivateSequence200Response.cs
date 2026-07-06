@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="success">success.</param>
         /// <param name="sequence">sequence.</param>
-        public ActivateSequence200Response(bool success = default, RemediateWhatsAppNumber200ResponsePhoneNumber sequence = default)
+        public ActivateSequence200Response(bool success = default, RemediatePhoneNumber200ResponsePhoneNumber sequence = default)
         {
             this.Success = success;
             this.Sequence = sequence;
@@ -54,7 +54,7 @@ namespace Zernio.Model
         /// Gets or Sets Sequence
         /// </summary>
         [DataMember(Name = "sequence", EmitDefaultValue = false)]
-        public RemediateWhatsAppNumber200ResponsePhoneNumber Sequence { get; set; }
+        public RemediatePhoneNumber200ResponsePhoneNumber Sequence { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -70,7 +70,7 @@ namespace Zernio.Model
         /// <param name="to">to.</param>
         /// <param name="failedAt">failedAt.</param>
         /// <param name="error">error.</param>
-        public WebhookPayloadCallFailedCall(string id = default, string metaCallId = default, string accountId = default, string phoneNumberId = default, DirectionEnum? direction = default, string from = default, string to = default, DateTime failedAt = default, WebhookPayloadCallFailedCallError error = default)
+        public WebhookPayloadCallFailedCall(string id = default, string metaCallId = default, string accountId = default, string phoneNumberId = default, DirectionEnum? direction = default, string from = default, string to = default, DateTime failedAt = default, CallRecordCallErrorsInner error = default)
         {
             this.Id = id;
             this.MetaCallId = metaCallId;
@@ -129,7 +129,7 @@ namespace Zernio.Model
         /// Gets or Sets Error
         /// </summary>
         [DataMember(Name = "error", EmitDefaultValue = false)]
-        public WebhookPayloadCallFailedCallError Error { get; set; }
+        public CallRecordCallErrorsInner Error { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

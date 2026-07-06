@@ -55,6 +55,49 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetCallsUsage
+        /// </summary>
+        [Fact]
+        public void GetCallsUsageTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //DateTime? since = null;
+            //DateTime? until = null;
+            //string? channel = null;
+            //string? number = null;
+            //string? groupBy = null;
+            //var response = instance.GetCallsUsage(since, until, channel, number, groupBy);
+            //Assert.IsType<GetCallsUsage200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetSmsUsage
+        /// </summary>
+        [Fact]
+        public void GetSmsUsageTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //DateTime? since = null;
+            //DateTime? until = null;
+            //string? number = null;
+            //string? groupBy = null;
+            //var response = instance.GetSmsUsage(since, until, number, groupBy);
+            //Assert.IsType<GetSmsUsage200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetUsage
+        /// </summary>
+        [Fact]
+        public void GetUsageTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //bool? reconcile = null;
+            //var response = instance.GetUsage(reconcile);
+            //Assert.IsType<UsageStats>(response);
+        }
+
+        /// <summary>
         /// Test GetUsageStats
         /// </summary>
         [Fact]

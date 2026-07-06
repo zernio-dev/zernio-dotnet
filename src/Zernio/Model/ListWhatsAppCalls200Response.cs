@@ -37,9 +37,11 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListWhatsAppCalls200Response" /> class.
         /// </summary>
         /// <param name="calls">calls.</param>
-        public ListWhatsAppCalls200Response(List<ListWhatsAppCalls200ResponseCallsInner> calls = default)
+        /// <param name="nextCursor">Pass as &#x60;before&#x60; for the next page; null on the last page..</param>
+        public ListWhatsAppCalls200Response(List<ListWhatsAppCalls200ResponseCallsInner> calls = default, DateTime? nextCursor = default)
         {
             this.Calls = calls;
+            this.NextCursor = nextCursor;
         }
 
         /// <summary>
@@ -47,6 +49,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "calls", EmitDefaultValue = false)]
         public List<ListWhatsAppCalls200ResponseCallsInner> Calls { get; set; }
+
+        /// <summary>
+        /// Pass as &#x60;before&#x60; for the next page; null on the last page.
+        /// </summary>
+        /// <value>Pass as &#x60;before&#x60; for the next page; null on the last page.</value>
+        [DataMember(Name = "nextCursor", EmitDefaultValue = true)]
+        public DateTime? NextCursor { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -57,6 +66,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListWhatsAppCalls200Response {\n");
             sb.Append("  Calls: ").Append(Calls).Append("\n");
+            sb.Append("  NextCursor: ").Append(NextCursor).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

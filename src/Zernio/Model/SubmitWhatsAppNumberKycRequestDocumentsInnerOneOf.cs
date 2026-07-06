@@ -42,9 +42,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf" /> class.
         /// </summary>
         /// <param name="requirementId">requirementId (required).</param>
-        /// <param name="filename">filename (required).</param>
-        /// <param name="base64">base64 (required).</param>
-        public SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf(string requirementId = default, string filename = default, string base64 = default)
+        /// <param name="documentId">Id from POST /v1/whatsapp/phone-numbers/kyc/upload-document. (required).</param>
+        public SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf(string requirementId = default, string documentId = default)
         {
             // to ensure "requirementId" is required (not null)
             if (requirementId == null)
@@ -52,18 +51,12 @@ namespace Zernio.Model
                 throw new ArgumentNullException("requirementId is a required property for SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf and cannot be null");
             }
             this.RequirementId = requirementId;
-            // to ensure "filename" is required (not null)
-            if (filename == null)
+            // to ensure "documentId" is required (not null)
+            if (documentId == null)
             {
-                throw new ArgumentNullException("filename is a required property for SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf and cannot be null");
+                throw new ArgumentNullException("documentId is a required property for SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf and cannot be null");
             }
-            this.Filename = filename;
-            // to ensure "base64" is required (not null)
-            if (base64 == null)
-            {
-                throw new ArgumentNullException("base64 is a required property for SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf and cannot be null");
-            }
-            this.Base64 = base64;
+            this.DocumentId = documentId;
         }
 
         /// <summary>
@@ -73,16 +66,11 @@ namespace Zernio.Model
         public string RequirementId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Filename
+        /// Id from POST /v1/whatsapp/phone-numbers/kyc/upload-document.
         /// </summary>
-        [DataMember(Name = "filename", IsRequired = true, EmitDefaultValue = true)]
-        public string Filename { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Base64
-        /// </summary>
-        [DataMember(Name = "base64", IsRequired = true, EmitDefaultValue = true)]
-        public string Base64 { get; set; }
+        /// <value>Id from POST /v1/whatsapp/phone-numbers/kyc/upload-document.</value>
+        [DataMember(Name = "documentId", IsRequired = true, EmitDefaultValue = true)]
+        public string DocumentId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,8 +81,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf {\n");
             sb.Append("  RequirementId: ").Append(RequirementId).Append("\n");
-            sb.Append("  Filename: ").Append(Filename).Append("\n");
-            sb.Append("  Base64: ").Append(Base64).Append("\n");
+            sb.Append("  DocumentId: ").Append(DocumentId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

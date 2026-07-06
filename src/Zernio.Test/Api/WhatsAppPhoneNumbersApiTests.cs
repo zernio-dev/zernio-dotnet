@@ -63,7 +63,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string country = null;
             //var response = instance.CheckWhatsAppNumberAvailability(country);
-            //Assert.IsType<CheckWhatsAppNumberAvailability200Response>(response);
+            //Assert.IsType<CheckPhoneNumberAvailability200Response>(response);
         }
 
         /// <summary>
@@ -73,9 +73,9 @@ namespace Zernio.Test.Api
         public void CreateWhatsAppNumberKycLinkTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest = null;
-            //var response = instance.CreateWhatsAppNumberKycLink(createWhatsAppNumberKycLinkRequest);
-            //Assert.IsType<CreateWhatsAppNumberKycLink200Response>(response);
+            //CreatePhoneNumberKycLinkRequest createPhoneNumberKycLinkRequest = null;
+            //var response = instance.CreateWhatsAppNumberKycLink(createPhoneNumberKycLinkRequest);
+            //Assert.IsType<CreatePhoneNumberKycLink200Response>(response);
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string phoneNumberId = null;
             //var response = instance.GetWhatsAppPhoneNumber(phoneNumberId);
-            //Assert.IsType<GetWhatsAppPhoneNumber200Response>(response);
+            //Assert.IsType<GetPhoneNumber200Response>(response);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Zernio.Test.Api
             //string? status = null;
             //string? profileId = null;
             //var response = instance.GetWhatsAppPhoneNumbers(status, profileId);
-            //Assert.IsType<GetWhatsAppPhoneNumbers200Response>(response);
+            //Assert.IsType<ListPhoneNumbers200Response>(response);
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest = null;
             //var response = instance.PurchaseWhatsAppPhoneNumber(purchaseWhatsAppPhoneNumberRequest);
-            //Assert.IsType<PurchaseWhatsAppPhoneNumber200Response>(response);
+            //Assert.IsType<PurchasePhoneNumber200Response>(response);
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string phoneNumberId = null;
             //var response = instance.ReleaseWhatsAppPhoneNumber(phoneNumberId);
-            //Assert.IsType<ReleaseWhatsAppPhoneNumber200Response>(response);
+            //Assert.IsType<ReleasePhoneNumber200Response>(response);
         }
 
         /// <summary>
@@ -183,9 +183,9 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string id = null;
-            //RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest = null;
-            //var response = instance.RemediateWhatsAppNumber(id, remediateWhatsAppNumberRequest);
-            //Assert.IsType<RemediateWhatsAppNumber200Response>(response);
+            //RemediatePhoneNumberRequest remediatePhoneNumberRequest = null;
+            //var response = instance.RemediateWhatsAppNumber(id, remediatePhoneNumberRequest);
+            //Assert.IsType<RemediatePhoneNumber200Response>(response);
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest = null;
             //var response = instance.SubmitWhatsAppNumberKyc(submitWhatsAppNumberKycRequest);
-            //Assert.IsType<SubmitWhatsAppNumberKyc200Response>(response);
+            //Assert.IsType<SubmitPhoneNumberKyc200Response>(response);
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace Zernio.Test.Api
             //string xFilename = null;
             //FileParameter body = null;
             //var response = instance.UploadWhatsAppNumberKycDocument(xFilename, body);
-            //Assert.IsType<UploadWhatsAppNumberKycDocument200Response>(response);
+            //Assert.IsType<UploadPhoneNumberKycDocument200Response>(response);
         }
 
         /// <summary>
@@ -237,9 +237,9 @@ namespace Zernio.Test.Api
         public void ValidateWhatsAppNumberKycAddressTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest = null;
-            //var response = instance.ValidateWhatsAppNumberKycAddress(validateWhatsAppNumberKycAddressRequest);
-            //Assert.IsType<ValidateWhatsAppNumberKycAddress200Response>(response);
+            //ValidatePhoneNumberKycAddressRequest validatePhoneNumberKycAddressRequest = null;
+            //var response = instance.ValidateWhatsAppNumberKycAddress(validatePhoneNumberKycAddressRequest);
+            //Assert.IsType<ValidatePhoneNumberKycAddress200Response>(response);
         }
     }
 }

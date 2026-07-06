@@ -65,21 +65,12 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Filename'
+        /// Test the property 'DocumentId'
         /// </summary>
         [Fact]
-        public void FilenameTest()
+        public void DocumentIdTest()
         {
-            // TODO unit test for the property 'Filename'
-        }
-
-        /// <summary>
-        /// Test the property 'Base64'
-        /// </summary>
-        [Fact]
-        public void Base64Test()
-        {
-            // TODO unit test for the property 'Base64'
+            // TODO unit test for the property 'DocumentId'
         }
     }
 }

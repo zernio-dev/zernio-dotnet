@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PhoneNumberDocId** | **string** | WhatsAppPhoneNumber Mongo ID (use on /v1/whatsapp/phone-numbers/{id}/calling) | [optional] 
+**PhoneNumberDocId** | **string** | Phone number record ID (use on /v1/phone-numbers/{id}/whatsapp/calling) | [optional] 
 **PhoneNumber** | **string** |  | [optional] 
 **CallingEnabled** | **bool** |  | [optional] 
 **CallDeepLink** | **string** | Public calling deep link (https://wa.me/call/&lt;number&gt;). Tapping it on a phone starts a WhatsApp voice call to this number. Embed it on websites, emails, or QR codes. Null while calling is disabled; not supported by WhatsApp desktop clients. | [optional] 

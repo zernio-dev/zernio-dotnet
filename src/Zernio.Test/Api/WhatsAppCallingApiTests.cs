@@ -67,6 +67,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test DisableWhatsAppCallingLegacy
+        /// </summary>
+        [Fact]
+        public void DisableWhatsAppCallingLegacyTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //string accountId = null;
+            //instance.DisableWhatsAppCallingLegacy(id, accountId);
+        }
+
+        /// <summary>
         /// Test EnableWhatsAppCalling
         /// </summary>
         [Fact]
@@ -74,9 +86,22 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string id = null;
-            //EnableWhatsAppCallingRequest enableWhatsAppCallingRequest = null;
-            //var response = instance.EnableWhatsAppCalling(id, enableWhatsAppCallingRequest);
-            //Assert.IsType<EnableWhatsAppCalling200Response>(response);
+            //EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest = null;
+            //var response = instance.EnableWhatsAppCalling(id, enableWhatsAppCallingLegacyRequest);
+            //Assert.IsType<EnableWhatsAppCallingLegacy200Response>(response);
+        }
+
+        /// <summary>
+        /// Test EnableWhatsAppCallingLegacy
+        /// </summary>
+        [Fact]
+        public void EnableWhatsAppCallingLegacyTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest = null;
+            //var response = instance.EnableWhatsAppCallingLegacy(id, enableWhatsAppCallingLegacyRequest);
+            //Assert.IsType<EnableWhatsAppCallingLegacy200Response>(response);
         }
 
         /// <summary>
@@ -121,6 +146,32 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetWhatsAppCallRecording
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppCallRecordingTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string callId = null;
+            //string accountId = null;
+            //string? varAs = null;
+            //var response = instance.GetWhatsAppCallRecording(callId, accountId, varAs);
+            //Assert.IsType<GetWhatsAppCallRecording200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetWhatsAppCalling
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppCallingTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //var response = instance.GetWhatsAppCalling(id);
+            //Assert.IsType<GetWhatsAppCalling200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetWhatsAppCallingConfig
         /// </summary>
         [Fact]
@@ -140,7 +191,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //InitiateWhatsAppCallRequest initiateWhatsAppCallRequest = null;
-            //var response = instance.InitiateWhatsAppCall(initiateWhatsAppCallRequest);
+            //string? idempotencyKey = null;
+            //var response = instance.InitiateWhatsAppCall(initiateWhatsAppCallRequest, idempotencyKey);
             //Assert.IsType<InitiateWhatsAppCall200Response>(response);
         }
 
@@ -156,8 +208,9 @@ namespace Zernio.Test.Api
             //string? direction = null;
             //DateTime? since = null;
             //DateTime? until = null;
+            //DateTime? before = null;
             //int? limit = null;
-            //var response = instance.ListWhatsAppCalls(accountId, status, direction, since, until, limit);
+            //var response = instance.ListWhatsAppCalls(accountId, status, direction, since, until, before, limit);
             //Assert.IsType<ListWhatsAppCalls200Response>(response);
         }
 
@@ -169,8 +222,20 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string id = null;
-            //UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest = null;
-            //instance.UpdateWhatsAppCalling(id, updateWhatsAppCallingRequest);
+            //UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest = null;
+            //instance.UpdateWhatsAppCalling(id, updateWhatsAppCallingLegacyRequest);
+        }
+
+        /// <summary>
+        /// Test UpdateWhatsAppCallingLegacy
+        /// </summary>
+        [Fact]
+        public void UpdateWhatsAppCallingLegacyTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest = null;
+            //instance.UpdateWhatsAppCallingLegacy(id, updateWhatsAppCallingLegacyRequest);
         }
     }
 }

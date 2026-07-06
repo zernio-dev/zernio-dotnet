@@ -52,16 +52,41 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DisableWhatsAppCallingWithHttpInfo(string id, string accountId);
         /// <summary>
+        /// Disable calling on a number
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        [Obsolete]
+        void DisableWhatsAppCallingLegacy(string id, string accountId);
+
+        /// <summary>
+        /// Disable calling on a number
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        [Obsolete]
+        ApiResponse<Object> DisableWhatsAppCallingLegacyWithHttpInfo(string id, string accountId);
+        /// <summary>
         /// Enable calling on a number
         /// </summary>
         /// <remarks>
         /// Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
-        /// <param name="enableWhatsAppCallingRequest"></param>
-        /// <returns>EnableWhatsAppCalling200Response</returns>
-        EnableWhatsAppCalling200Response EnableWhatsAppCalling(string id, EnableWhatsAppCallingRequest enableWhatsAppCallingRequest);
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <returns>EnableWhatsAppCallingLegacy200Response</returns>
+        EnableWhatsAppCallingLegacy200Response EnableWhatsAppCalling(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest);
 
         /// <summary>
         /// Enable calling on a number
@@ -70,10 +95,35 @@ namespace Zernio.Api
         /// Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <returns>ApiResponse of EnableWhatsAppCallingLegacy200Response</returns>
+        ApiResponse<EnableWhatsAppCallingLegacy200Response> EnableWhatsAppCallingWithHttpInfo(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest);
+        /// <summary>
+        /// Enable calling on a number
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
-        /// <param name="enableWhatsAppCallingRequest"></param>
-        /// <returns>ApiResponse of EnableWhatsAppCalling200Response</returns>
-        ApiResponse<EnableWhatsAppCalling200Response> EnableWhatsAppCallingWithHttpInfo(string id, EnableWhatsAppCallingRequest enableWhatsAppCallingRequest);
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <returns>EnableWhatsAppCallingLegacy200Response</returns>
+        [Obsolete]
+        EnableWhatsAppCallingLegacy200Response EnableWhatsAppCallingLegacy(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest);
+
+        /// <summary>
+        /// Enable calling on a number
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <returns>ApiResponse of EnableWhatsAppCallingLegacy200Response</returns>
+        [Obsolete]
+        ApiResponse<EnableWhatsAppCallingLegacy200Response> EnableWhatsAppCallingLegacyWithHttpInfo(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest);
         /// <summary>
         /// Get a single call
         /// </summary>
@@ -145,10 +195,56 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetWhatsAppCallPermissions200Response</returns>
         ApiResponse<GetWhatsAppCallPermissions200Response> GetWhatsAppCallPermissionsWithHttpInfo(string accountId, string to);
         /// <summary>
+        /// Get a call recording
+        /// </summary>
+        /// <remarks>
+        /// Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="callId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
+        /// <returns>GetWhatsAppCallRecording200Response</returns>
+        GetWhatsAppCallRecording200Response GetWhatsAppCallRecording(string callId, string accountId, string? varAs = default);
+
+        /// <summary>
+        /// Get a call recording
+        /// </summary>
+        /// <remarks>
+        /// Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="callId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
+        /// <returns>ApiResponse of GetWhatsAppCallRecording200Response</returns>
+        ApiResponse<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingWithHttpInfo(string callId, string accountId, string? varAs = default);
+        /// <summary>
+        /// Get calling config for a number
+        /// </summary>
+        /// <remarks>
+        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <returns>GetWhatsAppCalling200Response</returns>
+        GetWhatsAppCalling200Response GetWhatsAppCalling(string id);
+
+        /// <summary>
+        /// Get calling config for a number
+        /// </summary>
+        /// <remarks>
+        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <returns>ApiResponse of GetWhatsAppCalling200Response</returns>
+        ApiResponse<GetWhatsAppCalling200Response> GetWhatsAppCallingWithHttpInfo(string id);
+        /// <summary>
         /// Get calling config for an account
         /// </summary>
         /// <remarks>
-        /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+        /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -159,7 +255,7 @@ namespace Zernio.Api
         /// Get calling config for an account
         /// </summary>
         /// <remarks>
-        /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+        /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -169,28 +265,30 @@ namespace Zernio.Api
         /// Initiate outbound call
         /// </summary>
         /// <remarks>
-        /// Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+        /// Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>InitiateWhatsAppCall200Response</returns>
-        InitiateWhatsAppCall200Response InitiateWhatsAppCall(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest);
+        InitiateWhatsAppCall200Response InitiateWhatsAppCall(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default);
 
         /// <summary>
         /// Initiate outbound call
         /// </summary>
         /// <remarks>
-        /// Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+        /// Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of InitiateWhatsAppCall200Response</returns>
-        ApiResponse<InitiateWhatsAppCall200Response> InitiateWhatsAppCallWithHttpInfo(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest);
+        ApiResponse<InitiateWhatsAppCall200Response> InitiateWhatsAppCallWithHttpInfo(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default);
         /// <summary>
         /// List call history for an account
         /// </summary>
         /// <remarks>
-        /// Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+        /// Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -198,15 +296,16 @@ namespace Zernio.Api
         /// <param name="direction"> (optional)</param>
         /// <param name="since"> (optional)</param>
         /// <param name="until"> (optional)</param>
+        /// <param name="before">Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)</param>
         /// <param name="limit"> (optional)</param>
         /// <returns>ListWhatsAppCalls200Response</returns>
-        ListWhatsAppCalls200Response ListWhatsAppCalls(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, int? limit = default);
+        ListWhatsAppCalls200Response ListWhatsAppCalls(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, DateTime? before = default, int? limit = default);
 
         /// <summary>
         /// List call history for an account
         /// </summary>
         /// <remarks>
-        /// Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+        /// Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -214,9 +313,10 @@ namespace Zernio.Api
         /// <param name="direction"> (optional)</param>
         /// <param name="since"> (optional)</param>
         /// <param name="until"> (optional)</param>
+        /// <param name="before">Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)</param>
         /// <param name="limit"> (optional)</param>
         /// <returns>ApiResponse of ListWhatsAppCalls200Response</returns>
-        ApiResponse<ListWhatsAppCalls200Response> ListWhatsAppCallsWithHttpInfo(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, int? limit = default);
+        ApiResponse<ListWhatsAppCalls200Response> ListWhatsAppCallsWithHttpInfo(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, DateTime? before = default, int? limit = default);
         /// <summary>
         /// Update calling config
         /// </summary>
@@ -225,9 +325,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="updateWhatsAppCallingRequest"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
         /// <returns></returns>
-        void UpdateWhatsAppCalling(string id, UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest);
+        void UpdateWhatsAppCalling(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest);
 
         /// <summary>
         /// Update calling config
@@ -237,9 +337,34 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="updateWhatsAppCallingRequest"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> UpdateWhatsAppCallingWithHttpInfo(string id, UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest);
+        ApiResponse<Object> UpdateWhatsAppCallingWithHttpInfo(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest);
+        /// <summary>
+        /// Update calling config
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
+        /// <returns></returns>
+        [Obsolete]
+        void UpdateWhatsAppCallingLegacy(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest);
+
+        /// <summary>
+        /// Update calling config
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        [Obsolete]
+        ApiResponse<Object> UpdateWhatsAppCallingLegacyWithHttpInfo(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest);
         #endregion Synchronous Operations
     }
 
@@ -275,17 +400,44 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DisableWhatsAppCallingWithHttpInfoAsync(string id, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Disable calling on a number
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        [Obsolete]
+        System.Threading.Tasks.Task DisableWhatsAppCallingLegacyAsync(string id, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Disable calling on a number
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        [Obsolete]
+        System.Threading.Tasks.Task<ApiResponse<Object>> DisableWhatsAppCallingLegacyWithHttpInfoAsync(string id, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Enable calling on a number
         /// </summary>
         /// <remarks>
         /// Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
-        /// <param name="enableWhatsAppCallingRequest"></param>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of EnableWhatsAppCalling200Response</returns>
-        System.Threading.Tasks.Task<EnableWhatsAppCalling200Response> EnableWhatsAppCallingAsync(string id, EnableWhatsAppCallingRequest enableWhatsAppCallingRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of EnableWhatsAppCallingLegacy200Response</returns>
+        System.Threading.Tasks.Task<EnableWhatsAppCallingLegacy200Response> EnableWhatsAppCallingAsync(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Enable calling on a number
@@ -294,11 +446,38 @@ namespace Zernio.Api
         /// Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
-        /// <param name="enableWhatsAppCallingRequest"></param>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (EnableWhatsAppCalling200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<EnableWhatsAppCalling200Response>> EnableWhatsAppCallingWithHttpInfoAsync(string id, EnableWhatsAppCallingRequest enableWhatsAppCallingRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (EnableWhatsAppCallingLegacy200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<EnableWhatsAppCallingLegacy200Response>> EnableWhatsAppCallingWithHttpInfoAsync(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Enable calling on a number
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of EnableWhatsAppCallingLegacy200Response</returns>
+        [Obsolete]
+        System.Threading.Tasks.Task<EnableWhatsAppCallingLegacy200Response> EnableWhatsAppCallingLegacyAsync(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Enable calling on a number
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (EnableWhatsAppCallingLegacy200Response)</returns>
+        [Obsolete]
+        System.Threading.Tasks.Task<ApiResponse<EnableWhatsAppCallingLegacy200Response>> EnableWhatsAppCallingLegacyWithHttpInfoAsync(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get a single call
         /// </summary>
@@ -379,10 +558,60 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetWhatsAppCallPermissions200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCallPermissions200Response>> GetWhatsAppCallPermissionsWithHttpInfoAsync(string accountId, string to, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get a call recording
+        /// </summary>
+        /// <remarks>
+        /// Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="callId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppCallRecording200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingAsync(string callId, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get a call recording
+        /// </summary>
+        /// <remarks>
+        /// Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="callId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppCallRecording200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCallRecording200Response>> GetWhatsAppCallRecordingWithHttpInfoAsync(string callId, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get calling config for a number
+        /// </summary>
+        /// <remarks>
+        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppCalling200Response</returns>
+        System.Threading.Tasks.Task<GetWhatsAppCalling200Response> GetWhatsAppCallingAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get calling config for a number
+        /// </summary>
+        /// <remarks>
+        /// The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppCalling200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCalling200Response>> GetWhatsAppCallingWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get calling config for an account
         /// </summary>
         /// <remarks>
-        /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+        /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -394,7 +623,7 @@ namespace Zernio.Api
         /// Get calling config for an account
         /// </summary>
         /// <remarks>
-        /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+        /// Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -405,30 +634,32 @@ namespace Zernio.Api
         /// Initiate outbound call
         /// </summary>
         /// <remarks>
-        /// Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+        /// Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InitiateWhatsAppCall200Response</returns>
-        System.Threading.Tasks.Task<InitiateWhatsAppCall200Response> InitiateWhatsAppCallAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<InitiateWhatsAppCall200Response> InitiateWhatsAppCallAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Initiate outbound call
         /// </summary>
         /// <remarks>
-        /// Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+        /// Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InitiateWhatsAppCall200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<InitiateWhatsAppCall200Response>> InitiateWhatsAppCallWithHttpInfoAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<InitiateWhatsAppCall200Response>> InitiateWhatsAppCallWithHttpInfoAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List call history for an account
         /// </summary>
         /// <remarks>
-        /// Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+        /// Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -436,16 +667,17 @@ namespace Zernio.Api
         /// <param name="direction"> (optional)</param>
         /// <param name="since"> (optional)</param>
         /// <param name="until"> (optional)</param>
+        /// <param name="before">Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)</param>
         /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppCalls200Response</returns>
-        System.Threading.Tasks.Task<ListWhatsAppCalls200Response> ListWhatsAppCallsAsync(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListWhatsAppCalls200Response> ListWhatsAppCallsAsync(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, DateTime? before = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List call history for an account
         /// </summary>
         /// <remarks>
-        /// Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+        /// Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -453,10 +685,11 @@ namespace Zernio.Api
         /// <param name="direction"> (optional)</param>
         /// <param name="since"> (optional)</param>
         /// <param name="until"> (optional)</param>
+        /// <param name="before">Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)</param>
         /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppCalls200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListWhatsAppCalls200Response>> ListWhatsAppCallsWithHttpInfoAsync(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListWhatsAppCalls200Response>> ListWhatsAppCallsWithHttpInfoAsync(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, DateTime? before = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update calling config
         /// </summary>
@@ -465,10 +698,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="updateWhatsAppCallingRequest"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task UpdateWhatsAppCallingAsync(string id, UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task UpdateWhatsAppCallingAsync(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update calling config
@@ -478,10 +711,37 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="updateWhatsAppCallingRequest"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateWhatsAppCallingWithHttpInfoAsync(string id, UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateWhatsAppCallingWithHttpInfoAsync(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update calling config
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        [Obsolete]
+        System.Threading.Tasks.Task UpdateWhatsAppCallingLegacyAsync(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update calling config
+        /// </summary>
+        /// <remarks>
+        /// Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        [Obsolete]
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateWhatsAppCallingLegacyWithHttpInfoAsync(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -751,7 +1011,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Delete<Object>("/v1/whatsapp/phone-numbers/{id}/calling", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Delete<Object>("/v1/phone-numbers/{id}/whatsapp/calling", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -823,7 +1083,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/whatsapp/phone-numbers/{id}/calling", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/phone-numbers/{id}/whatsapp/calling", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -835,15 +1095,158 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Disable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        [Obsolete]
+        public void DisableWhatsAppCallingLegacy(string id, string accountId)
+        {
+            DisableWhatsAppCallingLegacyWithHttpInfo(id, accountId);
+        }
+
+        /// <summary>
+        /// Disable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="accountId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        [Obsolete]
+        public Zernio.Client.ApiResponse<Object> DisableWhatsAppCallingLegacyWithHttpInfo(string id, string accountId)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->DisableWhatsAppCallingLegacy");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppCallingApi->DisableWhatsAppCallingLegacy");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<Object>("/v1/whatsapp/phone-numbers/{id}/calling", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DisableWhatsAppCallingLegacy", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Disable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        [Obsolete]
+        public async System.Threading.Tasks.Task DisableWhatsAppCallingLegacyAsync(string id, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await DisableWhatsAppCallingLegacyWithHttpInfoAsync(id, accountId, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Disable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="accountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        [Obsolete]
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> DisableWhatsAppCallingLegacyWithHttpInfoAsync(string id, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->DisableWhatsAppCallingLegacy");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppCallingApi->DisableWhatsAppCallingLegacy");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/whatsapp/phone-numbers/{id}/calling", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DisableWhatsAppCallingLegacy", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Enable calling on a number Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
-        /// <param name="enableWhatsAppCallingRequest"></param>
-        /// <returns>EnableWhatsAppCalling200Response</returns>
-        public EnableWhatsAppCalling200Response EnableWhatsAppCalling(string id, EnableWhatsAppCallingRequest enableWhatsAppCallingRequest)
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <returns>EnableWhatsAppCallingLegacy200Response</returns>
+        public EnableWhatsAppCallingLegacy200Response EnableWhatsAppCalling(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest)
         {
-            Zernio.Client.ApiResponse<EnableWhatsAppCalling200Response> localVarResponse = EnableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingRequest);
+            Zernio.Client.ApiResponse<EnableWhatsAppCallingLegacy200Response> localVarResponse = EnableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingLegacyRequest);
             return localVarResponse.Data;
         }
 
@@ -851,18 +1254,18 @@ namespace Zernio.Api
         /// Enable calling on a number Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
-        /// <param name="enableWhatsAppCallingRequest"></param>
-        /// <returns>ApiResponse of EnableWhatsAppCalling200Response</returns>
-        public Zernio.Client.ApiResponse<EnableWhatsAppCalling200Response> EnableWhatsAppCallingWithHttpInfo(string id, EnableWhatsAppCallingRequest enableWhatsAppCallingRequest)
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <returns>ApiResponse of EnableWhatsAppCallingLegacy200Response</returns>
+        public Zernio.Client.ApiResponse<EnableWhatsAppCallingLegacy200Response> EnableWhatsAppCallingWithHttpInfo(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->EnableWhatsAppCalling");
 
-            // verify the required parameter 'enableWhatsAppCallingRequest' is set
-            if (enableWhatsAppCallingRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'enableWhatsAppCallingRequest' when calling WhatsAppCallingApi->EnableWhatsAppCalling");
+            // verify the required parameter 'enableWhatsAppCallingLegacyRequest' is set
+            if (enableWhatsAppCallingLegacyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'enableWhatsAppCallingLegacyRequest' when calling WhatsAppCallingApi->EnableWhatsAppCalling");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -882,7 +1285,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = enableWhatsAppCallingRequest;
+            localVarRequestOptions.Data = enableWhatsAppCallingLegacyRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -892,7 +1295,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<EnableWhatsAppCalling200Response>("/v1/whatsapp/phone-numbers/{id}/calling", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<EnableWhatsAppCallingLegacy200Response>("/v1/phone-numbers/{id}/whatsapp/calling", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -907,13 +1310,13 @@ namespace Zernio.Api
         /// Enable calling on a number Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
-        /// <param name="enableWhatsAppCallingRequest"></param>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of EnableWhatsAppCalling200Response</returns>
-        public async System.Threading.Tasks.Task<EnableWhatsAppCalling200Response> EnableWhatsAppCallingAsync(string id, EnableWhatsAppCallingRequest enableWhatsAppCallingRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of EnableWhatsAppCallingLegacy200Response</returns>
+        public async System.Threading.Tasks.Task<EnableWhatsAppCallingLegacy200Response> EnableWhatsAppCallingAsync(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<EnableWhatsAppCalling200Response> localVarResponse = await EnableWhatsAppCallingWithHttpInfoAsync(id, enableWhatsAppCallingRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<EnableWhatsAppCallingLegacy200Response> localVarResponse = await EnableWhatsAppCallingWithHttpInfoAsync(id, enableWhatsAppCallingLegacyRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -921,19 +1324,19 @@ namespace Zernio.Api
         /// Enable calling on a number Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
-        /// <param name="enableWhatsAppCallingRequest"></param>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (EnableWhatsAppCalling200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<EnableWhatsAppCalling200Response>> EnableWhatsAppCallingWithHttpInfoAsync(string id, EnableWhatsAppCallingRequest enableWhatsAppCallingRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (EnableWhatsAppCallingLegacy200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<EnableWhatsAppCallingLegacy200Response>> EnableWhatsAppCallingWithHttpInfoAsync(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->EnableWhatsAppCalling");
 
-            // verify the required parameter 'enableWhatsAppCallingRequest' is set
-            if (enableWhatsAppCallingRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'enableWhatsAppCallingRequest' when calling WhatsAppCallingApi->EnableWhatsAppCalling");
+            // verify the required parameter 'enableWhatsAppCallingLegacyRequest' is set
+            if (enableWhatsAppCallingLegacyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'enableWhatsAppCallingLegacyRequest' when calling WhatsAppCallingApi->EnableWhatsAppCalling");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -955,7 +1358,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = enableWhatsAppCallingRequest;
+            localVarRequestOptions.Data = enableWhatsAppCallingLegacyRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -966,11 +1369,158 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<EnableWhatsAppCalling200Response>("/v1/whatsapp/phone-numbers/{id}/calling", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<EnableWhatsAppCallingLegacy200Response>("/v1/phone-numbers/{id}/whatsapp/calling", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("EnableWhatsAppCalling", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Enable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <returns>EnableWhatsAppCallingLegacy200Response</returns>
+        [Obsolete]
+        public EnableWhatsAppCallingLegacy200Response EnableWhatsAppCallingLegacy(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest)
+        {
+            Zernio.Client.ApiResponse<EnableWhatsAppCallingLegacy200Response> localVarResponse = EnableWhatsAppCallingLegacyWithHttpInfo(id, enableWhatsAppCallingLegacyRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Enable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <returns>ApiResponse of EnableWhatsAppCallingLegacy200Response</returns>
+        [Obsolete]
+        public Zernio.Client.ApiResponse<EnableWhatsAppCallingLegacy200Response> EnableWhatsAppCallingLegacyWithHttpInfo(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->EnableWhatsAppCallingLegacy");
+
+            // verify the required parameter 'enableWhatsAppCallingLegacyRequest' is set
+            if (enableWhatsAppCallingLegacyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'enableWhatsAppCallingLegacyRequest' when calling WhatsAppCallingApi->EnableWhatsAppCallingLegacy");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = enableWhatsAppCallingLegacyRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<EnableWhatsAppCallingLegacy200Response>("/v1/whatsapp/phone-numbers/{id}/calling", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EnableWhatsAppCallingLegacy", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Enable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of EnableWhatsAppCallingLegacy200Response</returns>
+        [Obsolete]
+        public async System.Threading.Tasks.Task<EnableWhatsAppCallingLegacy200Response> EnableWhatsAppCallingLegacyAsync(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<EnableWhatsAppCallingLegacy200Response> localVarResponse = await EnableWhatsAppCallingLegacyWithHttpInfoAsync(id, enableWhatsAppCallingLegacyRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Enable calling on a number Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">WhatsAppPhoneNumber Mongo ID</param>
+        /// <param name="enableWhatsAppCallingLegacyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (EnableWhatsAppCallingLegacy200Response)</returns>
+        [Obsolete]
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<EnableWhatsAppCallingLegacy200Response>> EnableWhatsAppCallingLegacyWithHttpInfoAsync(string id, EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->EnableWhatsAppCallingLegacy");
+
+            // verify the required parameter 'enableWhatsAppCallingLegacyRequest' is set
+            if (enableWhatsAppCallingLegacyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'enableWhatsAppCallingLegacyRequest' when calling WhatsAppCallingApi->EnableWhatsAppCallingLegacy");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = enableWhatsAppCallingLegacyRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<EnableWhatsAppCallingLegacy200Response>("/v1/whatsapp/phone-numbers/{id}/calling", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EnableWhatsAppCallingLegacy", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1425,7 +1975,287 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+        /// Get a call recording Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="callId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
+        /// <returns>GetWhatsAppCallRecording200Response</returns>
+        public GetWhatsAppCallRecording200Response GetWhatsAppCallRecording(string callId, string accountId, string? varAs = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response> localVarResponse = GetWhatsAppCallRecordingWithHttpInfo(callId, accountId, varAs);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a call recording Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="callId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
+        /// <returns>ApiResponse of GetWhatsAppCallRecording200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingWithHttpInfo(string callId, string accountId, string? varAs = default)
+        {
+            // verify the required parameter 'callId' is set
+            if (callId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'callId' when calling WhatsAppCallingApi->GetWhatsAppCallRecording");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppCallingApi->GetWhatsAppCallRecording");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("callId", Zernio.Client.ClientUtils.ParameterToString(callId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (varAs != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "as", varAs));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsAppCallRecording200Response>("/v1/whatsapp/calls/{callId}/recording", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppCallRecording", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a call recording Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="callId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppCallRecording200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingAsync(string callId, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response> localVarResponse = await GetWhatsAppCallRecordingWithHttpInfoAsync(callId, accountId, varAs, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a call recording Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="callId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppCallRecording200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response>> GetWhatsAppCallRecordingWithHttpInfoAsync(string callId, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'callId' is set
+            if (callId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'callId' when calling WhatsAppCallingApi->GetWhatsAppCallRecording");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppCallingApi->GetWhatsAppCallRecording");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("callId", Zernio.Client.ClientUtils.ParameterToString(callId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (varAs != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "as", varAs));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppCallRecording200Response>("/v1/whatsapp/calls/{callId}/recording", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppCallRecording", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <returns>GetWhatsAppCalling200Response</returns>
+        public GetWhatsAppCalling200Response GetWhatsAppCalling(string id)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppCalling200Response> localVarResponse = GetWhatsAppCallingWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <returns>ApiResponse of GetWhatsAppCalling200Response</returns>
+        public Zernio.Client.ApiResponse<GetWhatsAppCalling200Response> GetWhatsAppCallingWithHttpInfo(string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->GetWhatsAppCalling");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWhatsAppCalling200Response>("/v1/phone-numbers/{id}/whatsapp/calling", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppCalling", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWhatsAppCalling200Response</returns>
+        public async System.Threading.Tasks.Task<GetWhatsAppCalling200Response> GetWhatsAppCallingAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetWhatsAppCalling200Response> localVarResponse = await GetWhatsAppCallingWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get calling config for a number The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWhatsAppCalling200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppCalling200Response>> GetWhatsAppCallingWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->GetWhatsAppCalling");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppCalling200Response>("/v1/phone-numbers/{id}/whatsapp/calling", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppCalling", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -1437,7 +2267,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+        /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -1486,7 +2316,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+        /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -1499,7 +2329,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+        /// Get calling config for an account Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">WhatsApp social account ID</param>
@@ -1552,24 +2382,26 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Initiate outbound call Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+        /// Initiate outbound call Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>InitiateWhatsAppCall200Response</returns>
-        public InitiateWhatsAppCall200Response InitiateWhatsAppCall(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest)
+        public InitiateWhatsAppCall200Response InitiateWhatsAppCall(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default)
         {
-            Zernio.Client.ApiResponse<InitiateWhatsAppCall200Response> localVarResponse = InitiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest);
+            Zernio.Client.ApiResponse<InitiateWhatsAppCall200Response> localVarResponse = InitiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest, idempotencyKey);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Initiate outbound call Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+        /// Initiate outbound call Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of InitiateWhatsAppCall200Response</returns>
-        public Zernio.Client.ApiResponse<InitiateWhatsAppCall200Response> InitiateWhatsAppCallWithHttpInfo(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest)
+        public Zernio.Client.ApiResponse<InitiateWhatsAppCall200Response> InitiateWhatsAppCallWithHttpInfo(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default)
         {
             // verify the required parameter 'initiateWhatsAppCallRequest' is set
             if (initiateWhatsAppCallRequest == null)
@@ -1592,6 +2424,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = initiateWhatsAppCallRequest;
 
             // authentication (bearerAuth) required
@@ -1614,26 +2450,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Initiate outbound call Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+        /// Initiate outbound call Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of InitiateWhatsAppCall200Response</returns>
-        public async System.Threading.Tasks.Task<InitiateWhatsAppCall200Response> InitiateWhatsAppCallAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<InitiateWhatsAppCall200Response> InitiateWhatsAppCallAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<InitiateWhatsAppCall200Response> localVarResponse = await InitiateWhatsAppCallWithHttpInfoAsync(initiateWhatsAppCallRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<InitiateWhatsAppCall200Response> localVarResponse = await InitiateWhatsAppCallWithHttpInfoAsync(initiateWhatsAppCallRequest, idempotencyKey, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Initiate outbound call Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+        /// Initiate outbound call Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="initiateWhatsAppCallRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InitiateWhatsAppCall200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<InitiateWhatsAppCall200Response>> InitiateWhatsAppCallWithHttpInfoAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<InitiateWhatsAppCall200Response>> InitiateWhatsAppCallWithHttpInfoAsync(InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'initiateWhatsAppCallRequest' is set
             if (initiateWhatsAppCallRequest == null)
@@ -1658,6 +2496,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = initiateWhatsAppCallRequest;
 
             // authentication (bearerAuth) required
@@ -1681,7 +2523,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List call history for an account Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+        /// List call history for an account Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1689,16 +2531,17 @@ namespace Zernio.Api
         /// <param name="direction"> (optional)</param>
         /// <param name="since"> (optional)</param>
         /// <param name="until"> (optional)</param>
+        /// <param name="before">Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)</param>
         /// <param name="limit"> (optional)</param>
         /// <returns>ListWhatsAppCalls200Response</returns>
-        public ListWhatsAppCalls200Response ListWhatsAppCalls(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, int? limit = default)
+        public ListWhatsAppCalls200Response ListWhatsAppCalls(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, DateTime? before = default, int? limit = default)
         {
-            Zernio.Client.ApiResponse<ListWhatsAppCalls200Response> localVarResponse = ListWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, limit);
+            Zernio.Client.ApiResponse<ListWhatsAppCalls200Response> localVarResponse = ListWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, before, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List call history for an account Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+        /// List call history for an account Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1706,9 +2549,10 @@ namespace Zernio.Api
         /// <param name="direction"> (optional)</param>
         /// <param name="since"> (optional)</param>
         /// <param name="until"> (optional)</param>
+        /// <param name="before">Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)</param>
         /// <param name="limit"> (optional)</param>
         /// <returns>ApiResponse of ListWhatsAppCalls200Response</returns>
-        public Zernio.Client.ApiResponse<ListWhatsAppCalls200Response> ListWhatsAppCallsWithHttpInfo(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, int? limit = default)
+        public Zernio.Client.ApiResponse<ListWhatsAppCalls200Response> ListWhatsAppCallsWithHttpInfo(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, DateTime? before = default, int? limit = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1746,6 +2590,10 @@ namespace Zernio.Api
             if (until != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
+            }
+            if (before != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "before", before));
             }
             if (limit != null)
             {
@@ -1772,7 +2620,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List call history for an account Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+        /// List call history for an account Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1780,17 +2628,18 @@ namespace Zernio.Api
         /// <param name="direction"> (optional)</param>
         /// <param name="since"> (optional)</param>
         /// <param name="until"> (optional)</param>
+        /// <param name="before">Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)</param>
         /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListWhatsAppCalls200Response</returns>
-        public async System.Threading.Tasks.Task<ListWhatsAppCalls200Response> ListWhatsAppCallsAsync(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListWhatsAppCalls200Response> ListWhatsAppCallsAsync(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, DateTime? before = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListWhatsAppCalls200Response> localVarResponse = await ListWhatsAppCallsWithHttpInfoAsync(accountId, status, direction, since, until, limit, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListWhatsAppCalls200Response> localVarResponse = await ListWhatsAppCallsWithHttpInfoAsync(accountId, status, direction, since, until, before, limit, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List call history for an account Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+        /// List call history for an account Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -1798,10 +2647,11 @@ namespace Zernio.Api
         /// <param name="direction"> (optional)</param>
         /// <param name="since"> (optional)</param>
         /// <param name="until"> (optional)</param>
+        /// <param name="before">Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)</param>
         /// <param name="limit"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppCalls200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListWhatsAppCalls200Response>> ListWhatsAppCallsWithHttpInfoAsync(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListWhatsAppCalls200Response>> ListWhatsAppCallsWithHttpInfoAsync(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, DateTime? before = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1841,6 +2691,10 @@ namespace Zernio.Api
             if (until != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
+            }
+            if (before != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "before", before));
             }
             if (limit != null)
             {
@@ -1872,11 +2726,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="updateWhatsAppCallingRequest"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
         /// <returns></returns>
-        public void UpdateWhatsAppCalling(string id, UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest)
+        public void UpdateWhatsAppCalling(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest)
         {
-            UpdateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingRequest);
+            UpdateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingLegacyRequest);
         }
 
         /// <summary>
@@ -1884,17 +2738,17 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="updateWhatsAppCallingRequest"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Zernio.Client.ApiResponse<Object> UpdateWhatsAppCallingWithHttpInfo(string id, UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest)
+        public Zernio.Client.ApiResponse<Object> UpdateWhatsAppCallingWithHttpInfo(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->UpdateWhatsAppCalling");
 
-            // verify the required parameter 'updateWhatsAppCallingRequest' is set
-            if (updateWhatsAppCallingRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateWhatsAppCallingRequest' when calling WhatsAppCallingApi->UpdateWhatsAppCalling");
+            // verify the required parameter 'updateWhatsAppCallingLegacyRequest' is set
+            if (updateWhatsAppCallingLegacyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateWhatsAppCallingLegacyRequest' when calling WhatsAppCallingApi->UpdateWhatsAppCalling");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1914,7 +2768,7 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = updateWhatsAppCallingRequest;
+            localVarRequestOptions.Data = updateWhatsAppCallingLegacyRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -1924,7 +2778,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<Object>("/v1/whatsapp/phone-numbers/{id}/calling", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<Object>("/v1/phone-numbers/{id}/whatsapp/calling", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1940,12 +2794,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="updateWhatsAppCallingRequest"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task UpdateWhatsAppCallingAsync(string id, UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task UpdateWhatsAppCallingAsync(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            await UpdateWhatsAppCallingWithHttpInfoAsync(id, updateWhatsAppCallingRequest, cancellationToken).ConfigureAwait(false);
+            await UpdateWhatsAppCallingWithHttpInfoAsync(id, updateWhatsAppCallingLegacyRequest, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -1953,18 +2807,18 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
-        /// <param name="updateWhatsAppCallingRequest"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> UpdateWhatsAppCallingWithHttpInfoAsync(string id, UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> UpdateWhatsAppCallingWithHttpInfoAsync(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->UpdateWhatsAppCalling");
 
-            // verify the required parameter 'updateWhatsAppCallingRequest' is set
-            if (updateWhatsAppCallingRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateWhatsAppCallingRequest' when calling WhatsAppCallingApi->UpdateWhatsAppCalling");
+            // verify the required parameter 'updateWhatsAppCallingLegacyRequest' is set
+            if (updateWhatsAppCallingLegacyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateWhatsAppCallingLegacyRequest' when calling WhatsAppCallingApi->UpdateWhatsAppCalling");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1986,7 +2840,152 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
-            localVarRequestOptions.Data = updateWhatsAppCallingRequest;
+            localVarRequestOptions.Data = updateWhatsAppCallingLegacyRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/phone-numbers/{id}/whatsapp/calling", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateWhatsAppCalling", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update calling config Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
+        /// <returns></returns>
+        [Obsolete]
+        public void UpdateWhatsAppCallingLegacy(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest)
+        {
+            UpdateWhatsAppCallingLegacyWithHttpInfo(id, updateWhatsAppCallingLegacyRequest);
+        }
+
+        /// <summary>
+        /// Update calling config Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        [Obsolete]
+        public Zernio.Client.ApiResponse<Object> UpdateWhatsAppCallingLegacyWithHttpInfo(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->UpdateWhatsAppCallingLegacy");
+
+            // verify the required parameter 'updateWhatsAppCallingLegacyRequest' is set
+            if (updateWhatsAppCallingLegacyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateWhatsAppCallingLegacyRequest' when calling WhatsAppCallingApi->UpdateWhatsAppCallingLegacy");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = updateWhatsAppCallingLegacyRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<Object>("/v1/whatsapp/phone-numbers/{id}/calling", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateWhatsAppCallingLegacy", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update calling config Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        [Obsolete]
+        public async System.Threading.Tasks.Task UpdateWhatsAppCallingLegacyAsync(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await UpdateWhatsAppCallingLegacyWithHttpInfoAsync(id, updateWhatsAppCallingLegacyRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Update calling config Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateWhatsAppCallingLegacyRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        [Obsolete]
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> UpdateWhatsAppCallingLegacyWithHttpInfoAsync(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->UpdateWhatsAppCallingLegacy");
+
+            // verify the required parameter 'updateWhatsAppCallingLegacyRequest' is set
+            if (updateWhatsAppCallingLegacyRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateWhatsAppCallingLegacyRequest' when calling WhatsAppCallingApi->UpdateWhatsAppCallingLegacy");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = updateWhatsAppCallingLegacyRequest;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -2001,7 +3000,7 @@ namespace Zernio.Api
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("UpdateWhatsAppCalling", localVarResponse);
+                Exception _exception = this.ExceptionFactory("UpdateWhatsAppCallingLegacy", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

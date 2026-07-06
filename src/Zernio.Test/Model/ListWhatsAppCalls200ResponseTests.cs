@@ -63,5 +63,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Calls'
         }
+
+        /// <summary>
+        /// Test the property 'NextCursor'
+        /// </summary>
+        [Fact]
+        public void NextCursorTest()
+        {
+            // TODO unit test for the property 'NextCursor'
+        }
     }
 }

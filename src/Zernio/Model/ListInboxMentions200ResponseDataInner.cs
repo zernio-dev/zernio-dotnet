@@ -109,14 +109,14 @@ namespace Zernio.Model
         /// URL to the source post on LinkedIn
         /// </summary>
         /// <value>URL to the source post on LinkedIn</value>
-        [DataMember(Name = "permalink", EmitDefaultValue = false)]
+        [DataMember(Name = "permalink", EmitDefaultValue = true)]
         public string Permalink { get; set; }
 
         /// <summary>
         /// LinkedIn URN of the person who mentioned you
         /// </summary>
         /// <value>LinkedIn URN of the person who mentioned you</value>
-        [DataMember(Name = "authorUrn", EmitDefaultValue = false)]
+        [DataMember(Name = "authorUrn", EmitDefaultValue = true)]
         public string AuthorUrn { get; set; }
 
         /// <summary>

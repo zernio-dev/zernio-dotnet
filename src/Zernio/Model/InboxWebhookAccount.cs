@@ -43,10 +43,11 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="id">Social account ID (required).</param>
         /// <param name="accountId">Social account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility..</param>
+        /// <param name="profileId">Zernio profile (workspace) ID this account belongs to. Use it to route or filter inbox webhooks by workspace. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile..</param>
         /// <param name="platform">platform (required).</param>
         /// <param name="username">username (required).</param>
         /// <param name="displayName">displayName.</param>
-        public InboxWebhookAccount(string id = default, string accountId = default, string platform = default, string username = default, string displayName = default)
+        public InboxWebhookAccount(string id = default, string accountId = default, string profileId = default, string platform = default, string username = default, string displayName = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -67,6 +68,7 @@ namespace Zernio.Model
             }
             this.Username = username;
             this.AccountId = accountId;
+            this.ProfileId = profileId;
             this.DisplayName = displayName;
         }
 
@@ -83,6 +85,13 @@ namespace Zernio.Model
         /// <value>Social account ID (same value as id). Canonical field so consumers can filter every webhook event on one field (e.g. route staging vs production by account). id is kept for backward compatibility.</value>
         [DataMember(Name = "accountId", EmitDefaultValue = false)]
         public string AccountId { get; set; }
+
+        /// <summary>
+        /// Zernio profile (workspace) ID this account belongs to. Use it to route or filter inbox webhooks by workspace. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile.
+        /// </summary>
+        /// <value>Zernio profile (workspace) ID this account belongs to. Use it to route or filter inbox webhooks by workspace. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile.</value>
+        [DataMember(Name = "profileId", EmitDefaultValue = false)]
+        public string ProfileId { get; set; }
 
         /// <summary>
         /// Gets or Sets Platform
@@ -112,6 +121,7 @@ namespace Zernio.Model
             sb.Append("class InboxWebhookAccount {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");

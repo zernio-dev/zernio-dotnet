@@ -52,7 +52,7 @@ namespace Zernio.Model
         /// <param name="values">requirementId → textual value.</param>
         /// <param name="documents">One per document requirement. Each is EITHER inline base64 OR a &#x60;documentId&#x60; returned by POST /v1/whatsapp/phone-numbers/kyc/upload-document (use the upload endpoint for large files to stay under the request-size limit)..</param>
         /// <param name="address">address.</param>
-        public SubmitWhatsAppNumberKycRequest(string profileId = default, string country = default, string submissionId = default, int quantity = 1, bool reuse = default, string reuseFrom = default, string endUserFirstName = default, string endUserLastName = default, Dictionary<string, string> values = default, List<SubmitWhatsAppNumberKycRequestDocumentsInner> documents = default, SubmitWhatsAppNumberKycRequestAddress address = default)
+        public SubmitWhatsAppNumberKycRequest(string profileId = default, string country = default, string submissionId = default, int quantity = 1, bool reuse = default, string reuseFrom = default, string endUserFirstName = default, string endUserLastName = default, Dictionary<string, string> values = default, List<SubmitWhatsAppNumberKycRequestDocumentsInner> documents = default, SubmitPhoneNumberKycRequestAddress address = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -149,7 +149,7 @@ namespace Zernio.Model
         /// Gets or Sets Address
         /// </summary>
         [DataMember(Name = "address", EmitDefaultValue = false)]
-        public SubmitWhatsAppNumberKycRequestAddress Address { get; set; }
+        public SubmitPhoneNumberKycRequestAddress Address { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

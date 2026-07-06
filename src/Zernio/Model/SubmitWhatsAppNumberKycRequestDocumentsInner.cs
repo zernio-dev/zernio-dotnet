@@ -37,10 +37,10 @@ namespace Zernio.Model
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SubmitWhatsAppNumberKycRequestDocumentsInner" /> class
-        /// with the <see cref="SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf" /> class
+        /// with the <see cref="SubmitPhoneNumberKycRequestDocumentsInnerOneOf" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.</param>
-        public SubmitWhatsAppNumberKycRequestDocumentsInner(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf actualInstance)
+        /// <param name="actualInstance">An instance of SubmitPhoneNumberKycRequestDocumentsInnerOneOf.</param>
+        public SubmitWhatsAppNumberKycRequestDocumentsInner(SubmitPhoneNumberKycRequestDocumentsInnerOneOf actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -49,10 +49,10 @@ namespace Zernio.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SubmitWhatsAppNumberKycRequestDocumentsInner" /> class
-        /// with the <see cref="SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1" /> class
+        /// with the <see cref="SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.</param>
-        public SubmitWhatsAppNumberKycRequestDocumentsInner(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1 actualInstance)
+        /// <param name="actualInstance">An instance of SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.</param>
+        public SubmitWhatsAppNumberKycRequestDocumentsInner(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -73,19 +73,29 @@ namespace Zernio.Model
             }
             set
             {
-                if (value.GetType() == typeof(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf) || value is SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf)
+                if (value.GetType() == typeof(SubmitPhoneNumberKycRequestDocumentsInnerOneOf) || value is SubmitPhoneNumberKycRequestDocumentsInnerOneOf)
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1) || value is SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1)
+                else if (value.GetType() == typeof(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf) || value is SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf)
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf, SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: SubmitPhoneNumberKycRequestDocumentsInnerOneOf, SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf");
                 }
             }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `SubmitPhoneNumberKycRequestDocumentsInnerOneOf`. If the actual instance is not `SubmitPhoneNumberKycRequestDocumentsInnerOneOf`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of SubmitPhoneNumberKycRequestDocumentsInnerOneOf</returns>
+        public SubmitPhoneNumberKycRequestDocumentsInnerOneOf GetSubmitPhoneNumberKycRequestDocumentsInnerOneOf()
+        {
+            return (SubmitPhoneNumberKycRequestDocumentsInnerOneOf)this.ActualInstance;
         }
 
         /// <summary>
@@ -96,16 +106,6 @@ namespace Zernio.Model
         public SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf GetSubmitWhatsAppNumberKycRequestDocumentsInnerOneOf()
         {
             return (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf)this.ActualInstance;
-        }
-
-        /// <summary>
-        /// Get the actual instance of `SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1`. If the actual instance is not `SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1`,
-        /// the InvalidClassException will be thrown
-        /// </summary>
-        /// <returns>An instance of SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1</returns>
-        public SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1 GetSubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1()
-        {
-            return (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1)this.ActualInstance;
         }
 
         /// <summary>
@@ -149,6 +149,26 @@ namespace Zernio.Model
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(SubmitPhoneNumberKycRequestDocumentsInnerOneOf).GetProperty("AdditionalProperties") == null)
+                {
+                    newSubmitWhatsAppNumberKycRequestDocumentsInner = new SubmitWhatsAppNumberKycRequestDocumentsInner(JsonConvert.DeserializeObject<SubmitPhoneNumberKycRequestDocumentsInnerOneOf>(jsonString, SubmitWhatsAppNumberKycRequestDocumentsInner.SerializerSettings));
+                }
+                else
+                {
+                    newSubmitWhatsAppNumberKycRequestDocumentsInner = new SubmitWhatsAppNumberKycRequestDocumentsInner(JsonConvert.DeserializeObject<SubmitPhoneNumberKycRequestDocumentsInnerOneOf>(jsonString, SubmitWhatsAppNumberKycRequestDocumentsInner.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("SubmitPhoneNumberKycRequestDocumentsInnerOneOf");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SubmitPhoneNumberKycRequestDocumentsInnerOneOf: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf).GetProperty("AdditionalProperties") == null)
                 {
                     newSubmitWhatsAppNumberKycRequestDocumentsInner = new SubmitWhatsAppNumberKycRequestDocumentsInner(JsonConvert.DeserializeObject<SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf>(jsonString, SubmitWhatsAppNumberKycRequestDocumentsInner.SerializerSettings));
@@ -164,26 +184,6 @@ namespace Zernio.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf: {1}", jsonString, exception.ToString()));
-            }
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1).GetProperty("AdditionalProperties") == null)
-                {
-                    newSubmitWhatsAppNumberKycRequestDocumentsInner = new SubmitWhatsAppNumberKycRequestDocumentsInner(JsonConvert.DeserializeObject<SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1>(jsonString, SubmitWhatsAppNumberKycRequestDocumentsInner.SerializerSettings));
-                }
-                else
-                {
-                    newSubmitWhatsAppNumberKycRequestDocumentsInner = new SubmitWhatsAppNumberKycRequestDocumentsInner(JsonConvert.DeserializeObject<SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1>(jsonString, SubmitWhatsAppNumberKycRequestDocumentsInner.AdditionalPropertiesSerializerSettings));
-                }
-                matchedTypes.Add("SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1");
-                match++;
-            }
-            catch (Exception exception)
-            {
-                // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1: {1}", jsonString, exception.ToString()));
             }
 
             if (match == 0)

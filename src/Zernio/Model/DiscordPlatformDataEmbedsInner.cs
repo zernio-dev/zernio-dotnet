@@ -45,7 +45,7 @@ namespace Zernio.Model
         /// <param name="footer">footer.</param>
         /// <param name="author">author.</param>
         /// <param name="fields">Up to 25 fields per embed.</param>
-        public DiscordPlatformDataEmbedsInner(string title = default, string description = default, string url = default, int color = default, DiscordPlatformDataEmbedsInnerImage image = default, DiscordPlatformDataEmbedsInnerImage thumbnail = default, DiscordPlatformDataEmbedsInnerFooter footer = default, DiscordPlatformDataEmbedsInnerAuthor author = default, List<DiscordPlatformDataEmbedsInnerFieldsInner> fields = default)
+        public DiscordPlatformDataEmbedsInner(string title = default, string description = default, string url = default, int color = default, GetWhatsAppCallRecording200Response image = default, GetWhatsAppCallRecording200Response thumbnail = default, DiscordPlatformDataEmbedsInnerFooter footer = default, DiscordPlatformDataEmbedsInnerAuthor author = default, List<DiscordPlatformDataEmbedsInnerFieldsInner> fields = default)
         {
             this.Title = title;
             this.Description = description;
@@ -90,13 +90,13 @@ namespace Zernio.Model
         /// Gets or Sets Image
         /// </summary>
         [DataMember(Name = "image", EmitDefaultValue = false)]
-        public DiscordPlatformDataEmbedsInnerImage Image { get; set; }
+        public GetWhatsAppCallRecording200Response Image { get; set; }
 
         /// <summary>
         /// Gets or Sets Thumbnail
         /// </summary>
         [DataMember(Name = "thumbnail", EmitDefaultValue = false)]
-        public DiscordPlatformDataEmbedsInnerImage Thumbnail { get; set; }
+        public GetWhatsAppCallRecording200Response Thumbnail { get; set; }
 
         /// <summary>
         /// Gets or Sets Footer
