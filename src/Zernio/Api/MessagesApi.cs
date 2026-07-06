@@ -258,6 +258,39 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
         ApiResponse<UpdateYoutubeDefaultPlaylist200Response> RemoveMessageReactionWithHttpInfo(string conversationId, string messageId, string accountId);
         /// <summary>
+        /// Search conversations
+        /// </summary>
+        /// <remarks>
+        /// Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Text to search for in message content</param>
+        /// <param name="direction">Only match messages sent to you (incoming) or by you (outgoing) (optional)</param>
+        /// <param name="profileId">Filter by profile ID (optional)</param>
+        /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
+        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
+        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <returns>SearchInboxConversations200Response</returns>
+        SearchInboxConversations200Response SearchInboxConversations(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default);
+
+        /// <summary>
+        /// Search conversations
+        /// </summary>
+        /// <remarks>
+        /// Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Text to search for in message content</param>
+        /// <param name="direction">Only match messages sent to you (incoming) or by you (outgoing) (optional)</param>
+        /// <param name="profileId">Filter by profile ID (optional)</param>
+        /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
+        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
+        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <returns>ApiResponse of SearchInboxConversations200Response</returns>
+        ApiResponse<SearchInboxConversations200Response> SearchInboxConversationsWithHttpInfo(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default);
+        /// <summary>
         /// Send message
         /// </summary>
         /// <remarks>
@@ -605,6 +638,41 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> RemoveMessageReactionWithHttpInfoAsync(string conversationId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Search conversations
+        /// </summary>
+        /// <remarks>
+        /// Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Text to search for in message content</param>
+        /// <param name="direction">Only match messages sent to you (incoming) or by you (outgoing) (optional)</param>
+        /// <param name="profileId">Filter by profile ID (optional)</param>
+        /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
+        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
+        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SearchInboxConversations200Response</returns>
+        System.Threading.Tasks.Task<SearchInboxConversations200Response> SearchInboxConversationsAsync(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Search conversations
+        /// </summary>
+        /// <remarks>
+        /// Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Text to search for in message content</param>
+        /// <param name="direction">Only match messages sent to you (incoming) or by you (outgoing) (optional)</param>
+        /// <param name="profileId">Filter by profile ID (optional)</param>
+        /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
+        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
+        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SearchInboxConversations200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SearchInboxConversations200Response>> SearchInboxConversationsWithHttpInfoAsync(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Send message
         /// </summary>
@@ -2325,6 +2393,205 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("RemoveMessageReaction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Search conversations Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Text to search for in message content</param>
+        /// <param name="direction">Only match messages sent to you (incoming) or by you (outgoing) (optional)</param>
+        /// <param name="profileId">Filter by profile ID (optional)</param>
+        /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
+        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
+        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <returns>SearchInboxConversations200Response</returns>
+        public SearchInboxConversations200Response SearchInboxConversations(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default)
+        {
+            Zernio.Client.ApiResponse<SearchInboxConversations200Response> localVarResponse = SearchInboxConversationsWithHttpInfo(query, direction, profileId, platform, accountId, limit, cursor);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Search conversations Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Text to search for in message content</param>
+        /// <param name="direction">Only match messages sent to you (incoming) or by you (outgoing) (optional)</param>
+        /// <param name="profileId">Filter by profile ID (optional)</param>
+        /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
+        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
+        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <returns>ApiResponse of SearchInboxConversations200Response</returns>
+        public Zernio.Client.ApiResponse<SearchInboxConversations200Response> SearchInboxConversationsWithHttpInfo(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default)
+        {
+            // verify the required parameter 'query' is set
+            if (query == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'query' when calling MessagesApi->SearchInboxConversations");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+            if (direction != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "direction", direction));
+            }
+            if (profileId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            }
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<SearchInboxConversations200Response>("/v1/inbox/conversations/search", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchInboxConversations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Search conversations Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Text to search for in message content</param>
+        /// <param name="direction">Only match messages sent to you (incoming) or by you (outgoing) (optional)</param>
+        /// <param name="profileId">Filter by profile ID (optional)</param>
+        /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
+        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
+        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SearchInboxConversations200Response</returns>
+        public async System.Threading.Tasks.Task<SearchInboxConversations200Response> SearchInboxConversationsAsync(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<SearchInboxConversations200Response> localVarResponse = await SearchInboxConversationsWithHttpInfoAsync(query, direction, profileId, platform, accountId, limit, cursor, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Search conversations Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="query">Text to search for in message content</param>
+        /// <param name="direction">Only match messages sent to you (incoming) or by you (outgoing) (optional)</param>
+        /// <param name="profileId">Filter by profile ID (optional)</param>
+        /// <param name="platform">Filter by platform (searchable platforms only) (optional)</param>
+        /// <param name="accountId">Filter by specific social account ID (optional)</param>
+        /// <param name="limit">Maximum number of conversations to return (optional, default to 20)</param>
+        /// <param name="cursor">Pagination cursor for next page (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SearchInboxConversations200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SearchInboxConversations200Response>> SearchInboxConversationsWithHttpInfoAsync(string query, string? direction = default, string? profileId = default, string? platform = default, string? accountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'query' is set
+            if (query == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'query' when calling MessagesApi->SearchInboxConversations");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+            if (direction != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "direction", direction));
+            }
+            if (profileId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            }
+            if (platform != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "platform", platform));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SearchInboxConversations200Response>("/v1/inbox/conversations/search", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchInboxConversations", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

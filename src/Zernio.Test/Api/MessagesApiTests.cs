@@ -183,6 +183,24 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test SearchInboxConversations
+        /// </summary>
+        [Fact]
+        public void SearchInboxConversationsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string query = null;
+            //string? direction = null;
+            //string? profileId = null;
+            //string? platform = null;
+            //string? accountId = null;
+            //int? limit = null;
+            //string? cursor = null;
+            //var response = instance.SearchInboxConversations(query, direction, profileId, platform, accountId, limit, cursor);
+            //Assert.IsType<SearchInboxConversations200Response>(response);
+        }
+
+        /// <summary>
         /// Test SendInboxMessage
         /// </summary>
         [Fact]

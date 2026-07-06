@@ -377,6 +377,7 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**ListInboxConversations**](docs/MessagesApi.md#listinboxconversations) | **GET** /v1/inbox/conversations | List conversations
 *MessagesApi* | [**MarkConversationRead**](docs/MessagesApi.md#markconversationread) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read
 *MessagesApi* | [**RemoveMessageReaction**](docs/MessagesApi.md#removemessagereaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction
+*MessagesApi* | [**SearchInboxConversations**](docs/MessagesApi.md#searchinboxconversations) | **GET** /v1/inbox/conversations/search | Search conversations
 *MessagesApi* | [**SendInboxMessage**](docs/MessagesApi.md#sendinboxmessage) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message
 *MessagesApi* | [**SendTypingIndicator**](docs/MessagesApi.md#sendtypingindicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator
 *MessagesApi* | [**UpdateInboxConversation**](docs/MessagesApi.md#updateinboxconversation) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status
@@ -1479,6 +1480,13 @@ Class | Method | HTTP request | Description
  - [Model.SearchAvailablePhoneNumbers200ResponseNumbersInner](docs/SearchAvailablePhoneNumbers200ResponseNumbersInner.md)
  - [Model.SearchAvailableWhatsAppNumbers200Response](docs/SearchAvailableWhatsAppNumbers200Response.md)
  - [Model.SearchAvailableWhatsAppNumbers200ResponseNumbersInner](docs/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.md)
+ - [Model.SearchInboxConversations200Response](docs/SearchInboxConversations200Response.md)
+ - [Model.SearchInboxConversations200ResponseDataInner](docs/SearchInboxConversations200ResponseDataInner.md)
+ - [Model.SearchInboxConversations200ResponseDataInnerConversation](docs/SearchInboxConversations200ResponseDataInnerConversation.md)
+ - [Model.SearchInboxConversations200ResponseDataInnerMatchesInner](docs/SearchInboxConversations200ResponseDataInnerMatchesInner.md)
+ - [Model.SearchInboxConversations200ResponseMeta](docs/SearchInboxConversations200ResponseMeta.md)
+ - [Model.SearchInboxConversations200ResponseMetaAccountsSkippedInner](docs/SearchInboxConversations200ResponseMetaAccountsSkippedInner.md)
+ - [Model.SearchInboxConversations200ResponseMetaFailedAccountsInner](docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [Model.SearchReddit200Response](docs/SearchReddit200Response.md)
  - [Model.SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [Model.SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)

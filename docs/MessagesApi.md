@@ -13,6 +13,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListInboxConversations**](MessagesApi.md#listinboxconversations) | **GET** /v1/inbox/conversations | List conversations |
 | [**MarkConversationRead**](MessagesApi.md#markconversationread) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read |
 | [**RemoveMessageReaction**](MessagesApi.md#removemessagereaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction |
+| [**SearchInboxConversations**](MessagesApi.md#searchinboxconversations) | **GET** /v1/inbox/conversations/search | Search conversations |
 | [**SendInboxMessage**](MessagesApi.md#sendinboxmessage) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message |
 | [**SendTypingIndicator**](MessagesApi.md#sendtypingindicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator |
 | [**UpdateInboxConversation**](MessagesApi.md#updateinboxconversation) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status |
@@ -968,6 +969,119 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="searchinboxconversations"></a>
+# **SearchInboxConversations**
+> SearchInboxConversations200Response SearchInboxConversations (string query, string? direction = null, string? profileId = null, string? platform = null, string? accountId = null, int? limit = null, string? cursor = null)
+
+Search conversations
+
+Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction=outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SearchInboxConversationsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new MessagesApi(httpClient, config, httpClientHandler);
+            var query = "query_example";  // string | Text to search for in message content
+            var direction = "incoming";  // string? | Only match messages sent to you (incoming) or by you (outgoing) (optional) 
+            var profileId = "profileId_example";  // string? | Filter by profile ID (optional) 
+            var platform = "facebook";  // string? | Filter by platform (searchable platforms only) (optional) 
+            var accountId = "accountId_example";  // string? | Filter by specific social account ID (optional) 
+            var limit = 20;  // int? | Maximum number of conversations to return (optional)  (default to 20)
+            var cursor = "cursor_example";  // string? | Pagination cursor for next page (optional) 
+
+            try
+            {
+                // Search conversations
+                SearchInboxConversations200Response result = apiInstance.SearchInboxConversations(query, direction, profileId, platform, accountId, limit, cursor);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling MessagesApi.SearchInboxConversations: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SearchInboxConversationsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Search conversations
+    ApiResponse<SearchInboxConversations200Response> response = apiInstance.SearchInboxConversationsWithHttpInfo(query, direction, profileId, platform, accountId, limit, cursor);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling MessagesApi.SearchInboxConversationsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **query** | **string** | Text to search for in message content |  |
+| **direction** | **string?** | Only match messages sent to you (incoming) or by you (outgoing) | [optional]  |
+| **profileId** | **string?** | Filter by profile ID | [optional]  |
+| **platform** | **string?** | Filter by platform (searchable platforms only) | [optional]  |
+| **accountId** | **string?** | Filter by specific social account ID | [optional]  |
+| **limit** | **int?** | Maximum number of conversations to return | [optional] [default to 20] |
+| **cursor** | **string?** | Pagination cursor for next page | [optional]  |
+
+### Return type
+
+[**SearchInboxConversations200Response**](SearchInboxConversations200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversations containing the query, most recent match first |  -  |
+| **400** | Invalid query or unsupported platform |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
