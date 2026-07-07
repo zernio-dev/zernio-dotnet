@@ -62,10 +62,13 @@ namespace Zernio.Model
         /// <param name="content">Text of the post that mentioned you.</param>
         /// <param name="permalink">URL to the source post on LinkedIn.</param>
         /// <param name="authorUrn">LinkedIn URN of the person who mentioned you.</param>
+        /// <param name="authorName">Display name of the author, resolved from authorUrn. Null when LinkedIn does not allow resolving the profile..</param>
+        /// <param name="authorUsername">LinkedIn vanity name of the author (the slug in their profile URL).</param>
+        /// <param name="authorPicture">Profile picture URL of the author. LinkedIn CDN URLs expire after some time, so fetch promptly rather than storing long-term..</param>
         /// <param name="organizationalEntity">URN of the organization that was mentioned.</param>
         /// <param name="publishedAt">publishedAt.</param>
         /// <param name="createdAt">createdAt.</param>
-        public ListInboxMentions200ResponseDataInner(string id = default, PlatformEnum? platform = default, string accountId = default, string accountUsername = default, string content = default, string permalink = default, string authorUrn = default, string organizationalEntity = default, DateTime publishedAt = default, DateTime createdAt = default)
+        public ListInboxMentions200ResponseDataInner(string id = default, PlatformEnum? platform = default, string accountId = default, string accountUsername = default, string content = default, string permalink = default, string authorUrn = default, string authorName = default, string authorUsername = default, string authorPicture = default, string organizationalEntity = default, DateTime publishedAt = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.Platform = platform;
@@ -74,6 +77,9 @@ namespace Zernio.Model
             this.Content = content;
             this.Permalink = permalink;
             this.AuthorUrn = authorUrn;
+            this.AuthorName = authorName;
+            this.AuthorUsername = authorUsername;
+            this.AuthorPicture = authorPicture;
             this.OrganizationalEntity = organizationalEntity;
             this.PublishedAt = publishedAt;
             this.CreatedAt = createdAt;
@@ -120,6 +126,27 @@ namespace Zernio.Model
         public string AuthorUrn { get; set; }
 
         /// <summary>
+        /// Display name of the author, resolved from authorUrn. Null when LinkedIn does not allow resolving the profile.
+        /// </summary>
+        /// <value>Display name of the author, resolved from authorUrn. Null when LinkedIn does not allow resolving the profile.</value>
+        [DataMember(Name = "authorName", EmitDefaultValue = true)]
+        public string AuthorName { get; set; }
+
+        /// <summary>
+        /// LinkedIn vanity name of the author (the slug in their profile URL)
+        /// </summary>
+        /// <value>LinkedIn vanity name of the author (the slug in their profile URL)</value>
+        [DataMember(Name = "authorUsername", EmitDefaultValue = true)]
+        public string AuthorUsername { get; set; }
+
+        /// <summary>
+        /// Profile picture URL of the author. LinkedIn CDN URLs expire after some time, so fetch promptly rather than storing long-term.
+        /// </summary>
+        /// <value>Profile picture URL of the author. LinkedIn CDN URLs expire after some time, so fetch promptly rather than storing long-term.</value>
+        [DataMember(Name = "authorPicture", EmitDefaultValue = true)]
+        public string AuthorPicture { get; set; }
+
+        /// <summary>
         /// URN of the organization that was mentioned
         /// </summary>
         /// <value>URN of the organization that was mentioned</value>
@@ -153,6 +180,9 @@ namespace Zernio.Model
             sb.Append("  Content: ").Append(Content).Append("\n");
             sb.Append("  Permalink: ").Append(Permalink).Append("\n");
             sb.Append("  AuthorUrn: ").Append(AuthorUrn).Append("\n");
+            sb.Append("  AuthorName: ").Append(AuthorName).Append("\n");
+            sb.Append("  AuthorUsername: ").Append(AuthorUsername).Append("\n");
+            sb.Append("  AuthorPicture: ").Append(AuthorPicture).Append("\n");
             sb.Append("  OrganizationalEntity: ").Append(OrganizationalEntity).Append("\n");
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");

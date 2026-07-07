@@ -119,6 +119,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AuthorName'
+        /// </summary>
+        [Fact]
+        public void AuthorNameTest()
+        {
+            // TODO unit test for the property 'AuthorName'
+        }
+
+        /// <summary>
+        /// Test the property 'AuthorUsername'
+        /// </summary>
+        [Fact]
+        public void AuthorUsernameTest()
+        {
+            // TODO unit test for the property 'AuthorUsername'
+        }
+
+        /// <summary>
+        /// Test the property 'AuthorPicture'
+        /// </summary>
+        [Fact]
+        public void AuthorPictureTest()
+        {
+            // TODO unit test for the property 'AuthorPicture'
+        }
+
+        /// <summary>
         /// Test the property 'OrganizationalEntity'
         /// </summary>
         [Fact]
