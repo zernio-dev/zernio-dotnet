@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateInboxConversation201ResponseData" /> class.
         /// </summary>
         /// <param name="messageId">Platform message ID (dm_event_id).</param>
-        /// <param name="conversationId">Platform conversation ID (dm_conversation_id).</param>
+        /// <param name="conversationId">Platform conversation ID (dm_conversation_id). For WhatsApp, this is Zernio&#39;s internal conversation id (24-character hex) which matches the id returned by the list-conversations endpoint and the conversationId in the message.received and conversation.started webhooks; use it to correlate the created thread with inbound events..</param>
         /// <param name="participantId">Twitter numeric user ID of the recipient.</param>
         /// <param name="participantName">Display name of the recipient.</param>
         /// <param name="participantUsername">Twitter username of the recipient.</param>
@@ -58,9 +58,9 @@ namespace Zernio.Model
         public string MessageId { get; set; }
 
         /// <summary>
-        /// Platform conversation ID (dm_conversation_id)
+        /// Platform conversation ID (dm_conversation_id). For WhatsApp, this is Zernio&#39;s internal conversation id (24-character hex) which matches the id returned by the list-conversations endpoint and the conversationId in the message.received and conversation.started webhooks; use it to correlate the created thread with inbound events.
         /// </summary>
-        /// <value>Platform conversation ID (dm_conversation_id)</value>
+        /// <value>Platform conversation ID (dm_conversation_id). For WhatsApp, this is Zernio&#39;s internal conversation id (24-character hex) which matches the id returned by the list-conversations endpoint and the conversationId in the message.received and conversation.started webhooks; use it to correlate the created thread with inbound events.</value>
         [DataMember(Name = "conversationId", EmitDefaultValue = false)]
         public string ConversationId { get; set; }
 
