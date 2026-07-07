@@ -90,5 +90,32 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Parameters'
         }
+
+        /// <summary>
+        /// Test the property 'CatalogId'
+        /// </summary>
+        [Fact]
+        public void CatalogIdTest()
+        {
+            // TODO unit test for the property 'CatalogId'
+        }
+
+        /// <summary>
+        /// Test the property 'ProductRetailerId'
+        /// </summary>
+        [Fact]
+        public void ProductRetailerIdTest()
+        {
+            // TODO unit test for the property 'ProductRetailerId'
+        }
+
+        /// <summary>
+        /// Test the property 'Cards'
+        /// </summary>
+        [Fact]
+        public void CardsTest()
+        {
+            // TODO unit test for the property 'Cards'
+        }
     }
 }

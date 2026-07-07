@@ -28,36 +28,35 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Required for every type except &#x60;product&#x60;, where it is optional.
+    /// WhatsApp only. The product the user is asking about. Set when an inbound text carries Meta&#39;s &#x60;context.referred_product&#x60; (the user tapped \&quot;Message business\&quot; on a product). Forwarded verbatim. 
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_body")]
-    public partial class SendInboxMessageRequestInteractiveBody : IValidatableObject
+    [DataContract(Name = "WebhookPayloadMessage_metadata_referredProduct")]
+    public partial class WebhookPayloadMessageMetadataReferredProduct : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadMessageMetadataReferredProduct" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SendInboxMessageRequestInteractiveBody() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
-        /// </summary>
-        /// <param name="text">Main body text. (required).</param>
-        public SendInboxMessageRequestInteractiveBody(string text = default)
+        /// <param name="catalogId">Meta catalog the product belongs to..</param>
+        /// <param name="productRetailerId">Retailer ID (SKU) of the product being asked about..</param>
+        public WebhookPayloadMessageMetadataReferredProduct(string catalogId = default, string productRetailerId = default)
         {
-            // to ensure "text" is required (not null)
-            if (text == null)
-            {
-                throw new ArgumentNullException("text is a required property for SendInboxMessageRequestInteractiveBody and cannot be null");
-            }
-            this.Text = text;
+            this.CatalogId = catalogId;
+            this.ProductRetailerId = productRetailerId;
         }
 
         /// <summary>
-        /// Main body text.
+        /// Meta catalog the product belongs to.
         /// </summary>
-        /// <value>Main body text.</value>
-        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
-        public string Text { get; set; }
+        /// <value>Meta catalog the product belongs to.</value>
+        [DataMember(Name = "catalog_id", EmitDefaultValue = false)]
+        public string CatalogId { get; set; }
+
+        /// <summary>
+        /// Retailer ID (SKU) of the product being asked about.
+        /// </summary>
+        /// <value>Retailer ID (SKU) of the product being asked about.</value>
+        [DataMember(Name = "product_retailer_id", EmitDefaultValue = false)]
+        public string ProductRetailerId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,8 +65,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveBody {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
+            sb.Append("class WebhookPayloadMessageMetadataReferredProduct {\n");
+            sb.Append("  CatalogId: ").Append(CatalogId).Append("\n");
+            sb.Append("  ProductRetailerId: ").Append(ProductRetailerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -28,36 +28,43 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Required for every type except &#x60;product&#x60;, where it is optional.
+    /// WhatsApp only. Cart submitted by the user from a commerce message (catalog, product, or product-list message). Meta&#39;s &#x60;order&#x60; object forwarded verbatim. 
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_body")]
-    public partial class SendInboxMessageRequestInteractiveBody : IValidatableObject
+    [DataContract(Name = "WebhookPayloadMessage_metadata_order")]
+    public partial class WebhookPayloadMessageMetadataOrder : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadMessageMetadataOrder" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SendInboxMessageRequestInteractiveBody() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
-        /// </summary>
-        /// <param name="text">Main body text. (required).</param>
-        public SendInboxMessageRequestInteractiveBody(string text = default)
+        /// <param name="catalogId">Meta catalog the ordered products belong to..</param>
+        /// <param name="text">Optional free-text note the user attached to the cart..</param>
+        /// <param name="productItems">productItems.</param>
+        public WebhookPayloadMessageMetadataOrder(string catalogId = default, string text = default, List<WebhookPayloadMessageMetadataOrderProductItemsInner> productItems = default)
         {
-            // to ensure "text" is required (not null)
-            if (text == null)
-            {
-                throw new ArgumentNullException("text is a required property for SendInboxMessageRequestInteractiveBody and cannot be null");
-            }
+            this.CatalogId = catalogId;
             this.Text = text;
+            this.ProductItems = productItems;
         }
 
         /// <summary>
-        /// Main body text.
+        /// Meta catalog the ordered products belong to.
         /// </summary>
-        /// <value>Main body text.</value>
-        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Meta catalog the ordered products belong to.</value>
+        [DataMember(Name = "catalog_id", EmitDefaultValue = false)]
+        public string CatalogId { get; set; }
+
+        /// <summary>
+        /// Optional free-text note the user attached to the cart.
+        /// </summary>
+        /// <value>Optional free-text note the user attached to the cart.</value>
+        [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ProductItems
+        /// </summary>
+        [DataMember(Name = "product_items", EmitDefaultValue = false)]
+        public List<WebhookPayloadMessageMetadataOrderProductItemsInner> ProductItems { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,8 +73,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveBody {\n");
+            sb.Append("class WebhookPayloadMessageMetadataOrder {\n");
+            sb.Append("  CatalogId: ").Append(CatalogId).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
+            sb.Append("  ProductItems: ").Append(ProductItems).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

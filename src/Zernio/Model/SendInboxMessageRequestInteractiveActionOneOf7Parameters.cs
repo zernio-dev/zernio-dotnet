@@ -28,36 +28,26 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Required for every type except &#x60;product&#x60;, where it is optional.
+    /// SendInboxMessageRequestInteractiveActionOneOf7Parameters
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_body")]
-    public partial class SendInboxMessageRequestInteractiveBody : IValidatableObject
+    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_7_parameters")]
+    public partial class SendInboxMessageRequestInteractiveActionOneOf7Parameters : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf7Parameters" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SendInboxMessageRequestInteractiveBody() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
-        /// </summary>
-        /// <param name="text">Main body text. (required).</param>
-        public SendInboxMessageRequestInteractiveBody(string text = default)
+        /// <param name="thumbnailProductRetailerId">Optional product whose image is used as the message thumbnail. Falls back to the first catalog item when omitted..</param>
+        public SendInboxMessageRequestInteractiveActionOneOf7Parameters(string thumbnailProductRetailerId = default)
         {
-            // to ensure "text" is required (not null)
-            if (text == null)
-            {
-                throw new ArgumentNullException("text is a required property for SendInboxMessageRequestInteractiveBody and cannot be null");
-            }
-            this.Text = text;
+            this.ThumbnailProductRetailerId = thumbnailProductRetailerId;
         }
 
         /// <summary>
-        /// Main body text.
+        /// Optional product whose image is used as the message thumbnail. Falls back to the first catalog item when omitted.
         /// </summary>
-        /// <value>Main body text.</value>
-        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
-        public string Text { get; set; }
+        /// <value>Optional product whose image is used as the message thumbnail. Falls back to the first catalog item when omitted.</value>
+        [DataMember(Name = "thumbnail_product_retailer_id", EmitDefaultValue = false)]
+        public string ThumbnailProductRetailerId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,8 +56,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveBody {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
+            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf7Parameters {\n");
+            sb.Append("  ThumbnailProductRetailerId: ").Append(ThumbnailProductRetailerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

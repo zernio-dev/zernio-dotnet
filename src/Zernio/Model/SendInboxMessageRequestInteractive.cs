@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// WhatsApp-only. Rich interactive payload for list messages, CTA URL buttons, Flow prompts, and location requests. When set, takes priority over &#x60;buttons&#x60; and &#x60;quickReplies&#x60;. The shape mirrors Meta&#39;s Cloud API &#x60;interactive&#x60; object verbatim, so any payload that works against Meta directly will also work here.  Use &#x60;buttons&#x60; / &#x60;quickReplies&#x60; for simple button replies (WhatsApp&#39;s &#x60;interactive.type: \&quot;button\&quot;&#x60;) — the abstraction caps at 3 buttons and handles the auto-conversion for you. Use this field only for &#x60;list&#x60;, &#x60;cta_url&#x60;, &#x60;flow&#x60;, &#x60;location_request_message&#x60;, or &#x60;voice_call&#x60; messages.  For &#x60;voice_call&#x60;, the message renders WhatsApp&#39;s native call button; tapping it starts a voice call to your business number. Requires WhatsApp Business Calling to be enabled on the sending number. The optional &#x60;parameters.payload&#x60; string is echoed back on the &#x60;calls&#x60; webhook (as &#x60;cta_payload&#x60;) for attribution.  For &#x60;location_request_message&#x60;, &#x60;action&#x60; may be omitted (we default it to &#x60;{ \&quot;name\&quot;: \&quot;send_location\&quot; }&#x60;). WhatsApp renders a localized \&quot;Send location\&quot; button; the user&#39;s reply arrives as a regular location message in the conversation.  Tap events come back via the &#x60;message.received&#x60; webhook with &#x60;metadata.interactiveType&#x60; set to &#x60;list_reply&#x60; or &#x60;nfm_reply&#x60;. 
+    /// WhatsApp-only. Rich interactive payload for list messages, CTA URL buttons, Flow prompts, location requests, voice-call buttons, and commerce messages (single product, product list, catalog, and carousel). When set, takes priority over &#x60;buttons&#x60; and &#x60;quickReplies&#x60;. The shape mirrors Meta&#39;s Cloud API &#x60;interactive&#x60; object verbatim, so any payload that works against Meta directly will also work here.  Use &#x60;buttons&#x60; / &#x60;quickReplies&#x60; for simple button replies (WhatsApp&#39;s &#x60;interactive.type: \&quot;button\&quot;&#x60;): the abstraction caps at 3 buttons and handles the auto-conversion for you. Use this field only for the types listed in the enum below.  All interactive messages are session messages: they can only be sent inside the 24-hour customer service window opened by the user&#39;s last inbound message.  Commerce types (&#x60;product&#x60;, &#x60;product_list&#x60;, &#x60;catalog_message&#x60;, and product carousels) require a Meta catalog connected to the WhatsApp Business Account in Commerce Manager. Media carousels (image/video cards) do not need a catalog.  For &#x60;product&#x60;, &#x60;body&#x60; is optional (WhatsApp renders the product card itself) and &#x60;header&#x60; is not allowed (the product image is the header). For &#x60;product_list&#x60;, a &#x60;header&#x60; with &#x60;type: \&quot;text\&quot;&#x60; is required. For &#x60;carousel&#x60;, top-level &#x60;header&#x60;/&#x60;footer&#x60; are not supported; media goes on each card instead.  For &#x60;voice_call&#x60;, the message renders WhatsApp&#39;s native call button; tapping it starts a voice call to your business number. Requires WhatsApp Business Calling to be enabled on the sending number. The optional &#x60;parameters.payload&#x60; string is echoed back on the &#x60;calls&#x60; webhook (as &#x60;cta_payload&#x60;) for attribution.  For &#x60;location_request_message&#x60;, &#x60;action&#x60; may be omitted (we default it to &#x60;{ \&quot;name\&quot;: \&quot;send_location\&quot; }&#x60;). WhatsApp renders a localized \&quot;Send location\&quot; button; the user&#39;s reply arrives as a regular location message in the conversation.  For &#x60;catalog_message&#x60;, &#x60;action&#x60; may also be omitted (we default it to &#x60;{ \&quot;name\&quot;: \&quot;catalog_message\&quot; }&#x60;).  Tap events come back via the &#x60;message.received&#x60; webhook with &#x60;metadata.interactiveType&#x60; set to &#x60;list_reply&#x60; or &#x60;nfm_reply&#x60;. Carts submitted from commerce messages arrive as &#x60;metadata.order&#x60;; product inquiries arrive as &#x60;metadata.referredProduct&#x60;. 
     /// </summary>
     [DataContract(Name = "sendInboxMessage_request_interactive")]
     public partial class SendInboxMessageRequestInteractive : IValidatableObject
@@ -68,7 +68,31 @@ namespace Zernio.Model
             /// Enum VoiceCall for value: voice_call
             /// </summary>
             [EnumMember(Value = "voice_call")]
-            VoiceCall = 5
+            VoiceCall = 5,
+
+            /// <summary>
+            /// Enum Product for value: product
+            /// </summary>
+            [EnumMember(Value = "product")]
+            Product = 6,
+
+            /// <summary>
+            /// Enum ProductList for value: product_list
+            /// </summary>
+            [EnumMember(Value = "product_list")]
+            ProductList = 7,
+
+            /// <summary>
+            /// Enum CatalogMessage for value: catalog_message
+            /// </summary>
+            [EnumMember(Value = "catalog_message")]
+            CatalogMessage = 8,
+
+            /// <summary>
+            /// Enum Carousel for value: carousel
+            /// </summary>
+            [EnumMember(Value = "carousel")]
+            Carousel = 9
         }
 
 
@@ -88,19 +112,14 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="type">Which interactive layout to render. (required).</param>
         /// <param name="header">header.</param>
-        /// <param name="body">body (required).</param>
+        /// <param name="body">body.</param>
         /// <param name="footer">footer.</param>
         /// <param name="action">action.</param>
         public SendInboxMessageRequestInteractive(TypeEnum type = default, SendInboxMessageRequestInteractiveHeader header = default, SendInboxMessageRequestInteractiveBody body = default, SendInboxMessageRequestInteractiveFooter footer = default, SendInboxMessageRequestInteractiveAction action = default)
         {
             this.Type = type;
-            // to ensure "body" is required (not null)
-            if (body == null)
-            {
-                throw new ArgumentNullException("body is a required property for SendInboxMessageRequestInteractive and cannot be null");
-            }
-            this.Body = body;
             this.Header = header;
+            this.Body = body;
             this.Footer = footer;
             this.Action = action;
         }
@@ -114,7 +133,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Body
         /// </summary>
-        [DataMember(Name = "body", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "body", EmitDefaultValue = false)]
         public SendInboxMessageRequestInteractiveBody Body { get; set; }
 
         /// <summary>

@@ -28,36 +28,44 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Required for every type except &#x60;product&#x60;, where it is optional.
+    /// SendInboxMessageRequestInteractiveActionOneOf6SectionsInner
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_body")]
-    public partial class SendInboxMessageRequestInteractiveBody : IValidatableObject
+    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_6_sections_inner")]
+    public partial class SendInboxMessageRequestInteractiveActionOneOf6SectionsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf6SectionsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SendInboxMessageRequestInteractiveBody() { }
+        protected SendInboxMessageRequestInteractiveActionOneOf6SectionsInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf6SectionsInner" /> class.
         /// </summary>
-        /// <param name="text">Main body text. (required).</param>
-        public SendInboxMessageRequestInteractiveBody(string text = default)
+        /// <param name="title">Optional section header..</param>
+        /// <param name="productItems">productItems (required).</param>
+        public SendInboxMessageRequestInteractiveActionOneOf6SectionsInner(string title = default, List<SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner> productItems = default)
         {
-            // to ensure "text" is required (not null)
-            if (text == null)
+            // to ensure "productItems" is required (not null)
+            if (productItems == null)
             {
-                throw new ArgumentNullException("text is a required property for SendInboxMessageRequestInteractiveBody and cannot be null");
+                throw new ArgumentNullException("productItems is a required property for SendInboxMessageRequestInteractiveActionOneOf6SectionsInner and cannot be null");
             }
-            this.Text = text;
+            this.ProductItems = productItems;
+            this.Title = title;
         }
 
         /// <summary>
-        /// Main body text.
+        /// Optional section header.
         /// </summary>
-        /// <value>Main body text.</value>
-        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
-        public string Text { get; set; }
+        /// <value>Optional section header.</value>
+        [DataMember(Name = "title", EmitDefaultValue = false)]
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ProductItems
+        /// </summary>
+        [DataMember(Name = "product_items", IsRequired = true, EmitDefaultValue = true)]
+        public List<SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner> ProductItems { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,8 +74,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveBody {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
+            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf6SectionsInner {\n");
+            sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  ProductItems: ").Append(ProductItems).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

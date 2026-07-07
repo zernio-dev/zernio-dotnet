@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Optional header shown above the body.
+    /// Optional header shown above the body. Required with &#x60;type: \&quot;text\&quot;&#x60; for &#x60;product_list&#x60;; not allowed for &#x60;product&#x60; or &#x60;carousel&#x60;. 
     /// </summary>
     [DataContract(Name = "sendInboxMessage_request_interactive_header")]
     public partial class SendInboxMessageRequestInteractiveHeader : IValidatableObject

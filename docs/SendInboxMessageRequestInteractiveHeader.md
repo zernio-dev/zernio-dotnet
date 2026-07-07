@@ -1,5 +1,5 @@
 # Zernio.Model.SendInboxMessageRequestInteractiveHeader
-Optional header shown above the body.
+Optional header shown above the body. Required with `type: \"text\"` for `product_list`; not allowed for `product` or `carousel`. 
 
 ## Properties
 

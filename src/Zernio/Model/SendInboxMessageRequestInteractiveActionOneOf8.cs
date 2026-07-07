@@ -28,36 +28,35 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Required for every type except &#x60;product&#x60;, where it is optional.
+    /// Carousel action. &#x60;type&#x60; on the parent must be &#x60;carousel&#x60;. Carries 2-10 cards, either all product cards (&#x60;type: \&quot;product\&quot;&#x60;, all referencing the same &#x60;catalog_id&#x60;) or media cards (any other &#x60;type&#x60;, e.g. &#x60;cta_url&#x60;, with a required image/video &#x60;header&#x60; on each card). &#x60;card_index&#x60; (0-9, non-repeating) is auto-filled sequentially when omitted. Product carousels require a Meta catalog connected to the WhatsApp Business Account in Commerce Manager; media carousels do not. 
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_body")]
-    public partial class SendInboxMessageRequestInteractiveBody : IValidatableObject
+    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_8")]
+    public partial class SendInboxMessageRequestInteractiveActionOneOf8 : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf8" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SendInboxMessageRequestInteractiveBody() { }
+        protected SendInboxMessageRequestInteractiveActionOneOf8() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf8" /> class.
         /// </summary>
-        /// <param name="text">Main body text. (required).</param>
-        public SendInboxMessageRequestInteractiveBody(string text = default)
+        /// <param name="cards">cards (required).</param>
+        public SendInboxMessageRequestInteractiveActionOneOf8(List<SendInboxMessageRequestInteractiveActionOneOf8CardsInner> cards = default)
         {
-            // to ensure "text" is required (not null)
-            if (text == null)
+            // to ensure "cards" is required (not null)
+            if (cards == null)
             {
-                throw new ArgumentNullException("text is a required property for SendInboxMessageRequestInteractiveBody and cannot be null");
+                throw new ArgumentNullException("cards is a required property for SendInboxMessageRequestInteractiveActionOneOf8 and cannot be null");
             }
-            this.Text = text;
+            this.Cards = cards;
         }
 
         /// <summary>
-        /// Main body text.
+        /// Gets or Sets Cards
         /// </summary>
-        /// <value>Main body text.</value>
-        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
-        public string Text { get; set; }
+        [DataMember(Name = "cards", IsRequired = true, EmitDefaultValue = true)]
+        public List<SendInboxMessageRequestInteractiveActionOneOf8CardsInner> Cards { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,8 +65,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveBody {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
+            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf8 {\n");
+            sb.Append("  Cards: ").Append(Cards).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

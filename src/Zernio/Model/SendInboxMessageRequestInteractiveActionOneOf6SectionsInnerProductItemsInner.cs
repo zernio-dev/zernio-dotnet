@@ -28,36 +28,36 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Required for every type except &#x60;product&#x60;, where it is optional.
+    /// SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_request_interactive_body")]
-    public partial class SendInboxMessageRequestInteractiveBody : IValidatableObject
+    [DataContract(Name = "sendInboxMessage_request_interactive_action_oneOf_6_sections_inner_product_items_inner")]
+    public partial class SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SendInboxMessageRequestInteractiveBody() { }
+        protected SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveBody" /> class.
+        /// Initializes a new instance of the <see cref="SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner" /> class.
         /// </summary>
-        /// <param name="text">Main body text. (required).</param>
-        public SendInboxMessageRequestInteractiveBody(string text = default)
+        /// <param name="productRetailerId">Retailer ID (SKU) of the product inside the catalog. (required).</param>
+        public SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner(string productRetailerId = default)
         {
-            // to ensure "text" is required (not null)
-            if (text == null)
+            // to ensure "productRetailerId" is required (not null)
+            if (productRetailerId == null)
             {
-                throw new ArgumentNullException("text is a required property for SendInboxMessageRequestInteractiveBody and cannot be null");
+                throw new ArgumentNullException("productRetailerId is a required property for SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner and cannot be null");
             }
-            this.Text = text;
+            this.ProductRetailerId = productRetailerId;
         }
 
         /// <summary>
-        /// Main body text.
+        /// Retailer ID (SKU) of the product inside the catalog.
         /// </summary>
-        /// <value>Main body text.</value>
-        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
-        public string Text { get; set; }
+        /// <value>Retailer ID (SKU) of the product inside the catalog.</value>
+        [DataMember(Name = "product_retailer_id", IsRequired = true, EmitDefaultValue = true)]
+        public string ProductRetailerId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,8 +66,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessageRequestInteractiveBody {\n");
-            sb.Append("  Text: ").Append(Text).Append("\n");
+            sb.Append("class SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner {\n");
+            sb.Append("  ProductRetailerId: ").Append(ProductRetailerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -137,6 +137,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Order'
+        /// </summary>
+        [Fact]
+        public void OrderTest()
+        {
+            // TODO unit test for the property 'Order'
+        }
+
+        /// <summary>
+        /// Test the property 'ReferredProduct'
+        /// </summary>
+        [Fact]
+        public void ReferredProductTest()
+        {
+            // TODO unit test for the property 'ReferredProduct'
+        }
+
+        /// <summary>
         /// Test the property 'StoryReply'
         /// </summary>
         [Fact]
