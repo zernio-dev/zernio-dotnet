@@ -63,5 +63,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Rows'
         }
+
+        /// <summary>
+        /// Test the property 'BackfillPending'
+        /// </summary>
+        [Fact]
+        public void BackfillPendingTest()
+        {
+            // TODO unit test for the property 'BackfillPending'
+        }
     }
 }

@@ -37,10 +37,12 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListAds200Response" /> class.
         /// </summary>
         /// <param name="ads">ads.</param>
+        /// <param name="backfillPending">Present and true only on &#x60;202&#x60; responses: part of the requested date range is still being backfilled from the platform in the background. Retry the same request shortly; it returns 200 once the range is fully ingested..</param>
         /// <param name="pagination">pagination.</param>
-        public ListAds200Response(List<Ad> ads = default, Pagination pagination = default)
+        public ListAds200Response(List<Ad> ads = default, bool backfillPending = default, Pagination pagination = default)
         {
             this.Ads = ads;
+            this.BackfillPending = backfillPending;
             this.Pagination = pagination;
         }
 
@@ -49,6 +51,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "ads", EmitDefaultValue = false)]
         public List<Ad> Ads { get; set; }
+
+        /// <summary>
+        /// Present and true only on &#x60;202&#x60; responses: part of the requested date range is still being backfilled from the platform in the background. Retry the same request shortly; it returns 200 once the range is fully ingested.
+        /// </summary>
+        /// <value>Present and true only on &#x60;202&#x60; responses: part of the requested date range is still being backfilled from the platform in the background. Retry the same request shortly; it returns 200 once the range is fully ingested.</value>
+        [DataMember(Name = "backfillPending", EmitDefaultValue = true)]
+        public bool BackfillPending { get; set; }
 
         /// <summary>
         /// Gets or Sets Pagination
@@ -65,6 +74,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListAds200Response {\n");
             sb.Append("  Ads: ").Append(Ads).Append("\n");
+            sb.Append("  BackfillPending: ").Append(BackfillPending).Append("\n");
             sb.Append("  Pagination: ").Append(Pagination).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

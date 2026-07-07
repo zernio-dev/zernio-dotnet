@@ -37,10 +37,12 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetAdAnalytics200Response" /> class.
         /// </summary>
         /// <param name="ad">ad.</param>
+        /// <param name="backfillPending">Present and true only on &#x60;202&#x60; responses: part of the requested date range is still being backfilled from the platform in the background. Retry the same request shortly; it returns 200 once the range is fully ingested..</param>
         /// <param name="analytics">analytics.</param>
-        public GetAdAnalytics200Response(GetAdAnalytics200ResponseAd ad = default, GetCampaignAnalytics200ResponseAnalytics analytics = default)
+        public GetAdAnalytics200Response(GetAdAnalytics200ResponseAd ad = default, bool backfillPending = default, GetCampaignAnalytics200ResponseAnalytics analytics = default)
         {
             this.Ad = ad;
+            this.BackfillPending = backfillPending;
             this.Analytics = analytics;
         }
 
@@ -49,6 +51,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "ad", EmitDefaultValue = false)]
         public GetAdAnalytics200ResponseAd Ad { get; set; }
+
+        /// <summary>
+        /// Present and true only on &#x60;202&#x60; responses: part of the requested date range is still being backfilled from the platform in the background. Retry the same request shortly; it returns 200 once the range is fully ingested.
+        /// </summary>
+        /// <value>Present and true only on &#x60;202&#x60; responses: part of the requested date range is still being backfilled from the platform in the background. Retry the same request shortly; it returns 200 once the range is fully ingested.</value>
+        [DataMember(Name = "backfillPending", EmitDefaultValue = true)]
+        public bool BackfillPending { get; set; }
 
         /// <summary>
         /// Gets or Sets Analytics
@@ -65,6 +74,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetAdAnalytics200Response {\n");
             sb.Append("  Ad: ").Append(Ad).Append("\n");
+            sb.Append("  BackfillPending: ").Append(BackfillPending).Append("\n");
             sb.Append("  Analytics: ").Append(Analytics).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

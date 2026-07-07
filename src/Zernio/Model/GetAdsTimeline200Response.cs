@@ -37,9 +37,11 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetAdsTimeline200Response" /> class.
         /// </summary>
         /// <param name="rows">rows.</param>
-        public GetAdsTimeline200Response(List<GetAdsTimeline200ResponseRowsInner> rows = default)
+        /// <param name="backfillPending">Present and true only on &#x60;202&#x60; responses: part of the requested date range is still being backfilled from the platform in the background. Retry the same request shortly; it returns 200 once the range is fully ingested..</param>
+        public GetAdsTimeline200Response(List<GetAdsTimeline200ResponseRowsInner> rows = default, bool backfillPending = default)
         {
             this.Rows = rows;
+            this.BackfillPending = backfillPending;
         }
 
         /// <summary>
@@ -47,6 +49,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "rows", EmitDefaultValue = false)]
         public List<GetAdsTimeline200ResponseRowsInner> Rows { get; set; }
+
+        /// <summary>
+        /// Present and true only on &#x60;202&#x60; responses: part of the requested date range is still being backfilled from the platform in the background. Retry the same request shortly; it returns 200 once the range is fully ingested.
+        /// </summary>
+        /// <value>Present and true only on &#x60;202&#x60; responses: part of the requested date range is still being backfilled from the platform in the background. Retry the same request shortly; it returns 200 once the range is fully ingested.</value>
+        [DataMember(Name = "backfillPending", EmitDefaultValue = true)]
+        public bool BackfillPending { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -57,6 +66,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetAdsTimeline200Response {\n");
             sb.Append("  Rows: ").Append(Rows).Append("\n");
+            sb.Append("  BackfillPending: ").Append(BackfillPending).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
