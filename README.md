@@ -165,6 +165,7 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**DeleteAdAudience**](docs/AdAudiencesApi.md#deleteadaudience) | **DELETE** /v1/ads/audiences/{audienceId} | Delete custom audience
 *AdAudiencesApi* | [**GetAdAudience**](docs/AdAudiencesApi.md#getadaudience) | **GET** /v1/ads/audiences/{audienceId} | Get audience details
 *AdAudiencesApi* | [**ListAdAudiences**](docs/AdAudiencesApi.md#listadaudiences) | **GET** /v1/ads/audiences | List custom audiences
+*AdAudiencesApi* | [**UpdateAdAudience**](docs/AdAudiencesApi.md#updateadaudience) | **PUT** /v1/ads/audiences/{audienceId} | Update saved targeting audience
 *AdCampaignsApi* | [**BulkUpdateAdCampaignStatus**](docs/AdCampaignsApi.md#bulkupdateadcampaignstatus) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns
 *AdCampaignsApi* | [**DeleteAdCampaign**](docs/AdCampaignsApi.md#deleteadcampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
 *AdCampaignsApi* | [**DuplicateAdCampaign**](docs/AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
@@ -1646,6 +1647,7 @@ Class | Method | HTTP request | Description
  - [Model.UpdateAccountRequest](docs/UpdateAccountRequest.md)
  - [Model.UpdateAccountRequestXCapabilities](docs/UpdateAccountRequestXCapabilities.md)
  - [Model.UpdateAd200Response](docs/UpdateAd200Response.md)
+ - [Model.UpdateAdAudienceRequest](docs/UpdateAdAudienceRequest.md)
  - [Model.UpdateAdCampaign200Response](docs/UpdateAdCampaign200Response.md)
  - [Model.UpdateAdCampaignRequest](docs/UpdateAdCampaignRequest.md)
  - [Model.UpdateAdCampaignRequestBudget](docs/UpdateAdCampaignRequestBudget.md)

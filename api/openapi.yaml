@@ -23459,7 +23459,9 @@ paths:
       - Ad Audiences
   /v1/ads/audiences/{audienceId}:
     delete:
-      description: Deletes the audience from both Meta and the local database.
+      description: "Deletes the audience from both the platform and the local database.\
+        \ `saved_targeting` audiences exist only on Zernio, so only the local record\
+        \ is removed."
       operationId: deleteAdAudience
       parameters:
       - explode: false
@@ -23517,6 +23519,51 @@ paths:
       security:
       - bearerAuth: []
       summary: Get audience details
+      tags:
+      - Ad Audiences
+    put:
+      description: |
+        Update a `saved_targeting` audience's name, description, or spec. Only `saved_targeting` audiences are
+        updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those
+        instead. `spec` replaces the stored spec wholesale (no merge). Ads already created from this audience are
+        unaffected, they snapshot the targeting at creation.
+      operationId: updateAdAudience
+      parameters:
+      - explode: false
+        in: path
+        name: audienceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdAudience_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdAudience_201_response"
+          description: Audience updated
+        "400":
+          description: Invalid body (no fields provided or malformed spec)
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: The audience is not saved_targeting (uploaded/derived audiences
+            are managed on the platform)
+      security:
+      - bearerAuth: []
+      summary: Update saved targeting audience
       tags:
       - Ad Audiences
   /v1/ads/audiences/{audienceId}/users:
@@ -62060,6 +62107,7 @@ components:
           type: array
     listAdAudiences_200_response_audiences_inner:
       example:
+        accountId: accountId
         size: 0
         name: name
         description: description
@@ -62072,6 +62120,10 @@ components:
       properties:
         id:
           nullable: true
+          type: string
+        accountId:
+          description: Social account the audience was created against. Returned for
+            saved_targeting items.
           type: string
         platformAudienceId:
           type: string
@@ -62099,7 +62151,8 @@ components:
     listAdAudiences_200_response:
       example:
         audiences:
-        - size: 0
+        - accountId: accountId
+          size: 0
           name: name
           description: description
           id: id
@@ -62108,7 +62161,8 @@ components:
           spec: ""
           platform: platform
           status: status
-        - size: 0
+        - accountId: accountId
+          size: 0
           name: name
           description: description
           id: id
@@ -62229,6 +62283,20 @@ components:
           description: Fresh data from Meta API
           nullable: true
           type: object
+    updateAdAudience_request:
+      description: At least one field is required.
+      properties:
+        name:
+          maxLength: 255
+          type: string
+        description:
+          type: string
+        spec:
+          allOf:
+          - allOf:
+            - $ref: "#/components/schemas/TargetingSpec"
+            nullable: true
+          description: Full replacement for the stored targeting spec.
     addUsersToAdAudience_request_users_inner:
       description: Each user must have at least email or phone
       properties:

@@ -117,5 +117,18 @@ namespace Zernio.Test.Api
             //var response = instance.ListAdAudiences(accountId, adAccountId, platform, type);
             //Assert.IsType<ListAdAudiences200Response>(response);
         }
+
+        /// <summary>
+        /// Test UpdateAdAudience
+        /// </summary>
+        [Fact]
+        public void UpdateAdAudienceTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string audienceId = null;
+            //UpdateAdAudienceRequest updateAdAudienceRequest = null;
+            //var response = instance.UpdateAdAudience(audienceId, updateAdAudienceRequest);
+            //Assert.IsType<CreateAdAudience201Response>(response);
+        }
     }
 }

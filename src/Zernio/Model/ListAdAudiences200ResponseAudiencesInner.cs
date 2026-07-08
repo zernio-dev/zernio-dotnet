@@ -74,6 +74,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ListAdAudiences200ResponseAudiencesInner" /> class.
         /// </summary>
         /// <param name="id">id.</param>
+        /// <param name="accountId">Social account the audience was created against. Returned for saved_targeting items..</param>
         /// <param name="platformAudienceId">platformAudienceId.</param>
         /// <param name="name">name.</param>
         /// <param name="description">description.</param>
@@ -82,9 +83,10 @@ namespace Zernio.Model
         /// <param name="platform">platform.</param>
         /// <param name="size">size.</param>
         /// <param name="status">status.</param>
-        public ListAdAudiences200ResponseAudiencesInner(string id = default, string platformAudienceId = default, string name = default, string description = default, TypeEnum? type = default, TargetingSpec spec = default, string platform = default, int size = default, string status = default)
+        public ListAdAudiences200ResponseAudiencesInner(string id = default, string accountId = default, string platformAudienceId = default, string name = default, string description = default, TypeEnum? type = default, TargetingSpec spec = default, string platform = default, int size = default, string status = default)
         {
             this.Id = id;
+            this.AccountId = accountId;
             this.PlatformAudienceId = platformAudienceId;
             this.Name = name;
             this.Description = description;
@@ -100,6 +102,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "id", EmitDefaultValue = true)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Social account the audience was created against. Returned for saved_targeting items.
+        /// </summary>
+        /// <value>Social account the audience was created against. Returned for saved_targeting items.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Gets or Sets PlatformAudienceId
@@ -152,6 +161,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ListAdAudiences200ResponseAudiencesInner {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  PlatformAudienceId: ").Append(PlatformAudienceId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");

@@ -1101,6 +1101,7 @@ docs/UpdateAccountGroupRequest.md
 docs/UpdateAccountRequest.md
 docs/UpdateAccountRequestXCapabilities.md
 docs/UpdateAd200Response.md
+docs/UpdateAdAudienceRequest.md
 docs/UpdateAdCampaign200Response.md
 docs/UpdateAdCampaignRequest.md
 docs/UpdateAdCampaignRequestBudget.md
@@ -2472,6 +2473,7 @@ src/Zernio.Test/Model/UpdateAccountGroupRequestTests.cs
 src/Zernio.Test/Model/UpdateAccountRequestTests.cs
 src/Zernio.Test/Model/UpdateAccountRequestXCapabilitiesTests.cs
 src/Zernio.Test/Model/UpdateAd200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdAudienceRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignRequestBudgetTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignRequestTests.cs
@@ -3848,6 +3850,7 @@ src/Zernio/Model/UpdateAccountGroupRequest.cs
 src/Zernio/Model/UpdateAccountRequest.cs
 src/Zernio/Model/UpdateAccountRequestXCapabilities.cs
 src/Zernio/Model/UpdateAd200Response.cs
+src/Zernio/Model/UpdateAdAudienceRequest.cs
 src/Zernio/Model/UpdateAdCampaign200Response.cs
 src/Zernio/Model/UpdateAdCampaignRequest.cs
 src/Zernio/Model/UpdateAdCampaignRequestBudget.cs

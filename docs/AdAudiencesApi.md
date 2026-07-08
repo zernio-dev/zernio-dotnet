@@ -9,6 +9,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteAdAudience**](AdAudiencesApi.md#deleteadaudience) | **DELETE** /v1/ads/audiences/{audienceId} | Delete custom audience |
 | [**GetAdAudience**](AdAudiencesApi.md#getadaudience) | **GET** /v1/ads/audiences/{audienceId} | Get audience details |
 | [**ListAdAudiences**](AdAudiencesApi.md#listadaudiences) | **GET** /v1/ads/audiences | List custom audiences |
+| [**UpdateAdAudience**](AdAudiencesApi.md#updateadaudience) | **PUT** /v1/ads/audiences/{audienceId} | Update saved targeting audience |
 
 <a id="adduserstoadaudience"></a>
 # **AddUsersToAdAudience**
@@ -222,7 +223,7 @@ catch (ApiException e)
 
 Delete custom audience
 
-Deletes the audience from both Meta and the local database.
+Deletes the audience from both the platform and the local database. `saved_targeting` audiences exist only on Zernio, so only the local record is removed.
 
 ### Example
 ```csharp
@@ -521,6 +522,111 @@ catch (ApiException e)
 | **200** | Audiences |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updateadaudience"></a>
+# **UpdateAdAudience**
+> CreateAdAudience201Response UpdateAdAudience (string audienceId, UpdateAdAudienceRequest updateAdAudienceRequest)
+
+Update saved targeting audience
+
+Update a `saved_targeting` audience's name, description, or spec. Only `saved_targeting` audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. `spec` replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateAdAudienceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdAudiencesApi(httpClient, config, httpClientHandler);
+            var audienceId = "audienceId_example";  // string | 
+            var updateAdAudienceRequest = new UpdateAdAudienceRequest(); // UpdateAdAudienceRequest | 
+
+            try
+            {
+                // Update saved targeting audience
+                CreateAdAudience201Response result = apiInstance.UpdateAdAudience(audienceId, updateAdAudienceRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdAudiencesApi.UpdateAdAudience: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateAdAudienceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Update saved targeting audience
+    ApiResponse<CreateAdAudience201Response> response = apiInstance.UpdateAdAudienceWithHttpInfo(audienceId, updateAdAudienceRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdAudiencesApi.UpdateAdAudienceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **audienceId** | **string** |  |  |
+| **updateAdAudienceRequest** | [**UpdateAdAudienceRequest**](UpdateAdAudienceRequest.md) |  |  |
+
+### Return type
+
+[**CreateAdAudience201Response**](CreateAdAudience201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Audience updated |  -  |
+| **400** | Invalid body (no fields provided or malformed spec) |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+| **422** | The audience is not saved_targeting (uploaded/derived audiences are managed on the platform) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

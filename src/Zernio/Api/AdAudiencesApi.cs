@@ -76,7 +76,7 @@ namespace Zernio.Api
         /// Delete custom audience
         /// </summary>
         /// <remarks>
-        /// Deletes the audience from both Meta and the local database.
+        /// Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -87,7 +87,7 @@ namespace Zernio.Api
         /// Delete custom audience
         /// </summary>
         /// <remarks>
-        /// Deletes the audience from both Meta and the local database.
+        /// Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -141,6 +141,29 @@ namespace Zernio.Api
         /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
         /// <returns>ApiResponse of ListAdAudiences200Response</returns>
         ApiResponse<ListAdAudiences200Response> ListAdAudiencesWithHttpInfo(string accountId, string adAccountId, string? platform = default, string? type = default);
+        /// <summary>
+        /// Update saved targeting audience
+        /// </summary>
+        /// <remarks>
+        /// Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="updateAdAudienceRequest"></param>
+        /// <returns>CreateAdAudience201Response</returns>
+        CreateAdAudience201Response UpdateAdAudience(string audienceId, UpdateAdAudienceRequest updateAdAudienceRequest);
+
+        /// <summary>
+        /// Update saved targeting audience
+        /// </summary>
+        /// <remarks>
+        /// Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="updateAdAudienceRequest"></param>
+        /// <returns>ApiResponse of CreateAdAudience201Response</returns>
+        ApiResponse<CreateAdAudience201Response> UpdateAdAudienceWithHttpInfo(string audienceId, UpdateAdAudienceRequest updateAdAudienceRequest);
         #endregion Synchronous Operations
     }
 
@@ -202,7 +225,7 @@ namespace Zernio.Api
         /// Delete custom audience
         /// </summary>
         /// <remarks>
-        /// Deletes the audience from both Meta and the local database.
+        /// Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -214,7 +237,7 @@ namespace Zernio.Api
         /// Delete custom audience
         /// </summary>
         /// <remarks>
-        /// Deletes the audience from both Meta and the local database.
+        /// Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -273,6 +296,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdAudiences200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdAudiences200Response>> ListAdAudiencesWithHttpInfoAsync(string accountId, string adAccountId, string? platform = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update saved targeting audience
+        /// </summary>
+        /// <remarks>
+        /// Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="updateAdAudienceRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateAdAudience201Response</returns>
+        System.Threading.Tasks.Task<CreateAdAudience201Response> UpdateAdAudienceAsync(string audienceId, UpdateAdAudienceRequest updateAdAudienceRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update saved targeting audience
+        /// </summary>
+        /// <remarks>
+        /// Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="updateAdAudienceRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateAdAudience201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateAdAudience201Response>> UpdateAdAudienceWithHttpInfoAsync(string audienceId, UpdateAdAudienceRequest updateAdAudienceRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -759,7 +807,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete custom audience Deletes the audience from both Meta and the local database.
+        /// Delete custom audience Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -771,7 +819,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete custom audience Deletes the audience from both Meta and the local database.
+        /// Delete custom audience Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -820,7 +868,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete custom audience Deletes the audience from both Meta and the local database.
+        /// Delete custom audience Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -833,7 +881,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete custom audience Deletes the audience from both Meta and the local database.
+        /// Delete custom audience Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -1171,6 +1219,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAdAudiences", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update saved targeting audience Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="updateAdAudienceRequest"></param>
+        /// <returns>CreateAdAudience201Response</returns>
+        public CreateAdAudience201Response UpdateAdAudience(string audienceId, UpdateAdAudienceRequest updateAdAudienceRequest)
+        {
+            Zernio.Client.ApiResponse<CreateAdAudience201Response> localVarResponse = UpdateAdAudienceWithHttpInfo(audienceId, updateAdAudienceRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update saved targeting audience Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="updateAdAudienceRequest"></param>
+        /// <returns>ApiResponse of CreateAdAudience201Response</returns>
+        public Zernio.Client.ApiResponse<CreateAdAudience201Response> UpdateAdAudienceWithHttpInfo(string audienceId, UpdateAdAudienceRequest updateAdAudienceRequest)
+        {
+            // verify the required parameter 'audienceId' is set
+            if (audienceId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'audienceId' when calling AdAudiencesApi->UpdateAdAudience");
+
+            // verify the required parameter 'updateAdAudienceRequest' is set
+            if (updateAdAudienceRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdAudienceRequest' when calling AdAudiencesApi->UpdateAdAudience");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("audienceId", Zernio.Client.ClientUtils.ParameterToString(audienceId)); // path parameter
+            localVarRequestOptions.Data = updateAdAudienceRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<CreateAdAudience201Response>("/v1/ads/audiences/{audienceId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdAudience", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update saved targeting audience Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="updateAdAudienceRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateAdAudience201Response</returns>
+        public async System.Threading.Tasks.Task<CreateAdAudience201Response> UpdateAdAudienceAsync(string audienceId, UpdateAdAudienceRequest updateAdAudienceRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateAdAudience201Response> localVarResponse = await UpdateAdAudienceWithHttpInfoAsync(audienceId, updateAdAudienceRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update saved targeting audience Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="audienceId"></param>
+        /// <param name="updateAdAudienceRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateAdAudience201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateAdAudience201Response>> UpdateAdAudienceWithHttpInfoAsync(string audienceId, UpdateAdAudienceRequest updateAdAudienceRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'audienceId' is set
+            if (audienceId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'audienceId' when calling AdAudiencesApi->UpdateAdAudience");
+
+            // verify the required parameter 'updateAdAudienceRequest' is set
+            if (updateAdAudienceRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdAudienceRequest' when calling AdAudiencesApi->UpdateAdAudience");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("audienceId", Zernio.Client.ClientUtils.ParameterToString(audienceId)); // path parameter
+            localVarRequestOptions.Data = updateAdAudienceRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<CreateAdAudience201Response>("/v1/ads/audiences/{audienceId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdAudience", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
