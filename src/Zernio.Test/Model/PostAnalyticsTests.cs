@@ -128,6 +128,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Follows'
+        /// </summary>
+        [Fact]
+        public void FollowsTest()
+        {
+            // TODO unit test for the property 'Follows'
+        }
+
+        /// <summary>
         /// Test the property 'IgReelsAvgWatchTime'
         /// </summary>
         [Fact]

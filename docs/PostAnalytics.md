@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Saves** | **int** | Number of saves/bookmarks (Instagram, Pinterest) | [optional] 
 **Clicks** | **int** |  | [optional] 
 **Views** | **int** |  | [optional] 
+**Follows** | **int** | Instagram feed posts and stories only: organic accounts that started following from this post. 0 for reels and other platforms. | [optional] 
 **IgReelsAvgWatchTime** | **int** | Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms. | [optional] 
 **IgReelsVideoViewTotalTime** | **int** | Instagram Reels only: total watch time including replays, in milliseconds. 0 for non-Reels media and other platforms. | [optional] 
 **EngagementRate** | **decimal** |  | [optional] 
