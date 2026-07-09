@@ -47,7 +47,8 @@ namespace Zernio.Model
         /// <param name="scheduledFor">scheduledFor (required).</param>
         /// <param name="publishedAt">publishedAt.</param>
         /// <param name="platforms">platforms (required).</param>
-        public WebhookPayloadPostPost(string id = default, string content = default, string status = default, DateTime scheduledFor = default, DateTime publishedAt = default, List<WebhookPayloadPostPostPlatformsInner> platforms = default)
+        /// <param name="metadata">The free-form &#x60;metadata&#x60; object supplied when the post was created, echoed back so you can map events onto your own records. Omitted when the post was created without it..</param>
+        public WebhookPayloadPostPost(string id = default, string content = default, string status = default, DateTime scheduledFor = default, DateTime publishedAt = default, List<WebhookPayloadPostPostPlatformsInner> platforms = default, Dictionary<string, Object> metadata = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -75,6 +76,7 @@ namespace Zernio.Model
             }
             this.Platforms = platforms;
             this.PublishedAt = publishedAt;
+            this.Metadata = metadata;
         }
 
         /// <summary>
@@ -114,6 +116,13 @@ namespace Zernio.Model
         public List<WebhookPayloadPostPostPlatformsInner> Platforms { get; set; }
 
         /// <summary>
+        /// The free-form &#x60;metadata&#x60; object supplied when the post was created, echoed back so you can map events onto your own records. Omitted when the post was created without it.
+        /// </summary>
+        /// <value>The free-form &#x60;metadata&#x60; object supplied when the post was created, echoed back so you can map events onto your own records. Omitted when the post was created without it.</value>
+        [DataMember(Name = "metadata", EmitDefaultValue = false)]
+        public Dictionary<string, Object> Metadata { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -127,6 +136,7 @@ namespace Zernio.Model
             sb.Append("  ScheduledFor: ").Append(ScheduledFor).Append("\n");
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
             sb.Append("  Platforms: ").Append(Platforms).Append("\n");
+            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
