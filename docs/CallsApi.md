@@ -5,7 +5,7 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**GetCall**](CallsApi.md#getcall) | **GET** /v1/calls/{id} | Get a call (any channel) |
-| [**GetCallRecording**](CallsApi.md#getcallrecording) | **GET** /v1/calls/{id}/recording | Get a call recording (any channel) |
+| [**GetCallRecording**](CallsApi.md#getcallrecording) | **GET** /v1/calls/{id}/recording | Get a call recording |
 | [**ListCalls**](CallsApi.md#listcalls) | **GET** /v1/calls | List all calls (unified history) |
 
 <a id="getcall"></a>
@@ -113,7 +113,7 @@ catch (ApiException e)
 # **GetCallRecording**
 > GetWhatsAppCallRecording200Response GetCallRecording (string id, string? varAs = null)
 
-Get a call recording (any channel)
+Get a call recording
 
 Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds `302 Found` redirecting to the fresh URL; pass `as=json` to receive `{ url }` instead. 
 
@@ -146,7 +146,7 @@ namespace Example
 
             try
             {
-                // Get a call recording (any channel)
+                // Get a call recording
                 GetWhatsAppCallRecording200Response result = apiInstance.GetCallRecording(id, varAs);
                 Debug.WriteLine(result);
             }
@@ -167,7 +167,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get a call recording (any channel)
+    // Get a call recording
     ApiResponse<GetWhatsAppCallRecording200Response> response = apiInstance.GetCallRecordingWithHttpInfo(id, varAs);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

@@ -4,7 +4,7 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
-| [**GetCallsUsage**](UsageApi.md#getcallsusage) | **GET** /v1/usage/calls | Calling usage (volumes + billable cost) |
+| [**GetCallsUsage**](UsageApi.md#getcallsusage) | **GET** /v1/usage/calls | Calling usage and cost |
 | [**GetSmsUsage**](UsageApi.md#getsmsusage) | **GET** /v1/usage/sms | SMS usage (volumes) |
 | [**GetUsage**](UsageApi.md#getusage) | **GET** /v1/usage | Get plan and usage snapshot |
 | [**GetUsageStats**](UsageApi.md#getusagestats) | **GET** /v1/usage-stats | Get plan and usage stats |
@@ -14,7 +14,7 @@ All URIs are relative to *https://zernio.com/api*
 # **GetCallsUsage**
 > GetCallsUsage200Response GetCallsUsage (DateTime? since = null, DateTime? until = null, string? channel = null, string? number = null, string? groupBy = null)
 
-Calling usage (volumes + billable cost)
+Calling usage and cost
 
 Aggregated calling usage across your numbers, both channels (WhatsApp Business Calling + regular phone/PSTN): call counts, answered counts, minutes, and cost. Use it for cost visibility or to rebill your own customers per number.  Costs come from each call's billing snapshot, so this endpoint always agrees with the invoice: `billableUSD` is what Zernio bills; `metaUSD` is the WhatsApp per-minute charge Meta bills directly to your WABA (display only, never billed by Zernio).  Optional `groupBy` returns a breakdown by UTC day, by your number, or by channel. Defaults to the last 30 days. 
 
@@ -50,7 +50,7 @@ namespace Example
 
             try
             {
-                // Calling usage (volumes + billable cost)
+                // Calling usage and cost
                 GetCallsUsage200Response result = apiInstance.GetCallsUsage(since, until, channel, number, groupBy);
                 Debug.WriteLine(result);
             }
@@ -71,7 +71,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Calling usage (volumes + billable cost)
+    // Calling usage and cost
     ApiResponse<GetCallsUsage200Response> response = apiInstance.GetCallsUsageWithHttpInfo(since, until, channel, number, groupBy);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

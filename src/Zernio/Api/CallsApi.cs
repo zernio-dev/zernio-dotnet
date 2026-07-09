@@ -50,7 +50,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetCall200Response</returns>
         ApiResponse<GetCall200Response> GetCallWithHttpInfo(string id);
         /// <summary>
-        /// Get a call recording (any channel)
+        /// Get a call recording
         /// </summary>
         /// <remarks>
         /// Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
@@ -62,7 +62,7 @@ namespace Zernio.Api
         GetWhatsAppCallRecording200Response GetCallRecording(string id, string? varAs = default);
 
         /// <summary>
-        /// Get a call recording (any channel)
+        /// Get a call recording
         /// </summary>
         /// <remarks>
         /// Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
@@ -138,7 +138,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetCall200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetCall200Response>> GetCallWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get a call recording (any channel)
+        /// Get a call recording
         /// </summary>
         /// <remarks>
         /// Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
@@ -151,7 +151,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<GetWhatsAppCallRecording200Response> GetCallRecordingAsync(string id, string? varAs = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get a call recording (any channel)
+        /// Get a call recording
         /// </summary>
         /// <remarks>
         /// Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
@@ -538,7 +538,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a call recording (any channel) Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// Get a call recording Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -551,7 +551,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a call recording (any channel) Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// Get a call recording Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -605,7 +605,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a call recording (any channel) Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// Get a call recording Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -619,7 +619,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a call recording (any channel) Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+        /// Get a call recording Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>

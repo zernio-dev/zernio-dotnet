@@ -11,7 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListSmsOptOuts**](SMSApi.md#listsmsoptouts) | **GET** /v1/sms/opt-outs | List SMS opt-outs |
 | [**ListSmsRegistrations**](SMSApi.md#listsmsregistrations) | **GET** /v1/sms/registrations | List carrier registrations |
 | [**LookupSmsNumber**](SMSApi.md#lookupsmsnumber) | **GET** /v1/sms/lookup | Look up carrier + line type |
-| [**ReuseSmsRegistrationForNumber**](SMSApi.md#reusesmsregistrationfornumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add a number to an existing registration |
+| [**ReuseSmsRegistrationForNumber**](SMSApi.md#reusesmsregistrationfornumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration |
 | [**SendSms**](SMSApi.md#sendsms) | **POST** /v1/sms/messages | Send an SMS/MMS |
 | [**ShareSmsRegistration**](SMSApi.md#sharesmsregistration) | **POST** /v1/sms/registrations/share | Create a registration share link |
 | [**StartSmsRegistration**](SMSApi.md#startsmsregistration) | **POST** /v1/sms/registrations | Start a carrier registration |
@@ -718,7 +718,7 @@ catch (ApiException e)
 # **ReuseSmsRegistrationForNumber**
 > ReuseSmsRegistrationForNumber200Response ReuseSmsRegistrationForNumber (string id)
 
-Add a number to an existing registration
+Add number to SMS registration
 
 Attaches this number to your existing approved 10DLC campaign instead of running a fresh registration: the number inherits the campaign's approval (no new brand or campaign, no extra carrier fee). Enable SMS on the number first (`POST /v1/phone-numbers/{id}/sms`; its response tells you whether a reusable registration exists). 
 
@@ -750,7 +750,7 @@ namespace Example
 
             try
             {
-                // Add a number to an existing registration
+                // Add number to SMS registration
                 ReuseSmsRegistrationForNumber200Response result = apiInstance.ReuseSmsRegistrationForNumber(id);
                 Debug.WriteLine(result);
             }
@@ -771,7 +771,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Add a number to an existing registration
+    // Add number to SMS registration
     ApiResponse<ReuseSmsRegistrationForNumber200Response> response = apiInstance.ReuseSmsRegistrationForNumberWithHttpInfo(id);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
