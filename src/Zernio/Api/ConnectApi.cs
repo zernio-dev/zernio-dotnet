@@ -717,7 +717,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of SelectSnapchatProfile200Response</returns>
         ApiResponse<SelectSnapchatProfile200Response> SelectSnapchatProfileWithHttpInfo(SelectSnapchatProfileRequest selectSnapchatProfileRequest, string? xConnectToken = default);
         /// <summary>
-        /// Set flair on a published Reddit post
+        /// Set Reddit post flair
         /// </summary>
         /// <remarks>
         /// Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
@@ -729,7 +729,7 @@ namespace Zernio.Api
         UpdateYoutubeDefaultPlaylist200Response SetRedditPostFlair(string accountId, SetRedditPostFlairRequest setRedditPostFlairRequest);
 
         /// <summary>
-        /// Set flair on a published Reddit post
+        /// Set Reddit post flair
         /// </summary>
         /// <remarks>
         /// Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
@@ -1658,7 +1658,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (SelectSnapchatProfile200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SelectSnapchatProfile200Response>> SelectSnapchatProfileWithHttpInfoAsync(SelectSnapchatProfileRequest selectSnapchatProfileRequest, string? xConnectToken = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Set flair on a published Reddit post
+        /// Set Reddit post flair
         /// </summary>
         /// <remarks>
         /// Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
@@ -1671,7 +1671,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> SetRedditPostFlairAsync(string accountId, SetRedditPostFlairRequest setRedditPostFlairRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Set flair on a published Reddit post
+        /// Set Reddit post flair
         /// </summary>
         /// <remarks>
         /// Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
@@ -6311,7 +6311,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Set flair on a published Reddit post Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// Set Reddit post flair Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The ID of the Reddit account that owns the post</param>
@@ -6324,7 +6324,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Set flair on a published Reddit post Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// Set Reddit post flair Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The ID of the Reddit account that owns the post</param>
@@ -6380,7 +6380,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Set flair on a published Reddit post Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// Set Reddit post flair Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The ID of the Reddit account that owns the post</param>
@@ -6394,7 +6394,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Set flair on a published Reddit post Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// Set Reddit post flair Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The ID of the Reddit account that owns the post</param>

@@ -8,7 +8,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateDiscordGuildRole**](DiscordApi.md#creatediscordguildrole) | **POST** /v1/discord/guilds/{guildId}/roles | Create a Discord guild role |
 | [**CreateDiscordScheduledEvent**](DiscordApi.md#creatediscordscheduledevent) | **POST** /v1/discord/guilds/{guildId}/events | Create a Discord scheduled event |
 | [**CreateDiscordThread**](DiscordApi.md#creatediscordthread) | **POST** /v1/discord/channels/{channelId}/threads | Create a Discord public thread |
-| [**CrosspostDiscordMessage**](DiscordApi.md#crosspostdiscordmessage) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost a Discord announcement message |
+| [**CrosspostDiscordMessage**](DiscordApi.md#crosspostdiscordmessage) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost Discord message |
 | [**DeleteDiscordGuildRole**](DiscordApi.md#deletediscordguildrole) | **DELETE** /v1/discord/guilds/{guildId}/roles/{roleId} | Delete a Discord guild role |
 | [**DeleteDiscordMessage**](DiscordApi.md#deletediscordmessage) | **DELETE** /v1/discord/channels/{channelId}/messages/{messageId} | Delete a Discord channel message |
 | [**DeleteDiscordScheduledEvent**](DiscordApi.md#deletediscordscheduledevent) | **DELETE** /v1/discord/guilds/{guildId}/events/{eventId} | Delete a Discord scheduled event |
@@ -458,7 +458,7 @@ catch (ApiException e)
 # **CrosspostDiscordMessage**
 > CrosspostDiscordMessage200Response CrosspostDiscordMessage (string channelId, string messageId, string accountId)
 
-Crosspost a Discord announcement message
+Crosspost Discord message
 
 Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord's own error for this case is opaque. 
 
@@ -492,7 +492,7 @@ namespace Example
 
             try
             {
-                // Crosspost a Discord announcement message
+                // Crosspost Discord message
                 CrosspostDiscordMessage200Response result = apiInstance.CrosspostDiscordMessage(channelId, messageId, accountId);
                 Debug.WriteLine(result);
             }
@@ -513,7 +513,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Crosspost a Discord announcement message
+    // Crosspost Discord message
     ApiResponse<CrosspostDiscordMessage200Response> response = apiInstance.CrosspostDiscordMessageWithHttpInfo(channelId, messageId, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

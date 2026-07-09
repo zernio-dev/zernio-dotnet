@@ -129,7 +129,7 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateDiscordThread200Response</returns>
         ApiResponse<CreateDiscordThread200Response> CreateDiscordThreadWithHttpInfo(string channelId, string accountId, CreateDiscordThreadRequest createDiscordThreadRequest);
         /// <summary>
-        /// Crosspost a Discord announcement message
+        /// Crosspost Discord message
         /// </summary>
         /// <remarks>
         /// Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
@@ -142,7 +142,7 @@ namespace Zernio.Api
         CrosspostDiscordMessage200Response CrosspostDiscordMessage(string channelId, string messageId, string accountId);
 
         /// <summary>
-        /// Crosspost a Discord announcement message
+        /// Crosspost Discord message
         /// </summary>
         /// <remarks>
         /// Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
@@ -681,7 +681,7 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateDiscordThread200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateDiscordThread200Response>> CreateDiscordThreadWithHttpInfoAsync(string channelId, string accountId, CreateDiscordThreadRequest createDiscordThreadRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Crosspost a Discord announcement message
+        /// Crosspost Discord message
         /// </summary>
         /// <remarks>
         /// Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
@@ -695,7 +695,7 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<CrosspostDiscordMessage200Response> CrosspostDiscordMessageAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Crosspost a Discord announcement message
+        /// Crosspost Discord message
         /// </summary>
         /// <remarks>
         /// Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
@@ -1994,7 +1994,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Crosspost a Discord announcement message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// Crosspost Discord message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId">Discord announcement channel snowflake ID</param>
@@ -2008,7 +2008,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Crosspost a Discord announcement message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// Crosspost Discord message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId">Discord announcement channel snowflake ID</param>
@@ -2069,7 +2069,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Crosspost a Discord announcement message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// Crosspost Discord message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId">Discord announcement channel snowflake ID</param>
@@ -2084,7 +2084,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Crosspost a Discord announcement message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// Crosspost Discord message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="channelId">Discord announcement channel snowflake ID</param>

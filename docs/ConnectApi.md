@@ -34,7 +34,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**SelectLinkedInOrganization**](ConnectApi.md#selectlinkedinorganization) | **POST** /v1/connect/linkedin/select-organization | Select LinkedIn org |
 | [**SelectPinterestBoard**](ConnectApi.md#selectpinterestboard) | **POST** /v1/connect/pinterest/select-board | Select Pinterest board |
 | [**SelectSnapchatProfile**](ConnectApi.md#selectsnapchatprofile) | **POST** /v1/connect/snapchat/select-profile | Select Snapchat profile |
-| [**SetRedditPostFlair**](ConnectApi.md#setredditpostflair) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set flair on a published Reddit post |
+| [**SetRedditPostFlair**](ConnectApi.md#setredditpostflair) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set Reddit post flair |
 | [**UpdateFacebookPage**](ConnectApi.md#updatefacebookpage) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page |
 | [**UpdateGmbLocation**](ConnectApi.md#updategmblocation) | **PUT** /v1/accounts/{accountId}/gmb-locations | Update GBP location |
 | [**UpdateLinkedInOrganization**](ConnectApi.md#updatelinkedinorganization) | **PUT** /v1/accounts/{accountId}/linkedin-organization | Switch LinkedIn account type |
@@ -3162,7 +3162,7 @@ catch (ApiException e)
 # **SetRedditPostFlair**
 > UpdateYoutubeDefaultPlaylist200Response SetRedditPostFlair (string accountId, SetRedditPostFlairRequest setRedditPostFlairRequest)
 
-Set flair on a published Reddit post
+Set Reddit post flair
 
 Applies a flair to a post the connected account already published. Use the GET on this path to list the available `flairTemplateId` values for the subreddit.  Flair can also be set at submit time by passing `flairId` in `platformSpecificData` when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user's post requires moderator permissions, which Zernio does not request. 
 
@@ -3195,7 +3195,7 @@ namespace Example
 
             try
             {
-                // Set flair on a published Reddit post
+                // Set Reddit post flair
                 UpdateYoutubeDefaultPlaylist200Response result = apiInstance.SetRedditPostFlair(accountId, setRedditPostFlairRequest);
                 Debug.WriteLine(result);
             }
@@ -3216,7 +3216,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Set flair on a published Reddit post
+    // Set Reddit post flair
     ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.SetRedditPostFlairWithHttpInfo(accountId, setRedditPostFlairRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
