@@ -29,6 +29,25 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Account billing snapshot (plan, cycle, balance, caps, status)
+        /// </summary>
+        /// <remarks>
+        /// The billing \&quot;wallet/statement\&quot; view: current plan, billing cycle, accrued balance + remaining credits this period, spend caps, and payment / access status. This is the billing half of the legacy &#x60;/v1/usage-stats&#x60; snapshot — the per-product consumption half is metering and lives on &#x60;GET /v1/usage&#x60;.  Usage-based (Metronome) accounts get a populated &#x60;balance&#x60;; legacy Stripe accounts get &#x60;balance: null&#x60; plus a deprecated &#x60;legacy.limits&#x60; block and, when payment-blocked, &#x60;status.openInvoiceUrl&#x60; / &#x60;status.declineReason&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>BillingSnapshot</returns>
+        BillingSnapshot GetBilling();
+
+        /// <summary>
+        /// Account billing snapshot (plan, cycle, balance, caps, status)
+        /// </summary>
+        /// <remarks>
+        /// The billing \&quot;wallet/statement\&quot; view: current plan, billing cycle, accrued balance + remaining credits this period, spend caps, and payment / access status. This is the billing half of the legacy &#x60;/v1/usage-stats&#x60; snapshot — the per-product consumption half is metering and lives on &#x60;GET /v1/usage&#x60;.  Usage-based (Metronome) accounts get a populated &#x60;balance&#x60;; legacy Stripe accounts get &#x60;balance: null&#x60; plus a deprecated &#x60;legacy.limits&#x60; block and, when payment-blocked, &#x60;status.openInvoiceUrl&#x60; / &#x60;status.declineReason&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of BillingSnapshot</returns>
+        ApiResponse<BillingSnapshot> GetBillingWithHttpInfo();
+        /// <summary>
         /// Calling usage and cost
         /// </summary>
         /// <remarks>
@@ -85,31 +104,39 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetSmsUsage200Response</returns>
         ApiResponse<GetSmsUsage200Response> GetSmsUsageWithHttpInfo(DateTime? since = default, DateTime? until = default, string? number = default, string? groupBy = default);
         /// <summary>
-        /// Get plan and usage snapshot
+        /// Usage snapshot (default) or billed-spend metering (with params)
         /// </summary>
         /// <remarks>
-        /// The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
-        /// <returns>UsageStats</returns>
-        UsageStats GetUsage(bool? reconcile = default);
+        /// <param name="reconcile">Snapshot mode only. For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete.  (optional)</param>
+        /// <param name="range">Window to report. &#x60;cycle&#x60; / &#x60;prev-cycle&#x60; resolve to the customer&#39;s real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); &#x60;7d&#x60;…&#x60;12mo&#x60; are trailing windows; &#x60;custom&#x60; uses &#x60;from&#x60; / &#x60;to&#x60;.  (optional, default to cycle)</param>
+        /// <param name="from">Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. (optional)</param>
+        /// <param name="to">Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. (optional)</param>
+        /// <param name="granularity">Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  (optional, default to day)</param>
+        /// <returns>GetUsage200Response</returns>
+        GetUsage200Response GetUsage(bool? reconcile = default, string? range = default, DateOnly? from = default, DateOnly? to = default, string? granularity = default);
 
         /// <summary>
-        /// Get plan and usage snapshot
+        /// Usage snapshot (default) or billed-spend metering (with params)
         /// </summary>
         /// <remarks>
-        /// The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
-        /// <returns>ApiResponse of UsageStats</returns>
-        ApiResponse<UsageStats> GetUsageWithHttpInfo(bool? reconcile = default);
+        /// <param name="reconcile">Snapshot mode only. For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete.  (optional)</param>
+        /// <param name="range">Window to report. &#x60;cycle&#x60; / &#x60;prev-cycle&#x60; resolve to the customer&#39;s real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); &#x60;7d&#x60;…&#x60;12mo&#x60; are trailing windows; &#x60;custom&#x60; uses &#x60;from&#x60; / &#x60;to&#x60;.  (optional, default to cycle)</param>
+        /// <param name="from">Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. (optional)</param>
+        /// <param name="to">Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. (optional)</param>
+        /// <param name="granularity">Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  (optional, default to day)</param>
+        /// <returns>ApiResponse of GetUsage200Response</returns>
+        ApiResponse<GetUsage200Response> GetUsageWithHttpInfo(bool? reconcile = default, string? range = default, DateOnly? from = default, DateOnly? to = default, string? granularity = default);
         /// <summary>
-        /// Get plan and usage stats
+        /// Get plan and usage snapshot (plan, limits, payment status)
         /// </summary>
         /// <remarks>
-        /// Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state. Identical to a bare &#x60;GET /v1/usage&#x60; call (this path is its deprecated alias). For billed spend by product, call &#x60;GET /v1/usage&#x60; with &#x60;range&#x60; / &#x60;granularity&#x60; params. The statement view (balance, credits, caps, payment status) lives at &#x60;GET /v1/billing&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
@@ -118,10 +145,10 @@ namespace Zernio.Api
         UsageStats GetUsageStats(bool? reconcile = default);
 
         /// <summary>
-        /// Get plan and usage stats
+        /// Get plan and usage snapshot (plan, limits, payment status)
         /// </summary>
         /// <remarks>
-        /// Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state. Identical to a bare &#x60;GET /v1/usage&#x60; call (this path is its deprecated alias). For billed spend by product, call &#x60;GET /v1/usage&#x60; with &#x60;range&#x60; / &#x60;granularity&#x60; params. The statement view (balance, credits, caps, payment status) lives at &#x60;GET /v1/billing&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
@@ -156,6 +183,27 @@ namespace Zernio.Api
     public interface IUsageApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Account billing snapshot (plan, cycle, balance, caps, status)
+        /// </summary>
+        /// <remarks>
+        /// The billing \&quot;wallet/statement\&quot; view: current plan, billing cycle, accrued balance + remaining credits this period, spend caps, and payment / access status. This is the billing half of the legacy &#x60;/v1/usage-stats&#x60; snapshot — the per-product consumption half is metering and lives on &#x60;GET /v1/usage&#x60;.  Usage-based (Metronome) accounts get a populated &#x60;balance&#x60;; legacy Stripe accounts get &#x60;balance: null&#x60; plus a deprecated &#x60;legacy.limits&#x60; block and, when payment-blocked, &#x60;status.openInvoiceUrl&#x60; / &#x60;status.declineReason&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of BillingSnapshot</returns>
+        System.Threading.Tasks.Task<BillingSnapshot> GetBillingAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Account billing snapshot (plan, cycle, balance, caps, status)
+        /// </summary>
+        /// <remarks>
+        /// The billing \&quot;wallet/statement\&quot; view: current plan, billing cycle, accrued balance + remaining credits this period, spend caps, and payment / access status. This is the billing half of the legacy &#x60;/v1/usage-stats&#x60; snapshot — the per-product consumption half is metering and lives on &#x60;GET /v1/usage&#x60;.  Usage-based (Metronome) accounts get a populated &#x60;balance&#x60;; legacy Stripe accounts get &#x60;balance: null&#x60; plus a deprecated &#x60;legacy.limits&#x60; block and, when payment-blocked, &#x60;status.openInvoiceUrl&#x60; / &#x60;status.declineReason&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (BillingSnapshot)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BillingSnapshot>> GetBillingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Calling usage and cost
         /// </summary>
@@ -217,33 +265,41 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetSmsUsage200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetSmsUsage200Response>> GetSmsUsageWithHttpInfoAsync(DateTime? since = default, DateTime? until = default, string? number = default, string? groupBy = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get plan and usage snapshot
+        /// Usage snapshot (default) or billed-spend metering (with params)
         /// </summary>
         /// <remarks>
-        /// The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
+        /// <param name="reconcile">Snapshot mode only. For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete.  (optional)</param>
+        /// <param name="range">Window to report. &#x60;cycle&#x60; / &#x60;prev-cycle&#x60; resolve to the customer&#39;s real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); &#x60;7d&#x60;…&#x60;12mo&#x60; are trailing windows; &#x60;custom&#x60; uses &#x60;from&#x60; / &#x60;to&#x60;.  (optional, default to cycle)</param>
+        /// <param name="from">Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. (optional)</param>
+        /// <param name="to">Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. (optional)</param>
+        /// <param name="granularity">Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  (optional, default to day)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UsageStats</returns>
-        System.Threading.Tasks.Task<UsageStats> GetUsageAsync(bool? reconcile = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of GetUsage200Response</returns>
+        System.Threading.Tasks.Task<GetUsage200Response> GetUsageAsync(bool? reconcile = default, string? range = default, DateOnly? from = default, DateOnly? to = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get plan and usage snapshot
+        /// Usage snapshot (default) or billed-spend metering (with params)
         /// </summary>
         /// <remarks>
-        /// The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
+        /// <param name="reconcile">Snapshot mode only. For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete.  (optional)</param>
+        /// <param name="range">Window to report. &#x60;cycle&#x60; / &#x60;prev-cycle&#x60; resolve to the customer&#39;s real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); &#x60;7d&#x60;…&#x60;12mo&#x60; are trailing windows; &#x60;custom&#x60; uses &#x60;from&#x60; / &#x60;to&#x60;.  (optional, default to cycle)</param>
+        /// <param name="from">Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. (optional)</param>
+        /// <param name="to">Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. (optional)</param>
+        /// <param name="granularity">Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  (optional, default to day)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UsageStats)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UsageStats>> GetUsageWithHttpInfoAsync(bool? reconcile = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (GetUsage200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetUsage200Response>> GetUsageWithHttpInfoAsync(bool? reconcile = default, string? range = default, DateOnly? from = default, DateOnly? to = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Get plan and usage stats
+        /// Get plan and usage snapshot (plan, limits, payment status)
         /// </summary>
         /// <remarks>
-        /// Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state. Identical to a bare &#x60;GET /v1/usage&#x60; call (this path is its deprecated alias). For billed spend by product, call &#x60;GET /v1/usage&#x60; with &#x60;range&#x60; / &#x60;granularity&#x60; params. The statement view (balance, credits, caps, payment status) lives at &#x60;GET /v1/billing&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
@@ -253,10 +309,10 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<UsageStats> GetUsageStatsAsync(bool? reconcile = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Get plan and usage stats
+        /// Get plan and usage snapshot (plan, limits, payment status)
         /// </summary>
         /// <remarks>
-        /// Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state. Identical to a bare &#x60;GET /v1/usage&#x60; call (this path is its deprecated alias). For billed spend by product, call &#x60;GET /v1/usage&#x60; with &#x60;range&#x60; / &#x60;granularity&#x60; params. The statement view (balance, credits, caps, payment status) lives at &#x60;GET /v1/billing&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
@@ -496,6 +552,119 @@ namespace Zernio.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Account billing snapshot (plan, cycle, balance, caps, status) The billing \&quot;wallet/statement\&quot; view: current plan, billing cycle, accrued balance + remaining credits this period, spend caps, and payment / access status. This is the billing half of the legacy &#x60;/v1/usage-stats&#x60; snapshot — the per-product consumption half is metering and lives on &#x60;GET /v1/usage&#x60;.  Usage-based (Metronome) accounts get a populated &#x60;balance&#x60;; legacy Stripe accounts get &#x60;balance: null&#x60; plus a deprecated &#x60;legacy.limits&#x60; block and, when payment-blocked, &#x60;status.openInvoiceUrl&#x60; / &#x60;status.declineReason&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>BillingSnapshot</returns>
+        public BillingSnapshot GetBilling()
+        {
+            Zernio.Client.ApiResponse<BillingSnapshot> localVarResponse = GetBillingWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Account billing snapshot (plan, cycle, balance, caps, status) The billing \&quot;wallet/statement\&quot; view: current plan, billing cycle, accrued balance + remaining credits this period, spend caps, and payment / access status. This is the billing half of the legacy &#x60;/v1/usage-stats&#x60; snapshot — the per-product consumption half is metering and lives on &#x60;GET /v1/usage&#x60;.  Usage-based (Metronome) accounts get a populated &#x60;balance&#x60;; legacy Stripe accounts get &#x60;balance: null&#x60; plus a deprecated &#x60;legacy.limits&#x60; block and, when payment-blocked, &#x60;status.openInvoiceUrl&#x60; / &#x60;status.declineReason&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of BillingSnapshot</returns>
+        public Zernio.Client.ApiResponse<BillingSnapshot> GetBillingWithHttpInfo()
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<BillingSnapshot>("/v1/billing", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetBilling", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Account billing snapshot (plan, cycle, balance, caps, status) The billing \&quot;wallet/statement\&quot; view: current plan, billing cycle, accrued balance + remaining credits this period, spend caps, and payment / access status. This is the billing half of the legacy &#x60;/v1/usage-stats&#x60; snapshot — the per-product consumption half is metering and lives on &#x60;GET /v1/usage&#x60;.  Usage-based (Metronome) accounts get a populated &#x60;balance&#x60;; legacy Stripe accounts get &#x60;balance: null&#x60; plus a deprecated &#x60;legacy.limits&#x60; block and, when payment-blocked, &#x60;status.openInvoiceUrl&#x60; / &#x60;status.declineReason&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of BillingSnapshot</returns>
+        public async System.Threading.Tasks.Task<BillingSnapshot> GetBillingAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<BillingSnapshot> localVarResponse = await GetBillingWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Account billing snapshot (plan, cycle, balance, caps, status) The billing \&quot;wallet/statement\&quot; view: current plan, billing cycle, accrued balance + remaining credits this period, spend caps, and payment / access status. This is the billing half of the legacy &#x60;/v1/usage-stats&#x60; snapshot — the per-product consumption half is metering and lives on &#x60;GET /v1/usage&#x60;.  Usage-based (Metronome) accounts get a populated &#x60;balance&#x60;; legacy Stripe accounts get &#x60;balance: null&#x60; plus a deprecated &#x60;legacy.limits&#x60; block and, when payment-blocked, &#x60;status.openInvoiceUrl&#x60; / &#x60;status.declineReason&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (BillingSnapshot)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<BillingSnapshot>> GetBillingWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<BillingSnapshot>("/v1/billing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetBilling", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>
@@ -833,24 +1002,32 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get plan and usage snapshot The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Usage snapshot (default) or billed-spend metering (with params) Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
-        /// <returns>UsageStats</returns>
-        public UsageStats GetUsage(bool? reconcile = default)
+        /// <param name="reconcile">Snapshot mode only. For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete.  (optional)</param>
+        /// <param name="range">Window to report. &#x60;cycle&#x60; / &#x60;prev-cycle&#x60; resolve to the customer&#39;s real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); &#x60;7d&#x60;…&#x60;12mo&#x60; are trailing windows; &#x60;custom&#x60; uses &#x60;from&#x60; / &#x60;to&#x60;.  (optional, default to cycle)</param>
+        /// <param name="from">Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. (optional)</param>
+        /// <param name="to">Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. (optional)</param>
+        /// <param name="granularity">Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  (optional, default to day)</param>
+        /// <returns>GetUsage200Response</returns>
+        public GetUsage200Response GetUsage(bool? reconcile = default, string? range = default, DateOnly? from = default, DateOnly? to = default, string? granularity = default)
         {
-            Zernio.Client.ApiResponse<UsageStats> localVarResponse = GetUsageWithHttpInfo(reconcile);
+            Zernio.Client.ApiResponse<GetUsage200Response> localVarResponse = GetUsageWithHttpInfo(reconcile, range, from, to, granularity);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get plan and usage snapshot The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Usage snapshot (default) or billed-spend metering (with params) Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
-        /// <returns>ApiResponse of UsageStats</returns>
-        public Zernio.Client.ApiResponse<UsageStats> GetUsageWithHttpInfo(bool? reconcile = default)
+        /// <param name="reconcile">Snapshot mode only. For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete.  (optional)</param>
+        /// <param name="range">Window to report. &#x60;cycle&#x60; / &#x60;prev-cycle&#x60; resolve to the customer&#39;s real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); &#x60;7d&#x60;…&#x60;12mo&#x60; are trailing windows; &#x60;custom&#x60; uses &#x60;from&#x60; / &#x60;to&#x60;.  (optional, default to cycle)</param>
+        /// <param name="from">Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. (optional)</param>
+        /// <param name="to">Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. (optional)</param>
+        /// <param name="granularity">Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  (optional, default to day)</param>
+        /// <returns>ApiResponse of GetUsage200Response</returns>
+        public Zernio.Client.ApiResponse<GetUsage200Response> GetUsageWithHttpInfo(bool? reconcile = default, string? range = default, DateOnly? from = default, DateOnly? to = default, string? granularity = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -872,6 +1049,22 @@ namespace Zernio.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "reconcile", reconcile));
             }
+            if (range != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "range", range));
+            }
+            if (from != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "from", from));
+            }
+            if (to != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "to", to));
+            }
+            if (granularity != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "granularity", granularity));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -881,7 +1074,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<UsageStats>("/v1/usage", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GetUsage200Response>("/v1/usage", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -893,26 +1086,34 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get plan and usage snapshot The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Usage snapshot (default) or billed-spend metering (with params) Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
+        /// <param name="reconcile">Snapshot mode only. For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete.  (optional)</param>
+        /// <param name="range">Window to report. &#x60;cycle&#x60; / &#x60;prev-cycle&#x60; resolve to the customer&#39;s real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); &#x60;7d&#x60;…&#x60;12mo&#x60; are trailing windows; &#x60;custom&#x60; uses &#x60;from&#x60; / &#x60;to&#x60;.  (optional, default to cycle)</param>
+        /// <param name="from">Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. (optional)</param>
+        /// <param name="to">Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. (optional)</param>
+        /// <param name="granularity">Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  (optional, default to day)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UsageStats</returns>
-        public async System.Threading.Tasks.Task<UsageStats> GetUsageAsync(bool? reconcile = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of GetUsage200Response</returns>
+        public async System.Threading.Tasks.Task<GetUsage200Response> GetUsageAsync(bool? reconcile = default, string? range = default, DateOnly? from = default, DateOnly? to = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UsageStats> localVarResponse = await GetUsageWithHttpInfoAsync(reconcile, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetUsage200Response> localVarResponse = await GetUsageWithHttpInfoAsync(reconcile, range, from, to, granularity, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get plan and usage snapshot The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Usage snapshot (default) or billed-spend metering (with params) Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
+        /// <param name="reconcile">Snapshot mode only. For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete.  (optional)</param>
+        /// <param name="range">Window to report. &#x60;cycle&#x60; / &#x60;prev-cycle&#x60; resolve to the customer&#39;s real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); &#x60;7d&#x60;…&#x60;12mo&#x60; are trailing windows; &#x60;custom&#x60; uses &#x60;from&#x60; / &#x60;to&#x60;.  (optional, default to cycle)</param>
+        /// <param name="from">Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. (optional)</param>
+        /// <param name="to">Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. (optional)</param>
+        /// <param name="granularity">Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  (optional, default to day)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UsageStats)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UsageStats>> GetUsageWithHttpInfoAsync(bool? reconcile = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (GetUsage200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetUsage200Response>> GetUsageWithHttpInfoAsync(bool? reconcile = default, string? range = default, DateOnly? from = default, DateOnly? to = default, string? granularity = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -936,6 +1137,22 @@ namespace Zernio.Api
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "reconcile", reconcile));
             }
+            if (range != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "range", range));
+            }
+            if (from != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "from", from));
+            }
+            if (to != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "to", to));
+            }
+            if (granularity != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "granularity", granularity));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -946,7 +1163,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<UsageStats>("/v1/usage", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetUsage200Response>("/v1/usage", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -958,7 +1175,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get plan and usage stats Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Get plan and usage snapshot (plan, limits, payment status) The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state. Identical to a bare &#x60;GET /v1/usage&#x60; call (this path is its deprecated alias). For billed spend by product, call &#x60;GET /v1/usage&#x60; with &#x60;range&#x60; / &#x60;granularity&#x60; params. The statement view (balance, credits, caps, payment status) lives at &#x60;GET /v1/billing&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
@@ -971,7 +1188,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get plan and usage stats Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Get plan and usage snapshot (plan, limits, payment status) The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state. Identical to a bare &#x60;GET /v1/usage&#x60; call (this path is its deprecated alias). For billed spend by product, call &#x60;GET /v1/usage&#x60; with &#x60;range&#x60; / &#x60;granularity&#x60; params. The statement view (balance, credits, caps, payment status) lives at &#x60;GET /v1/billing&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
@@ -1020,7 +1237,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get plan and usage stats Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Get plan and usage snapshot (plan, limits, payment status) The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state. Identical to a bare &#x60;GET /v1/usage&#x60; call (this path is its deprecated alias). For billed spend by product, call &#x60;GET /v1/usage&#x60; with &#x60;range&#x60; / &#x60;granularity&#x60; params. The statement view (balance, credits, caps, payment status) lives at &#x60;GET /v1/billing&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>
@@ -1034,7 +1251,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get plan and usage stats Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+        /// Get plan and usage snapshot (plan, limits, payment status) The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state. Identical to a bare &#x60;GET /v1/usage&#x60; call (this path is its deprecated alias). For billed spend by product, call &#x60;GET /v1/usage&#x60; with &#x60;range&#x60; / &#x60;granularity&#x60; params. The statement view (balance, credits, caps, payment status) lives at &#x60;GET /v1/billing&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="reconcile">For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)</param>

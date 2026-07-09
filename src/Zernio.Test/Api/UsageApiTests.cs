@@ -55,6 +55,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetBilling
+        /// </summary>
+        [Fact]
+        public void GetBillingTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.GetBilling();
+            //Assert.IsType<BillingSnapshot>(response);
+        }
+
+        /// <summary>
         /// Test GetCallsUsage
         /// </summary>
         [Fact]
@@ -93,8 +104,12 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //bool? reconcile = null;
-            //var response = instance.GetUsage(reconcile);
-            //Assert.IsType<UsageStats>(response);
+            //string? range = null;
+            //DateOnly? from = null;
+            //DateOnly? to = null;
+            //string? granularity = null;
+            //var response = instance.GetUsage(reconcile, range, from, to, granularity);
+            //Assert.IsType<GetUsage200Response>(response);
         }
 
         /// <summary>

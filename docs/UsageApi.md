@@ -4,11 +4,107 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**GetBilling**](UsageApi.md#getbilling) | **GET** /v1/billing | Account billing snapshot (plan, cycle, balance, caps, status) |
 | [**GetCallsUsage**](UsageApi.md#getcallsusage) | **GET** /v1/usage/calls | Calling usage and cost |
 | [**GetSmsUsage**](UsageApi.md#getsmsusage) | **GET** /v1/usage/sms | SMS usage (volumes) |
-| [**GetUsage**](UsageApi.md#getusage) | **GET** /v1/usage | Get plan and usage snapshot |
-| [**GetUsageStats**](UsageApi.md#getusagestats) | **GET** /v1/usage-stats | Get plan and usage stats |
+| [**GetUsage**](UsageApi.md#getusage) | **GET** /v1/usage | Usage snapshot (default) or billed-spend metering (with params) |
+| [**GetUsageStats**](UsageApi.md#getusagestats) | **GET** /v1/usage-stats | Get plan and usage snapshot (plan, limits, payment status) |
 | [**GetXApiPricing**](UsageApi.md#getxapipricing) | **GET** /v1/billing/x-pricing | Get X/Twitter API pricing table |
+
+<a id="getbilling"></a>
+# **GetBilling**
+> BillingSnapshot GetBilling ()
+
+Account billing snapshot (plan, cycle, balance, caps, status)
+
+The billing \"wallet/statement\" view: current plan, billing cycle, accrued balance + remaining credits this period, spend caps, and payment / access status. This is the billing half of the legacy `/v1/usage-stats` snapshot — the per-product consumption half is metering and lives on `GET /v1/usage`.  Usage-based (Metronome) accounts get a populated `balance`; legacy Stripe accounts get `balance: null` plus a deprecated `legacy.limits` block and, when payment-blocked, `status.openInvoiceUrl` / `status.declineReason`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetBillingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new UsageApi(httpClient, config, httpClientHandler);
+
+            try
+            {
+                // Account billing snapshot (plan, cycle, balance, caps, status)
+                BillingSnapshot result = apiInstance.GetBilling();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling UsageApi.GetBilling: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetBillingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Account billing snapshot (plan, cycle, balance, caps, status)
+    ApiResponse<BillingSnapshot> response = apiInstance.GetBillingWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling UsageApi.GetBillingWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**BillingSnapshot**](BillingSnapshot.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Billing snapshot |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="getcallsusage"></a>
 # **GetCallsUsage**
@@ -227,11 +323,11 @@ catch (ApiException e)
 
 <a id="getusage"></a>
 # **GetUsage**
-> UsageStats GetUsage (bool? reconcile = null)
+> GetUsage200Response GetUsage (bool? reconcile = null, string? range = null, DateOnly? from = null, DateOnly? to = null, string? granularity = null)
 
-Get plan and usage snapshot
+Usage snapshot (default) or billed-spend metering (with params)
 
-The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: `GET /v1/usage/calls` and `GET /v1/usage/sms`.  The response shape depends on the account's `billingSystem`:   * Stripe users: per-period `usage.uploads` / `usage.profiles` counters.   * Metronome (usage-based) users: `usage.connectedAccounts`,     `usage.xApiCallsByOperation` (per-operation X API call counts —     resolve keys via `GET /v1/billing/x-pricing`), plus a `spend`     block with `currentPeriodCents`, `xSpendCents`, and     `xSpendLimitCents`. The legacy `usage.xApiCalls` 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume `xApiCallsByOperation` only. 
+Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to `GET /v1/usage-stats`. Existing integrations keep working unchanged.  **With `range`, `granularity`, `from`, or `to`:** usage METERING — billed spend (USD) by product family (`accounts`, `numbers`, `calls`, `sms`, `dlc`, `xApi`, `credits`, `other`) over the window, at `day` / `month` / `total` granularity, from Metronome's invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at `GET /v1/usage/daily`. Usage-based accounts only — legacy Stripe accounts get `{ \"supported\": false, \"days\": [] }`.  For per-domain consumption *volumes* use `GET /v1/usage/calls` and `GET /v1/usage/sms`. For the billing statement (balance, credits, caps, payment status) use `GET /v1/billing`. 
 
 ### Example
 ```csharp
@@ -257,12 +353,16 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new UsageApi(httpClient, config, httpClientHandler);
-            var reconcile = true;  // bool? | For Stripe subscription users, `true` forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass `false`, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional) 
+            var reconcile = true;  // bool? | Snapshot mode only. For Stripe subscription users, `true` forces a subscription reconciliation pass even when cached plan data looks complete.  (optional) 
+            var range = "cycle";  // string? | Window to report. `cycle` / `prev-cycle` resolve to the customer's real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); `7d`…`12mo` are trailing windows; `custom` uses `from` / `to`.  (optional)  (default to cycle)
+            var from = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive start (UTC date). Required when `range=custom`. (optional) 
+            var to = DateOnly.Parse("2013-10-20");  // DateOnly? | Inclusive end (UTC date). Required when `range=custom`. Max span 366 days. (optional) 
+            var granularity = "day";  // string? | Bucketing of the `days` series: `day` (one row per UTC day), `month` (one row per calendar month, dated to the 1st), or `total` (no series — read `totals`). Does not affect `totals`.  (optional)  (default to day)
 
             try
             {
-                // Get plan and usage snapshot
-                UsageStats result = apiInstance.GetUsage(reconcile);
+                // Usage snapshot (default) or billed-spend metering (with params)
+                GetUsage200Response result = apiInstance.GetUsage(reconcile, range, from, to, granularity);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -282,8 +382,8 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get plan and usage snapshot
-    ApiResponse<UsageStats> response = apiInstance.GetUsageWithHttpInfo(reconcile);
+    // Usage snapshot (default) or billed-spend metering (with params)
+    ApiResponse<GetUsage200Response> response = apiInstance.GetUsageWithHttpInfo(reconcile, range, from, to, granularity);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -300,11 +400,15 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **reconcile** | **bool?** | For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  | [optional]  |
+| **reconcile** | **bool?** | Snapshot mode only. For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete.  | [optional]  |
+| **range** | **string?** | Window to report. &#x60;cycle&#x60; / &#x60;prev-cycle&#x60; resolve to the customer&#39;s real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); &#x60;7d&#x60;…&#x60;12mo&#x60; are trailing windows; &#x60;custom&#x60; uses &#x60;from&#x60; / &#x60;to&#x60;.  | [optional] [default to cycle] |
+| **from** | **DateOnly?** | Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. | [optional]  |
+| **to** | **DateOnly?** | Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. | [optional]  |
+| **granularity** | **string?** | Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  | [optional] [default to day] |
 
 ### Return type
 
-[**UsageStats**](UsageStats.md)
+[**GetUsage200Response**](GetUsage200Response.md)
 
 ### Authorization
 
@@ -319,7 +423,7 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Usage snapshot |  -  |
+| **200** | Snapshot (no metering params) or billed spend by product over the window (with metering params).  |  -  |
 | **400** | Invalid query parameter |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
@@ -330,9 +434,9 @@ catch (ApiException e)
 # **GetUsageStats**
 > UsageStats GetUsageStats (bool? reconcile = null)
 
-Get plan and usage stats
+Get plan and usage snapshot (plan, limits, payment status)
 
-Deprecated alias of `GET /v1/usage`; same contract. New integrations should use that path (the usage hub), with `GET /v1/usage/calls` and `GET /v1/usage/sms` for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account's `billingSystem`:   * Stripe users: per-period `usage.uploads` / `usage.profiles` counters.   * Metronome (usage-based) users: `usage.connectedAccounts`,     `usage.xApiCallsByOperation` (per-operation X API call counts —     resolve keys via `GET /v1/billing/x-pricing`), plus a `spend`     block with `currentPeriodCents`, `xSpendCents`, and     `xSpendLimitCents`. The legacy `usage.xApiCalls` 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume `xApiCallsByOperation` only. 
+The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state. Identical to a bare `GET /v1/usage` call (this path is its deprecated alias). For billed spend by product, call `GET /v1/usage` with `range` / `granularity` params. The statement view (balance, credits, caps, payment status) lives at `GET /v1/billing`.  The response shape depends on the account's `billingSystem`:   * Stripe users: per-period `usage.uploads` / `usage.profiles` counters.   * Metronome (usage-based) users: `usage.connectedAccounts`,     `usage.xApiCallsByOperation` (per-operation X API call counts —     resolve keys via `GET /v1/billing/x-pricing`), plus a `spend`     block with `currentPeriodCents`, `xSpendCents`, and     `xSpendLimitCents`. The legacy `usage.xApiCalls` 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume `xApiCallsByOperation` only. 
 
 ### Example
 ```csharp
@@ -362,7 +466,7 @@ namespace Example
 
             try
             {
-                // Get plan and usage stats
+                // Get plan and usage snapshot (plan, limits, payment status)
                 UsageStats result = apiInstance.GetUsageStats(reconcile);
                 Debug.WriteLine(result);
             }
@@ -383,7 +487,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get plan and usage stats
+    // Get plan and usage snapshot (plan, limits, payment status)
     ApiResponse<UsageStats> response = apiInstance.GetUsageStatsWithHttpInfo(reconcile);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
