@@ -48,7 +48,7 @@ namespace Zernio.Model
         /// <param name="skipDmCheck">X/Twitter only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs. (default to false).</param>
         /// <param name="templateName">WhatsApp only. Name of the approved template to start the conversation with (required for WhatsApp)..</param>
         /// <param name="templateLanguage">WhatsApp only. Template language code (e.g. en_US)..</param>
-        /// <param name="templateParams">WhatsApp only. Body variable values, in order. Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance..</param>
+        /// <param name="templateParams">WhatsApp only. Template variable values as one flat array, in the order the variables appear across the whole template: text-header variables first, then body variables, then one value per dynamic URL button (in button order). Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance. Example - a body with {{1}}, {{2}} plus a URL button https://example.com/{{1}} takes three values: [body1, body2, buttonSuffix]. Media headers (image, video, document) are filled automatically from the approved template and take no value here..</param>
         public CreateInboxConversationRequest(string accountId = default, string participantId = default, string participantUsername = default, string message = default, bool skipDmCheck = false, string templateName = default, string templateLanguage = default, List<string> templateParams = default)
         {
             // to ensure "accountId" is required (not null)
@@ -116,9 +116,9 @@ namespace Zernio.Model
         public string TemplateLanguage { get; set; }
 
         /// <summary>
-        /// WhatsApp only. Body variable values, in order. Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance.
+        /// WhatsApp only. Template variable values as one flat array, in the order the variables appear across the whole template: text-header variables first, then body variables, then one value per dynamic URL button (in button order). Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance. Example - a body with {{1}}, {{2}} plus a URL button https://example.com/{{1}} takes three values: [body1, body2, buttonSuffix]. Media headers (image, video, document) are filled automatically from the approved template and take no value here.
         /// </summary>
-        /// <value>WhatsApp only. Body variable values, in order. Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance.</value>
+        /// <value>WhatsApp only. Template variable values as one flat array, in the order the variables appear across the whole template: text-header variables first, then body variables, then one value per dynamic URL button (in button order). Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance. Example - a body with {{1}}, {{2}} plus a URL button https://example.com/{{1}} takes three values: [body1, body2, buttonSuffix]. Media headers (image, video, document) are filled automatically from the approved template and take no value here.</value>
         [DataMember(Name = "templateParams", EmitDefaultValue = false)]
         public List<string> TemplateParams { get; set; }
 
