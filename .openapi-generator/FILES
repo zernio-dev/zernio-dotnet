@@ -1231,6 +1231,7 @@ docs/UploadWhatsAppFlowJson200Response.md
 docs/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.md
 docs/UploadWhatsAppFlowJsonRequest.md
 docs/UploadWhatsAppFlowJsonRequestFlowJson.md
+docs/UploadWhatsAppProfilePhotoRequest1.md
 docs/UploadedFile.md
 docs/UploadedOrDerivedAudience.md
 docs/UsageApi.md
@@ -2623,6 +2624,7 @@ src/Zernio.Test/Model/UploadWhatsAppFlowJson200ResponseTests.cs
 src/Zernio.Test/Model/UploadWhatsAppFlowJson200ResponseValidationErrorsInnerTests.cs
 src/Zernio.Test/Model/UploadWhatsAppFlowJsonRequestFlowJsonTests.cs
 src/Zernio.Test/Model/UploadWhatsAppFlowJsonRequestTests.cs
+src/Zernio.Test/Model/UploadWhatsAppProfilePhotoRequest1Tests.cs
 src/Zernio.Test/Model/UploadedFileTests.cs
 src/Zernio.Test/Model/UploadedOrDerivedAudienceTests.cs
 src/Zernio.Test/Model/UsageStatsLimitsTests.cs
@@ -4020,6 +4022,7 @@ src/Zernio/Model/UploadWhatsAppFlowJson200Response.cs
 src/Zernio/Model/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.cs
 src/Zernio/Model/UploadWhatsAppFlowJsonRequest.cs
 src/Zernio/Model/UploadWhatsAppFlowJsonRequestFlowJson.cs
+src/Zernio/Model/UploadWhatsAppProfilePhotoRequest1.cs
 src/Zernio/Model/UploadedFile.cs
 src/Zernio/Model/UploadedOrDerivedAudience.cs
 src/Zernio/Model/UsageStats.cs

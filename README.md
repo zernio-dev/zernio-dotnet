@@ -1791,6 +1791,7 @@ Class | Method | HTTP request | Description
  - [Model.UploadWhatsAppFlowJson200ResponseValidationErrorsInner](docs/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.md)
  - [Model.UploadWhatsAppFlowJsonRequest](docs/UploadWhatsAppFlowJsonRequest.md)
  - [Model.UploadWhatsAppFlowJsonRequestFlowJson](docs/UploadWhatsAppFlowJsonRequestFlowJson.md)
+ - [Model.UploadWhatsAppProfilePhotoRequest1](docs/UploadWhatsAppProfilePhotoRequest1.md)
  - [Model.UploadedFile](docs/UploadedFile.md)
  - [Model.UploadedOrDerivedAudience](docs/UploadedOrDerivedAudience.md)
  - [Model.UsageStats](docs/UsageStats.md)
