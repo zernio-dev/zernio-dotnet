@@ -5,7 +5,6 @@ Offer details. Required when topicType is OFFER. All fields are optional per Goo
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OfferType** | **string** | Type of offer | [optional] 
 **RedeemOnlineUrl** | **string** | URL where the offer can be redeemed online | [optional] 
 **TermsConditions** | **string** | Terms and conditions for the offer | [optional] 
 **CouponCode** | **string** | Coupon code for the offer | [optional] 

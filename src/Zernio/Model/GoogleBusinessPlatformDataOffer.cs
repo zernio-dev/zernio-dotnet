@@ -34,42 +34,13 @@ namespace Zernio.Model
     public partial class GoogleBusinessPlatformDataOffer : IValidatableObject
     {
         /// <summary>
-        /// Type of offer
-        /// </summary>
-        /// <value>Type of offer</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum OfferTypeEnum
-        {
-            /// <summary>
-            /// Enum OFFER for value: OFFER
-            /// </summary>
-            [EnumMember(Value = "OFFER")]
-            OFFER = 1,
-
-            /// <summary>
-            /// Enum BUYONEGETONE for value: BUY_ONE_GET_ONE
-            /// </summary>
-            [EnumMember(Value = "BUY_ONE_GET_ONE")]
-            BUYONEGETONE = 2
-        }
-
-
-        /// <summary>
-        /// Type of offer
-        /// </summary>
-        /// <value>Type of offer</value>
-        [DataMember(Name = "offerType", EmitDefaultValue = false)]
-        public OfferTypeEnum? OfferType { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="GoogleBusinessPlatformDataOffer" /> class.
         /// </summary>
-        /// <param name="offerType">Type of offer.</param>
         /// <param name="redeemOnlineUrl">URL where the offer can be redeemed online.</param>
         /// <param name="termsConditions">Terms and conditions for the offer.</param>
         /// <param name="couponCode">Coupon code for the offer.</param>
-        public GoogleBusinessPlatformDataOffer(OfferTypeEnum? offerType = default, string redeemOnlineUrl = default, string termsConditions = default, string couponCode = default)
+        public GoogleBusinessPlatformDataOffer(string redeemOnlineUrl = default, string termsConditions = default, string couponCode = default)
         {
-            this.OfferType = offerType;
             this.RedeemOnlineUrl = redeemOnlineUrl;
             this.TermsConditions = termsConditions;
             this.CouponCode = couponCode;
@@ -107,7 +78,6 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class GoogleBusinessPlatformDataOffer {\n");
-            sb.Append("  OfferType: ").Append(OfferType).Append("\n");
             sb.Append("  RedeemOnlineUrl: ").Append(RedeemOnlineUrl).Append("\n");
             sb.Append("  TermsConditions: ").Append(TermsConditions).Append("\n");
             sb.Append("  CouponCode: ").Append(CouponCode).Append("\n");

@@ -56,15 +56,6 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'OfferType'
-        /// </summary>
-        [Fact]
-        public void OfferTypeTest()
-        {
-            // TODO unit test for the property 'OfferType'
-        }
-
-        /// <summary>
         /// Test the property 'RedeemOnlineUrl'
         /// </summary>
         [Fact]
