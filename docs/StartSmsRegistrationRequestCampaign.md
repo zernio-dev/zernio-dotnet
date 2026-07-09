@@ -1,5 +1,5 @@
 # Zernio.Model.StartSmsRegistrationRequestCampaign
-Required for 10DLC. What you'll send and how recipients opt in/out.
+Required for 10DLC. What you'll send and how recipients opt in/out. Opt-in/opt-out/help auto-responses must name the registered brand and carry the carrier-required disclosures; submissions that don't (or that are blank) are automatically rewritten to a compliant, brand-named template before the campaign is filed. 
 
 ## Properties
 
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Description** | **string** |  | 
 **MessageFlow** | **string** | How a recipient ends up receiving your messages (the opt-in flow). | 
 **Sample1** | **string** |  | 
-**Sample2** | **string** |  | [optional] 
+**Sample2** | **string** | Second example message; carriers require two distinct samples | 
 **HelpMessage** | **string** |  | 
 **OptinKeywords** | **string** |  | 
 **OptinMessage** | **string** |  | 

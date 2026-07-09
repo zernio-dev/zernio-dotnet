@@ -264,15 +264,15 @@ namespace Zernio.Model
         /// <param name="displayName">displayName (required).</param>
         /// <param name="companyName">Legal company name. Required for every entityType except SOLE_PROPRIETOR..</param>
         /// <param name="ein">Required for every entityType except SOLE_PROPRIETOR..</param>
-        /// <param name="phone">phone.</param>
+        /// <param name="phone">Business contact phone. Required for every entityType except SOLE_PROPRIETOR..</param>
         /// <param name="mobilePhone">Required for SOLE_PROPRIETOR; the verification OTP is texted there (US/CA mobile)..</param>
-        /// <param name="street">street.</param>
-        /// <param name="city">city.</param>
-        /// <param name="state">state.</param>
-        /// <param name="postalCode">postalCode.</param>
+        /// <param name="street">street (required).</param>
+        /// <param name="city">city (required).</param>
+        /// <param name="state">state (required).</param>
+        /// <param name="postalCode">postalCode (required).</param>
         /// <param name="country">country (required).</param>
         /// <param name="email">Brand contact email; defaults to your account email when omitted..</param>
-        /// <param name="website">website.</param>
+        /// <param name="website">The brand&#39;s website (sole proprietors may use a social profile such as LinkedIn or a business Facebook page). Carriers verify the brand against it; a bare domain is normalized to https://. (required).</param>
         /// <param name="vertical">vertical (required).</param>
         /// <param name="stockSymbol">stockSymbol.</param>
         public StartSmsRegistrationRequestBrand(EntityTypeEnum entityType = default, string displayName = default, string companyName = default, string ein = default, string phone = default, string mobilePhone = default, string street = default, string city = default, string state = default, string postalCode = default, CountryEnum country = default, string email = default, string website = default, VerticalEnum vertical = default, string stockSymbol = default)
@@ -284,18 +284,43 @@ namespace Zernio.Model
                 throw new ArgumentNullException("displayName is a required property for StartSmsRegistrationRequestBrand and cannot be null");
             }
             this.DisplayName = displayName;
+            // to ensure "street" is required (not null)
+            if (street == null)
+            {
+                throw new ArgumentNullException("street is a required property for StartSmsRegistrationRequestBrand and cannot be null");
+            }
+            this.Street = street;
+            // to ensure "city" is required (not null)
+            if (city == null)
+            {
+                throw new ArgumentNullException("city is a required property for StartSmsRegistrationRequestBrand and cannot be null");
+            }
+            this.City = city;
+            // to ensure "state" is required (not null)
+            if (state == null)
+            {
+                throw new ArgumentNullException("state is a required property for StartSmsRegistrationRequestBrand and cannot be null");
+            }
+            this.State = state;
+            // to ensure "postalCode" is required (not null)
+            if (postalCode == null)
+            {
+                throw new ArgumentNullException("postalCode is a required property for StartSmsRegistrationRequestBrand and cannot be null");
+            }
+            this.PostalCode = postalCode;
             this.Country = country;
+            // to ensure "website" is required (not null)
+            if (website == null)
+            {
+                throw new ArgumentNullException("website is a required property for StartSmsRegistrationRequestBrand and cannot be null");
+            }
+            this.Website = website;
             this.Vertical = vertical;
             this.CompanyName = companyName;
             this.Ein = ein;
             this.Phone = phone;
             this.MobilePhone = mobilePhone;
-            this.Street = street;
-            this.City = city;
-            this.State = state;
-            this.PostalCode = postalCode;
             this.Email = email;
-            this.Website = website;
             this.StockSymbol = stockSymbol;
         }
 
@@ -320,8 +345,9 @@ namespace Zernio.Model
         public string Ein { get; set; }
 
         /// <summary>
-        /// Gets or Sets Phone
+        /// Business contact phone. Required for every entityType except SOLE_PROPRIETOR.
         /// </summary>
+        /// <value>Business contact phone. Required for every entityType except SOLE_PROPRIETOR.</value>
         [DataMember(Name = "phone", EmitDefaultValue = false)]
         public string Phone { get; set; }
 
@@ -335,25 +361,25 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Street
         /// </summary>
-        [DataMember(Name = "street", EmitDefaultValue = false)]
+        [DataMember(Name = "street", IsRequired = true, EmitDefaultValue = true)]
         public string Street { get; set; }
 
         /// <summary>
         /// Gets or Sets City
         /// </summary>
-        [DataMember(Name = "city", EmitDefaultValue = false)]
+        [DataMember(Name = "city", IsRequired = true, EmitDefaultValue = true)]
         public string City { get; set; }
 
         /// <summary>
         /// Gets or Sets State
         /// </summary>
-        [DataMember(Name = "state", EmitDefaultValue = false)]
+        [DataMember(Name = "state", IsRequired = true, EmitDefaultValue = true)]
         public string State { get; set; }
 
         /// <summary>
         /// Gets or Sets PostalCode
         /// </summary>
-        [DataMember(Name = "postalCode", EmitDefaultValue = false)]
+        [DataMember(Name = "postalCode", IsRequired = true, EmitDefaultValue = true)]
         public string PostalCode { get; set; }
 
         /// <summary>
@@ -364,9 +390,10 @@ namespace Zernio.Model
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or Sets Website
+        /// The brand&#39;s website (sole proprietors may use a social profile such as LinkedIn or a business Facebook page). Carriers verify the brand against it; a bare domain is normalized to https://.
         /// </summary>
-        [DataMember(Name = "website", EmitDefaultValue = false)]
+        /// <value>The brand&#39;s website (sole proprietors may use a social profile such as LinkedIn or a business Facebook page). Carriers verify the brand against it; a bare domain is normalized to https://.</value>
+        [DataMember(Name = "website", IsRequired = true, EmitDefaultValue = true)]
         public string Website { get; set; }
 
         /// <summary>

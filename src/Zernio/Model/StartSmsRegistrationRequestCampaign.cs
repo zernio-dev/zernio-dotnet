@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Required for 10DLC. What you&#39;ll send and how recipients opt in/out.
+    /// Required for 10DLC. What you&#39;ll send and how recipients opt in/out. Opt-in/opt-out/help auto-responses must name the registered brand and carry the carrier-required disclosures; submissions that don&#39;t (or that are blank) are automatically rewritten to a compliant, brand-named template before the campaign is filed. 
     /// </summary>
     [DataContract(Name = "startSmsRegistration_request_campaign")]
     public partial class StartSmsRegistrationRequestCampaign : IValidatableObject
@@ -45,7 +45,7 @@ namespace Zernio.Model
         /// <param name="description">description (required).</param>
         /// <param name="messageFlow">How a recipient ends up receiving your messages (the opt-in flow). (required).</param>
         /// <param name="sample1">sample1 (required).</param>
-        /// <param name="sample2">sample2.</param>
+        /// <param name="sample2">Second example message; carriers require two distinct samples (required).</param>
         /// <param name="helpMessage">helpMessage (required).</param>
         /// <param name="optinKeywords">optinKeywords (required).</param>
         /// <param name="optinMessage">optinMessage (required).</param>
@@ -83,6 +83,12 @@ namespace Zernio.Model
                 throw new ArgumentNullException("sample1 is a required property for StartSmsRegistrationRequestCampaign and cannot be null");
             }
             this.Sample1 = sample1;
+            // to ensure "sample2" is required (not null)
+            if (sample2 == null)
+            {
+                throw new ArgumentNullException("sample2 is a required property for StartSmsRegistrationRequestCampaign and cannot be null");
+            }
+            this.Sample2 = sample2;
             // to ensure "helpMessage" is required (not null)
             if (helpMessage == null)
             {
@@ -119,7 +125,6 @@ namespace Zernio.Model
                 throw new ArgumentNullException("helpKeywords is a required property for StartSmsRegistrationRequestCampaign and cannot be null");
             }
             this.HelpKeywords = helpKeywords;
-            this.Sample2 = sample2;
             this.EmbeddedLink = embeddedLink;
             this.EmbeddedPhone = embeddedPhone;
             this.NumberPool = numberPool;
@@ -153,9 +158,10 @@ namespace Zernio.Model
         public string Sample1 { get; set; }
 
         /// <summary>
-        /// Gets or Sets Sample2
+        /// Second example message; carriers require two distinct samples
         /// </summary>
-        [DataMember(Name = "sample2", EmitDefaultValue = false)]
+        /// <value>Second example message; carriers require two distinct samples</value>
+        [DataMember(Name = "sample2", IsRequired = true, EmitDefaultValue = true)]
         public string Sample2 { get; set; }
 
         /// <summary>
@@ -296,6 +302,12 @@ namespace Zernio.Model
             if (this.Sample1 != null && this.Sample1.Length < 20)
             {
                 yield return new ValidationResult("Invalid value for Sample1, length must be greater than 20.", new [] { "Sample1" });
+            }
+
+            // Sample2 (string) minLength
+            if (this.Sample2 != null && this.Sample2.Length < 20)
+            {
+                yield return new ValidationResult("Invalid value for Sample2, length must be greater than 20.", new [] { "Sample2" });
             }
 
             // HelpMessage (string) maxLength
