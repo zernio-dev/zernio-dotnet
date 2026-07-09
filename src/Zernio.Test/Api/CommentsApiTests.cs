@@ -69,6 +69,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test EditInboxComment
+        /// </summary>
+        [Fact]
+        public void EditInboxCommentTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string postId = null;
+            //string commentId = null;
+            //EditInboxCommentRequest editInboxCommentRequest = null;
+            //var response = instance.EditInboxComment(postId, commentId, editInboxCommentRequest);
+            //Assert.IsType<EditInboxComment200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetInboxPostComments
         /// </summary>
         [Fact]
@@ -158,6 +172,20 @@ namespace Zernio.Test.Api
             //SendPrivateReplyToCommentRequest sendPrivateReplyToCommentRequest = null;
             //var response = instance.SendPrivateReplyToComment(postId, commentId, sendPrivateReplyToCommentRequest);
             //Assert.IsType<SendPrivateReplyToComment200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SetCommentModeration
+        /// </summary>
+        [Fact]
+        public void SetCommentModerationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string postId = null;
+            //string commentId = null;
+            //SetCommentModerationRequest setCommentModerationRequest = null;
+            //var response = instance.SetCommentModeration(postId, commentId, setCommentModerationRequest);
+            //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
         }
 
         /// <summary>

@@ -69,5 +69,17 @@ namespace Zernio.Test.Api
             //var response = instance.ListInboxMentions(accountId, profileId, sortOrder, limit, cursor);
             //Assert.IsType<ListInboxMentions200Response>(response);
         }
+
+        /// <summary>
+        /// Test ReplyToMention
+        /// </summary>
+        [Fact]
+        public void ReplyToMentionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //ReplyToMentionRequest replyToMentionRequest = null;
+            //var response = instance.ReplyToMention(replyToMentionRequest);
+            //Assert.IsType<ReplyToMention200Response>(response);
+        }
     }
 }

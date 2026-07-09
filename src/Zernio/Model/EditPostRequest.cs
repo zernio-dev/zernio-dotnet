@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class EditPostRequest : IValidatableObject
     {
         /// <summary>
-        /// The platform to edit the post on. Currently only twitter is supported.
+        /// The platform to edit the post on.
         /// </summary>
-        /// <value>The platform to edit the post on. Currently only twitter is supported.</value>
+        /// <value>The platform to edit the post on.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PlatformEnum
         {
@@ -44,14 +44,32 @@ namespace Zernio.Model
             /// Enum Twitter for value: twitter
             /// </summary>
             [EnumMember(Value = "twitter")]
-            Twitter = 1
+            Twitter = 1,
+
+            /// <summary>
+            /// Enum Discord for value: discord
+            /// </summary>
+            [EnumMember(Value = "discord")]
+            Discord = 2,
+
+            /// <summary>
+            /// Enum Facebook for value: facebook
+            /// </summary>
+            [EnumMember(Value = "facebook")]
+            Facebook = 3,
+
+            /// <summary>
+            /// Enum Reddit for value: reddit
+            /// </summary>
+            [EnumMember(Value = "reddit")]
+            Reddit = 4
         }
 
 
         /// <summary>
-        /// The platform to edit the post on. Currently only twitter is supported.
+        /// The platform to edit the post on.
         /// </summary>
-        /// <value>The platform to edit the post on. Currently only twitter is supported.</value>
+        /// <value>The platform to edit the post on.</value>
         [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
         public PlatformEnum Platform { get; set; }
         /// <summary>
@@ -62,8 +80,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EditPostRequest" /> class.
         /// </summary>
-        /// <param name="platform">The platform to edit the post on. Currently only twitter is supported. (required).</param>
-        /// <param name="content">The new tweet text content (required).</param>
+        /// <param name="platform">The platform to edit the post on. (required).</param>
+        /// <param name="content">The new post text content (required).</param>
         public EditPostRequest(PlatformEnum platform = default, string content = default)
         {
             this.Platform = platform;
@@ -76,9 +94,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// The new tweet text content
+        /// The new post text content
         /// </summary>
-        /// <value>The new tweet text content</value>
+        /// <value>The new post text content</value>
         [DataMember(Name = "content", IsRequired = true, EmitDefaultValue = true)]
         public string Content { get; set; }
 

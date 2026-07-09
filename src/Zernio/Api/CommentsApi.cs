@@ -54,6 +54,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of DeleteInboxComment200Response</returns>
         ApiResponse<DeleteInboxComment200Response> DeleteInboxCommentWithHttpInfo(string postId, string accountId, string commentId);
         /// <summary>
+        /// Edit comment
+        /// </summary>
+        /// <remarks>
+        /// Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="editInboxCommentRequest"></param>
+        /// <returns>EditInboxComment200Response</returns>
+        EditInboxComment200Response EditInboxComment(string postId, string commentId, EditInboxCommentRequest editInboxCommentRequest);
+
+        /// <summary>
+        /// Edit comment
+        /// </summary>
+        /// <remarks>
+        /// Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="editInboxCommentRequest"></param>
+        /// <returns>ApiResponse of EditInboxComment200Response</returns>
+        ApiResponse<EditInboxComment200Response> EditInboxCommentWithHttpInfo(string postId, string commentId, EditInboxCommentRequest editInboxCommentRequest);
+        /// <summary>
         /// Get post comments
         /// </summary>
         /// <remarks>
@@ -220,6 +245,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of SendPrivateReplyToComment200Response</returns>
         ApiResponse<SendPrivateReplyToComment200Response> SendPrivateReplyToCommentWithHttpInfo(string postId, string commentId, SendPrivateReplyToCommentRequest sendPrivateReplyToCommentRequest);
         /// <summary>
+        /// Set comment moderation status
+        /// </summary>
+        /// <remarks>
+        /// Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="setCommentModerationRequest"></param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response SetCommentModeration(string postId, string commentId, SetCommentModerationRequest setCommentModerationRequest);
+
+        /// <summary>
+        /// Set comment moderation status
+        /// </summary>
+        /// <remarks>
+        /// Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="setCommentModerationRequest"></param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> SetCommentModerationWithHttpInfo(string postId, string commentId, SetCommentModerationRequest setCommentModerationRequest);
+        /// <summary>
         /// Unhide comment
         /// </summary>
         /// <remarks>
@@ -307,6 +357,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteInboxComment200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteInboxComment200Response>> DeleteInboxCommentWithHttpInfoAsync(string postId, string accountId, string commentId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Edit comment
+        /// </summary>
+        /// <remarks>
+        /// Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="editInboxCommentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of EditInboxComment200Response</returns>
+        System.Threading.Tasks.Task<EditInboxComment200Response> EditInboxCommentAsync(string postId, string commentId, EditInboxCommentRequest editInboxCommentRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Edit comment
+        /// </summary>
+        /// <remarks>
+        /// Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="editInboxCommentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (EditInboxComment200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<EditInboxComment200Response>> EditInboxCommentWithHttpInfoAsync(string postId, string commentId, EditInboxCommentRequest editInboxCommentRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get post comments
         /// </summary>
@@ -485,6 +562,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SendPrivateReplyToComment200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SendPrivateReplyToComment200Response>> SendPrivateReplyToCommentWithHttpInfoAsync(string postId, string commentId, SendPrivateReplyToCommentRequest sendPrivateReplyToCommentRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Set comment moderation status
+        /// </summary>
+        /// <remarks>
+        /// Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="setCommentModerationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> SetCommentModerationAsync(string postId, string commentId, SetCommentModerationRequest setCommentModerationRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Set comment moderation status
+        /// </summary>
+        /// <remarks>
+        /// Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="setCommentModerationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> SetCommentModerationWithHttpInfoAsync(string postId, string commentId, SetCommentModerationRequest setCommentModerationRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Unhide comment
         /// </summary>
@@ -903,6 +1007,163 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteInboxComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Edit comment Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="editInboxCommentRequest"></param>
+        /// <returns>EditInboxComment200Response</returns>
+        public EditInboxComment200Response EditInboxComment(string postId, string commentId, EditInboxCommentRequest editInboxCommentRequest)
+        {
+            Zernio.Client.ApiResponse<EditInboxComment200Response> localVarResponse = EditInboxCommentWithHttpInfo(postId, commentId, editInboxCommentRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Edit comment Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="editInboxCommentRequest"></param>
+        /// <returns>ApiResponse of EditInboxComment200Response</returns>
+        public Zernio.Client.ApiResponse<EditInboxComment200Response> EditInboxCommentWithHttpInfo(string postId, string commentId, EditInboxCommentRequest editInboxCommentRequest)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->EditInboxComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling CommentsApi->EditInboxComment");
+
+            // verify the required parameter 'editInboxCommentRequest' is set
+            if (editInboxCommentRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'editInboxCommentRequest' when calling CommentsApi->EditInboxComment");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            localVarRequestOptions.Data = editInboxCommentRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<EditInboxComment200Response>("/v1/inbox/comments/{postId}/{commentId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EditInboxComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Edit comment Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="editInboxCommentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of EditInboxComment200Response</returns>
+        public async System.Threading.Tasks.Task<EditInboxComment200Response> EditInboxCommentAsync(string postId, string commentId, EditInboxCommentRequest editInboxCommentRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<EditInboxComment200Response> localVarResponse = await EditInboxCommentWithHttpInfoAsync(postId, commentId, editInboxCommentRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Edit comment Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="editInboxCommentRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (EditInboxComment200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<EditInboxComment200Response>> EditInboxCommentWithHttpInfoAsync(string postId, string commentId, EditInboxCommentRequest editInboxCommentRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->EditInboxComment");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling CommentsApi->EditInboxComment");
+
+            // verify the required parameter 'editInboxCommentRequest' is set
+            if (editInboxCommentRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'editInboxCommentRequest' when calling CommentsApi->EditInboxComment");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            localVarRequestOptions.Data = editInboxCommentRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<EditInboxComment200Response>("/v1/inbox/comments/{postId}/{commentId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EditInboxComment", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1927,6 +2188,163 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("SendPrivateReplyToComment", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set comment moderation status Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="setCommentModerationRequest"></param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response SetCommentModeration(string postId, string commentId, SetCommentModerationRequest setCommentModerationRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = SetCommentModerationWithHttpInfo(postId, commentId, setCommentModerationRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set comment moderation status Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="setCommentModerationRequest"></param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> SetCommentModerationWithHttpInfo(string postId, string commentId, SetCommentModerationRequest setCommentModerationRequest)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->SetCommentModeration");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling CommentsApi->SetCommentModeration");
+
+            // verify the required parameter 'setCommentModerationRequest' is set
+            if (setCommentModerationRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setCommentModerationRequest' when calling CommentsApi->SetCommentModeration");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            localVarRequestOptions.Data = setCommentModerationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/comments/{postId}/{commentId}/moderation", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetCommentModeration", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set comment moderation status Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="setCommentModerationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> SetCommentModerationAsync(string postId, string commentId, SetCommentModerationRequest setCommentModerationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await SetCommentModerationWithHttpInfoAsync(postId, commentId, setCommentModerationRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set comment moderation status Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="postId"></param>
+        /// <param name="commentId"></param>
+        /// <param name="setCommentModerationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> SetCommentModerationWithHttpInfoAsync(string postId, string commentId, SetCommentModerationRequest setCommentModerationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling CommentsApi->SetCommentModeration");
+
+            // verify the required parameter 'commentId' is set
+            if (commentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'commentId' when calling CommentsApi->SetCommentModeration");
+
+            // verify the required parameter 'setCommentModerationRequest' is set
+            if (setCommentModerationRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setCommentModerationRequest' when calling CommentsApi->SetCommentModeration");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("postId", Zernio.Client.ClientUtils.ParameterToString(postId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("commentId", Zernio.Client.ClientUtils.ParameterToString(commentId)); // path parameter
+            localVarRequestOptions.Data = setCommentModerationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/inbox/comments/{postId}/{commentId}/moderation", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetCommentModeration", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

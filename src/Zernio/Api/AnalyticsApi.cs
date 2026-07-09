@@ -186,6 +186,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of InstagramAccountInsightsResponse</returns>
         ApiResponse<InstagramAccountInsightsResponse> GetFacebookPageInsightsWithHttpInfo(string accountId, string? metrics = default, DateOnly? since = default, DateOnly? until = default, string? metricType = default);
         /// <summary>
+        /// Get Facebook post reactions
+        /// </summary>
+        /// <remarks>
+        /// Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Facebook Page account</param>
+        /// <param name="postId">The Facebook post ID</param>
+        /// <returns>GetFacebookPostReactions200Response</returns>
+        GetFacebookPostReactions200Response GetFacebookPostReactions(string accountId, string postId);
+
+        /// <summary>
+        /// Get Facebook post reactions
+        /// </summary>
+        /// <remarks>
+        /// Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Facebook Page account</param>
+        /// <param name="postId">The Facebook post ID</param>
+        /// <returns>ApiResponse of GetFacebookPostReactions200Response</returns>
+        ApiResponse<GetFacebookPostReactions200Response> GetFacebookPostReactionsWithHttpInfo(string accountId, string postId);
+        /// <summary>
         /// Get follower stats
         /// </summary>
         /// <remarks>
@@ -849,6 +872,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (InstagramAccountInsightsResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<InstagramAccountInsightsResponse>> GetFacebookPageInsightsWithHttpInfoAsync(string accountId, string? metrics = default, DateOnly? since = default, DateOnly? until = default, string? metricType = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get Facebook post reactions
+        /// </summary>
+        /// <remarks>
+        /// Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Facebook Page account</param>
+        /// <param name="postId">The Facebook post ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetFacebookPostReactions200Response</returns>
+        System.Threading.Tasks.Task<GetFacebookPostReactions200Response> GetFacebookPostReactionsAsync(string accountId, string postId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get Facebook post reactions
+        /// </summary>
+        /// <remarks>
+        /// Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Facebook Page account</param>
+        /// <param name="postId">The Facebook post ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetFacebookPostReactions200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetFacebookPostReactions200Response>> GetFacebookPostReactionsWithHttpInfoAsync(string accountId, string postId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get follower stats
         /// </summary>
@@ -2519,6 +2567,147 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetFacebookPageInsights", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Facebook post reactions Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Facebook Page account</param>
+        /// <param name="postId">The Facebook post ID</param>
+        /// <returns>GetFacebookPostReactions200Response</returns>
+        public GetFacebookPostReactions200Response GetFacebookPostReactions(string accountId, string postId)
+        {
+            Zernio.Client.ApiResponse<GetFacebookPostReactions200Response> localVarResponse = GetFacebookPostReactionsWithHttpInfo(accountId, postId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Facebook post reactions Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Facebook Page account</param>
+        /// <param name="postId">The Facebook post ID</param>
+        /// <returns>ApiResponse of GetFacebookPostReactions200Response</returns>
+        public Zernio.Client.ApiResponse<GetFacebookPostReactions200Response> GetFacebookPostReactionsWithHttpInfo(string accountId, string postId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetFacebookPostReactions");
+
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling AnalyticsApi->GetFacebookPostReactions");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "postId", postId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetFacebookPostReactions200Response>("/v1/accounts/{accountId}/facebook-post-reactions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetFacebookPostReactions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Facebook post reactions Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Facebook Page account</param>
+        /// <param name="postId">The Facebook post ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetFacebookPostReactions200Response</returns>
+        public async System.Threading.Tasks.Task<GetFacebookPostReactions200Response> GetFacebookPostReactionsAsync(string accountId, string postId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetFacebookPostReactions200Response> localVarResponse = await GetFacebookPostReactionsWithHttpInfoAsync(accountId, postId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Facebook post reactions Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Facebook Page account</param>
+        /// <param name="postId">The Facebook post ID</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetFacebookPostReactions200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetFacebookPostReactions200Response>> GetFacebookPostReactionsWithHttpInfoAsync(string accountId, string postId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AnalyticsApi->GetFacebookPostReactions");
+
+            // verify the required parameter 'postId' is set
+            if (postId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'postId' when calling AnalyticsApi->GetFacebookPostReactions");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "postId", postId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetFacebookPostReactions200Response>("/v1/accounts/{accountId}/facebook-post-reactions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetFacebookPostReactions", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

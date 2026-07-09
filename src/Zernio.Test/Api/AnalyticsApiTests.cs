@@ -141,6 +141,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetFacebookPostReactions
+        /// </summary>
+        [Fact]
+        public void GetFacebookPostReactionsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string postId = null;
+            //var response = instance.GetFacebookPostReactions(accountId, postId);
+            //Assert.IsType<GetFacebookPostReactions200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetFollowerStats
         /// </summary>
         [Fact]

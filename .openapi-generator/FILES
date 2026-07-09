@@ -168,12 +168,17 @@ docs/CreateCtwaAdRequestVideo.md
 docs/CreateCtwaAdRequestZipsInner.md
 docs/CreateCustomField200Response.md
 docs/CreateCustomFieldRequest.md
+docs/CreateDiscordGuildRole201Response.md
+docs/CreateDiscordGuildRoleRequest.md
 docs/CreateDiscordScheduledEvent200Response.md
 docs/CreateDiscordScheduledEventRequest.md
 docs/CreateDiscordScheduledEventRequestEntity.md
 docs/CreateDiscordScheduledEventRequestEntityOneOf.md
 docs/CreateDiscordScheduledEventRequestEntityOneOf1.md
 docs/CreateDiscordScheduledEventRequestEntityOneOf2.md
+docs/CreateDiscordThread200Response.md
+docs/CreateDiscordThread200ResponseData.md
+docs/CreateDiscordThreadRequest.md
 docs/CreateGoogleBusinessMedia200Response.md
 docs/CreateGoogleBusinessMediaRequest.md
 docs/CreateGoogleBusinessPlaceAction200Response.md
@@ -262,6 +267,7 @@ docs/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUrl.md
 docs/CreateWorkflow200Response.md
 docs/CreateWorkflow200ResponseWorkflow.md
 docs/CreateWorkflowRequest.md
+docs/CrosspostDiscordMessage200Response.md
 docs/CtwaMultiResponse.md
 docs/CtwaSingleResponse.md
 docs/CustomFieldsApi.md
@@ -291,6 +297,7 @@ docs/DiscordPlatformDataPollAnswersInner.md
 docs/DiscordPlatformDataPollAnswersInnerPollMedia.md
 docs/DiscordPlatformDataPollQuestion.md
 docs/DiscordPlatformDataThreadFromMessage.md
+docs/DiscordRole.md
 docs/DiscordScheduledEvent.md
 docs/DiscordScheduledEventEntityMetadata.md
 docs/DmButton.md
@@ -298,6 +305,9 @@ docs/DuplicateAdCampaign200Response.md
 docs/DuplicateAdCampaignRequest.md
 docs/DuplicateWorkflow201Response.md
 docs/DuplicateWorkflow201ResponseWorkflow.md
+docs/EditDiscordGuildRoleRequest.md
+docs/EditInboxComment200Response.md
+docs/EditInboxCommentRequest.md
 docs/EditInboxMessage200Response.md
 docs/EditInboxMessage200ResponseData.md
 docs/EditInboxMessageRequest.md
@@ -415,6 +425,8 @@ docs/GetDiscordSettings200Response.md
 docs/GetDiscordSettings200ResponseAccount.md
 docs/GetFacebookPages200Response.md
 docs/GetFacebookPages200ResponsePagesInner.md
+docs/GetFacebookPostReactions200Response.md
+docs/GetFacebookPostReactions200ResponseBreakdown.md
 docs/GetFollowerStats403Response.md
 docs/GetGmbAttributeMetadata200Response.md
 docs/GetGmbAttributeMetadata200ResponseAttributeMetadataInner.md
@@ -501,6 +513,7 @@ docs/GetInboxVolume200ResponseSummary.md
 docs/GetInboxVolume200ResponseTimeseriesInner.md
 docs/GetInboxVolume400Response.md
 docs/GetInstagramAccountInsights404Response.md
+docs/GetInstagramPublishingLimit200Response.md
 docs/GetInstagramStoryInsights200Response.md
 docs/GetInstagramStoryInsights200ResponseData.md
 docs/GetInstagramStoryInsights200ResponseDataMetrics.md
@@ -555,6 +568,8 @@ docs/GetSmsRegistration200Response.md
 docs/GetSmsUsage200Response.md
 docs/GetSmsUsage200ResponseGroupsInner.md
 docs/GetSmsUsage200ResponseTotals.md
+docs/GetSubredditRules200Response.md
+docs/GetSubredditRules200ResponseRulesInner.md
 docs/GetTelegramCommands200Response.md
 docs/GetTelegramCommands200ResponseDataInner.md
 docs/GetTelegramConnectStatus200Response.md
@@ -908,6 +923,8 @@ docs/ReplyToInboxPost200ResponseData.md
 docs/ReplyToInboxPostRequest.md
 docs/ReplyToInboxReview200Response.md
 docs/ReplyToInboxReviewRequest.md
+docs/ReplyToMention200Response.md
+docs/ReplyToMentionRequest.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
 docs/RetweetPost200Response.md
@@ -1028,10 +1045,12 @@ docs/SendWhatsAppFlowMessageRequest.md
 docs/SendWhatsAppFlowMessageRequestFlowActionPayload.md
 docs/SendWhatsAppFlowMessageRequestHeader.md
 docs/SequencesApi.md
+docs/SetCommentModerationRequest.md
 docs/SetContactFieldValueRequest.md
 docs/SetInstagramIceBreakersRequest.md
 docs/SetInstagramIceBreakersRequestIceBreakersInner.md
 docs/SetMessengerMenuRequest.md
+docs/SetRedditPostFlairRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
 docs/SetWhatsappBusinessUsername200Response.md
@@ -1250,6 +1269,7 @@ docs/ValidateSubreddit200ResponseOneOfSubreddit.md
 docs/VerifySmsRegistrationOtp200Response.md
 docs/VerifySmsRegistrationOtpRequest.md
 docs/VoiceApi.md
+docs/VoteRedditThingRequest.md
 docs/Webhook.md
 docs/WebhookEventsApi.md
 docs/WebhookLog.md
@@ -1568,12 +1588,17 @@ src/Zernio.Test/Model/CreateCtwaAdRequestVideoTests.cs
 src/Zernio.Test/Model/CreateCtwaAdRequestZipsInnerTests.cs
 src/Zernio.Test/Model/CreateCustomField200ResponseTests.cs
 src/Zernio.Test/Model/CreateCustomFieldRequestTests.cs
+src/Zernio.Test/Model/CreateDiscordGuildRole201ResponseTests.cs
+src/Zernio.Test/Model/CreateDiscordGuildRoleRequestTests.cs
 src/Zernio.Test/Model/CreateDiscordScheduledEvent200ResponseTests.cs
 src/Zernio.Test/Model/CreateDiscordScheduledEventRequestEntityOneOf1Tests.cs
 src/Zernio.Test/Model/CreateDiscordScheduledEventRequestEntityOneOf2Tests.cs
 src/Zernio.Test/Model/CreateDiscordScheduledEventRequestEntityOneOfTests.cs
 src/Zernio.Test/Model/CreateDiscordScheduledEventRequestEntityTests.cs
 src/Zernio.Test/Model/CreateDiscordScheduledEventRequestTests.cs
+src/Zernio.Test/Model/CreateDiscordThread200ResponseDataTests.cs
+src/Zernio.Test/Model/CreateDiscordThread200ResponseTests.cs
+src/Zernio.Test/Model/CreateDiscordThreadRequestTests.cs
 src/Zernio.Test/Model/CreateGoogleBusinessMedia200ResponseTests.cs
 src/Zernio.Test/Model/CreateGoogleBusinessMediaRequestTests.cs
 src/Zernio.Test/Model/CreateGoogleBusinessPlaceAction200ResponseTests.cs
@@ -1662,6 +1687,7 @@ src/Zernio.Test/Model/CreateWhatsAppTemplateRequestTests.cs
 src/Zernio.Test/Model/CreateWorkflow200ResponseTests.cs
 src/Zernio.Test/Model/CreateWorkflow200ResponseWorkflowTests.cs
 src/Zernio.Test/Model/CreateWorkflowRequestTests.cs
+src/Zernio.Test/Model/CrosspostDiscordMessage200ResponseTests.cs
 src/Zernio.Test/Model/CtwaMultiResponseTests.cs
 src/Zernio.Test/Model/CtwaSingleResponseTests.cs
 src/Zernio.Test/Model/DeleteAccountGroup200ResponseTests.cs
@@ -1689,6 +1715,7 @@ src/Zernio.Test/Model/DiscordPlatformDataPollQuestionTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataPollTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataTests.cs
 src/Zernio.Test/Model/DiscordPlatformDataThreadFromMessageTests.cs
+src/Zernio.Test/Model/DiscordRoleTests.cs
 src/Zernio.Test/Model/DiscordScheduledEventEntityMetadataTests.cs
 src/Zernio.Test/Model/DiscordScheduledEventTests.cs
 src/Zernio.Test/Model/DmButtonTests.cs
@@ -1696,6 +1723,9 @@ src/Zernio.Test/Model/DuplicateAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/DuplicateAdCampaignRequestTests.cs
 src/Zernio.Test/Model/DuplicateWorkflow201ResponseTests.cs
 src/Zernio.Test/Model/DuplicateWorkflow201ResponseWorkflowTests.cs
+src/Zernio.Test/Model/EditDiscordGuildRoleRequestTests.cs
+src/Zernio.Test/Model/EditInboxComment200ResponseTests.cs
+src/Zernio.Test/Model/EditInboxCommentRequestTests.cs
 src/Zernio.Test/Model/EditInboxMessage200ResponseDataTests.cs
 src/Zernio.Test/Model/EditInboxMessage200ResponseTests.cs
 src/Zernio.Test/Model/EditInboxMessageRequestReplyMarkupKeyboardInnerInnerTests.cs
@@ -1805,6 +1835,8 @@ src/Zernio.Test/Model/GetDiscordSettings200ResponseAccountTests.cs
 src/Zernio.Test/Model/GetDiscordSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/GetFacebookPages200ResponseTests.cs
+src/Zernio.Test/Model/GetFacebookPostReactions200ResponseBreakdownTests.cs
+src/Zernio.Test/Model/GetFacebookPostReactions200ResponseTests.cs
 src/Zernio.Test/Model/GetFollowerStats403ResponseTests.cs
 src/Zernio.Test/Model/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerTests.cs
 src/Zernio.Test/Model/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInnerTests.cs
@@ -1891,6 +1923,7 @@ src/Zernio.Test/Model/GetInboxVolume200ResponseTests.cs
 src/Zernio.Test/Model/GetInboxVolume200ResponseTimeseriesInnerTests.cs
 src/Zernio.Test/Model/GetInboxVolume400ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramAccountInsights404ResponseTests.cs
+src/Zernio.Test/Model/GetInstagramPublishingLimit200ResponseTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataMetricsTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseDataTests.cs
 src/Zernio.Test/Model/GetInstagramStoryInsights200ResponseTests.cs
@@ -1945,6 +1978,8 @@ src/Zernio.Test/Model/GetSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseGroupsInnerTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseTotalsTests.cs
+src/Zernio.Test/Model/GetSubredditRules200ResponseRulesInnerTests.cs
+src/Zernio.Test/Model/GetSubredditRules200ResponseTests.cs
 src/Zernio.Test/Model/GetTelegramCommands200ResponseDataInnerTests.cs
 src/Zernio.Test/Model/GetTelegramCommands200ResponseTests.cs
 src/Zernio.Test/Model/GetTelegramConnectStatus200ResponseTests.cs
@@ -2285,6 +2320,8 @@ src/Zernio.Test/Model/ReplyToInboxPost200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToInboxPostRequestTests.cs
 src/Zernio.Test/Model/ReplyToInboxReview200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToInboxReviewRequestTests.cs
+src/Zernio.Test/Model/ReplyToMention200ResponseTests.cs
+src/Zernio.Test/Model/ReplyToMentionRequestTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseWorkflowTests.cs
 src/Zernio.Test/Model/RetweetPost200ResponseTests.cs
@@ -2402,10 +2439,12 @@ src/Zernio.Test/Model/SendWhatsAppFlowMessage200ResponseTests.cs
 src/Zernio.Test/Model/SendWhatsAppFlowMessageRequestFlowActionPayloadTests.cs
 src/Zernio.Test/Model/SendWhatsAppFlowMessageRequestHeaderTests.cs
 src/Zernio.Test/Model/SendWhatsAppFlowMessageRequestTests.cs
+src/Zernio.Test/Model/SetCommentModerationRequestTests.cs
 src/Zernio.Test/Model/SetContactFieldValueRequestTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestIceBreakersInnerTests.cs
 src/Zernio.Test/Model/SetInstagramIceBreakersRequestTests.cs
 src/Zernio.Test/Model/SetMessengerMenuRequestTests.cs
+src/Zernio.Test/Model/SetRedditPostFlairRequestTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestCommandsInnerTests.cs
 src/Zernio.Test/Model/SetTelegramCommandsRequestTests.cs
 src/Zernio.Test/Model/SetWhatsappBusinessUsername200ResponseTests.cs
@@ -2618,6 +2657,7 @@ src/Zernio.Test/Model/ValidateSubreddit200ResponseOneOfTests.cs
 src/Zernio.Test/Model/ValidateSubreddit200ResponseTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtpRequestTests.cs
+src/Zernio.Test/Model/VoteRedditThingRequestTests.cs
 src/Zernio.Test/Model/WebhookLogTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedAccountTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedSyncTests.cs
@@ -2945,12 +2985,17 @@ src/Zernio/Model/CreateCtwaAdRequestVideo.cs
 src/Zernio/Model/CreateCtwaAdRequestZipsInner.cs
 src/Zernio/Model/CreateCustomField200Response.cs
 src/Zernio/Model/CreateCustomFieldRequest.cs
+src/Zernio/Model/CreateDiscordGuildRole201Response.cs
+src/Zernio/Model/CreateDiscordGuildRoleRequest.cs
 src/Zernio/Model/CreateDiscordScheduledEvent200Response.cs
 src/Zernio/Model/CreateDiscordScheduledEventRequest.cs
 src/Zernio/Model/CreateDiscordScheduledEventRequestEntity.cs
 src/Zernio/Model/CreateDiscordScheduledEventRequestEntityOneOf.cs
 src/Zernio/Model/CreateDiscordScheduledEventRequestEntityOneOf1.cs
 src/Zernio/Model/CreateDiscordScheduledEventRequestEntityOneOf2.cs
+src/Zernio/Model/CreateDiscordThread200Response.cs
+src/Zernio/Model/CreateDiscordThread200ResponseData.cs
+src/Zernio/Model/CreateDiscordThreadRequest.cs
 src/Zernio/Model/CreateGoogleBusinessMedia200Response.cs
 src/Zernio/Model/CreateGoogleBusinessMediaRequest.cs
 src/Zernio/Model/CreateGoogleBusinessPlaceAction200Response.cs
@@ -3039,6 +3084,7 @@ src/Zernio/Model/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUr
 src/Zernio/Model/CreateWorkflow200Response.cs
 src/Zernio/Model/CreateWorkflow200ResponseWorkflow.cs
 src/Zernio/Model/CreateWorkflowRequest.cs
+src/Zernio/Model/CrosspostDiscordMessage200Response.cs
 src/Zernio/Model/CtwaMultiResponse.cs
 src/Zernio/Model/CtwaSingleResponse.cs
 src/Zernio/Model/DeleteAccountGroup200Response.cs
@@ -3066,6 +3112,7 @@ src/Zernio/Model/DiscordPlatformDataPollAnswersInner.cs
 src/Zernio/Model/DiscordPlatformDataPollAnswersInnerPollMedia.cs
 src/Zernio/Model/DiscordPlatformDataPollQuestion.cs
 src/Zernio/Model/DiscordPlatformDataThreadFromMessage.cs
+src/Zernio/Model/DiscordRole.cs
 src/Zernio/Model/DiscordScheduledEvent.cs
 src/Zernio/Model/DiscordScheduledEventEntityMetadata.cs
 src/Zernio/Model/DmButton.cs
@@ -3073,6 +3120,9 @@ src/Zernio/Model/DuplicateAdCampaign200Response.cs
 src/Zernio/Model/DuplicateAdCampaignRequest.cs
 src/Zernio/Model/DuplicateWorkflow201Response.cs
 src/Zernio/Model/DuplicateWorkflow201ResponseWorkflow.cs
+src/Zernio/Model/EditDiscordGuildRoleRequest.cs
+src/Zernio/Model/EditInboxComment200Response.cs
+src/Zernio/Model/EditInboxCommentRequest.cs
 src/Zernio/Model/EditInboxMessage200Response.cs
 src/Zernio/Model/EditInboxMessage200ResponseData.cs
 src/Zernio/Model/EditInboxMessageRequest.cs
@@ -3182,6 +3232,8 @@ src/Zernio/Model/GetDiscordSettings200Response.cs
 src/Zernio/Model/GetDiscordSettings200ResponseAccount.cs
 src/Zernio/Model/GetFacebookPages200Response.cs
 src/Zernio/Model/GetFacebookPages200ResponsePagesInner.cs
+src/Zernio/Model/GetFacebookPostReactions200Response.cs
+src/Zernio/Model/GetFacebookPostReactions200ResponseBreakdown.cs
 src/Zernio/Model/GetFollowerStats403Response.cs
 src/Zernio/Model/GetGmbAttributeMetadata200Response.cs
 src/Zernio/Model/GetGmbAttributeMetadata200ResponseAttributeMetadataInner.cs
@@ -3268,6 +3320,7 @@ src/Zernio/Model/GetInboxVolume200ResponseSummary.cs
 src/Zernio/Model/GetInboxVolume200ResponseTimeseriesInner.cs
 src/Zernio/Model/GetInboxVolume400Response.cs
 src/Zernio/Model/GetInstagramAccountInsights404Response.cs
+src/Zernio/Model/GetInstagramPublishingLimit200Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200Response.cs
 src/Zernio/Model/GetInstagramStoryInsights200ResponseData.cs
 src/Zernio/Model/GetInstagramStoryInsights200ResponseDataMetrics.cs
@@ -3322,6 +3375,8 @@ src/Zernio/Model/GetSmsRegistration200Response.cs
 src/Zernio/Model/GetSmsUsage200Response.cs
 src/Zernio/Model/GetSmsUsage200ResponseGroupsInner.cs
 src/Zernio/Model/GetSmsUsage200ResponseTotals.cs
+src/Zernio/Model/GetSubredditRules200Response.cs
+src/Zernio/Model/GetSubredditRules200ResponseRulesInner.cs
 src/Zernio/Model/GetTelegramCommands200Response.cs
 src/Zernio/Model/GetTelegramCommands200ResponseDataInner.cs
 src/Zernio/Model/GetTelegramConnectStatus200Response.cs
@@ -3662,6 +3717,8 @@ src/Zernio/Model/ReplyToInboxPost200ResponseData.cs
 src/Zernio/Model/ReplyToInboxPostRequest.cs
 src/Zernio/Model/ReplyToInboxReview200Response.cs
 src/Zernio/Model/ReplyToInboxReviewRequest.cs
+src/Zernio/Model/ReplyToMention200Response.cs
+src/Zernio/Model/ReplyToMentionRequest.cs
 src/Zernio/Model/RestoreWorkflowVersion200Response.cs
 src/Zernio/Model/RestoreWorkflowVersion200ResponseWorkflow.cs
 src/Zernio/Model/RetweetPost200Response.cs
@@ -3779,10 +3836,12 @@ src/Zernio/Model/SendWhatsAppFlowMessage200Response.cs
 src/Zernio/Model/SendWhatsAppFlowMessageRequest.cs
 src/Zernio/Model/SendWhatsAppFlowMessageRequestFlowActionPayload.cs
 src/Zernio/Model/SendWhatsAppFlowMessageRequestHeader.cs
+src/Zernio/Model/SetCommentModerationRequest.cs
 src/Zernio/Model/SetContactFieldValueRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequest.cs
 src/Zernio/Model/SetInstagramIceBreakersRequestIceBreakersInner.cs
 src/Zernio/Model/SetMessengerMenuRequest.cs
+src/Zernio/Model/SetRedditPostFlairRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequest.cs
 src/Zernio/Model/SetTelegramCommandsRequestCommandsInner.cs
 src/Zernio/Model/SetWhatsappBusinessUsername200Response.cs
@@ -3995,6 +4054,7 @@ src/Zernio/Model/ValidateSubreddit200ResponseOneOf1.cs
 src/Zernio/Model/ValidateSubreddit200ResponseOneOfSubreddit.cs
 src/Zernio/Model/VerifySmsRegistrationOtp200Response.cs
 src/Zernio/Model/VerifySmsRegistrationOtpRequest.cs
+src/Zernio/Model/VoteRedditThingRequest.cs
 src/Zernio/Model/Webhook.cs
 src/Zernio/Model/WebhookLog.cs
 src/Zernio/Model/WebhookPayloadAccountAdsInitialSyncCompleted.cs

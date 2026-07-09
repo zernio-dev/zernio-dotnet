@@ -70,6 +70,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateDiscordGuildRole
+        /// </summary>
+        [Fact]
+        public void CreateDiscordGuildRoleTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string accountId = null;
+            //CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest = null;
+            //var response = instance.CreateDiscordGuildRole(guildId, accountId, createDiscordGuildRoleRequest);
+            //Assert.IsType<CreateDiscordGuildRole201Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateDiscordScheduledEvent
         /// </summary>
         [Fact]
@@ -80,6 +94,62 @@ namespace Zernio.Test.Api
             //CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest = null;
             //var response = instance.CreateDiscordScheduledEvent(guildId, createDiscordScheduledEventRequest);
             //Assert.IsType<CreateDiscordScheduledEvent200Response>(response);
+        }
+
+        /// <summary>
+        /// Test CreateDiscordThread
+        /// </summary>
+        [Fact]
+        public void CreateDiscordThreadTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string channelId = null;
+            //string accountId = null;
+            //CreateDiscordThreadRequest createDiscordThreadRequest = null;
+            //var response = instance.CreateDiscordThread(channelId, accountId, createDiscordThreadRequest);
+            //Assert.IsType<CreateDiscordThread200Response>(response);
+        }
+
+        /// <summary>
+        /// Test CrosspostDiscordMessage
+        /// </summary>
+        [Fact]
+        public void CrosspostDiscordMessageTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string channelId = null;
+            //string messageId = null;
+            //string accountId = null;
+            //var response = instance.CrosspostDiscordMessage(channelId, messageId, accountId);
+            //Assert.IsType<CrosspostDiscordMessage200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteDiscordGuildRole
+        /// </summary>
+        [Fact]
+        public void DeleteDiscordGuildRoleTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string roleId = null;
+            //string accountId = null;
+            //var response = instance.DeleteDiscordGuildRole(guildId, roleId, accountId);
+            //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteDiscordMessage
+        /// </summary>
+        [Fact]
+        public void DeleteDiscordMessageTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string channelId = null;
+            //string messageId = null;
+            //string accountId = null;
+            //var response = instance.DeleteDiscordMessage(channelId, messageId, accountId);
+            //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
         }
 
         /// <summary>
@@ -94,6 +164,21 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.DeleteDiscordScheduledEvent(guildId, eventId, accountId);
             //Assert.IsType<DeleteDiscordScheduledEvent200Response>(response);
+        }
+
+        /// <summary>
+        /// Test EditDiscordGuildRole
+        /// </summary>
+        [Fact]
+        public void EditDiscordGuildRoleTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string roleId = null;
+            //string accountId = null;
+            //EditDiscordGuildRoleRequest editDiscordGuildRoleRequest = null;
+            //var response = instance.EditDiscordGuildRole(guildId, roleId, accountId, editDiscordGuildRoleRequest);
+            //Assert.IsType<CreateDiscordGuildRole201Response>(response);
         }
 
         /// <summary>

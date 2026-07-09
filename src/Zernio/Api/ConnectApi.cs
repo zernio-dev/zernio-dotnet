@@ -351,6 +351,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetRedditSubreddits200Response</returns>
         ApiResponse<GetRedditSubreddits200Response> GetRedditSubredditsWithHttpInfo(string accountId);
         /// <summary>
+        /// Get subreddit rules
+        /// </summary>
+        /// <remarks>
+        /// Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account</param>
+        /// <param name="subreddit">Subreddit name (without the \&quot;r/\&quot; prefix)</param>
+        /// <returns>GetSubredditRules200Response</returns>
+        GetSubredditRules200Response GetSubredditRules(string accountId, string subreddit);
+
+        /// <summary>
+        /// Get subreddit rules
+        /// </summary>
+        /// <remarks>
+        /// Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account</param>
+        /// <param name="subreddit">Subreddit name (without the \&quot;r/\&quot; prefix)</param>
+        /// <returns>ApiResponse of GetSubredditRules200Response</returns>
+        ApiResponse<GetSubredditRules200Response> GetSubredditRulesWithHttpInfo(string accountId, string subreddit);
+        /// <summary>
         /// Generate Telegram code
         /// </summary>
         /// <remarks>
@@ -694,6 +717,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of SelectSnapchatProfile200Response</returns>
         ApiResponse<SelectSnapchatProfile200Response> SelectSnapchatProfileWithHttpInfo(SelectSnapchatProfileRequest selectSnapchatProfileRequest, string? xConnectToken = default);
         /// <summary>
+        /// Set flair on a published Reddit post
+        /// </summary>
+        /// <remarks>
+        /// Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account that owns the post</param>
+        /// <param name="setRedditPostFlairRequest"></param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response SetRedditPostFlair(string accountId, SetRedditPostFlairRequest setRedditPostFlairRequest);
+
+        /// <summary>
+        /// Set flair on a published Reddit post
+        /// </summary>
+        /// <remarks>
+        /// Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account that owns the post</param>
+        /// <param name="setRedditPostFlairRequest"></param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> SetRedditPostFlairWithHttpInfo(string accountId, SetRedditPostFlairRequest setRedditPostFlairRequest);
+        /// <summary>
         /// Update Facebook page
         /// </summary>
         /// <remarks>
@@ -831,6 +877,29 @@ namespace Zernio.Api
         /// <param name="updateYoutubeDefaultPlaylistRequest"></param>
         /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
         ApiResponse<UpdateYoutubeDefaultPlaylist200Response> UpdateYoutubeDefaultPlaylistWithHttpInfo(string accountId, UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest);
+        /// <summary>
+        /// Vote on a Reddit post or comment
+        /// </summary>
+        /// <remarks>
+        /// Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account casting the vote</param>
+        /// <param name="voteRedditThingRequest"></param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response VoteRedditThing(string accountId, VoteRedditThingRequest voteRedditThingRequest);
+
+        /// <summary>
+        /// Vote on a Reddit post or comment
+        /// </summary>
+        /// <remarks>
+        /// Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account casting the vote</param>
+        /// <param name="voteRedditThingRequest"></param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> VoteRedditThingWithHttpInfo(string accountId, VoteRedditThingRequest voteRedditThingRequest);
         #endregion Synchronous Operations
     }
 
@@ -1190,6 +1259,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetRedditSubreddits200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetRedditSubreddits200Response>> GetRedditSubredditsWithHttpInfoAsync(string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Get subreddit rules
+        /// </summary>
+        /// <remarks>
+        /// Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account</param>
+        /// <param name="subreddit">Subreddit name (without the \&quot;r/\&quot; prefix)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetSubredditRules200Response</returns>
+        System.Threading.Tasks.Task<GetSubredditRules200Response> GetSubredditRulesAsync(string accountId, string subreddit, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get subreddit rules
+        /// </summary>
+        /// <remarks>
+        /// Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account</param>
+        /// <param name="subreddit">Subreddit name (without the \&quot;r/\&quot; prefix)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetSubredditRules200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetSubredditRules200Response>> GetSubredditRulesWithHttpInfoAsync(string accountId, string subreddit, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Generate Telegram code
         /// </summary>
@@ -1564,6 +1658,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (SelectSnapchatProfile200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<SelectSnapchatProfile200Response>> SelectSnapchatProfileWithHttpInfoAsync(SelectSnapchatProfileRequest selectSnapchatProfileRequest, string? xConnectToken = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Set flair on a published Reddit post
+        /// </summary>
+        /// <remarks>
+        /// Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account that owns the post</param>
+        /// <param name="setRedditPostFlairRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> SetRedditPostFlairAsync(string accountId, SetRedditPostFlairRequest setRedditPostFlairRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Set flair on a published Reddit post
+        /// </summary>
+        /// <remarks>
+        /// Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account that owns the post</param>
+        /// <param name="setRedditPostFlairRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> SetRedditPostFlairWithHttpInfoAsync(string accountId, SetRedditPostFlairRequest setRedditPostFlairRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Update Facebook page
         /// </summary>
         /// <remarks>
@@ -1713,6 +1832,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> UpdateYoutubeDefaultPlaylistWithHttpInfoAsync(string accountId, UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Vote on a Reddit post or comment
+        /// </summary>
+        /// <remarks>
+        /// Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account casting the vote</param>
+        /// <param name="voteRedditThingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> VoteRedditThingAsync(string accountId, VoteRedditThingRequest voteRedditThingRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Vote on a Reddit post or comment
+        /// </summary>
+        /// <remarks>
+        /// Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account casting the vote</param>
+        /// <param name="voteRedditThingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> VoteRedditThingWithHttpInfoAsync(string accountId, VoteRedditThingRequest voteRedditThingRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -3887,6 +4031,147 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Get subreddit rules Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account</param>
+        /// <param name="subreddit">Subreddit name (without the \&quot;r/\&quot; prefix)</param>
+        /// <returns>GetSubredditRules200Response</returns>
+        public GetSubredditRules200Response GetSubredditRules(string accountId, string subreddit)
+        {
+            Zernio.Client.ApiResponse<GetSubredditRules200Response> localVarResponse = GetSubredditRulesWithHttpInfo(accountId, subreddit);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get subreddit rules Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account</param>
+        /// <param name="subreddit">Subreddit name (without the \&quot;r/\&quot; prefix)</param>
+        /// <returns>ApiResponse of GetSubredditRules200Response</returns>
+        public Zernio.Client.ApiResponse<GetSubredditRules200Response> GetSubredditRulesWithHttpInfo(string accountId, string subreddit)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->GetSubredditRules");
+
+            // verify the required parameter 'subreddit' is set
+            if (subreddit == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'subreddit' when calling ConnectApi->GetSubredditRules");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("subreddit", Zernio.Client.ClientUtils.ParameterToString(subreddit)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetSubredditRules200Response>("/v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetSubredditRules", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get subreddit rules Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account</param>
+        /// <param name="subreddit">Subreddit name (without the \&quot;r/\&quot; prefix)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetSubredditRules200Response</returns>
+        public async System.Threading.Tasks.Task<GetSubredditRules200Response> GetSubredditRulesAsync(string accountId, string subreddit, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetSubredditRules200Response> localVarResponse = await GetSubredditRulesWithHttpInfoAsync(accountId, subreddit, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get subreddit rules Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account</param>
+        /// <param name="subreddit">Subreddit name (without the \&quot;r/\&quot; prefix)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetSubredditRules200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetSubredditRules200Response>> GetSubredditRulesWithHttpInfoAsync(string accountId, string subreddit, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->GetSubredditRules");
+
+            // verify the required parameter 'subreddit' is set
+            if (subreddit == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'subreddit' when calling ConnectApi->GetSubredditRules");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("subreddit", Zernio.Client.ClientUtils.ParameterToString(subreddit)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetSubredditRules200Response>("/v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetSubredditRules", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Generate Telegram code Generate an access code (valid 15 minutes) for connecting a Telegram channel or group. Add the bot as admin, then send the code + @yourchannel to the bot. Poll PATCH /v1/connect/telegram to check status.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -6026,6 +6311,149 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Set flair on a published Reddit post Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account that owns the post</param>
+        /// <param name="setRedditPostFlairRequest"></param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response SetRedditPostFlair(string accountId, SetRedditPostFlairRequest setRedditPostFlairRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = SetRedditPostFlairWithHttpInfo(accountId, setRedditPostFlairRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set flair on a published Reddit post Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account that owns the post</param>
+        /// <param name="setRedditPostFlairRequest"></param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> SetRedditPostFlairWithHttpInfo(string accountId, SetRedditPostFlairRequest setRedditPostFlairRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->SetRedditPostFlair");
+
+            // verify the required parameter 'setRedditPostFlairRequest' is set
+            if (setRedditPostFlairRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setRedditPostFlairRequest' when calling ConnectApi->SetRedditPostFlair");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = setRedditPostFlairRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UpdateYoutubeDefaultPlaylist200Response>("/v1/accounts/{accountId}/reddit-flairs", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetRedditPostFlair", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set flair on a published Reddit post Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account that owns the post</param>
+        /// <param name="setRedditPostFlairRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> SetRedditPostFlairAsync(string accountId, SetRedditPostFlairRequest setRedditPostFlairRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await SetRedditPostFlairWithHttpInfoAsync(accountId, setRedditPostFlairRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Set flair on a published Reddit post Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account that owns the post</param>
+        /// <param name="setRedditPostFlairRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> SetRedditPostFlairWithHttpInfoAsync(string accountId, SetRedditPostFlairRequest setRedditPostFlairRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->SetRedditPostFlair");
+
+            // verify the required parameter 'setRedditPostFlairRequest' is set
+            if (setRedditPostFlairRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'setRedditPostFlairRequest' when calling ConnectApi->SetRedditPostFlair");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = setRedditPostFlairRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/accounts/{accountId}/reddit-flairs", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SetRedditPostFlair", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Update Facebook page Switch which Facebook Page is active for a connected account.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -6877,6 +7305,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateYoutubeDefaultPlaylist", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Vote on a Reddit post or comment Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account casting the vote</param>
+        /// <param name="voteRedditThingRequest"></param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response VoteRedditThing(string accountId, VoteRedditThingRequest voteRedditThingRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = VoteRedditThingWithHttpInfo(accountId, voteRedditThingRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Vote on a Reddit post or comment Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account casting the vote</param>
+        /// <param name="voteRedditThingRequest"></param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> VoteRedditThingWithHttpInfo(string accountId, VoteRedditThingRequest voteRedditThingRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->VoteRedditThing");
+
+            // verify the required parameter 'voteRedditThingRequest' is set
+            if (voteRedditThingRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'voteRedditThingRequest' when calling ConnectApi->VoteRedditThing");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = voteRedditThingRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UpdateYoutubeDefaultPlaylist200Response>("/v1/accounts/{accountId}/reddit-vote", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("VoteRedditThing", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Vote on a Reddit post or comment Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account casting the vote</param>
+        /// <param name="voteRedditThingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> VoteRedditThingAsync(string accountId, VoteRedditThingRequest voteRedditThingRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await VoteRedditThingWithHttpInfoAsync(accountId, voteRedditThingRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Vote on a Reddit post or comment Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The ID of the Reddit account casting the vote</param>
+        /// <param name="voteRedditThingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> VoteRedditThingWithHttpInfoAsync(string accountId, VoteRedditThingRequest voteRedditThingRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->VoteRedditThing");
+
+            // verify the required parameter 'voteRedditThingRequest' is set
+            if (voteRedditThingRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'voteRedditThingRequest' when calling ConnectApi->VoteRedditThing");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = voteRedditThingRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/accounts/{accountId}/reddit-vote", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("VoteRedditThing", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

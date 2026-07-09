@@ -37,8 +37,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="EditPost200Response" /> class.
         /// </summary>
         /// <param name="success">success.</param>
-        /// <param name="id">New tweet ID assigned by X after edit.</param>
-        /// <param name="url">URL of the edited tweet.</param>
+        /// <param name="id">The platform post ID after the edit. X assigns a new ID; Discord, Facebook, and Reddit return the original ID unchanged. .</param>
+        /// <param name="url">URL of the edited post.</param>
         /// <param name="message">message.</param>
         public EditPost200Response(bool success = default, string id = default, string url = default, string message = default)
         {
@@ -55,16 +55,16 @@ namespace Zernio.Model
         public bool Success { get; set; }
 
         /// <summary>
-        /// New tweet ID assigned by X after edit
+        /// The platform post ID after the edit. X assigns a new ID; Discord, Facebook, and Reddit return the original ID unchanged. 
         /// </summary>
-        /// <value>New tweet ID assigned by X after edit</value>
+        /// <value>The platform post ID after the edit. X assigns a new ID; Discord, Facebook, and Reddit return the original ID unchanged. </value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// URL of the edited tweet
+        /// URL of the edited post
         /// </summary>
-        /// <value>URL of the edited tweet</value>
+        /// <value>URL of the edited post</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 

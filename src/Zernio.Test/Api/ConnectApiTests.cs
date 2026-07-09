@@ -237,6 +237,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetSubredditRules
+        /// </summary>
+        [Fact]
+        public void GetSubredditRulesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string subreddit = null;
+            //var response = instance.GetSubredditRules(accountId, subreddit);
+            //Assert.IsType<GetSubredditRules200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetTelegramConnectStatus
         /// </summary>
         [Fact]
@@ -430,6 +443,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test SetRedditPostFlair
+        /// </summary>
+        [Fact]
+        public void SetRedditPostFlairTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //SetRedditPostFlairRequest setRedditPostFlairRequest = null;
+            //var response = instance.SetRedditPostFlair(accountId, setRedditPostFlairRequest);
+            //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateFacebookPage
         /// </summary>
         [Fact]
@@ -504,6 +530,19 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest = null;
             //var response = instance.UpdateYoutubeDefaultPlaylist(accountId, updateYoutubeDefaultPlaylistRequest);
+            //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
+        }
+
+        /// <summary>
+        /// Test VoteRedditThing
+        /// </summary>
+        [Fact]
+        public void VoteRedditThingTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //VoteRedditThingRequest voteRedditThingRequest = null;
+            //var response = instance.VoteRedditThing(accountId, voteRedditThingRequest);
             //Assert.IsType<UpdateYoutubeDefaultPlaylist200Response>(response);
         }
     }

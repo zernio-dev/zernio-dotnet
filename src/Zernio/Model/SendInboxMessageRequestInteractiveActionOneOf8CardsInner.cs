@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="cardIndex">Card position. Auto-filled sequentially when omitted..</param>
         /// <param name="type">&#x60;product&#x60; for a product card; media cards use &#x60;cta_url&#x60; or a quick-reply type..</param>
-        /// <param name="header">Media cards only.</param>
+        /// <param name="header">Media cards only, required. Carries the card&#39;s image or video..</param>
         /// <param name="body">Optional card body text..</param>
         /// <param name="action">Product cards: &#x60;{ catalog_id, product_retailer_id }&#x60; (required). Media cards: the card&#39;s button action (e.g. &#x60;cta_url&#x60; with &#x60;parameters.display_text&#x60; and &#x60;parameters.url&#x60;)..</param>
         public SendInboxMessageRequestInteractiveActionOneOf8CardsInner(int cardIndex = default, string type = default, Object header = default, Object body = default, Object action = default)
@@ -66,9 +66,9 @@ namespace Zernio.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Media cards only
+        /// Media cards only, required. Carries the card&#39;s image or video.
         /// </summary>
-        /// <value>Media cards only</value>
+        /// <value>Media cards only, required. Carries the card&#39;s image or video.</value>
         [DataMember(Name = "header", EmitDefaultValue = false)]
         public Object Header { get; set; }
 

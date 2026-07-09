@@ -55,6 +55,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetInstagramPublishingLimit
+        /// </summary>
+        [Fact]
+        public void GetInstagramPublishingLimitTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.GetInstagramPublishingLimit(accountId);
+            //Assert.IsType<GetInstagramPublishingLimit200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetInstagramStoryInsights
         /// </summary>
         [Fact]

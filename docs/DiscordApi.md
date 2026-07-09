@@ -5,8 +5,14 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**AddDiscordMemberRole**](DiscordApi.md#adddiscordmemberrole) | **PUT** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Assign a role to a guild member |
+| [**CreateDiscordGuildRole**](DiscordApi.md#creatediscordguildrole) | **POST** /v1/discord/guilds/{guildId}/roles | Create a Discord guild role |
 | [**CreateDiscordScheduledEvent**](DiscordApi.md#creatediscordscheduledevent) | **POST** /v1/discord/guilds/{guildId}/events | Create a Discord scheduled event |
+| [**CreateDiscordThread**](DiscordApi.md#creatediscordthread) | **POST** /v1/discord/channels/{channelId}/threads | Create a Discord public thread |
+| [**CrosspostDiscordMessage**](DiscordApi.md#crosspostdiscordmessage) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost a Discord announcement message |
+| [**DeleteDiscordGuildRole**](DiscordApi.md#deletediscordguildrole) | **DELETE** /v1/discord/guilds/{guildId}/roles/{roleId} | Delete a Discord guild role |
+| [**DeleteDiscordMessage**](DiscordApi.md#deletediscordmessage) | **DELETE** /v1/discord/channels/{channelId}/messages/{messageId} | Delete a Discord channel message |
 | [**DeleteDiscordScheduledEvent**](DiscordApi.md#deletediscordscheduledevent) | **DELETE** /v1/discord/guilds/{guildId}/events/{eventId} | Delete a Discord scheduled event |
+| [**EditDiscordGuildRole**](DiscordApi.md#editdiscordguildrole) | **PATCH** /v1/discord/guilds/{guildId}/roles/{roleId} | Edit a Discord guild role |
 | [**GetDiscordChannels**](DiscordApi.md#getdiscordchannels) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels |
 | [**GetDiscordScheduledEvent**](DiscordApi.md#getdiscordscheduledevent) | **GET** /v1/discord/guilds/{guildId}/events/{eventId} | Get a Discord scheduled event |
 | [**GetDiscordSettings**](DiscordApi.md#getdiscordsettings) | **GET** /v1/accounts/{accountId}/discord-settings | Get Discord account settings |
@@ -125,7 +131,115 @@ catch (ApiException e)
 | **400** | Validation error (malformed snowflake) or @everyone manipulation attempt. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
-| **502** | Discord rejected the request: bot lacks MANAGE_ROLES, or target role is above the bot&#39;s highest role. |  -  |
+| **403** | Discord refused the request: bot lacks MANAGE_ROLES, or target role is at or above the bot&#39;s highest role. |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="creatediscordguildrole"></a>
+# **CreateDiscordGuildRole**
+> CreateDiscordGuildRole201Response CreateDiscordGuildRole (string guildId, string accountId, CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest)
+
+Create a Discord guild role
+
+Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord's role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord's own error. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateDiscordGuildRoleExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new DiscordApi(httpClient, config, httpClientHandler);
+            var guildId = "guildId_example";  // string | Discord guild snowflake ID
+            var accountId = "accountId_example";  // string | SocialAccount _id of the Discord account bound to this guild
+            var createDiscordGuildRoleRequest = new CreateDiscordGuildRoleRequest(); // CreateDiscordGuildRoleRequest | 
+
+            try
+            {
+                // Create a Discord guild role
+                CreateDiscordGuildRole201Response result = apiInstance.CreateDiscordGuildRole(guildId, accountId, createDiscordGuildRoleRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DiscordApi.CreateDiscordGuildRole: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateDiscordGuildRoleWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a Discord guild role
+    ApiResponse<CreateDiscordGuildRole201Response> response = apiInstance.CreateDiscordGuildRoleWithHttpInfo(guildId, accountId, createDiscordGuildRoleRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DiscordApi.CreateDiscordGuildRoleWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **guildId** | **string** | Discord guild snowflake ID |  |
+| **accountId** | **string** | SocialAccount _id of the Discord account bound to this guild |  |
+| **createDiscordGuildRoleRequest** | [**CreateDiscordGuildRoleRequest**](CreateDiscordGuildRoleRequest.md) |  |  |
+
+### Return type
+
+[**CreateDiscordGuildRole201Response**](CreateDiscordGuildRole201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Role created. |  -  |
+| **400** | Invalid accountId, guildId, or role body. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Roles, or the new role would sit at or above the bot&#39;s highest role). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -233,6 +347,434 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="creatediscordthread"></a>
+# **CreateDiscordThread**
+> CreateDiscordThread200Response CreateDiscordThread (string channelId, string accountId, CreateDiscordThreadRequest createDiscordThreadRequest)
+
+Create a Discord public thread
+
+Creates a public thread in a channel. Pass `messageId` to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateDiscordThreadExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new DiscordApi(httpClient, config, httpClientHandler);
+            var channelId = "channelId_example";  // string | Discord channel snowflake ID
+            var accountId = "accountId_example";  // string | SocialAccount _id of the Discord account bound to this channel's guild
+            var createDiscordThreadRequest = new CreateDiscordThreadRequest(); // CreateDiscordThreadRequest | 
+
+            try
+            {
+                // Create a Discord public thread
+                CreateDiscordThread200Response result = apiInstance.CreateDiscordThread(channelId, accountId, createDiscordThreadRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DiscordApi.CreateDiscordThread: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateDiscordThreadWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a Discord public thread
+    ApiResponse<CreateDiscordThread200Response> response = apiInstance.CreateDiscordThreadWithHttpInfo(channelId, accountId, createDiscordThreadRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DiscordApi.CreateDiscordThreadWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **channelId** | **string** | Discord channel snowflake ID |  |
+| **accountId** | **string** | SocialAccount _id of the Discord account bound to this channel&#39;s guild |  |
+| **createDiscordThreadRequest** | [**CreateDiscordThreadRequest**](CreateDiscordThreadRequest.md) |  |  |
+
+### Return type
+
+[**CreateDiscordThread200Response**](CreateDiscordThread200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Thread created. |  -  |
+| **400** | Invalid accountId, channelId, messageId, name, or autoArchiveDuration. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
+| **403** | Discord refused the action (bot lacks Create Public Threads). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="crosspostdiscordmessage"></a>
+# **CrosspostDiscordMessage**
+> CrosspostDiscordMessage200Response CrosspostDiscordMessage (string channelId, string messageId, string accountId)
+
+Crosspost a Discord announcement message
+
+Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord's own error for this case is opaque. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CrosspostDiscordMessageExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new DiscordApi(httpClient, config, httpClientHandler);
+            var channelId = "channelId_example";  // string | Discord announcement channel snowflake ID
+            var messageId = "messageId_example";  // string | Discord message snowflake ID
+            var accountId = "accountId_example";  // string | SocialAccount _id of the Discord account bound to this channel's guild
+
+            try
+            {
+                // Crosspost a Discord announcement message
+                CrosspostDiscordMessage200Response result = apiInstance.CrosspostDiscordMessage(channelId, messageId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DiscordApi.CrosspostDiscordMessage: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CrosspostDiscordMessageWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Crosspost a Discord announcement message
+    ApiResponse<CrosspostDiscordMessage200Response> response = apiInstance.CrosspostDiscordMessageWithHttpInfo(channelId, messageId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DiscordApi.CrosspostDiscordMessageWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **channelId** | **string** | Discord announcement channel snowflake ID |  |
+| **messageId** | **string** | Discord message snowflake ID |  |
+| **accountId** | **string** | SocialAccount _id of the Discord account bound to this channel&#39;s guild |  |
+
+### Return type
+
+[**CrosspostDiscordMessage200Response**](CrosspostDiscordMessage200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Message crossposted. |  -  |
+| **400** | Invalid ids, or the channel is not an announcement channel. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
+| **403** | Discord refused the action (bot lacks the required permission). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletediscordguildrole"></a>
+# **DeleteDiscordGuildRole**
+> UpdateYoutubeDefaultPlaylist200Response DeleteDiscordGuildRole (string guildId, string roleId, string accountId)
+
+Delete a Discord guild role
+
+Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot's highest role. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteDiscordGuildRoleExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new DiscordApi(httpClient, config, httpClientHandler);
+            var guildId = "guildId_example";  // string | Discord guild snowflake ID
+            var roleId = "roleId_example";  // string | Discord role snowflake ID
+            var accountId = "accountId_example";  // string | SocialAccount _id of the Discord account bound to this guild
+
+            try
+            {
+                // Delete a Discord guild role
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.DeleteDiscordGuildRole(guildId, roleId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DiscordApi.DeleteDiscordGuildRole: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteDiscordGuildRoleWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a Discord guild role
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.DeleteDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DiscordApi.DeleteDiscordGuildRoleWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **guildId** | **string** | Discord guild snowflake ID |  |
+| **roleId** | **string** | Discord role snowflake ID |  |
+| **accountId** | **string** | SocialAccount _id of the Discord account bound to this guild |  |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Role deleted. |  -  |
+| **400** | Invalid accountId, guildId, or roleId format. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletediscordmessage"></a>
+# **DeleteDiscordMessage**
+> UpdateYoutubeDefaultPlaylist200Response DeleteDiscordMessage (string channelId, string messageId, string accountId)
+
+Delete a Discord channel message
+
+Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot's own message needs no extra permission.  Ownership is verified by resolving the channel's guild and confirming the caller owns a Discord account bound to it. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteDiscordMessageExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new DiscordApi(httpClient, config, httpClientHandler);
+            var channelId = "channelId_example";  // string | Discord channel snowflake ID
+            var messageId = "messageId_example";  // string | Discord message snowflake ID
+            var accountId = "accountId_example";  // string | SocialAccount _id of the Discord account bound to this channel's guild
+
+            try
+            {
+                // Delete a Discord channel message
+                UpdateYoutubeDefaultPlaylist200Response result = apiInstance.DeleteDiscordMessage(channelId, messageId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DiscordApi.DeleteDiscordMessage: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteDiscordMessageWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a Discord channel message
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.DeleteDiscordMessageWithHttpInfo(channelId, messageId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DiscordApi.DeleteDiscordMessageWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **channelId** | **string** | Discord channel snowflake ID |  |
+| **messageId** | **string** | Discord message snowflake ID |  |
+| **accountId** | **string** | SocialAccount _id of the Discord account bound to this channel&#39;s guild |  |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Message deleted. |  -  |
+| **400** | Invalid accountId, channelId, or messageId format. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Messages). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="deletediscordscheduledevent"></a>
 # **DeleteDiscordScheduledEvent**
 > DeleteDiscordScheduledEvent200Response DeleteDiscordScheduledEvent (string guildId, string eventId, string accountId)
@@ -335,6 +877,115 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | Event or Discord account not found. |  -  |
 | **502** | Bot lacks MANAGE_EVENTS in the guild. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="editdiscordguildrole"></a>
+# **EditDiscordGuildRole**
+> CreateDiscordGuildRole201Response EditDiscordGuildRole (string guildId, string roleId, string accountId, EditDiscordGuildRoleRequest editDiscordGuildRoleRequest)
+
+Edit a Discord guild role
+
+Updates a role's name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot's highest role. See the create-role operation for the re-invite requirement. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class EditDiscordGuildRoleExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new DiscordApi(httpClient, config, httpClientHandler);
+            var guildId = "guildId_example";  // string | Discord guild snowflake ID
+            var roleId = "roleId_example";  // string | Discord role snowflake ID
+            var accountId = "accountId_example";  // string | SocialAccount _id of the Discord account bound to this guild
+            var editDiscordGuildRoleRequest = new EditDiscordGuildRoleRequest(); // EditDiscordGuildRoleRequest | 
+
+            try
+            {
+                // Edit a Discord guild role
+                CreateDiscordGuildRole201Response result = apiInstance.EditDiscordGuildRole(guildId, roleId, accountId, editDiscordGuildRoleRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DiscordApi.EditDiscordGuildRole: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the EditDiscordGuildRoleWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Edit a Discord guild role
+    ApiResponse<CreateDiscordGuildRole201Response> response = apiInstance.EditDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId, editDiscordGuildRoleRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DiscordApi.EditDiscordGuildRoleWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **guildId** | **string** | Discord guild snowflake ID |  |
+| **roleId** | **string** | Discord role snowflake ID |  |
+| **accountId** | **string** | SocialAccount _id of the Discord account bound to this guild |  |
+| **editDiscordGuildRoleRequest** | [**EditDiscordGuildRoleRequest**](EditDiscordGuildRoleRequest.md) |  |  |
+
+### Return type
+
+[**CreateDiscordGuildRole201Response**](CreateDiscordGuildRole201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Role updated. |  -  |
+| **400** | Invalid ids, or no fields supplied to edit. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -849,7 +1500,8 @@ catch (ApiException e)
 | **400** | Invalid accountId or guildId format. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
-| **502** | Discord rejected the request (bot lacks View Channels permission in the guild). |  -  |
+| **403** | Discord refused the request (bot lacks View Channels permission in the guild). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1273,7 +1925,8 @@ catch (ApiException e)
 | **400** | Validation error. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
-| **502** | Discord rejected the request (permission or hierarchy issue). |  -  |
+| **403** | Discord refused the request (permission or hierarchy issue). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1375,7 +2028,8 @@ catch (ApiException e)
 | **400** | Validation error (missing required fields, content &gt; 2000 chars, malformed snowflake, or all of content/embeds/attachments missing). |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found or not accessible to this user. |  -  |
-| **502** | Discord rejected the message (most commonly: bot doesn&#39;t share a guild with the recipient, OR the recipient has DMs disabled). Error body contains Discord&#39;s response. |  -  |
+| **403** | Discord refused the message (most commonly: bot doesn&#39;t share a guild with the recipient, OR the recipient has DMs disabled). Error body contains Discord&#39;s response. |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1584,10 +2238,11 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event updated. |  -  |
-| **400** | Validation error, OR no updatable fields beyond accountId provided. |  -  |
+| **400** | Validation error, no updatable fields beyond accountId provided, or Discord rejected the update (invalid status transition). |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Discord refused the update (bot permissions). |  -  |
 | **404** | Event or Discord account not found. |  -  |
-| **502** | Discord rejected the update (invalid status transition, bot permissions, etc.). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

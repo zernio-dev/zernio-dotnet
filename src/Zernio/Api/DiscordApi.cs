@@ -56,6 +56,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AddDiscordMemberRole200Response</returns>
         ApiResponse<AddDiscordMemberRole200Response> AddDiscordMemberRoleWithHttpInfo(string guildId, string userId, string roleId, string accountId);
         /// <summary>
+        /// Create a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="createDiscordGuildRoleRequest"></param>
+        /// <returns>CreateDiscordGuildRole201Response</returns>
+        CreateDiscordGuildRole201Response CreateDiscordGuildRole(string guildId, string accountId, CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest);
+
+        /// <summary>
+        /// Create a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="createDiscordGuildRoleRequest"></param>
+        /// <returns>ApiResponse of CreateDiscordGuildRole201Response</returns>
+        ApiResponse<CreateDiscordGuildRole201Response> CreateDiscordGuildRoleWithHttpInfo(string guildId, string accountId, CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest);
+        /// <summary>
         /// Create a Discord scheduled event
         /// </summary>
         /// <remarks>
@@ -78,6 +103,106 @@ namespace Zernio.Api
         /// <param name="createDiscordScheduledEventRequest"></param>
         /// <returns>ApiResponse of CreateDiscordScheduledEvent200Response</returns>
         ApiResponse<CreateDiscordScheduledEvent200Response> CreateDiscordScheduledEventWithHttpInfo(string guildId, CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest);
+        /// <summary>
+        /// Create a Discord public thread
+        /// </summary>
+        /// <remarks>
+        /// Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="createDiscordThreadRequest"></param>
+        /// <returns>CreateDiscordThread200Response</returns>
+        CreateDiscordThread200Response CreateDiscordThread(string channelId, string accountId, CreateDiscordThreadRequest createDiscordThreadRequest);
+
+        /// <summary>
+        /// Create a Discord public thread
+        /// </summary>
+        /// <remarks>
+        /// Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="createDiscordThreadRequest"></param>
+        /// <returns>ApiResponse of CreateDiscordThread200Response</returns>
+        ApiResponse<CreateDiscordThread200Response> CreateDiscordThreadWithHttpInfo(string channelId, string accountId, CreateDiscordThreadRequest createDiscordThreadRequest);
+        /// <summary>
+        /// Crosspost a Discord announcement message
+        /// </summary>
+        /// <remarks>
+        /// Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord announcement channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <returns>CrosspostDiscordMessage200Response</returns>
+        CrosspostDiscordMessage200Response CrosspostDiscordMessage(string channelId, string messageId, string accountId);
+
+        /// <summary>
+        /// Crosspost a Discord announcement message
+        /// </summary>
+        /// <remarks>
+        /// Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord announcement channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <returns>ApiResponse of CrosspostDiscordMessage200Response</returns>
+        ApiResponse<CrosspostDiscordMessage200Response> CrosspostDiscordMessageWithHttpInfo(string channelId, string messageId, string accountId);
+        /// <summary>
+        /// Delete a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response DeleteDiscordGuildRole(string guildId, string roleId, string accountId);
+
+        /// <summary>
+        /// Delete a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteDiscordGuildRoleWithHttpInfo(string guildId, string roleId, string accountId);
+        /// <summary>
+        /// Delete a Discord channel message
+        /// </summary>
+        /// <remarks>
+        /// Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        UpdateYoutubeDefaultPlaylist200Response DeleteDiscordMessage(string channelId, string messageId, string accountId);
+
+        /// <summary>
+        /// Delete a Discord channel message
+        /// </summary>
+        /// <remarks>
+        /// Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteDiscordMessageWithHttpInfo(string channelId, string messageId, string accountId);
         /// <summary>
         /// Delete a Discord scheduled event
         /// </summary>
@@ -103,6 +228,33 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <returns>ApiResponse of DeleteDiscordScheduledEvent200Response</returns>
         ApiResponse<DeleteDiscordScheduledEvent200Response> DeleteDiscordScheduledEventWithHttpInfo(string guildId, string eventId, string accountId);
+        /// <summary>
+        /// Edit a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="editDiscordGuildRoleRequest"></param>
+        /// <returns>CreateDiscordGuildRole201Response</returns>
+        CreateDiscordGuildRole201Response EditDiscordGuildRole(string guildId, string roleId, string accountId, EditDiscordGuildRoleRequest editDiscordGuildRoleRequest);
+
+        /// <summary>
+        /// Edit a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="editDiscordGuildRoleRequest"></param>
+        /// <returns>ApiResponse of CreateDiscordGuildRole201Response</returns>
+        ApiResponse<CreateDiscordGuildRole201Response> EditDiscordGuildRoleWithHttpInfo(string guildId, string roleId, string accountId, EditDiscordGuildRoleRequest editDiscordGuildRoleRequest);
         /// <summary>
         /// List Discord guild channels
         /// </summary>
@@ -450,6 +602,33 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AddDiscordMemberRole200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AddDiscordMemberRole200Response>> AddDiscordMemberRoleWithHttpInfoAsync(string guildId, string userId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Create a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="createDiscordGuildRoleRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordGuildRole201Response</returns>
+        System.Threading.Tasks.Task<CreateDiscordGuildRole201Response> CreateDiscordGuildRoleAsync(string guildId, string accountId, CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="createDiscordGuildRoleRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordGuildRole201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateDiscordGuildRole201Response>> CreateDiscordGuildRoleWithHttpInfoAsync(string guildId, string accountId, CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Create a Discord scheduled event
         /// </summary>
         /// <remarks>
@@ -474,6 +653,114 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateDiscordScheduledEvent200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateDiscordScheduledEvent200Response>> CreateDiscordScheduledEventWithHttpInfoAsync(string guildId, CreateDiscordScheduledEventRequest createDiscordScheduledEventRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a Discord public thread
+        /// </summary>
+        /// <remarks>
+        /// Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="createDiscordThreadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordThread200Response</returns>
+        System.Threading.Tasks.Task<CreateDiscordThread200Response> CreateDiscordThreadAsync(string channelId, string accountId, CreateDiscordThreadRequest createDiscordThreadRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a Discord public thread
+        /// </summary>
+        /// <remarks>
+        /// Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="createDiscordThreadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordThread200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateDiscordThread200Response>> CreateDiscordThreadWithHttpInfoAsync(string channelId, string accountId, CreateDiscordThreadRequest createDiscordThreadRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Crosspost a Discord announcement message
+        /// </summary>
+        /// <remarks>
+        /// Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord announcement channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CrosspostDiscordMessage200Response</returns>
+        System.Threading.Tasks.Task<CrosspostDiscordMessage200Response> CrosspostDiscordMessageAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Crosspost a Discord announcement message
+        /// </summary>
+        /// <remarks>
+        /// Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord announcement channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CrosspostDiscordMessage200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CrosspostDiscordMessage200Response>> CrosspostDiscordMessageWithHttpInfoAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteDiscordGuildRoleAsync(string guildId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteDiscordGuildRoleWithHttpInfoAsync(string guildId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete a Discord channel message
+        /// </summary>
+        /// <remarks>
+        /// Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteDiscordMessageAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete a Discord channel message
+        /// </summary>
+        /// <remarks>
+        /// Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteDiscordMessageWithHttpInfoAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete a Discord scheduled event
         /// </summary>
@@ -501,6 +788,35 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteDiscordScheduledEvent200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteDiscordScheduledEvent200Response>> DeleteDiscordScheduledEventWithHttpInfoAsync(string guildId, string eventId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Edit a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="editDiscordGuildRoleRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordGuildRole201Response</returns>
+        System.Threading.Tasks.Task<CreateDiscordGuildRole201Response> EditDiscordGuildRoleAsync(string guildId, string roleId, string accountId, EditDiscordGuildRoleRequest editDiscordGuildRoleRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Edit a Discord guild role
+        /// </summary>
+        /// <remarks>
+        /// Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="editDiscordGuildRoleRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordGuildRole201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateDiscordGuildRole201Response>> EditDiscordGuildRoleWithHttpInfoAsync(string guildId, string roleId, string accountId, EditDiscordGuildRoleRequest editDiscordGuildRoleRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List Discord guild channels
         /// </summary>
@@ -1221,6 +1537,163 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Create a Discord guild role Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="createDiscordGuildRoleRequest"></param>
+        /// <returns>CreateDiscordGuildRole201Response</returns>
+        public CreateDiscordGuildRole201Response CreateDiscordGuildRole(string guildId, string accountId, CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordGuildRole201Response> localVarResponse = CreateDiscordGuildRoleWithHttpInfo(guildId, accountId, createDiscordGuildRoleRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Discord guild role Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="createDiscordGuildRoleRequest"></param>
+        /// <returns>ApiResponse of CreateDiscordGuildRole201Response</returns>
+        public Zernio.Client.ApiResponse<CreateDiscordGuildRole201Response> CreateDiscordGuildRoleWithHttpInfo(string guildId, string accountId, CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->CreateDiscordGuildRole");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->CreateDiscordGuildRole");
+
+            // verify the required parameter 'createDiscordGuildRoleRequest' is set
+            if (createDiscordGuildRoleRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createDiscordGuildRoleRequest' when calling DiscordApi->CreateDiscordGuildRole");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.Data = createDiscordGuildRoleRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateDiscordGuildRole201Response>("/v1/discord/guilds/{guildId}/roles", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateDiscordGuildRole", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Discord guild role Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="createDiscordGuildRoleRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordGuildRole201Response</returns>
+        public async System.Threading.Tasks.Task<CreateDiscordGuildRole201Response> CreateDiscordGuildRoleAsync(string guildId, string accountId, CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordGuildRole201Response> localVarResponse = await CreateDiscordGuildRoleWithHttpInfoAsync(guildId, accountId, createDiscordGuildRoleRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Discord guild role Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="createDiscordGuildRoleRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordGuildRole201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateDiscordGuildRole201Response>> CreateDiscordGuildRoleWithHttpInfoAsync(string guildId, string accountId, CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->CreateDiscordGuildRole");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->CreateDiscordGuildRole");
+
+            // verify the required parameter 'createDiscordGuildRoleRequest' is set
+            if (createDiscordGuildRoleRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createDiscordGuildRoleRequest' when calling DiscordApi->CreateDiscordGuildRole");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.Data = createDiscordGuildRoleRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateDiscordGuildRole201Response>("/v1/discord/guilds/{guildId}/roles", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateDiscordGuildRole", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Create a Discord scheduled event Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1357,6 +1830,628 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateDiscordScheduledEvent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Discord public thread Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="createDiscordThreadRequest"></param>
+        /// <returns>CreateDiscordThread200Response</returns>
+        public CreateDiscordThread200Response CreateDiscordThread(string channelId, string accountId, CreateDiscordThreadRequest createDiscordThreadRequest)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordThread200Response> localVarResponse = CreateDiscordThreadWithHttpInfo(channelId, accountId, createDiscordThreadRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Discord public thread Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="createDiscordThreadRequest"></param>
+        /// <returns>ApiResponse of CreateDiscordThread200Response</returns>
+        public Zernio.Client.ApiResponse<CreateDiscordThread200Response> CreateDiscordThreadWithHttpInfo(string channelId, string accountId, CreateDiscordThreadRequest createDiscordThreadRequest)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->CreateDiscordThread");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->CreateDiscordThread");
+
+            // verify the required parameter 'createDiscordThreadRequest' is set
+            if (createDiscordThreadRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createDiscordThreadRequest' when calling DiscordApi->CreateDiscordThread");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.Data = createDiscordThreadRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateDiscordThread200Response>("/v1/discord/channels/{channelId}/threads", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateDiscordThread", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Discord public thread Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="createDiscordThreadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordThread200Response</returns>
+        public async System.Threading.Tasks.Task<CreateDiscordThread200Response> CreateDiscordThreadAsync(string channelId, string accountId, CreateDiscordThreadRequest createDiscordThreadRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordThread200Response> localVarResponse = await CreateDiscordThreadWithHttpInfoAsync(channelId, accountId, createDiscordThreadRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Discord public thread Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="createDiscordThreadRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordThread200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateDiscordThread200Response>> CreateDiscordThreadWithHttpInfoAsync(string channelId, string accountId, CreateDiscordThreadRequest createDiscordThreadRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->CreateDiscordThread");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->CreateDiscordThread");
+
+            // verify the required parameter 'createDiscordThreadRequest' is set
+            if (createDiscordThreadRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createDiscordThreadRequest' when calling DiscordApi->CreateDiscordThread");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.Data = createDiscordThreadRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateDiscordThread200Response>("/v1/discord/channels/{channelId}/threads", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateDiscordThread", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Crosspost a Discord announcement message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord announcement channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <returns>CrosspostDiscordMessage200Response</returns>
+        public CrosspostDiscordMessage200Response CrosspostDiscordMessage(string channelId, string messageId, string accountId)
+        {
+            Zernio.Client.ApiResponse<CrosspostDiscordMessage200Response> localVarResponse = CrosspostDiscordMessageWithHttpInfo(channelId, messageId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Crosspost a Discord announcement message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord announcement channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <returns>ApiResponse of CrosspostDiscordMessage200Response</returns>
+        public Zernio.Client.ApiResponse<CrosspostDiscordMessage200Response> CrosspostDiscordMessageWithHttpInfo(string channelId, string messageId, string accountId)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->CrosspostDiscordMessage");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'messageId' when calling DiscordApi->CrosspostDiscordMessage");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->CrosspostDiscordMessage");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Zernio.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CrosspostDiscordMessage200Response>("/v1/discord/channels/{channelId}/messages/{messageId}/crosspost", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CrosspostDiscordMessage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Crosspost a Discord announcement message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord announcement channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CrosspostDiscordMessage200Response</returns>
+        public async System.Threading.Tasks.Task<CrosspostDiscordMessage200Response> CrosspostDiscordMessageAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CrosspostDiscordMessage200Response> localVarResponse = await CrosspostDiscordMessageWithHttpInfoAsync(channelId, messageId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Crosspost a Discord announcement message Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord announcement channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CrosspostDiscordMessage200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CrosspostDiscordMessage200Response>> CrosspostDiscordMessageWithHttpInfoAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->CrosspostDiscordMessage");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'messageId' when calling DiscordApi->CrosspostDiscordMessage");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->CrosspostDiscordMessage");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Zernio.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CrosspostDiscordMessage200Response>("/v1/discord/channels/{channelId}/messages/{messageId}/crosspost", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CrosspostDiscordMessage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a Discord guild role Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response DeleteDiscordGuildRole(string guildId, string roleId, string accountId)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = DeleteDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a Discord guild role Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteDiscordGuildRoleWithHttpInfo(string guildId, string roleId, string accountId)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->DeleteDiscordGuildRole");
+
+            // verify the required parameter 'roleId' is set
+            if (roleId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'roleId' when calling DiscordApi->DeleteDiscordGuildRole");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->DeleteDiscordGuildRole");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("roleId", Zernio.Client.ClientUtils.ParameterToString(roleId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<UpdateYoutubeDefaultPlaylist200Response>("/v1/discord/guilds/{guildId}/roles/{roleId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteDiscordGuildRole", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a Discord guild role Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteDiscordGuildRoleAsync(string guildId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await DeleteDiscordGuildRoleWithHttpInfoAsync(guildId, roleId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a Discord guild role Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteDiscordGuildRoleWithHttpInfoAsync(string guildId, string roleId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->DeleteDiscordGuildRole");
+
+            // verify the required parameter 'roleId' is set
+            if (roleId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'roleId' when calling DiscordApi->DeleteDiscordGuildRole");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->DeleteDiscordGuildRole");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("roleId", Zernio.Client.ClientUtils.ParameterToString(roleId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/discord/guilds/{guildId}/roles/{roleId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteDiscordGuildRole", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a Discord channel message Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <returns>UpdateYoutubeDefaultPlaylist200Response</returns>
+        public UpdateYoutubeDefaultPlaylist200Response DeleteDiscordMessage(string channelId, string messageId, string accountId)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = DeleteDiscordMessageWithHttpInfo(channelId, messageId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a Discord channel message Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <returns>ApiResponse of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> DeleteDiscordMessageWithHttpInfo(string channelId, string messageId, string accountId)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->DeleteDiscordMessage");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'messageId' when calling DiscordApi->DeleteDiscordMessage");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->DeleteDiscordMessage");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Zernio.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<UpdateYoutubeDefaultPlaylist200Response>("/v1/discord/channels/{channelId}/messages/{messageId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteDiscordMessage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a Discord channel message Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateYoutubeDefaultPlaylist200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateYoutubeDefaultPlaylist200Response> DeleteDiscordMessageAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = await DeleteDiscordMessageWithHttpInfoAsync(channelId, messageId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a Discord channel message Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="channelId">Discord channel snowflake ID</param>
+        /// <param name="messageId">Discord message snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this channel&#39;s guild</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateYoutubeDefaultPlaylist200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateYoutubeDefaultPlaylist200Response>> DeleteDiscordMessageWithHttpInfoAsync(string channelId, string messageId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'channelId' is set
+            if (channelId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'channelId' when calling DiscordApi->DeleteDiscordMessage");
+
+            // verify the required parameter 'messageId' is set
+            if (messageId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'messageId' when calling DiscordApi->DeleteDiscordMessage");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->DeleteDiscordMessage");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("channelId", Zernio.Client.ClientUtils.ParameterToString(channelId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("messageId", Zernio.Client.ClientUtils.ParameterToString(messageId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<UpdateYoutubeDefaultPlaylist200Response>("/v1/discord/channels/{channelId}/messages/{messageId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteDiscordMessage", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1512,6 +2607,177 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteDiscordScheduledEvent", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Edit a Discord guild role Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="editDiscordGuildRoleRequest"></param>
+        /// <returns>CreateDiscordGuildRole201Response</returns>
+        public CreateDiscordGuildRole201Response EditDiscordGuildRole(string guildId, string roleId, string accountId, EditDiscordGuildRoleRequest editDiscordGuildRoleRequest)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordGuildRole201Response> localVarResponse = EditDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId, editDiscordGuildRoleRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Edit a Discord guild role Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="editDiscordGuildRoleRequest"></param>
+        /// <returns>ApiResponse of CreateDiscordGuildRole201Response</returns>
+        public Zernio.Client.ApiResponse<CreateDiscordGuildRole201Response> EditDiscordGuildRoleWithHttpInfo(string guildId, string roleId, string accountId, EditDiscordGuildRoleRequest editDiscordGuildRoleRequest)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->EditDiscordGuildRole");
+
+            // verify the required parameter 'roleId' is set
+            if (roleId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'roleId' when calling DiscordApi->EditDiscordGuildRole");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->EditDiscordGuildRole");
+
+            // verify the required parameter 'editDiscordGuildRoleRequest' is set
+            if (editDiscordGuildRoleRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'editDiscordGuildRoleRequest' when calling DiscordApi->EditDiscordGuildRole");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("roleId", Zernio.Client.ClientUtils.ParameterToString(roleId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.Data = editDiscordGuildRoleRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<CreateDiscordGuildRole201Response>("/v1/discord/guilds/{guildId}/roles/{roleId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EditDiscordGuildRole", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Edit a Discord guild role Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="editDiscordGuildRoleRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateDiscordGuildRole201Response</returns>
+        public async System.Threading.Tasks.Task<CreateDiscordGuildRole201Response> EditDiscordGuildRoleAsync(string guildId, string roleId, string accountId, EditDiscordGuildRoleRequest editDiscordGuildRoleRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateDiscordGuildRole201Response> localVarResponse = await EditDiscordGuildRoleWithHttpInfoAsync(guildId, roleId, accountId, editDiscordGuildRoleRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Edit a Discord guild role Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="guildId">Discord guild snowflake ID</param>
+        /// <param name="roleId">Discord role snowflake ID</param>
+        /// <param name="accountId">SocialAccount _id of the Discord account bound to this guild</param>
+        /// <param name="editDiscordGuildRoleRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateDiscordGuildRole201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateDiscordGuildRole201Response>> EditDiscordGuildRoleWithHttpInfoAsync(string guildId, string roleId, string accountId, EditDiscordGuildRoleRequest editDiscordGuildRoleRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'guildId' is set
+            if (guildId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'guildId' when calling DiscordApi->EditDiscordGuildRole");
+
+            // verify the required parameter 'roleId' is set
+            if (roleId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'roleId' when calling DiscordApi->EditDiscordGuildRole");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling DiscordApi->EditDiscordGuildRole");
+
+            // verify the required parameter 'editDiscordGuildRoleRequest' is set
+            if (editDiscordGuildRoleRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'editDiscordGuildRoleRequest' when calling DiscordApi->EditDiscordGuildRole");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("guildId", Zernio.Client.ClientUtils.ParameterToString(guildId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("roleId", Zernio.Client.ClientUtils.ParameterToString(roleId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.Data = editDiscordGuildRoleRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<CreateDiscordGuildRole201Response>("/v1/discord/guilds/{guildId}/roles/{roleId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("EditDiscordGuildRole", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
