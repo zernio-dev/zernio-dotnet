@@ -108,5 +108,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'TimezoneOffsetHoursUtc'
         }
+
+        /// <summary>
+        /// Test the property 'Selectable'
+        /// </summary>
+        [Fact]
+        public void SelectableTest()
+        {
+            // TODO unit test for the property 'Selectable'
+        }
+
+        /// <summary>
+        /// Test the property 'UnusableReason'
+        /// </summary>
+        [Fact]
+        public void UnusableReasonTest()
+        {
+            // TODO unit test for the property 'UnusableReason'
+        }
     }
 }
