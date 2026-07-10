@@ -67,7 +67,13 @@ namespace Zernio.Model
             /// Enum AudienceNetwork for value: audience_network
             /// </summary>
             [EnumMember(Value = "audience_network")]
-            AudienceNetwork = 5
+            AudienceNetwork = 5,
+
+            /// <summary>
+            /// Enum Whatsapp for value: whatsapp
+            /// </summary>
+            [EnumMember(Value = "whatsapp")]
+            Whatsapp = 6
         }
 
         /// <summary>

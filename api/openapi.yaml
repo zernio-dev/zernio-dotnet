@@ -62135,6 +62135,7 @@ components:
             - threads
             - messenger
             - audience_network
+            - whatsapp
             type: string
           type: array
         facebookPositions:
@@ -62290,6 +62291,7 @@ components:
             - threads
             - messenger
             - audience_network
+            - whatsapp
             type: string
           type: array
         facebookPositions:
@@ -64899,6 +64901,7 @@ components:
             - threads
             - messenger
             - audience_network
+            - whatsapp
             type: string
           type: array
         facebookPositions:
