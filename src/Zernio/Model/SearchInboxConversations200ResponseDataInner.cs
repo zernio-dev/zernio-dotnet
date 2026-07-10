@@ -37,8 +37,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="SearchInboxConversations200ResponseDataInner" /> class.
         /// </summary>
         /// <param name="conversation">conversation.</param>
-        /// <param name="matchCount">Total number of matching messages in this conversation.</param>
-        /// <param name="matches">Up to 3 most-recent matching messages.</param>
+        /// <param name="matchCount">Number of matching messages in this conversation. 0 when the conversation matched only on contact identity (name, username, or phone number), not on message text..</param>
+        /// <param name="matches">Up to 3 most-recent matching messages (empty for an identity-only match).</param>
         public SearchInboxConversations200ResponseDataInner(SearchInboxConversations200ResponseDataInnerConversation conversation = default, int matchCount = default, List<SearchInboxConversations200ResponseDataInnerMatchesInner> matches = default)
         {
             this.Conversation = conversation;
@@ -53,16 +53,16 @@ namespace Zernio.Model
         public SearchInboxConversations200ResponseDataInnerConversation Conversation { get; set; }
 
         /// <summary>
-        /// Total number of matching messages in this conversation
+        /// Number of matching messages in this conversation. 0 when the conversation matched only on contact identity (name, username, or phone number), not on message text.
         /// </summary>
-        /// <value>Total number of matching messages in this conversation</value>
+        /// <value>Number of matching messages in this conversation. 0 when the conversation matched only on contact identity (name, username, or phone number), not on message text.</value>
         [DataMember(Name = "matchCount", EmitDefaultValue = false)]
         public int MatchCount { get; set; }
 
         /// <summary>
-        /// Up to 3 most-recent matching messages
+        /// Up to 3 most-recent matching messages (empty for an identity-only match)
         /// </summary>
-        /// <value>Up to 3 most-recent matching messages</value>
+        /// <value>Up to 3 most-recent matching messages (empty for an identity-only match)</value>
         [DataMember(Name = "matches", EmitDefaultValue = false)]
         public List<SearchInboxConversations200ResponseDataInnerMatchesInner> Matches { get; set; }
 

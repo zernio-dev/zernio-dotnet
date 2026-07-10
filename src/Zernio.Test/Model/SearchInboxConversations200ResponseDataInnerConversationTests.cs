@@ -119,6 +119,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'LastMessage'
+        /// </summary>
+        [Fact]
+        public void LastMessageTest()
+        {
+            // TODO unit test for the property 'LastMessage'
+        }
+
+        /// <summary>
         /// Test the property 'LastMessageAt'
         /// </summary>
         [Fact]

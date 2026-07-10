@@ -68,8 +68,9 @@ namespace Zernio.Model
         /// <param name="participantUsername">participantUsername.</param>
         /// <param name="participantPicture">participantPicture.</param>
         /// <param name="status">status.</param>
+        /// <param name="lastMessage">The conversation&#39;s most recent message preview.</param>
         /// <param name="lastMessageAt">lastMessageAt.</param>
-        public SearchInboxConversations200ResponseDataInnerConversation(string id = default, string platform = default, string accountId = default, string participantName = default, string participantUsername = default, string participantPicture = default, StatusEnum? status = default, DateTime? lastMessageAt = default)
+        public SearchInboxConversations200ResponseDataInnerConversation(string id = default, string platform = default, string accountId = default, string participantName = default, string participantUsername = default, string participantPicture = default, StatusEnum? status = default, string lastMessage = default, DateTime? lastMessageAt = default)
         {
             this.Id = id;
             this.Platform = platform;
@@ -78,6 +79,7 @@ namespace Zernio.Model
             this.ParticipantUsername = participantUsername;
             this.ParticipantPicture = participantPicture;
             this.Status = status;
+            this.LastMessage = lastMessage;
             this.LastMessageAt = lastMessageAt;
         }
 
@@ -119,6 +121,13 @@ namespace Zernio.Model
         public string ParticipantPicture { get; set; }
 
         /// <summary>
+        /// The conversation&#39;s most recent message preview
+        /// </summary>
+        /// <value>The conversation&#39;s most recent message preview</value>
+        [DataMember(Name = "lastMessage", EmitDefaultValue = true)]
+        public string LastMessage { get; set; }
+
+        /// <summary>
         /// Gets or Sets LastMessageAt
         /// </summary>
         [DataMember(Name = "lastMessageAt", EmitDefaultValue = true)]
@@ -139,6 +148,7 @@ namespace Zernio.Model
             sb.Append("  ParticipantUsername: ").Append(ParticipantUsername).Append("\n");
             sb.Append("  ParticipantPicture: ").Append(ParticipantPicture).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  LastMessage: ").Append(LastMessage).Append("\n");
             sb.Append("  LastMessageAt: ").Append(LastMessageAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
