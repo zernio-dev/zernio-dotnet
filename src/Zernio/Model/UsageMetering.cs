@@ -75,7 +75,8 @@ namespace Zernio.Model
         /// <param name="peaks">peaks.</param>
         /// <param name="callUsage">callUsage.</param>
         /// <param name="period">period.</param>
-        public UsageMetering(bool supported = default, GranularityEnum? granularity = default, List<UsageMeteringDaysInner> days = default, UsageMeteringTotals totals = default, List<UsageMeteringLineItemsInner> lineItems = default, UsageMeteringPeaks peaks = default, UsageMeteringCallUsage callUsage = default, UsageMeteringPeriod period = default)
+        /// <param name="tax">tax.</param>
+        public UsageMetering(bool supported = default, GranularityEnum? granularity = default, List<UsageMeteringDaysInner> days = default, UsageMeteringTotals totals = default, List<UsageMeteringLineItemsInner> lineItems = default, UsageMeteringPeaks peaks = default, UsageMeteringCallUsage callUsage = default, UsageMeteringPeriod period = default, UsageMeteringTax tax = default)
         {
             this.Supported = supported;
             this.Granularity = granularity;
@@ -85,6 +86,7 @@ namespace Zernio.Model
             this.Peaks = peaks;
             this.CallUsage = callUsage;
             this.Period = period;
+            this.Tax = tax;
         }
 
         /// <summary>
@@ -133,6 +135,12 @@ namespace Zernio.Model
         public UsageMeteringPeriod Period { get; set; }
 
         /// <summary>
+        /// Gets or Sets Tax
+        /// </summary>
+        [DataMember(Name = "tax", EmitDefaultValue = false)]
+        public UsageMeteringTax Tax { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -148,6 +156,7 @@ namespace Zernio.Model
             sb.Append("  Peaks: ").Append(Peaks).Append("\n");
             sb.Append("  CallUsage: ").Append(CallUsage).Append("\n");
             sb.Append("  Period: ").Append(Period).Append("\n");
+            sb.Append("  Tax: ").Append(Tax).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

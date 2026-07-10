@@ -1254,6 +1254,7 @@ docs/UsageMeteringDaysInner.md
 docs/UsageMeteringLineItemsInner.md
 docs/UsageMeteringPeaks.md
 docs/UsageMeteringPeriod.md
+docs/UsageMeteringTax.md
 docs/UsageMeteringTotals.md
 docs/UsageStats.md
 docs/UsageStatsLimits.md
@@ -2665,6 +2666,7 @@ src/Zernio.Test/Model/UsageMeteringDaysInnerTests.cs
 src/Zernio.Test/Model/UsageMeteringLineItemsInnerTests.cs
 src/Zernio.Test/Model/UsageMeteringPeaksTests.cs
 src/Zernio.Test/Model/UsageMeteringPeriodTests.cs
+src/Zernio.Test/Model/UsageMeteringTaxTests.cs
 src/Zernio.Test/Model/UsageMeteringTests.cs
 src/Zernio.Test/Model/UsageMeteringTotalsTests.cs
 src/Zernio.Test/Model/UsageStatsLimitsTests.cs
@@ -4084,6 +4086,7 @@ src/Zernio/Model/UsageMeteringDaysInner.cs
 src/Zernio/Model/UsageMeteringLineItemsInner.cs
 src/Zernio/Model/UsageMeteringPeaks.cs
 src/Zernio/Model/UsageMeteringPeriod.cs
+src/Zernio/Model/UsageMeteringTax.cs
 src/Zernio/Model/UsageMeteringTotals.cs
 src/Zernio/Model/UsageStats.cs
 src/Zernio/Model/UsageStatsLimits.cs

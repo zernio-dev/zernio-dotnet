@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Peaks** | [**UsageMeteringPeaks**](UsageMeteringPeaks.md) |  | [optional] 
 **CallUsage** | [**UsageMeteringCallUsage**](UsageMeteringCallUsage.md) |  | [optional] 
 **Period** | [**UsageMeteringPeriod**](UsageMeteringPeriod.md) |  | [optional] 
+**Tax** | [**UsageMeteringTax**](UsageMeteringTax.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -234,5 +234,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Period'
         }
+
+        /// <summary>
+        /// Test the property 'Tax'
+        /// </summary>
+        [Fact]
+        public void TaxTest()
+        {
+            // TODO unit test for the property 'Tax'
+        }
     }
 }
