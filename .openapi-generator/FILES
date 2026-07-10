@@ -573,6 +573,7 @@ docs/GetSequence200ResponseSequence.md
 docs/GetSequence200ResponseSequenceStepsInner.md
 docs/GetSequence200ResponseSequenceStepsInnerTemplate.md
 docs/GetSmsRegistration200Response.md
+docs/GetSmsRegistration200ResponseCampaignContent.md
 docs/GetSmsUsage200Response.md
 docs/GetSmsUsage200ResponseGroupsInner.md
 docs/GetSmsUsage200ResponseTotals.md
@@ -854,6 +855,8 @@ docs/MessagesApi.md
 docs/Money.md
 docs/MoveAccountToProfile200Response.md
 docs/MoveAccountToProfileRequest.md
+docs/OnWhatsAppAutomaticEventRequest.md
+docs/OnWhatsAppAutomaticEventRequestCustomData.md
 docs/OnWhatsAppNumberActionRequiredRequest.md
 docs/OnWhatsAppNumberActivatedRequest.md
 docs/OnWhatsAppNumberActivatedRequestNumber.md
@@ -2000,6 +2003,7 @@ src/Zernio.Test/Model/GetSequence200ResponseSequenceStepsInnerTemplateTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceStepsInnerTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseTests.cs
+src/Zernio.Test/Model/GetSmsRegistration200ResponseCampaignContentTests.cs
 src/Zernio.Test/Model/GetSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseGroupsInnerTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseTests.cs
@@ -2274,6 +2278,8 @@ src/Zernio.Test/Model/MediaUploadResponseTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
 src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveAccountToProfileRequestTests.cs
+src/Zernio.Test/Model/OnWhatsAppAutomaticEventRequestCustomDataTests.cs
+src/Zernio.Test/Model/OnWhatsAppAutomaticEventRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberActionRequiredRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberActivatedRequestNumberTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberActivatedRequestTests.cs
@@ -3416,6 +3422,7 @@ src/Zernio/Model/GetSequence200ResponseSequence.cs
 src/Zernio/Model/GetSequence200ResponseSequenceStepsInner.cs
 src/Zernio/Model/GetSequence200ResponseSequenceStepsInnerTemplate.cs
 src/Zernio/Model/GetSmsRegistration200Response.cs
+src/Zernio/Model/GetSmsRegistration200ResponseCampaignContent.cs
 src/Zernio/Model/GetSmsUsage200Response.cs
 src/Zernio/Model/GetSmsUsage200ResponseGroupsInner.cs
 src/Zernio/Model/GetSmsUsage200ResponseTotals.cs
@@ -3689,6 +3696,8 @@ src/Zernio/Model/MediaUploadResponse.cs
 src/Zernio/Model/Money.cs
 src/Zernio/Model/MoveAccountToProfile200Response.cs
 src/Zernio/Model/MoveAccountToProfileRequest.cs
+src/Zernio/Model/OnWhatsAppAutomaticEventRequest.cs
+src/Zernio/Model/OnWhatsAppAutomaticEventRequestCustomData.cs
 src/Zernio/Model/OnWhatsAppNumberActionRequiredRequest.cs
 src/Zernio/Model/OnWhatsAppNumberActivatedRequest.cs
 src/Zernio/Model/OnWhatsAppNumberActivatedRequestNumber.cs

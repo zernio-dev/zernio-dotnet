@@ -429,6 +429,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnWhatsAppAutomaticEvent
+        /// </summary>
+        [Fact]
+        public void OnWhatsAppAutomaticEventTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //OnWhatsAppAutomaticEventRequest onWhatsAppAutomaticEventRequest = null;
+            //instance.OnWhatsAppAutomaticEvent(onWhatsAppAutomaticEventRequest);
+        }
+
+        /// <summary>
         /// Test OnWhatsAppNumberActionRequired
         /// </summary>
         [Fact]

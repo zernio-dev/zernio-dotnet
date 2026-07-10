@@ -1,11 +1,11 @@
-# Zernio.Model.AppealSmsRegistrationRequest
+# Zernio.Model.GetSmsRegistration200ResponseCampaignContent
+The submitted campaign content, present only for rejected registrations with a campaign. Edit and resubmit it via the appeal endpoint's optional content fields. 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AppealReason** | **string** | Goes verbatim to the carrier reviewer — address the decline reason directly. | 
-**MessageFlow** | **string** | Corrected opt-in flow; include a link to the opt-in page/form. | [optional] 
+**MessageFlow** | **string** |  | [optional] 
 **Sample1** | **string** |  | [optional] 
 **Sample2** | **string** |  | [optional] 
 

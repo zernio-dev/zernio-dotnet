@@ -41,8 +41,11 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AppealSmsRegistrationRequest" /> class.
         /// </summary>
-        /// <param name="appealReason">appealReason (required).</param>
-        public AppealSmsRegistrationRequest(string appealReason = default)
+        /// <param name="appealReason">Goes verbatim to the carrier reviewer — address the decline reason directly. (required).</param>
+        /// <param name="messageFlow">Corrected opt-in flow; include a link to the opt-in page/form..</param>
+        /// <param name="sample1">sample1.</param>
+        /// <param name="sample2">sample2.</param>
+        public AppealSmsRegistrationRequest(string appealReason = default, string messageFlow = default, string sample1 = default, string sample2 = default)
         {
             // to ensure "appealReason" is required (not null)
             if (appealReason == null)
@@ -50,13 +53,36 @@ namespace Zernio.Model
                 throw new ArgumentNullException("appealReason is a required property for AppealSmsRegistrationRequest and cannot be null");
             }
             this.AppealReason = appealReason;
+            this.MessageFlow = messageFlow;
+            this.Sample1 = sample1;
+            this.Sample2 = sample2;
         }
 
         /// <summary>
-        /// Gets or Sets AppealReason
+        /// Goes verbatim to the carrier reviewer — address the decline reason directly.
         /// </summary>
+        /// <value>Goes verbatim to the carrier reviewer — address the decline reason directly.</value>
         [DataMember(Name = "appealReason", IsRequired = true, EmitDefaultValue = true)]
         public string AppealReason { get; set; }
+
+        /// <summary>
+        /// Corrected opt-in flow; include a link to the opt-in page/form.
+        /// </summary>
+        /// <value>Corrected opt-in flow; include a link to the opt-in page/form.</value>
+        [DataMember(Name = "messageFlow", EmitDefaultValue = false)]
+        public string MessageFlow { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Sample1
+        /// </summary>
+        [DataMember(Name = "sample1", EmitDefaultValue = false)]
+        public string Sample1 { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Sample2
+        /// </summary>
+        [DataMember(Name = "sample2", EmitDefaultValue = false)]
+        public string Sample2 { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -67,6 +93,9 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class AppealSmsRegistrationRequest {\n");
             sb.Append("  AppealReason: ").Append(AppealReason).Append("\n");
+            sb.Append("  MessageFlow: ").Append(MessageFlow).Append("\n");
+            sb.Append("  Sample1: ").Append(Sample1).Append("\n");
+            sb.Append("  Sample2: ").Append(Sample2).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -97,6 +126,30 @@ namespace Zernio.Model
             if (this.AppealReason != null && this.AppealReason.Length < 10)
             {
                 yield return new ValidationResult("Invalid value for AppealReason, length must be greater than 10.", new [] { "AppealReason" });
+            }
+
+            // MessageFlow (string) maxLength
+            if (this.MessageFlow != null && this.MessageFlow.Length > 2048)
+            {
+                yield return new ValidationResult("Invalid value for MessageFlow, length must be less than 2048.", new [] { "MessageFlow" });
+            }
+
+            // MessageFlow (string) minLength
+            if (this.MessageFlow != null && this.MessageFlow.Length < 40)
+            {
+                yield return new ValidationResult("Invalid value for MessageFlow, length must be greater than 40.", new [] { "MessageFlow" });
+            }
+
+            // Sample1 (string) minLength
+            if (this.Sample1 != null && this.Sample1.Length < 20)
+            {
+                yield return new ValidationResult("Invalid value for Sample1, length must be greater than 20.", new [] { "Sample1" });
+            }
+
+            // Sample2 (string) minLength
+            if (this.Sample2 != null && this.Sample2.Length < 20)
+            {
+                yield return new ValidationResult("Invalid value for Sample2, length must be greater than 20.", new [] { "Sample2" });
             }
 
             yield break;

@@ -106,7 +106,8 @@ namespace Zernio.Model
         /// <param name="declineReason">declineReason.</param>
         /// <param name="phoneNumbers">phoneNumbers.</param>
         /// <param name="awaitingOtp">awaitingOtp.</param>
-        public GetSmsRegistration200Response(string id = default, RegistrationTypeEnum? registrationType = default, StatusEnum? status = default, string brandStatus = default, string campaignStatus = default, string declineReason = default, List<string> phoneNumbers = default, bool awaitingOtp = default)
+        /// <param name="campaignContent">campaignContent.</param>
+        public GetSmsRegistration200Response(string id = default, RegistrationTypeEnum? registrationType = default, StatusEnum? status = default, string brandStatus = default, string campaignStatus = default, string declineReason = default, List<string> phoneNumbers = default, bool awaitingOtp = default, GetSmsRegistration200ResponseCampaignContent campaignContent = default)
         {
             this.Id = id;
             this.RegistrationType = registrationType;
@@ -116,6 +117,7 @@ namespace Zernio.Model
             this.DeclineReason = declineReason;
             this.PhoneNumbers = phoneNumbers;
             this.AwaitingOtp = awaitingOtp;
+            this.CampaignContent = campaignContent;
         }
 
         /// <summary>
@@ -155,6 +157,12 @@ namespace Zernio.Model
         public bool AwaitingOtp { get; set; }
 
         /// <summary>
+        /// Gets or Sets CampaignContent
+        /// </summary>
+        [DataMember(Name = "campaignContent", EmitDefaultValue = false)]
+        public GetSmsRegistration200ResponseCampaignContent CampaignContent { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -170,6 +178,7 @@ namespace Zernio.Model
             sb.Append("  DeclineReason: ").Append(DeclineReason).Append("\n");
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("  AwaitingOtp: ").Append(AwaitingOtp).Append("\n");
+            sb.Append("  CampaignContent: ").Append(CampaignContent).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

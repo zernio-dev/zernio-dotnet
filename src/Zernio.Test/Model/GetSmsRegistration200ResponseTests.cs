@@ -126,5 +126,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'AwaitingOtp'
         }
+
+        /// <summary>
+        /// Test the property 'CampaignContent'
+        /// </summary>
+        [Fact]
+        public void CampaignContentTest()
+        {
+            // TODO unit test for the property 'CampaignContent'
+        }
     }
 }

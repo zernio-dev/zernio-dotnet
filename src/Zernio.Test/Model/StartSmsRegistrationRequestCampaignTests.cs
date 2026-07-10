@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'SubUsecases'
+        /// </summary>
+        [Fact]
+        public void SubUsecasesTest()
+        {
+            // TODO unit test for the property 'SubUsecases'
+        }
+
+        /// <summary>
         /// Test the property 'Description'
         /// </summary>
         [Fact]

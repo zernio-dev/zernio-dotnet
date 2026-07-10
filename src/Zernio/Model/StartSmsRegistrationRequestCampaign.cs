@@ -34,6 +34,73 @@ namespace Zernio.Model
     public partial class StartSmsRegistrationRequestCampaign : IValidatableObject
     {
         /// <summary>
+        /// Defines SubUsecases
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SubUsecasesEnum
+        {
+            /// <summary>
+            /// Enum _2FA for value: 2FA
+            /// </summary>
+            [EnumMember(Value = "2FA")]
+            _2FA = 1,
+
+            /// <summary>
+            /// Enum ACCOUNTNOTIFICATION for value: ACCOUNT_NOTIFICATION
+            /// </summary>
+            [EnumMember(Value = "ACCOUNT_NOTIFICATION")]
+            ACCOUNTNOTIFICATION = 2,
+
+            /// <summary>
+            /// Enum CUSTOMERCARE for value: CUSTOMER_CARE
+            /// </summary>
+            [EnumMember(Value = "CUSTOMER_CARE")]
+            CUSTOMERCARE = 3,
+
+            /// <summary>
+            /// Enum DELIVERYNOTIFICATION for value: DELIVERY_NOTIFICATION
+            /// </summary>
+            [EnumMember(Value = "DELIVERY_NOTIFICATION")]
+            DELIVERYNOTIFICATION = 4,
+
+            /// <summary>
+            /// Enum FRAUDALERT for value: FRAUD_ALERT
+            /// </summary>
+            [EnumMember(Value = "FRAUD_ALERT")]
+            FRAUDALERT = 5,
+
+            /// <summary>
+            /// Enum HIGHEREDUCATION for value: HIGHER_EDUCATION
+            /// </summary>
+            [EnumMember(Value = "HIGHER_EDUCATION")]
+            HIGHEREDUCATION = 6,
+
+            /// <summary>
+            /// Enum MARKETING for value: MARKETING
+            /// </summary>
+            [EnumMember(Value = "MARKETING")]
+            MARKETING = 7,
+
+            /// <summary>
+            /// Enum POLLINGVOTING for value: POLLING_VOTING
+            /// </summary>
+            [EnumMember(Value = "POLLING_VOTING")]
+            POLLINGVOTING = 8,
+
+            /// <summary>
+            /// Enum PUBLICSERVICEANNOUNCEMENT for value: PUBLIC_SERVICE_ANNOUNCEMENT
+            /// </summary>
+            [EnumMember(Value = "PUBLIC_SERVICE_ANNOUNCEMENT")]
+            PUBLICSERVICEANNOUNCEMENT = 9,
+
+            /// <summary>
+            /// Enum SECURITYALERT for value: SECURITY_ALERT
+            /// </summary>
+            [EnumMember(Value = "SECURITY_ALERT")]
+            SECURITYALERT = 10
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="StartSmsRegistrationRequestCampaign" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -42,8 +109,9 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="StartSmsRegistrationRequestCampaign" /> class.
         /// </summary>
         /// <param name="usecase">usecase (required).</param>
+        /// <param name="subUsecases">The concrete kinds of messages a MIXED campaign sends (the carrier registry requires 2-5, and reviewers match them against the sample messages). Omitted: a default pair is applied for MIXED. .</param>
         /// <param name="description">description (required).</param>
-        /// <param name="messageFlow">How a recipient ends up receiving your messages (the opt-in flow). (required).</param>
+        /// <param name="messageFlow">How a recipient ends up receiving your messages (the opt-in flow). Include a link to the page or form where they opt in — carrier reviewers reject campaigns whose consent they can&#39;t verify. (required).</param>
         /// <param name="sample1">sample1 (required).</param>
         /// <param name="sample2">Second example message; carriers require two distinct samples (required).</param>
         /// <param name="helpMessage">helpMessage (required).</param>
@@ -57,7 +125,7 @@ namespace Zernio.Model
         /// <param name="numberPool">numberPool.</param>
         /// <param name="ageGated">ageGated.</param>
         /// <param name="directLending">directLending.</param>
-        public StartSmsRegistrationRequestCampaign(string usecase = default, string description = default, string messageFlow = default, string sample1 = default, string sample2 = default, string helpMessage = default, string optinKeywords = default, string optinMessage = default, string optoutKeywords = default, string optoutMessage = default, string helpKeywords = default, bool embeddedLink = default, bool embeddedPhone = default, bool numberPool = default, bool ageGated = default, bool directLending = default)
+        public StartSmsRegistrationRequestCampaign(string usecase = default, List<SubUsecasesEnum> subUsecases = default, string description = default, string messageFlow = default, string sample1 = default, string sample2 = default, string helpMessage = default, string optinKeywords = default, string optinMessage = default, string optoutKeywords = default, string optoutMessage = default, string helpKeywords = default, bool embeddedLink = default, bool embeddedPhone = default, bool numberPool = default, bool ageGated = default, bool directLending = default)
         {
             // to ensure "usecase" is required (not null)
             if (usecase == null)
@@ -125,6 +193,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("helpKeywords is a required property for StartSmsRegistrationRequestCampaign and cannot be null");
             }
             this.HelpKeywords = helpKeywords;
+            this.SubUsecases = subUsecases;
             this.EmbeddedLink = embeddedLink;
             this.EmbeddedPhone = embeddedPhone;
             this.NumberPool = numberPool;
@@ -139,15 +208,22 @@ namespace Zernio.Model
         public string Usecase { get; set; }
 
         /// <summary>
+        /// The concrete kinds of messages a MIXED campaign sends (the carrier registry requires 2-5, and reviewers match them against the sample messages). Omitted: a default pair is applied for MIXED. 
+        /// </summary>
+        /// <value>The concrete kinds of messages a MIXED campaign sends (the carrier registry requires 2-5, and reviewers match them against the sample messages). Omitted: a default pair is applied for MIXED. </value>
+        [DataMember(Name = "subUsecases", EmitDefaultValue = false)]
+        public List<StartSmsRegistrationRequestCampaign.SubUsecasesEnum> SubUsecases { get; set; }
+
+        /// <summary>
         /// Gets or Sets Description
         /// </summary>
         [DataMember(Name = "description", IsRequired = true, EmitDefaultValue = true)]
         public string Description { get; set; }
 
         /// <summary>
-        /// How a recipient ends up receiving your messages (the opt-in flow).
+        /// How a recipient ends up receiving your messages (the opt-in flow). Include a link to the page or form where they opt in — carrier reviewers reject campaigns whose consent they can&#39;t verify.
         /// </summary>
-        /// <value>How a recipient ends up receiving your messages (the opt-in flow).</value>
+        /// <value>How a recipient ends up receiving your messages (the opt-in flow). Include a link to the page or form where they opt in — carrier reviewers reject campaigns whose consent they can&#39;t verify.</value>
         [DataMember(Name = "messageFlow", IsRequired = true, EmitDefaultValue = true)]
         public string MessageFlow { get; set; }
 
@@ -239,6 +315,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class StartSmsRegistrationRequestCampaign {\n");
             sb.Append("  Usecase: ").Append(Usecase).Append("\n");
+            sb.Append("  SubUsecases: ").Append(SubUsecases).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  MessageFlow: ").Append(MessageFlow).Append("\n");
             sb.Append("  Sample1: ").Append(Sample1).Append("\n");

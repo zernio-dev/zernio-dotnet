@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Appeal a rejected campaign
         /// </summary>
         /// <remarks>
-        /// Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+        /// Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -44,7 +44,7 @@ namespace Zernio.Api
         /// Appeal a rejected campaign
         /// </summary>
         /// <remarks>
-        /// Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+        /// Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -296,7 +296,7 @@ namespace Zernio.Api
         /// Appeal a rejected campaign
         /// </summary>
         /// <remarks>
-        /// Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+        /// Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -309,7 +309,7 @@ namespace Zernio.Api
         /// Appeal a rejected campaign
         /// </summary>
         /// <remarks>
-        /// Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+        /// Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -788,7 +788,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Appeal a rejected campaign Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+        /// Appeal a rejected campaign Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -801,7 +801,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Appeal a rejected campaign Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+        /// Appeal a rejected campaign Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -857,7 +857,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Appeal a rejected campaign Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+        /// Appeal a rejected campaign Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
@@ -871,7 +871,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Appeal a rejected campaign Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+        /// Appeal a rejected campaign Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
