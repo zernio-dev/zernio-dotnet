@@ -171,6 +171,7 @@ docs/CreateCtwaAdRequest.md
 docs/CreateCtwaAdRequestCitiesInner.md
 docs/CreateCtwaAdRequestCreativesInner.md
 docs/CreateCtwaAdRequestCreativesInnerVideo.md
+docs/CreateCtwaAdRequestPlacements.md
 docs/CreateCtwaAdRequestRegionsInner.md
 docs/CreateCtwaAdRequestVideo.md
 docs/CreateCtwaAdRequestZipsInner.md
@@ -1612,6 +1613,7 @@ src/Zernio.Test/Model/CreateCtwaAd201ResponseTests.cs
 src/Zernio.Test/Model/CreateCtwaAdRequestCitiesInnerTests.cs
 src/Zernio.Test/Model/CreateCtwaAdRequestCreativesInnerTests.cs
 src/Zernio.Test/Model/CreateCtwaAdRequestCreativesInnerVideoTests.cs
+src/Zernio.Test/Model/CreateCtwaAdRequestPlacementsTests.cs
 src/Zernio.Test/Model/CreateCtwaAdRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateCtwaAdRequestTests.cs
 src/Zernio.Test/Model/CreateCtwaAdRequestVideoTests.cs
@@ -3032,6 +3034,7 @@ src/Zernio/Model/CreateCtwaAdRequest.cs
 src/Zernio/Model/CreateCtwaAdRequestCitiesInner.cs
 src/Zernio/Model/CreateCtwaAdRequestCreativesInner.cs
 src/Zernio/Model/CreateCtwaAdRequestCreativesInnerVideo.cs
+src/Zernio/Model/CreateCtwaAdRequestPlacements.cs
 src/Zernio/Model/CreateCtwaAdRequestRegionsInner.cs
 src/Zernio/Model/CreateCtwaAdRequestVideo.cs
 src/Zernio/Model/CreateCtwaAdRequestZipsInner.cs

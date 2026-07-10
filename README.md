@@ -760,6 +760,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateCtwaAdRequestCitiesInner](docs/CreateCtwaAdRequestCitiesInner.md)
  - [Model.CreateCtwaAdRequestCreativesInner](docs/CreateCtwaAdRequestCreativesInner.md)
  - [Model.CreateCtwaAdRequestCreativesInnerVideo](docs/CreateCtwaAdRequestCreativesInnerVideo.md)
+ - [Model.CreateCtwaAdRequestPlacements](docs/CreateCtwaAdRequestPlacements.md)
  - [Model.CreateCtwaAdRequestRegionsInner](docs/CreateCtwaAdRequestRegionsInner.md)
  - [Model.CreateCtwaAdRequestVideo](docs/CreateCtwaAdRequestVideo.md)
  - [Model.CreateCtwaAdRequestZipsInner](docs/CreateCtwaAdRequestZipsInner.md)

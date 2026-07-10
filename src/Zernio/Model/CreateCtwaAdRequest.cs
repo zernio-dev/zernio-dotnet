@@ -184,6 +184,7 @@ namespace Zernio.Model
         /// <param name="ageMax">ageMax.</param>
         /// <param name="interests">interests.</param>
         /// <param name="audienceId">Custom audience ID to target..</param>
+        /// <param name="placements">placements.</param>
         /// <param name="advantageAudience">Meta&#39;s Advantage+ audience expansion. &#x60;0&#x60; (default) keeps targeting strict; &#x60;1&#x60; lets Meta expand beyond the supplied targeting when its delivery system finds better matches. Always sent on CREATE (Meta requires it). .</param>
         /// <param name="objective">Defaults to &#x60;OUTCOME_ENGAGEMENT&#x60; (the broadly-supported CTWA objective). &#x60;OUTCOME_SALES&#x60; and &#x60;OUTCOME_LEADS&#x60; require additional account configuration (Dataset linked to the WABA for sales) and may be rejected by Meta if missing. .</param>
         /// <param name="bidStrategy">Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. .</param>
@@ -191,7 +192,7 @@ namespace Zernio.Model
         /// <param name="roasAverageFloor">Decimal ROAS multiplier (e.g. &#x60;2.0&#x60; &#x3D; 2.0× ROAS floor). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;; rejected otherwise. Meta enforces its own upper bound server-side. .</param>
         /// <param name="dsaBeneficiary">Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. .</param>
         /// <param name="dsaPayor">Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). .</param>
-        public CreateCtwaAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CreateCtwaAdRequestVideo video = default, List<CreateCtwaAdRequestCreativesInner> creatives = default, decimal budgetAmount = default, BudgetTypeEnum budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CreateCtwaAdRequestCitiesInner> cities = default, List<CreateCtwaAdRequestRegionsInner> regions = default, List<CreateCtwaAdRequestZipsInner> zips = default, List<CreateCtwaAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default)
+        public CreateCtwaAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CreateCtwaAdRequestVideo video = default, List<CreateCtwaAdRequestCreativesInner> creatives = default, decimal budgetAmount = default, BudgetTypeEnum budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CreateCtwaAdRequestCitiesInner> cities = default, List<CreateCtwaAdRequestRegionsInner> regions = default, List<CreateCtwaAdRequestZipsInner> zips = default, List<CreateCtwaAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CreateCtwaAdRequestPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -230,6 +231,7 @@ namespace Zernio.Model
             this.AgeMax = ageMax;
             this.Interests = interests;
             this.AudienceId = audienceId;
+            this.Placements = placements;
             this.AdvantageAudience = advantageAudience;
             this.Objective = objective;
             this.BidStrategy = bidStrategy;
@@ -383,6 +385,12 @@ namespace Zernio.Model
         public string AudienceId { get; set; }
 
         /// <summary>
+        /// Gets or Sets Placements
+        /// </summary>
+        [DataMember(Name = "placements", EmitDefaultValue = false)]
+        public CreateCtwaAdRequestPlacements Placements { get; set; }
+
+        /// <summary>
         /// Whole currency units (e.g. &#x60;5&#x60; &#x3D; $5.00 on a USD account). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;; rejected otherwise. 
         /// </summary>
         /// <value>Whole currency units (e.g. &#x60;5&#x60; &#x3D; $5.00 on a USD account). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;; rejected otherwise. </value>
@@ -440,6 +448,7 @@ namespace Zernio.Model
             sb.Append("  AgeMax: ").Append(AgeMax).Append("\n");
             sb.Append("  Interests: ").Append(Interests).Append("\n");
             sb.Append("  AudienceId: ").Append(AudienceId).Append("\n");
+            sb.Append("  Placements: ").Append(Placements).Append("\n");
             sb.Append("  AdvantageAudience: ").Append(AdvantageAudience).Append("\n");
             sb.Append("  Objective: ").Append(Objective).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");

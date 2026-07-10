@@ -254,6 +254,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Placements'
+        /// </summary>
+        [Fact]
+        public void PlacementsTest()
+        {
+            // TODO unit test for the property 'Placements'
+        }
+
+        /// <summary>
         /// Test the property 'AdvantageAudience'
         /// </summary>
         [Fact]
