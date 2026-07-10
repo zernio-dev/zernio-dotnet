@@ -128,10 +128,10 @@ namespace Zernio.Api
         /// Get a single call
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <returns>GetWhatsAppCall200Response</returns>
-        GetWhatsAppCall200Response GetWhatsAppCall(string callId, string accountId);
+        GetWhatsAppCall200Response GetWhatsAppCall(string id, string accountId);
 
         /// <summary>
         /// Get a single call
@@ -140,10 +140,10 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <returns>ApiResponse of GetWhatsAppCall200Response</returns>
-        ApiResponse<GetWhatsAppCall200Response> GetWhatsAppCallWithHttpInfo(string callId, string accountId);
+        ApiResponse<GetWhatsAppCall200Response> GetWhatsAppCallWithHttpInfo(string id, string accountId);
         /// <summary>
         /// Estimate per-minute cost
         /// </summary>
@@ -201,11 +201,11 @@ namespace Zernio.Api
         /// Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
         /// <returns>GetWhatsAppCallRecording200Response</returns>
-        GetWhatsAppCallRecording200Response GetWhatsAppCallRecording(string callId, string accountId, string? varAs = default);
+        GetWhatsAppCallRecording200Response GetWhatsAppCallRecording(string id, string accountId, string? varAs = default);
 
         /// <summary>
         /// Get a call recording
@@ -214,11 +214,11 @@ namespace Zernio.Api
         /// Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppCallRecording200Response</returns>
-        ApiResponse<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingWithHttpInfo(string callId, string accountId, string? varAs = default);
+        ApiResponse<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingWithHttpInfo(string id, string accountId, string? varAs = default);
         /// <summary>
         /// Get calling config for a number
         /// </summary>
@@ -485,11 +485,11 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppCall200Response</returns>
-        System.Threading.Tasks.Task<GetWhatsAppCall200Response> GetWhatsAppCallAsync(string callId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetWhatsAppCall200Response> GetWhatsAppCallAsync(string id, string accountId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a single call
@@ -498,11 +498,11 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppCall200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCall200Response>> GetWhatsAppCallWithHttpInfoAsync(string callId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCall200Response>> GetWhatsAppCallWithHttpInfoAsync(string id, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Estimate per-minute cost
         /// </summary>
@@ -564,12 +564,12 @@ namespace Zernio.Api
         /// Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppCallRecording200Response</returns>
-        System.Threading.Tasks.Task<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingAsync(string callId, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingAsync(string id, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a call recording
@@ -578,12 +578,12 @@ namespace Zernio.Api
         /// Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppCallRecording200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCallRecording200Response>> GetWhatsAppCallRecordingWithHttpInfoAsync(string callId, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetWhatsAppCallRecording200Response>> GetWhatsAppCallRecordingWithHttpInfoAsync(string id, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get calling config for a number
         /// </summary>
@@ -1531,12 +1531,12 @@ namespace Zernio.Api
         /// Get a single call 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <returns>GetWhatsAppCall200Response</returns>
-        public GetWhatsAppCall200Response GetWhatsAppCall(string callId, string accountId)
+        public GetWhatsAppCall200Response GetWhatsAppCall(string id, string accountId)
         {
-            Zernio.Client.ApiResponse<GetWhatsAppCall200Response> localVarResponse = GetWhatsAppCallWithHttpInfo(callId, accountId);
+            Zernio.Client.ApiResponse<GetWhatsAppCall200Response> localVarResponse = GetWhatsAppCallWithHttpInfo(id, accountId);
             return localVarResponse.Data;
         }
 
@@ -1544,14 +1544,14 @@ namespace Zernio.Api
         /// Get a single call 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <returns>ApiResponse of GetWhatsAppCall200Response</returns>
-        public Zernio.Client.ApiResponse<GetWhatsAppCall200Response> GetWhatsAppCallWithHttpInfo(string callId, string accountId)
+        public Zernio.Client.ApiResponse<GetWhatsAppCall200Response> GetWhatsAppCallWithHttpInfo(string id, string accountId)
         {
-            // verify the required parameter 'callId' is set
-            if (callId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'callId' when calling WhatsAppCallingApi->GetWhatsAppCall");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->GetWhatsAppCall");
 
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1573,7 +1573,7 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("callId", Zernio.Client.ClientUtils.ParameterToString(callId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
 
             // authentication (bearerAuth) required
@@ -1584,7 +1584,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetWhatsAppCall200Response>("/v1/whatsapp/calls/{callId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GetWhatsAppCall200Response>("/v1/whatsapp/calls/{id}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1599,13 +1599,13 @@ namespace Zernio.Api
         /// Get a single call 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppCall200Response</returns>
-        public async System.Threading.Tasks.Task<GetWhatsAppCall200Response> GetWhatsAppCallAsync(string callId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetWhatsAppCall200Response> GetWhatsAppCallAsync(string id, string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetWhatsAppCall200Response> localVarResponse = await GetWhatsAppCallWithHttpInfoAsync(callId, accountId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetWhatsAppCall200Response> localVarResponse = await GetWhatsAppCallWithHttpInfoAsync(id, accountId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1613,15 +1613,15 @@ namespace Zernio.Api
         /// Get a single call 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppCall200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppCall200Response>> GetWhatsAppCallWithHttpInfoAsync(string callId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppCall200Response>> GetWhatsAppCallWithHttpInfoAsync(string id, string accountId, System.Threading.CancellationToken cancellationToken = default)
         {
-            // verify the required parameter 'callId' is set
-            if (callId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'callId' when calling WhatsAppCallingApi->GetWhatsAppCall");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->GetWhatsAppCall");
 
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1645,7 +1645,7 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("callId", Zernio.Client.ClientUtils.ParameterToString(callId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
 
             // authentication (bearerAuth) required
@@ -1657,7 +1657,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppCall200Response>("/v1/whatsapp/calls/{callId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppCall200Response>("/v1/whatsapp/calls/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1978,13 +1978,13 @@ namespace Zernio.Api
         /// Get a call recording Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
         /// <returns>GetWhatsAppCallRecording200Response</returns>
-        public GetWhatsAppCallRecording200Response GetWhatsAppCallRecording(string callId, string accountId, string? varAs = default)
+        public GetWhatsAppCallRecording200Response GetWhatsAppCallRecording(string id, string accountId, string? varAs = default)
         {
-            Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response> localVarResponse = GetWhatsAppCallRecordingWithHttpInfo(callId, accountId, varAs);
+            Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response> localVarResponse = GetWhatsAppCallRecordingWithHttpInfo(id, accountId, varAs);
             return localVarResponse.Data;
         }
 
@@ -1992,15 +1992,15 @@ namespace Zernio.Api
         /// Get a call recording Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
         /// <returns>ApiResponse of GetWhatsAppCallRecording200Response</returns>
-        public Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingWithHttpInfo(string callId, string accountId, string? varAs = default)
+        public Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingWithHttpInfo(string id, string accountId, string? varAs = default)
         {
-            // verify the required parameter 'callId' is set
-            if (callId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'callId' when calling WhatsAppCallingApi->GetWhatsAppCallRecording");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->GetWhatsAppCallRecording");
 
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -2022,7 +2022,7 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("callId", Zernio.Client.ClientUtils.ParameterToString(callId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
             if (varAs != null)
             {
@@ -2037,7 +2037,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<GetWhatsAppCallRecording200Response>("/v1/whatsapp/calls/{callId}/recording", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GetWhatsAppCallRecording200Response>("/v1/whatsapp/calls/{id}/recording", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2052,14 +2052,14 @@ namespace Zernio.Api
         /// Get a call recording Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWhatsAppCallRecording200Response</returns>
-        public async System.Threading.Tasks.Task<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingAsync(string callId, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetWhatsAppCallRecording200Response> GetWhatsAppCallRecordingAsync(string id, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response> localVarResponse = await GetWhatsAppCallRecordingWithHttpInfoAsync(callId, accountId, varAs, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response> localVarResponse = await GetWhatsAppCallRecordingWithHttpInfoAsync(id, accountId, varAs, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2067,16 +2067,16 @@ namespace Zernio.Api
         /// Get a call recording Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="callId"></param>
+        /// <param name="id"></param>
         /// <param name="accountId"></param>
         /// <param name="varAs">&#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppCallRecording200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response>> GetWhatsAppCallRecordingWithHttpInfoAsync(string callId, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetWhatsAppCallRecording200Response>> GetWhatsAppCallRecordingWithHttpInfoAsync(string id, string accountId, string? varAs = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            // verify the required parameter 'callId' is set
-            if (callId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'callId' when calling WhatsAppCallingApi->GetWhatsAppCallRecording");
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->GetWhatsAppCallRecording");
 
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -2100,7 +2100,7 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("callId", Zernio.Client.ClientUtils.ParameterToString(callId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
             if (varAs != null)
             {
@@ -2116,7 +2116,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppCallRecording200Response>("/v1/whatsapp/calls/{callId}/recording", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWhatsAppCallRecording200Response>("/v1/whatsapp/calls/{id}/recording", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

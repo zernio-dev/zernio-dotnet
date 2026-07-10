@@ -8,10 +8,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**DisableWhatsAppCallingLegacy**](WhatsAppCallingApi.md#disablewhatsappcallinglegacy) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number |
 | [**EnableWhatsAppCalling**](WhatsAppCallingApi.md#enablewhatsappcalling) | **POST** /v1/phone-numbers/{id}/whatsapp/calling | Enable calling on a number |
 | [**EnableWhatsAppCallingLegacy**](WhatsAppCallingApi.md#enablewhatsappcallinglegacy) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number |
-| [**GetWhatsAppCall**](WhatsAppCallingApi.md#getwhatsappcall) | **GET** /v1/whatsapp/calls/{callId} | Get a single call |
+| [**GetWhatsAppCall**](WhatsAppCallingApi.md#getwhatsappcall) | **GET** /v1/whatsapp/calls/{id} | Get a single call |
 | [**GetWhatsAppCallEstimate**](WhatsAppCallingApi.md#getwhatsappcallestimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost |
 | [**GetWhatsAppCallPermissions**](WhatsAppCallingApi.md#getwhatsappcallpermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission |
-| [**GetWhatsAppCallRecording**](WhatsAppCallingApi.md#getwhatsappcallrecording) | **GET** /v1/whatsapp/calls/{callId}/recording | Get a call recording |
+| [**GetWhatsAppCallRecording**](WhatsAppCallingApi.md#getwhatsappcallrecording) | **GET** /v1/whatsapp/calls/{id}/recording | Get a call recording |
 | [**GetWhatsAppCalling**](WhatsAppCallingApi.md#getwhatsappcalling) | **GET** /v1/phone-numbers/{id}/whatsapp/calling | Get calling config for a number |
 | [**GetWhatsAppCallingConfig**](WhatsAppCallingApi.md#getwhatsappcallingconfig) | **GET** /v1/whatsapp/calling | Get calling config for an account |
 | [**InitiateWhatsAppCall**](WhatsAppCallingApi.md#initiatewhatsappcall) | **POST** /v1/whatsapp/calls | Initiate outbound call |
@@ -423,7 +423,7 @@ catch (ApiException e)
 
 <a id="getwhatsappcall"></a>
 # **GetWhatsAppCall**
-> GetWhatsAppCall200Response GetWhatsAppCall (string callId, string accountId)
+> GetWhatsAppCall200Response GetWhatsAppCall (string id, string accountId)
 
 Get a single call
 
@@ -451,13 +451,13 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
-            var callId = "callId_example";  // string | 
+            var id = "id_example";  // string | 
             var accountId = "accountId_example";  // string | 
 
             try
             {
                 // Get a single call
-                GetWhatsAppCall200Response result = apiInstance.GetWhatsAppCall(callId, accountId);
+                GetWhatsAppCall200Response result = apiInstance.GetWhatsAppCall(id, accountId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -478,7 +478,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a single call
-    ApiResponse<GetWhatsAppCall200Response> response = apiInstance.GetWhatsAppCallWithHttpInfo(callId, accountId);
+    ApiResponse<GetWhatsAppCall200Response> response = apiInstance.GetWhatsAppCallWithHttpInfo(id, accountId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -495,7 +495,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **callId** | **string** |  |  |
+| **id** | **string** |  |  |
 | **accountId** | **string** |  |  |
 
 ### Return type
@@ -730,7 +730,7 @@ catch (ApiException e)
 
 <a id="getwhatsappcallrecording"></a>
 # **GetWhatsAppCallRecording**
-> GetWhatsAppCallRecording200Response GetWhatsAppCallRecording (string callId, string accountId, string? varAs = null)
+> GetWhatsAppCallRecording200Response GetWhatsAppCallRecording (string id, string accountId, string? varAs = null)
 
 Get a call recording
 
@@ -760,14 +760,14 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
-            var callId = "callId_example";  // string | 
+            var id = "id_example";  // string | 
             var accountId = "accountId_example";  // string | 
             var varAs = "json";  // string? | `json` returns `{ url }` instead of a 302 redirect. (optional) 
 
             try
             {
                 // Get a call recording
-                GetWhatsAppCallRecording200Response result = apiInstance.GetWhatsAppCallRecording(callId, accountId, varAs);
+                GetWhatsAppCallRecording200Response result = apiInstance.GetWhatsAppCallRecording(id, accountId, varAs);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -788,7 +788,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a call recording
-    ApiResponse<GetWhatsAppCallRecording200Response> response = apiInstance.GetWhatsAppCallRecordingWithHttpInfo(callId, accountId, varAs);
+    ApiResponse<GetWhatsAppCallRecording200Response> response = apiInstance.GetWhatsAppCallRecordingWithHttpInfo(id, accountId, varAs);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -805,7 +805,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **callId** | **string** |  |  |
+| **id** | **string** |  |  |
 | **accountId** | **string** |  |  |
 | **varAs** | **string?** | &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. | [optional]  |
 

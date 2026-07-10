@@ -111,9 +111,9 @@ namespace Zernio.Test.Api
         public void GetWhatsAppCallTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string callId = null;
+            //string id = null;
             //string accountId = null;
-            //var response = instance.GetWhatsAppCall(callId, accountId);
+            //var response = instance.GetWhatsAppCall(id, accountId);
             //Assert.IsType<GetWhatsAppCall200Response>(response);
         }
 
@@ -152,10 +152,10 @@ namespace Zernio.Test.Api
         public void GetWhatsAppCallRecordingTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //string callId = null;
+            //string id = null;
             //string accountId = null;
             //string? varAs = null;
-            //var response = instance.GetWhatsAppCallRecording(callId, accountId, varAs);
+            //var response = instance.GetWhatsAppCallRecording(id, accountId, varAs);
             //Assert.IsType<GetWhatsAppCallRecording200Response>(response);
         }
 
