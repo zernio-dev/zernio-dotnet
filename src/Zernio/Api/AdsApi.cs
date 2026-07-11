@@ -960,6 +960,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateAd200Response</returns>
         ApiResponse<UpdateAd200Response> UpdateAdWithHttpInfo(string adId, UpdateAdRequest updateAdRequest);
         /// <summary>
+        /// Pause or resume a single ad
+        /// </summary>
+        /// <remarks>
+        /// Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
+        /// <param name="updateAdStatusRequest"></param>
+        /// <returns>UpdateAdStatus200Response</returns>
+        UpdateAdStatus200Response UpdateAdStatus(string adId, UpdateAdStatusRequest updateAdStatusRequest);
+
+        /// <summary>
+        /// Pause or resume a single ad
+        /// </summary>
+        /// <remarks>
+        /// Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
+        /// <param name="updateAdStatusRequest"></param>
+        /// <returns>ApiResponse of UpdateAdStatus200Response</returns>
+        ApiResponse<UpdateAdStatus200Response> UpdateAdStatusWithHttpInfo(string adId, UpdateAdStatusRequest updateAdStatusRequest);
+        /// <summary>
         /// Set ad tracking tags
         /// </summary>
         /// <remarks>
@@ -2026,6 +2049,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> UpdateAdWithHttpInfoAsync(string adId, UpdateAdRequest updateAdRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Pause or resume a single ad
+        /// </summary>
+        /// <remarks>
+        /// Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
+        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdStatus200Response</returns>
+        System.Threading.Tasks.Task<UpdateAdStatus200Response> UpdateAdStatusAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Pause or resume a single ad
+        /// </summary>
+        /// <remarks>
+        /// Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
+        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdStatus200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdStatus200Response>> UpdateAdStatusWithHttpInfoAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Set ad tracking tags
         /// </summary>
@@ -7985,6 +8033,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pause or resume a single ad Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
+        /// <param name="updateAdStatusRequest"></param>
+        /// <returns>UpdateAdStatus200Response</returns>
+        public UpdateAdStatus200Response UpdateAdStatus(string adId, UpdateAdStatusRequest updateAdStatusRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateAdStatus200Response> localVarResponse = UpdateAdStatusWithHttpInfo(adId, updateAdStatusRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pause or resume a single ad Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
+        /// <param name="updateAdStatusRequest"></param>
+        /// <returns>ApiResponse of UpdateAdStatus200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateAdStatus200Response> UpdateAdStatusWithHttpInfo(string adId, UpdateAdStatusRequest updateAdStatusRequest)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdsApi->UpdateAdStatus");
+
+            // verify the required parameter 'updateAdStatusRequest' is set
+            if (updateAdStatusRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdStatusRequest' when calling AdsApi->UpdateAdStatus");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.Data = updateAdStatusRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateAdStatus200Response>("/v1/ads/{adId}/status", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdStatus", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pause or resume a single ad Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
+        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdStatus200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAdStatus200Response> UpdateAdStatusAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateAdStatus200Response> localVarResponse = await UpdateAdStatusWithHttpInfoAsync(adId, updateAdStatusRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pause or resume a single ad Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs.</param>
+        /// <param name="updateAdStatusRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdStatus200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdStatus200Response>> UpdateAdStatusWithHttpInfoAsync(string adId, UpdateAdStatusRequest updateAdStatusRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdsApi->UpdateAdStatus");
+
+            // verify the required parameter 'updateAdStatusRequest' is set
+            if (updateAdStatusRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdStatusRequest' when calling AdsApi->UpdateAdStatus");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.Data = updateAdStatusRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateAdStatus200Response>("/v1/ads/{adId}/status", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdStatus", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

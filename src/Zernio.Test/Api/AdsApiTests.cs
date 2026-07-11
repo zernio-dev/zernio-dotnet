@@ -577,6 +577,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test UpdateAdStatus
+        /// </summary>
+        [Fact]
+        public void UpdateAdStatusTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //UpdateAdStatusRequest updateAdStatusRequest = null;
+            //var response = instance.UpdateAdStatus(adId, updateAdStatusRequest);
+            //Assert.IsType<UpdateAdStatus200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAdTrackingTags
         /// </summary>
         [Fact]

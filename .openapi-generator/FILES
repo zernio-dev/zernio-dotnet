@@ -1149,6 +1149,8 @@ docs/UpdateAdSet200Response.md
 docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
 docs/UpdateAdSetStatus200Response.md
+docs/UpdateAdStatus200Response.md
+docs/UpdateAdStatusRequest.md
 docs/UpdateAdTrackingTagsRequest.md
 docs/UpdateAdTrackingTagsRequestCreative.md
 docs/UpdateAdTrackingTagsRequestUrlTagsInner.md
@@ -2565,6 +2567,8 @@ src/Zernio.Test/Model/UpdateAdSet200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestBudgetTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestTests.cs
 src/Zernio.Test/Model/UpdateAdSetStatus200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdStatus200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdStatusRequestTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestCreativeTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestTests.cs
 src/Zernio.Test/Model/UpdateAdTrackingTagsRequestUrlTagsInnerTests.cs
@@ -3986,6 +3990,8 @@ src/Zernio/Model/UpdateAdSet200Response.cs
 src/Zernio/Model/UpdateAdSetRequest.cs
 src/Zernio/Model/UpdateAdSetRequestBudget.cs
 src/Zernio/Model/UpdateAdSetStatus200Response.cs
+src/Zernio/Model/UpdateAdStatus200Response.cs
+src/Zernio/Model/UpdateAdStatusRequest.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequest.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequestCreative.cs
 src/Zernio/Model/UpdateAdTrackingTagsRequestUrlTagsInner.cs
