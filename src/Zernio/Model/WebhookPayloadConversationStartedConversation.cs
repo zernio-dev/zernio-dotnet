@@ -79,7 +79,13 @@ namespace Zernio.Model
             /// Enum Bluesky for value: bluesky
             /// </summary>
             [EnumMember(Value = "bluesky")]
-            Bluesky = 7
+            Bluesky = 7,
+
+            /// <summary>
+            /// Enum Sms for value: sms
+            /// </summary>
+            [EnumMember(Value = "sms")]
+            Sms = 8
         }
 
 
