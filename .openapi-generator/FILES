@@ -197,6 +197,7 @@ docs/CreateInboxConversation201ResponseData.md
 docs/CreateInboxConversation400Response.md
 docs/CreateInboxConversation422Response.md
 docs/CreateInboxConversationRequest.md
+docs/CreateInboxConversationRequestHeaderMedia.md
 docs/CreateInviteToken201Response.md
 docs/CreateInviteTokenRequest.md
 docs/CreateLeadForm200Response.md
@@ -1639,6 +1640,7 @@ src/Zernio.Test/Model/CreateInboxConversation201ResponseDataTests.cs
 src/Zernio.Test/Model/CreateInboxConversation201ResponseTests.cs
 src/Zernio.Test/Model/CreateInboxConversation400ResponseTests.cs
 src/Zernio.Test/Model/CreateInboxConversation422ResponseTests.cs
+src/Zernio.Test/Model/CreateInboxConversationRequestHeaderMediaTests.cs
 src/Zernio.Test/Model/CreateInboxConversationRequestTests.cs
 src/Zernio.Test/Model/CreateInviteToken201ResponseTests.cs
 src/Zernio.Test/Model/CreateInviteTokenRequestTests.cs
@@ -3060,6 +3062,7 @@ src/Zernio/Model/CreateInboxConversation201ResponseData.cs
 src/Zernio/Model/CreateInboxConversation400Response.cs
 src/Zernio/Model/CreateInboxConversation422Response.cs
 src/Zernio/Model/CreateInboxConversationRequest.cs
+src/Zernio/Model/CreateInboxConversationRequestHeaderMedia.cs
 src/Zernio/Model/CreateInviteToken201Response.cs
 src/Zernio/Model/CreateInviteTokenRequest.cs
 src/Zernio/Model/CreateLeadForm200Response.cs

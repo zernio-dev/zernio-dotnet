@@ -126,5 +126,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'TemplateParams'
         }
+
+        /// <summary>
+        /// Test the property 'HeaderMedia'
+        /// </summary>
+        [Fact]
+        public void HeaderMediaTest()
+        {
+            // TODO unit test for the property 'HeaderMedia'
+        }
     }
 }
