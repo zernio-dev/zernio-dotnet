@@ -154,8 +154,8 @@ namespace Zernio.Model
         /// <param name="linkUrl">TikTok-only. Custom destination URL for the Spark Ad. Without this, TikTok Spark Ads have no clickable destination — required for traffic / conversion objectives. Maps to &#x60;landing_page_url&#x60; on the creative entry of /v2/ad/create/ (TikTok SDK &#x60;AdcreateCreatives.landing_page_url&#x60;). Ignored on Meta / LinkedIn / Pinterest / X / Google (those infer the destination from the boosted post). .</param>
         /// <param name="callToAction">TikTok-only. Call-to-action button label on the Spark Ad creative (e.g. &#x60;LEARN_MORE&#x60;, &#x60;SHOP_NOW&#x60;, &#x60;DOWNLOAD_NOW&#x60;, &#x60;SIGN_UP&#x60;, &#x60;WATCH_NOW&#x60;). Maps to &#x60;call_to_action&#x60; on the creative entry of /v2/ad/create/. Pass-through — the platform validates the value. See TikTok&#39;s \&quot;Enumeration - Call-to-Action\&quot; reference for the full list. .</param>
         /// <param name="sparkAuthCode">TikTok-only. Spark Code (creator&#39;s &#x60;auth_code&#x60;) authorizing cross-creator Spark Ads — the advertiser can boost a video owned by a DIFFERENT TikTok account. Without this, boosts are limited to videos owned by the same account running the ads (same-BC creators only). The creator generates the code in their TikTok app&#39;s Promote settings and shares it with the advertiser. Maps to &#x60;auth_code&#x60; on the creative entry of /v2/ad/create/. .</param>
-        /// <param name="dsaBeneficiary">Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. .</param>
-        /// <param name="dsaPayor">Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). .</param>
+        /// <param name="dsaBeneficiary">Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. .</param>
+        /// <param name="dsaPayor">Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. .</param>
         public BoostPostRequest(string postId = default, string platformPostId = default, string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, BoostPostRequestBudget budget = default, string currency = default, BoostPostRequestSchedule schedule = default, BoostPostRequestTargeting targeting = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, BoostPostRequestTracking tracking = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, string linkUrl = default, string callToAction = default, string sparkAuthCode = default, string dsaBeneficiary = default, string dsaPayor = default)
         {
             // to ensure "accountId" is required (not null)
@@ -310,16 +310,16 @@ namespace Zernio.Model
         public string SparkAuthCode { get; set; }
 
         /// <summary>
-        /// Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. 
+        /// Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. 
         /// </summary>
-        /// <value>Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. </value>
+        /// <value>Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. </value>
         [DataMember(Name = "dsaBeneficiary", EmitDefaultValue = false)]
         public string DsaBeneficiary { get; set; }
 
         /// <summary>
-        /// Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). 
+        /// Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. 
         /// </summary>
-        /// <value>Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). </value>
+        /// <value>Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. </value>
         [DataMember(Name = "dsaPayor", EmitDefaultValue = false)]
         public string DsaPayor { get; set; }
 

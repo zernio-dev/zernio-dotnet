@@ -320,6 +320,32 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetDsaDefaults
+        /// </summary>
+        [Fact]
+        public void GetDsaDefaultsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //var response = instance.GetDsaDefaults(accountId, adAccountId);
+            //Assert.IsType<UpdateAdAccount200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetDsaRecommendations
+        /// </summary>
+        [Fact]
+        public void GetDsaRecommendationsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //var response = instance.GetDsaRecommendations(accountId, adAccountId);
+            //Assert.IsType<GetDsaRecommendations200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetLeadForm
         /// </summary>
         [Fact]
@@ -574,6 +600,18 @@ namespace Zernio.Test.Api
             //UpdateAdRequest updateAdRequest = null;
             //var response = instance.UpdateAd(adId, updateAdRequest);
             //Assert.IsType<UpdateAd200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateAdAccount
+        /// </summary>
+        [Fact]
+        public void UpdateAdAccountTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //UpdateAdAccountRequest updateAdAccountRequest = null;
+            //var response = instance.UpdateAdAccount(updateAdAccountRequest);
+            //Assert.IsType<UpdateAdAccount200Response>(response);
         }
 
         /// <summary>

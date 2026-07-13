@@ -433,6 +433,7 @@ docs/GetDiscordChannels200Response.md
 docs/GetDiscordChannels200ResponseChannelsInner.md
 docs/GetDiscordSettings200Response.md
 docs/GetDiscordSettings200ResponseAccount.md
+docs/GetDsaRecommendations200Response.md
 docs/GetFacebookPages200Response.md
 docs/GetFacebookPages200ResponsePagesInner.md
 docs/GetFacebookPostReactions200Response.md
@@ -1134,6 +1135,9 @@ docs/UpdateAccountGroupRequest.md
 docs/UpdateAccountRequest.md
 docs/UpdateAccountRequestXCapabilities.md
 docs/UpdateAd200Response.md
+docs/UpdateAdAccount200Response.md
+docs/UpdateAdAccount200ResponseDsaDefaults.md
+docs/UpdateAdAccountRequest.md
 docs/UpdateAdAudienceRequest.md
 docs/UpdateAdCampaign200Response.md
 docs/UpdateAdCampaignRequest.md
@@ -1869,6 +1873,7 @@ src/Zernio.Test/Model/GetDiscordChannels200ResponseChannelsInnerTests.cs
 src/Zernio.Test/Model/GetDiscordChannels200ResponseTests.cs
 src/Zernio.Test/Model/GetDiscordSettings200ResponseAccountTests.cs
 src/Zernio.Test/Model/GetDiscordSettings200ResponseTests.cs
+src/Zernio.Test/Model/GetDsaRecommendations200ResponseTests.cs
 src/Zernio.Test/Model/GetFacebookPages200ResponsePagesInnerTests.cs
 src/Zernio.Test/Model/GetFacebookPages200ResponseTests.cs
 src/Zernio.Test/Model/GetFacebookPostReactions200ResponseBreakdownTests.cs
@@ -2552,6 +2557,9 @@ src/Zernio.Test/Model/UpdateAccountGroupRequestTests.cs
 src/Zernio.Test/Model/UpdateAccountRequestTests.cs
 src/Zernio.Test/Model/UpdateAccountRequestXCapabilitiesTests.cs
 src/Zernio.Test/Model/UpdateAd200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdAccount200ResponseDsaDefaultsTests.cs
+src/Zernio.Test/Model/UpdateAdAccount200ResponseTests.cs
+src/Zernio.Test/Model/UpdateAdAccountRequestTests.cs
 src/Zernio.Test/Model/UpdateAdAudienceRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignRequestBudgetTests.cs
@@ -3292,6 +3300,7 @@ src/Zernio/Model/GetDiscordChannels200Response.cs
 src/Zernio/Model/GetDiscordChannels200ResponseChannelsInner.cs
 src/Zernio/Model/GetDiscordSettings200Response.cs
 src/Zernio/Model/GetDiscordSettings200ResponseAccount.cs
+src/Zernio/Model/GetDsaRecommendations200Response.cs
 src/Zernio/Model/GetFacebookPages200Response.cs
 src/Zernio/Model/GetFacebookPages200ResponsePagesInner.cs
 src/Zernio/Model/GetFacebookPostReactions200Response.cs
@@ -3975,6 +3984,9 @@ src/Zernio/Model/UpdateAccountGroupRequest.cs
 src/Zernio/Model/UpdateAccountRequest.cs
 src/Zernio/Model/UpdateAccountRequestXCapabilities.cs
 src/Zernio/Model/UpdateAd200Response.cs
+src/Zernio/Model/UpdateAdAccount200Response.cs
+src/Zernio/Model/UpdateAdAccount200ResponseDsaDefaults.cs
+src/Zernio/Model/UpdateAdAccountRequest.cs
 src/Zernio/Model/UpdateAdAudienceRequest.cs
 src/Zernio/Model/UpdateAdCampaign200Response.cs
 src/Zernio/Model/UpdateAdCampaignRequest.cs

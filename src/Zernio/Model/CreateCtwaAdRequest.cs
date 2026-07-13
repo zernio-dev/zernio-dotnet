@@ -190,8 +190,8 @@ namespace Zernio.Model
         /// <param name="bidStrategy">Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. .</param>
         /// <param name="bidAmount">Whole currency units (e.g. &#x60;5&#x60; &#x3D; $5.00 on a USD account). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;; rejected otherwise. .</param>
         /// <param name="roasAverageFloor">Decimal ROAS multiplier (e.g. &#x60;2.0&#x60; &#x3D; 2.0× ROAS floor). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;; rejected otherwise. Meta enforces its own upper bound server-side. .</param>
-        /// <param name="dsaBeneficiary">Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. .</param>
-        /// <param name="dsaPayor">Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). .</param>
+        /// <param name="dsaBeneficiary">Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. .</param>
+        /// <param name="dsaPayor">Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. .</param>
         public CreateCtwaAdRequest(string accountId = default, string adAccountId = default, string name = default, string headline = default, string body = default, string imageUrl = default, CreateCtwaAdRequestVideo video = default, List<CreateCtwaAdRequestCreativesInner> creatives = default, decimal budgetAmount = default, BudgetTypeEnum budgetType = default, string currency = default, DateTime endDate = default, List<string> countries = default, List<CreateCtwaAdRequestCitiesInner> cities = default, List<CreateCtwaAdRequestRegionsInner> regions = default, List<CreateCtwaAdRequestZipsInner> zips = default, List<CreateCtwaAdRequestZipsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, int ageMin = default, int ageMax = default, List<CreateStandaloneAdRequestBehaviorsInner> interests = default, string audienceId = default, CreateCtwaAdRequestPlacements placements = default, AdvantageAudienceEnum? advantageAudience = default, ObjectiveEnum? objective = default, BidStrategyEnum? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, string dsaBeneficiary = default, string dsaPayor = default)
         {
             // to ensure "accountId" is required (not null)
@@ -405,16 +405,16 @@ namespace Zernio.Model
         public decimal RoasAverageFloor { get; set; }
 
         /// <summary>
-        /// Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. 
+        /// Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. 
         /// </summary>
-        /// <value>Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. </value>
+        /// <value>Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. </value>
         [DataMember(Name = "dsaBeneficiary", EmitDefaultValue = false)]
         public string DsaBeneficiary { get; set; }
 
         /// <summary>
-        /// Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). 
+        /// Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. 
         /// </summary>
-        /// <value>Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). </value>
+        /// <value>Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. </value>
         [DataMember(Name = "dsaPayor", EmitDefaultValue = false)]
         public string DsaPayor { get; set; }
 

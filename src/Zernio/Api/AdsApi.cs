@@ -501,6 +501,52 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetConversionsQuality200Response</returns>
         ApiResponse<GetConversionsQuality200Response> GetConversionsQualityWithHttpInfo(string accountId, string destinationId);
         /// <summary>
+        /// Get ad account DSA defaults
+        /// </summary>
+        /// <remarks>
+        /// Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>UpdateAdAccount200Response</returns>
+        UpdateAdAccount200Response GetDsaDefaults(string accountId, string adAccountId);
+
+        /// <summary>
+        /// Get ad account DSA defaults
+        /// </summary>
+        /// <remarks>
+        /// Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>ApiResponse of UpdateAdAccount200Response</returns>
+        ApiResponse<UpdateAdAccount200Response> GetDsaDefaultsWithHttpInfo(string accountId, string adAccountId);
+        /// <summary>
+        /// List DSA beneficiary/payor suggestions
+        /// </summary>
+        /// <remarks>
+        /// Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>GetDsaRecommendations200Response</returns>
+        GetDsaRecommendations200Response GetDsaRecommendations(string accountId, string adAccountId);
+
+        /// <summary>
+        /// List DSA beneficiary/payor suggestions
+        /// </summary>
+        /// <remarks>
+        /// Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>ApiResponse of GetDsaRecommendations200Response</returns>
+        ApiResponse<GetDsaRecommendations200Response> GetDsaRecommendationsWithHttpInfo(string accountId, string adAccountId);
+        /// <summary>
         /// Get a lead form
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -959,6 +1005,27 @@ namespace Zernio.Api
         /// <param name="updateAdRequest"></param>
         /// <returns>ApiResponse of UpdateAd200Response</returns>
         ApiResponse<UpdateAd200Response> UpdateAdWithHttpInfo(string adId, UpdateAdRequest updateAdRequest);
+        /// <summary>
+        /// Update ad account settings
+        /// </summary>
+        /// <remarks>
+        /// Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAdAccountRequest"></param>
+        /// <returns>UpdateAdAccount200Response</returns>
+        UpdateAdAccount200Response UpdateAdAccount(UpdateAdAccountRequest updateAdAccountRequest);
+
+        /// <summary>
+        /// Update ad account settings
+        /// </summary>
+        /// <remarks>
+        /// Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAdAccountRequest"></param>
+        /// <returns>ApiResponse of UpdateAdAccount200Response</returns>
+        ApiResponse<UpdateAdAccount200Response> UpdateAdAccountWithHttpInfo(UpdateAdAccountRequest updateAdAccountRequest);
         /// <summary>
         /// Pause or resume a single ad
         /// </summary>
@@ -1552,6 +1619,56 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetConversionsQuality200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetConversionsQuality200Response>> GetConversionsQualityWithHttpInfoAsync(string accountId, string destinationId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get ad account DSA defaults
+        /// </summary>
+        /// <remarks>
+        /// Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdAccount200Response</returns>
+        System.Threading.Tasks.Task<UpdateAdAccount200Response> GetDsaDefaultsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get ad account DSA defaults
+        /// </summary>
+        /// <remarks>
+        /// Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdAccount200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdAccount200Response>> GetDsaDefaultsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List DSA beneficiary/payor suggestions
+        /// </summary>
+        /// <remarks>
+        /// Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetDsaRecommendations200Response</returns>
+        System.Threading.Tasks.Task<GetDsaRecommendations200Response> GetDsaRecommendationsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List DSA beneficiary/payor suggestions
+        /// </summary>
+        /// <remarks>
+        /// Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetDsaRecommendations200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetDsaRecommendations200Response>> GetDsaRecommendationsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get a lead form
         /// </summary>
         /// <remarks>
@@ -2049,6 +2166,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> UpdateAdWithHttpInfoAsync(string adId, UpdateAdRequest updateAdRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Update ad account settings
+        /// </summary>
+        /// <remarks>
+        /// Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAdAccountRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdAccount200Response</returns>
+        System.Threading.Tasks.Task<UpdateAdAccount200Response> UpdateAdAccountAsync(UpdateAdAccountRequest updateAdAccountRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Update ad account settings
+        /// </summary>
+        /// <remarks>
+        /// Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAdAccountRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdAccount200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdAccount200Response>> UpdateAdAccountWithHttpInfoAsync(UpdateAdAccountRequest updateAdAccountRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Pause or resume a single ad
         /// </summary>
@@ -5232,6 +5372,288 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Get ad account DSA defaults Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>UpdateAdAccount200Response</returns>
+        public UpdateAdAccount200Response GetDsaDefaults(string accountId, string adAccountId)
+        {
+            Zernio.Client.ApiResponse<UpdateAdAccount200Response> localVarResponse = GetDsaDefaultsWithHttpInfo(accountId, adAccountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get ad account DSA defaults Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>ApiResponse of UpdateAdAccount200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateAdAccount200Response> GetDsaDefaultsWithHttpInfo(string accountId, string adAccountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetDsaDefaults");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetDsaDefaults");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<UpdateAdAccount200Response>("/v1/ads/dsa-defaults", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetDsaDefaults", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get ad account DSA defaults Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdAccount200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAdAccount200Response> GetDsaDefaultsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateAdAccount200Response> localVarResponse = await GetDsaDefaultsWithHttpInfoAsync(accountId, adAccountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get ad account DSA defaults Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdAccount200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdAccount200Response>> GetDsaDefaultsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetDsaDefaults");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetDsaDefaults");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<UpdateAdAccount200Response>("/v1/ads/dsa-defaults", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetDsaDefaults", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List DSA beneficiary/payor suggestions Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>GetDsaRecommendations200Response</returns>
+        public GetDsaRecommendations200Response GetDsaRecommendations(string accountId, string adAccountId)
+        {
+            Zernio.Client.ApiResponse<GetDsaRecommendations200Response> localVarResponse = GetDsaRecommendationsWithHttpInfo(accountId, adAccountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List DSA beneficiary/payor suggestions Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <returns>ApiResponse of GetDsaRecommendations200Response</returns>
+        public Zernio.Client.ApiResponse<GetDsaRecommendations200Response> GetDsaRecommendationsWithHttpInfo(string accountId, string adAccountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetDsaRecommendations");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetDsaRecommendations");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetDsaRecommendations200Response>("/v1/ads/dsa-recommendations", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetDsaRecommendations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List DSA beneficiary/payor suggestions Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetDsaRecommendations200Response</returns>
+        public async System.Threading.Tasks.Task<GetDsaRecommendations200Response> GetDsaRecommendationsAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetDsaRecommendations200Response> localVarResponse = await GetDsaRecommendationsWithHttpInfoAsync(accountId, adAccountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List DSA beneficiary/payor suggestions Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Social account ID (metaads, or a facebook/instagram posting account)</param>
+        /// <param name="adAccountId">Meta ad account ID (act_...)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetDsaRecommendations200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetDsaRecommendations200Response>> GetDsaRecommendationsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetDsaRecommendations");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetDsaRecommendations");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetDsaRecommendations200Response>("/v1/ads/dsa-recommendations", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetDsaRecommendations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get a lead form 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -8033,6 +8455,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update ad account settings Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAdAccountRequest"></param>
+        /// <returns>UpdateAdAccount200Response</returns>
+        public UpdateAdAccount200Response UpdateAdAccount(UpdateAdAccountRequest updateAdAccountRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateAdAccount200Response> localVarResponse = UpdateAdAccountWithHttpInfo(updateAdAccountRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update ad account settings Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAdAccountRequest"></param>
+        /// <returns>ApiResponse of UpdateAdAccount200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateAdAccount200Response> UpdateAdAccountWithHttpInfo(UpdateAdAccountRequest updateAdAccountRequest)
+        {
+            // verify the required parameter 'updateAdAccountRequest' is set
+            if (updateAdAccountRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdAccountRequest' when calling AdsApi->UpdateAdAccount");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = updateAdAccountRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<UpdateAdAccount200Response>("/v1/ads/accounts", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Update ad account settings Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAdAccountRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdAccount200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAdAccount200Response> UpdateAdAccountAsync(UpdateAdAccountRequest updateAdAccountRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateAdAccount200Response> localVarResponse = await UpdateAdAccountWithHttpInfoAsync(updateAdAccountRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Update ad account settings Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="updateAdAccountRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdAccount200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdAccount200Response>> UpdateAdAccountWithHttpInfoAsync(UpdateAdAccountRequest updateAdAccountRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'updateAdAccountRequest' is set
+            if (updateAdAccountRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdAccountRequest' when calling AdsApi->UpdateAdAccount");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = updateAdAccountRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<UpdateAdAccount200Response>("/v1/ads/accounts", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdAccount", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
