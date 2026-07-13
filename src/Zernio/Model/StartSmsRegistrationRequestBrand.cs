@@ -77,31 +77,6 @@ namespace Zernio.Model
         [DataMember(Name = "entityType", IsRequired = true, EmitDefaultValue = true)]
         public EntityTypeEnum EntityType { get; set; }
         /// <summary>
-        /// Defines Country
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum CountryEnum
-        {
-            /// <summary>
-            /// Enum US for value: US
-            /// </summary>
-            [EnumMember(Value = "US")]
-            US = 1,
-
-            /// <summary>
-            /// Enum CA for value: CA
-            /// </summary>
-            [EnumMember(Value = "CA")]
-            CA = 2
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Country
-        /// </summary>
-        [DataMember(Name = "country", IsRequired = true, EmitDefaultValue = true)]
-        public CountryEnum Country { get; set; }
-        /// <summary>
         /// Defines Vertical
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
@@ -270,12 +245,12 @@ namespace Zernio.Model
         /// <param name="city">city (required).</param>
         /// <param name="state">state (required).</param>
         /// <param name="postalCode">postalCode (required).</param>
-        /// <param name="country">country (required).</param>
+        /// <param name="country">ISO 3166-1 alpha-2 country where the company is registered. Companies worldwide can register standard 10DLC (non-US companies use their local tax ID in &#x60;ein&#x60;; carrier vetting may take longer). SOLE_PROPRIETOR is US/CA only. (required).</param>
         /// <param name="email">Brand contact email; defaults to your account email when omitted..</param>
         /// <param name="website">The brand&#39;s website (sole proprietors may use a social profile such as LinkedIn or a business Facebook page). Carriers verify the brand against it; a bare domain is normalized to https://. (required).</param>
         /// <param name="vertical">vertical (required).</param>
         /// <param name="stockSymbol">stockSymbol.</param>
-        public StartSmsRegistrationRequestBrand(EntityTypeEnum entityType = default, string displayName = default, string companyName = default, string ein = default, string phone = default, string mobilePhone = default, string street = default, string city = default, string state = default, string postalCode = default, CountryEnum country = default, string email = default, string website = default, VerticalEnum vertical = default, string stockSymbol = default)
+        public StartSmsRegistrationRequestBrand(EntityTypeEnum entityType = default, string displayName = default, string companyName = default, string ein = default, string phone = default, string mobilePhone = default, string street = default, string city = default, string state = default, string postalCode = default, string country = default, string email = default, string website = default, VerticalEnum vertical = default, string stockSymbol = default)
         {
             this.EntityType = entityType;
             // to ensure "displayName" is required (not null)
@@ -308,6 +283,11 @@ namespace Zernio.Model
                 throw new ArgumentNullException("postalCode is a required property for StartSmsRegistrationRequestBrand and cannot be null");
             }
             this.PostalCode = postalCode;
+            // to ensure "country" is required (not null)
+            if (country == null)
+            {
+                throw new ArgumentNullException("country is a required property for StartSmsRegistrationRequestBrand and cannot be null");
+            }
             this.Country = country;
             // to ensure "website" is required (not null)
             if (website == null)
@@ -383,6 +363,13 @@ namespace Zernio.Model
         public string PostalCode { get; set; }
 
         /// <summary>
+        /// ISO 3166-1 alpha-2 country where the company is registered. Companies worldwide can register standard 10DLC (non-US companies use their local tax ID in &#x60;ein&#x60;; carrier vetting may take longer). SOLE_PROPRIETOR is US/CA only.
+        /// </summary>
+        /// <value>ISO 3166-1 alpha-2 country where the company is registered. Companies worldwide can register standard 10DLC (non-US companies use their local tax ID in &#x60;ein&#x60;; carrier vetting may take longer). SOLE_PROPRIETOR is US/CA only.</value>
+        [DataMember(Name = "country", IsRequired = true, EmitDefaultValue = true)]
+        public string Country { get; set; }
+
+        /// <summary>
         /// Brand contact email; defaults to your account email when omitted.
         /// </summary>
         /// <value>Brand contact email; defaults to your account email when omitted.</value>
@@ -445,6 +432,18 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Country (string) maxLength
+            if (this.Country != null && this.Country.Length > 2)
+            {
+                yield return new ValidationResult("Invalid value for Country, length must be less than 2.", new [] { "Country" });
+            }
+
+            // Country (string) minLength
+            if (this.Country != null && this.Country.Length < 2)
+            {
+                yield return new ValidationResult("Invalid value for Country, length must be greater than 2.", new [] { "Country" });
+            }
+
             yield break;
         }
     }
