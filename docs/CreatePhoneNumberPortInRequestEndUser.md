@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EntityName** | **string** |  | 
 **AuthPersonName** | **string** |  | 
-**BillingPhoneNumber** | **string** |  | [optional] 
+**BillingPhoneNumber** | **string** | Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders. | [optional] 
 **AccountNumber** | **string** |  | [optional] 
 **PinPasscode** | **string** | Transfer PIN. Forwarded to the carrier, never stored. | [optional] 
 **StreetAddress** | **string** |  | 

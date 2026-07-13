@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="entityName">entityName (required).</param>
         /// <param name="authPersonName">authPersonName (required).</param>
-        /// <param name="billingPhoneNumber">billingPhoneNumber.</param>
+        /// <param name="billingPhoneNumber">Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders..</param>
         /// <param name="accountNumber">accountNumber.</param>
         /// <param name="pinPasscode">Transfer PIN. Forwarded to the carrier, never stored..</param>
         /// <param name="streetAddress">streetAddress (required).</param>
@@ -115,8 +115,9 @@ namespace Zernio.Model
         public string AuthPersonName { get; set; }
 
         /// <summary>
-        /// Gets or Sets BillingPhoneNumber
+        /// Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders.
         /// </summary>
+        /// <value>Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders.</value>
         [DataMember(Name = "billingPhoneNumber", EmitDefaultValue = false)]
         public string BillingPhoneNumber { get; set; }
 

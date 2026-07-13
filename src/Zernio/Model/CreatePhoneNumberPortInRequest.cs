@@ -34,6 +34,33 @@ namespace Zernio.Model
     public partial class CreatePhoneNumberPortInRequest : IValidatableObject
     {
         /// <summary>
+        /// Whether the losing account ports all its numbers (full) or keeps some (partial).
+        /// </summary>
+        /// <value>Whether the losing account ports all its numbers (full) or keeps some (partial).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum PortTypeEnum
+        {
+            /// <summary>
+            /// Enum Full for value: full
+            /// </summary>
+            [EnumMember(Value = "full")]
+            Full = 1,
+
+            /// <summary>
+            /// Enum Partial for value: partial
+            /// </summary>
+            [EnumMember(Value = "partial")]
+            Partial = 2
+        }
+
+
+        /// <summary>
+        /// Whether the losing account ports all its numbers (full) or keeps some (partial).
+        /// </summary>
+        /// <value>Whether the losing account ports all its numbers (full) or keeps some (partial).</value>
+        [DataMember(Name = "portType", EmitDefaultValue = false)]
+        public PortTypeEnum? PortType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreatePhoneNumberPortInRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -45,9 +72,10 @@ namespace Zernio.Model
         /// <param name="endUser">endUser (required).</param>
         /// <param name="loaDocumentId">Document id from POST /v1/phone-numbers/port-in/documents (kind&#x3D;loa). (required).</param>
         /// <param name="invoiceDocumentId">Document id from POST /v1/phone-numbers/port-in/documents (kind&#x3D;invoice). (required).</param>
-        /// <param name="focDatetimeRequested">Requested port date; the carrier confirms the actual FOC later..</param>
+        /// <param name="focDatetimeRequested">Requested port date; the carrier confirms the actual FOC later. Defaults to one week out (shifted off weekends) when omitted..</param>
         /// <param name="customerReference">customerReference.</param>
-        public CreatePhoneNumberPortInRequest(List<string> phoneNumbers = default, CreatePhoneNumberPortInRequestEndUser endUser = default, string loaDocumentId = default, string invoiceDocumentId = default, DateTime focDatetimeRequested = default, string customerReference = default)
+        /// <param name="portType">Whether the losing account ports all its numbers (full) or keeps some (partial). (default to PortTypeEnum.Full).</param>
+        public CreatePhoneNumberPortInRequest(List<string> phoneNumbers = default, CreatePhoneNumberPortInRequestEndUser endUser = default, string loaDocumentId = default, string invoiceDocumentId = default, DateTime focDatetimeRequested = default, string customerReference = default, PortTypeEnum? portType = PortTypeEnum.Full)
         {
             // to ensure "phoneNumbers" is required (not null)
             if (phoneNumbers == null)
@@ -75,6 +103,7 @@ namespace Zernio.Model
             this.InvoiceDocumentId = invoiceDocumentId;
             this.FocDatetimeRequested = focDatetimeRequested;
             this.CustomerReference = customerReference;
+            this.PortType = portType;
         }
 
         /// <summary>
@@ -105,9 +134,9 @@ namespace Zernio.Model
         public string InvoiceDocumentId { get; set; }
 
         /// <summary>
-        /// Requested port date; the carrier confirms the actual FOC later.
+        /// Requested port date; the carrier confirms the actual FOC later. Defaults to one week out (shifted off weekends) when omitted.
         /// </summary>
-        /// <value>Requested port date; the carrier confirms the actual FOC later.</value>
+        /// <value>Requested port date; the carrier confirms the actual FOC later. Defaults to one week out (shifted off weekends) when omitted.</value>
         [DataMember(Name = "focDatetimeRequested", EmitDefaultValue = false)]
         public DateTime FocDatetimeRequested { get; set; }
 
@@ -131,6 +160,7 @@ namespace Zernio.Model
             sb.Append("  InvoiceDocumentId: ").Append(InvoiceDocumentId).Append("\n");
             sb.Append("  FocDatetimeRequested: ").Append(FocDatetimeRequested).Append("\n");
             sb.Append("  CustomerReference: ").Append(CustomerReference).Append("\n");
+            sb.Append("  PortType: ").Append(PortType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
