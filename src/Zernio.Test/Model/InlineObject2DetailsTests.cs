@@ -83,15 +83,6 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'PublicAccountLimit'
-        /// </summary>
-        [Fact]
-        public void PublicAccountLimitTest()
-        {
-            // TODO unit test for the property 'PublicAccountLimit'
-        }
-
-        /// <summary>
         /// Test the property 'EffectiveAccountLimit'
         /// </summary>
         [Fact]

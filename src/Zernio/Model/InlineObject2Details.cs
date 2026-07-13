@@ -39,14 +39,12 @@ namespace Zernio.Model
         /// <param name="freeTierAccountLimit">How many accounts the free tier allows. Only set when reason&#x3D;free_tier_exceeded..</param>
         /// <param name="currentAccountCount">How many accounts the team currently has connected. Set when reason&#x3D;free_tier_exceeded or reason&#x3D;enterprise_required..</param>
         /// <param name="hasPaymentMethod">Whether the team currently has a card on file in Stripe. Set when reason&#x3D;free_tier_exceeded or reason&#x3D;twitter_passthrough..</param>
-        /// <param name="publicAccountLimit">Public pricing ceiling (the published cap beyond which an enterprise contract is required). Only set when reason&#x3D;enterprise_required..</param>
-        /// <param name="effectiveAccountLimit">The cap actually applied to this team. Equals &#x60;public_account_limit&#x60; for organic teams; for teams with a per-customer override (grandfathered legacy customers, signed enterprise contracts) this can be higher. Only set when reason&#x3D;enterprise_required. .</param>
-        public InlineObject2Details(int freeTierAccountLimit = default, int currentAccountCount = default, bool hasPaymentMethod = default, int publicAccountLimit = default, int effectiveAccountLimit = default)
+        /// <param name="effectiveAccountLimit">The negotiated connected-account cap from the team&#39;s enterprise contract. Self-service teams have no cap and never receive this reason. Only set when reason&#x3D;enterprise_required. .</param>
+        public InlineObject2Details(int freeTierAccountLimit = default, int currentAccountCount = default, bool hasPaymentMethod = default, int effectiveAccountLimit = default)
         {
             this.FreeTierAccountLimit = freeTierAccountLimit;
             this.CurrentAccountCount = currentAccountCount;
             this.HasPaymentMethod = hasPaymentMethod;
-            this.PublicAccountLimit = publicAccountLimit;
             this.EffectiveAccountLimit = effectiveAccountLimit;
         }
 
@@ -78,19 +76,9 @@ namespace Zernio.Model
         public bool HasPaymentMethod { get; set; }
 
         /// <summary>
-        /// Public pricing ceiling (the published cap beyond which an enterprise contract is required). Only set when reason&#x3D;enterprise_required.
+        /// The negotiated connected-account cap from the team&#39;s enterprise contract. Self-service teams have no cap and never receive this reason. Only set when reason&#x3D;enterprise_required. 
         /// </summary>
-        /// <value>Public pricing ceiling (the published cap beyond which an enterprise contract is required). Only set when reason&#x3D;enterprise_required.</value>
-        /*
-        <example>2000</example>
-        */
-        [DataMember(Name = "public_account_limit", EmitDefaultValue = false)]
-        public int PublicAccountLimit { get; set; }
-
-        /// <summary>
-        /// The cap actually applied to this team. Equals &#x60;public_account_limit&#x60; for organic teams; for teams with a per-customer override (grandfathered legacy customers, signed enterprise contracts) this can be higher. Only set when reason&#x3D;enterprise_required. 
-        /// </summary>
-        /// <value>The cap actually applied to this team. Equals &#x60;public_account_limit&#x60; for organic teams; for teams with a per-customer override (grandfathered legacy customers, signed enterprise contracts) this can be higher. Only set when reason&#x3D;enterprise_required. </value>
+        /// <value>The negotiated connected-account cap from the team&#39;s enterprise contract. Self-service teams have no cap and never receive this reason. Only set when reason&#x3D;enterprise_required. </value>
         /*
         <example>2000</example>
         */
@@ -108,7 +96,6 @@ namespace Zernio.Model
             sb.Append("  FreeTierAccountLimit: ").Append(FreeTierAccountLimit).Append("\n");
             sb.Append("  CurrentAccountCount: ").Append(CurrentAccountCount).Append("\n");
             sb.Append("  HasPaymentMethod: ").Append(HasPaymentMethod).Append("\n");
-            sb.Append("  PublicAccountLimit: ").Append(PublicAccountLimit).Append("\n");
             sb.Append("  EffectiveAccountLimit: ").Append(EffectiveAccountLimit).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
