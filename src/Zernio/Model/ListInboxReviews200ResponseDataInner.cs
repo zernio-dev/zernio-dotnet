@@ -45,9 +45,11 @@ namespace Zernio.Model
         /// <param name="text">text.</param>
         /// <param name="created">created.</param>
         /// <param name="hasReply">hasReply.</param>
+        /// <param name="hasPhotos">Whether the review has at least one photo. Google Business only; always false for other platforms..</param>
+        /// <param name="photoCount">Number of photos attached to the review (photos only; videos are not counted). Google Business only; 0 for other platforms..</param>
         /// <param name="reply">reply.</param>
         /// <param name="reviewUrl">reviewUrl.</param>
-        public ListInboxReviews200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, ListInboxReviews200ResponseDataInnerReviewer reviewer = default, int rating = default, string text = default, DateTime created = default, bool hasReply = default, ListInboxReviews200ResponseDataInnerReply reply = default, string reviewUrl = default)
+        public ListInboxReviews200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, ListInboxReviews200ResponseDataInnerReviewer reviewer = default, int rating = default, string text = default, DateTime created = default, bool hasReply = default, bool hasPhotos = default, int photoCount = default, ListInboxReviews200ResponseDataInnerReply reply = default, string reviewUrl = default)
         {
             this.Id = id;
             this.Platform = platform;
@@ -58,6 +60,8 @@ namespace Zernio.Model
             this.Text = text;
             this.Created = created;
             this.HasReply = hasReply;
+            this.HasPhotos = hasPhotos;
+            this.PhotoCount = photoCount;
             this.Reply = reply;
             this.ReviewUrl = reviewUrl;
         }
@@ -117,6 +121,20 @@ namespace Zernio.Model
         public bool HasReply { get; set; }
 
         /// <summary>
+        /// Whether the review has at least one photo. Google Business only; always false for other platforms.
+        /// </summary>
+        /// <value>Whether the review has at least one photo. Google Business only; always false for other platforms.</value>
+        [DataMember(Name = "hasPhotos", EmitDefaultValue = true)]
+        public bool HasPhotos { get; set; }
+
+        /// <summary>
+        /// Number of photos attached to the review (photos only; videos are not counted). Google Business only; 0 for other platforms.
+        /// </summary>
+        /// <value>Number of photos attached to the review (photos only; videos are not counted). Google Business only; 0 for other platforms.</value>
+        [DataMember(Name = "photoCount", EmitDefaultValue = false)]
+        public int PhotoCount { get; set; }
+
+        /// <summary>
         /// Gets or Sets Reply
         /// </summary>
         [DataMember(Name = "reply", EmitDefaultValue = false)]
@@ -145,6 +163,8 @@ namespace Zernio.Model
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  Created: ").Append(Created).Append("\n");
             sb.Append("  HasReply: ").Append(HasReply).Append("\n");
+            sb.Append("  HasPhotos: ").Append(HasPhotos).Append("\n");
+            sb.Append("  PhotoCount: ").Append(PhotoCount).Append("\n");
             sb.Append("  Reply: ").Append(Reply).Append("\n");
             sb.Append("  ReviewUrl: ").Append(ReviewUrl).Append("\n");
             sb.Append("}\n");

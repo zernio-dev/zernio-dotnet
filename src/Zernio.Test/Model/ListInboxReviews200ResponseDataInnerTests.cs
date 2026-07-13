@@ -137,6 +137,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'HasPhotos'
+        /// </summary>
+        [Fact]
+        public void HasPhotosTest()
+        {
+            // TODO unit test for the property 'HasPhotos'
+        }
+
+        /// <summary>
+        /// Test the property 'PhotoCount'
+        /// </summary>
+        [Fact]
+        public void PhotoCountTest()
+        {
+            // TODO unit test for the property 'PhotoCount'
+        }
+
+        /// <summary>
         /// Test the property 'Reply'
         /// </summary>
         [Fact]

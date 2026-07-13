@@ -110,6 +110,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'MinimumDailyBudget'
+        /// </summary>
+        [Fact]
+        public void MinimumDailyBudgetTest()
+        {
+            // TODO unit test for the property 'MinimumDailyBudget'
+        }
+
+        /// <summary>
         /// Test the property 'Selectable'
         /// </summary>
         [Fact]

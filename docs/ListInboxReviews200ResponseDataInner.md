@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **Text** | **string** |  | [optional] 
 **Created** | **DateTime** |  | [optional] 
 **HasReply** | **bool** |  | [optional] 
+**HasPhotos** | **bool** | Whether the review has at least one photo. Google Business only; always false for other platforms. | [optional] 
+**PhotoCount** | **int** | Number of photos attached to the review (photos only; videos are not counted). Google Business only; 0 for other platforms. | [optional] 
 **Reply** | [**ListInboxReviews200ResponseDataInnerReply**](ListInboxReviews200ResponseDataInnerReply.md) |  | [optional] 
 **ReviewUrl** | **string** |  | [optional] 
 
