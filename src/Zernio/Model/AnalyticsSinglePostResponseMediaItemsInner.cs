@@ -64,11 +64,13 @@ namespace Zernio.Model
         /// <param name="type">type.</param>
         /// <param name="url">Direct URL to the media.</param>
         /// <param name="thumbnail">Thumbnail URL (same as url for images).</param>
-        public AnalyticsSinglePostResponseMediaItemsInner(TypeEnum? type = default, string url = default, string thumbnail = default)
+        /// <param name="altText">Accessibility alt text set on the media, when present..</param>
+        public AnalyticsSinglePostResponseMediaItemsInner(TypeEnum? type = default, string url = default, string thumbnail = default, string altText = default)
         {
             this.Type = type;
             this.Url = url;
             this.Thumbnail = thumbnail;
+            this.AltText = altText;
         }
 
         /// <summary>
@@ -86,6 +88,13 @@ namespace Zernio.Model
         public string Thumbnail { get; set; }
 
         /// <summary>
+        /// Accessibility alt text set on the media, when present.
+        /// </summary>
+        /// <value>Accessibility alt text set on the media, when present.</value>
+        [DataMember(Name = "altText", EmitDefaultValue = false)]
+        public string AltText { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -96,6 +105,7 @@ namespace Zernio.Model
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Thumbnail: ").Append(Thumbnail).Append("\n");
+            sb.Append("  AltText: ").Append(AltText).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

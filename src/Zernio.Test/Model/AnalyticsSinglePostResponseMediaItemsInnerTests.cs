@@ -81,5 +81,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Thumbnail'
         }
+
+        /// <summary>
+        /// Test the property 'AltText'
+        /// </summary>
+        [Fact]
+        public void AltTextTest()
+        {
+            // TODO unit test for the property 'AltText'
+        }
     }
 }
