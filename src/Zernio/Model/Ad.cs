@@ -178,7 +178,13 @@ namespace Zernio.Model
             /// Enum CatalogSales for value: catalog_sales
             /// </summary>
             [EnumMember(Value = "catalog_sales")]
-            CatalogSales = 9
+            CatalogSales = 9,
+
+            /// <summary>
+            /// Enum JobApplicants for value: job_applicants
+            /// </summary>
+            [EnumMember(Value = "job_applicants")]
+            JobApplicants = 10
         }
 
 

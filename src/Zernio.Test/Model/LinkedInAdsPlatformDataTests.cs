@@ -155,12 +155,30 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Jobs'
+        /// </summary>
+        [Fact]
+        public void JobsTest()
+        {
+            // TODO unit test for the property 'Jobs'
+        }
+
+        /// <summary>
         /// Test the property 'TextAd'
         /// </summary>
         [Fact]
         public void TextAdTest()
         {
             // TODO unit test for the property 'TextAd'
+        }
+
+        /// <summary>
+        /// Test the property 'Conversation'
+        /// </summary>
+        [Fact]
+        public void ConversationTest()
+        {
+            // TODO unit test for the property 'Conversation'
         }
 
         /// <summary>

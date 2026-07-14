@@ -107,9 +107,11 @@ namespace Zernio.Model
         /// <param name="document">document.</param>
         /// <param name="spotlight">spotlight.</param>
         /// <param name="follower">follower.</param>
+        /// <param name="jobs">jobs.</param>
         /// <param name="textAd">textAd.</param>
+        /// <param name="conversation">conversation.</param>
         /// <param name="varEvent">varEvent.</param>
-        public LinkedInAdsPlatformData(CostTypeEnum? costType = default, decimal unitCost = default, string optimizationTargetType = default, CreativeSelectionEnum? creativeSelection = default, bool audienceExpansionEnabled = default, bool offsiteDeliveryEnabled = default, bool connectedTelevisionOnly = default, LinkedInAdsPlatformDataCarousel carousel = default, LinkedInAdsPlatformDataDocument document = default, LinkedInAdsPlatformDataSpotlight spotlight = default, LinkedInAdsPlatformDataFollower follower = default, LinkedInAdsPlatformDataTextAd textAd = default, LinkedInAdsPlatformDataEvent varEvent = default)
+        public LinkedInAdsPlatformData(CostTypeEnum? costType = default, decimal unitCost = default, string optimizationTargetType = default, CreativeSelectionEnum? creativeSelection = default, bool audienceExpansionEnabled = default, bool offsiteDeliveryEnabled = default, bool connectedTelevisionOnly = default, LinkedInAdsPlatformDataCarousel carousel = default, LinkedInAdsPlatformDataDocument document = default, LinkedInAdsPlatformDataSpotlight spotlight = default, LinkedInAdsPlatformDataFollower follower = default, LinkedInAdsPlatformDataJobs jobs = default, LinkedInAdsPlatformDataTextAd textAd = default, LinkedInAdsPlatformDataConversation conversation = default, LinkedInAdsPlatformDataEvent varEvent = default)
         {
             this.CostType = costType;
             this.UnitCost = unitCost;
@@ -122,7 +124,9 @@ namespace Zernio.Model
             this.Document = document;
             this.Spotlight = spotlight;
             this.Follower = follower;
+            this.Jobs = jobs;
             this.TextAd = textAd;
+            this.Conversation = conversation;
             this.Event = varEvent;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
@@ -187,10 +191,22 @@ namespace Zernio.Model
         public LinkedInAdsPlatformDataFollower Follower { get; set; }
 
         /// <summary>
+        /// Gets or Sets Jobs
+        /// </summary>
+        [DataMember(Name = "jobs", EmitDefaultValue = false)]
+        public LinkedInAdsPlatformDataJobs Jobs { get; set; }
+
+        /// <summary>
         /// Gets or Sets TextAd
         /// </summary>
         [DataMember(Name = "textAd", EmitDefaultValue = false)]
         public LinkedInAdsPlatformDataTextAd TextAd { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Conversation
+        /// </summary>
+        [DataMember(Name = "conversation", EmitDefaultValue = false)]
+        public LinkedInAdsPlatformDataConversation Conversation { get; set; }
 
         /// <summary>
         /// Gets or Sets Event
@@ -223,7 +239,9 @@ namespace Zernio.Model
             sb.Append("  Document: ").Append(Document).Append("\n");
             sb.Append("  Spotlight: ").Append(Spotlight).Append("\n");
             sb.Append("  Follower: ").Append(Follower).Append("\n");
+            sb.Append("  Jobs: ").Append(Jobs).Append("\n");
             sb.Append("  TextAd: ").Append(TextAd).Append("\n");
+            sb.Append("  Conversation: ").Append(Conversation).Append("\n");
             sb.Append("  Event: ").Append(Event).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
