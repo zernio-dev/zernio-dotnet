@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// LinkedIn campaign bidding and delivery controls for POST /v1/ads/boost and POST /v1/ads/create. Unknown keys are rejected. 
+    /// LinkedIn-specific options for POST /v1/ads/boost and POST /v1/ads/create: campaign bidding and delivery controls, plus the LinkedIn-only creative formats on /v1/ads/create. Unknown keys are rejected. 
     /// </summary>
     [DataContract(Name = "LinkedInAdsPlatformData")]
     public partial class LinkedInAdsPlatformData : IValidatableObject
@@ -103,7 +103,13 @@ namespace Zernio.Model
         /// <param name="audienceExpansionEnabled">Enable LinkedIn audience expansion. Defaults to false..</param>
         /// <param name="offsiteDeliveryEnabled">Deliver on the LinkedIn Audience Network. Defaults to false..</param>
         /// <param name="connectedTelevisionOnly">Restrict delivery to Connected TV inventory..</param>
-        public LinkedInAdsPlatformData(CostTypeEnum? costType = default, decimal unitCost = default, string optimizationTargetType = default, CreativeSelectionEnum? creativeSelection = default, bool audienceExpansionEnabled = default, bool offsiteDeliveryEnabled = default, bool connectedTelevisionOnly = default)
+        /// <param name="carousel">carousel.</param>
+        /// <param name="document">document.</param>
+        /// <param name="spotlight">spotlight.</param>
+        /// <param name="follower">follower.</param>
+        /// <param name="textAd">textAd.</param>
+        /// <param name="varEvent">varEvent.</param>
+        public LinkedInAdsPlatformData(CostTypeEnum? costType = default, decimal unitCost = default, string optimizationTargetType = default, CreativeSelectionEnum? creativeSelection = default, bool audienceExpansionEnabled = default, bool offsiteDeliveryEnabled = default, bool connectedTelevisionOnly = default, LinkedInAdsPlatformDataCarousel carousel = default, LinkedInAdsPlatformDataDocument document = default, LinkedInAdsPlatformDataSpotlight spotlight = default, LinkedInAdsPlatformDataFollower follower = default, LinkedInAdsPlatformDataTextAd textAd = default, LinkedInAdsPlatformDataEvent varEvent = default)
         {
             this.CostType = costType;
             this.UnitCost = unitCost;
@@ -112,6 +118,13 @@ namespace Zernio.Model
             this.AudienceExpansionEnabled = audienceExpansionEnabled;
             this.OffsiteDeliveryEnabled = offsiteDeliveryEnabled;
             this.ConnectedTelevisionOnly = connectedTelevisionOnly;
+            this.Carousel = carousel;
+            this.Document = document;
+            this.Spotlight = spotlight;
+            this.Follower = follower;
+            this.TextAd = textAd;
+            this.Event = varEvent;
+            this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -150,6 +163,48 @@ namespace Zernio.Model
         public bool ConnectedTelevisionOnly { get; set; }
 
         /// <summary>
+        /// Gets or Sets Carousel
+        /// </summary>
+        [DataMember(Name = "carousel", EmitDefaultValue = false)]
+        public LinkedInAdsPlatformDataCarousel Carousel { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Document
+        /// </summary>
+        [DataMember(Name = "document", EmitDefaultValue = false)]
+        public LinkedInAdsPlatformDataDocument Document { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Spotlight
+        /// </summary>
+        [DataMember(Name = "spotlight", EmitDefaultValue = false)]
+        public LinkedInAdsPlatformDataSpotlight Spotlight { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Follower
+        /// </summary>
+        [DataMember(Name = "follower", EmitDefaultValue = false)]
+        public LinkedInAdsPlatformDataFollower Follower { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TextAd
+        /// </summary>
+        [DataMember(Name = "textAd", EmitDefaultValue = false)]
+        public LinkedInAdsPlatformDataTextAd TextAd { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Event
+        /// </summary>
+        [DataMember(Name = "event", EmitDefaultValue = false)]
+        public LinkedInAdsPlatformDataEvent Event { get; set; }
+
+        /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public IDictionary<string, object> AdditionalProperties { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -164,6 +219,13 @@ namespace Zernio.Model
             sb.Append("  AudienceExpansionEnabled: ").Append(AudienceExpansionEnabled).Append("\n");
             sb.Append("  OffsiteDeliveryEnabled: ").Append(OffsiteDeliveryEnabled).Append("\n");
             sb.Append("  ConnectedTelevisionOnly: ").Append(ConnectedTelevisionOnly).Append("\n");
+            sb.Append("  Carousel: ").Append(Carousel).Append("\n");
+            sb.Append("  Document: ").Append(Document).Append("\n");
+            sb.Append("  Spotlight: ").Append(Spotlight).Append("\n");
+            sb.Append("  Follower: ").Append(Follower).Append("\n");
+            sb.Append("  TextAd: ").Append(TextAd).Append("\n");
+            sb.Append("  Event: ").Append(Event).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

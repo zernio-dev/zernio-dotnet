@@ -117,5 +117,59 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ConnectedTelevisionOnly'
         }
+
+        /// <summary>
+        /// Test the property 'Carousel'
+        /// </summary>
+        [Fact]
+        public void CarouselTest()
+        {
+            // TODO unit test for the property 'Carousel'
+        }
+
+        /// <summary>
+        /// Test the property 'Document'
+        /// </summary>
+        [Fact]
+        public void DocumentTest()
+        {
+            // TODO unit test for the property 'Document'
+        }
+
+        /// <summary>
+        /// Test the property 'Spotlight'
+        /// </summary>
+        [Fact]
+        public void SpotlightTest()
+        {
+            // TODO unit test for the property 'Spotlight'
+        }
+
+        /// <summary>
+        /// Test the property 'Follower'
+        /// </summary>
+        [Fact]
+        public void FollowerTest()
+        {
+            // TODO unit test for the property 'Follower'
+        }
+
+        /// <summary>
+        /// Test the property 'TextAd'
+        /// </summary>
+        [Fact]
+        public void TextAdTest()
+        {
+            // TODO unit test for the property 'TextAd'
+        }
+
+        /// <summary>
+        /// Test the property 'Event'
+        /// </summary>
+        [Fact]
+        public void EventTest()
+        {
+            // TODO unit test for the property 'Event'
+        }
     }
 }

@@ -1,5 +1,5 @@
 # Zernio.Model.LinkedInAdsPlatformData
-LinkedIn campaign bidding and delivery controls for POST /v1/ads/boost and POST /v1/ads/create. Unknown keys are rejected. 
+LinkedIn-specific options for POST /v1/ads/boost and POST /v1/ads/create: campaign bidding and delivery controls, plus the LinkedIn-only creative formats on /v1/ads/create. Unknown keys are rejected. 
 
 ## Properties
 
@@ -12,6 +12,12 @@ Name | Type | Description | Notes
 **AudienceExpansionEnabled** | **bool** | Enable LinkedIn audience expansion. Defaults to false. | [optional] 
 **OffsiteDeliveryEnabled** | **bool** | Deliver on the LinkedIn Audience Network. Defaults to false. | [optional] 
 **ConnectedTelevisionOnly** | **bool** | Restrict delivery to Connected TV inventory. | [optional] 
+**Carousel** | [**LinkedInAdsPlatformDataCarousel**](LinkedInAdsPlatformDataCarousel.md) |  | [optional] 
+**Document** | [**LinkedInAdsPlatformDataDocument**](LinkedInAdsPlatformDataDocument.md) |  | [optional] 
+**Spotlight** | [**LinkedInAdsPlatformDataSpotlight**](LinkedInAdsPlatformDataSpotlight.md) |  | [optional] 
+**Follower** | [**LinkedInAdsPlatformDataFollower**](LinkedInAdsPlatformDataFollower.md) |  | [optional] 
+**TextAd** | [**LinkedInAdsPlatformDataTextAd**](LinkedInAdsPlatformDataTextAd.md) |  | [optional] 
+**Event** | [**LinkedInAdsPlatformDataEvent**](LinkedInAdsPlatformDataEvent.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
