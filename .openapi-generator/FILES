@@ -941,6 +941,7 @@ docs/ReplyToInboxReview200Response.md
 docs/ReplyToInboxReviewRequest.md
 docs/ReplyToMention200Response.md
 docs/ReplyToMentionRequest.md
+docs/ResendSmsRegistrationOtp200Response.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
 docs/RetweetPost200Response.md
@@ -2369,6 +2370,7 @@ src/Zernio.Test/Model/ReplyToInboxReview200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToInboxReviewRequestTests.cs
 src/Zernio.Test/Model/ReplyToMention200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToMentionRequestTests.cs
+src/Zernio.Test/Model/ResendSmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseWorkflowTests.cs
 src/Zernio.Test/Model/RetweetPost200ResponseTests.cs
@@ -3797,6 +3799,7 @@ src/Zernio/Model/ReplyToInboxReview200Response.cs
 src/Zernio/Model/ReplyToInboxReviewRequest.cs
 src/Zernio/Model/ReplyToMention200Response.cs
 src/Zernio/Model/ReplyToMentionRequest.cs
+src/Zernio/Model/ResendSmsRegistrationOtp200Response.cs
 src/Zernio/Model/RestoreWorkflowVersion200Response.cs
 src/Zernio/Model/RestoreWorkflowVersion200ResponseWorkflow.cs
 src/Zernio/Model/RetweetPost200Response.cs

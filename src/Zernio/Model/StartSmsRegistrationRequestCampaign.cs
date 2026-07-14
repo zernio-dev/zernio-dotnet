@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Required for 10DLC. What you&#39;ll send and how recipients opt in/out. Opt-in/opt-out/help auto-responses must name the registered brand and carry the carrier-required disclosures; submissions that don&#39;t (or that are blank) are automatically rewritten to a compliant, brand-named template before the campaign is filed. 
+    /// Required for 10DLC. What you&#39;ll send and how recipients opt in/out. The opt-in/opt-out/help auto-responses (&#x60;optinMessage&#x60;, &#x60;optoutMessage&#x60;, &#x60;helpMessage&#x60;) are optional: when omitted, a compliant, brand-named template with the carrier-required disclosures is generated for you. If you do send them, they must name the registered brand and carry the disclosures — submissions that don&#39;t are rewritten to the compliant template before the campaign is filed. 
     /// </summary>
     [DataContract(Name = "startSmsRegistration_request_campaign")]
     public partial class StartSmsRegistrationRequestCampaign : IValidatableObject
@@ -114,11 +114,11 @@ namespace Zernio.Model
         /// <param name="messageFlow">How a recipient ends up receiving your messages (the opt-in flow). Include a link to the page or form where they opt in — carrier reviewers reject campaigns whose consent they can&#39;t verify. (required).</param>
         /// <param name="sample1">sample1 (required).</param>
         /// <param name="sample2">Second example message; carriers require two distinct samples (required).</param>
-        /// <param name="helpMessage">helpMessage (required).</param>
+        /// <param name="helpMessage">helpMessage.</param>
         /// <param name="optinKeywords">optinKeywords (required).</param>
-        /// <param name="optinMessage">optinMessage (required).</param>
+        /// <param name="optinMessage">optinMessage.</param>
         /// <param name="optoutKeywords">optoutKeywords (required).</param>
-        /// <param name="optoutMessage">optoutMessage (required).</param>
+        /// <param name="optoutMessage">optoutMessage.</param>
         /// <param name="helpKeywords">helpKeywords (required).</param>
         /// <param name="embeddedLink">embeddedLink.</param>
         /// <param name="embeddedPhone">embeddedPhone.</param>
@@ -157,36 +157,18 @@ namespace Zernio.Model
                 throw new ArgumentNullException("sample2 is a required property for StartSmsRegistrationRequestCampaign and cannot be null");
             }
             this.Sample2 = sample2;
-            // to ensure "helpMessage" is required (not null)
-            if (helpMessage == null)
-            {
-                throw new ArgumentNullException("helpMessage is a required property for StartSmsRegistrationRequestCampaign and cannot be null");
-            }
-            this.HelpMessage = helpMessage;
             // to ensure "optinKeywords" is required (not null)
             if (optinKeywords == null)
             {
                 throw new ArgumentNullException("optinKeywords is a required property for StartSmsRegistrationRequestCampaign and cannot be null");
             }
             this.OptinKeywords = optinKeywords;
-            // to ensure "optinMessage" is required (not null)
-            if (optinMessage == null)
-            {
-                throw new ArgumentNullException("optinMessage is a required property for StartSmsRegistrationRequestCampaign and cannot be null");
-            }
-            this.OptinMessage = optinMessage;
             // to ensure "optoutKeywords" is required (not null)
             if (optoutKeywords == null)
             {
                 throw new ArgumentNullException("optoutKeywords is a required property for StartSmsRegistrationRequestCampaign and cannot be null");
             }
             this.OptoutKeywords = optoutKeywords;
-            // to ensure "optoutMessage" is required (not null)
-            if (optoutMessage == null)
-            {
-                throw new ArgumentNullException("optoutMessage is a required property for StartSmsRegistrationRequestCampaign and cannot be null");
-            }
-            this.OptoutMessage = optoutMessage;
             // to ensure "helpKeywords" is required (not null)
             if (helpKeywords == null)
             {
@@ -194,6 +176,9 @@ namespace Zernio.Model
             }
             this.HelpKeywords = helpKeywords;
             this.SubUsecases = subUsecases;
+            this.HelpMessage = helpMessage;
+            this.OptinMessage = optinMessage;
+            this.OptoutMessage = optoutMessage;
             this.EmbeddedLink = embeddedLink;
             this.EmbeddedPhone = embeddedPhone;
             this.NumberPool = numberPool;
@@ -243,7 +228,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets HelpMessage
         /// </summary>
-        [DataMember(Name = "helpMessage", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "helpMessage", EmitDefaultValue = false)]
         public string HelpMessage { get; set; }
 
         /// <summary>
@@ -255,7 +240,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets OptinMessage
         /// </summary>
-        [DataMember(Name = "optinMessage", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "optinMessage", EmitDefaultValue = false)]
         public string OptinMessage { get; set; }
 
         /// <summary>
@@ -267,7 +252,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets OptoutMessage
         /// </summary>
-        [DataMember(Name = "optoutMessage", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "optoutMessage", EmitDefaultValue = false)]
         public string OptoutMessage { get; set; }
 
         /// <summary>

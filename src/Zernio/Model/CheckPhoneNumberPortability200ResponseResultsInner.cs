@@ -39,12 +39,14 @@ namespace Zernio.Model
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="portable">portable.</param>
         /// <param name="fastPortable">Qualifies for the carrier&#39;s accelerated FastPort lane..</param>
+        /// <param name="lineType">Line type when known (mobile, landline, voip…). A mobile number requires the transfer PIN at submit..</param>
         /// <param name="notPortableReason">Carrier reason when not portable; null when portable..</param>
-        public CheckPhoneNumberPortability200ResponseResultsInner(string phoneNumber = default, bool portable = default, bool fastPortable = default, string notPortableReason = default)
+        public CheckPhoneNumberPortability200ResponseResultsInner(string phoneNumber = default, bool portable = default, bool fastPortable = default, string lineType = default, string notPortableReason = default)
         {
             this.PhoneNumber = phoneNumber;
             this.Portable = portable;
             this.FastPortable = fastPortable;
+            this.LineType = lineType;
             this.NotPortableReason = notPortableReason;
         }
 
@@ -68,6 +70,13 @@ namespace Zernio.Model
         public bool FastPortable { get; set; }
 
         /// <summary>
+        /// Line type when known (mobile, landline, voip…). A mobile number requires the transfer PIN at submit.
+        /// </summary>
+        /// <value>Line type when known (mobile, landline, voip…). A mobile number requires the transfer PIN at submit.</value>
+        [DataMember(Name = "lineType", EmitDefaultValue = true)]
+        public string LineType { get; set; }
+
+        /// <summary>
         /// Carrier reason when not portable; null when portable.
         /// </summary>
         /// <value>Carrier reason when not portable; null when portable.</value>
@@ -85,6 +94,7 @@ namespace Zernio.Model
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Portable: ").Append(Portable).Append("\n");
             sb.Append("  FastPortable: ").Append(FastPortable).Append("\n");
+            sb.Append("  LineType: ").Append(LineType).Append("\n");
             sb.Append("  NotPortableReason: ").Append(NotPortableReason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

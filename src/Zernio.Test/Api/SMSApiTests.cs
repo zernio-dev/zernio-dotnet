@@ -140,6 +140,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ResendSmsRegistrationOtp
+        /// </summary>
+        [Fact]
+        public void ResendSmsRegistrationOtpTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //var response = instance.ResendSmsRegistrationOtp(id);
+            //Assert.IsType<ResendSmsRegistrationOtp200Response>(response);
+        }
+
+        /// <summary>
         /// Test ReuseSmsRegistrationForNumber
         /// </summary>
         [Fact]

@@ -11,6 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListSmsOptOuts**](SMSApi.md#listsmsoptouts) | **GET** /v1/sms/opt-outs | List SMS opt-outs |
 | [**ListSmsRegistrations**](SMSApi.md#listsmsregistrations) | **GET** /v1/sms/registrations | List carrier registrations |
 | [**LookupSmsNumber**](SMSApi.md#lookupsmsnumber) | **GET** /v1/sms/lookup | Look up carrier + line type |
+| [**ResendSmsRegistrationOtp**](SMSApi.md#resendsmsregistrationotp) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP |
 | [**ReuseSmsRegistrationForNumber**](SMSApi.md#reusesmsregistrationfornumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration |
 | [**SendSms**](SMSApi.md#sendsms) | **POST** /v1/sms/messages | Send an SMS/MMS |
 | [**ShareSmsRegistration**](SMSApi.md#sharesmsregistration) | **POST** /v1/sms/registrations/share | Create a registration share link |
@@ -711,6 +712,108 @@ catch (ApiException e)
 | **200** | Lookup result. An unknown/invalid number returns lineType &#x60;unknown&#x60; with &#x60;smsReachable&#x60; false rather than an error. |  -  |
 | **401** | Unauthorized |  -  |
 | **502** | Lookup provider failed |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="resendsmsregistrationotp"></a>
+# **ResendSmsRegistrationOtp**
+> ResendSmsRegistrationOtp200Response ResendSmsRegistrationOtp (string id)
+
+Re-send the sole-prop OTP
+
+Re-sends the sole-proprietor verification PIN to the brand's mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ResendSmsRegistrationOtpExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+
+            try
+            {
+                // Re-send the sole-prop OTP
+                ResendSmsRegistrationOtp200Response result = apiInstance.ResendSmsRegistrationOtp(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SMSApi.ResendSmsRegistrationOtp: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ResendSmsRegistrationOtpWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Re-send the sole-prop OTP
+    ApiResponse<ResendSmsRegistrationOtp200Response> response = apiInstance.ResendSmsRegistrationOtpWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SMSApi.ResendSmsRegistrationOtpWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+
+### Return type
+
+[**ResendSmsRegistrationOtp200Response**](ResendSmsRegistrationOtp200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A new code was sent |  -  |
+| **400** | The registration is not awaiting a verification code |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Registration not found |  -  |
+| **429** | A code was just sent — wait a minute before requesting another |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

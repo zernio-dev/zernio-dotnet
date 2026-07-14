@@ -83,6 +83,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'LineType'
+        /// </summary>
+        [Fact]
+        public void LineTypeTest()
+        {
+            // TODO unit test for the property 'LineType'
+        }
+
+        /// <summary>
         /// Test the property 'NotPortableReason'
         /// </summary>
         [Fact]

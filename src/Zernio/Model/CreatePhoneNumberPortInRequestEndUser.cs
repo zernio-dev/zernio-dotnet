@@ -28,11 +28,36 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// End-user / current-carrier account info that authorizes the port.
+    /// End-user / current-carrier account info that authorizes the port. The losing carrier matches every field against its records and rejects the whole port on a mismatch — enter values exactly as they appear on the carrier bill. 
     /// </summary>
     [DataContract(Name = "createPhoneNumberPortIn_request_endUser")]
     public partial class CreatePhoneNumberPortInRequestEndUser : IValidatableObject
     {
+        /// <summary>
+        /// Defines CountryCode
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CountryCodeEnum
+        {
+            /// <summary>
+            /// Enum US for value: US
+            /// </summary>
+            [EnumMember(Value = "US")]
+            US = 1,
+
+            /// <summary>
+            /// Enum CA for value: CA
+            /// </summary>
+            [EnumMember(Value = "CA")]
+            CA = 2
+        }
+
+
+        /// <summary>
+        /// Gets or Sets CountryCode
+        /// </summary>
+        [DataMember(Name = "countryCode", IsRequired = true, EmitDefaultValue = true)]
+        public CountryCodeEnum CountryCode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatePhoneNumberPortInRequestEndUser" /> class.
         /// </summary>
@@ -41,18 +66,18 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatePhoneNumberPortInRequestEndUser" /> class.
         /// </summary>
-        /// <param name="entityName">entityName (required).</param>
-        /// <param name="authPersonName">authPersonName (required).</param>
-        /// <param name="billingPhoneNumber">Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders..</param>
-        /// <param name="accountNumber">accountNumber.</param>
-        /// <param name="pinPasscode">Transfer PIN. Forwarded to the carrier, never stored..</param>
+        /// <param name="entityName">Account holder / business name, as on the carrier account. (required).</param>
+        /// <param name="authPersonName">Full name (first + last) of the person authorizing the port — must match the LOA signature. (required).</param>
+        /// <param name="billingPhoneNumber">Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders. Validated as a real phone number when present..</param>
+        /// <param name="accountNumber">Account number with the losing carrier — required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself). (required).</param>
+        /// <param name="pinPasscode">Transfer PIN. Required for mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored..</param>
         /// <param name="streetAddress">streetAddress (required).</param>
         /// <param name="extendedAddress">extendedAddress.</param>
         /// <param name="locality">locality (required).</param>
-        /// <param name="administrativeArea">administrativeArea (required).</param>
-        /// <param name="postalCode">postalCode (required).</param>
+        /// <param name="administrativeArea">2-letter US state / CA province code (full names are accepted and normalized). (required).</param>
+        /// <param name="postalCode">US ZIP (5 digits) or Canadian postal code, matching countryCode. (required).</param>
         /// <param name="countryCode">countryCode (required).</param>
-        public CreatePhoneNumberPortInRequestEndUser(string entityName = default, string authPersonName = default, string billingPhoneNumber = default, string accountNumber = default, string pinPasscode = default, string streetAddress = default, string extendedAddress = default, string locality = default, string administrativeArea = default, string postalCode = default, string countryCode = default)
+        public CreatePhoneNumberPortInRequestEndUser(string entityName = default, string authPersonName = default, string billingPhoneNumber = default, string accountNumber = default, string pinPasscode = default, string streetAddress = default, string extendedAddress = default, string locality = default, string administrativeArea = default, string postalCode = default, CountryCodeEnum countryCode = default)
         {
             // to ensure "entityName" is required (not null)
             if (entityName == null)
@@ -66,6 +91,12 @@ namespace Zernio.Model
                 throw new ArgumentNullException("authPersonName is a required property for CreatePhoneNumberPortInRequestEndUser and cannot be null");
             }
             this.AuthPersonName = authPersonName;
+            // to ensure "accountNumber" is required (not null)
+            if (accountNumber == null)
+            {
+                throw new ArgumentNullException("accountNumber is a required property for CreatePhoneNumberPortInRequestEndUser and cannot be null");
+            }
+            this.AccountNumber = accountNumber;
             // to ensure "streetAddress" is required (not null)
             if (streetAddress == null)
             {
@@ -90,47 +121,44 @@ namespace Zernio.Model
                 throw new ArgumentNullException("postalCode is a required property for CreatePhoneNumberPortInRequestEndUser and cannot be null");
             }
             this.PostalCode = postalCode;
-            // to ensure "countryCode" is required (not null)
-            if (countryCode == null)
-            {
-                throw new ArgumentNullException("countryCode is a required property for CreatePhoneNumberPortInRequestEndUser and cannot be null");
-            }
             this.CountryCode = countryCode;
             this.BillingPhoneNumber = billingPhoneNumber;
-            this.AccountNumber = accountNumber;
             this.PinPasscode = pinPasscode;
             this.ExtendedAddress = extendedAddress;
         }
 
         /// <summary>
-        /// Gets or Sets EntityName
+        /// Account holder / business name, as on the carrier account.
         /// </summary>
+        /// <value>Account holder / business name, as on the carrier account.</value>
         [DataMember(Name = "entityName", IsRequired = true, EmitDefaultValue = true)]
         public string EntityName { get; set; }
 
         /// <summary>
-        /// Gets or Sets AuthPersonName
+        /// Full name (first + last) of the person authorizing the port — must match the LOA signature.
         /// </summary>
+        /// <value>Full name (first + last) of the person authorizing the port — must match the LOA signature.</value>
         [DataMember(Name = "authPersonName", IsRequired = true, EmitDefaultValue = true)]
         public string AuthPersonName { get; set; }
 
         /// <summary>
-        /// Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders.
+        /// Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders. Validated as a real phone number when present.
         /// </summary>
-        /// <value>Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders.</value>
+        /// <value>Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders. Validated as a real phone number when present.</value>
         [DataMember(Name = "billingPhoneNumber", EmitDefaultValue = false)]
         public string BillingPhoneNumber { get; set; }
 
         /// <summary>
-        /// Gets or Sets AccountNumber
+        /// Account number with the losing carrier — required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself).
         /// </summary>
-        [DataMember(Name = "accountNumber", EmitDefaultValue = false)]
+        /// <value>Account number with the losing carrier — required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself).</value>
+        [DataMember(Name = "accountNumber", IsRequired = true, EmitDefaultValue = true)]
         public string AccountNumber { get; set; }
 
         /// <summary>
-        /// Transfer PIN. Forwarded to the carrier, never stored.
+        /// Transfer PIN. Required for mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored.
         /// </summary>
-        /// <value>Transfer PIN. Forwarded to the carrier, never stored.</value>
+        /// <value>Transfer PIN. Required for mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored.</value>
         [DataMember(Name = "pinPasscode", EmitDefaultValue = false)]
         public string PinPasscode { get; set; }
 
@@ -153,22 +181,18 @@ namespace Zernio.Model
         public string Locality { get; set; }
 
         /// <summary>
-        /// Gets or Sets AdministrativeArea
+        /// 2-letter US state / CA province code (full names are accepted and normalized).
         /// </summary>
+        /// <value>2-letter US state / CA province code (full names are accepted and normalized).</value>
         [DataMember(Name = "administrativeArea", IsRequired = true, EmitDefaultValue = true)]
         public string AdministrativeArea { get; set; }
 
         /// <summary>
-        /// Gets or Sets PostalCode
+        /// US ZIP (5 digits) or Canadian postal code, matching countryCode.
         /// </summary>
+        /// <value>US ZIP (5 digits) or Canadian postal code, matching countryCode.</value>
         [DataMember(Name = "postalCode", IsRequired = true, EmitDefaultValue = true)]
         public string PostalCode { get; set; }
-
-        /// <summary>
-        /// Gets or Sets CountryCode
-        /// </summary>
-        [DataMember(Name = "countryCode", IsRequired = true, EmitDefaultValue = true)]
-        public string CountryCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -209,18 +233,6 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // CountryCode (string) maxLength
-            if (this.CountryCode != null && this.CountryCode.Length > 2)
-            {
-                yield return new ValidationResult("Invalid value for CountryCode, length must be less than 2.", new [] { "CountryCode" });
-            }
-
-            // CountryCode (string) minLength
-            if (this.CountryCode != null && this.CountryCode.Length < 2)
-            {
-                yield return new ValidationResult("Invalid value for CountryCode, length must be greater than 2.", new [] { "CountryCode" });
-            }
-
             yield break;
         }
     }
