@@ -149,6 +149,7 @@ namespace Zernio.Model
         /// <param name="bidStrategy">Meta bid strategy applied to the ad set. On TikTok, mapped to &#x60;bid_type&#x60; / &#x60;bid_price&#x60; / &#x60;deep_bid_type&#x60; automatically. .</param>
         /// <param name="bidAmount">Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;. Backward-compat: providing &#x60;bidAmount&#x60; without &#x60;bidStrategy&#x60; is treated as &#x60;LOWEST_COST_WITH_BID_CAP&#x60;. .</param>
         /// <param name="roasAverageFloor">Minimum ROAS as a decimal multiplier (e.g. 2.0 &#x3D; 2.0x ROAS). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000 (Meta uses fixed-point integers). .</param>
+        /// <param name="platformSpecificData">platformSpecificData.</param>
         /// <param name="tracking">tracking.</param>
         /// <param name="specialAdCategories">Meta only. Required for housing, employment, credit, or political ads..</param>
         /// <param name="linkUrl">TikTok-only. Custom destination URL for the Spark Ad. Without this, TikTok Spark Ads have no clickable destination — required for traffic / conversion objectives. Maps to &#x60;landing_page_url&#x60; on the creative entry of /v2/ad/create/ (TikTok SDK &#x60;AdcreateCreatives.landing_page_url&#x60;). Ignored on Meta / LinkedIn / Pinterest / X / Google (those infer the destination from the boosted post). .</param>
@@ -156,7 +157,7 @@ namespace Zernio.Model
         /// <param name="sparkAuthCode">TikTok-only. Spark Code (creator&#39;s &#x60;auth_code&#x60;) authorizing cross-creator Spark Ads — the advertiser can boost a video owned by a DIFFERENT TikTok account. Without this, boosts are limited to videos owned by the same account running the ads (same-BC creators only). The creator generates the code in their TikTok app&#39;s Promote settings and shares it with the advertiser. Maps to &#x60;auth_code&#x60; on the creative entry of /v2/ad/create/. .</param>
         /// <param name="dsaBeneficiary">Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. .</param>
         /// <param name="dsaPayor">Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. .</param>
-        public BoostPostRequest(string postId = default, string platformPostId = default, string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, BoostPostRequestBudget budget = default, string currency = default, BoostPostRequestSchedule schedule = default, BoostPostRequestTargeting targeting = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, BoostPostRequestTracking tracking = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, string linkUrl = default, string callToAction = default, string sparkAuthCode = default, string dsaBeneficiary = default, string dsaPayor = default)
+        public BoostPostRequest(string postId = default, string platformPostId = default, string accountId = default, string adAccountId = default, string name = default, GoalEnum goal = default, BoostPostRequestBudget budget = default, string currency = default, BoostPostRequestSchedule schedule = default, BoostPostRequestTargeting targeting = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, LinkedInAdsPlatformData platformSpecificData = default, BoostPostRequestTracking tracking = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, string linkUrl = default, string callToAction = default, string sparkAuthCode = default, string dsaBeneficiary = default, string dsaPayor = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -191,6 +192,7 @@ namespace Zernio.Model
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
+            this.PlatformSpecificData = platformSpecificData;
             this.Tracking = tracking;
             this.SpecialAdCategories = specialAdCategories;
             this.LinkUrl = linkUrl;
@@ -276,6 +278,12 @@ namespace Zernio.Model
         public decimal RoasAverageFloor { get; set; }
 
         /// <summary>
+        /// Gets or Sets PlatformSpecificData
+        /// </summary>
+        [DataMember(Name = "platformSpecificData", EmitDefaultValue = false)]
+        public LinkedInAdsPlatformData PlatformSpecificData { get; set; }
+
+        /// <summary>
         /// Gets or Sets Tracking
         /// </summary>
         [DataMember(Name = "tracking", EmitDefaultValue = false)]
@@ -344,6 +352,7 @@ namespace Zernio.Model
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
+            sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
             sb.Append("  Tracking: ").Append(Tracking).Append("\n");
             sb.Append("  SpecialAdCategories: ").Append(SpecialAdCategories).Append("\n");
             sb.Append("  LinkUrl: ").Append(LinkUrl).Append("\n");

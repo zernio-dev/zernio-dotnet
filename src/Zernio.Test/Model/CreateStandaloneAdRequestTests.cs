@@ -623,6 +623,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'PlatformSpecificData'
+        /// </summary>
+        [Fact]
+        public void PlatformSpecificDataTest()
+        {
+            // TODO unit test for the property 'PlatformSpecificData'
+        }
+
+        /// <summary>
         /// Test the property 'DsaBeneficiary'
         /// </summary>
         [Fact]

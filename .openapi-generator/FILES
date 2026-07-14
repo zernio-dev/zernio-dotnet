@@ -697,6 +697,7 @@ docs/InstagramPlatformDataUserTagsInner.md
 docs/InvitesApi.md
 docs/LikeInboxComment200Response.md
 docs/LikeInboxCommentRequest.md
+docs/LinkedInAdsPlatformData.md
 docs/LinkedInAggregateAnalyticsDailyResponse.md
 docs/LinkedInAggregateAnalyticsDailyResponseAnalytics.md
 docs/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.md
@@ -2134,6 +2135,7 @@ src/Zernio.Test/Model/InstagramPlatformDataTrialParamsTests.cs
 src/Zernio.Test/Model/InstagramPlatformDataUserTagsInnerTests.cs
 src/Zernio.Test/Model/LikeInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/LikeInboxCommentRequestTests.cs
+src/Zernio.Test/Model/LinkedInAdsPlatformDataTests.cs
 src/Zernio.Test/Model/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInnerTests.cs
 src/Zernio.Test/Model/LinkedInAggregateAnalyticsDailyResponseAnalyticsTests.cs
 src/Zernio.Test/Model/LinkedInAggregateAnalyticsDailyResponseTests.cs
@@ -3561,6 +3563,7 @@ src/Zernio/Model/InstagramPlatformDataTrialParams.cs
 src/Zernio/Model/InstagramPlatformDataUserTagsInner.cs
 src/Zernio/Model/LikeInboxComment200Response.cs
 src/Zernio/Model/LikeInboxCommentRequest.cs
+src/Zernio/Model/LinkedInAdsPlatformData.cs
 src/Zernio/Model/LinkedInAggregateAnalyticsDailyResponse.cs
 src/Zernio/Model/LinkedInAggregateAnalyticsDailyResponseAnalytics.cs
 src/Zernio/Model/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.cs

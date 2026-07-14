@@ -1277,6 +1277,7 @@ Class | Method | HTTP request | Description
  - [Model.InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
  - [Model.LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
  - [Model.LikeInboxCommentRequest](docs/LikeInboxCommentRequest.md)
+ - [Model.LinkedInAdsPlatformData](docs/LinkedInAdsPlatformData.md)
  - [Model.LinkedInAggregateAnalyticsDailyResponse](docs/LinkedInAggregateAnalyticsDailyResponse.md)
  - [Model.LinkedInAggregateAnalyticsDailyResponseAnalytics](docs/LinkedInAggregateAnalyticsDailyResponseAnalytics.md)
  - [Model.LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner](docs/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.md)
