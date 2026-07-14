@@ -327,7 +327,7 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <returns>GetAdAnalytics200Response</returns>
         GetAdAnalytics200Response GetAdAnalytics(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
 
@@ -341,7 +341,7 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <returns>ApiResponse of GetAdAnalytics200Response</returns>
         ApiResponse<GetAdAnalytics200Response> GetAdAnalyticsWithHttpInfo(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
         /// <summary>
@@ -403,7 +403,7 @@ namespace Zernio.Api
         /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <returns>GetCampaignAnalytics200Response</returns>
         GetCampaignAnalytics200Response GetCampaignAnalytics(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
 
@@ -418,7 +418,7 @@ namespace Zernio.Api
         /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <returns>ApiResponse of GetCampaignAnalytics200Response</returns>
         ApiResponse<GetCampaignAnalytics200Response> GetCampaignAnalyticsWithHttpInfo(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default);
         /// <summary>
@@ -1431,7 +1431,7 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdAnalytics200Response</returns>
         System.Threading.Tasks.Task<GetAdAnalytics200Response> GetAdAnalyticsAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1446,7 +1446,7 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdAnalytics200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdAnalytics200Response>> GetAdAnalyticsWithHttpInfoAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1513,7 +1513,7 @@ namespace Zernio.Api
         /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetCampaignAnalytics200Response</returns>
         System.Threading.Tasks.Task<GetCampaignAnalytics200Response> GetCampaignAnalyticsAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1529,7 +1529,7 @@ namespace Zernio.Api
         /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetCampaignAnalytics200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetCampaignAnalytics200Response>> GetCampaignAnalyticsWithHttpInfoAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default);
@@ -4261,7 +4261,7 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <returns>GetAdAnalytics200Response</returns>
         public GetAdAnalytics200Response GetAdAnalytics(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
         {
@@ -4276,7 +4276,7 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <returns>ApiResponse of GetAdAnalytics200Response</returns>
         public Zernio.Client.ApiResponse<GetAdAnalytics200Response> GetAdAnalyticsWithHttpInfo(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
         {
@@ -4340,7 +4340,7 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetAdAnalytics200Response</returns>
         public async System.Threading.Tasks.Task<GetAdAnalytics200Response> GetAdAnalyticsAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4356,7 +4356,7 @@ namespace Zernio.Api
         /// <param name="adId"></param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdAnalytics200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdAnalytics200Response>> GetAdAnalyticsWithHttpInfoAsync(string adId, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4715,7 +4715,7 @@ namespace Zernio.Api
         /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <returns>GetCampaignAnalytics200Response</returns>
         public GetCampaignAnalytics200Response GetCampaignAnalytics(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
         {
@@ -4731,7 +4731,7 @@ namespace Zernio.Api
         /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <returns>ApiResponse of GetCampaignAnalytics200Response</returns>
         public Zernio.Client.ApiResponse<GetCampaignAnalytics200Response> GetCampaignAnalyticsWithHttpInfo(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default)
         {
@@ -4800,7 +4800,7 @@ namespace Zernio.Api
         /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetCampaignAnalytics200Response</returns>
         public async System.Threading.Tasks.Task<GetCampaignAnalytics200Response> GetCampaignAnalyticsAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
@@ -4817,7 +4817,7 @@ namespace Zernio.Api
         /// <param name="platform">Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)</param>
         /// <param name="fromDate">Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)</param>
         /// <param name="toDate">End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)</param>
-        /// <param name="breakdowns">Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)</param>
+        /// <param name="breakdowns">Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetCampaignAnalytics200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetCampaignAnalytics200Response>> GetCampaignAnalyticsWithHttpInfoAsync(string campaignId, string? platform = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? breakdowns = default, System.Threading.CancellationToken cancellationToken = default)
