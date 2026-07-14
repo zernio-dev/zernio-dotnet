@@ -105,9 +105,11 @@ namespace Zernio.Model
         /// <param name="dmMessage">DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000. (required).</param>
         /// <param name="buttons">Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM..</param>
         /// <param name="commentReply">Optional public reply to the comment.</param>
+        /// <param name="dmMessageVariations">Optional alternate DM texts for random rotation. When set, each triggered comment sends one picked at random from [dmMessage, ...dmMessageVariations], so repeat commenters get slightly different DMs (helps avoid identical-message patterns). Up to 5. Buttons are attached to whichever text is picked, not varied..</param>
+        /// <param name="commentReplyVariations">Optional alternate public replies, rotated at random alongside commentReply (picked independently of the DM). Up to 5..</param>
         /// <param name="linkTracking">Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on. (default to true).</param>
         /// <param name="clickTag">Optional tag applied to a contact when they click a tracked link (requires linkTracking). Lets you segment clickers for broadcasts/sequences..</param>
-        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, TriggerEnum? trigger = TriggerEnum.Comment, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, bool linkTracking = true, string clickTag = default)
+        public CreateCommentAutomationRequest(string profileId = default, string accountId = default, TriggerEnum? trigger = TriggerEnum.Comment, string platformPostId = default, string postId = default, string postTitle = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = MatchModeEnum.Contains, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = true, string clickTag = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -141,6 +143,8 @@ namespace Zernio.Model
             this.MatchMode = matchMode;
             this.Buttons = buttons;
             this.CommentReply = commentReply;
+            this.DmMessageVariations = dmMessageVariations;
+            this.CommentReplyVariations = commentReplyVariations;
             this.LinkTracking = linkTracking;
             this.ClickTag = clickTag;
         }
@@ -215,6 +219,20 @@ namespace Zernio.Model
         public string CommentReply { get; set; }
 
         /// <summary>
+        /// Optional alternate DM texts for random rotation. When set, each triggered comment sends one picked at random from [dmMessage, ...dmMessageVariations], so repeat commenters get slightly different DMs (helps avoid identical-message patterns). Up to 5. Buttons are attached to whichever text is picked, not varied.
+        /// </summary>
+        /// <value>Optional alternate DM texts for random rotation. When set, each triggered comment sends one picked at random from [dmMessage, ...dmMessageVariations], so repeat commenters get slightly different DMs (helps avoid identical-message patterns). Up to 5. Buttons are attached to whichever text is picked, not varied.</value>
+        [DataMember(Name = "dmMessageVariations", EmitDefaultValue = false)]
+        public List<string> DmMessageVariations { get; set; }
+
+        /// <summary>
+        /// Optional alternate public replies, rotated at random alongside commentReply (picked independently of the DM). Up to 5.
+        /// </summary>
+        /// <value>Optional alternate public replies, rotated at random alongside commentReply (picked independently of the DM). Up to 5.</value>
+        [DataMember(Name = "commentReplyVariations", EmitDefaultValue = false)]
+        public List<string> CommentReplyVariations { get; set; }
+
+        /// <summary>
         /// Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on.
         /// </summary>
         /// <value>Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on.</value>
@@ -248,6 +266,8 @@ namespace Zernio.Model
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
+            sb.Append("  DmMessageVariations: ").Append(DmMessageVariations).Append("\n");
+            sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");
             sb.Append("  LinkTracking: ").Append(LinkTracking).Append("\n");
             sb.Append("  ClickTag: ").Append(ClickTag).Append("\n");
             sb.Append("}\n");

@@ -68,9 +68,11 @@ namespace Zernio.Model
         /// <param name="dmMessage">dmMessage.</param>
         /// <param name="buttons">Inline DM buttons (up to 3). Omitted when none are set..</param>
         /// <param name="commentReply">commentReply.</param>
+        /// <param name="dmMessageVariations">Alternate DM texts rotated at random with dmMessage. Omitted when none..</param>
+        /// <param name="commentReplyVariations">Alternate public replies rotated at random with commentReply. Omitted when none..</param>
         /// <param name="isActive">isActive.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public UpdateCommentAutomation200ResponseAutomation(string id = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, bool isActive = default, DateTime updatedAt = default)
+        public UpdateCommentAutomation200ResponseAutomation(string id = default, string name = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool isActive = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -79,6 +81,8 @@ namespace Zernio.Model
             this.DmMessage = dmMessage;
             this.Buttons = buttons;
             this.CommentReply = commentReply;
+            this.DmMessageVariations = dmMessageVariations;
+            this.CommentReplyVariations = commentReplyVariations;
             this.IsActive = isActive;
             this.UpdatedAt = updatedAt;
         }
@@ -121,6 +125,20 @@ namespace Zernio.Model
         public string CommentReply { get; set; }
 
         /// <summary>
+        /// Alternate DM texts rotated at random with dmMessage. Omitted when none.
+        /// </summary>
+        /// <value>Alternate DM texts rotated at random with dmMessage. Omitted when none.</value>
+        [DataMember(Name = "dmMessageVariations", EmitDefaultValue = false)]
+        public List<string> DmMessageVariations { get; set; }
+
+        /// <summary>
+        /// Alternate public replies rotated at random with commentReply. Omitted when none.
+        /// </summary>
+        /// <value>Alternate public replies rotated at random with commentReply. Omitted when none.</value>
+        [DataMember(Name = "commentReplyVariations", EmitDefaultValue = false)]
+        public List<string> CommentReplyVariations { get; set; }
+
+        /// <summary>
         /// Gets or Sets IsActive
         /// </summary>
         [DataMember(Name = "isActive", EmitDefaultValue = true)]
@@ -147,6 +165,8 @@ namespace Zernio.Model
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
+            sb.Append("  DmMessageVariations: ").Append(DmMessageVariations).Append("\n");
+            sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");

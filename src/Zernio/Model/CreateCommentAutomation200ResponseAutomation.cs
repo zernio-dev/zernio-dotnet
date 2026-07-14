@@ -96,12 +96,14 @@ namespace Zernio.Model
         /// <param name="dmMessage">dmMessage.</param>
         /// <param name="buttons">Inline DM buttons (up to 3). Omitted when none are set..</param>
         /// <param name="commentReply">commentReply.</param>
+        /// <param name="dmMessageVariations">Alternate DM texts rotated at random with dmMessage. Omitted when none..</param>
+        /// <param name="commentReplyVariations">Alternate public replies rotated at random with commentReply. Omitted when none..</param>
         /// <param name="linkTracking">linkTracking.</param>
         /// <param name="clickTag">clickTag.</param>
         /// <param name="isActive">isActive.</param>
         /// <param name="stats">stats.</param>
         /// <param name="createdAt">createdAt.</param>
-        public CreateCommentAutomation200ResponseAutomation(string id = default, string name = default, string platform = default, TriggerEnum? trigger = default, string platformPostId = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, bool linkTracking = default, string clickTag = default, bool isActive = default, CreateCommentAutomation200ResponseAutomationStats stats = default, DateTime createdAt = default)
+        public CreateCommentAutomation200ResponseAutomation(string id = default, string name = default, string platform = default, TriggerEnum? trigger = default, string platformPostId = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, bool isActive = default, CreateCommentAutomation200ResponseAutomationStats stats = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -113,6 +115,8 @@ namespace Zernio.Model
             this.DmMessage = dmMessage;
             this.Buttons = buttons;
             this.CommentReply = commentReply;
+            this.DmMessageVariations = dmMessageVariations;
+            this.CommentReplyVariations = commentReplyVariations;
             this.LinkTracking = linkTracking;
             this.ClickTag = clickTag;
             this.IsActive = isActive;
@@ -170,6 +174,20 @@ namespace Zernio.Model
         public string CommentReply { get; set; }
 
         /// <summary>
+        /// Alternate DM texts rotated at random with dmMessage. Omitted when none.
+        /// </summary>
+        /// <value>Alternate DM texts rotated at random with dmMessage. Omitted when none.</value>
+        [DataMember(Name = "dmMessageVariations", EmitDefaultValue = false)]
+        public List<string> DmMessageVariations { get; set; }
+
+        /// <summary>
+        /// Alternate public replies rotated at random with commentReply. Omitted when none.
+        /// </summary>
+        /// <value>Alternate public replies rotated at random with commentReply. Omitted when none.</value>
+        [DataMember(Name = "commentReplyVariations", EmitDefaultValue = false)]
+        public List<string> CommentReplyVariations { get; set; }
+
+        /// <summary>
         /// Gets or Sets LinkTracking
         /// </summary>
         [DataMember(Name = "linkTracking", EmitDefaultValue = true)]
@@ -217,6 +235,8 @@ namespace Zernio.Model
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
+            sb.Append("  DmMessageVariations: ").Append(DmMessageVariations).Append("\n");
+            sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");
             sb.Append("  LinkTracking: ").Append(LinkTracking).Append("\n");
             sb.Append("  ClickTag: ").Append(ClickTag).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");

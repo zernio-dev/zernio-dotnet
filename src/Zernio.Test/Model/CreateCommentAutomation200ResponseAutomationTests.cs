@@ -146,6 +146,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'DmMessageVariations'
+        /// </summary>
+        [Fact]
+        public void DmMessageVariationsTest()
+        {
+            // TODO unit test for the property 'DmMessageVariations'
+        }
+
+        /// <summary>
+        /// Test the property 'CommentReplyVariations'
+        /// </summary>
+        [Fact]
+        public void CommentReplyVariationsTest()
+        {
+            // TODO unit test for the property 'CommentReplyVariations'
+        }
+
+        /// <summary>
         /// Test the property 'LinkTracking'
         /// </summary>
         [Fact]

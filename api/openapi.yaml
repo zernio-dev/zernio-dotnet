@@ -58413,6 +58413,9 @@ components:
         keywords:
         - keywords
         - keywords
+        commentReplyVariations:
+        - commentReplyVariations
+        - commentReplyVariations
         commentReply: commentReply
         trigger: comment
         isActive: true
@@ -58433,6 +58436,9 @@ components:
           uniqueClicks: 7
         name: name
         postTitle: postTitle
+        dmMessageVariations:
+        - dmMessageVariations
+        - dmMessageVariations
         id: id
         matchMode: exact
         platformPostId: platformPostId
@@ -58475,6 +58481,18 @@ components:
           type: array
         commentReply:
           type: string
+        dmMessageVariations:
+          description: Alternate DM texts rotated at random with dmMessage. Omitted
+            when none.
+          items:
+            type: string
+          type: array
+        commentReplyVariations:
+          description: Alternate public replies rotated at random with commentReply.
+            Omitted when none.
+          items:
+            type: string
+          type: array
         linkTracking:
           description: Whether link buttons in the DM are wrapped in a tracked redirect
             to count clicks.
@@ -58507,6 +58525,9 @@ components:
           keywords:
           - keywords
           - keywords
+          commentReplyVariations:
+          - commentReplyVariations
+          - commentReplyVariations
           commentReply: commentReply
           trigger: comment
           isActive: true
@@ -58527,6 +58548,9 @@ components:
             uniqueClicks: 7
           name: name
           postTitle: postTitle
+          dmMessageVariations:
+          - dmMessageVariations
+          - dmMessageVariations
           id: id
           matchMode: exact
           platformPostId: platformPostId
@@ -58545,6 +58569,9 @@ components:
           keywords:
           - keywords
           - keywords
+          commentReplyVariations:
+          - commentReplyVariations
+          - commentReplyVariations
           commentReply: commentReply
           trigger: comment
           isActive: true
@@ -58565,6 +58592,9 @@ components:
             uniqueClicks: 7
           name: name
           postTitle: postTitle
+          dmMessageVariations:
+          - dmMessageVariations
+          - dmMessageVariations
           id: id
           matchMode: exact
           platformPostId: platformPostId
@@ -58631,6 +58661,23 @@ components:
         commentReply:
           description: Optional public reply to the comment
           type: string
+        dmMessageVariations:
+          description: "Optional alternate DM texts for random rotation. When set,\
+            \ each triggered comment sends one picked at random from [dmMessage, ...dmMessageVariations],\
+            \ so repeat commenters get slightly different DMs (helps avoid identical-message\
+            \ patterns). Up to 5. Buttons are attached to whichever text is picked,\
+            \ not varied."
+          items:
+            type: string
+          maxItems: 5
+          type: array
+        commentReplyVariations:
+          description: "Optional alternate public replies, rotated at random alongside\
+            \ commentReply (picked independently of the DM). Up to 5."
+          items:
+            type: string
+          maxItems: 5
+          type: array
         linkTracking:
           default: true
           description: Wrap link buttons in the DM in a tracked redirect so clicks
@@ -58675,6 +58722,9 @@ components:
         keywords:
         - keywords
         - keywords
+        commentReplyVariations:
+        - commentReplyVariations
+        - commentReplyVariations
         commentReply: commentReply
         trigger: comment
         isActive: true
@@ -58687,6 +58737,9 @@ components:
           totalSent: 6
           totalTriggered: 0
         name: name
+        dmMessageVariations:
+        - dmMessageVariations
+        - dmMessageVariations
         id: id
         matchMode: exact
         platformPostId: platformPostId
@@ -58722,6 +58775,18 @@ components:
           type: array
         commentReply:
           type: string
+        dmMessageVariations:
+          description: Alternate DM texts rotated at random with dmMessage. Omitted
+            when none.
+          items:
+            type: string
+          type: array
+        commentReplyVariations:
+          description: Alternate public replies rotated at random with commentReply.
+            Omitted when none.
+          items:
+            type: string
+          type: array
         linkTracking:
           type: boolean
         clickTag:
@@ -58751,6 +58816,9 @@ components:
           keywords:
           - keywords
           - keywords
+          commentReplyVariations:
+          - commentReplyVariations
+          - commentReplyVariations
           commentReply: commentReply
           trigger: comment
           isActive: true
@@ -58763,6 +58831,9 @@ components:
             totalSent: 6
             totalTriggered: 0
           name: name
+          dmMessageVariations:
+          - dmMessageVariations
+          - dmMessageVariations
           id: id
           matchMode: exact
           platformPostId: platformPostId
@@ -58789,6 +58860,9 @@ components:
         keywords:
         - keywords
         - keywords
+        commentReplyVariations:
+        - commentReplyVariations
+        - commentReplyVariations
         commentReply: commentReply
         trigger: comment
         postId: postId
@@ -58804,6 +58878,9 @@ components:
           totalTriggered: 0
         name: name
         postTitle: postTitle
+        dmMessageVariations:
+        - dmMessageVariations
+        - dmMessageVariations
         id: id
         matchMode: exact
         platformPostId: platformPostId
@@ -58846,6 +58923,18 @@ components:
           type: array
         commentReply:
           type: string
+        dmMessageVariations:
+          description: Alternate DM texts rotated at random with dmMessage. Omitted
+            when none.
+          items:
+            type: string
+          type: array
+        commentReplyVariations:
+          description: Alternate public replies rotated at random with commentReply.
+            Omitted when none.
+          items:
+            type: string
+          type: array
         linkTracking:
           type: boolean
         clickTag:
@@ -58926,6 +59015,9 @@ components:
           keywords:
           - keywords
           - keywords
+          commentReplyVariations:
+          - commentReplyVariations
+          - commentReplyVariations
           commentReply: commentReply
           trigger: comment
           postId: postId
@@ -58941,6 +59033,9 @@ components:
             totalTriggered: 0
           name: name
           postTitle: postTitle
+          dmMessageVariations:
+          - dmMessageVariations
+          - dmMessageVariations
           id: id
           matchMode: exact
           platformPostId: platformPostId
@@ -58999,6 +59094,19 @@ components:
           type: array
         commentReply:
           type: string
+        dmMessageVariations:
+          description: "Alternate DM texts for random rotation (see create). Pass\
+            \ [] to clear."
+          items:
+            type: string
+          maxItems: 5
+          type: array
+        commentReplyVariations:
+          description: "Alternate public replies for random rotation. Pass [] to clear."
+          items:
+            type: string
+          maxItems: 5
+          type: array
         linkTracking:
           description: Wrap link buttons in a tracked redirect to count clicks. Pass
             false to send links untouched.
@@ -59026,8 +59134,14 @@ components:
         keywords:
         - keywords
         - keywords
+        commentReplyVariations:
+        - commentReplyVariations
+        - commentReplyVariations
         commentReply: commentReply
         name: name
+        dmMessageVariations:
+        - dmMessageVariations
+        - dmMessageVariations
         id: id
         isActive: true
         matchMode: exact
@@ -59055,6 +59169,18 @@ components:
           type: array
         commentReply:
           type: string
+        dmMessageVariations:
+          description: Alternate DM texts rotated at random with dmMessage. Omitted
+            when none.
+          items:
+            type: string
+          type: array
+        commentReplyVariations:
+          description: Alternate public replies rotated at random with commentReply.
+            Omitted when none.
+          items:
+            type: string
+          type: array
         isActive:
           type: boolean
         updatedAt:
@@ -59078,8 +59204,14 @@ components:
           keywords:
           - keywords
           - keywords
+          commentReplyVariations:
+          - commentReplyVariations
+          - commentReplyVariations
           commentReply: commentReply
           name: name
+          dmMessageVariations:
+          - dmMessageVariations
+          - dmMessageVariations
           id: id
           isActive: true
           matchMode: exact

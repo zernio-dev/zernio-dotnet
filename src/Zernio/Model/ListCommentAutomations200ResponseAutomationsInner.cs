@@ -123,12 +123,14 @@ namespace Zernio.Model
         /// <param name="dmMessage">dmMessage.</param>
         /// <param name="buttons">Inline DM buttons (up to 3). Omitted when none are set..</param>
         /// <param name="commentReply">commentReply.</param>
+        /// <param name="dmMessageVariations">Alternate DM texts rotated at random with dmMessage. Omitted when none..</param>
+        /// <param name="commentReplyVariations">Alternate public replies rotated at random with commentReply. Omitted when none..</param>
         /// <param name="linkTracking">Whether link buttons in the DM are wrapped in a tracked redirect to count clicks..</param>
         /// <param name="clickTag">Tag applied to a contact when they click a tracked link..</param>
         /// <param name="isActive">isActive.</param>
         /// <param name="stats">stats.</param>
         /// <param name="createdAt">createdAt.</param>
-        public ListCommentAutomations200ResponseAutomationsInner(string id = default, string name = default, PlatformEnum? platform = default, TriggerEnum? trigger = default, string accountId = default, string platformPostId = default, string postTitle = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, bool linkTracking = default, string clickTag = default, bool isActive = default, ListCommentAutomations200ResponseAutomationsInnerStats stats = default, DateTime createdAt = default)
+        public ListCommentAutomations200ResponseAutomationsInner(string id = default, string name = default, PlatformEnum? platform = default, TriggerEnum? trigger = default, string accountId = default, string platformPostId = default, string postTitle = default, List<string> keywords = default, MatchModeEnum? matchMode = default, string dmMessage = default, List<DmButton> buttons = default, string commentReply = default, List<string> dmMessageVariations = default, List<string> commentReplyVariations = default, bool linkTracking = default, string clickTag = default, bool isActive = default, ListCommentAutomations200ResponseAutomationsInnerStats stats = default, DateTime createdAt = default)
         {
             this.Id = id;
             this.Name = name;
@@ -142,6 +144,8 @@ namespace Zernio.Model
             this.DmMessage = dmMessage;
             this.Buttons = buttons;
             this.CommentReply = commentReply;
+            this.DmMessageVariations = dmMessageVariations;
+            this.CommentReplyVariations = commentReplyVariations;
             this.LinkTracking = linkTracking;
             this.ClickTag = clickTag;
             this.IsActive = isActive;
@@ -205,6 +209,20 @@ namespace Zernio.Model
         public string CommentReply { get; set; }
 
         /// <summary>
+        /// Alternate DM texts rotated at random with dmMessage. Omitted when none.
+        /// </summary>
+        /// <value>Alternate DM texts rotated at random with dmMessage. Omitted when none.</value>
+        [DataMember(Name = "dmMessageVariations", EmitDefaultValue = false)]
+        public List<string> DmMessageVariations { get; set; }
+
+        /// <summary>
+        /// Alternate public replies rotated at random with commentReply. Omitted when none.
+        /// </summary>
+        /// <value>Alternate public replies rotated at random with commentReply. Omitted when none.</value>
+        [DataMember(Name = "commentReplyVariations", EmitDefaultValue = false)]
+        public List<string> CommentReplyVariations { get; set; }
+
+        /// <summary>
         /// Whether link buttons in the DM are wrapped in a tracked redirect to count clicks.
         /// </summary>
         /// <value>Whether link buttons in the DM are wrapped in a tracked redirect to count clicks.</value>
@@ -256,6 +274,8 @@ namespace Zernio.Model
             sb.Append("  DmMessage: ").Append(DmMessage).Append("\n");
             sb.Append("  Buttons: ").Append(Buttons).Append("\n");
             sb.Append("  CommentReply: ").Append(CommentReply).Append("\n");
+            sb.Append("  DmMessageVariations: ").Append(DmMessageVariations).Append("\n");
+            sb.Append("  CommentReplyVariations: ").Append(CommentReplyVariations).Append("\n");
             sb.Append("  LinkTracking: ").Append(LinkTracking).Append("\n");
             sb.Append("  ClickTag: ").Append(ClickTag).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
