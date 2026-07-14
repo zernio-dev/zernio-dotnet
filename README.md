@@ -1837,6 +1837,7 @@ Class | Method | HTTP request | Description
  - [Model.UploadWhatsAppProfilePhotoRequest1](docs/UploadWhatsAppProfilePhotoRequest1.md)
  - [Model.UploadedFile](docs/UploadedFile.md)
  - [Model.UploadedOrDerivedAudience](docs/UploadedOrDerivedAudience.md)
+ - [Model.UploadedOrDerivedAudienceCompaniesInner](docs/UploadedOrDerivedAudienceCompaniesInner.md)
  - [Model.UsageMetering](docs/UsageMetering.md)
  - [Model.UsageMeteringCallUsage](docs/UsageMeteringCallUsage.md)
  - [Model.UsageMeteringCallUsageWhatsapp](docs/UsageMeteringCallUsageWhatsapp.md)

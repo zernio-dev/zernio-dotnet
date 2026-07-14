@@ -124,7 +124,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)</param>
         /// <returns>ListAdAudiences200Response</returns>
         ListAdAudiences200Response ListAdAudiences(string accountId, string adAccountId, string? platform = default, string? type = default);
 
@@ -138,7 +138,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)</param>
         /// <returns>ApiResponse of ListAdAudiences200Response</returns>
         ApiResponse<ListAdAudiences200Response> ListAdAudiencesWithHttpInfo(string accountId, string adAccountId, string? platform = default, string? type = default);
         /// <summary>
@@ -277,7 +277,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdAudiences200Response</returns>
         System.Threading.Tasks.Task<ListAdAudiences200Response> ListAdAudiencesAsync(string accountId, string adAccountId, string? platform = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
@@ -292,7 +292,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdAudiences200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdAudiences200Response>> ListAdAudiencesWithHttpInfoAsync(string accountId, string adAccountId, string? platform = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1067,7 +1067,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)</param>
         /// <returns>ListAdAudiences200Response</returns>
         public ListAdAudiences200Response ListAdAudiences(string accountId, string adAccountId, string? platform = default, string? type = default)
         {
@@ -1082,7 +1082,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)</param>
         /// <returns>ApiResponse of ListAdAudiences200Response</returns>
         public Zernio.Client.ApiResponse<ListAdAudiences200Response> ListAdAudiencesWithHttpInfo(string accountId, string adAccountId, string? platform = default, string? type = default)
         {
@@ -1147,7 +1147,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListAdAudiences200Response</returns>
         public async System.Threading.Tasks.Task<ListAdAudiences200Response> ListAdAudiencesAsync(string accountId, string adAccountId, string? platform = default, string? type = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1163,7 +1163,7 @@ namespace Zernio.Api
         /// <param name="accountId">Social account ID</param>
         /// <param name="adAccountId">Platform ad account ID</param>
         /// <param name="platform"> (optional)</param>
-        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)</param>
+        /// <param name="type">Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdAudiences200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdAudiences200Response>> ListAdAudiencesWithHttpInfoAsync(string accountId, string adAccountId, string? platform = default, string? type = default, System.Threading.CancellationToken cancellationToken = default)

@@ -46,22 +46,34 @@ namespace Zernio.Model
             CustomerList = 1,
 
             /// <summary>
+            /// Enum CompanyList for value: company_list
+            /// </summary>
+            [EnumMember(Value = "company_list")]
+            CompanyList = 2,
+
+            /// <summary>
+            /// Enum Engagement for value: engagement
+            /// </summary>
+            [EnumMember(Value = "engagement")]
+            Engagement = 3,
+
+            /// <summary>
             /// Enum Website for value: website
             /// </summary>
             [EnumMember(Value = "website")]
-            Website = 2,
+            Website = 4,
 
             /// <summary>
             /// Enum Lookalike for value: lookalike
             /// </summary>
             [EnumMember(Value = "lookalike")]
-            Lookalike = 3,
+            Lookalike = 5,
 
             /// <summary>
             /// Enum SavedTargeting for value: saved_targeting
             /// </summary>
             [EnumMember(Value = "saved_targeting")]
-            SavedTargeting = 4
+            SavedTargeting = 6
         }
 
 

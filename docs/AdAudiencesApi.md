@@ -454,7 +454,7 @@ namespace Example
             var accountId = "accountId_example";  // string | Social account ID
             var adAccountId = "adAccountId_example";  // string | Platform ad account ID
             var platform = "facebook";  // string? |  (optional) 
-            var type = "customer_list";  // string? | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences (each item carries a `spec`); the other types return uploaded/derived audiences. (optional) 
+            var type = "customer_list";  // string? | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional) 
 
             try
             {
@@ -500,7 +500,7 @@ catch (ApiException e)
 | **accountId** | **string** | Social account ID |  |
 | **adAccountId** | **string** | Platform ad account ID |  |
 | **platform** | **string?** |  | [optional]  |
-| **type** | **string?** | Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. | [optional]  |
+| **type** | **string?** | Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional]  |
 
 ### Return type
 

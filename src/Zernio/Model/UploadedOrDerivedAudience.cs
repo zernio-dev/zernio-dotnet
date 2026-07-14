@@ -46,16 +46,28 @@ namespace Zernio.Model
             CustomerList = 1,
 
             /// <summary>
+            /// Enum CompanyList for value: company_list
+            /// </summary>
+            [EnumMember(Value = "company_list")]
+            CompanyList = 2,
+
+            /// <summary>
+            /// Enum Engagement for value: engagement
+            /// </summary>
+            [EnumMember(Value = "engagement")]
+            Engagement = 3,
+
+            /// <summary>
             /// Enum Website for value: website
             /// </summary>
             [EnumMember(Value = "website")]
-            Website = 2,
+            Website = 4,
 
             /// <summary>
             /// Enum Lookalike for value: lookalike
             /// </summary>
             [EnumMember(Value = "lookalike")]
-            Lookalike = 3
+            Lookalike = 5
         }
 
 
@@ -64,6 +76,90 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public TypeEnum Type { get; set; }
+        /// <summary>
+        /// Required for engagement audiences (LinkedIn only): what members engaged with — a video/leadgen/single-image ad campaign, a Company Page or an Event page. 
+        /// </summary>
+        /// <value>Required for engagement audiences (LinkedIn only): what members engaged with — a video/leadgen/single-image ad campaign, a Company Page or an Event page. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SourceTypeEnum
+        {
+            /// <summary>
+            /// Enum VIDEOADS for value: VIDEO_ADS
+            /// </summary>
+            [EnumMember(Value = "VIDEO_ADS")]
+            VIDEOADS = 1,
+
+            /// <summary>
+            /// Enum LEADGENFORMS for value: LEAD_GEN_FORMS
+            /// </summary>
+            [EnumMember(Value = "LEAD_GEN_FORMS")]
+            LEADGENFORMS = 2,
+
+            /// <summary>
+            /// Enum ORGANIZATIONPAGES for value: ORGANIZATION_PAGES
+            /// </summary>
+            [EnumMember(Value = "ORGANIZATION_PAGES")]
+            ORGANIZATIONPAGES = 3,
+
+            /// <summary>
+            /// Enum EVENTPAGES for value: EVENT_PAGES
+            /// </summary>
+            [EnumMember(Value = "EVENT_PAGES")]
+            EVENTPAGES = 4,
+
+            /// <summary>
+            /// Enum SINGLEIMAGEADS for value: SINGLE_IMAGE_ADS
+            /// </summary>
+            [EnumMember(Value = "SINGLE_IMAGE_ADS")]
+            SINGLEIMAGEADS = 5
+        }
+
+
+        /// <summary>
+        /// Required for engagement audiences (LinkedIn only): what members engaged with — a video/leadgen/single-image ad campaign, a Company Page or an Event page. 
+        /// </summary>
+        /// <value>Required for engagement audiences (LinkedIn only): what members engaged with — a video/leadgen/single-image ad campaign, a Company Page or an Event page. </value>
+        [DataMember(Name = "sourceType", EmitDefaultValue = false)]
+        public SourceTypeEnum? SourceType { get; set; }
+        /// <summary>
+        /// Required for engagement audiences. Rolling window.
+        /// </summary>
+        /// <value>Required for engagement audiences. Rolling window.</value>
+        public enum LookbackDaysEnum
+        {
+            /// <summary>
+            /// Enum NUMBER_30 for value: 30
+            /// </summary>
+            NUMBER_30 = 30,
+
+            /// <summary>
+            /// Enum NUMBER_60 for value: 60
+            /// </summary>
+            NUMBER_60 = 60,
+
+            /// <summary>
+            /// Enum NUMBER_90 for value: 90
+            /// </summary>
+            NUMBER_90 = 90,
+
+            /// <summary>
+            /// Enum NUMBER_180 for value: 180
+            /// </summary>
+            NUMBER_180 = 180,
+
+            /// <summary>
+            /// Enum NUMBER_365 for value: 365
+            /// </summary>
+            NUMBER_365 = 365
+        }
+
+
+        /// <summary>
+        /// Required for engagement audiences. Rolling window.
+        /// </summary>
+        /// <value>Required for engagement audiences. Rolling window.</value>
+        [DataMember(Name = "lookbackDays", EmitDefaultValue = false)]
+        public LookbackDaysEnum? LookbackDays { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadedOrDerivedAudience" /> class.
         /// </summary>
@@ -77,6 +173,11 @@ namespace Zernio.Model
         /// <param name="name">name (required).</param>
         /// <param name="description">description.</param>
         /// <param name="type">type (required).</param>
+        /// <param name="sourceType">Required for engagement audiences (LinkedIn only): what members engaged with — a video/leadgen/single-image ad campaign, a Company Page or an Event page. .</param>
+        /// <param name="trigger">Required for engagement audiences. The action, validated by LinkedIn against &#x60;sourceType&#x60;. Common values: VIDEO_ADS FIRST_QUARTILE / MIDPOINT / THIRD_QUARTILE / FULL_COMPLETE; LEAD_GEN_FORMS VIEW_FORM / LEAD_FORM_SUBMIT; ORGANIZATION_PAGES VIEW / CTA_CLICK; EVENT_PAGES RSVPED / VIDEO_VIEWED / ENGAGEMENT / CLICK. .</param>
+        /// <param name="lookbackDays">Required for engagement audiences. Rolling window..</param>
+        /// <param name="engagementSources">Required for engagement audiences. Campaign URNs for the ad source types, organization URNs for pages and events. LinkedIn creates one rule per source, all sharing the same trigger and lookbackDays. .</param>
+        /// <param name="companies">Required for company_list audiences (LinkedIn only): plain-text company rows for account targeting. Each row needs at least one identifier. LinkedIn recommends 1,000+ companies for a usable match rate and takes up to 48h to process the list. .</param>
         /// <param name="pixelId">Required for website audiences.</param>
         /// <param name="retentionDays">Required for website audiences.</param>
         /// <param name="sourceAudienceId">Required for lookalike audiences.</param>
@@ -84,7 +185,7 @@ namespace Zernio.Model
         /// <param name="ratio">Required for lookalike audiences.</param>
         /// <param name="rule">Pixel event rule for website audiences (optional).</param>
         /// <param name="customerFileSource">Data source declaration for GDPR compliance (customer_list only).</param>
-        public UploadedOrDerivedAudience(string accountId = default, string adAccountId = default, string name = default, string description = default, TypeEnum type = default, string pixelId = default, int retentionDays = default, string sourceAudienceId = default, string country = default, decimal ratio = default, Object rule = default, string customerFileSource = default)
+        public UploadedOrDerivedAudience(string accountId = default, string adAccountId = default, string name = default, string description = default, TypeEnum type = default, SourceTypeEnum? sourceType = default, string trigger = default, LookbackDaysEnum? lookbackDays = default, List<string> engagementSources = default, List<UploadedOrDerivedAudienceCompaniesInner> companies = default, string pixelId = default, int retentionDays = default, string sourceAudienceId = default, string country = default, decimal ratio = default, Object rule = default, string customerFileSource = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -106,6 +207,11 @@ namespace Zernio.Model
             this.Name = name;
             this.Type = type;
             this.Description = description;
+            this.SourceType = sourceType;
+            this.Trigger = trigger;
+            this.LookbackDays = lookbackDays;
+            this.EngagementSources = engagementSources;
+            this.Companies = companies;
             this.PixelId = pixelId;
             this.RetentionDays = retentionDays;
             this.SourceAudienceId = sourceAudienceId;
@@ -139,6 +245,27 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
+
+        /// <summary>
+        /// Required for engagement audiences. The action, validated by LinkedIn against &#x60;sourceType&#x60;. Common values: VIDEO_ADS FIRST_QUARTILE / MIDPOINT / THIRD_QUARTILE / FULL_COMPLETE; LEAD_GEN_FORMS VIEW_FORM / LEAD_FORM_SUBMIT; ORGANIZATION_PAGES VIEW / CTA_CLICK; EVENT_PAGES RSVPED / VIDEO_VIEWED / ENGAGEMENT / CLICK. 
+        /// </summary>
+        /// <value>Required for engagement audiences. The action, validated by LinkedIn against &#x60;sourceType&#x60;. Common values: VIDEO_ADS FIRST_QUARTILE / MIDPOINT / THIRD_QUARTILE / FULL_COMPLETE; LEAD_GEN_FORMS VIEW_FORM / LEAD_FORM_SUBMIT; ORGANIZATION_PAGES VIEW / CTA_CLICK; EVENT_PAGES RSVPED / VIDEO_VIEWED / ENGAGEMENT / CLICK. </value>
+        [DataMember(Name = "trigger", EmitDefaultValue = false)]
+        public string Trigger { get; set; }
+
+        /// <summary>
+        /// Required for engagement audiences. Campaign URNs for the ad source types, organization URNs for pages and events. LinkedIn creates one rule per source, all sharing the same trigger and lookbackDays. 
+        /// </summary>
+        /// <value>Required for engagement audiences. Campaign URNs for the ad source types, organization URNs for pages and events. LinkedIn creates one rule per source, all sharing the same trigger and lookbackDays. </value>
+        [DataMember(Name = "engagementSources", EmitDefaultValue = false)]
+        public List<string> EngagementSources { get; set; }
+
+        /// <summary>
+        /// Required for company_list audiences (LinkedIn only): plain-text company rows for account targeting. Each row needs at least one identifier. LinkedIn recommends 1,000+ companies for a usable match rate and takes up to 48h to process the list. 
+        /// </summary>
+        /// <value>Required for company_list audiences (LinkedIn only): plain-text company rows for account targeting. Each row needs at least one identifier. LinkedIn recommends 1,000+ companies for a usable match rate and takes up to 48h to process the list. </value>
+        [DataMember(Name = "companies", EmitDefaultValue = false)]
+        public List<UploadedOrDerivedAudienceCompaniesInner> Companies { get; set; }
 
         /// <summary>
         /// Required for website audiences
@@ -202,6 +329,11 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  SourceType: ").Append(SourceType).Append("\n");
+            sb.Append("  Trigger: ").Append(Trigger).Append("\n");
+            sb.Append("  LookbackDays: ").Append(LookbackDays).Append("\n");
+            sb.Append("  EngagementSources: ").Append(EngagementSources).Append("\n");
+            sb.Append("  Companies: ").Append(Companies).Append("\n");
             sb.Append("  PixelId: ").Append(PixelId).Append("\n");
             sb.Append("  RetentionDays: ").Append(RetentionDays).Append("\n");
             sb.Append("  SourceAudienceId: ").Append(SourceAudienceId).Append("\n");

@@ -101,6 +101,51 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'SourceType'
+        /// </summary>
+        [Fact]
+        public void SourceTypeTest()
+        {
+            // TODO unit test for the property 'SourceType'
+        }
+
+        /// <summary>
+        /// Test the property 'Trigger'
+        /// </summary>
+        [Fact]
+        public void TriggerTest()
+        {
+            // TODO unit test for the property 'Trigger'
+        }
+
+        /// <summary>
+        /// Test the property 'LookbackDays'
+        /// </summary>
+        [Fact]
+        public void LookbackDaysTest()
+        {
+            // TODO unit test for the property 'LookbackDays'
+        }
+
+        /// <summary>
+        /// Test the property 'EngagementSources'
+        /// </summary>
+        [Fact]
+        public void EngagementSourcesTest()
+        {
+            // TODO unit test for the property 'EngagementSources'
+        }
+
+        /// <summary>
+        /// Test the property 'Companies'
+        /// </summary>
+        [Fact]
+        public void CompaniesTest()
+        {
+            // TODO unit test for the property 'Companies'
+        }
+
+        /// <summary>
         /// Test the property 'PixelId'
         /// </summary>
         [Fact]
