@@ -359,6 +359,30 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetLinkedInBidPricing
+        /// </summary>
+        [Fact]
+        public void GetLinkedInBidPricingTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //GetLinkedInBidPricingRequest getLinkedInBidPricingRequest = null;
+            //var response = instance.GetLinkedInBidPricing(getLinkedInBidPricingRequest);
+            //Assert.IsType<GetLinkedInBidPricing200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetLinkedInSupplyForecast
+        /// </summary>
+        [Fact]
+        public void GetLinkedInSupplyForecastTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest = null;
+            //var response = instance.GetLinkedInSupplyForecast(getLinkedInSupplyForecastRequest);
+            //Assert.IsType<GetLinkedInSupplyForecast200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdAccounts
         /// </summary>
         [Fact]

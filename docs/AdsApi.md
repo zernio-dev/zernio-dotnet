@@ -27,6 +27,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetDsaDefaults**](AdsApi.md#getdsadefaults) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults |
 | [**GetDsaRecommendations**](AdsApi.md#getdsarecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
 | [**GetLeadForm**](AdsApi.md#getleadform) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form |
+| [**GetLinkedInBidPricing**](AdsApi.md#getlinkedinbidpricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn) |
+| [**GetLinkedInSupplyForecast**](AdsApi.md#getlinkedinsupplyforecast) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn) |
 | [**ListAdAccounts**](AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**ListAdCatalogProductSets**](AdsApi.md#listadcatalogproductsets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets |
 | [**ListAdCatalogs**](AdsApi.md#listadcatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs |
@@ -2441,6 +2443,210 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Form metadata. |  -  |
 | **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getlinkedinbidpricing"></a>
+# **GetLinkedInBidPricing**
+> GetLinkedInBidPricing200Response GetLinkedInBidPricing (GetLinkedInBidPricingRequest getLinkedInBidPricingRequest)
+
+Suggested bid and budget bounds (LinkedIn)
+
+LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn's `adBudgetPricing` finder.  Non-LinkedIn accounts return `available: false` so clients can hide the pricing UI without treating it as a failure. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetLinkedInBidPricingExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var getLinkedInBidPricingRequest = new GetLinkedInBidPricingRequest(); // GetLinkedInBidPricingRequest | 
+
+            try
+            {
+                // Suggested bid and budget bounds (LinkedIn)
+                GetLinkedInBidPricing200Response result = apiInstance.GetLinkedInBidPricing(getLinkedInBidPricingRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetLinkedInBidPricing: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetLinkedInBidPricingWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Suggested bid and budget bounds (LinkedIn)
+    ApiResponse<GetLinkedInBidPricing200Response> response = apiInstance.GetLinkedInBidPricingWithHttpInfo(getLinkedInBidPricingRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetLinkedInBidPricingWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **getLinkedInBidPricingRequest** | [**GetLinkedInBidPricingRequest**](GetLinkedInBidPricingRequest.md) |  |  |
+
+### Return type
+
+[**GetLinkedInBidPricing200Response**](GetLinkedInBidPricing200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pricing insights |  -  |
+| **400** | Invalid targeting or unsupported objective/optimization/bid combination. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getlinkedinsupplyforecast"></a>
+# **GetLinkedInSupplyForecast**
+> GetLinkedInSupplyForecast200Response GetLinkedInSupplyForecast (GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest)
+
+Impressions, clicks and spend forecast (LinkedIn)
+
+LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn's `adSupplyForecasts` finder.  Each returned series carries a `metricType` (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a `granularity` (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return `available: false`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetLinkedInSupplyForecastExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var getLinkedInSupplyForecastRequest = new GetLinkedInSupplyForecastRequest(); // GetLinkedInSupplyForecastRequest | 
+
+            try
+            {
+                // Impressions, clicks and spend forecast (LinkedIn)
+                GetLinkedInSupplyForecast200Response result = apiInstance.GetLinkedInSupplyForecast(getLinkedInSupplyForecastRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetLinkedInSupplyForecast: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetLinkedInSupplyForecastWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Impressions, clicks and spend forecast (LinkedIn)
+    ApiResponse<GetLinkedInSupplyForecast200Response> response = apiInstance.GetLinkedInSupplyForecastWithHttpInfo(getLinkedInSupplyForecastRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetLinkedInSupplyForecastWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **getLinkedInSupplyForecastRequest** | [**GetLinkedInSupplyForecastRequest**](GetLinkedInSupplyForecastRequest.md) |  |  |
+
+### Return type
+
+[**GetLinkedInSupplyForecast200Response**](GetLinkedInSupplyForecast200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Forecast series |  -  |
+| **400** | Invalid targeting, missing budget, or LinkedIn forecast validation error (e.g. END_DATE_MAX_HORIZON_FOR_FORECAST). |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

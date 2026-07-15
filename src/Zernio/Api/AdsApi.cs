@@ -567,6 +567,48 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetLeadForm200Response</returns>
         ApiResponse<GetLeadForm200Response> GetLeadFormWithHttpInfo(string formId, string accountId);
         /// <summary>
+        /// Suggested bid and budget bounds (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInBidPricingRequest"></param>
+        /// <returns>GetLinkedInBidPricing200Response</returns>
+        GetLinkedInBidPricing200Response GetLinkedInBidPricing(GetLinkedInBidPricingRequest getLinkedInBidPricingRequest);
+
+        /// <summary>
+        /// Suggested bid and budget bounds (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInBidPricingRequest"></param>
+        /// <returns>ApiResponse of GetLinkedInBidPricing200Response</returns>
+        ApiResponse<GetLinkedInBidPricing200Response> GetLinkedInBidPricingWithHttpInfo(GetLinkedInBidPricingRequest getLinkedInBidPricingRequest);
+        /// <summary>
+        /// Impressions, clicks and spend forecast (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInSupplyForecastRequest"></param>
+        /// <returns>GetLinkedInSupplyForecast200Response</returns>
+        GetLinkedInSupplyForecast200Response GetLinkedInSupplyForecast(GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest);
+
+        /// <summary>
+        /// Impressions, clicks and spend forecast (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInSupplyForecastRequest"></param>
+        /// <returns>ApiResponse of GetLinkedInSupplyForecast200Response</returns>
+        ApiResponse<GetLinkedInSupplyForecast200Response> GetLinkedInSupplyForecastWithHttpInfo(GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest);
+        /// <summary>
         /// List ad accounts
         /// </summary>
         /// <remarks>
@@ -1693,6 +1735,52 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetLeadForm200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetLeadForm200Response>> GetLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Suggested bid and budget bounds (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInBidPricingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetLinkedInBidPricing200Response</returns>
+        System.Threading.Tasks.Task<GetLinkedInBidPricing200Response> GetLinkedInBidPricingAsync(GetLinkedInBidPricingRequest getLinkedInBidPricingRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Suggested bid and budget bounds (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInBidPricingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetLinkedInBidPricing200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetLinkedInBidPricing200Response>> GetLinkedInBidPricingWithHttpInfoAsync(GetLinkedInBidPricingRequest getLinkedInBidPricingRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Impressions, clicks and spend forecast (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInSupplyForecastRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetLinkedInSupplyForecast200Response</returns>
+        System.Threading.Tasks.Task<GetLinkedInSupplyForecast200Response> GetLinkedInSupplyForecastAsync(GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Impressions, clicks and spend forecast (LinkedIn)
+        /// </summary>
+        /// <remarks>
+        /// LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInSupplyForecastRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetLinkedInSupplyForecast200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetLinkedInSupplyForecast200Response>> GetLinkedInSupplyForecastWithHttpInfoAsync(GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List ad accounts
         /// </summary>
@@ -5788,6 +5876,264 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetLeadForm", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Suggested bid and budget bounds (LinkedIn) LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInBidPricingRequest"></param>
+        /// <returns>GetLinkedInBidPricing200Response</returns>
+        public GetLinkedInBidPricing200Response GetLinkedInBidPricing(GetLinkedInBidPricingRequest getLinkedInBidPricingRequest)
+        {
+            Zernio.Client.ApiResponse<GetLinkedInBidPricing200Response> localVarResponse = GetLinkedInBidPricingWithHttpInfo(getLinkedInBidPricingRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Suggested bid and budget bounds (LinkedIn) LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInBidPricingRequest"></param>
+        /// <returns>ApiResponse of GetLinkedInBidPricing200Response</returns>
+        public Zernio.Client.ApiResponse<GetLinkedInBidPricing200Response> GetLinkedInBidPricingWithHttpInfo(GetLinkedInBidPricingRequest getLinkedInBidPricingRequest)
+        {
+            // verify the required parameter 'getLinkedInBidPricingRequest' is set
+            if (getLinkedInBidPricingRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'getLinkedInBidPricingRequest' when calling AdsApi->GetLinkedInBidPricing");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = getLinkedInBidPricingRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<GetLinkedInBidPricing200Response>("/v1/ads/targeting/bid-pricing", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetLinkedInBidPricing", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Suggested bid and budget bounds (LinkedIn) LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInBidPricingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetLinkedInBidPricing200Response</returns>
+        public async System.Threading.Tasks.Task<GetLinkedInBidPricing200Response> GetLinkedInBidPricingAsync(GetLinkedInBidPricingRequest getLinkedInBidPricingRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetLinkedInBidPricing200Response> localVarResponse = await GetLinkedInBidPricingWithHttpInfoAsync(getLinkedInBidPricingRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Suggested bid and budget bounds (LinkedIn) LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInBidPricingRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetLinkedInBidPricing200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetLinkedInBidPricing200Response>> GetLinkedInBidPricingWithHttpInfoAsync(GetLinkedInBidPricingRequest getLinkedInBidPricingRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'getLinkedInBidPricingRequest' is set
+            if (getLinkedInBidPricingRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'getLinkedInBidPricingRequest' when calling AdsApi->GetLinkedInBidPricing");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = getLinkedInBidPricingRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<GetLinkedInBidPricing200Response>("/v1/ads/targeting/bid-pricing", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetLinkedInBidPricing", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Impressions, clicks and spend forecast (LinkedIn) LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInSupplyForecastRequest"></param>
+        /// <returns>GetLinkedInSupplyForecast200Response</returns>
+        public GetLinkedInSupplyForecast200Response GetLinkedInSupplyForecast(GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest)
+        {
+            Zernio.Client.ApiResponse<GetLinkedInSupplyForecast200Response> localVarResponse = GetLinkedInSupplyForecastWithHttpInfo(getLinkedInSupplyForecastRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Impressions, clicks and spend forecast (LinkedIn) LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInSupplyForecastRequest"></param>
+        /// <returns>ApiResponse of GetLinkedInSupplyForecast200Response</returns>
+        public Zernio.Client.ApiResponse<GetLinkedInSupplyForecast200Response> GetLinkedInSupplyForecastWithHttpInfo(GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest)
+        {
+            // verify the required parameter 'getLinkedInSupplyForecastRequest' is set
+            if (getLinkedInSupplyForecastRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'getLinkedInSupplyForecastRequest' when calling AdsApi->GetLinkedInSupplyForecast");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = getLinkedInSupplyForecastRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<GetLinkedInSupplyForecast200Response>("/v1/ads/targeting/supply-forecast", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetLinkedInSupplyForecast", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Impressions, clicks and spend forecast (LinkedIn) LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInSupplyForecastRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetLinkedInSupplyForecast200Response</returns>
+        public async System.Threading.Tasks.Task<GetLinkedInSupplyForecast200Response> GetLinkedInSupplyForecastAsync(GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetLinkedInSupplyForecast200Response> localVarResponse = await GetLinkedInSupplyForecastWithHttpInfoAsync(getLinkedInSupplyForecastRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Impressions, clicks and spend forecast (LinkedIn) LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="getLinkedInSupplyForecastRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetLinkedInSupplyForecast200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetLinkedInSupplyForecast200Response>> GetLinkedInSupplyForecastWithHttpInfoAsync(GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'getLinkedInSupplyForecastRequest' is set
+            if (getLinkedInSupplyForecastRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'getLinkedInSupplyForecastRequest' when calling AdsApi->GetLinkedInSupplyForecast");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = getLinkedInSupplyForecastRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<GetLinkedInSupplyForecast200Response>("/v1/ads/targeting/supply-forecast", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetLinkedInSupplyForecast", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
