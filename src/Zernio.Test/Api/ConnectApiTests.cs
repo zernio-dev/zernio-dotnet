@@ -134,6 +134,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreatePinterestBoard
+        /// </summary>
+        [Fact]
+        public void CreatePinterestBoardTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //CreatePinterestBoardRequest createPinterestBoardRequest = null;
+            //var response = instance.CreatePinterestBoard(accountId, createPinterestBoardRequest);
+            //Assert.IsType<CreatePinterestBoard201Response>(response);
+        }
+
+        /// <summary>
         /// Test GetConnectUrl
         /// </summary>
         [Fact]

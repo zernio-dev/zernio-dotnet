@@ -169,6 +169,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ConnectWhatsAppCredentials200Response</returns>
         ApiResponse<ConnectWhatsAppCredentials200Response> ConnectWhatsAppCredentialsWithHttpInfo(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest);
         /// <summary>
+        /// Create Pinterest board
+        /// </summary>
+        /// <remarks>
+        /// Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createPinterestBoardRequest"></param>
+        /// <returns>CreatePinterestBoard201Response</returns>
+        CreatePinterestBoard201Response CreatePinterestBoard(string accountId, CreatePinterestBoardRequest createPinterestBoardRequest);
+
+        /// <summary>
+        /// Create Pinterest board
+        /// </summary>
+        /// <remarks>
+        /// Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createPinterestBoardRequest"></param>
+        /// <returns>ApiResponse of CreatePinterestBoard201Response</returns>
+        ApiResponse<CreatePinterestBoard201Response> CreatePinterestBoardWithHttpInfo(string accountId, CreatePinterestBoardRequest createPinterestBoardRequest);
+        /// <summary>
         /// Get OAuth connect URL
         /// </summary>
         /// <remarks>
@@ -1061,6 +1084,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConnectWhatsAppCredentials200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ConnectWhatsAppCredentials200Response>> ConnectWhatsAppCredentialsWithHttpInfoAsync(ConnectWhatsAppCredentialsRequest connectWhatsAppCredentialsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create Pinterest board
+        /// </summary>
+        /// <remarks>
+        /// Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createPinterestBoardRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreatePinterestBoard201Response</returns>
+        System.Threading.Tasks.Task<CreatePinterestBoard201Response> CreatePinterestBoardAsync(string accountId, CreatePinterestBoardRequest createPinterestBoardRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create Pinterest board
+        /// </summary>
+        /// <remarks>
+        /// Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createPinterestBoardRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreatePinterestBoard201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreatePinterestBoard201Response>> CreatePinterestBoardWithHttpInfoAsync(string accountId, CreatePinterestBoardRequest createPinterestBoardRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get OAuth connect URL
         /// </summary>
@@ -2920,6 +2968,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ConnectWhatsAppCredentials", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create Pinterest board Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createPinterestBoardRequest"></param>
+        /// <returns>CreatePinterestBoard201Response</returns>
+        public CreatePinterestBoard201Response CreatePinterestBoard(string accountId, CreatePinterestBoardRequest createPinterestBoardRequest)
+        {
+            Zernio.Client.ApiResponse<CreatePinterestBoard201Response> localVarResponse = CreatePinterestBoardWithHttpInfo(accountId, createPinterestBoardRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create Pinterest board Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createPinterestBoardRequest"></param>
+        /// <returns>ApiResponse of CreatePinterestBoard201Response</returns>
+        public Zernio.Client.ApiResponse<CreatePinterestBoard201Response> CreatePinterestBoardWithHttpInfo(string accountId, CreatePinterestBoardRequest createPinterestBoardRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->CreatePinterestBoard");
+
+            // verify the required parameter 'createPinterestBoardRequest' is set
+            if (createPinterestBoardRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createPinterestBoardRequest' when calling ConnectApi->CreatePinterestBoard");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = createPinterestBoardRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreatePinterestBoard201Response>("/v1/accounts/{accountId}/pinterest-boards", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreatePinterestBoard", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create Pinterest board Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createPinterestBoardRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreatePinterestBoard201Response</returns>
+        public async System.Threading.Tasks.Task<CreatePinterestBoard201Response> CreatePinterestBoardAsync(string accountId, CreatePinterestBoardRequest createPinterestBoardRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreatePinterestBoard201Response> localVarResponse = await CreatePinterestBoardWithHttpInfoAsync(accountId, createPinterestBoardRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create Pinterest board Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="createPinterestBoardRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreatePinterestBoard201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreatePinterestBoard201Response>> CreatePinterestBoardWithHttpInfoAsync(string accountId, CreatePinterestBoardRequest createPinterestBoardRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->CreatePinterestBoard");
+
+            // verify the required parameter 'createPinterestBoardRequest' is set
+            if (createPinterestBoardRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createPinterestBoardRequest' when calling ConnectApi->CreatePinterestBoard");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = createPinterestBoardRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreatePinterestBoard201Response>("/v1/accounts/{accountId}/pinterest-boards", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreatePinterestBoard", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

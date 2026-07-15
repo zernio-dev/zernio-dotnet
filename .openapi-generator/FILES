@@ -211,6 +211,9 @@ docs/CreatePhoneNumberPortIn201Response.md
 docs/CreatePhoneNumberPortIn201ResponseOrdersInner.md
 docs/CreatePhoneNumberPortInRequest.md
 docs/CreatePhoneNumberPortInRequestEndUser.md
+docs/CreatePinterestBoard201Response.md
+docs/CreatePinterestBoard201ResponseBoard.md
+docs/CreatePinterestBoardRequest.md
 docs/CreatePost403Response.md
 docs/CreatePost409Response.md
 docs/CreatePost409ResponseDetails.md
@@ -1680,6 +1683,9 @@ src/Zernio.Test/Model/CreatePhoneNumberPortIn201ResponseOrdersInnerTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortIn201ResponseTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortInRequestEndUserTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortInRequestTests.cs
+src/Zernio.Test/Model/CreatePinterestBoard201ResponseBoardTests.cs
+src/Zernio.Test/Model/CreatePinterestBoard201ResponseTests.cs
+src/Zernio.Test/Model/CreatePinterestBoardRequestTests.cs
 src/Zernio.Test/Model/CreatePost403ResponseTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseDetailsTests.cs
 src/Zernio.Test/Model/CreatePost409ResponseTests.cs
@@ -3126,6 +3132,9 @@ src/Zernio/Model/CreatePhoneNumberPortIn201Response.cs
 src/Zernio/Model/CreatePhoneNumberPortIn201ResponseOrdersInner.cs
 src/Zernio/Model/CreatePhoneNumberPortInRequest.cs
 src/Zernio/Model/CreatePhoneNumberPortInRequestEndUser.cs
+src/Zernio/Model/CreatePinterestBoard201Response.cs
+src/Zernio/Model/CreatePinterestBoard201ResponseBoard.cs
+src/Zernio/Model/CreatePinterestBoardRequest.cs
 src/Zernio/Model/CreatePost403Response.cs
 src/Zernio/Model/CreatePost409Response.cs
 src/Zernio/Model/CreatePost409ResponseDetails.cs

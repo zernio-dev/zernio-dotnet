@@ -280,6 +280,7 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**ConnectAds**](docs/ConnectApi.md#connectads) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**ConnectBlueskyCredentials**](docs/ConnectApi.md#connectblueskycredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**ConnectWhatsAppCredentials**](docs/ConnectApi.md#connectwhatsappcredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
+*ConnectApi* | [**CreatePinterestBoard**](docs/ConnectApi.md#createpinterestboard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**GetConnectUrl**](docs/ConnectApi.md#getconnecturl) | **GET** /v1/connect/{platform} | Get OAuth connect URL
 *ConnectApi* | [**GetFacebookPages**](docs/ConnectApi.md#getfacebookpages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
 *ConnectApi* | [**GetGmbLocations**](docs/ConnectApi.md#getgmblocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List GBP locations
@@ -805,6 +806,9 @@ Class | Method | HTTP request | Description
  - [Model.CreatePhoneNumberPortIn201ResponseOrdersInner](docs/CreatePhoneNumberPortIn201ResponseOrdersInner.md)
  - [Model.CreatePhoneNumberPortInRequest](docs/CreatePhoneNumberPortInRequest.md)
  - [Model.CreatePhoneNumberPortInRequestEndUser](docs/CreatePhoneNumberPortInRequestEndUser.md)
+ - [Model.CreatePinterestBoard201Response](docs/CreatePinterestBoard201Response.md)
+ - [Model.CreatePinterestBoard201ResponseBoard](docs/CreatePinterestBoard201ResponseBoard.md)
+ - [Model.CreatePinterestBoardRequest](docs/CreatePinterestBoardRequest.md)
  - [Model.CreatePost403Response](docs/CreatePost403Response.md)
  - [Model.CreatePost409Response](docs/CreatePost409Response.md)
  - [Model.CreatePost409ResponseDetails](docs/CreatePost409ResponseDetails.md)
