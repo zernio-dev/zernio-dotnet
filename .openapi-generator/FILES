@@ -1272,6 +1272,7 @@ docs/UploadWhatsAppProfilePhotoRequest1.md
 docs/UploadedFile.md
 docs/UploadedOrDerivedAudience.md
 docs/UploadedOrDerivedAudienceCompaniesInner.md
+docs/UploadedOrDerivedAudienceMatchRulesInner.md
 docs/UsageApi.md
 docs/UsageMetering.md
 docs/UsageMeteringCallUsage.md
@@ -2711,6 +2712,7 @@ src/Zernio.Test/Model/UploadWhatsAppFlowJsonRequestTests.cs
 src/Zernio.Test/Model/UploadWhatsAppProfilePhotoRequest1Tests.cs
 src/Zernio.Test/Model/UploadedFileTests.cs
 src/Zernio.Test/Model/UploadedOrDerivedAudienceCompaniesInnerTests.cs
+src/Zernio.Test/Model/UploadedOrDerivedAudienceMatchRulesInnerTests.cs
 src/Zernio.Test/Model/UploadedOrDerivedAudienceTests.cs
 src/Zernio.Test/Model/UsageMeteringCallUsageTests.cs
 src/Zernio.Test/Model/UsageMeteringCallUsageWhatsappTests.cs
@@ -4157,6 +4159,7 @@ src/Zernio/Model/UploadWhatsAppProfilePhotoRequest1.cs
 src/Zernio/Model/UploadedFile.cs
 src/Zernio/Model/UploadedOrDerivedAudience.cs
 src/Zernio/Model/UploadedOrDerivedAudienceCompaniesInner.cs
+src/Zernio/Model/UploadedOrDerivedAudienceMatchRulesInner.cs
 src/Zernio/Model/UsageMetering.cs
 src/Zernio/Model/UsageMeteringCallUsage.cs
 src/Zernio/Model/UsageMeteringCallUsageWhatsapp.cs

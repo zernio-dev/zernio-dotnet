@@ -101,6 +101,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'MatchRules'
+        /// </summary>
+        [Fact]
+        public void MatchRulesTest()
+        {
+            // TODO unit test for the property 'MatchRules'
+        }
+
+        /// <summary>
         /// Test the property 'SourceType'
         /// </summary>
         [Fact]

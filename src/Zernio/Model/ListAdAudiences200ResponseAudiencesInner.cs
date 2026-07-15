@@ -64,16 +64,22 @@ namespace Zernio.Model
             Website = 4,
 
             /// <summary>
+            /// Enum WebsiteRetargeting for value: website_retargeting
+            /// </summary>
+            [EnumMember(Value = "website_retargeting")]
+            WebsiteRetargeting = 5,
+
+            /// <summary>
             /// Enum Lookalike for value: lookalike
             /// </summary>
             [EnumMember(Value = "lookalike")]
-            Lookalike = 5,
+            Lookalike = 6,
 
             /// <summary>
             /// Enum SavedTargeting for value: saved_targeting
             /// </summary>
             [EnumMember(Value = "saved_targeting")]
-            SavedTargeting = 6
+            SavedTargeting = 7
         }
 
 
