@@ -76,8 +76,10 @@ namespace Zernio.Model
         /// <param name="phoneNumbers">Your numbers this registration covers. (required).</param>
         /// <param name="brand">brand.</param>
         /// <param name="campaign">campaign.</param>
+        /// <param name="wizardValues">Raw dashboard-wizard answers, stored only to prefill edit-and-resubmit. API integrators can omit..</param>
+        /// <param name="resubmitRequestId">Resubmit a registration that was returned for changes — updates it in place instead of creating a new one..</param>
         /// <param name="tollFree">tollFree.</param>
-        public StartSmsRegistrationRequest(RegistrationTypeEnum registrationType = default, List<string> phoneNumbers = default, StartSmsRegistrationRequestBrand brand = default, StartSmsRegistrationRequestCampaign campaign = default, StartSmsRegistrationRequestTollFree tollFree = default)
+        public StartSmsRegistrationRequest(RegistrationTypeEnum registrationType = default, List<string> phoneNumbers = default, StartSmsRegistrationRequestBrand brand = default, StartSmsRegistrationRequestCampaign campaign = default, Dictionary<string, string> wizardValues = default, string resubmitRequestId = default, StartSmsRegistrationRequestTollFree tollFree = default)
         {
             this.RegistrationType = registrationType;
             // to ensure "phoneNumbers" is required (not null)
@@ -88,6 +90,8 @@ namespace Zernio.Model
             this.PhoneNumbers = phoneNumbers;
             this.Brand = brand;
             this.Campaign = campaign;
+            this.WizardValues = wizardValues;
+            this.ResubmitRequestId = resubmitRequestId;
             this.TollFree = tollFree;
         }
 
@@ -111,6 +115,20 @@ namespace Zernio.Model
         public StartSmsRegistrationRequestCampaign Campaign { get; set; }
 
         /// <summary>
+        /// Raw dashboard-wizard answers, stored only to prefill edit-and-resubmit. API integrators can omit.
+        /// </summary>
+        /// <value>Raw dashboard-wizard answers, stored only to prefill edit-and-resubmit. API integrators can omit.</value>
+        [DataMember(Name = "wizardValues", EmitDefaultValue = false)]
+        public Dictionary<string, string> WizardValues { get; set; }
+
+        /// <summary>
+        /// Resubmit a registration that was returned for changes — updates it in place instead of creating a new one.
+        /// </summary>
+        /// <value>Resubmit a registration that was returned for changes — updates it in place instead of creating a new one.</value>
+        [DataMember(Name = "resubmitRequestId", EmitDefaultValue = false)]
+        public string ResubmitRequestId { get; set; }
+
+        /// <summary>
         /// Gets or Sets TollFree
         /// </summary>
         [DataMember(Name = "tollFree", EmitDefaultValue = false)]
@@ -128,6 +146,8 @@ namespace Zernio.Model
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
+            sb.Append("  WizardValues: ").Append(WizardValues).Append("\n");
+            sb.Append("  ResubmitRequestId: ").Append(ResubmitRequestId).Append("\n");
             sb.Append("  TollFree: ").Append(TollFree).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

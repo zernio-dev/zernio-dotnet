@@ -65,8 +65,9 @@ namespace Zernio.Model
         [DataMember(Name = "registrationType", EmitDefaultValue = false)]
         public RegistrationTypeEnum? RegistrationType { get; set; }
         /// <summary>
-        /// Defines Status
+        /// requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.
         /// </summary>
+        /// <value>requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -86,13 +87,32 @@ namespace Zernio.Model
             /// Enum Rejected for value: rejected
             /// </summary>
             [EnumMember(Value = "rejected")]
-            Rejected = 3
+            Rejected = 3,
+
+            /// <summary>
+            /// Enum Requested for value: requested
+            /// </summary>
+            [EnumMember(Value = "requested")]
+            Requested = 4,
+
+            /// <summary>
+            /// Enum ChangesRequested for value: changes_requested
+            /// </summary>
+            [EnumMember(Value = "changes_requested")]
+            ChangesRequested = 5,
+
+            /// <summary>
+            /// Enum Deactivated for value: deactivated
+            /// </summary>
+            [EnumMember(Value = "deactivated")]
+            Deactivated = 6
         }
 
 
         /// <summary>
-        /// Gets or Sets Status
+        /// requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.
         /// </summary>
+        /// <value>requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
@@ -101,7 +121,7 @@ namespace Zernio.Model
         /// <param name="id">id.</param>
         /// <param name="registrationType">registrationType.</param>
         /// <param name="displayName">displayName.</param>
-        /// <param name="status">status.</param>
+        /// <param name="status">requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes..</param>
         /// <param name="brandStatus">Carrier-registry brand status (e.g. VERIFIED)..</param>
         /// <param name="campaignStatus">campaignStatus.</param>
         /// <param name="brandId">TCR brand id, useful when referencing the brand in carrier support threads..</param>

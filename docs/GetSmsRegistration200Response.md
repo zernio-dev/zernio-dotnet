@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | [optional] 
 **RegistrationType** | **string** |  | [optional] 
-**Status** | **string** |  | [optional] 
+**Status** | **string** | requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes. | [optional] 
 **BrandStatus** | **string** |  | [optional] 
 **CampaignStatus** | **string** |  | [optional] 
 **DeclineReason** | **string** |  | [optional] 

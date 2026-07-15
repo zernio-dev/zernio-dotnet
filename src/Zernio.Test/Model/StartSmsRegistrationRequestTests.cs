@@ -92,6 +92,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'WizardValues'
+        /// </summary>
+        [Fact]
+        public void WizardValuesTest()
+        {
+            // TODO unit test for the property 'WizardValues'
+        }
+
+        /// <summary>
+        /// Test the property 'ResubmitRequestId'
+        /// </summary>
+        [Fact]
+        public void ResubmitRequestIdTest()
+        {
+            // TODO unit test for the property 'ResubmitRequestId'
+        }
+
+        /// <summary>
         /// Test the property 'TollFree'
         /// </summary>
         [Fact]

@@ -34,8 +34,9 @@ namespace Zernio.Model
     public partial class ReuseSmsRegistrationForNumber200Response : IValidatableObject
     {
         /// <summary>
-        /// Defines Status
+        /// requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.
         /// </summary>
+        /// <value>requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -55,20 +56,39 @@ namespace Zernio.Model
             /// Enum Rejected for value: rejected
             /// </summary>
             [EnumMember(Value = "rejected")]
-            Rejected = 3
+            Rejected = 3,
+
+            /// <summary>
+            /// Enum Requested for value: requested
+            /// </summary>
+            [EnumMember(Value = "requested")]
+            Requested = 4,
+
+            /// <summary>
+            /// Enum ChangesRequested for value: changes_requested
+            /// </summary>
+            [EnumMember(Value = "changes_requested")]
+            ChangesRequested = 5,
+
+            /// <summary>
+            /// Enum Deactivated for value: deactivated
+            /// </summary>
+            [EnumMember(Value = "deactivated")]
+            Deactivated = 6
         }
 
 
         /// <summary>
-        /// Gets or Sets Status
+        /// requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.
         /// </summary>
+        /// <value>requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ReuseSmsRegistrationForNumber200Response" /> class.
         /// </summary>
         /// <param name="registrationId">registrationId.</param>
-        /// <param name="status">status.</param>
+        /// <param name="status">requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes..</param>
         public ReuseSmsRegistrationForNumber200Response(string registrationId = default, StatusEnum? status = default)
         {
             this.RegistrationId = registrationId;
