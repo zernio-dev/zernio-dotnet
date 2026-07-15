@@ -201,6 +201,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test UploadSmsOptInProof
+        /// </summary>
+        [Fact]
+        public void UploadSmsOptInProofTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //FileParameter file = null;
+            //var response = instance.UploadSmsOptInProof(id, file);
+            //Assert.IsType<UploadSmsOptInProof200Response>(response);
+        }
+
+        /// <summary>
         /// Test VerifySmsRegistrationOtp
         /// </summary>
         [Fact]

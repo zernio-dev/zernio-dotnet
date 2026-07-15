@@ -460,6 +460,7 @@ Class | Method | HTTP request | Description
 *SMSApi* | [**SendSms**](docs/SMSApi.md#sendsms) | **POST** /v1/sms/messages | Send an SMS/MMS
 *SMSApi* | [**ShareSmsRegistration**](docs/SMSApi.md#sharesmsregistration) | **POST** /v1/sms/registrations/share | Create a registration share link
 *SMSApi* | [**StartSmsRegistration**](docs/SMSApi.md#startsmsregistration) | **POST** /v1/sms/registrations | Start a carrier registration
+*SMSApi* | [**UploadSmsOptInProof**](docs/SMSApi.md#uploadsmsoptinproof) | **POST** /v1/sms/registrations/{id}/opt-in-proof | Upload opt-in form proof for an appeal
 *SMSApi* | [**VerifySmsRegistrationOtp**](docs/SMSApi.md#verifysmsregistrationotp) | **POST** /v1/sms/registrations/{id}/verify-otp | Submit the sole-prop OTP
 *SequencesApi* | [**ActivateSequence**](docs/SequencesApi.md#activatesequence) | **POST** /v1/sequences/{sequenceId}/activate | Activate sequence
 *SequencesApi* | [**CreateSequence**](docs/SequencesApi.md#createsequence) | **POST** /v1/sequences | Create sequence
@@ -1832,6 +1833,7 @@ Class | Method | HTTP request | Description
  - [Model.UploadMediaDirect200Response](docs/UploadMediaDirect200Response.md)
  - [Model.UploadPhoneNumberKycDocument200Response](docs/UploadPhoneNumberKycDocument200Response.md)
  - [Model.UploadPhoneNumberPortInDocument200Response](docs/UploadPhoneNumberPortInDocument200Response.md)
+ - [Model.UploadSmsOptInProof200Response](docs/UploadSmsOptInProof200Response.md)
  - [Model.UploadTokenResponse](docs/UploadTokenResponse.md)
  - [Model.UploadTokenStatusResponse](docs/UploadTokenStatusResponse.md)
  - [Model.UploadWhatsAppFlowJson200Response](docs/UploadWhatsAppFlowJson200Response.md)

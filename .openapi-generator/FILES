@@ -1265,6 +1265,7 @@ docs/UpdateYoutubeDefaultPlaylistRequest.md
 docs/UploadMediaDirect200Response.md
 docs/UploadPhoneNumberKycDocument200Response.md
 docs/UploadPhoneNumberPortInDocument200Response.md
+docs/UploadSmsOptInProof200Response.md
 docs/UploadTokenResponse.md
 docs/UploadTokenStatusResponse.md
 docs/UploadWhatsAppFlowJson200Response.md
@@ -2709,6 +2710,7 @@ src/Zernio.Test/Model/UpdateYoutubeDefaultPlaylistRequestTests.cs
 src/Zernio.Test/Model/UploadMediaDirect200ResponseTests.cs
 src/Zernio.Test/Model/UploadPhoneNumberKycDocument200ResponseTests.cs
 src/Zernio.Test/Model/UploadPhoneNumberPortInDocument200ResponseTests.cs
+src/Zernio.Test/Model/UploadSmsOptInProof200ResponseTests.cs
 src/Zernio.Test/Model/UploadTokenResponseTests.cs
 src/Zernio.Test/Model/UploadTokenStatusResponseTests.cs
 src/Zernio.Test/Model/UploadWhatsAppFlowJson200ResponseTests.cs
@@ -4158,6 +4160,7 @@ src/Zernio/Model/UpdateYoutubeDefaultPlaylistRequest.cs
 src/Zernio/Model/UploadMediaDirect200Response.cs
 src/Zernio/Model/UploadPhoneNumberKycDocument200Response.cs
 src/Zernio/Model/UploadPhoneNumberPortInDocument200Response.cs
+src/Zernio/Model/UploadSmsOptInProof200Response.cs
 src/Zernio/Model/UploadTokenResponse.cs
 src/Zernio/Model/UploadTokenStatusResponse.cs
 src/Zernio/Model/UploadWhatsAppFlowJson200Response.cs

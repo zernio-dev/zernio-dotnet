@@ -16,6 +16,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**SendSms**](SMSApi.md#sendsms) | **POST** /v1/sms/messages | Send an SMS/MMS |
 | [**ShareSmsRegistration**](SMSApi.md#sharesmsregistration) | **POST** /v1/sms/registrations/share | Create a registration share link |
 | [**StartSmsRegistration**](SMSApi.md#startsmsregistration) | **POST** /v1/sms/registrations | Start a carrier registration |
+| [**UploadSmsOptInProof**](SMSApi.md#uploadsmsoptinproof) | **POST** /v1/sms/registrations/{id}/opt-in-proof | Upload opt-in form proof for an appeal |
 | [**VerifySmsRegistrationOtp**](SMSApi.md#verifysmsregistrationotp) | **POST** /v1/sms/registrations/{id}/verify-otp | Submit the sole-prop OTP |
 
 <a id="appealsmsregistration"></a>
@@ -1220,6 +1221,109 @@ catch (ApiException e)
 | **200** | Registration submitted. |  -  |
 | **401** | Unauthorized |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="uploadsmsoptinproof"></a>
+# **UploadSmsOptInProof**
+> UploadSmsOptInProof200Response UploadSmsOptInProof (string id, FileParameter file)
+
+Upload opt-in form proof for an appeal
+
+Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can't be verified and ask for a \"link/screenshot of the opt-in form\" — the registry has no attachment field, so include the returned URL inside the `messageFlow` you submit with the appeal (`POST /v1/sms/registrations/{id}/appeal`). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UploadSmsOptInProofExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+            var file = new System.IO.MemoryStream(System.IO.File.ReadAllBytes("/path/to/file.txt"));  // FileParameter | PNG, JPG, WebP, GIF or PDF, max 4MB.
+
+            try
+            {
+                // Upload opt-in form proof for an appeal
+                UploadSmsOptInProof200Response result = apiInstance.UploadSmsOptInProof(id, file);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SMSApi.UploadSmsOptInProof: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UploadSmsOptInProofWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Upload opt-in form proof for an appeal
+    ApiResponse<UploadSmsOptInProof200Response> response = apiInstance.UploadSmsOptInProofWithHttpInfo(id, file);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SMSApi.UploadSmsOptInProofWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+| **file** | **FileParameter****FileParameter** | PNG, JPG, WebP, GIF or PDF, max 4MB. |  |
+
+### Return type
+
+[**UploadSmsOptInProof200Response**](UploadSmsOptInProof200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | File hosted. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Registration not found |  -  |
+| **422** | Unsupported file type or file too large |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
