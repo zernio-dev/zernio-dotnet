@@ -284,6 +284,7 @@ docs/CrosspostDiscordMessage200Response.md
 docs/CtwaMultiResponse.md
 docs/CtwaSingleResponse.md
 docs/CustomFieldsApi.md
+docs/DeactivateSmsRegistration200Response.md
 docs/DeleteAccountGroup200Response.md
 docs/DeleteAdCampaign200Response.md
 docs/DeleteAdCampaignRequest.md
@@ -1769,6 +1770,7 @@ src/Zernio.Test/Model/CreateWorkflowRequestTests.cs
 src/Zernio.Test/Model/CrosspostDiscordMessage200ResponseTests.cs
 src/Zernio.Test/Model/CtwaMultiResponseTests.cs
 src/Zernio.Test/Model/CtwaSingleResponseTests.cs
+src/Zernio.Test/Model/DeactivateSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAccountGroup200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/DeleteAdCampaignRequestTests.cs
@@ -3232,6 +3234,7 @@ src/Zernio/Model/CreateWorkflowRequest.cs
 src/Zernio/Model/CrosspostDiscordMessage200Response.cs
 src/Zernio/Model/CtwaMultiResponse.cs
 src/Zernio/Model/CtwaSingleResponse.cs
+src/Zernio/Model/DeactivateSmsRegistration200Response.cs
 src/Zernio/Model/DeleteAccountGroup200Response.cs
 src/Zernio/Model/DeleteAdCampaign200Response.cs
 src/Zernio/Model/DeleteAdCampaignRequest.cs

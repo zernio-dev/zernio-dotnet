@@ -68,6 +68,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test DeactivateSmsRegistration
+        /// </summary>
+        [Fact]
+        public void DeactivateSmsRegistrationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //var response = instance.DeactivateSmsRegistration(id);
+            //Assert.IsType<DeactivateSmsRegistration200Response>(response);
+        }
+
+        /// <summary>
         /// Test DisableSmsOnNumber
         /// </summary>
         [Fact]
