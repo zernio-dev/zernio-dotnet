@@ -189,5 +189,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Event'
         }
+
+        /// <summary>
+        /// Test the property 'ThoughtLeader'
+        /// </summary>
+        [Fact]
+        public void ThoughtLeaderTest()
+        {
+            // TODO unit test for the property 'ThoughtLeader'
+        }
     }
 }

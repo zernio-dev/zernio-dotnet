@@ -111,7 +111,8 @@ namespace Zernio.Model
         /// <param name="textAd">textAd.</param>
         /// <param name="conversation">conversation.</param>
         /// <param name="varEvent">varEvent.</param>
-        public LinkedInAdsPlatformData(CostTypeEnum? costType = default, decimal unitCost = default, string optimizationTargetType = default, CreativeSelectionEnum? creativeSelection = default, bool audienceExpansionEnabled = default, bool offsiteDeliveryEnabled = default, bool connectedTelevisionOnly = default, LinkedInAdsPlatformDataCarousel carousel = default, LinkedInAdsPlatformDataDocument document = default, LinkedInAdsPlatformDataSpotlight spotlight = default, LinkedInAdsPlatformDataFollower follower = default, LinkedInAdsPlatformDataJobs jobs = default, LinkedInAdsPlatformDataTextAd textAd = default, LinkedInAdsPlatformDataConversation conversation = default, LinkedInAdsPlatformDataEvent varEvent = default)
+        /// <param name="thoughtLeader">thoughtLeader.</param>
+        public LinkedInAdsPlatformData(CostTypeEnum? costType = default, decimal unitCost = default, string optimizationTargetType = default, CreativeSelectionEnum? creativeSelection = default, bool audienceExpansionEnabled = default, bool offsiteDeliveryEnabled = default, bool connectedTelevisionOnly = default, LinkedInAdsPlatformDataCarousel carousel = default, LinkedInAdsPlatformDataDocument document = default, LinkedInAdsPlatformDataSpotlight spotlight = default, LinkedInAdsPlatformDataFollower follower = default, LinkedInAdsPlatformDataJobs jobs = default, LinkedInAdsPlatformDataTextAd textAd = default, LinkedInAdsPlatformDataConversation conversation = default, LinkedInAdsPlatformDataEvent varEvent = default, LinkedInAdsPlatformDataThoughtLeader thoughtLeader = default)
         {
             this.CostType = costType;
             this.UnitCost = unitCost;
@@ -128,6 +129,7 @@ namespace Zernio.Model
             this.TextAd = textAd;
             this.Conversation = conversation;
             this.Event = varEvent;
+            this.ThoughtLeader = thoughtLeader;
             this.AdditionalProperties = new Dictionary<string, object>();
         }
 
@@ -215,6 +217,12 @@ namespace Zernio.Model
         public LinkedInAdsPlatformDataEvent Event { get; set; }
 
         /// <summary>
+        /// Gets or Sets ThoughtLeader
+        /// </summary>
+        [DataMember(Name = "thoughtLeader", EmitDefaultValue = false)]
+        public LinkedInAdsPlatformDataThoughtLeader ThoughtLeader { get; set; }
+
+        /// <summary>
         /// Gets or Sets additional properties
         /// </summary>
         [JsonExtensionData]
@@ -243,6 +251,7 @@ namespace Zernio.Model
             sb.Append("  TextAd: ").Append(TextAd).Append("\n");
             sb.Append("  Conversation: ").Append(Conversation).Append("\n");
             sb.Append("  Event: ").Append(Event).Append("\n");
+            sb.Append("  ThoughtLeader: ").Append(ThoughtLeader).Append("\n");
             sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
