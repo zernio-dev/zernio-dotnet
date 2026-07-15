@@ -290,8 +290,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
-        /// <returns>UploadSmsOptInProof200Response</returns>
-        UploadSmsOptInProof200Response UploadSmsOptInProof(string id, FileParameter file);
+        /// <returns>UploadSmsOptInProofFile200Response</returns>
+        UploadSmsOptInProofFile200Response UploadSmsOptInProof(string id, FileParameter file);
 
         /// <summary>
         /// Upload opt-in form proof for an appeal
@@ -302,8 +302,29 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
-        /// <returns>ApiResponse of UploadSmsOptInProof200Response</returns>
-        ApiResponse<UploadSmsOptInProof200Response> UploadSmsOptInProofWithHttpInfo(string id, FileParameter file);
+        /// <returns>ApiResponse of UploadSmsOptInProofFile200Response</returns>
+        ApiResponse<UploadSmsOptInProofFile200Response> UploadSmsOptInProofWithHttpInfo(string id, FileParameter file);
+        /// <summary>
+        /// Upload opt-in form proof
+        /// </summary>
+        /// <remarks>
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
+        /// <returns>UploadSmsOptInProofFile200Response</returns>
+        UploadSmsOptInProofFile200Response UploadSmsOptInProofFile(FileParameter file);
+
+        /// <summary>
+        /// Upload opt-in form proof
+        /// </summary>
+        /// <remarks>
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
+        /// <returns>ApiResponse of UploadSmsOptInProofFile200Response</returns>
+        ApiResponse<UploadSmsOptInProofFile200Response> UploadSmsOptInProofFileWithHttpInfo(FileParameter file);
         /// <summary>
         /// Submit the sole-prop OTP
         /// </summary>
@@ -626,8 +647,8 @@ namespace Zernio.Api
         /// <param name="id"></param>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UploadSmsOptInProof200Response</returns>
-        System.Threading.Tasks.Task<UploadSmsOptInProof200Response> UploadSmsOptInProofAsync(string id, FileParameter file, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of UploadSmsOptInProofFile200Response</returns>
+        System.Threading.Tasks.Task<UploadSmsOptInProofFile200Response> UploadSmsOptInProofAsync(string id, FileParameter file, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Upload opt-in form proof for an appeal
@@ -639,8 +660,31 @@ namespace Zernio.Api
         /// <param name="id"></param>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UploadSmsOptInProof200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UploadSmsOptInProof200Response>> UploadSmsOptInProofWithHttpInfoAsync(string id, FileParameter file, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (UploadSmsOptInProofFile200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UploadSmsOptInProofFile200Response>> UploadSmsOptInProofWithHttpInfoAsync(string id, FileParameter file, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Upload opt-in form proof
+        /// </summary>
+        /// <remarks>
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UploadSmsOptInProofFile200Response</returns>
+        System.Threading.Tasks.Task<UploadSmsOptInProofFile200Response> UploadSmsOptInProofFileAsync(FileParameter file, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Upload opt-in form proof
+        /// </summary>
+        /// <remarks>
+        /// Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UploadSmsOptInProofFile200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UploadSmsOptInProofFile200Response>> UploadSmsOptInProofFileWithHttpInfoAsync(FileParameter file, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Submit the sole-prop OTP
         /// </summary>
@@ -2441,10 +2485,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
-        /// <returns>UploadSmsOptInProof200Response</returns>
-        public UploadSmsOptInProof200Response UploadSmsOptInProof(string id, FileParameter file)
+        /// <returns>UploadSmsOptInProofFile200Response</returns>
+        public UploadSmsOptInProofFile200Response UploadSmsOptInProof(string id, FileParameter file)
         {
-            Zernio.Client.ApiResponse<UploadSmsOptInProof200Response> localVarResponse = UploadSmsOptInProofWithHttpInfo(id, file);
+            Zernio.Client.ApiResponse<UploadSmsOptInProofFile200Response> localVarResponse = UploadSmsOptInProofWithHttpInfo(id, file);
             return localVarResponse.Data;
         }
 
@@ -2454,8 +2498,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id"></param>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
-        /// <returns>ApiResponse of UploadSmsOptInProof200Response</returns>
-        public Zernio.Client.ApiResponse<UploadSmsOptInProof200Response> UploadSmsOptInProofWithHttpInfo(string id, FileParameter file)
+        /// <returns>ApiResponse of UploadSmsOptInProofFile200Response</returns>
+        public Zernio.Client.ApiResponse<UploadSmsOptInProofFile200Response> UploadSmsOptInProofWithHttpInfo(string id, FileParameter file)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2493,7 +2537,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<UploadSmsOptInProof200Response>("/v1/sms/registrations/{id}/opt-in-proof", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<UploadSmsOptInProofFile200Response>("/v1/sms/registrations/{id}/opt-in-proof", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2511,10 +2555,10 @@ namespace Zernio.Api
         /// <param name="id"></param>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of UploadSmsOptInProof200Response</returns>
-        public async System.Threading.Tasks.Task<UploadSmsOptInProof200Response> UploadSmsOptInProofAsync(string id, FileParameter file, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of UploadSmsOptInProofFile200Response</returns>
+        public async System.Threading.Tasks.Task<UploadSmsOptInProofFile200Response> UploadSmsOptInProofAsync(string id, FileParameter file, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<UploadSmsOptInProof200Response> localVarResponse = await UploadSmsOptInProofWithHttpInfoAsync(id, file, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<UploadSmsOptInProofFile200Response> localVarResponse = await UploadSmsOptInProofWithHttpInfoAsync(id, file, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2525,8 +2569,8 @@ namespace Zernio.Api
         /// <param name="id"></param>
         /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (UploadSmsOptInProof200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UploadSmsOptInProof200Response>> UploadSmsOptInProofWithHttpInfoAsync(string id, FileParameter file, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (UploadSmsOptInProofFile200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UploadSmsOptInProofFile200Response>> UploadSmsOptInProofWithHttpInfoAsync(string id, FileParameter file, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2567,11 +2611,140 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<UploadSmsOptInProof200Response>("/v1/sms/registrations/{id}/opt-in-proof", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UploadSmsOptInProofFile200Response>("/v1/sms/registrations/{id}/opt-in-proof", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UploadSmsOptInProof", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
+        /// <returns>UploadSmsOptInProofFile200Response</returns>
+        public UploadSmsOptInProofFile200Response UploadSmsOptInProofFile(FileParameter file)
+        {
+            Zernio.Client.ApiResponse<UploadSmsOptInProofFile200Response> localVarResponse = UploadSmsOptInProofFileWithHttpInfo(file);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
+        /// <returns>ApiResponse of UploadSmsOptInProofFile200Response</returns>
+        public Zernio.Client.ApiResponse<UploadSmsOptInProofFile200Response> UploadSmsOptInProofFileWithHttpInfo(FileParameter file)
+        {
+            // verify the required parameter 'file' is set
+            if (file == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'file' when calling SMSApi->UploadSmsOptInProofFile");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.FileParameters.Add("file", file);
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UploadSmsOptInProofFile200Response>("/v1/sms/opt-in-proof", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UploadSmsOptInProofFile", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UploadSmsOptInProofFile200Response</returns>
+        public async System.Threading.Tasks.Task<UploadSmsOptInProofFile200Response> UploadSmsOptInProofFileAsync(FileParameter file, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UploadSmsOptInProofFile200Response> localVarResponse = await UploadSmsOptInProofFileWithHttpInfoAsync(file, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload opt-in form proof Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="file">PNG, JPG, WebP, GIF or PDF, max 4MB.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UploadSmsOptInProofFile200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UploadSmsOptInProofFile200Response>> UploadSmsOptInProofFileWithHttpInfoAsync(FileParameter file, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'file' is set
+            if (file == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'file' when calling SMSApi->UploadSmsOptInProofFile");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "multipart/form-data"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.FileParameters.Add("file", file);
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UploadSmsOptInProofFile200Response>("/v1/sms/opt-in-proof", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UploadSmsOptInProofFile", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

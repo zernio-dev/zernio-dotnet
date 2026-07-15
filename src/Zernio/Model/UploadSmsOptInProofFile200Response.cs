@@ -28,16 +28,16 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UploadSmsOptInProof200Response
+    /// UploadSmsOptInProofFile200Response
     /// </summary>
-    [DataContract(Name = "uploadSmsOptInProof_200_response")]
-    public partial class UploadSmsOptInProof200Response : IValidatableObject
+    [DataContract(Name = "uploadSmsOptInProofFile_200_response")]
+    public partial class UploadSmsOptInProofFile200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UploadSmsOptInProof200Response" /> class.
+        /// Initializes a new instance of the <see cref="UploadSmsOptInProofFile200Response" /> class.
         /// </summary>
         /// <param name="url">Public URL to reference in the opt-in flow text..</param>
-        public UploadSmsOptInProof200Response(string url = default)
+        public UploadSmsOptInProofFile200Response(string url = default)
         {
             this.Url = url;
         }
@@ -56,7 +56,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UploadSmsOptInProof200Response {\n");
+            sb.Append("class UploadSmsOptInProofFile200Response {\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

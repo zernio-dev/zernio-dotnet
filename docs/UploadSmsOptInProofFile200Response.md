@@ -1,4 +1,4 @@
-# Zernio.Model.UploadSmsOptInProof200Response
+# Zernio.Model.UploadSmsOptInProofFile200Response
 
 ## Properties
 
