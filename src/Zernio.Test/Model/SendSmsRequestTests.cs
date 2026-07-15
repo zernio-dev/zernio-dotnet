@@ -90,5 +90,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'MediaUrls'
         }
+
+        /// <summary>
+        /// Test the property 'SendAt'
+        /// </summary>
+        [Fact]
+        public void SendAtTest()
+        {
+            // TODO unit test for the property 'SendAt'
+        }
     }
 }

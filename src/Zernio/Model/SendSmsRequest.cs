@@ -45,7 +45,8 @@ namespace Zernio.Model
         /// <param name="to">Recipient number (E.164). (required).</param>
         /// <param name="text">Message body. Required unless &#x60;mediaUrls&#x60; is set. Max 10 SMS segments (1530 GSM-7 or 670 unicode characters)..</param>
         /// <param name="mediaUrls">Public media URLs to attach (sends as MMS). Max 10..</param>
-        public SendSmsRequest(string from = default, string to = default, string text = default, List<string> mediaUrls = default)
+        /// <param name="sendAt">Optional. Schedule the send for a future time (ISO 8601 with offset, e.g. &#x60;2026-08-01T12:00:00Z&#x60;). Must be in the future. The message is queued and the &#x60;message.delivered&#x60; webhook fires when it actually sends..</param>
+        public SendSmsRequest(string from = default, string to = default, string text = default, List<string> mediaUrls = default, DateTime sendAt = default)
         {
             // to ensure "from" is required (not null)
             if (from == null)
@@ -61,6 +62,7 @@ namespace Zernio.Model
             this.To = to;
             this.Text = text;
             this.MediaUrls = mediaUrls;
+            this.SendAt = sendAt;
         }
 
         /// <summary>
@@ -92,6 +94,13 @@ namespace Zernio.Model
         public List<string> MediaUrls { get; set; }
 
         /// <summary>
+        /// Optional. Schedule the send for a future time (ISO 8601 with offset, e.g. &#x60;2026-08-01T12:00:00Z&#x60;). Must be in the future. The message is queued and the &#x60;message.delivered&#x60; webhook fires when it actually sends.
+        /// </summary>
+        /// <value>Optional. Schedule the send for a future time (ISO 8601 with offset, e.g. &#x60;2026-08-01T12:00:00Z&#x60;). Must be in the future. The message is queued and the &#x60;message.delivered&#x60; webhook fires when it actually sends.</value>
+        [DataMember(Name = "sendAt", EmitDefaultValue = false)]
+        public DateTime SendAt { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -103,6 +112,7 @@ namespace Zernio.Model
             sb.Append("  To: ").Append(To).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  MediaUrls: ").Append(MediaUrls).Append("\n");
+            sb.Append("  SendAt: ").Append(SendAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
