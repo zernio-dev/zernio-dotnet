@@ -120,12 +120,14 @@ namespace Zernio.Model
         /// <param name="optoutKeywords">optoutKeywords (required).</param>
         /// <param name="optoutMessage">optoutMessage.</param>
         /// <param name="helpKeywords">helpKeywords (required).</param>
-        /// <param name="embeddedLink">embeddedLink.</param>
-        /// <param name="embeddedPhone">embeddedPhone.</param>
+        /// <param name="embeddedLink">Whether messages carry links. Auto-derived from the samples when omitted, so the declaration matches what the reviewer reads..</param>
+        /// <param name="embeddedPhone">Whether messages carry phone numbers. Auto-derived from the samples when omitted..</param>
         /// <param name="numberPool">numberPool.</param>
         /// <param name="ageGated">ageGated.</param>
         /// <param name="directLending">directLending.</param>
-        public StartSmsRegistrationRequestCampaign(string usecase = default, List<SubUsecasesEnum> subUsecases = default, string description = default, string messageFlow = default, string sample1 = default, string sample2 = default, string helpMessage = default, string optinKeywords = default, string optinMessage = default, string optoutKeywords = default, string optoutMessage = default, string helpKeywords = default, bool embeddedLink = default, bool embeddedPhone = default, bool numberPool = default, bool ageGated = default, bool directLending = default)
+        /// <param name="privacyPolicyLink">Link to your privacy policy. Recommended: reviewers check that it says mobile information is not sold or shared with third parties for promotional purposes. A bare domain is normalized to https://..</param>
+        /// <param name="termsAndConditionsLink">Link to your terms &amp; conditions. A bare domain is normalized to https://..</param>
+        public StartSmsRegistrationRequestCampaign(string usecase = default, List<SubUsecasesEnum> subUsecases = default, string description = default, string messageFlow = default, string sample1 = default, string sample2 = default, string helpMessage = default, string optinKeywords = default, string optinMessage = default, string optoutKeywords = default, string optoutMessage = default, string helpKeywords = default, bool embeddedLink = default, bool embeddedPhone = default, bool numberPool = default, bool ageGated = default, bool directLending = default, string privacyPolicyLink = default, string termsAndConditionsLink = default)
         {
             // to ensure "usecase" is required (not null)
             if (usecase == null)
@@ -184,6 +186,8 @@ namespace Zernio.Model
             this.NumberPool = numberPool;
             this.AgeGated = ageGated;
             this.DirectLending = directLending;
+            this.PrivacyPolicyLink = privacyPolicyLink;
+            this.TermsAndConditionsLink = termsAndConditionsLink;
         }
 
         /// <summary>
@@ -262,14 +266,16 @@ namespace Zernio.Model
         public string HelpKeywords { get; set; }
 
         /// <summary>
-        /// Gets or Sets EmbeddedLink
+        /// Whether messages carry links. Auto-derived from the samples when omitted, so the declaration matches what the reviewer reads.
         /// </summary>
+        /// <value>Whether messages carry links. Auto-derived from the samples when omitted, so the declaration matches what the reviewer reads.</value>
         [DataMember(Name = "embeddedLink", EmitDefaultValue = true)]
         public bool EmbeddedLink { get; set; }
 
         /// <summary>
-        /// Gets or Sets EmbeddedPhone
+        /// Whether messages carry phone numbers. Auto-derived from the samples when omitted.
         /// </summary>
+        /// <value>Whether messages carry phone numbers. Auto-derived from the samples when omitted.</value>
         [DataMember(Name = "embeddedPhone", EmitDefaultValue = true)]
         public bool EmbeddedPhone { get; set; }
 
@@ -290,6 +296,20 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "directLending", EmitDefaultValue = true)]
         public bool DirectLending { get; set; }
+
+        /// <summary>
+        /// Link to your privacy policy. Recommended: reviewers check that it says mobile information is not sold or shared with third parties for promotional purposes. A bare domain is normalized to https://.
+        /// </summary>
+        /// <value>Link to your privacy policy. Recommended: reviewers check that it says mobile information is not sold or shared with third parties for promotional purposes. A bare domain is normalized to https://.</value>
+        [DataMember(Name = "privacyPolicyLink", EmitDefaultValue = false)]
+        public string PrivacyPolicyLink { get; set; }
+
+        /// <summary>
+        /// Link to your terms &amp; conditions. A bare domain is normalized to https://.
+        /// </summary>
+        /// <value>Link to your terms &amp; conditions. A bare domain is normalized to https://.</value>
+        [DataMember(Name = "termsAndConditionsLink", EmitDefaultValue = false)]
+        public string TermsAndConditionsLink { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -316,6 +336,8 @@ namespace Zernio.Model
             sb.Append("  NumberPool: ").Append(NumberPool).Append("\n");
             sb.Append("  AgeGated: ").Append(AgeGated).Append("\n");
             sb.Append("  DirectLending: ").Append(DirectLending).Append("\n");
+            sb.Append("  PrivacyPolicyLink: ").Append(PrivacyPolicyLink).Append("\n");
+            sb.Append("  TermsAndConditionsLink: ").Append(TermsAndConditionsLink).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

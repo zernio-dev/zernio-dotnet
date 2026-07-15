@@ -207,5 +207,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'DirectLending'
         }
+
+        /// <summary>
+        /// Test the property 'PrivacyPolicyLink'
+        /// </summary>
+        [Fact]
+        public void PrivacyPolicyLinkTest()
+        {
+            // TODO unit test for the property 'PrivacyPolicyLink'
+        }
+
+        /// <summary>
+        /// Test the property 'TermsAndConditionsLink'
+        /// </summary>
+        [Fact]
+        public void TermsAndConditionsLinkTest()
+        {
+            // TODO unit test for the property 'TermsAndConditionsLink'
+        }
     }
 }
