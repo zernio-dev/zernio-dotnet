@@ -162,8 +162,9 @@ namespace Zernio.Api
         /// List carrier registrations
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
         /// <returns>ListSmsRegistrations200Response</returns>
-        ListSmsRegistrations200Response ListSmsRegistrations();
+        ListSmsRegistrations200Response ListSmsRegistrations(bool? includeDeactivated = default);
 
         /// <summary>
         /// List carrier registrations
@@ -172,8 +173,9 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
         /// <returns>ApiResponse of ListSmsRegistrations200Response</returns>
-        ApiResponse<ListSmsRegistrations200Response> ListSmsRegistrationsWithHttpInfo();
+        ApiResponse<ListSmsRegistrations200Response> ListSmsRegistrationsWithHttpInfo(bool? includeDeactivated = default);
         /// <summary>
         /// Look up carrier + line type
         /// </summary>
@@ -527,9 +529,10 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListSmsRegistrations200Response</returns>
-        System.Threading.Tasks.Task<ListSmsRegistrations200Response> ListSmsRegistrationsAsync(System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListSmsRegistrations200Response> ListSmsRegistrationsAsync(bool? includeDeactivated = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List carrier registrations
@@ -538,9 +541,10 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListSmsRegistrations200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListSmsRegistrations200Response>> ListSmsRegistrationsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListSmsRegistrations200Response>> ListSmsRegistrationsWithHttpInfoAsync(bool? includeDeactivated = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Look up carrier + line type
         /// </summary>
@@ -1761,10 +1765,11 @@ namespace Zernio.Api
         /// List carrier registrations 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
         /// <returns>ListSmsRegistrations200Response</returns>
-        public ListSmsRegistrations200Response ListSmsRegistrations()
+        public ListSmsRegistrations200Response ListSmsRegistrations(bool? includeDeactivated = default)
         {
-            Zernio.Client.ApiResponse<ListSmsRegistrations200Response> localVarResponse = ListSmsRegistrationsWithHttpInfo();
+            Zernio.Client.ApiResponse<ListSmsRegistrations200Response> localVarResponse = ListSmsRegistrationsWithHttpInfo(includeDeactivated);
             return localVarResponse.Data;
         }
 
@@ -1772,8 +1777,9 @@ namespace Zernio.Api
         /// List carrier registrations 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
         /// <returns>ApiResponse of ListSmsRegistrations200Response</returns>
-        public Zernio.Client.ApiResponse<ListSmsRegistrations200Response> ListSmsRegistrationsWithHttpInfo()
+        public Zernio.Client.ApiResponse<ListSmsRegistrations200Response> ListSmsRegistrationsWithHttpInfo(bool? includeDeactivated = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1791,6 +1797,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (includeDeactivated != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "includeDeactivated", includeDeactivated));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -1815,11 +1825,12 @@ namespace Zernio.Api
         /// List carrier registrations 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListSmsRegistrations200Response</returns>
-        public async System.Threading.Tasks.Task<ListSmsRegistrations200Response> ListSmsRegistrationsAsync(System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListSmsRegistrations200Response> ListSmsRegistrationsAsync(bool? includeDeactivated = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListSmsRegistrations200Response> localVarResponse = await ListSmsRegistrationsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListSmsRegistrations200Response> localVarResponse = await ListSmsRegistrationsWithHttpInfoAsync(includeDeactivated, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1827,9 +1838,10 @@ namespace Zernio.Api
         /// List carrier registrations 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="includeDeactivated">Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListSmsRegistrations200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListSmsRegistrations200Response>> ListSmsRegistrationsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListSmsRegistrations200Response>> ListSmsRegistrationsWithHttpInfoAsync(bool? includeDeactivated = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1849,6 +1861,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (includeDeactivated != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "includeDeactivated", includeDeactivated));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required

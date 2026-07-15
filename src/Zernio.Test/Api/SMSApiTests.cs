@@ -135,7 +135,8 @@ namespace Zernio.Test.Api
         public void ListSmsRegistrationsTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //var response = instance.ListSmsRegistrations();
+            //bool? includeDeactivated = null;
+            //var response = instance.ListSmsRegistrations(includeDeactivated);
             //Assert.IsType<ListSmsRegistrations200Response>(response);
         }
 

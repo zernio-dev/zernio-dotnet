@@ -628,7 +628,7 @@ catch (ApiException e)
 
 <a id="listsmsregistrations"></a>
 # **ListSmsRegistrations**
-> ListSmsRegistrations200Response ListSmsRegistrations ()
+> ListSmsRegistrations200Response ListSmsRegistrations (bool? includeDeactivated = null)
 
 List carrier registrations
 
@@ -656,11 +656,12 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
+            var includeDeactivated = true;  // bool? | Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional) 
 
             try
             {
                 // List carrier registrations
-                ListSmsRegistrations200Response result = apiInstance.ListSmsRegistrations();
+                ListSmsRegistrations200Response result = apiInstance.ListSmsRegistrations(includeDeactivated);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -681,7 +682,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List carrier registrations
-    ApiResponse<ListSmsRegistrations200Response> response = apiInstance.ListSmsRegistrationsWithHttpInfo();
+    ApiResponse<ListSmsRegistrations200Response> response = apiInstance.ListSmsRegistrationsWithHttpInfo(includeDeactivated);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -695,7 +696,11 @@ catch (ApiException e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **includeDeactivated** | **bool?** | Deactivated (terminated) registrations are hidden by default — pass true to include them. | [optional]  |
+
 ### Return type
 
 [**ListSmsRegistrations200Response**](ListSmsRegistrations200Response.md)
