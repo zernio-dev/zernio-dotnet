@@ -45,7 +45,7 @@ namespace Zernio.Model
         /// <param name="ctr">Click-through rate as a percentage (0–100)..</param>
         /// <param name="cpc">Cost per click in native currency..</param>
         /// <param name="cpm">Cost per 1000 impressions in native currency..</param>
-        /// <param name="conversions">Sum of conversion events matching the campaign optimization goal. Meta-only at time of writing..</param>
+        /// <param name="conversions">Sum of conversion events over the range. Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07)..</param>
         /// <param name="costPerConversion">costPerConversion.</param>
         /// <param name="actions">Per-action-type counts merged across all ads on this day. Keys are platform-native action types..</param>
         /// <param name="actionValues">Monetary mirror of &#x60;actions&#x60; in native currency..</param>
@@ -129,9 +129,9 @@ namespace Zernio.Model
         public decimal Cpm { get; set; }
 
         /// <summary>
-        /// Sum of conversion events matching the campaign optimization goal. Meta-only at time of writing.
+        /// Sum of conversion events over the range. Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07).
         /// </summary>
-        /// <value>Sum of conversion events matching the campaign optimization goal. Meta-only at time of writing.</value>
+        /// <value>Sum of conversion events over the range. Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07).</value>
         [DataMember(Name = "conversions", EmitDefaultValue = false)]
         public int Conversions { get; set; }
 
