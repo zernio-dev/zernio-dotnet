@@ -76,13 +76,15 @@ namespace Zernio.Model
         /// <param name="platform">platform (required).</param>
         /// <param name="budget">budget.</param>
         /// <param name="bidStrategy">Campaign-level default. Ad sets inherit this unless they override..</param>
-        /// <param name="name">Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name is required..</param>
-        public UpdateAdCampaignRequest(PlatformEnum platform = default, UpdateAdCampaignRequestBudget budget = default, BidStrategy? bidStrategy = default, string name = default)
+        /// <param name="name">Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name/platformSpecificData is required..</param>
+        /// <param name="platformSpecificData">platformSpecificData.</param>
+        public UpdateAdCampaignRequest(PlatformEnum platform = default, UpdateAdCampaignRequestBudget budget = default, BidStrategy? bidStrategy = default, string name = default, UpdateAdCampaignRequestPlatformSpecificData platformSpecificData = default)
         {
             this.Platform = platform;
             this.Budget = budget;
             this.BidStrategy = bidStrategy;
             this.Name = name;
+            this.PlatformSpecificData = platformSpecificData;
         }
 
         /// <summary>
@@ -92,11 +94,17 @@ namespace Zernio.Model
         public UpdateAdCampaignRequestBudget Budget { get; set; }
 
         /// <summary>
-        /// Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name is required.
+        /// Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name/platformSpecificData is required.
         /// </summary>
-        /// <value>Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name is required.</value>
+        /// <value>Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name/platformSpecificData is required.</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PlatformSpecificData
+        /// </summary>
+        [DataMember(Name = "platformSpecificData", EmitDefaultValue = false)]
+        public UpdateAdCampaignRequestPlatformSpecificData PlatformSpecificData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -110,6 +118,7 @@ namespace Zernio.Model
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

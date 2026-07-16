@@ -90,5 +90,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Name'
         }
+
+        /// <summary>
+        /// Test the property 'PlatformSpecificData'
+        /// </summary>
+        [Fact]
+        public void PlatformSpecificDataTest()
+        {
+            // TODO unit test for the property 'PlatformSpecificData'
+        }
     }
 }

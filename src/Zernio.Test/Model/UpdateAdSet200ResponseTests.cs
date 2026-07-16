@@ -126,5 +126,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'RoasAverageFloor'
         }
+
+        /// <summary>
+        /// Test the property 'PlatformSpecificData'
+        /// </summary>
+        [Fact]
+        public void PlatformSpecificDataTest()
+        {
+            // TODO unit test for the property 'PlatformSpecificData'
+        }
     }
 }

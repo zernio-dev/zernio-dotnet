@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Budget** | [**AdBudget**](AdBudget.md) |  | [optional] 
 **BudgetLevel** | **string** |  | [optional] 
 **BidStrategy** | **BidStrategy** |  | [optional] 
+**PlatformSpecificData** | **Object** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

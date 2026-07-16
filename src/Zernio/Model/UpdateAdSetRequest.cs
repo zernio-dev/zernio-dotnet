@@ -137,7 +137,8 @@ namespace Zernio.Model
         /// <param name="bidStrategy">Ad-set-level bid strategy. Overrides the campaign-level default. Supported on Meta (facebook, instagram) and TikTok. On TikTok the Meta-style enum is mapped to bid_type / bid_price / deep_bid_type automatically. Other platforms (linkedin, pinterest, google, twitter) return 501 Not Implemented when bidStrategy is set. .</param>
         /// <param name="bidAmount">Bid cap in WHOLE currency units (USD: 5 &#x3D; $5.00; JPY: 100 &#x3D; ¥100). Required when bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP. Internally converted to Meta&#39;s smallest-denomination integer. .</param>
         /// <param name="roasAverageFloor">Minimum ROAS as a decimal multiplier (2.0 &#x3D; 2.0x). Required when bidStrategy is LOWEST_COST_WITH_MIN_ROAS. Sent to Meta as &#x60;bid_constraints.roas_average_floor&#x60; × 10000. .</param>
-        public UpdateAdSetRequest(PlatformEnum platform = default, UpdateAdSetRequestBudget budget = default, StatusEnum? status = default, string name = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default)
+        /// <param name="platformSpecificData">platformSpecificData.</param>
+        public UpdateAdSetRequest(PlatformEnum platform = default, UpdateAdSetRequestBudget budget = default, StatusEnum? status = default, string name = default, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, UpdateAdSetRequestPlatformSpecificData platformSpecificData = default)
         {
             this.Platform = platform;
             this.Budget = budget;
@@ -146,6 +147,7 @@ namespace Zernio.Model
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
+            this.PlatformSpecificData = platformSpecificData;
         }
 
         /// <summary>
@@ -176,6 +178,12 @@ namespace Zernio.Model
         public decimal RoasAverageFloor { get; set; }
 
         /// <summary>
+        /// Gets or Sets PlatformSpecificData
+        /// </summary>
+        [DataMember(Name = "platformSpecificData", EmitDefaultValue = false)]
+        public UpdateAdSetRequestPlatformSpecificData PlatformSpecificData { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -190,6 +198,7 @@ namespace Zernio.Model
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
+            sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

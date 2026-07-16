@@ -137,6 +137,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BillingEvent'
+        /// </summary>
+        [Fact]
+        public void BillingEventTest()
+        {
+            // TODO unit test for the property 'BillingEvent'
+        }
+
+        /// <summary>
         /// Test the property 'BudgetAmount'
         /// </summary>
         [Fact]

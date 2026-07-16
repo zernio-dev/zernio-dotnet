@@ -1179,6 +1179,7 @@ docs/UpdateAdAudienceRequest.md
 docs/UpdateAdCampaign200Response.md
 docs/UpdateAdCampaignRequest.md
 docs/UpdateAdCampaignRequestBudget.md
+docs/UpdateAdCampaignRequestPlatformSpecificData.md
 docs/UpdateAdCampaignStatus200Response.md
 docs/UpdateAdCampaignStatusRequest.md
 docs/UpdateAdRequest.md
@@ -1189,6 +1190,8 @@ docs/UpdateAdRequestTargetingInterestsInner.md
 docs/UpdateAdSet200Response.md
 docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
+docs/UpdateAdSetRequestPlatformSpecificData.md
+docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md
 docs/UpdateAdSetStatus200Response.md
 docs/UpdateAdStatus200Response.md
 docs/UpdateAdStatusRequest.md
@@ -2640,6 +2643,7 @@ src/Zernio.Test/Model/UpdateAdAccountRequestTests.cs
 src/Zernio.Test/Model/UpdateAdAudienceRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCampaign200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignRequestBudgetTests.cs
+src/Zernio.Test/Model/UpdateAdCampaignRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignRequestTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignStatus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdCampaignStatusRequestTests.cs
@@ -2650,6 +2654,8 @@ src/Zernio.Test/Model/UpdateAdRequestTargetingTests.cs
 src/Zernio.Test/Model/UpdateAdRequestTests.cs
 src/Zernio.Test/Model/UpdateAdSet200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestBudgetTests.cs
+src/Zernio.Test/Model/UpdateAdSetRequestPlatformSpecificDataPromotedObjectTests.cs
+src/Zernio.Test/Model/UpdateAdSetRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/UpdateAdSetRequestTests.cs
 src/Zernio.Test/Model/UpdateAdSetStatus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateAdStatus200ResponseTests.cs
@@ -4108,6 +4114,7 @@ src/Zernio/Model/UpdateAdAudienceRequest.cs
 src/Zernio/Model/UpdateAdCampaign200Response.cs
 src/Zernio/Model/UpdateAdCampaignRequest.cs
 src/Zernio/Model/UpdateAdCampaignRequestBudget.cs
+src/Zernio/Model/UpdateAdCampaignRequestPlatformSpecificData.cs
 src/Zernio/Model/UpdateAdCampaignStatus200Response.cs
 src/Zernio/Model/UpdateAdCampaignStatusRequest.cs
 src/Zernio/Model/UpdateAdRequest.cs
@@ -4118,6 +4125,8 @@ src/Zernio/Model/UpdateAdRequestTargetingInterestsInner.cs
 src/Zernio/Model/UpdateAdSet200Response.cs
 src/Zernio/Model/UpdateAdSetRequest.cs
 src/Zernio/Model/UpdateAdSetRequestBudget.cs
+src/Zernio/Model/UpdateAdSetRequestPlatformSpecificData.cs
+src/Zernio/Model/UpdateAdSetRequestPlatformSpecificDataPromotedObject.cs
 src/Zernio/Model/UpdateAdSetStatus200Response.cs
 src/Zernio/Model/UpdateAdStatus200Response.cs
 src/Zernio/Model/UpdateAdStatusRequest.cs

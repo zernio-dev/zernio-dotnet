@@ -65,12 +65,14 @@ namespace Zernio.Model
         /// <param name="budget">budget.</param>
         /// <param name="budgetLevel">budgetLevel.</param>
         /// <param name="bidStrategy">bidStrategy.</param>
-        public UpdateAdCampaign200Response(int updated = default, AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, BidStrategy? bidStrategy = default)
+        /// <param name="platformSpecificData">platformSpecificData.</param>
+        public UpdateAdCampaign200Response(int updated = default, AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, BidStrategy? bidStrategy = default, Object platformSpecificData = default)
         {
             this.Updated = updated;
             this.Budget = budget;
             this.BudgetLevel = budgetLevel;
             this.BidStrategy = bidStrategy;
+            this.PlatformSpecificData = platformSpecificData;
         }
 
         /// <summary>
@@ -86,6 +88,12 @@ namespace Zernio.Model
         public AdBudget Budget { get; set; }
 
         /// <summary>
+        /// Gets or Sets PlatformSpecificData
+        /// </summary>
+        [DataMember(Name = "platformSpecificData", EmitDefaultValue = false)]
+        public Object PlatformSpecificData { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -97,6 +105,7 @@ namespace Zernio.Model
             sb.Append("  Budget: ").Append(Budget).Append("\n");
             sb.Append("  BudgetLevel: ").Append(BudgetLevel).Append("\n");
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
+            sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

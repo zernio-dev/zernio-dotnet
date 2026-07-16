@@ -94,7 +94,8 @@ namespace Zernio.Model
         /// <param name="bidStrategy">bidStrategy.</param>
         /// <param name="bidAmount">bidAmount.</param>
         /// <param name="roasAverageFloor">roasAverageFloor.</param>
-        public UpdateAdSet200Response(AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, StatusEnum? status = default, int statusUpdated = default, int statusSkipped = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default)
+        /// <param name="platformSpecificData">platformSpecificData.</param>
+        public UpdateAdSet200Response(AdBudget budget = default, BudgetLevelEnum? budgetLevel = default, StatusEnum? status = default, int statusUpdated = default, int statusSkipped = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, Object platformSpecificData = default)
         {
             this.Budget = budget;
             this.BudgetLevel = budgetLevel;
@@ -104,6 +105,7 @@ namespace Zernio.Model
             this.BidStrategy = bidStrategy;
             this.BidAmount = bidAmount;
             this.RoasAverageFloor = roasAverageFloor;
+            this.PlatformSpecificData = platformSpecificData;
         }
 
         /// <summary>
@@ -137,6 +139,12 @@ namespace Zernio.Model
         public decimal? RoasAverageFloor { get; set; }
 
         /// <summary>
+        /// Gets or Sets PlatformSpecificData
+        /// </summary>
+        [DataMember(Name = "platformSpecificData", EmitDefaultValue = false)]
+        public Object PlatformSpecificData { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -152,6 +160,7 @@ namespace Zernio.Model
             sb.Append("  BidStrategy: ").Append(BidStrategy).Append("\n");
             sb.Append("  BidAmount: ").Append(BidAmount).Append("\n");
             sb.Append("  RoasAverageFloor: ").Append(RoasAverageFloor).Append("\n");
+            sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
