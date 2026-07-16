@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **CreateTime** | **DateTime** |  | [optional] 
 **UpdateTime** | **DateTime** |  | [optional] 
 **ReviewReply** | [**GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply**](GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply.md) |  | [optional] 
+**PhotoCount** | **int** | Number of photos attached to the review (photos only, videos are not counted) | [optional] 
+**Photos** | [**List&lt;GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner&gt;**](GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner.md) | Photos attached to the review by the reviewer | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

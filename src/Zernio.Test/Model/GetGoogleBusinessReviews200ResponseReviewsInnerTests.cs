@@ -135,5 +135,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ReviewReply'
         }
+
+        /// <summary>
+        /// Test the property 'PhotoCount'
+        /// </summary>
+        [Fact]
+        public void PhotoCountTest()
+        {
+            // TODO unit test for the property 'PhotoCount'
+        }
+
+        /// <summary>
+        /// Test the property 'Photos'
+        /// </summary>
+        [Fact]
+        public void PhotosTest()
+        {
+            // TODO unit test for the property 'Photos'
+        }
     }
 }

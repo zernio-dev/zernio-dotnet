@@ -344,6 +344,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Targeting'
+        /// </summary>
+        [Fact]
+        public void TargetingTest()
+        {
+            // TODO unit test for the property 'Targeting'
+        }
+
+        /// <summary>
         /// Test the property 'Countries'
         /// </summary>
         [Fact]

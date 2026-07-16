@@ -90,7 +90,9 @@ namespace Zernio.Model
         /// <param name="createTime">createTime.</param>
         /// <param name="updateTime">updateTime.</param>
         /// <param name="reviewReply">reviewReply.</param>
-        public GetGoogleBusinessReviews200ResponseReviewsInner(string id = default, string name = default, GetGoogleBusinessReviews200ResponseReviewsInnerReviewer reviewer = default, int rating = default, StarRatingEnum? starRating = default, string comment = default, DateTime createTime = default, DateTime updateTime = default, GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply reviewReply = default)
+        /// <param name="photoCount">Number of photos attached to the review (photos only, videos are not counted).</param>
+        /// <param name="photos">Photos attached to the review by the reviewer.</param>
+        public GetGoogleBusinessReviews200ResponseReviewsInner(string id = default, string name = default, GetGoogleBusinessReviews200ResponseReviewsInnerReviewer reviewer = default, int rating = default, StarRatingEnum? starRating = default, string comment = default, DateTime createTime = default, DateTime updateTime = default, GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply reviewReply = default, int photoCount = default, List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> photos = default)
         {
             this.Id = id;
             this.Name = name;
@@ -101,6 +103,8 @@ namespace Zernio.Model
             this.CreateTime = createTime;
             this.UpdateTime = updateTime;
             this.ReviewReply = reviewReply;
+            this.PhotoCount = photoCount;
+            this.Photos = photos;
         }
 
         /// <summary>
@@ -156,6 +160,20 @@ namespace Zernio.Model
         public GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply ReviewReply { get; set; }
 
         /// <summary>
+        /// Number of photos attached to the review (photos only, videos are not counted)
+        /// </summary>
+        /// <value>Number of photos attached to the review (photos only, videos are not counted)</value>
+        [DataMember(Name = "photoCount", EmitDefaultValue = false)]
+        public int PhotoCount { get; set; }
+
+        /// <summary>
+        /// Photos attached to the review by the reviewer
+        /// </summary>
+        /// <value>Photos attached to the review by the reviewer</value>
+        [DataMember(Name = "photos", EmitDefaultValue = false)]
+        public List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> Photos { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -172,6 +190,8 @@ namespace Zernio.Model
             sb.Append("  CreateTime: ").Append(CreateTime).Append("\n");
             sb.Append("  UpdateTime: ").Append(UpdateTime).Append("\n");
             sb.Append("  ReviewReply: ").Append(ReviewReply).Append("\n");
+            sb.Append("  PhotoCount: ").Append(PhotoCount).Append("\n");
+            sb.Append("  Photos: ").Append(Photos).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
