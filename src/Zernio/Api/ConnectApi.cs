@@ -247,27 +247,29 @@ namespace Zernio.Api
         /// List GBP locations
         /// </summary>
         /// <remarks>
-        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
         /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
+        /// <param name="limit">Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)</param>
         /// <returns>GetGmbLocations200Response</returns>
-        GetGmbLocations200Response GetGmbLocations(string accountId, string? search = default, string? filter = default);
+        GetGmbLocations200Response GetGmbLocations(string accountId, string? search = default, string? filter = default, int? limit = default);
 
         /// <summary>
         /// List GBP locations
         /// </summary>
         /// <remarks>
-        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
         /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
+        /// <param name="limit">Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)</param>
         /// <returns>ApiResponse of GetGmbLocations200Response</returns>
-        ApiResponse<GetGmbLocations200Response> GetGmbLocationsWithHttpInfo(string accountId, string? search = default, string? filter = default);
+        ApiResponse<GetGmbLocations200Response> GetGmbLocationsWithHttpInfo(string accountId, string? search = default, string? filter = default, int? limit = default);
         /// <summary>
         /// List LinkedIn orgs
         /// </summary>
@@ -1171,29 +1173,31 @@ namespace Zernio.Api
         /// List GBP locations
         /// </summary>
         /// <remarks>
-        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
         /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
+        /// <param name="limit">Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetGmbLocations200Response</returns>
-        System.Threading.Tasks.Task<GetGmbLocations200Response> GetGmbLocationsAsync(string accountId, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetGmbLocations200Response> GetGmbLocationsAsync(string accountId, string? search = default, string? filter = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List GBP locations
         /// </summary>
         /// <remarks>
-        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+        /// Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
         /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
+        /// <param name="limit">Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetGmbLocations200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetGmbLocations200Response>> GetGmbLocationsWithHttpInfoAsync(string accountId, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetGmbLocations200Response>> GetGmbLocationsWithHttpInfoAsync(string accountId, string? search = default, string? filter = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List LinkedIn orgs
         /// </summary>
@@ -3438,28 +3442,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
         /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
+        /// <param name="limit">Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)</param>
         /// <returns>GetGmbLocations200Response</returns>
-        public GetGmbLocations200Response GetGmbLocations(string accountId, string? search = default, string? filter = default)
+        public GetGmbLocations200Response GetGmbLocations(string accountId, string? search = default, string? filter = default, int? limit = default)
         {
-            Zernio.Client.ApiResponse<GetGmbLocations200Response> localVarResponse = GetGmbLocationsWithHttpInfo(accountId, search, filter);
+            Zernio.Client.ApiResponse<GetGmbLocations200Response> localVarResponse = GetGmbLocationsWithHttpInfo(accountId, search, filter, limit);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
         /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
+        /// <param name="limit">Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)</param>
         /// <returns>ApiResponse of GetGmbLocations200Response</returns>
-        public Zernio.Client.ApiResponse<GetGmbLocations200Response> GetGmbLocationsWithHttpInfo(string accountId, string? search = default, string? filter = default)
+        public Zernio.Client.ApiResponse<GetGmbLocations200Response> GetGmbLocationsWithHttpInfo(string accountId, string? search = default, string? filter = default, int? limit = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -3489,6 +3495,10 @@ namespace Zernio.Api
             if (filter != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
 
             // authentication (bearerAuth) required
@@ -3511,30 +3521,32 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
         /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
+        /// <param name="limit">Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetGmbLocations200Response</returns>
-        public async System.Threading.Tasks.Task<GetGmbLocations200Response> GetGmbLocationsAsync(string accountId, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetGmbLocations200Response> GetGmbLocationsAsync(string accountId, string? search = default, string? filter = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<GetGmbLocations200Response> localVarResponse = await GetGmbLocationsWithHttpInfoAsync(accountId, search, filter, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetGmbLocations200Response> localVarResponse = await GetGmbLocationsWithHttpInfoAsync(accountId, search, filter, limit, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+        /// List GBP locations Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="search">Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)</param>
         /// <param name="filter">Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)</param>
+        /// <param name="limit">Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetGmbLocations200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetGmbLocations200Response>> GetGmbLocationsWithHttpInfoAsync(string accountId, string? search = default, string? filter = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetGmbLocations200Response>> GetGmbLocationsWithHttpInfoAsync(string accountId, string? search = default, string? filter = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -3566,6 +3578,10 @@ namespace Zernio.Api
             if (filter != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
 
             // authentication (bearerAuth) required

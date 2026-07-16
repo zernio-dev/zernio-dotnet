@@ -550,7 +550,7 @@ namespace Zernio.Model
         /// <param name="customLocations">Point-radius (lat/lng) geo targeting. Meta only (custom_locations). Rejected on platforms without radius support..</param>
         /// <param name="behaviors">Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id..</param>
         /// <param name="incomeTier">Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. .</param>
-        /// <param name="languages">Language codes (e.g. [&#39;en&#39;]). Restricts the audience by language..</param>
+        /// <param name="languages">Language codes restricting the audience by language. On Meta, ISO 639-1 codes (e.g. [&#39;en&#39;], [&#39;de&#39;]); a bare code targets all regional variants (\&quot;en\&quot; &#x3D; all English), or use a region-qualified code for a specific one (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;, \&quot;zh_TW\&quot;). Unknown codes are rejected. Other ad platforms use their own language-code systems..</param>
         /// <param name="placements">placements.</param>
         /// <param name="savedTargetingId">ID of a &#x60;saved_targeting&#x60; audience (created via POST /v1/ads/audiences). When set, its stored TargetingSpec is expanded as the base targeting; inline fields on this body merge on top. Lets you reuse a named targeting preset without re-sending every field. .</param>
         /// <param name="rawTargeting">Meta only. A raw Meta-native targeting spec passed to the ad set VERBATIM (snake_case: &#x60;geo_locations&#x60;, &#x60;age_min&#x60;, &#x60;excluded_custom_audiences&#x60;, &#x60;flexible_spec&#x60;, &#x60;targeting_automation&#x60;, business places, etc.) — exactly the shape &#x60;GET /v1/ads/{adId}&#x60; returns for external ads. Use it to clone a campaign&#39;s targeting EXACTLY, preserving advanced fields the camelCase targeting fields can&#39;t model. Mutually exclusive with the camelCase targeting fields (countries/regions/cities/interests/ ageMin/...), &#x60;audienceId&#x60;, and &#x60;savedTargetingId&#x60; (sending both → 422). Sent as-is; Meta validates and surfaces any errors. If cloning an EU campaign, also pass &#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; (those are separate fields, not part of targeting). .</param>
@@ -909,9 +909,9 @@ namespace Zernio.Model
         public List<CreateStandaloneAdRequestBehaviorsInner> Behaviors { get; set; }
 
         /// <summary>
-        /// Language codes (e.g. [&#39;en&#39;]). Restricts the audience by language.
+        /// Language codes restricting the audience by language. On Meta, ISO 639-1 codes (e.g. [&#39;en&#39;], [&#39;de&#39;]); a bare code targets all regional variants (\&quot;en\&quot; &#x3D; all English), or use a region-qualified code for a specific one (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;, \&quot;zh_TW\&quot;). Unknown codes are rejected. Other ad platforms use their own language-code systems.
         /// </summary>
-        /// <value>Language codes (e.g. [&#39;en&#39;]). Restricts the audience by language.</value>
+        /// <value>Language codes restricting the audience by language. On Meta, ISO 639-1 codes (e.g. [&#39;en&#39;], [&#39;de&#39;]); a bare code targets all regional variants (\&quot;en\&quot; &#x3D; all English), or use a region-qualified code for a specific one (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;, \&quot;zh_TW\&quot;). Unknown codes are rejected. Other ad platforms use their own language-code systems.</value>
         [DataMember(Name = "languages", EmitDefaultValue = false)]
         public List<string> Languages { get; set; }
 

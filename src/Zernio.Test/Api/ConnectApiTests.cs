@@ -185,7 +185,8 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //string? search = null;
             //string? filter = null;
-            //var response = instance.GetGmbLocations(accountId, search, filter);
+            //int? limit = null;
+            //var response = instance.GetGmbLocations(accountId, search, filter, limit);
             //Assert.IsType<GetGmbLocations200Response>(response);
         }
 

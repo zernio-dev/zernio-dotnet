@@ -987,11 +987,11 @@ catch (ApiException e)
 
 <a id="getgmblocations"></a>
 # **GetGmbLocations**
-> GetGmbLocations200Response GetGmbLocations (string accountId, string? search = null, string? filter = null)
+> GetGmbLocations200Response GetGmbLocations (string accountId, string? search = null, string? filter = null, int? limit = null)
 
 List GBP locations
 
-Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
 
 ### Example
 ```csharp
@@ -1020,11 +1020,12 @@ namespace Example
             var accountId = "accountId_example";  // string | 
             var search = "search_example";  // string? | Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional) 
             var filter = "filter_example";  // string? | Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode=\"LH279411\". (optional) 
+            var limit = 100;  // int? | Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional)  (default to 100)
 
             try
             {
                 // List GBP locations
-                GetGmbLocations200Response result = apiInstance.GetGmbLocations(accountId, search, filter);
+                GetGmbLocations200Response result = apiInstance.GetGmbLocations(accountId, search, filter, limit);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -1045,7 +1046,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List GBP locations
-    ApiResponse<GetGmbLocations200Response> response = apiInstance.GetGmbLocationsWithHttpInfo(accountId, search, filter);
+    ApiResponse<GetGmbLocations200Response> response = apiInstance.GetGmbLocationsWithHttpInfo(accountId, search, filter, limit);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -1065,6 +1066,7 @@ catch (ApiException e)
 | **accountId** | **string** |  |  |
 | **search** | **string?** | Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. | [optional]  |
 | **filter** | **string?** | Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. | [optional]  |
+| **limit** | **int?** | Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. | [optional] [default to 100] |
 
 ### Return type
 
@@ -1084,6 +1086,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Locations list |  -  |
+| **400** | Invalid query parameter (e.g. limit out of range) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 
