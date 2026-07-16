@@ -55,7 +55,13 @@ namespace Zernio.Model
             /// Enum Tiktok for value: tiktok
             /// </summary>
             [EnumMember(Value = "tiktok")]
-            Tiktok = 3
+            Tiktok = 3,
+
+            /// <summary>
+            /// Enum Linkedin for value: linkedin
+            /// </summary>
+            [EnumMember(Value = "linkedin")]
+            Linkedin = 4
         }
 
 
@@ -65,8 +71,9 @@ namespace Zernio.Model
         [DataMember(Name = "platform", IsRequired = true, EmitDefaultValue = true)]
         public PlatformEnum Platform { get; set; }
         /// <summary>
-        /// Defines StatusOption
+        /// ACTIVE &#x3D; launch the clone immediately (spends the moment LinkedIn approves it). PAUSED &#x3D; clone stays DRAFT, safe default. INHERITED_FROM_SOURCE &#x3D; mirror each entity&#39;s source status per-entity. Duplicating an ACTIVE campaign this way starts a second front of spend. 
         /// </summary>
+        /// <value>ACTIVE &#x3D; launch the clone immediately (spends the moment LinkedIn approves it). PAUSED &#x3D; clone stays DRAFT, safe default. INHERITED_FROM_SOURCE &#x3D; mirror each entity&#39;s source status per-entity. Duplicating an ACTIVE campaign this way starts a second front of spend. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusOptionEnum
         {
@@ -91,8 +98,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Gets or Sets StatusOption
+        /// ACTIVE &#x3D; launch the clone immediately (spends the moment LinkedIn approves it). PAUSED &#x3D; clone stays DRAFT, safe default. INHERITED_FROM_SOURCE &#x3D; mirror each entity&#39;s source status per-entity. Duplicating an ACTIVE campaign this way starts a second front of spend. 
         /// </summary>
+        /// <value>ACTIVE &#x3D; launch the clone immediately (spends the moment LinkedIn approves it). PAUSED &#x3D; clone stays DRAFT, safe default. INHERITED_FROM_SOURCE &#x3D; mirror each entity&#39;s source status per-entity. Duplicating an ACTIVE campaign this way starts a second front of spend. </value>
         [DataMember(Name = "statusOption", EmitDefaultValue = false)]
         public StatusOptionEnum? StatusOption { get; set; }
         /// <summary>
@@ -136,7 +144,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="platform">platform (required).</param>
         /// <param name="deepCopy">Copy child ad sets + ads + creatives + targeting (default to true).</param>
-        /// <param name="statusOption">statusOption (default to StatusOptionEnum.PAUSED).</param>
+        /// <param name="statusOption">ACTIVE &#x3D; launch the clone immediately (spends the moment LinkedIn approves it). PAUSED &#x3D; clone stays DRAFT, safe default. INHERITED_FROM_SOURCE &#x3D; mirror each entity&#39;s source status per-entity. Duplicating an ACTIVE campaign this way starts a second front of spend.  (default to StatusOptionEnum.PAUSED).</param>
         /// <param name="startTime">Reschedule the copied hierarchy&#39;s start time.</param>
         /// <param name="endTime">endTime.</param>
         /// <param name="renameStrategy">renameStrategy.</param>
