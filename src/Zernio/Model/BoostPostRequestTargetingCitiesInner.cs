@@ -56,7 +56,7 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets DistanceUnit
         /// </summary>
-        [DataMember(Name = "distance_unit", EmitDefaultValue = false)]
+        [DataMember(Name = "distanceUnit", EmitDefaultValue = false)]
         public DistanceUnitEnum? DistanceUnit { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BoostPostRequestTargetingCitiesInner" /> class.
@@ -68,7 +68,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="key">key (required).</param>
         /// <param name="name">name.</param>
-        /// <param name="radius">Requires distance_unit..</param>
+        /// <param name="radius">Requires distanceUnit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng)..</param>
         /// <param name="distanceUnit">distanceUnit.</param>
         public BoostPostRequestTargetingCitiesInner(string key = default, string name = default, decimal radius = default, DistanceUnitEnum? distanceUnit = default)
         {
@@ -96,9 +96,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Requires distance_unit.
+        /// Requires distanceUnit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng).
         /// </summary>
-        /// <value>Requires distance_unit.</value>
+        /// <value>Requires distanceUnit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng).</value>
         [DataMember(Name = "radius", EmitDefaultValue = false)]
         public decimal Radius { get; set; }
 

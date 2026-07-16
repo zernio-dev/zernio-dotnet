@@ -69,7 +69,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestCitiesInner" /> class.
         /// </summary>
         /// <param name="key">Meta city ID, from /v1/ads/targeting/search results. (required).</param>
-        /// <param name="radius">Optional radius around the city. Must be set together with distance_unit..</param>
+        /// <param name="radius">Optional radius around the city. Must be set together with distance_unit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng)..</param>
         /// <param name="distanceUnit">Unit for radius. Required if radius is set..</param>
         public CreateStandaloneAdRequestCitiesInner(string key = default, decimal radius = default, DistanceUnitEnum? distanceUnit = default)
         {
@@ -91,9 +91,9 @@ namespace Zernio.Model
         public string Key { get; set; }
 
         /// <summary>
-        /// Optional radius around the city. Must be set together with distance_unit.
+        /// Optional radius around the city. Must be set together with distance_unit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng).
         /// </summary>
-        /// <value>Optional radius around the city. Must be set together with distance_unit.</value>
+        /// <value>Optional radius around the city. Must be set together with distance_unit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng).</value>
         [DataMember(Name = "radius", EmitDefaultValue = false)]
         public decimal Radius { get; set; }
 

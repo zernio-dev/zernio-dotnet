@@ -175,7 +175,7 @@ namespace Zernio.Model
         /// <param name="currency">ISO 4217 currency code matching the ad account&#39;s currency (e.g. &#x60;USD&#x60;). Optional; Meta infers from the ad account when omitted. .</param>
         /// <param name="endDate">ISO 8601 datetime. Required when &#x60;budgetType&#x60; is &#x60;lifetime&#x60;. .</param>
         /// <param name="countries">ISO 3166-1 alpha-2 country codes. Defaults to &#x60;[\&quot;US\&quot;]&#x60; only when no other geo (&#x60;cities&#x60;, &#x60;regions&#x60;, &#x60;zips&#x60;, &#x60;metros&#x60;, &#x60;customLocations&#x60;) is supplied. .</param>
-        /// <param name="cities">City-level geo targeting for local CTWA campaigns (e.g. 25km radius around Milan). Each entry maps to Meta&#39;s TargetingGeoLocationCity. &#x60;key&#x60; is Meta&#39;s city ID (lookupable via GET /v1/ads/targeting/search). &#x60;radius&#x60; and &#x60;distance_unit&#x60; are coupled: set both or neither. .</param>
+        /// <param name="cities">City-level geo targeting for local CTWA campaigns (e.g. 25km radius around Milan). Each entry maps to Meta&#39;s TargetingGeoLocationCity. &#x60;key&#x60; is Meta&#39;s city ID (lookupable via GET /v1/ads/targeting/search). &#x60;radius&#x60; and &#x60;distance_unit&#x60; are coupled: set both or neither. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng). .</param>
         /// <param name="regions">Region / state-level geo targeting. &#x60;key&#x60; is Meta&#39;s region ID (lookupable via GET /v1/ads/targeting/search?type&#x3D;region). .</param>
         /// <param name="zips">ZIP / postal-code geo targeting. &#x60;key&#x60; is the platform&#39;s postal id resolved via /v1/ads/targeting/search. .</param>
         /// <param name="metros">DMA / metro-area geo targeting. &#x60;key&#x60; is Meta&#39;s metro id (e.g. &#x60;DMA:807&#x60;). .</param>
@@ -325,9 +325,9 @@ namespace Zernio.Model
         public List<string> Countries { get; set; }
 
         /// <summary>
-        /// City-level geo targeting for local CTWA campaigns (e.g. 25km radius around Milan). Each entry maps to Meta&#39;s TargetingGeoLocationCity. &#x60;key&#x60; is Meta&#39;s city ID (lookupable via GET /v1/ads/targeting/search). &#x60;radius&#x60; and &#x60;distance_unit&#x60; are coupled: set both or neither. 
+        /// City-level geo targeting for local CTWA campaigns (e.g. 25km radius around Milan). Each entry maps to Meta&#39;s TargetingGeoLocationCity. &#x60;key&#x60; is Meta&#39;s city ID (lookupable via GET /v1/ads/targeting/search). &#x60;radius&#x60; and &#x60;distance_unit&#x60; are coupled: set both or neither. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng). 
         /// </summary>
-        /// <value>City-level geo targeting for local CTWA campaigns (e.g. 25km radius around Milan). Each entry maps to Meta&#39;s TargetingGeoLocationCity. &#x60;key&#x60; is Meta&#39;s city ID (lookupable via GET /v1/ads/targeting/search). &#x60;radius&#x60; and &#x60;distance_unit&#x60; are coupled: set both or neither. </value>
+        /// <value>City-level geo targeting for local CTWA campaigns (e.g. 25km radius around Milan). Each entry maps to Meta&#39;s TargetingGeoLocationCity. &#x60;key&#x60; is Meta&#39;s city ID (lookupable via GET /v1/ads/targeting/search). &#x60;radius&#x60; and &#x60;distance_unit&#x60; are coupled: set both or neither. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng). </value>
         [DataMember(Name = "cities", EmitDefaultValue = false)]
         public List<CreateCtwaAdRequestCitiesInner> Cities { get; set; }
 

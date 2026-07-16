@@ -58,7 +58,7 @@ namespace Zernio.Model
         /// Required if radius is set.
         /// </summary>
         /// <value>Required if radius is set.</value>
-        [DataMember(Name = "distance_unit", EmitDefaultValue = false)]
+        [DataMember(Name = "distanceUnit", EmitDefaultValue = false)]
         public DistanceUnitEnum? DistanceUnit { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetingSpecExcludedLocationsCitiesInner" /> class.
@@ -69,7 +69,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="TargetingSpecExcludedLocationsCitiesInner" /> class.
         /// </summary>
         /// <param name="key">key (required).</param>
-        /// <param name="radius">Radius around the excluded city. Requires distance_unit..</param>
+        /// <param name="radius">Radius around the excluded city. Requires distanceUnit..</param>
         /// <param name="distanceUnit">Required if radius is set..</param>
         public TargetingSpecExcludedLocationsCitiesInner(string key = default, decimal radius = default, DistanceUnitEnum? distanceUnit = default)
         {
@@ -90,9 +90,9 @@ namespace Zernio.Model
         public string Key { get; set; }
 
         /// <summary>
-        /// Radius around the excluded city. Requires distance_unit.
+        /// Radius around the excluded city. Requires distanceUnit.
         /// </summary>
-        /// <value>Radius around the excluded city. Requires distance_unit.</value>
+        /// <value>Radius around the excluded city. Requires distanceUnit.</value>
         [DataMember(Name = "radius", EmitDefaultValue = false)]
         public decimal Radius { get; set; }
 

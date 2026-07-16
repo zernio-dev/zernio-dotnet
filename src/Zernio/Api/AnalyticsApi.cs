@@ -625,29 +625,31 @@ namespace Zernio.Api
         /// Get YouTube demographics
         /// </summary>
         /// <remarks>
-        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
-        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
         /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
         /// <returns>YouTubeDemographicsResponse</returns>
-        YouTubeDemographicsResponse GetYouTubeDemographics(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default);
+        YouTubeDemographicsResponse GetYouTubeDemographics(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default);
 
         /// <summary>
         /// Get YouTube demographics
         /// </summary>
         /// <remarks>
-        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
-        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
         /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
         /// <returns>ApiResponse of YouTubeDemographicsResponse</returns>
-        ApiResponse<YouTubeDemographicsResponse> GetYouTubeDemographicsWithHttpInfo(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default);
+        ApiResponse<YouTubeDemographicsResponse> GetYouTubeDemographicsWithHttpInfo(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default);
         /// <summary>
         /// Get YouTube video retention curve
         /// </summary>
@@ -1344,31 +1346,33 @@ namespace Zernio.Api
         /// Get YouTube demographics
         /// </summary>
         /// <remarks>
-        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
-        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
         /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of YouTubeDemographicsResponse</returns>
-        System.Threading.Tasks.Task<YouTubeDemographicsResponse> GetYouTubeDemographicsAsync(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<YouTubeDemographicsResponse> GetYouTubeDemographicsAsync(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get YouTube demographics
         /// </summary>
         /// <remarks>
-        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
-        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
         /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (YouTubeDemographicsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<YouTubeDemographicsResponse>> GetYouTubeDemographicsWithHttpInfoAsync(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<YouTubeDemographicsResponse>> GetYouTubeDemographicsWithHttpInfoAsync(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get YouTube video retention curve
         /// </summary>
@@ -5210,30 +5214,32 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get YouTube demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// Get YouTube demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
-        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
         /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
         /// <returns>YouTubeDemographicsResponse</returns>
-        public YouTubeDemographicsResponse GetYouTubeDemographics(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default)
+        public YouTubeDemographicsResponse GetYouTubeDemographics(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default)
         {
-            Zernio.Client.ApiResponse<YouTubeDemographicsResponse> localVarResponse = GetYouTubeDemographicsWithHttpInfo(accountId, breakdown, startDate, endDate);
+            Zernio.Client.ApiResponse<YouTubeDemographicsResponse> localVarResponse = GetYouTubeDemographicsWithHttpInfo(accountId, videoId, breakdown, startDate, endDate);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get YouTube demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// Get YouTube demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
-        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
         /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
         /// <returns>ApiResponse of YouTubeDemographicsResponse</returns>
-        public Zernio.Client.ApiResponse<YouTubeDemographicsResponse> GetYouTubeDemographicsWithHttpInfo(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default)
+        public Zernio.Client.ApiResponse<YouTubeDemographicsResponse> GetYouTubeDemographicsWithHttpInfo(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -5256,6 +5262,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (videoId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "videoId", videoId));
+            }
             if (breakdown != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "breakdown", breakdown));
@@ -5289,32 +5299,34 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get YouTube demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// Get YouTube demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
-        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
         /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of YouTubeDemographicsResponse</returns>
-        public async System.Threading.Tasks.Task<YouTubeDemographicsResponse> GetYouTubeDemographicsAsync(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<YouTubeDemographicsResponse> GetYouTubeDemographicsAsync(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<YouTubeDemographicsResponse> localVarResponse = await GetYouTubeDemographicsWithHttpInfoAsync(accountId, breakdown, startDate, endDate, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<YouTubeDemographicsResponse> localVarResponse = await GetYouTubeDemographicsWithHttpInfoAsync(accountId, videoId, breakdown, startDate, endDate, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get YouTube demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+        /// Get YouTube demographics Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId">The Zernio SocialAccount ID for the YouTube account</param>
+        /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
-        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional)</param>
+        /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
         /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (YouTubeDemographicsResponse)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<YouTubeDemographicsResponse>> GetYouTubeDemographicsWithHttpInfoAsync(string accountId, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<YouTubeDemographicsResponse>> GetYouTubeDemographicsWithHttpInfoAsync(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -5339,6 +5351,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (videoId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "videoId", videoId));
+            }
             if (breakdown != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "breakdown", breakdown));

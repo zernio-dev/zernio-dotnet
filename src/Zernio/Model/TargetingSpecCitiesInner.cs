@@ -58,7 +58,7 @@ namespace Zernio.Model
         /// Required if radius is set.
         /// </summary>
         /// <value>Required if radius is set.</value>
-        [DataMember(Name = "distance_unit", EmitDefaultValue = false)]
+        [DataMember(Name = "distanceUnit", EmitDefaultValue = false)]
         public DistanceUnitEnum? DistanceUnit { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetingSpecCitiesInner" /> class.
@@ -70,7 +70,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="key">key (required).</param>
         /// <param name="name">name.</param>
-        /// <param name="radius">Radius around the city. Requires distance_unit..</param>
+        /// <param name="radius">Radius around the city. Requires distanceUnit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng), which allows a smaller radius..</param>
         /// <param name="distanceUnit">Required if radius is set..</param>
         public TargetingSpecCitiesInner(string key = default, string name = default, decimal radius = default, DistanceUnitEnum? distanceUnit = default)
         {
@@ -98,9 +98,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Radius around the city. Requires distance_unit.
+        /// Radius around the city. Requires distanceUnit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng), which allows a smaller radius.
         /// </summary>
-        /// <value>Radius around the city. Requires distance_unit.</value>
+        /// <value>Radius around the city. Requires distanceUnit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng), which allows a smaller radius.</value>
         [DataMember(Name = "radius", EmitDefaultValue = false)]
         public decimal Radius { get; set; }
 

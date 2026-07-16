@@ -390,10 +390,11 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? videoId = null;
             //string? breakdown = null;
             //DateOnly? startDate = null;
             //DateOnly? endDate = null;
-            //var response = instance.GetYouTubeDemographics(accountId, breakdown, startDate, endDate);
+            //var response = instance.GetYouTubeDemographics(accountId, videoId, breakdown, startDate, endDate);
             //Assert.IsType<YouTubeDemographicsResponse>(response);
         }
 

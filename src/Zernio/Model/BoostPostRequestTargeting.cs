@@ -99,7 +99,7 @@ namespace Zernio.Model
         /// <param name="languages">Meta locale ids (numeric), passed through as given..</param>
         /// <param name="countries">ISO country codes. Required for TikTok boosts (TikTok&#39;s ad group requires location_ids); optional on other platforms..</param>
         /// <param name="regions">Region/state targeting. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;region..</param>
-        /// <param name="cities">City targeting. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend beyond the city limits (both set together, Meta only)..</param>
+        /// <param name="cities">City targeting. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; extend beyond the city limits (both set together, Meta only)..</param>
         /// <param name="zips">Postal/ZIP targeting. &#x60;key&#x60; is the platform&#39;s postal location ID (e.g. Meta &#x60;US:94304&#x60;)..</param>
         /// <param name="metros">DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;)..</param>
         /// <param name="customLocations">Point-radius (lat/lng) targeting (Meta custom_locations). No geo &#x60;key&#x60; lookup needed..</param>
@@ -155,9 +155,9 @@ namespace Zernio.Model
         public List<BoostPostRequestTargetingRegionsInner> Regions { get; set; }
 
         /// <summary>
-        /// City targeting. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend beyond the city limits (both set together, Meta only).
+        /// City targeting. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; extend beyond the city limits (both set together, Meta only).
         /// </summary>
-        /// <value>City targeting. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend beyond the city limits (both set together, Meta only).</value>
+        /// <value>City targeting. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; extend beyond the city limits (both set together, Meta only).</value>
         [DataMember(Name = "cities", EmitDefaultValue = false)]
         public List<BoostPostRequestTargetingCitiesInner> Cities { get; set; }
 

@@ -39,14 +39,20 @@ namespace Zernio.Model
         /// <param name="success">success.</param>
         /// <param name="accountId">The Zernio SocialAccount ID.</param>
         /// <param name="platform">platform.</param>
+        /// <param name="videoId">Present only when demographics are scoped to a single video.</param>
+        /// <param name="title">Video title (video mode only).</param>
+        /// <param name="publishedAt">Video publish date (video mode only).</param>
         /// <param name="demographics">Object keyed by breakdown dimension (age, gender, country).</param>
         /// <param name="dateRange">dateRange.</param>
         /// <param name="note">note.</param>
-        public YouTubeDemographicsResponse(bool success = default, string accountId = default, string platform = default, Dictionary<string, List<YouTubeDemographicsResponseDemographicsValueInner>> demographics = default, YouTubeDemographicsResponseDateRange dateRange = default, string note = default)
+        public YouTubeDemographicsResponse(bool success = default, string accountId = default, string platform = default, string videoId = default, string title = default, DateTime? publishedAt = default, Dictionary<string, List<YouTubeDemographicsResponseDemographicsValueInner>> demographics = default, YouTubeDemographicsResponseDateRange dateRange = default, string note = default)
         {
             this.Success = success;
             this.AccountId = accountId;
             this.Platform = platform;
+            this.VideoId = videoId;
+            this.Title = title;
+            this.PublishedAt = publishedAt;
             this.Demographics = demographics;
             this.DateRange = dateRange;
             this.Note = note;
@@ -76,6 +82,27 @@ namespace Zernio.Model
         */
         [DataMember(Name = "platform", EmitDefaultValue = false)]
         public string Platform { get; set; }
+
+        /// <summary>
+        /// Present only when demographics are scoped to a single video
+        /// </summary>
+        /// <value>Present only when demographics are scoped to a single video</value>
+        [DataMember(Name = "videoId", EmitDefaultValue = false)]
+        public string VideoId { get; set; }
+
+        /// <summary>
+        /// Video title (video mode only)
+        /// </summary>
+        /// <value>Video title (video mode only)</value>
+        [DataMember(Name = "title", EmitDefaultValue = true)]
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Video publish date (video mode only)
+        /// </summary>
+        /// <value>Video publish date (video mode only)</value>
+        [DataMember(Name = "publishedAt", EmitDefaultValue = true)]
+        public DateTime? PublishedAt { get; set; }
 
         /// <summary>
         /// Object keyed by breakdown dimension (age, gender, country)
@@ -110,6 +137,9 @@ namespace Zernio.Model
             sb.Append("  Success: ").Append(Success).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
+            sb.Append("  VideoId: ").Append(VideoId).Append("\n");
+            sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
             sb.Append("  Demographics: ").Append(Demographics).Append("\n");
             sb.Append("  DateRange: ").Append(DateRange).Append("\n");
             sb.Append("  Note: ").Append(Note).Append("\n");

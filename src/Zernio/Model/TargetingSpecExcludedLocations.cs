@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="countries">countries.</param>
         /// <param name="regions">regions.</param>
-        /// <param name="cities">Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities..</param>
+        /// <param name="cities">Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities..</param>
         /// <param name="zips">zips.</param>
         /// <param name="places">Named points of interest to exclude. &#x60;key&#x60; from /v1/ads/targeting/search..</param>
         /// <param name="neighborhoods">Named neighbourhood areas to exclude. &#x60;key&#x60; from /v1/ads/targeting/search..</param>
@@ -67,9 +67,9 @@ namespace Zernio.Model
         public List<BoostPostRequestTargetingRegionsInner> Regions { get; set; }
 
         /// <summary>
-        /// Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities.
+        /// Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities.
         /// </summary>
-        /// <value>Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities.</value>
+        /// <value>Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities.</value>
         [DataMember(Name = "cities", EmitDefaultValue = false)]
         public List<TargetingSpecExcludedLocationsCitiesInner> Cities { get; set; }
 

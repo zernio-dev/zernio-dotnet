@@ -2330,11 +2330,11 @@ catch (ApiException e)
 
 <a id="getyoutubedemographics"></a>
 # **GetYouTubeDemographics**
-> YouTubeDemographicsResponse GetYouTubeDemographics (string accountId, string? breakdown = null, DateOnly? startDate = null, DateOnly? endDate = null)
+> YouTubeDemographicsResponse GetYouTubeDemographics (string accountId, string? videoId = null, string? breakdown = null, DateOnly? startDate = null, DateOnly? endDate = null)
 
 Get YouTube demographics
 
-Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
 
 ### Example
 ```csharp
@@ -2361,14 +2361,15 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AnalyticsApi(httpClient, config, httpClientHandler);
             var accountId = "accountId_example";  // string | The Zernio SocialAccount ID for the YouTube account
+            var videoId = "videoId_example";  // string? | YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional) 
             var breakdown = "breakdown_example";  // string? | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional) 
-            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date in YYYY-MM-DD format. Defaults to 90 days ago.  (optional) 
+            var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video's publish date (lifetime) when videoId is provided.  (optional) 
             var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional) 
 
             try
             {
                 // Get YouTube demographics
-                YouTubeDemographicsResponse result = apiInstance.GetYouTubeDemographics(accountId, breakdown, startDate, endDate);
+                YouTubeDemographicsResponse result = apiInstance.GetYouTubeDemographics(accountId, videoId, breakdown, startDate, endDate);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -2389,7 +2390,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get YouTube demographics
-    ApiResponse<YouTubeDemographicsResponse> response = apiInstance.GetYouTubeDemographicsWithHttpInfo(accountId, breakdown, startDate, endDate);
+    ApiResponse<YouTubeDemographicsResponse> response = apiInstance.GetYouTubeDemographicsWithHttpInfo(accountId, videoId, breakdown, startDate, endDate);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -2407,8 +2408,9 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **accountId** | **string** | The Zernio SocialAccount ID for the YouTube account |  |
+| **videoId** | **string?** | YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  | [optional]  |
 | **breakdown** | **string?** | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  | [optional]  |
-| **startDate** | **DateOnly?** | Start date in YYYY-MM-DD format. Defaults to 90 days ago.  | [optional]  |
+| **startDate** | **DateOnly?** | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  | [optional]  |
 | **endDate** | **DateOnly?** | End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  | [optional]  |
 
 ### Return type
@@ -2433,7 +2435,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
-| **404** | Account not found |  -  |
+| **404** | Account not found, or the video does not exist / does not belong to this YouTube channel |  -  |
 | **412** | YouTube Analytics scope not granted |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

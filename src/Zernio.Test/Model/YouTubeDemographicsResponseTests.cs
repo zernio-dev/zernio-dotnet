@@ -83,6 +83,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'VideoId'
+        /// </summary>
+        [Fact]
+        public void VideoIdTest()
+        {
+            // TODO unit test for the property 'VideoId'
+        }
+
+        /// <summary>
+        /// Test the property 'Title'
+        /// </summary>
+        [Fact]
+        public void TitleTest()
+        {
+            // TODO unit test for the property 'Title'
+        }
+
+        /// <summary>
+        /// Test the property 'PublishedAt'
+        /// </summary>
+        [Fact]
+        public void PublishedAtTest()
+        {
+            // TODO unit test for the property 'PublishedAt'
+        }
+
+        /// <summary>
         /// Test the property 'Demographics'
         /// </summary>
         [Fact]
