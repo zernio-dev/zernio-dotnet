@@ -28,27 +28,27 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// CreateStandaloneAdRequestZipsInner
+    /// BoostPostRequestTargetingRegionsInner
     /// </summary>
-    [DataContract(Name = "createStandaloneAd_request_zips_inner")]
-    public partial class CreateStandaloneAdRequestZipsInner : IValidatableObject
+    [DataContract(Name = "boostPost_request_targeting_regions_inner")]
+    public partial class BoostPostRequestTargetingRegionsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestZipsInner" /> class.
+        /// Initializes a new instance of the <see cref="BoostPostRequestTargetingRegionsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CreateStandaloneAdRequestZipsInner() { }
+        protected BoostPostRequestTargetingRegionsInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestZipsInner" /> class.
+        /// Initializes a new instance of the <see cref="BoostPostRequestTargetingRegionsInner" /> class.
         /// </summary>
         /// <param name="key">key (required).</param>
         /// <param name="name">name.</param>
-        public CreateStandaloneAdRequestZipsInner(string key = default, string name = default)
+        public BoostPostRequestTargetingRegionsInner(string key = default, string name = default)
         {
             // to ensure "key" is required (not null)
             if (key == null)
             {
-                throw new ArgumentNullException("key is a required property for CreateStandaloneAdRequestZipsInner and cannot be null");
+                throw new ArgumentNullException("key is a required property for BoostPostRequestTargetingRegionsInner and cannot be null");
             }
             this.Key = key;
             this.Name = name;
@@ -73,7 +73,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CreateStandaloneAdRequestZipsInner {\n");
+            sb.Append("class BoostPostRequestTargetingRegionsInner {\n");
             sb.Append("  Key: ").Append(Key).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");

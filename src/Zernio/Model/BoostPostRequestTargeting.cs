@@ -28,11 +28,44 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// BoostPostRequestTargeting
+    /// Same geo/demographic fields as the &#x60;TargetingSpec&#x60; used by /v1/ads/create. Geo keys (&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60;) resolve via GET /v1/ads/targeting/search?dimension&#x3D;geo. City radius and lat/lng &#x60;customLocations&#x60; are Meta-only and preserve the boosted post&#39;s social proof (the ad references the existing post). 
     /// </summary>
     [DataContract(Name = "boostPost_request_targeting")]
     public partial class BoostPostRequestTargeting : IValidatableObject
     {
+        /// <summary>
+        /// Meta only.
+        /// </summary>
+        /// <value>Meta only.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum GenderEnum
+        {
+            /// <summary>
+            /// Enum All for value: all
+            /// </summary>
+            [EnumMember(Value = "all")]
+            All = 1,
+
+            /// <summary>
+            /// Enum Male for value: male
+            /// </summary>
+            [EnumMember(Value = "male")]
+            Male = 2,
+
+            /// <summary>
+            /// Enum Female for value: female
+            /// </summary>
+            [EnumMember(Value = "female")]
+            Female = 3
+        }
+
+
+        /// <summary>
+        /// Meta only.
+        /// </summary>
+        /// <value>Meta only.</value>
+        [DataMember(Name = "gender", EmitDefaultValue = false)]
+        public GenderEnum? Gender { get; set; }
         /// <summary>
         /// Meta only. 0 &#x3D; disabled (default), 1 &#x3D; enabled.
         /// </summary>
@@ -62,14 +95,28 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="ageMin">ageMin.</param>
         /// <param name="ageMax">ageMax.</param>
+        /// <param name="gender">Meta only..</param>
+        /// <param name="languages">Meta locale ids (numeric), passed through as given..</param>
         /// <param name="countries">ISO country codes. Required for TikTok boosts (TikTok&#39;s ad group requires location_ids); optional on other platforms..</param>
+        /// <param name="regions">Region/state targeting. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;region..</param>
+        /// <param name="cities">City targeting. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend beyond the city limits (both set together, Meta only)..</param>
+        /// <param name="zips">Postal/ZIP targeting. &#x60;key&#x60; is the platform&#39;s postal location ID (e.g. Meta &#x60;US:94304&#x60;)..</param>
+        /// <param name="metros">DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;)..</param>
+        /// <param name="customLocations">Point-radius (lat/lng) targeting (Meta custom_locations). No geo &#x60;key&#x60; lookup needed..</param>
         /// <param name="interests">Interest objects from /v1/ads/interests. Each must include id and name..</param>
         /// <param name="advantageAudience">Meta only. 0 &#x3D; disabled (default), 1 &#x3D; enabled..</param>
-        public BoostPostRequestTargeting(int ageMin = default, int ageMax = default, List<string> countries = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, AdvantageAudienceEnum? advantageAudience = default)
+        public BoostPostRequestTargeting(int ageMin = default, int ageMax = default, GenderEnum? gender = default, List<string> languages = default, List<string> countries = default, List<BoostPostRequestTargetingRegionsInner> regions = default, List<BoostPostRequestTargetingCitiesInner> cities = default, List<BoostPostRequestTargetingRegionsInner> zips = default, List<BoostPostRequestTargetingRegionsInner> metros = default, List<BoostPostRequestTargetingCustomLocationsInner> customLocations = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, AdvantageAudienceEnum? advantageAudience = default)
         {
             this.AgeMin = ageMin;
             this.AgeMax = ageMax;
+            this.Gender = gender;
+            this.Languages = languages;
             this.Countries = countries;
+            this.Regions = regions;
+            this.Cities = cities;
+            this.Zips = zips;
+            this.Metros = metros;
+            this.CustomLocations = customLocations;
             this.Interests = interests;
             this.AdvantageAudience = advantageAudience;
         }
@@ -87,11 +134,53 @@ namespace Zernio.Model
         public int AgeMax { get; set; }
 
         /// <summary>
+        /// Meta locale ids (numeric), passed through as given.
+        /// </summary>
+        /// <value>Meta locale ids (numeric), passed through as given.</value>
+        [DataMember(Name = "languages", EmitDefaultValue = false)]
+        public List<string> Languages { get; set; }
+
+        /// <summary>
         /// ISO country codes. Required for TikTok boosts (TikTok&#39;s ad group requires location_ids); optional on other platforms.
         /// </summary>
         /// <value>ISO country codes. Required for TikTok boosts (TikTok&#39;s ad group requires location_ids); optional on other platforms.</value>
         [DataMember(Name = "countries", EmitDefaultValue = false)]
         public List<string> Countries { get; set; }
+
+        /// <summary>
+        /// Region/state targeting. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;region.
+        /// </summary>
+        /// <value>Region/state targeting. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;region.</value>
+        [DataMember(Name = "regions", EmitDefaultValue = false)]
+        public List<BoostPostRequestTargetingRegionsInner> Regions { get; set; }
+
+        /// <summary>
+        /// City targeting. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend beyond the city limits (both set together, Meta only).
+        /// </summary>
+        /// <value>City targeting. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend beyond the city limits (both set together, Meta only).</value>
+        [DataMember(Name = "cities", EmitDefaultValue = false)]
+        public List<BoostPostRequestTargetingCitiesInner> Cities { get; set; }
+
+        /// <summary>
+        /// Postal/ZIP targeting. &#x60;key&#x60; is the platform&#39;s postal location ID (e.g. Meta &#x60;US:94304&#x60;).
+        /// </summary>
+        /// <value>Postal/ZIP targeting. &#x60;key&#x60; is the platform&#39;s postal location ID (e.g. Meta &#x60;US:94304&#x60;).</value>
+        [DataMember(Name = "zips", EmitDefaultValue = false)]
+        public List<BoostPostRequestTargetingRegionsInner> Zips { get; set; }
+
+        /// <summary>
+        /// DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;).
+        /// </summary>
+        /// <value>DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;).</value>
+        [DataMember(Name = "metros", EmitDefaultValue = false)]
+        public List<BoostPostRequestTargetingRegionsInner> Metros { get; set; }
+
+        /// <summary>
+        /// Point-radius (lat/lng) targeting (Meta custom_locations). No geo &#x60;key&#x60; lookup needed.
+        /// </summary>
+        /// <value>Point-radius (lat/lng) targeting (Meta custom_locations). No geo &#x60;key&#x60; lookup needed.</value>
+        [DataMember(Name = "customLocations", EmitDefaultValue = false)]
+        public List<BoostPostRequestTargetingCustomLocationsInner> CustomLocations { get; set; }
 
         /// <summary>
         /// Interest objects from /v1/ads/interests. Each must include id and name.
@@ -110,7 +199,14 @@ namespace Zernio.Model
             sb.Append("class BoostPostRequestTargeting {\n");
             sb.Append("  AgeMin: ").Append(AgeMin).Append("\n");
             sb.Append("  AgeMax: ").Append(AgeMax).Append("\n");
+            sb.Append("  Gender: ").Append(Gender).Append("\n");
+            sb.Append("  Languages: ").Append(Languages).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
+            sb.Append("  Regions: ").Append(Regions).Append("\n");
+            sb.Append("  Cities: ").Append(Cities).Append("\n");
+            sb.Append("  Zips: ").Append(Zips).Append("\n");
+            sb.Append("  Metros: ").Append(Metros).Append("\n");
+            sb.Append("  CustomLocations: ").Append(CustomLocations).Append("\n");
             sb.Append("  Interests: ").Append(Interests).Append("\n");
             sb.Append("  AdvantageAudience: ").Append(AdvantageAudience).Append("\n");
             sb.Append("}\n");

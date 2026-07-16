@@ -1,4 +1,4 @@
-# Zernio.Model.CreateStandaloneAdRequestZipsInner
+# Zernio.Model.BoostPostRequestTargetingRegionsInner
 
 ## Properties
 

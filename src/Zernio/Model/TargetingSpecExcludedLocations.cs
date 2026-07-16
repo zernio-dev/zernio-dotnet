@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// <param name="places">Named points of interest to exclude. &#x60;key&#x60; from /v1/ads/targeting/search..</param>
         /// <param name="neighborhoods">Named neighbourhood areas to exclude. &#x60;key&#x60; from /v1/ads/targeting/search..</param>
         /// <param name="customLocations">Point-radius (lat/lng) pins to exclude (Meta excluded_geo_locations.custom_locations). Mirrors the inclusion customLocations shape..</param>
-        public TargetingSpecExcludedLocations(List<string> countries = default, List<CreateStandaloneAdRequestZipsInner> regions = default, List<TargetingSpecExcludedLocationsCitiesInner> cities = default, List<CreateStandaloneAdRequestZipsInner> zips = default, List<TargetingSpecExcludedLocationsPlacesInner> places = default, List<TargetingSpecExcludedLocationsPlacesInner> neighborhoods = default, List<TargetingSpecCustomLocationsInner> customLocations = default)
+        public TargetingSpecExcludedLocations(List<string> countries = default, List<BoostPostRequestTargetingRegionsInner> regions = default, List<TargetingSpecExcludedLocationsCitiesInner> cities = default, List<BoostPostRequestTargetingRegionsInner> zips = default, List<TargetingSpecExcludedLocationsPlacesInner> places = default, List<TargetingSpecExcludedLocationsPlacesInner> neighborhoods = default, List<TargetingSpecCustomLocationsInner> customLocations = default)
         {
             this.Countries = countries;
             this.Regions = regions;
@@ -64,7 +64,7 @@ namespace Zernio.Model
         /// Gets or Sets Regions
         /// </summary>
         [DataMember(Name = "regions", EmitDefaultValue = false)]
-        public List<CreateStandaloneAdRequestZipsInner> Regions { get; set; }
+        public List<BoostPostRequestTargetingRegionsInner> Regions { get; set; }
 
         /// <summary>
         /// Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities.
@@ -77,7 +77,7 @@ namespace Zernio.Model
         /// Gets or Sets Zips
         /// </summary>
         [DataMember(Name = "zips", EmitDefaultValue = false)]
-        public List<CreateStandaloneAdRequestZipsInner> Zips { get; set; }
+        public List<BoostPostRequestTargetingRegionsInner> Zips { get; set; }
 
         /// <summary>
         /// Named points of interest to exclude. &#x60;key&#x60; from /v1/ads/targeting/search.

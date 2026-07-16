@@ -146,6 +146,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RawTargeting'
+        /// </summary>
+        [Fact]
+        public void RawTargetingTest()
+        {
+            // TODO unit test for the property 'RawTargeting'
+        }
+
+        /// <summary>
         /// Test the property 'BidStrategy'
         /// </summary>
         [Fact]

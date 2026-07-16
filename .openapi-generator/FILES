@@ -89,6 +89,9 @@ docs/BoostPostRequest.md
 docs/BoostPostRequestBudget.md
 docs/BoostPostRequestSchedule.md
 docs/BoostPostRequestTargeting.md
+docs/BoostPostRequestTargetingCitiesInner.md
+docs/BoostPostRequestTargetingCustomLocationsInner.md
+docs/BoostPostRequestTargetingRegionsInner.md
 docs/BoostPostRequestTracking.md
 docs/BroadcastsApi.md
 docs/BulkCreateContacts200Response.md
@@ -251,7 +254,6 @@ docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestTracking.md
 docs/CreateStandaloneAdRequestVideo.md
-docs/CreateStandaloneAdRequestZipsInner.md
 docs/CreateTestLead200Response.md
 docs/CreateTestLead200ResponseTestLead.md
 docs/CreateTestLeadRequest.md
@@ -1580,6 +1582,9 @@ src/Zernio.Test/Model/BookmarkPost200ResponseTests.cs
 src/Zernio.Test/Model/BookmarkPostRequestTests.cs
 src/Zernio.Test/Model/BoostPostRequestBudgetTests.cs
 src/Zernio.Test/Model/BoostPostRequestScheduleTests.cs
+src/Zernio.Test/Model/BoostPostRequestTargetingCitiesInnerTests.cs
+src/Zernio.Test/Model/BoostPostRequestTargetingCustomLocationsInnerTests.cs
+src/Zernio.Test/Model/BoostPostRequestTargetingRegionsInnerTests.cs
 src/Zernio.Test/Model/BoostPostRequestTargetingTests.cs
 src/Zernio.Test/Model/BoostPostRequestTests.cs
 src/Zernio.Test/Model/BoostPostRequestTrackingTests.cs
@@ -1738,7 +1743,6 @@ src/Zernio.Test/Model/CreateStandaloneAdRequestRegionsInnerTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestTrackingTests.cs
 src/Zernio.Test/Model/CreateStandaloneAdRequestVideoTests.cs
-src/Zernio.Test/Model/CreateStandaloneAdRequestZipsInnerTests.cs
 src/Zernio.Test/Model/CreateTestLead200ResponseTestLeadTests.cs
 src/Zernio.Test/Model/CreateTestLead200ResponseTests.cs
 src/Zernio.Test/Model/CreateTestLeadRequestFieldDataInnerTests.cs
@@ -3046,6 +3050,9 @@ src/Zernio/Model/BoostPostRequest.cs
 src/Zernio/Model/BoostPostRequestBudget.cs
 src/Zernio/Model/BoostPostRequestSchedule.cs
 src/Zernio/Model/BoostPostRequestTargeting.cs
+src/Zernio/Model/BoostPostRequestTargetingCitiesInner.cs
+src/Zernio/Model/BoostPostRequestTargetingCustomLocationsInner.cs
+src/Zernio/Model/BoostPostRequestTargetingRegionsInner.cs
 src/Zernio/Model/BoostPostRequestTracking.cs
 src/Zernio/Model/BulkCreateContacts200Response.cs
 src/Zernio/Model/BulkCreateContactsRequest.cs
@@ -3202,7 +3209,6 @@ src/Zernio/Model/CreateStandaloneAdRequestPromotedObject.cs
 src/Zernio/Model/CreateStandaloneAdRequestRegionsInner.cs
 src/Zernio/Model/CreateStandaloneAdRequestTracking.cs
 src/Zernio/Model/CreateStandaloneAdRequestVideo.cs
-src/Zernio/Model/CreateStandaloneAdRequestZipsInner.cs
 src/Zernio/Model/CreateTestLead200Response.cs
 src/Zernio/Model/CreateTestLead200ResponseTestLead.cs
 src/Zernio/Model/CreateTestLeadRequest.cs
