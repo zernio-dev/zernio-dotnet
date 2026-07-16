@@ -28,25 +28,29 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// EnrollContacts200Response
+    /// EnrollContacts200ResponseResultsInner
     /// </summary>
-    [DataContract(Name = "enrollContacts_200_response")]
-    public partial class EnrollContacts200Response : IValidatableObject
+    [DataContract(Name = "enrollContacts_200_response_results_inner")]
+    public partial class EnrollContacts200ResponseResultsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EnrollContacts200Response" /> class.
+        /// Initializes a new instance of the <see cref="EnrollContacts200ResponseResultsInner" /> class.
         /// </summary>
+        /// <param name="contactId">contactId.</param>
         /// <param name="success">success.</param>
-        /// <param name="enrolled">Number of contacts successfully enrolled.</param>
-        /// <param name="failed">Number that failed (already enrolled, or no subscribed channel on the sequence platform).</param>
-        /// <param name="results">Per-contact outcome.</param>
-        public EnrollContacts200Response(bool success = default, int enrolled = default, int failed = default, List<EnrollContacts200ResponseResultsInner> results = default)
+        /// <param name="error">Present when success is false.</param>
+        public EnrollContacts200ResponseResultsInner(string contactId = default, bool success = default, string error = default)
         {
+            this.ContactId = contactId;
             this.Success = success;
-            this.Enrolled = enrolled;
-            this.Failed = failed;
-            this.Results = results;
+            this.Error = error;
         }
+
+        /// <summary>
+        /// Gets or Sets ContactId
+        /// </summary>
+        [DataMember(Name = "contactId", EmitDefaultValue = false)]
+        public string ContactId { get; set; }
 
         /// <summary>
         /// Gets or Sets Success
@@ -55,25 +59,11 @@ namespace Zernio.Model
         public bool Success { get; set; }
 
         /// <summary>
-        /// Number of contacts successfully enrolled
+        /// Present when success is false
         /// </summary>
-        /// <value>Number of contacts successfully enrolled</value>
-        [DataMember(Name = "enrolled", EmitDefaultValue = false)]
-        public int Enrolled { get; set; }
-
-        /// <summary>
-        /// Number that failed (already enrolled, or no subscribed channel on the sequence platform)
-        /// </summary>
-        /// <value>Number that failed (already enrolled, or no subscribed channel on the sequence platform)</value>
-        [DataMember(Name = "failed", EmitDefaultValue = false)]
-        public int Failed { get; set; }
-
-        /// <summary>
-        /// Per-contact outcome
-        /// </summary>
-        /// <value>Per-contact outcome</value>
-        [DataMember(Name = "results", EmitDefaultValue = false)]
-        public List<EnrollContacts200ResponseResultsInner> Results { get; set; }
+        /// <value>Present when success is false</value>
+        [DataMember(Name = "error", EmitDefaultValue = false)]
+        public string Error { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -82,11 +72,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class EnrollContacts200Response {\n");
+            sb.Append("class EnrollContacts200ResponseResultsInner {\n");
+            sb.Append("  ContactId: ").Append(ContactId).Append("\n");
             sb.Append("  Success: ").Append(Success).Append("\n");
-            sb.Append("  Enrolled: ").Append(Enrolled).Append("\n");
-            sb.Append("  Failed: ").Append(Failed).Append("\n");
-            sb.Append("  Results: ").Append(Results).Append("\n");
+            sb.Append("  Error: ").Append(Error).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -53,25 +53,25 @@ namespace Zernio.Api
         /// Delete schedule
         /// </summary>
         /// <remarks>
-        /// Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+        /// Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <param name="queueId">Queue ID to delete</param>
+        /// <param name="queueId">Queue ID to delete. Omit to delete all queues for the profile (optional)</param>
         /// <returns>QueueDeleteResponse</returns>
-        QueueDeleteResponse DeleteQueueSlot(string profileId, string queueId);
+        QueueDeleteResponse DeleteQueueSlot(string profileId, string? queueId = default);
 
         /// <summary>
         /// Delete schedule
         /// </summary>
         /// <remarks>
-        /// Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+        /// Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <param name="queueId">Queue ID to delete</param>
+        /// <param name="queueId">Queue ID to delete. Omit to delete all queues for the profile (optional)</param>
         /// <returns>ApiResponse of QueueDeleteResponse</returns>
-        ApiResponse<QueueDeleteResponse> DeleteQueueSlotWithHttpInfo(string profileId, string queueId);
+        ApiResponse<QueueDeleteResponse> DeleteQueueSlotWithHttpInfo(string profileId, string? queueId = default);
         /// <summary>
         /// Get next available slot
         /// </summary>
@@ -202,27 +202,27 @@ namespace Zernio.Api
         /// Delete schedule
         /// </summary>
         /// <remarks>
-        /// Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+        /// Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <param name="queueId">Queue ID to delete</param>
+        /// <param name="queueId">Queue ID to delete. Omit to delete all queues for the profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of QueueDeleteResponse</returns>
-        System.Threading.Tasks.Task<QueueDeleteResponse> DeleteQueueSlotAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<QueueDeleteResponse> DeleteQueueSlotAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete schedule
         /// </summary>
         /// <remarks>
-        /// Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+        /// Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <param name="queueId">Queue ID to delete</param>
+        /// <param name="queueId">Queue ID to delete. Omit to delete all queues for the profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (QueueDeleteResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<QueueDeleteResponse>> DeleteQueueSlotWithHttpInfoAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<QueueDeleteResponse>> DeleteQueueSlotWithHttpInfoAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get next available slot
         /// </summary>
@@ -668,34 +668,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete schedule Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+        /// Delete schedule Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <param name="queueId">Queue ID to delete</param>
+        /// <param name="queueId">Queue ID to delete. Omit to delete all queues for the profile (optional)</param>
         /// <returns>QueueDeleteResponse</returns>
-        public QueueDeleteResponse DeleteQueueSlot(string profileId, string queueId)
+        public QueueDeleteResponse DeleteQueueSlot(string profileId, string? queueId = default)
         {
             Zernio.Client.ApiResponse<QueueDeleteResponse> localVarResponse = DeleteQueueSlotWithHttpInfo(profileId, queueId);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Delete schedule Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+        /// Delete schedule Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <param name="queueId">Queue ID to delete</param>
+        /// <param name="queueId">Queue ID to delete. Omit to delete all queues for the profile (optional)</param>
         /// <returns>ApiResponse of QueueDeleteResponse</returns>
-        public Zernio.Client.ApiResponse<QueueDeleteResponse> DeleteQueueSlotWithHttpInfo(string profileId, string queueId)
+        public Zernio.Client.ApiResponse<QueueDeleteResponse> DeleteQueueSlotWithHttpInfo(string profileId, string? queueId = default)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'profileId' when calling QueueApi->DeleteQueueSlot");
-
-            // verify the required parameter 'queueId' is set
-            if (queueId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'queueId' when calling QueueApi->DeleteQueueSlot");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -714,7 +710,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
-            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "queueId", queueId));
+            if (queueId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "queueId", queueId));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -736,36 +735,32 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Delete schedule Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+        /// Delete schedule Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <param name="queueId">Queue ID to delete</param>
+        /// <param name="queueId">Queue ID to delete. Omit to delete all queues for the profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of QueueDeleteResponse</returns>
-        public async System.Threading.Tasks.Task<QueueDeleteResponse> DeleteQueueSlotAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<QueueDeleteResponse> DeleteQueueSlotAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             Zernio.Client.ApiResponse<QueueDeleteResponse> localVarResponse = await DeleteQueueSlotWithHttpInfoAsync(profileId, queueId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Delete schedule Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+        /// Delete schedule Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId"></param>
-        /// <param name="queueId">Queue ID to delete</param>
+        /// <param name="queueId">Queue ID to delete. Omit to delete all queues for the profile (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (QueueDeleteResponse)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueueDeleteResponse>> DeleteQueueSlotWithHttpInfoAsync(string profileId, string queueId, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueueDeleteResponse>> DeleteQueueSlotWithHttpInfoAsync(string profileId, string? queueId = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'profileId' is set
             if (profileId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'profileId' when calling QueueApi->DeleteQueueSlot");
-
-            // verify the required parameter 'queueId' is set
-            if (queueId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'queueId' when calling QueueApi->DeleteQueueSlot");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -786,7 +781,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
-            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "queueId", queueId));
+            if (queueId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "queueId", queueId));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required

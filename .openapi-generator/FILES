@@ -343,6 +343,7 @@ docs/EnableWhatsAppCallingLegacy200Response.md
 docs/EnableWhatsAppCallingLegacyRequest.md
 docs/EndVoiceCall200Response.md
 docs/EnrollContacts200Response.md
+docs/EnrollContacts200ResponseResultsInner.md
 docs/EnrollContactsRequest.md
 docs/ErrorResponse.md
 docs/EstimateAdReach200Response.md
@@ -1829,6 +1830,7 @@ src/Zernio.Test/Model/EnableVoiceOnNumberRequestTests.cs
 src/Zernio.Test/Model/EnableWhatsAppCallingLegacy200ResponseTests.cs
 src/Zernio.Test/Model/EnableWhatsAppCallingLegacyRequestTests.cs
 src/Zernio.Test/Model/EndVoiceCall200ResponseTests.cs
+src/Zernio.Test/Model/EnrollContacts200ResponseResultsInnerTests.cs
 src/Zernio.Test/Model/EnrollContacts200ResponseTests.cs
 src/Zernio.Test/Model/EnrollContactsRequestTests.cs
 src/Zernio.Test/Model/ErrorResponseTests.cs
@@ -3296,6 +3298,7 @@ src/Zernio/Model/EnableWhatsAppCallingLegacy200Response.cs
 src/Zernio/Model/EnableWhatsAppCallingLegacyRequest.cs
 src/Zernio/Model/EndVoiceCall200Response.cs
 src/Zernio/Model/EnrollContacts200Response.cs
+src/Zernio/Model/EnrollContacts200ResponseResultsInner.cs
 src/Zernio/Model/EnrollContactsRequest.cs
 src/Zernio/Model/ErrorResponse.cs
 src/Zernio/Model/EstimateAdReach200Response.cs

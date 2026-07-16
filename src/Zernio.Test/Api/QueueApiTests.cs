@@ -74,7 +74,7 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string profileId = null;
-            //string queueId = null;
+            //string? queueId = null;
             //var response = instance.DeleteQueueSlot(profileId, queueId);
             //Assert.IsType<QueueDeleteResponse>(response);
         }

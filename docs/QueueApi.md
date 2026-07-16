@@ -114,11 +114,11 @@ catch (ApiException e)
 
 <a id="deletequeueslot"></a>
 # **DeleteQueueSlot**
-> QueueDeleteResponse DeleteQueueSlot (string profileId, string queueId)
+> QueueDeleteResponse DeleteQueueSlot (string profileId, string? queueId = null)
 
 Delete schedule
 
-Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
 
 ### Example
 ```csharp
@@ -145,7 +145,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new QueueApi(httpClient, config, httpClientHandler);
             var profileId = "profileId_example";  // string | 
-            var queueId = "queueId_example";  // string | Queue ID to delete
+            var queueId = "queueId_example";  // string? | Queue ID to delete. Omit to delete all queues for the profile (optional) 
 
             try
             {
@@ -189,7 +189,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **profileId** | **string** |  |  |
-| **queueId** | **string** | Queue ID to delete |  |
+| **queueId** | **string?** | Queue ID to delete. Omit to delete all queues for the profile | [optional]  |
 
 ### Return type
 
@@ -209,8 +209,9 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Queue schedule deleted |  -  |
-| **400** | Missing profileId or queueId |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Profile or queue not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -416,7 +417,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Queue schedule(s) retrieved |  -  |
-| **400** | Missing profileId |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Profile not found |  -  |
 

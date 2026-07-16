@@ -74,12 +74,21 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
-        /// Test the property 'Skipped'
+        /// Test the property 'Failed'
         /// </summary>
         [Fact]
-        public void SkippedTest()
+        public void FailedTest()
         {
-            // TODO unit test for the property 'Skipped'
+            // TODO unit test for the property 'Failed'
+        }
+
+        /// <summary>
+        /// Test the property 'Results'
+        /// </summary>
+        [Fact]
+        public void ResultsTest()
+        {
+            // TODO unit test for the property 'Results'
         }
     }
 }
