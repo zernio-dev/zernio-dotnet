@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasAccess** | **bool** |  | [optional] 
 **Suspended** | **bool** |  | [optional] 
-**SuspendedAt** | **DateTime** |  | [optional] 
+**SuspendedAt** | **DateTime?** |  | [optional] 
 **SuspensionReason** | **string** |  | [optional] 
 **OpenInvoiceUrl** | **string** | Hosted invoice URL for dunning (Stripe). | [optional] 
 **DeclineReason** | **string** |  | [optional] 

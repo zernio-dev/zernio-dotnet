@@ -39,7 +39,7 @@ namespace Zernio.Model
         /// <param name="start">start.</param>
         /// <param name="end">end.</param>
         /// <param name="anchorDay">Day-of-month the cycle resets..</param>
-        public BillingSnapshotPeriod(DateTime start = default, DateTime end = default, int anchorDay = default)
+        public BillingSnapshotPeriod(DateTime? start = default, DateTime? end = default, int anchorDay = default)
         {
             this.Start = start;
             this.End = end;
@@ -49,14 +49,14 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Start
         /// </summary>
-        [DataMember(Name = "start", EmitDefaultValue = false)]
-        public DateTime Start { get; set; }
+        [DataMember(Name = "start", EmitDefaultValue = true)]
+        public DateTime? Start { get; set; }
 
         /// <summary>
         /// Gets or Sets End
         /// </summary>
-        [DataMember(Name = "end", EmitDefaultValue = false)]
-        public DateTime End { get; set; }
+        [DataMember(Name = "end", EmitDefaultValue = true)]
+        public DateTime? End { get; set; }
 
         /// <summary>
         /// Day-of-month the cycle resets.

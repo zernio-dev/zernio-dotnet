@@ -3407,6 +3407,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/deleteAccountGroup_200_response"
           description: Deleted
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -3454,6 +3456,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/updateAccountGroup_200_response"
           description: Updated
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20774,6 +20778,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listContacts_200_response"
           description: Contacts list with pagination and filter metadata
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: List contacts
@@ -20796,6 +20802,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/createContact_200_response"
           description: Contact created
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "409":
@@ -20818,6 +20826,8 @@ paths:
       responses:
         "200":
           description: Contact deleted
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20843,6 +20853,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getContact_200_response"
           description: Contact with channels
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20874,6 +20886,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/updateContact_200_response"
           description: Contact updated
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20901,6 +20915,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getContactChannels_200_response"
           description: List of contact channels
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20925,6 +20941,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/bulkCreateContacts_200_response"
           description: Bulk import results
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Bulk create contacts
@@ -21156,6 +21174,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listBroadcasts_200_response"
           description: Broadcasts list
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: List broadcasts
@@ -21178,6 +21198,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/createBroadcast_200_response"
           description: Broadcast created
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Create broadcast draft
@@ -21401,6 +21423,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listBroadcastRecipients_200_response"
           description: Recipients list with delivery status
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -21433,6 +21457,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/addBroadcastRecipients_200_response"
           description: Recipients added
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -22254,6 +22280,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listCommentAutomations_200_response"
           description: Automations list
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -25082,7 +25110,8 @@ paths:
                 $ref: "#/components/schemas/addUsersToAdAudience_200_response"
           description: Users added
         "400":
-          description: "Invalid input (empty users array, missing email/phone)"
+          description: "Invalid input (malformed audienceId, empty users array, missing\
+            \ email/phone)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -48197,7 +48226,8 @@ components:
     sendInboxMessage_request_buttons_inner:
       properties:
         type:
-          description: Button type. phone is Facebook only.
+          description: Button type. phone is Facebook only. Ignored on WhatsApp (buttons
+            always render as reply buttons).
           enum:
           - url
           - postback
@@ -48208,10 +48238,12 @@ components:
           maxLength: 20
           type: string
         url:
-          description: URL for url-type buttons
+          description: URL for url-type buttons (Facebook/Instagram only)
           type: string
         payload:
-          description: Payload for postback-type buttons
+          description: "Payload for postback-type buttons. On WhatsApp, this is the\
+            \ reply ID returned on the message.received webhook when the button is\
+            \ tapped."
           type: string
         phone:
           description: Phone number for phone-type buttons (Facebook only)
@@ -48836,8 +48868,18 @@ components:
           maxItems: 13
           type: array
         buttons:
-          description: Action buttons. Mutually exclusive with quickReplies. Max 3
-            items.
+          description: |
+            Action buttons. Mutually exclusive with quickReplies. Max 3 items.
+
+            WhatsApp: buttons always render as interactive reply buttons.
+            Only `title` and `payload` are used — `type`, `url`, and `phone`
+            are ignored (WhatsApp has no URL/phone button in this field; use
+            the `interactive` field with `type: cta_url` for a link button).
+            `payload` becomes the button reply ID delivered on the
+            `message.received` webhook when the user taps. To send a simple
+            reply-button message, provide `title` + `payload` and set
+            `type: postback`, e.g.
+            `{ "type": "postback", "title": "Yes", "payload": "yes" }`.
           items:
             $ref: "#/components/schemas/sendInboxMessage_request_buttons_inner"
           maxItems: 3
@@ -52128,7 +52170,8 @@ components:
           minLength: 20
           type: string
         sample2:
-          description: Second example message; carriers require two distinct samples
+          description: "Second example message; carriers require two distinct samples,\
+            \ so it must differ from sample1."
           minLength: 20
           type: string
         helpMessage:
@@ -62715,8 +62758,8 @@ components:
         unusableReason:
           description: Meta only. Human-readable reason when selectable is false;
             null when selectable.
-          type: string
           nullable: true
+          type: string
     listAdAccounts_200_response:
       example:
         accounts:
@@ -70284,12 +70327,12 @@ components:
       properties:
         start:
           format: date-time
-          type: string
           nullable: true
+          type: string
         end:
           format: date-time
-          type: string
           nullable: true
+          type: string
         anchorDay:
           description: Day-of-month the cycle resets.
           type: integer
@@ -70304,7 +70347,6 @@ components:
           type: integer
         creditsRemainingCents:
           type: integer
-      nullable: true
     BillingSnapshot_caps:
       example:
         xSpendLimitCents: 5
@@ -70314,8 +70356,8 @@ components:
           type: integer
         xSpendLimitCents:
           description: Monthly X-API spend cap; null = unlimited.
-          type: integer
           nullable: true
+          type: integer
     BillingSnapshot_status:
       example:
         openInvoiceUrl: openInvoiceUrl
@@ -70332,18 +70374,18 @@ components:
           type: boolean
         suspendedAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
         suspensionReason:
-          type: string
           nullable: true
+          type: string
         openInvoiceUrl:
           description: Hosted invoice URL for dunning (Stripe).
-          type: string
           nullable: true
+          type: string
         declineReason:
-          type: string
           nullable: true
+          type: string
         autoUpgradeEnabled:
           type: boolean
     BillingSnapshot_legacy_limits:
@@ -70474,14 +70516,15 @@ components:
         file, the total is zero or negative, or the estimate failed.
       properties:
         taxUsd:
-          description: Estimated tax in USD
+          description: "Estimated tax in USD, added on top of `totals.total`."
           type: number
         ratePercent:
-          description: Combined rate percentage
+          description: "Combined rate percentage, e.g. 21."
           nullable: true
           type: number
         jurisdictionLabel:
-          description: Human jurisdiction label
+          description: "Human jurisdiction label, e.g. \"ES VAT\" or \"WA sales tax\"\
+            ."
           nullable: true
           type: string
         reverseCharge:

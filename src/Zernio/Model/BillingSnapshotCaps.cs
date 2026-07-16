@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="xSpendUsedCents">xSpendUsedCents.</param>
         /// <param name="xSpendLimitCents">Monthly X-API spend cap; null &#x3D; unlimited..</param>
-        public BillingSnapshotCaps(int xSpendUsedCents = default, int xSpendLimitCents = default)
+        public BillingSnapshotCaps(int xSpendUsedCents = default, int? xSpendLimitCents = default)
         {
             this.XSpendUsedCents = xSpendUsedCents;
             this.XSpendLimitCents = xSpendLimitCents;
@@ -54,8 +54,8 @@ namespace Zernio.Model
         /// Monthly X-API spend cap; null &#x3D; unlimited.
         /// </summary>
         /// <value>Monthly X-API spend cap; null &#x3D; unlimited.</value>
-        [DataMember(Name = "xSpendLimitCents", EmitDefaultValue = false)]
-        public int XSpendLimitCents { get; set; }
+        [DataMember(Name = "xSpendLimitCents", EmitDefaultValue = true)]
+        public int? XSpendLimitCents { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

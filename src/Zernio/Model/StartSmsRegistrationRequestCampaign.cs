@@ -113,7 +113,7 @@ namespace Zernio.Model
         /// <param name="description">description (required).</param>
         /// <param name="messageFlow">How a recipient ends up receiving your messages (the opt-in flow). Include a link to the page or form where they opt in — carrier reviewers reject campaigns whose consent they can&#39;t verify. (required).</param>
         /// <param name="sample1">sample1 (required).</param>
-        /// <param name="sample2">Second example message; carriers require two distinct samples (required).</param>
+        /// <param name="sample2">Second example message; carriers require two distinct samples, so it must differ from sample1. (required).</param>
         /// <param name="helpMessage">helpMessage.</param>
         /// <param name="optinKeywords">optinKeywords (required).</param>
         /// <param name="optinMessage">optinMessage.</param>
@@ -223,9 +223,9 @@ namespace Zernio.Model
         public string Sample1 { get; set; }
 
         /// <summary>
-        /// Second example message; carriers require two distinct samples
+        /// Second example message; carriers require two distinct samples, so it must differ from sample1.
         /// </summary>
-        /// <value>Second example message; carriers require two distinct samples</value>
+        /// <value>Second example message; carriers require two distinct samples, so it must differ from sample1.</value>
         [DataMember(Name = "sample2", IsRequired = true, EmitDefaultValue = true)]
         public string Sample2 { get; set; }
 

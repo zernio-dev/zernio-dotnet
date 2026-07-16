@@ -36,9 +36,9 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UsageMeteringTax" /> class.
         /// </summary>
-        /// <param name="taxUsd">Estimated tax in USD.</param>
-        /// <param name="ratePercent">Combined rate percentage.</param>
-        /// <param name="jurisdictionLabel">Human jurisdiction label.</param>
+        /// <param name="taxUsd">Estimated tax in USD, added on top of &#x60;totals.total&#x60;..</param>
+        /// <param name="ratePercent">Combined rate percentage, e.g. 21..</param>
+        /// <param name="jurisdictionLabel">Human jurisdiction label, e.g. \&quot;ES VAT\&quot; or \&quot;WA sales tax\&quot;..</param>
         /// <param name="reverseCharge">True for EU/UK B2B reverse charge (0 tax added by design)..</param>
         public UsageMeteringTax(decimal taxUsd = default, decimal? ratePercent = default, string jurisdictionLabel = default, bool reverseCharge = default)
         {
@@ -49,23 +49,23 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Estimated tax in USD
+        /// Estimated tax in USD, added on top of &#x60;totals.total&#x60;.
         /// </summary>
-        /// <value>Estimated tax in USD</value>
+        /// <value>Estimated tax in USD, added on top of &#x60;totals.total&#x60;.</value>
         [DataMember(Name = "taxUsd", EmitDefaultValue = false)]
         public decimal TaxUsd { get; set; }
 
         /// <summary>
-        /// Combined rate percentage
+        /// Combined rate percentage, e.g. 21.
         /// </summary>
-        /// <value>Combined rate percentage</value>
+        /// <value>Combined rate percentage, e.g. 21.</value>
         [DataMember(Name = "ratePercent", EmitDefaultValue = true)]
         public decimal? RatePercent { get; set; }
 
         /// <summary>
-        /// Human jurisdiction label
+        /// Human jurisdiction label, e.g. \&quot;ES VAT\&quot; or \&quot;WA sales tax\&quot;.
         /// </summary>
-        /// <value>Human jurisdiction label</value>
+        /// <value>Human jurisdiction label, e.g. \&quot;ES VAT\&quot; or \&quot;WA sales tax\&quot;.</value>
         [DataMember(Name = "jurisdictionLabel", EmitDefaultValue = true)]
         public string JurisdictionLabel { get; set; }
 

@@ -115,7 +115,7 @@ namespace Zernio.Model
         /// Meta only. Human-readable reason when selectable is false; null when selectable.
         /// </summary>
         /// <value>Meta only. Human-readable reason when selectable is false; null when selectable.</value>
-        [DataMember(Name = "unusableReason", EmitDefaultValue = false)]
+        [DataMember(Name = "unusableReason", EmitDefaultValue = true)]
         public string UnusableReason { get; set; }
 
         /// <summary>

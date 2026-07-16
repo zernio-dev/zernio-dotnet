@@ -43,7 +43,7 @@ namespace Zernio.Model
         /// <param name="openInvoiceUrl">Hosted invoice URL for dunning (Stripe)..</param>
         /// <param name="declineReason">declineReason.</param>
         /// <param name="autoUpgradeEnabled">autoUpgradeEnabled.</param>
-        public BillingSnapshotStatus(bool hasAccess = default, bool suspended = default, DateTime suspendedAt = default, string suspensionReason = default, string openInvoiceUrl = default, string declineReason = default, bool autoUpgradeEnabled = default)
+        public BillingSnapshotStatus(bool hasAccess = default, bool suspended = default, DateTime? suspendedAt = default, string suspensionReason = default, string openInvoiceUrl = default, string declineReason = default, bool autoUpgradeEnabled = default)
         {
             this.HasAccess = hasAccess;
             this.Suspended = suspended;
@@ -69,26 +69,26 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets SuspendedAt
         /// </summary>
-        [DataMember(Name = "suspendedAt", EmitDefaultValue = false)]
-        public DateTime SuspendedAt { get; set; }
+        [DataMember(Name = "suspendedAt", EmitDefaultValue = true)]
+        public DateTime? SuspendedAt { get; set; }
 
         /// <summary>
         /// Gets or Sets SuspensionReason
         /// </summary>
-        [DataMember(Name = "suspensionReason", EmitDefaultValue = false)]
+        [DataMember(Name = "suspensionReason", EmitDefaultValue = true)]
         public string SuspensionReason { get; set; }
 
         /// <summary>
         /// Hosted invoice URL for dunning (Stripe).
         /// </summary>
         /// <value>Hosted invoice URL for dunning (Stripe).</value>
-        [DataMember(Name = "openInvoiceUrl", EmitDefaultValue = false)]
+        [DataMember(Name = "openInvoiceUrl", EmitDefaultValue = true)]
         public string OpenInvoiceUrl { get; set; }
 
         /// <summary>
         /// Gets or Sets DeclineReason
         /// </summary>
-        [DataMember(Name = "declineReason", EmitDefaultValue = false)]
+        [DataMember(Name = "declineReason", EmitDefaultValue = true)]
         public string DeclineReason { get; set; }
 
         /// <summary>

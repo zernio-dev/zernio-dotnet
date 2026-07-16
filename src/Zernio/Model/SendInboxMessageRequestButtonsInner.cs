@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class SendInboxMessageRequestButtonsInner : IValidatableObject
     {
         /// <summary>
-        /// Button type. phone is Facebook only.
+        /// Button type. phone is Facebook only. Ignored on WhatsApp (buttons always render as reply buttons).
         /// </summary>
-        /// <value>Button type. phone is Facebook only.</value>
+        /// <value>Button type. phone is Facebook only. Ignored on WhatsApp (buttons always render as reply buttons).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -61,9 +61,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Button type. phone is Facebook only.
+        /// Button type. phone is Facebook only. Ignored on WhatsApp (buttons always render as reply buttons).
         /// </summary>
-        /// <value>Button type. phone is Facebook only.</value>
+        /// <value>Button type. phone is Facebook only. Ignored on WhatsApp (buttons always render as reply buttons).</value>
         [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -74,10 +74,10 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendInboxMessageRequestButtonsInner" /> class.
         /// </summary>
-        /// <param name="type">Button type. phone is Facebook only. (required).</param>
+        /// <param name="type">Button type. phone is Facebook only. Ignored on WhatsApp (buttons always render as reply buttons). (required).</param>
         /// <param name="title">Button label (max 20 chars) (required).</param>
-        /// <param name="url">URL for url-type buttons.</param>
-        /// <param name="payload">Payload for postback-type buttons.</param>
+        /// <param name="url">URL for url-type buttons (Facebook/Instagram only).</param>
+        /// <param name="payload">Payload for postback-type buttons. On WhatsApp, this is the reply ID returned on the message.received webhook when the button is tapped..</param>
         /// <param name="phone">Phone number for phone-type buttons (Facebook only).</param>
         public SendInboxMessageRequestButtonsInner(TypeEnum type = default, string title = default, string url = default, string payload = default, string phone = default)
         {
@@ -101,16 +101,16 @@ namespace Zernio.Model
         public string Title { get; set; }
 
         /// <summary>
-        /// URL for url-type buttons
+        /// URL for url-type buttons (Facebook/Instagram only)
         /// </summary>
-        /// <value>URL for url-type buttons</value>
+        /// <value>URL for url-type buttons (Facebook/Instagram only)</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 
         /// <summary>
-        /// Payload for postback-type buttons
+        /// Payload for postback-type buttons. On WhatsApp, this is the reply ID returned on the message.received webhook when the button is tapped.
         /// </summary>
-        /// <value>Payload for postback-type buttons</value>
+        /// <value>Payload for postback-type buttons. On WhatsApp, this is the reply ID returned on the message.received webhook when the button is tapped.</value>
         [DataMember(Name = "payload", EmitDefaultValue = false)]
         public string Payload { get; set; }
 
