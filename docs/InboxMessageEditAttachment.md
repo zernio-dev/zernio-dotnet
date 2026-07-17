@@ -1,4 +1,5 @@
-# Zernio.Model.GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner
+# Zernio.Model.InboxMessageEditAttachment
+Attachment snapshot inside an edit-history entry.
 
 ## Properties
 

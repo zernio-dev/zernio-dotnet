@@ -172,7 +172,7 @@ namespace Zernio.Model
         /// <param name="deliveryError">deliveryError.</param>
         /// <param name="reactions">Emoji reactions on this message (WhatsApp / Telegram). At most one per party in a 1:1 thread..</param>
         /// <param name="metadata">Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow / location_request), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. .</param>
-        public GetInboxConversationMessages200ResponseMessagesInner(string id = default, string conversationId = default, string accountId = default, string platform = default, string message = default, string senderId = default, string senderName = default, SenderVerifiedTypeEnum? senderVerifiedType = default, DirectionEnum? direction = default, DateTime createdAt = default, List<GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner> attachments = default, string subject = default, bool? storyReply = default, bool? isStoryMention = default, bool isEdited = default, DateTime? editedAt = default, int editCount = default, List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> editHistory = default, bool isDeleted = default, DateTime? deletedAt = default, DeliveryStatusEnum? deliveryStatus = default, DateTime? deliveredAt = default, DateTime? readAt = default, DateTime? sentAt = default, GetInboxConversationMessages200ResponseMessagesInnerDeliveryError deliveryError = default, List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions = default, Dictionary<string, Object> metadata = default)
+        public GetInboxConversationMessages200ResponseMessagesInner(string id = default, string conversationId = default, string accountId = default, string platform = default, string message = default, string senderId = default, string senderName = default, SenderVerifiedTypeEnum? senderVerifiedType = default, DirectionEnum? direction = default, DateTime createdAt = default, List<GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner> attachments = default, string subject = default, bool? storyReply = default, bool? isStoryMention = default, bool isEdited = default, DateTime? editedAt = default, int editCount = default, List<InboxMessageEditHistoryEntry> editHistory = default, bool isDeleted = default, DateTime? deletedAt = default, DeliveryStatusEnum? deliveryStatus = default, DateTime? deliveredAt = default, DateTime? readAt = default, DateTime? sentAt = default, GetInboxConversationMessages200ResponseMessagesInnerDeliveryError deliveryError = default, List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions = default, Dictionary<string, Object> metadata = default)
         {
             this.Id = id;
             this.ConversationId = conversationId;
@@ -304,7 +304,7 @@ namespace Zernio.Model
         /// </summary>
         /// <value>Every prior version of the message, oldest first.</value>
         [DataMember(Name = "editHistory", EmitDefaultValue = false)]
-        public List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> EditHistory { get; set; }
+        public List<InboxMessageEditHistoryEntry> EditHistory { get; set; }
 
         /// <summary>
         /// True if the sender has deleted (unsent) this message. The original message and attachments fields remain populated.

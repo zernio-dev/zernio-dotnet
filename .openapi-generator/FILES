@@ -514,8 +514,6 @@ docs/GetInboxConversationMessages200Response.md
 docs/GetInboxConversationMessages200ResponseMessagesInner.md
 docs/GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.md
 docs/GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.md
-docs/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.md
-docs/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner.md
 docs/GetInboxConversationMessages200ResponseMessagesInnerReactionsInner.md
 docs/GetInboxConversationMessages200ResponsePagination.md
 docs/GetInboxHeatmap200Response.md
@@ -696,6 +694,8 @@ docs/HandleOAuthCallbackRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
 docs/InboxAnalyticsApi.md
+docs/InboxMessageEditAttachment.md
+docs/InboxMessageEditHistoryEntry.md
 docs/InboxWebhookAccount.md
 docs/InboxWebhookConversation.md
 docs/InboxWebhookMessage.md
@@ -1399,7 +1399,6 @@ docs/WebhookPayloadMessageDeleted.md
 docs/WebhookPayloadMessageDeliveryStatus.md
 docs/WebhookPayloadMessageDeliveryStatusError.md
 docs/WebhookPayloadMessageEdited.md
-docs/WebhookPayloadMessageEditedEditHistoryInner.md
 docs/WebhookPayloadMessageMessage.md
 docs/WebhookPayloadMessageMessageSender.md
 docs/WebhookPayloadMessageMessageSenderInstagramProfile.md
@@ -2009,8 +2008,6 @@ src/Zernio.Test/Model/GetInboxConversationAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/GetInboxConversationAnalytics404ResponseTests.cs
 src/Zernio.Test/Model/GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInnerTests.cs
 src/Zernio.Test/Model/GetInboxConversationMessages200ResponseMessagesInnerDeliveryErrorTests.cs
-src/Zernio.Test/Model/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInnerTests.cs
-src/Zernio.Test/Model/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerTests.cs
 src/Zernio.Test/Model/GetInboxConversationMessages200ResponseMessagesInnerReactionsInnerTests.cs
 src/Zernio.Test/Model/GetInboxConversationMessages200ResponseMessagesInnerTests.cs
 src/Zernio.Test/Model/GetInboxConversationMessages200ResponsePaginationTests.cs
@@ -2192,6 +2189,8 @@ src/Zernio.Test/Model/GoogleBusinessPlatformDataTests.cs
 src/Zernio.Test/Model/HandleOAuthCallbackRequestTests.cs
 src/Zernio.Test/Model/HideInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/HideInboxCommentRequestTests.cs
+src/Zernio.Test/Model/InboxMessageEditAttachmentTests.cs
+src/Zernio.Test/Model/InboxMessageEditHistoryEntryTests.cs
 src/Zernio.Test/Model/InboxWebhookAccountTests.cs
 src/Zernio.Test/Model/InboxWebhookConversationTests.cs
 src/Zernio.Test/Model/InboxWebhookMessageAttachmentsInnerTests.cs
@@ -2870,7 +2869,6 @@ src/Zernio.Test/Model/WebhookPayloadLeadTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageDeletedTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageDeliveryStatusErrorTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageDeliveryStatusTests.cs
-src/Zernio.Test/Model/WebhookPayloadMessageEditedEditHistoryInnerTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageEditedTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMessageSenderInstagramProfileTests.cs
 src/Zernio.Test/Model/WebhookPayloadMessageMessageSenderTests.cs
@@ -3495,8 +3493,6 @@ src/Zernio/Model/GetInboxConversationMessages200Response.cs
 src/Zernio/Model/GetInboxConversationMessages200ResponseMessagesInner.cs
 src/Zernio/Model/GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.cs
 src/Zernio/Model/GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.cs
-src/Zernio/Model/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.cs
-src/Zernio/Model/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner.cs
 src/Zernio/Model/GetInboxConversationMessages200ResponseMessagesInnerReactionsInner.cs
 src/Zernio/Model/GetInboxConversationMessages200ResponsePagination.cs
 src/Zernio/Model/GetInboxHeatmap200Response.cs
@@ -3676,6 +3672,8 @@ src/Zernio/Model/GoogleBusinessPlatformDataOffer.cs
 src/Zernio/Model/HandleOAuthCallbackRequest.cs
 src/Zernio/Model/HideInboxComment200Response.cs
 src/Zernio/Model/HideInboxCommentRequest.cs
+src/Zernio/Model/InboxMessageEditAttachment.cs
+src/Zernio/Model/InboxMessageEditHistoryEntry.cs
 src/Zernio/Model/InboxWebhookAccount.cs
 src/Zernio/Model/InboxWebhookConversation.cs
 src/Zernio/Model/InboxWebhookMessage.cs
@@ -4357,7 +4355,6 @@ src/Zernio/Model/WebhookPayloadMessageDeleted.cs
 src/Zernio/Model/WebhookPayloadMessageDeliveryStatus.cs
 src/Zernio/Model/WebhookPayloadMessageDeliveryStatusError.cs
 src/Zernio/Model/WebhookPayloadMessageEdited.cs
-src/Zernio/Model/WebhookPayloadMessageEditedEditHistoryInner.cs
 src/Zernio/Model/WebhookPayloadMessageMessage.cs
 src/Zernio/Model/WebhookPayloadMessageMessageSender.cs
 src/Zernio/Model/WebhookPayloadMessageMessageSenderInstagramProfile.cs

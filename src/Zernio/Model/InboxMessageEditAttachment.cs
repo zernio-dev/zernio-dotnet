@@ -28,18 +28,18 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner
+    /// Attachment snapshot inside an edit-history entry.
     /// </summary>
-    [DataContract(Name = "getInboxConversationMessages_200_response_messages_inner_editHistory_inner_attachments_inner")]
-    public partial class GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner : IValidatableObject
+    [DataContract(Name = "InboxMessageEditAttachment")]
+    public partial class InboxMessageEditAttachment : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner" /> class.
+        /// Initializes a new instance of the <see cref="InboxMessageEditAttachment" /> class.
         /// </summary>
         /// <param name="type">type.</param>
         /// <param name="url">url.</param>
         /// <param name="payload">payload.</param>
-        public GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner(string type = default, string url = default, Object payload = default)
+        public InboxMessageEditAttachment(string type = default, string url = default, Object payload = default)
         {
             this.Type = type;
             this.Url = url;
@@ -71,7 +71,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner {\n");
+            sb.Append("class InboxMessageEditAttachment {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Payload: ").Append(Payload).Append("\n");

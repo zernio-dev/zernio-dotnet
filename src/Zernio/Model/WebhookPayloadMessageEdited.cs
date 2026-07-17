@@ -69,7 +69,7 @@ namespace Zernio.Model
         /// <param name="conversation">conversation (required).</param>
         /// <param name="account">account (required).</param>
         /// <param name="timestamp">timestamp (required).</param>
-        public WebhookPayloadMessageEdited(string id = default, EventEnum varEvent = default, InboxWebhookMessage message = default, List<WebhookPayloadMessageEditedEditHistoryInner> editHistory = default, int editCount = default, DateTime editedAt = default, InboxWebhookConversation conversation = default, InboxWebhookAccount account = default, DateTime timestamp = default)
+        public WebhookPayloadMessageEdited(string id = default, EventEnum varEvent = default, InboxWebhookMessage message = default, List<InboxMessageEditHistoryEntry> editHistory = default, int editCount = default, DateTime editedAt = default, InboxWebhookConversation conversation = default, InboxWebhookAccount account = default, DateTime timestamp = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -124,7 +124,7 @@ namespace Zernio.Model
         /// </summary>
         /// <value>Prior versions of the message, oldest first.</value>
         [DataMember(Name = "editHistory", IsRequired = true, EmitDefaultValue = true)]
-        public List<WebhookPayloadMessageEditedEditHistoryInner> EditHistory { get; set; }
+        public List<InboxMessageEditHistoryEntry> EditHistory { get; set; }
 
         /// <summary>
         /// Total number of edits applied to this message.

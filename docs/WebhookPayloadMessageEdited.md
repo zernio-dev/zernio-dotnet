@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Event** | **string** |  | 
 **Message** | [**InboxWebhookMessage**](InboxWebhookMessage.md) |  | 
-**EditHistory** | [**List&lt;WebhookPayloadMessageEditedEditHistoryInner&gt;**](WebhookPayloadMessageEditedEditHistoryInner.md) | Prior versions of the message, oldest first. | 
+**EditHistory** | [**List&lt;InboxMessageEditHistoryEntry&gt;**](InboxMessageEditHistoryEntry.md) | Prior versions of the message, oldest first. | 
 **EditCount** | **int** | Total number of edits applied to this message. | 
 **EditedAt** | **DateTime** | When the most recent edit happened. | 
 **Conversation** | [**InboxWebhookConversation**](InboxWebhookConversation.md) |  | 

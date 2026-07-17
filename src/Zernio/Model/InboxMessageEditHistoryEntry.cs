@@ -28,20 +28,35 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner
+    /// One prior version of an edited message.
     /// </summary>
-    [DataContract(Name = "getInboxConversationMessages_200_response_messages_inner_editHistory_inner")]
-    public partial class GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner : IValidatableObject
+    [DataContract(Name = "InboxMessageEditHistoryEntry")]
+    public partial class InboxMessageEditHistoryEntry : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner" /> class.
+        /// Initializes a new instance of the <see cref="InboxMessageEditHistoryEntry" /> class.
         /// </summary>
-        /// <param name="text">text.</param>
-        /// <param name="attachments">attachments.</param>
-        /// <param name="editedAt">editedAt.</param>
-        public GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner(string text = default, List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner> attachments = default, DateTime editedAt = default)
+        [JsonConstructorAttribute]
+        protected InboxMessageEditHistoryEntry() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InboxMessageEditHistoryEntry" /> class.
+        /// </summary>
+        /// <param name="text">text (required).</param>
+        /// <param name="attachments">attachments (required).</param>
+        /// <param name="editedAt">editedAt (required).</param>
+        public InboxMessageEditHistoryEntry(string text = default, List<InboxMessageEditAttachment> attachments = default, DateTime editedAt = default)
         {
+            // to ensure "text" is required (not null)
+            if (text == null)
+            {
+                throw new ArgumentNullException("text is a required property for InboxMessageEditHistoryEntry and cannot be null");
+            }
             this.Text = text;
+            // to ensure "attachments" is required (not null)
+            if (attachments == null)
+            {
+                throw new ArgumentNullException("attachments is a required property for InboxMessageEditHistoryEntry and cannot be null");
+            }
             this.Attachments = attachments;
             this.EditedAt = editedAt;
         }
@@ -49,19 +64,19 @@ namespace Zernio.Model
         /// <summary>
         /// Gets or Sets Text
         /// </summary>
-        [DataMember(Name = "text", EmitDefaultValue = true)]
+        [DataMember(Name = "text", IsRequired = true, EmitDefaultValue = true)]
         public string Text { get; set; }
 
         /// <summary>
         /// Gets or Sets Attachments
         /// </summary>
-        [DataMember(Name = "attachments", EmitDefaultValue = false)]
-        public List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner> Attachments { get; set; }
+        [DataMember(Name = "attachments", IsRequired = true, EmitDefaultValue = true)]
+        public List<InboxMessageEditAttachment> Attachments { get; set; }
 
         /// <summary>
         /// Gets or Sets EditedAt
         /// </summary>
-        [DataMember(Name = "editedAt", EmitDefaultValue = false)]
+        [DataMember(Name = "editedAt", IsRequired = true, EmitDefaultValue = true)]
         public DateTime EditedAt { get; set; }
 
         /// <summary>
@@ -71,7 +86,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner {\n");
+            sb.Append("class InboxMessageEditHistoryEntry {\n");
             sb.Append("  Text: ").Append(Text).Append("\n");
             sb.Append("  Attachments: ").Append(Attachments).Append("\n");
             sb.Append("  EditedAt: ").Append(EditedAt).Append("\n");
