@@ -144,7 +144,6 @@ jobs:
         run: |
           dotnet pack -c Release --no-build -o ./nupkg
           dotnet nuget push ./nupkg/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
-        continue-on-error: true
 
       - name: Generate and publish legacy Late package
         if: steps.changes.outputs.has_changes == 'true'
@@ -167,7 +166,6 @@ jobs:
           dotnet pack "$LATE_BUILD_DIR" -c Release --no-build -o "$LATE_BUILD_DIR/nupkg-late"
           dotnet nuget push "$LATE_BUILD_DIR"/nupkg-late/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
           rm -rf "$LATE_BUILD_DIR"
-        continue-on-error: true
 
       - name: Create GitHub Release
         if: steps.changes.outputs.has_changes == 'true'
