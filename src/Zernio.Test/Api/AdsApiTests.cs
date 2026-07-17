@@ -106,6 +106,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateAdInsightsReport
+        /// </summary>
+        [Fact]
+        public void CreateAdInsightsReportTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateAdInsightsReportRequest createAdInsightsReportRequest = null;
+            //var response = instance.CreateAdInsightsReport(createAdInsightsReportRequest);
+            //Assert.IsType<CreateAdInsightsReport202Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateConversionDestination
         /// </summary>
         [Fact]
@@ -245,6 +257,21 @@ namespace Zernio.Test.Api
             //string? cursor = null;
             //var response = instance.GetAdComments(adId, placement, limit, cursor);
             //Assert.IsType<GetAdComments200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetAdInsightsReport
+        /// </summary>
+        [Fact]
+        public void GetAdInsightsReportTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string reportRunId = null;
+            //string accountId = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.GetAdInsightsReport(reportRunId, accountId, limit, after);
+            //Assert.IsType<GetAdInsightsReport200Response>(response);
         }
 
         /// <summary>
@@ -542,6 +569,29 @@ namespace Zernio.Test.Api
             //int? limit = null;
             //var response = instance.ListWhatsAppConversions(accountId, limit);
             //Assert.IsType<ListWhatsAppConversions200Response>(response);
+        }
+
+        /// <summary>
+        /// Test QueryAdInsights
+        /// </summary>
+        [Fact]
+        public void QueryAdInsightsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string objectId = null;
+            //string? level = null;
+            //string? fields = null;
+            //string? breakdowns = null;
+            //string? filtering = null;
+            //string? datePreset = null;
+            //DateOnly? fromDate = null;
+            //DateOnly? toDate = null;
+            //string? timeIncrement = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.QueryAdInsights(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            //Assert.IsType<QueryAdInsights200Response>(response);
         }
 
         /// <summary>

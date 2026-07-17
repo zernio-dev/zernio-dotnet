@@ -8,6 +8,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**AdjustConversions**](AdsApi.md#adjustconversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions |
 | [**ArchiveLeadForm**](AdsApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form |
 | [**BoostPost**](AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad |
+| [**CreateAdInsightsReport**](AdsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta) |
 | [**CreateConversionDestination**](AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
 | [**CreateCtwaAd**](AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad |
 | [**CreateLeadForm**](AdsApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form |
@@ -19,6 +20,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAd**](AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details |
 | [**GetAdAnalytics**](AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**GetAdComments**](AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
+| [**GetAdInsightsReport**](AdsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta) |
 | [**GetAdTrackingTags**](AdsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
 | [**GetCampaignAnalytics**](AdsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**GetConversionDestination**](AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
@@ -40,6 +42,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListLeadForms**](AdsApi.md#listleadforms) | **GET** /v1/ads/lead-forms | List lead forms |
 | [**ListLeads**](AdsApi.md#listleads) | **GET** /v1/ads/leads | List submitted leads |
 | [**ListWhatsAppConversions**](AdsApi.md#listwhatsappconversions) | **GET** /v1/whatsapp/conversions | List conversion events |
+| [**QueryAdInsights**](AdsApi.md#queryadinsights) | **GET** /v1/ads/insights | Flexible live insights query (Meta) |
 | [**RemoveConversionAssociations**](AdsApi.md#removeconversionassociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**SearchAdInterests**](AdsApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests |
 | [**SearchAdTargeting**](AdsApi.md#searchadtargeting) | **GET** /v1/ads/targeting/search | Search targeting options |
@@ -462,6 +465,108 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createadinsightsreport"></a>
+# **CreateAdInsightsReport**
+> CreateAdInsightsReport202Response CreateAdInsightsReport (CreateAdInsightsReportRequest createAdInsightsReportRequest)
+
+Submit an async insights report run (Meta)
+
+Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a `reportRunId` to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateAdInsightsReportExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var createAdInsightsReportRequest = new CreateAdInsightsReportRequest(); // CreateAdInsightsReportRequest | 
+
+            try
+            {
+                // Submit an async insights report run (Meta)
+                CreateAdInsightsReport202Response result = apiInstance.CreateAdInsightsReport(createAdInsightsReportRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.CreateAdInsightsReport: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateAdInsightsReportWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Submit an async insights report run (Meta)
+    ApiResponse<CreateAdInsightsReport202Response> response = apiInstance.CreateAdInsightsReportWithHttpInfo(createAdInsightsReportRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.CreateAdInsightsReportWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createAdInsightsReportRequest** | [**CreateAdInsightsReportRequest**](CreateAdInsightsReportRequest.md) |  |  |
+
+### Return type
+
+[**CreateAdInsightsReport202Response**](CreateAdInsightsReport202Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **202** | Report run submitted |  -  |
+| **400** | Invalid input, or Meta rejected the report parameters |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Meta rate limit reached |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1602,6 +1707,114 @@ catch (ApiException e)
 | **403** | Ads access required (legacy plans need the Ads add-on; included by default on usage-based plans), or ad platform is not Meta (code feature_not_available). |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Ads account token unavailable, or (for Instagram-placed ads) no connected Instagram account on the profile can read the ad&#39;s media (code ads_connection_required).  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadinsightsreport"></a>
+# **GetAdInsightsReport**
+> GetAdInsightsReport200Response GetAdInsightsReport (string reportRunId, string accountId, int? limit = null, string? after = null)
+
+Poll an async insights report run (Meta)
+
+Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns `status` and `percentCompletion`. Once `status` is \"Job Completed\" the response also carries a `data` page, cursor-paginated via `limit` / `after`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdInsightsReportExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var reportRunId = "reportRunId_example";  // string | 
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run).
+            var limit = 25;  // int? |  (optional)  (default to 25)
+            var after = "after_example";  // string? |  (optional) 
+
+            try
+            {
+                // Poll an async insights report run (Meta)
+                GetAdInsightsReport200Response result = apiInstance.GetAdInsightsReport(reportRunId, accountId, limit, after);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetAdInsightsReport: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdInsightsReportWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Poll an async insights report run (Meta)
+    ApiResponse<GetAdInsightsReport200Response> response = apiInstance.GetAdInsightsReportWithHttpInfo(reportRunId, accountId, limit, after);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetAdInsightsReportWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **reportRunId** | **string** |  |  |
+| **accountId** | **string** | Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run). |  |
+| **limit** | **int?** |  | [optional] [default to 25] |
+| **after** | **string?** |  | [optional]  |
+
+### Return type
+
+[**GetAdInsightsReport200Response**](GetAdInsightsReport200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Report run status (plus results when completed) |  -  |
+| **400** | Invalid input, or the report run is not readable with this account&#39;s token |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Meta rate limit reached |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3815,6 +4028,130 @@ catch (ApiException e)
 | **200** | Recent conversion events |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="queryadinsights"></a>
+# **QueryAdInsights**
+> QueryAdInsights200Response QueryAdInsights (string accountId, string objectId, string? level = null, string? fields = null, string? breakdowns = null, string? filtering = null, string? datePreset = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? timeIncrement = null, int? limit = null, string? after = null)
+
+Flexible live insights query (Meta)
+
+Live, flexible insights query against Meta's Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen `fields`, `breakdowns` and `filtering` to any Meta insights node and returns Meta's rows verbatim.  `objectId` selects the node: an ad account, campaign, ad set or ad platform id. `level` sets row granularity independently of the node.  Semantic validation is Meta's: an unknown field or invalid breakdown combination returns a 400 carrying Meta's message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class QueryAdInsightsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var objectId = "objectId_example";  // string | Meta insights node: act_<n>, campaign id, ad set id or ad id.
+            var level = "ad";  // string? | Row granularity (optional) 
+            var fields = "fields_example";  // string? | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set. (optional) 
+            var breakdowns = "breakdowns_example";  // string? | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional) 
+            var filtering = "filtering_example";  // string? | JSON array of Meta filter objects: [{\"field\", \"operator\", \"value\"}]. Applied server-side by Meta. (optional) 
+            var datePreset = "datePreset_example";  // string? | Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional) 
+            var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of range (YYYY-MM-DD); requires toDate. (optional) 
+            var toDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End of range (YYYY-MM-DD); requires fromDate. (optional) 
+            var timeIncrement = "timeIncrement_example";  // string? | Days per row (1-90), monthly, or all_days. (optional) 
+            var limit = 25;  // int? | Rows per page (optional)  (default to 25)
+            var after = "after_example";  // string? | Cursor from paging.after of the previous page. (optional) 
+
+            try
+            {
+                // Flexible live insights query (Meta)
+                QueryAdInsights200Response result = apiInstance.QueryAdInsights(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.QueryAdInsights: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the QueryAdInsightsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Flexible live insights query (Meta)
+    ApiResponse<QueryAdInsights200Response> response = apiInstance.QueryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.QueryAdInsightsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **objectId** | **string** | Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. |  |
+| **level** | **string?** | Row granularity | [optional]  |
+| **fields** | **string?** | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional]  |
+| **breakdowns** | **string?** | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). | [optional]  |
+| **filtering** | **string?** | JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. | [optional]  |
+| **datePreset** | **string?** | Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. | [optional]  |
+| **fromDate** | **DateOnly?** | Start of range (YYYY-MM-DD); requires toDate. | [optional]  |
+| **toDate** | **DateOnly?** | End of range (YYYY-MM-DD); requires fromDate. | [optional]  |
+| **timeIncrement** | **string?** | Days per row (1-90), monthly, or all_days. | [optional]  |
+| **limit** | **int?** | Rows per page | [optional] [default to 25] |
+| **after** | **string?** | Cursor from paging.after of the previous page. | [optional]  |
+
+### Return type
+
+[**QueryAdInsights200Response**](QueryAdInsights200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Insight rows (raw Meta shape) |  -  |
+| **400** | Invalid input, or Meta rejected the query (unknown field, invalid breakdown combo) — message carries Meta&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Meta rate limit reached |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

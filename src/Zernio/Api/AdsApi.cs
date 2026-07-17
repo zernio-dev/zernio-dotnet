@@ -119,6 +119,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateAd200Response</returns>
         ApiResponse<UpdateAd200Response> BoostPostWithHttpInfo(BoostPostRequest boostPostRequest);
         /// <summary>
+        /// Submit an async insights report run (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdInsightsReportRequest"></param>
+        /// <returns>CreateAdInsightsReport202Response</returns>
+        CreateAdInsightsReport202Response CreateAdInsightsReport(CreateAdInsightsReportRequest createAdInsightsReportRequest);
+
+        /// <summary>
+        /// Submit an async insights report run (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdInsightsReportRequest"></param>
+        /// <returns>ApiResponse of CreateAdInsightsReport202Response</returns>
+        ApiResponse<CreateAdInsightsReport202Response> CreateAdInsightsReportWithHttpInfo(CreateAdInsightsReportRequest createAdInsightsReportRequest);
+        /// <summary>
         /// Create a conversion destination
         /// </summary>
         /// <remarks>
@@ -371,6 +392,33 @@ namespace Zernio.Api
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>ApiResponse of GetAdComments200Response</returns>
         ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, string? placement = default, int? limit = default, string? cursor = default);
+        /// <summary>
+        /// Poll an async insights report run (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="reportRunId"></param>
+        /// <param name="accountId">Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run).</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="after"> (optional)</param>
+        /// <returns>GetAdInsightsReport200Response</returns>
+        GetAdInsightsReport200Response GetAdInsightsReport(string reportRunId, string accountId, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// Poll an async insights report run (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="reportRunId"></param>
+        /// <param name="accountId">Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run).</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="after"> (optional)</param>
+        /// <returns>ApiResponse of GetAdInsightsReport200Response</returns>
+        ApiResponse<GetAdInsightsReport200Response> GetAdInsightsReportWithHttpInfo(string reportRunId, string accountId, int? limit = default, string? after = default);
         /// <summary>
         /// Get ad tracking tags
         /// </summary>
@@ -900,6 +948,49 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListWhatsAppConversions200Response</returns>
         ApiResponse<ListWhatsAppConversions200Response> ListWhatsAppConversionsWithHttpInfo(string accountId, int? limit = default);
         /// <summary>
+        /// Flexible live insights query (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="level">Row granularity (optional)</param>
+        /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
+        /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
+        /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
+        /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
+        /// <param name="toDate">End of range (YYYY-MM-DD); requires fromDate. (optional)</param>
+        /// <param name="timeIncrement">Days per row (1-90), monthly, or all_days. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>QueryAdInsights200Response</returns>
+        QueryAdInsights200Response QueryAdInsights(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// Flexible live insights query (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="level">Row granularity (optional)</param>
+        /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
+        /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
+        /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
+        /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
+        /// <param name="toDate">End of range (YYYY-MM-DD); requires fromDate. (optional)</param>
+        /// <param name="timeIncrement">Days per row (1-90), monthly, or all_days. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of QueryAdInsights200Response</returns>
+        ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
+        /// <summary>
         /// Remove associated campaigns
         /// </summary>
         /// <remarks>
@@ -1247,6 +1338,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> BoostPostWithHttpInfoAsync(BoostPostRequest boostPostRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Submit an async insights report run (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdInsightsReportRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateAdInsightsReport202Response</returns>
+        System.Threading.Tasks.Task<CreateAdInsightsReport202Response> CreateAdInsightsReportAsync(CreateAdInsightsReportRequest createAdInsightsReportRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Submit an async insights report run (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdInsightsReportRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateAdInsightsReport202Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateAdInsightsReport202Response>> CreateAdInsightsReportWithHttpInfoAsync(CreateAdInsightsReportRequest createAdInsightsReportRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Create a conversion destination
         /// </summary>
         /// <remarks>
@@ -1521,6 +1635,35 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdComments200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Poll an async insights report run (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="reportRunId"></param>
+        /// <param name="accountId">Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run).</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdInsightsReport200Response</returns>
+        System.Threading.Tasks.Task<GetAdInsightsReport200Response> GetAdInsightsReportAsync(string reportRunId, string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Poll an async insights report run (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="reportRunId"></param>
+        /// <param name="accountId">Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run).</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdInsightsReport200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdInsightsReport200Response>> GetAdInsightsReportWithHttpInfoAsync(string reportRunId, string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get ad tracking tags
         /// </summary>
@@ -2094,6 +2237,51 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppConversions200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListWhatsAppConversions200Response>> ListWhatsAppConversionsWithHttpInfoAsync(string accountId, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Flexible live insights query (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="level">Row granularity (optional)</param>
+        /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
+        /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
+        /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
+        /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
+        /// <param name="toDate">End of range (YYYY-MM-DD); requires fromDate. (optional)</param>
+        /// <param name="timeIncrement">Days per row (1-90), monthly, or all_days. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of QueryAdInsights200Response</returns>
+        System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Flexible live insights query (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="level">Row granularity (optional)</param>
+        /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
+        /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
+        /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
+        /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
+        /// <param name="toDate">End of range (YYYY-MM-DD); requires fromDate. (optional)</param>
+        /// <param name="timeIncrement">Days per row (1-90), monthly, or all_days. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (QueryAdInsights200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Remove associated campaigns
         /// </summary>
@@ -3117,6 +3305,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("BoostPost", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Submit an async insights report run (Meta) Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdInsightsReportRequest"></param>
+        /// <returns>CreateAdInsightsReport202Response</returns>
+        public CreateAdInsightsReport202Response CreateAdInsightsReport(CreateAdInsightsReportRequest createAdInsightsReportRequest)
+        {
+            Zernio.Client.ApiResponse<CreateAdInsightsReport202Response> localVarResponse = CreateAdInsightsReportWithHttpInfo(createAdInsightsReportRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Submit an async insights report run (Meta) Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdInsightsReportRequest"></param>
+        /// <returns>ApiResponse of CreateAdInsightsReport202Response</returns>
+        public Zernio.Client.ApiResponse<CreateAdInsightsReport202Response> CreateAdInsightsReportWithHttpInfo(CreateAdInsightsReportRequest createAdInsightsReportRequest)
+        {
+            // verify the required parameter 'createAdInsightsReportRequest' is set
+            if (createAdInsightsReportRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createAdInsightsReportRequest' when calling AdsApi->CreateAdInsightsReport");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createAdInsightsReportRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateAdInsightsReport202Response>("/v1/ads/insights/reports", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateAdInsightsReport", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Submit an async insights report run (Meta) Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdInsightsReportRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateAdInsightsReport202Response</returns>
+        public async System.Threading.Tasks.Task<CreateAdInsightsReport202Response> CreateAdInsightsReportAsync(CreateAdInsightsReportRequest createAdInsightsReportRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateAdInsightsReport202Response> localVarResponse = await CreateAdInsightsReportWithHttpInfoAsync(createAdInsightsReportRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Submit an async insights report run (Meta) Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdInsightsReportRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateAdInsightsReport202Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateAdInsightsReport202Response>> CreateAdInsightsReportWithHttpInfoAsync(CreateAdInsightsReportRequest createAdInsightsReportRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createAdInsightsReportRequest' is set
+            if (createAdInsightsReportRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createAdInsightsReportRequest' when calling AdsApi->CreateAdInsightsReport");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createAdInsightsReportRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateAdInsightsReport202Response>("/v1/ads/insights/reports", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateAdInsightsReport", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -4662,6 +4979,171 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAdComments", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Poll an async insights report run (Meta) Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="reportRunId"></param>
+        /// <param name="accountId">Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run).</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="after"> (optional)</param>
+        /// <returns>GetAdInsightsReport200Response</returns>
+        public GetAdInsightsReport200Response GetAdInsightsReport(string reportRunId, string accountId, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<GetAdInsightsReport200Response> localVarResponse = GetAdInsightsReportWithHttpInfo(reportRunId, accountId, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Poll an async insights report run (Meta) Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="reportRunId"></param>
+        /// <param name="accountId">Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run).</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="after"> (optional)</param>
+        /// <returns>ApiResponse of GetAdInsightsReport200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdInsightsReport200Response> GetAdInsightsReportWithHttpInfo(string reportRunId, string accountId, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'reportRunId' is set
+            if (reportRunId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'reportRunId' when calling AdsApi->GetAdInsightsReport");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetAdInsightsReport");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("reportRunId", Zernio.Client.ClientUtils.ParameterToString(reportRunId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdInsightsReport200Response>("/v1/ads/insights/reports/{reportRunId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdInsightsReport", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Poll an async insights report run (Meta) Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="reportRunId"></param>
+        /// <param name="accountId">Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run).</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdInsightsReport200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdInsightsReport200Response> GetAdInsightsReportAsync(string reportRunId, string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdInsightsReport200Response> localVarResponse = await GetAdInsightsReportWithHttpInfoAsync(reportRunId, accountId, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Poll an async insights report run (Meta) Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="reportRunId"></param>
+        /// <param name="accountId">Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run).</param>
+        /// <param name="limit"> (optional, default to 25)</param>
+        /// <param name="after"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdInsightsReport200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdInsightsReport200Response>> GetAdInsightsReportWithHttpInfoAsync(string reportRunId, string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'reportRunId' is set
+            if (reportRunId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'reportRunId' when calling AdsApi->GetAdInsightsReport");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetAdInsightsReport");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("reportRunId", Zernio.Client.ClientUtils.ParameterToString(reportRunId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdInsightsReport200Response>("/v1/ads/insights/reports/{reportRunId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdInsightsReport", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -7897,6 +8379,267 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListWhatsAppConversions", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Flexible live insights query (Meta) Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="level">Row granularity (optional)</param>
+        /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
+        /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
+        /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
+        /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
+        /// <param name="toDate">End of range (YYYY-MM-DD); requires fromDate. (optional)</param>
+        /// <param name="timeIncrement">Days per row (1-90), monthly, or all_days. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>QueryAdInsights200Response</returns>
+        public QueryAdInsights200Response QueryAdInsights(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = QueryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Flexible live insights query (Meta) Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="level">Row granularity (optional)</param>
+        /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
+        /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
+        /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
+        /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
+        /// <param name="toDate">End of range (YYYY-MM-DD); requires fromDate. (optional)</param>
+        /// <param name="timeIncrement">Days per row (1-90), monthly, or all_days. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of QueryAdInsights200Response</returns>
+        public Zernio.Client.ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->QueryAdInsights");
+
+            // verify the required parameter 'objectId' is set
+            if (objectId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'objectId' when calling AdsApi->QueryAdInsights");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "objectId", objectId));
+            if (level != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "level", level));
+            }
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+            if (breakdowns != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "breakdowns", breakdowns));
+            }
+            if (filtering != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "filtering", filtering));
+            }
+            if (datePreset != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "datePreset", datePreset));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (timeIncrement != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "timeIncrement", timeIncrement));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<QueryAdInsights200Response>("/v1/ads/insights", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("QueryAdInsights", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Flexible live insights query (Meta) Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="level">Row granularity (optional)</param>
+        /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
+        /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
+        /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
+        /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
+        /// <param name="toDate">End of range (YYYY-MM-DD); requires fromDate. (optional)</param>
+        /// <param name="timeIncrement">Days per row (1-90), monthly, or all_days. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of QueryAdInsights200Response</returns>
+        public async System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = await QueryAdInsightsWithHttpInfoAsync(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Flexible live insights query (Meta) Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="level">Row granularity (optional)</param>
+        /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
+        /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
+        /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
+        /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
+        /// <param name="toDate">End of range (YYYY-MM-DD); requires fromDate. (optional)</param>
+        /// <param name="timeIncrement">Days per row (1-90), monthly, or all_days. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (QueryAdInsights200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->QueryAdInsights");
+
+            // verify the required parameter 'objectId' is set
+            if (objectId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'objectId' when calling AdsApi->QueryAdInsights");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "objectId", objectId));
+            if (level != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "level", level));
+            }
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+            if (breakdowns != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "breakdowns", breakdowns));
+            }
+            if (filtering != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "filtering", filtering));
+            }
+            if (datePreset != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "datePreset", datePreset));
+            }
+            if (fromDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fromDate", fromDate));
+            }
+            if (toDate != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "toDate", toDate));
+            }
+            if (timeIncrement != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "timeIncrement", timeIncrement));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<QueryAdInsights200Response>("/v1/ads/insights", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("QueryAdInsights", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

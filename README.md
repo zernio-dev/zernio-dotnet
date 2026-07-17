@@ -180,6 +180,7 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**AdjustConversions**](docs/AdsApi.md#adjustconversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
 *AdsApi* | [**ArchiveLeadForm**](docs/AdsApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
 *AdsApi* | [**BoostPost**](docs/AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad
+*AdsApi* | [**CreateAdInsightsReport**](docs/AdsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta)
 *AdsApi* | [**CreateConversionDestination**](docs/AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
 *AdsApi* | [**CreateCtwaAd**](docs/AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad
 *AdsApi* | [**CreateLeadForm**](docs/AdsApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form
@@ -191,6 +192,7 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**GetAd**](docs/AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details
 *AdsApi* | [**GetAdAnalytics**](docs/AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
 *AdsApi* | [**GetAdComments**](docs/AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
+*AdsApi* | [**GetAdInsightsReport**](docs/AdsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta)
 *AdsApi* | [**GetAdTrackingTags**](docs/AdsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
 *AdsApi* | [**GetCampaignAnalytics**](docs/AdsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
 *AdsApi* | [**GetConversionDestination**](docs/AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
@@ -212,6 +214,7 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**ListLeadForms**](docs/AdsApi.md#listleadforms) | **GET** /v1/ads/lead-forms | List lead forms
 *AdsApi* | [**ListLeads**](docs/AdsApi.md#listleads) | **GET** /v1/ads/leads | List submitted leads
 *AdsApi* | [**ListWhatsAppConversions**](docs/AdsApi.md#listwhatsappconversions) | **GET** /v1/whatsapp/conversions | List conversion events
+*AdsApi* | [**QueryAdInsights**](docs/AdsApi.md#queryadinsights) | **GET** /v1/ads/insights | Flexible live insights query (Meta)
 *AdsApi* | [**RemoveConversionAssociations**](docs/AdsApi.md#removeconversionassociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
 *AdsApi* | [**SearchAdInterests**](docs/AdsApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests
 *AdsApi* | [**SearchAdTargeting**](docs/AdsApi.md#searchadtargeting) | **GET** /v1/ads/targeting/search | Search targeting options
@@ -752,6 +755,10 @@ Class | Method | HTTP request | Description
  - [Model.CreateAccountGroupRequest](docs/CreateAccountGroupRequest.md)
  - [Model.CreateAdAudience201Response](docs/CreateAdAudience201Response.md)
  - [Model.CreateAdAudienceRequest](docs/CreateAdAudienceRequest.md)
+ - [Model.CreateAdInsightsReport202Response](docs/CreateAdInsightsReport202Response.md)
+ - [Model.CreateAdInsightsReportRequest](docs/CreateAdInsightsReportRequest.md)
+ - [Model.CreateAdInsightsReportRequestFilteringInner](docs/CreateAdInsightsReportRequestFilteringInner.md)
+ - [Model.CreateAdInsightsReportRequestTimeIncrement](docs/CreateAdInsightsReportRequestTimeIncrement.md)
  - [Model.CreateApiKey201Response](docs/CreateApiKey201Response.md)
  - [Model.CreateApiKeyRequest](docs/CreateApiKeyRequest.md)
  - [Model.CreateBroadcast200Response](docs/CreateBroadcast200Response.md)
@@ -983,6 +990,8 @@ Class | Method | HTTP request | Description
  - [Model.GetAdComments200Response](docs/GetAdComments200Response.md)
  - [Model.GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
  - [Model.GetAdComments200ResponsePagination](docs/GetAdComments200ResponsePagination.md)
+ - [Model.GetAdInsightsReport200Response](docs/GetAdInsightsReport200Response.md)
+ - [Model.GetAdInsightsReport200ResponsePaging](docs/GetAdInsightsReport200ResponsePaging.md)
  - [Model.GetAdTrackingTags200Response](docs/GetAdTrackingTags200Response.md)
  - [Model.GetAdTree200Response](docs/GetAdTree200Response.md)
  - [Model.GetAdsTimeline200Response](docs/GetAdsTimeline200Response.md)
@@ -1527,6 +1536,8 @@ Class | Method | HTTP request | Description
  - [Model.PurchasePhoneNumber409Response](docs/PurchasePhoneNumber409Response.md)
  - [Model.PurchasePhoneNumberRequest](docs/PurchasePhoneNumberRequest.md)
  - [Model.PurchaseWhatsAppPhoneNumberRequest](docs/PurchaseWhatsAppPhoneNumberRequest.md)
+ - [Model.QueryAdInsights200Response](docs/QueryAdInsights200Response.md)
+ - [Model.QueryAdInsights200ResponsePaging](docs/QueryAdInsights200ResponsePaging.md)
  - [Model.QueueDeleteResponse](docs/QueueDeleteResponse.md)
  - [Model.QueueNextSlotResponse](docs/QueueNextSlotResponse.md)
  - [Model.QueuePreviewResponse](docs/QueuePreviewResponse.md)

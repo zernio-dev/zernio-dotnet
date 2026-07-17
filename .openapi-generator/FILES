@@ -151,6 +151,10 @@ docs/CreateAccountGroup201ResponseGroup.md
 docs/CreateAccountGroupRequest.md
 docs/CreateAdAudience201Response.md
 docs/CreateAdAudienceRequest.md
+docs/CreateAdInsightsReport202Response.md
+docs/CreateAdInsightsReportRequest.md
+docs/CreateAdInsightsReportRequestFilteringInner.md
+docs/CreateAdInsightsReportRequestTimeIncrement.md
 docs/CreateApiKey201Response.md
 docs/CreateApiKeyRequest.md
 docs/CreateBroadcast200Response.md
@@ -392,6 +396,8 @@ docs/GetAdAudience200Response.md
 docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
 docs/GetAdComments200ResponsePagination.md
+docs/GetAdInsightsReport200Response.md
+docs/GetAdInsightsReport200ResponsePaging.md
 docs/GetAdTrackingTags200Response.md
 docs/GetAdTree200Response.md
 docs/GetAdsTimeline200Response.md
@@ -947,6 +953,8 @@ docs/PurchasePhoneNumber202Response.md
 docs/PurchasePhoneNumber409Response.md
 docs/PurchasePhoneNumberRequest.md
 docs/PurchaseWhatsAppPhoneNumberRequest.md
+docs/QueryAdInsights200Response.md
+docs/QueryAdInsights200ResponsePaging.md
 docs/QueueApi.md
 docs/QueueDeleteResponse.md
 docs/QueueNextSlotResponse.md
@@ -1650,6 +1658,10 @@ src/Zernio.Test/Model/CreateAccountGroup201ResponseTests.cs
 src/Zernio.Test/Model/CreateAccountGroupRequestTests.cs
 src/Zernio.Test/Model/CreateAdAudience201ResponseTests.cs
 src/Zernio.Test/Model/CreateAdAudienceRequestTests.cs
+src/Zernio.Test/Model/CreateAdInsightsReport202ResponseTests.cs
+src/Zernio.Test/Model/CreateAdInsightsReportRequestFilteringInnerTests.cs
+src/Zernio.Test/Model/CreateAdInsightsReportRequestTests.cs
+src/Zernio.Test/Model/CreateAdInsightsReportRequestTimeIncrementTests.cs
 src/Zernio.Test/Model/CreateApiKey201ResponseTests.cs
 src/Zernio.Test/Model/CreateApiKeyRequestTests.cs
 src/Zernio.Test/Model/CreateBroadcast200ResponseBroadcastTests.cs
@@ -1881,6 +1893,8 @@ src/Zernio.Test/Model/GetAdAudience200ResponseTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseMetaTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetAdComments200ResponseTests.cs
+src/Zernio.Test/Model/GetAdInsightsReport200ResponsePagingTests.cs
+src/Zernio.Test/Model/GetAdInsightsReport200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTree200ResponseTests.cs
 src/Zernio.Test/Model/GetAdsTimeline200ResponseRowsInnerTests.cs
@@ -2425,6 +2439,8 @@ src/Zernio.Test/Model/PurchasePhoneNumber202ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumber409ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumberRequestTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumberRequestTests.cs
+src/Zernio.Test/Model/QueryAdInsights200ResponsePagingTests.cs
+src/Zernio.Test/Model/QueryAdInsights200ResponseTests.cs
 src/Zernio.Test/Model/QueueDeleteResponseTests.cs
 src/Zernio.Test/Model/QueueNextSlotResponseTests.cs
 src/Zernio.Test/Model/QueuePreviewResponseTests.cs
@@ -3126,6 +3142,10 @@ src/Zernio/Model/CreateAccountGroup201ResponseGroup.cs
 src/Zernio/Model/CreateAccountGroupRequest.cs
 src/Zernio/Model/CreateAdAudience201Response.cs
 src/Zernio/Model/CreateAdAudienceRequest.cs
+src/Zernio/Model/CreateAdInsightsReport202Response.cs
+src/Zernio/Model/CreateAdInsightsReportRequest.cs
+src/Zernio/Model/CreateAdInsightsReportRequestFilteringInner.cs
+src/Zernio/Model/CreateAdInsightsReportRequestTimeIncrement.cs
 src/Zernio/Model/CreateApiKey201Response.cs
 src/Zernio/Model/CreateApiKeyRequest.cs
 src/Zernio/Model/CreateBroadcast200Response.cs
@@ -3357,6 +3377,8 @@ src/Zernio/Model/GetAdAudience200Response.cs
 src/Zernio/Model/GetAdComments200Response.cs
 src/Zernio/Model/GetAdComments200ResponseMeta.cs
 src/Zernio/Model/GetAdComments200ResponsePagination.cs
+src/Zernio/Model/GetAdInsightsReport200Response.cs
+src/Zernio/Model/GetAdInsightsReport200ResponsePaging.cs
 src/Zernio/Model/GetAdTrackingTags200Response.cs
 src/Zernio/Model/GetAdTree200Response.cs
 src/Zernio/Model/GetAdsTimeline200Response.cs
@@ -3901,6 +3923,8 @@ src/Zernio/Model/PurchasePhoneNumber202Response.cs
 src/Zernio/Model/PurchasePhoneNumber409Response.cs
 src/Zernio/Model/PurchasePhoneNumberRequest.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumberRequest.cs
+src/Zernio/Model/QueryAdInsights200Response.cs
+src/Zernio/Model/QueryAdInsights200ResponsePaging.cs
 src/Zernio/Model/QueueDeleteResponse.cs
 src/Zernio/Model/QueueNextSlotResponse.cs
 src/Zernio/Model/QueuePreviewResponse.cs
