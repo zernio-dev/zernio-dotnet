@@ -204,6 +204,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Custom field created |  -  |
+| **400** | Invalid request body |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | Duplicate slug |  -  |
 
@@ -300,6 +301,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Custom field deleted |  -  |
+| **400** | Invalid fieldId format |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -400,6 +402,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List of custom field definitions |  -  |
+| **400** | Invalid profileId format |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -506,7 +509,7 @@ void (empty response body)
 
 <a id="updatecustomfield"></a>
 # **UpdateCustomField**
-> UpdateCustomField200Response UpdateCustomField (string fieldId, UpdateCustomFieldRequest? updateCustomFieldRequest = null)
+> UpdateCustomField200Response UpdateCustomField (string fieldId, UpdateCustomFieldRequest updateCustomFieldRequest)
 
 Update custom field
 
@@ -537,7 +540,7 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new CustomFieldsApi(httpClient, config, httpClientHandler);
             var fieldId = "fieldId_example";  // string | 
-            var updateCustomFieldRequest = new UpdateCustomFieldRequest?(); // UpdateCustomFieldRequest? |  (optional) 
+            var updateCustomFieldRequest = new UpdateCustomFieldRequest(); // UpdateCustomFieldRequest | 
 
             try
             {
@@ -581,7 +584,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **fieldId** | **string** |  |  |
-| **updateCustomFieldRequest** | [**UpdateCustomFieldRequest?**](UpdateCustomFieldRequest?.md) |  | [optional]  |
+| **updateCustomFieldRequest** | [**UpdateCustomFieldRequest**](UpdateCustomFieldRequest.md) |  |  |
 
 ### Return type
 
@@ -601,6 +604,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Custom field updated |  -  |
+| **400** | Invalid fieldId or request body |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 

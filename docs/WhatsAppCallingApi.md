@@ -112,6 +112,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Disabled |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Phone number not found |  -  |
 
@@ -210,6 +211,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Disabled |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp phone number not found |  -  |
 
@@ -312,6 +314,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calling enabled |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Phone number not found |  -  |
 | **422** | Not eligible to enable calling: not on usage-based billing, or the number&#39;s messaging limit is below Meta&#39;s ~2,000-daily-recipient threshold (TIER_250). Warm the number up to raise the limit. |  -  |
@@ -415,6 +418,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calling enabled |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp phone number not found |  -  |
 | **422** | Not eligible to enable calling: not on usage-based billing, or the number&#39;s messaging limit is below Meta&#39;s ~2,000-daily-recipient threshold (TIER_250). Warm the number up to raise the limit. |  -  |
@@ -929,6 +933,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calling config |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
 
@@ -1342,6 +1347,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Phone number not found |  -  |
 | **422** | Calling must be enabled before settings can be updated |  -  |
@@ -1441,6 +1447,7 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp phone number not found |  -  |
 | **422** | Calling must be enabled before settings can be updated |  -  |

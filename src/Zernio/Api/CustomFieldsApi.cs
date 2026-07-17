@@ -147,9 +147,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
-        /// <param name="updateCustomFieldRequest"> (optional)</param>
+        /// <param name="updateCustomFieldRequest"></param>
         /// <returns>UpdateCustomField200Response</returns>
-        UpdateCustomField200Response UpdateCustomField(string fieldId, UpdateCustomFieldRequest? updateCustomFieldRequest = default);
+        UpdateCustomField200Response UpdateCustomField(string fieldId, UpdateCustomFieldRequest updateCustomFieldRequest);
 
         /// <summary>
         /// Update custom field
@@ -159,9 +159,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
-        /// <param name="updateCustomFieldRequest"> (optional)</param>
+        /// <param name="updateCustomFieldRequest"></param>
         /// <returns>ApiResponse of UpdateCustomField200Response</returns>
-        ApiResponse<UpdateCustomField200Response> UpdateCustomFieldWithHttpInfo(string fieldId, UpdateCustomFieldRequest? updateCustomFieldRequest = default);
+        ApiResponse<UpdateCustomField200Response> UpdateCustomFieldWithHttpInfo(string fieldId, UpdateCustomFieldRequest updateCustomFieldRequest);
         #endregion Synchronous Operations
     }
 
@@ -300,10 +300,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
-        /// <param name="updateCustomFieldRequest"> (optional)</param>
+        /// <param name="updateCustomFieldRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateCustomField200Response</returns>
-        System.Threading.Tasks.Task<UpdateCustomField200Response> UpdateCustomFieldAsync(string fieldId, UpdateCustomFieldRequest? updateCustomFieldRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<UpdateCustomField200Response> UpdateCustomFieldAsync(string fieldId, UpdateCustomFieldRequest updateCustomFieldRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update custom field
@@ -313,10 +313,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
-        /// <param name="updateCustomFieldRequest"> (optional)</param>
+        /// <param name="updateCustomFieldRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateCustomField200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdateCustomField200Response>> UpdateCustomFieldWithHttpInfoAsync(string fieldId, UpdateCustomFieldRequest? updateCustomFieldRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<UpdateCustomField200Response>> UpdateCustomFieldWithHttpInfoAsync(string fieldId, UpdateCustomFieldRequest updateCustomFieldRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -1208,9 +1208,9 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
-        /// <param name="updateCustomFieldRequest"> (optional)</param>
+        /// <param name="updateCustomFieldRequest"></param>
         /// <returns>UpdateCustomField200Response</returns>
-        public UpdateCustomField200Response UpdateCustomField(string fieldId, UpdateCustomFieldRequest? updateCustomFieldRequest = default)
+        public UpdateCustomField200Response UpdateCustomField(string fieldId, UpdateCustomFieldRequest updateCustomFieldRequest)
         {
             Zernio.Client.ApiResponse<UpdateCustomField200Response> localVarResponse = UpdateCustomFieldWithHttpInfo(fieldId, updateCustomFieldRequest);
             return localVarResponse.Data;
@@ -1221,13 +1221,17 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
-        /// <param name="updateCustomFieldRequest"> (optional)</param>
+        /// <param name="updateCustomFieldRequest"></param>
         /// <returns>ApiResponse of UpdateCustomField200Response</returns>
-        public Zernio.Client.ApiResponse<UpdateCustomField200Response> UpdateCustomFieldWithHttpInfo(string fieldId, UpdateCustomFieldRequest? updateCustomFieldRequest = default)
+        public Zernio.Client.ApiResponse<UpdateCustomField200Response> UpdateCustomFieldWithHttpInfo(string fieldId, UpdateCustomFieldRequest updateCustomFieldRequest)
         {
             // verify the required parameter 'fieldId' is set
             if (fieldId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'fieldId' when calling CustomFieldsApi->UpdateCustomField");
+
+            // verify the required parameter 'updateCustomFieldRequest' is set
+            if (updateCustomFieldRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateCustomFieldRequest' when calling CustomFieldsApi->UpdateCustomField");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1273,10 +1277,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
-        /// <param name="updateCustomFieldRequest"> (optional)</param>
+        /// <param name="updateCustomFieldRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateCustomField200Response</returns>
-        public async System.Threading.Tasks.Task<UpdateCustomField200Response> UpdateCustomFieldAsync(string fieldId, UpdateCustomFieldRequest? updateCustomFieldRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<UpdateCustomField200Response> UpdateCustomFieldAsync(string fieldId, UpdateCustomFieldRequest updateCustomFieldRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             Zernio.Client.ApiResponse<UpdateCustomField200Response> localVarResponse = await UpdateCustomFieldWithHttpInfoAsync(fieldId, updateCustomFieldRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1287,14 +1291,18 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="fieldId"></param>
-        /// <param name="updateCustomFieldRequest"> (optional)</param>
+        /// <param name="updateCustomFieldRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateCustomField200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateCustomField200Response>> UpdateCustomFieldWithHttpInfoAsync(string fieldId, UpdateCustomFieldRequest? updateCustomFieldRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateCustomField200Response>> UpdateCustomFieldWithHttpInfoAsync(string fieldId, UpdateCustomFieldRequest updateCustomFieldRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'fieldId' is set
             if (fieldId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'fieldId' when calling CustomFieldsApi->UpdateCustomField");
+
+            // verify the required parameter 'updateCustomFieldRequest' is set
+            if (updateCustomFieldRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateCustomFieldRequest' when calling CustomFieldsApi->UpdateCustomField");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();

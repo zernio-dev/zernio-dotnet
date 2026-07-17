@@ -122,7 +122,7 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string fieldId = null;
-            //UpdateCustomFieldRequest? updateCustomFieldRequest = null;
+            //UpdateCustomFieldRequest updateCustomFieldRequest = null;
             //var response = instance.UpdateCustomField(fieldId, updateCustomFieldRequest);
             //Assert.IsType<UpdateCustomField200Response>(response);
         }
