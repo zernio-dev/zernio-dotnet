@@ -43,8 +43,8 @@ namespace Zernio.Model
         /// <param name="timezoneName">IANA timezone of the ad account (Meta only). Drives daily-budget reset and Insights day boundaries..</param>
         /// <param name="timezoneOffsetHoursUtc">Signed UTC offset in hours, reflecting current DST (Meta only)..</param>
         /// <param name="minimumDailyBudget">Meta only. Minimum daily budget for the account, in the account currency&#39;s major units. This is the impressions-billed minimum; other billing events have higher minimums. Absent when the connected token cannot read it..</param>
-        /// <param name="selectable">Meta only. Whether the account can create/run ads now. Absent (treat as true) on non-Meta platforms..</param>
-        /// <param name="unusableReason">Meta only. Human-readable reason when selectable is false; null when selectable..</param>
+        /// <param name="selectable">Meta and X only. Whether the account can create/run ads now. Absent (treat as true) on other platforms..</param>
+        /// <param name="unusableReason">Meta and X only. Human-readable reason when selectable is false; null when selectable..</param>
         public ListAdAccounts200ResponseAccountsInner(string id = default, string name = default, string currency = default, string status = default, string timezoneName = default, decimal timezoneOffsetHoursUtc = default, decimal minimumDailyBudget = default, bool selectable = default, string unusableReason = default)
         {
             this.Id = id;
@@ -105,16 +105,16 @@ namespace Zernio.Model
         public decimal MinimumDailyBudget { get; set; }
 
         /// <summary>
-        /// Meta only. Whether the account can create/run ads now. Absent (treat as true) on non-Meta platforms.
+        /// Meta and X only. Whether the account can create/run ads now. Absent (treat as true) on other platforms.
         /// </summary>
-        /// <value>Meta only. Whether the account can create/run ads now. Absent (treat as true) on non-Meta platforms.</value>
+        /// <value>Meta and X only. Whether the account can create/run ads now. Absent (treat as true) on other platforms.</value>
         [DataMember(Name = "selectable", EmitDefaultValue = true)]
         public bool Selectable { get; set; }
 
         /// <summary>
-        /// Meta only. Human-readable reason when selectable is false; null when selectable.
+        /// Meta and X only. Human-readable reason when selectable is false; null when selectable.
         /// </summary>
-        /// <value>Meta only. Human-readable reason when selectable is false; null when selectable.</value>
+        /// <value>Meta and X only. Human-readable reason when selectable is false; null when selectable.</value>
         [DataMember(Name = "unusableReason", EmitDefaultValue = true)]
         public string UnusableReason { get; set; }
 

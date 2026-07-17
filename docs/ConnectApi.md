@@ -142,9 +142,9 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Location assigned to the target profile |  -  |
-| **400** | Invalid body |  -  |
+| **400** | Invalid body, or selected location not found under the Google account |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Payment required |  -  |
+| **403** | Payment required, or target profile exceeds plan limit |  -  |
 | **404** | Source Google Business account not found |  -  |
 | **409** | Target profile already has a Google Business connection (use PUT gmb-locations to switch its location) |  -  |
 
