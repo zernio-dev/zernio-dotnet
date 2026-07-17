@@ -4,6 +4,7 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
+| [**AssignGoogleBusinessLocation**](ConnectApi.md#assigngooglebusinesslocation) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign GBP location to another profile |
 | [**CompleteTelegramConnect**](ConnectApi.md#completetelegramconnect) | **PATCH** /v1/connect/telegram | Check Telegram status |
 | [**CompleteWhatsAppPhoneSelection**](ConnectApi.md#completewhatsappphoneselection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection |
 | [**ConfigureTikTokAdsBrandIdentity**](ConnectApi.md#configuretiktokadsbrandidentity) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity |
@@ -43,6 +44,111 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateRedditSubreddits**](ConnectApi.md#updateredditsubreddits) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit |
 | [**UpdateYoutubeDefaultPlaylist**](ConnectApi.md#updateyoutubedefaultplaylist) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist |
 | [**VoteRedditThing**](ConnectApi.md#voteredditthing) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment |
+
+<a id="assigngooglebusinesslocation"></a>
+# **AssignGoogleBusinessLocation**
+> AssignGoogleBusinessLocation200Response AssignGoogleBusinessLocation (string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest)
+
+Assign GBP location to another profile
+
+Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client's profile via this endpoint. The path `accountId` is a SOURCE connected GBP account (the token holder); the body `profileId` is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class AssignGoogleBusinessLocationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new ConnectApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | A source connected GBP account whose OAuth grant is reused.
+            var assignGoogleBusinessLocationRequest = new AssignGoogleBusinessLocationRequest(); // AssignGoogleBusinessLocationRequest | 
+
+            try
+            {
+                // Assign GBP location to another profile
+                AssignGoogleBusinessLocation200Response result = apiInstance.AssignGoogleBusinessLocation(accountId, assignGoogleBusinessLocationRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling ConnectApi.AssignGoogleBusinessLocation: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the AssignGoogleBusinessLocationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Assign GBP location to another profile
+    ApiResponse<AssignGoogleBusinessLocation200Response> response = apiInstance.AssignGoogleBusinessLocationWithHttpInfo(accountId, assignGoogleBusinessLocationRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling ConnectApi.AssignGoogleBusinessLocationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | A source connected GBP account whose OAuth grant is reused. |  |
+| **assignGoogleBusinessLocationRequest** | [**AssignGoogleBusinessLocationRequest**](AssignGoogleBusinessLocationRequest.md) |  |  |
+
+### Return type
+
+[**AssignGoogleBusinessLocation200Response**](AssignGoogleBusinessLocation200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Location assigned to the target profile |  -  |
+| **400** | Invalid body |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Payment required |  -  |
+| **404** | Source Google Business account not found |  -  |
+| **409** | Target profile already has a Google Business connection (use PUT gmb-locations to switch its location) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="completetelegramconnect"></a>
 # **CompleteTelegramConnect**
@@ -2850,6 +2956,7 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected page not found in available pages |  -  |
+| **409** | Reconnect identity mismatch. The OAuth was initiated as a &#x60;force&#x3D;true&#x60; token-recovery re-auth (&#x60;GET /v1/connect/{platform}/ads&#x60;), but the grant landed on a different Facebook user or page than the connected account. The existing account is left untouched.  |  -  |
 | **500** | Failed to save Facebook connection |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

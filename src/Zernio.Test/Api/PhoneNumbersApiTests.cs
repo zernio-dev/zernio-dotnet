@@ -74,7 +74,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string country = null;
-            //var response = instance.CheckPhoneNumberAvailability(country);
+            //string? numberType = null;
+            //var response = instance.CheckPhoneNumberAvailability(country, numberType);
             //Assert.IsType<CheckPhoneNumberAvailability200Response>(response);
         }
 
@@ -134,7 +135,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string country = null;
-            //var response = instance.GetPhoneNumberKycForm(country);
+            //string? numberType = null;
+            //var response = instance.GetPhoneNumberKycForm(country, numberType);
             //Assert.IsType<GetPhoneNumberKycForm200Response>(response);
         }
 

@@ -34,6 +34,45 @@ namespace Zernio.Model
     public partial class PurchasePhoneNumberRequest : IValidatableObject
     {
         /// <summary>
+        /// Which of the country&#39;s offered number types to order (see &#x60;types[]&#x60; on GET /v1/phone-numbers/countries). Omitted &#x3D; the country&#39;s default type, which is always the WhatsApp-safe choice. Capabilities, price, and KYC requirements are per (country, type): toll_free can never connect WhatsApp (400 when combined with connectWhatsapp:true), and wantsSms:true requires an SMS-capable type. 
+        /// </summary>
+        /// <value>Which of the country&#39;s offered number types to order (see &#x60;types[]&#x60; on GET /v1/phone-numbers/countries). Omitted &#x3D; the country&#39;s default type, which is always the WhatsApp-safe choice. Capabilities, price, and KYC requirements are per (country, type): toll_free can never connect WhatsApp (400 when combined with connectWhatsapp:true), and wantsSms:true requires an SMS-capable type. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum NumberTypeEnum
+        {
+            /// <summary>
+            /// Enum Local for value: local
+            /// </summary>
+            [EnumMember(Value = "local")]
+            Local = 1,
+
+            /// <summary>
+            /// Enum Mobile for value: mobile
+            /// </summary>
+            [EnumMember(Value = "mobile")]
+            Mobile = 2,
+
+            /// <summary>
+            /// Enum National for value: national
+            /// </summary>
+            [EnumMember(Value = "national")]
+            National = 3,
+
+            /// <summary>
+            /// Enum TollFree for value: toll_free
+            /// </summary>
+            [EnumMember(Value = "toll_free")]
+            TollFree = 4
+        }
+
+
+        /// <summary>
+        /// Which of the country&#39;s offered number types to order (see &#x60;types[]&#x60; on GET /v1/phone-numbers/countries). Omitted &#x3D; the country&#39;s default type, which is always the WhatsApp-safe choice. Capabilities, price, and KYC requirements are per (country, type): toll_free can never connect WhatsApp (400 when combined with connectWhatsapp:true), and wantsSms:true requires an SMS-capable type. 
+        /// </summary>
+        /// <value>Which of the country&#39;s offered number types to order (see &#x60;types[]&#x60; on GET /v1/phone-numbers/countries). Omitted &#x3D; the country&#39;s default type, which is always the WhatsApp-safe choice. Capabilities, price, and KYC requirements are per (country, type): toll_free can never connect WhatsApp (400 when combined with connectWhatsapp:true), and wantsSms:true requires an SMS-capable type. </value>
+        [DataMember(Name = "numberType", EmitDefaultValue = false)]
+        public NumberTypeEnum? NumberType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="PurchasePhoneNumberRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -43,11 +82,12 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="profileId">Profile to associate the number with (required).</param>
         /// <param name="country">ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/phone-numbers/countries.  (default to &quot;US&quot;).</param>
+        /// <param name="numberType">Which of the country&#39;s offered number types to order (see &#x60;types[]&#x60; on GET /v1/phone-numbers/countries). Omitted &#x3D; the country&#39;s default type, which is always the WhatsApp-safe choice. Capabilities, price, and KYC requirements are per (country, type): toll_free can never connect WhatsApp (400 when combined with connectWhatsapp:true), and wantsSms:true requires an SMS-capable type. .</param>
         /// <param name="connectWhatsapp">A phone number is the unit; WhatsApp is one optional feature. Pass false to buy a STANDALONE number (Calls/SMS only): provisioning skips the Meta pre-verify/OTP steps and the number activates immediately. Omitted defaults to the WhatsApp provisioning path. WhatsApp can be connected to a standalone number later from the connect flow.  (default to true).</param>
         /// <param name="wantsSms">SMS capability is per-number, not per-country. Pass true to provision from the SMS-capable inventory pool so the number can actually text (see also GET /v1/phone-numbers/available with sms&#x3D;true, and smsAvailable on GET /v1/phone-numbers/countries).  (default to false).</param>
         /// <param name="purchaseIntentId">Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. .</param>
         /// <param name="allowMultiple">Any second purchase within 10 minutes of a previous one is rejected with 409 code PURCHASE_VELOCITY as duplicate protection. Pass true to confirm the additional purchase is intentional (e.g. bulk provisioning).  (default to false).</param>
-        public PurchasePhoneNumberRequest(string profileId = default, string country = @"US", bool connectWhatsapp = true, bool wantsSms = false, string purchaseIntentId = default, bool allowMultiple = false)
+        public PurchasePhoneNumberRequest(string profileId = default, string country = @"US", NumberTypeEnum? numberType = default, bool connectWhatsapp = true, bool wantsSms = false, string purchaseIntentId = default, bool allowMultiple = false)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -57,6 +97,7 @@ namespace Zernio.Model
             this.ProfileId = profileId;
             // use default value if no "country" provided
             this.Country = country ?? @"US";
+            this.NumberType = numberType;
             this.ConnectWhatsapp = connectWhatsapp;
             this.WantsSms = wantsSms;
             this.PurchaseIntentId = purchaseIntentId;
@@ -115,6 +156,7 @@ namespace Zernio.Model
             sb.Append("class PurchasePhoneNumberRequest {\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  NumberType: ").Append(NumberType).Append("\n");
             sb.Append("  ConnectWhatsapp: ").Append(ConnectWhatsapp).Append("\n");
             sb.Append("  WantsSms: ").Append(WantsSms).Append("\n");
             sb.Append("  PurchaseIntentId: ").Append(PurchaseIntentId).Append("\n");

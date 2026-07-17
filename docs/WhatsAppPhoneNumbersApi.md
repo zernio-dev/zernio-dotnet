@@ -22,7 +22,7 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="checkwhatsappnumberavailability"></a>
 # **CheckWhatsAppNumberAvailability**
-> CheckPhoneNumberAvailability200Response CheckWhatsAppNumberAvailability (string country)
+> CheckPhoneNumberAvailability200Response CheckWhatsAppNumberAvailability (string country, string? numberType = null)
 
 Check country availability
 
@@ -53,11 +53,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WhatsAppPhoneNumbersApi(httpClient, config, httpClientHandler);
             var country = "country_example";  // string | ISO-2 country code.
+            var numberType = "local";  // string? | Check a specific offered type (stock and address constraints are per type). Omitted = the country's default type. (optional) 
 
             try
             {
                 // Check country availability
-                CheckPhoneNumberAvailability200Response result = apiInstance.CheckWhatsAppNumberAvailability(country);
+                CheckPhoneNumberAvailability200Response result = apiInstance.CheckWhatsAppNumberAvailability(country, numberType);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -78,7 +79,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Check country availability
-    ApiResponse<CheckPhoneNumberAvailability200Response> response = apiInstance.CheckWhatsAppNumberAvailabilityWithHttpInfo(country);
+    ApiResponse<CheckPhoneNumberAvailability200Response> response = apiInstance.CheckWhatsAppNumberAvailabilityWithHttpInfo(country, numberType);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -96,6 +97,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **country** | **string** | ISO-2 country code. |  |
+| **numberType** | **string?** | Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. | [optional]  |
 
 ### Return type
 

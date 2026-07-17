@@ -1,13 +1,11 @@
-# Zernio.Model.PurchasePhoneNumber202Response
+# Zernio.Model.SelectFacebookPage409Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | **string** |  | [optional] 
-**Country** | **string** |  | [optional] 
-**NumberType** | **string** | The type that will be ordered after KYC approval. | [optional] 
-**KycUrl** | **string** |  | [optional] 
+**Error** | **string** |  | [optional] 
+**Code** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

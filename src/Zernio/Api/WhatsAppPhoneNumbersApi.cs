@@ -36,9 +36,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
+        /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
         /// <returns>CheckPhoneNumberAvailability200Response</returns>
         [Obsolete]
-        CheckPhoneNumberAvailability200Response CheckWhatsAppNumberAvailability(string country);
+        CheckPhoneNumberAvailability200Response CheckWhatsAppNumberAvailability(string country, string? numberType = default);
 
         /// <summary>
         /// Check country availability
@@ -48,9 +49,10 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
+        /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
         /// <returns>ApiResponse of CheckPhoneNumberAvailability200Response</returns>
         [Obsolete]
-        ApiResponse<CheckPhoneNumberAvailability200Response> CheckWhatsAppNumberAvailabilityWithHttpInfo(string country);
+        ApiResponse<CheckPhoneNumberAvailability200Response> CheckWhatsAppNumberAvailabilityWithHttpInfo(string country, string? numberType = default);
         /// <summary>
         /// Create a hosted KYC link
         /// </summary>
@@ -404,10 +406,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
+        /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CheckPhoneNumberAvailability200Response</returns>
         [Obsolete]
-        System.Threading.Tasks.Task<CheckPhoneNumberAvailability200Response> CheckWhatsAppNumberAvailabilityAsync(string country, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<CheckPhoneNumberAvailability200Response> CheckWhatsAppNumberAvailabilityAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Check country availability
@@ -417,10 +420,11 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
+        /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CheckPhoneNumberAvailability200Response)</returns>
         [Obsolete]
-        System.Threading.Tasks.Task<ApiResponse<CheckPhoneNumberAvailability200Response>> CheckWhatsAppNumberAvailabilityWithHttpInfoAsync(string country, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<CheckPhoneNumberAvailability200Response>> CheckWhatsAppNumberAvailabilityWithHttpInfoAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a hosted KYC link
         /// </summary>
@@ -1003,11 +1007,12 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
+        /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
         /// <returns>CheckPhoneNumberAvailability200Response</returns>
         [Obsolete]
-        public CheckPhoneNumberAvailability200Response CheckWhatsAppNumberAvailability(string country)
+        public CheckPhoneNumberAvailability200Response CheckWhatsAppNumberAvailability(string country, string? numberType = default)
         {
-            Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> localVarResponse = CheckWhatsAppNumberAvailabilityWithHttpInfo(country);
+            Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> localVarResponse = CheckWhatsAppNumberAvailabilityWithHttpInfo(country, numberType);
             return localVarResponse.Data;
         }
 
@@ -1016,9 +1021,10 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
+        /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
         /// <returns>ApiResponse of CheckPhoneNumberAvailability200Response</returns>
         [Obsolete]
-        public Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> CheckWhatsAppNumberAvailabilityWithHttpInfo(string country)
+        public Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> CheckWhatsAppNumberAvailabilityWithHttpInfo(string country, string? numberType = default)
         {
             // verify the required parameter 'country' is set
             if (country == null)
@@ -1041,6 +1047,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "country", country));
+            if (numberType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "numberType", numberType));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -1066,12 +1076,13 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
+        /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CheckPhoneNumberAvailability200Response</returns>
         [Obsolete]
-        public async System.Threading.Tasks.Task<CheckPhoneNumberAvailability200Response> CheckWhatsAppNumberAvailabilityAsync(string country, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<CheckPhoneNumberAvailability200Response> CheckWhatsAppNumberAvailabilityAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> localVarResponse = await CheckWhatsAppNumberAvailabilityWithHttpInfoAsync(country, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> localVarResponse = await CheckWhatsAppNumberAvailabilityWithHttpInfoAsync(country, numberType, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1080,10 +1091,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
+        /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CheckPhoneNumberAvailability200Response)</returns>
         [Obsolete]
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response>> CheckWhatsAppNumberAvailabilityWithHttpInfoAsync(string country, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response>> CheckWhatsAppNumberAvailabilityWithHttpInfoAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'country' is set
             if (country == null)
@@ -1108,6 +1120,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "country", country));
+            if (numberType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "numberType", numberType));
+            }
 
             // authentication (bearerAuth) required
             // bearer authentication required

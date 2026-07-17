@@ -276,6 +276,7 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**SetCommentModeration**](docs/CommentsApi.md#setcommentmoderation) | **POST** /v1/inbox/comments/{postId}/{commentId}/moderation | Set comment moderation status
 *CommentsApi* | [**UnhideInboxComment**](docs/CommentsApi.md#unhideinboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/hide | Unhide comment
 *CommentsApi* | [**UnlikeInboxComment**](docs/CommentsApi.md#unlikeinboxcomment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
+*ConnectApi* | [**AssignGoogleBusinessLocation**](docs/ConnectApi.md#assigngooglebusinesslocation) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign GBP location to another profile
 *ConnectApi* | [**CompleteTelegramConnect**](docs/ConnectApi.md#completetelegramconnect) | **PATCH** /v1/connect/telegram | Check Telegram status
 *ConnectApi* | [**CompleteWhatsAppPhoneSelection**](docs/ConnectApi.md#completewhatsappphoneselection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection
 *ConnectApi* | [**ConfigureTikTokAdsBrandIdentity**](docs/ConnectApi.md#configuretiktokadsbrandidentity) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity
@@ -672,6 +673,9 @@ Class | Method | HTTP request | Description
  - [Model.AppealSmsRegistrationRequest](docs/AppealSmsRegistrationRequest.md)
  - [Model.ApproveWhatsAppGroupJoinRequestsRequest](docs/ApproveWhatsAppGroupJoinRequestsRequest.md)
  - [Model.ArchiveLeadForm200Response](docs/ArchiveLeadForm200Response.md)
+ - [Model.AssignGoogleBusinessLocation200Response](docs/AssignGoogleBusinessLocation200Response.md)
+ - [Model.AssignGoogleBusinessLocation200ResponseAccount](docs/AssignGoogleBusinessLocation200ResponseAccount.md)
+ - [Model.AssignGoogleBusinessLocationRequest](docs/AssignGoogleBusinessLocationRequest.md)
  - [Model.BatchGetGoogleBusinessReviews200Response](docs/BatchGetGoogleBusinessReviews200Response.md)
  - [Model.BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner](docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md)
  - [Model.BatchGetGoogleBusinessReviewsRequest](docs/BatchGetGoogleBusinessReviewsRequest.md)
@@ -1411,6 +1415,7 @@ Class | Method | HTTP request | Description
  - [Model.ListLogs200ResponsePagination](docs/ListLogs200ResponsePagination.md)
  - [Model.ListPhoneNumberCountries200Response](docs/ListPhoneNumberCountries200Response.md)
  - [Model.ListPhoneNumberCountries200ResponseCountriesInner](docs/ListPhoneNumberCountries200ResponseCountriesInner.md)
+ - [Model.ListPhoneNumberCountries200ResponseCountriesInnerTypesInner](docs/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.md)
  - [Model.ListPhoneNumberPortIns200Response](docs/ListPhoneNumberPortIns200Response.md)
  - [Model.ListPhoneNumberPortIns200ResponseOrdersInner](docs/ListPhoneNumberPortIns200ResponseOrdersInner.md)
  - [Model.ListPhoneNumbers200Response](docs/ListPhoneNumbers200Response.md)
@@ -1588,6 +1593,7 @@ Class | Method | HTTP request | Description
  - [Model.SearchReddit200Response](docs/SearchReddit200Response.md)
  - [Model.SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [Model.SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)
+ - [Model.SelectFacebookPage409Response](docs/SelectFacebookPage409Response.md)
  - [Model.SelectFacebookPageRequest](docs/SelectFacebookPageRequest.md)
  - [Model.SelectFacebookPageRequestUserProfile](docs/SelectFacebookPageRequestUserProfile.md)
  - [Model.SelectGoogleBusinessLocation200Response](docs/SelectGoogleBusinessLocation200Response.md)

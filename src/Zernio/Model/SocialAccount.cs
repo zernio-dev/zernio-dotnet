@@ -188,12 +188,13 @@ namespace Zernio.Model
         /// <param name="profilePicture">URL to the account&#39;s profile picture on the platform. May be null if the platform does not provide one..</param>
         /// <param name="profileUrl">Full profile URL for the connected account on its platform..</param>
         /// <param name="isActive">isActive (required).</param>
+        /// <param name="needsReconnection">The platform definitively reported the stored OAuth token as dead. While true, GET /v1/connect/{platform}/ads returns a fresh authUrl (implicit force&#x3D;true) instead of alreadyConnected, so re-running the connect flow recovers the account. Cleared automatically when the account is re-authorized. .</param>
         /// <param name="followersCount">Follower count (only included if user has analytics add-on).</param>
         /// <param name="followersLastUpdated">Last time follower count was updated (only included if user has analytics add-on).</param>
         /// <param name="parentAccountId">Reference to the parent posting SocialAccount. Set for ads accounts that share or derive from a posting account&#39;s OAuth token. null for standalone ads (Google Ads) and all posting accounts. .</param>
         /// <param name="enabled">Whether the user explicitly activated this account. false means the account was created as a side effect (e.g., posting account auto-created when user connected ads first). Posting UI and scheduler ignore accounts with enabled: false. .</param>
         /// <param name="metadata">Platform-specific metadata. Fields vary by platform. For WhatsApp accounts, includes: - qualityRating: Phone number quality rating from Meta (GREEN, YELLOW, RED, or UNKNOWN) - nameStatus: Display name review status (APPROVED, PENDING_REVIEW, DECLINED, or NONE). Messages cannot be sent until the display name is approved by Meta. - messagingLimitTier: Maximum unique business-initiated conversations per 24h rolling window (TIER_250, TIER_1K, TIER_10K, TIER_100K, or TIER_UNLIMITED). Scales automatically as quality rating improves. - verifiedName: Meta-verified business display name - displayPhoneNumber: Formatted phone number (e.g., \&quot;+1 555-123-4567\&quot;) - wabaId: WhatsApp Business Account ID - phoneNumberId: Meta phone number ID .</param>
-        public SocialAccount(string id = default, PlatformEnum platform = default, SocialAccountProfileId profileId = default, string username = default, string displayName = default, string profilePicture = default, string profileUrl = default, bool isActive = default, decimal followersCount = default, DateTime followersLastUpdated = default, string parentAccountId = default, bool enabled = default, Object metadata = default)
+        public SocialAccount(string id = default, PlatformEnum platform = default, SocialAccountProfileId profileId = default, string username = default, string displayName = default, string profilePicture = default, string profileUrl = default, bool isActive = default, bool needsReconnection = default, decimal followersCount = default, DateTime followersLastUpdated = default, string parentAccountId = default, bool enabled = default, Object metadata = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -213,6 +214,7 @@ namespace Zernio.Model
             this.DisplayName = displayName;
             this.ProfilePicture = profilePicture;
             this.ProfileUrl = profileUrl;
+            this.NeedsReconnection = needsReconnection;
             this.FollowersCount = followersCount;
             this.FollowersLastUpdated = followersLastUpdated;
             this.ParentAccountId = parentAccountId;
@@ -265,6 +267,13 @@ namespace Zernio.Model
         public bool IsActive { get; set; }
 
         /// <summary>
+        /// The platform definitively reported the stored OAuth token as dead. While true, GET /v1/connect/{platform}/ads returns a fresh authUrl (implicit force&#x3D;true) instead of alreadyConnected, so re-running the connect flow recovers the account. Cleared automatically when the account is re-authorized. 
+        /// </summary>
+        /// <value>The platform definitively reported the stored OAuth token as dead. While true, GET /v1/connect/{platform}/ads returns a fresh authUrl (implicit force&#x3D;true) instead of alreadyConnected, so re-running the connect flow recovers the account. Cleared automatically when the account is re-authorized. </value>
+        [DataMember(Name = "needsReconnection", EmitDefaultValue = true)]
+        public bool NeedsReconnection { get; set; }
+
+        /// <summary>
         /// Follower count (only included if user has analytics add-on)
         /// </summary>
         /// <value>Follower count (only included if user has analytics add-on)</value>
@@ -315,6 +324,7 @@ namespace Zernio.Model
             sb.Append("  ProfilePicture: ").Append(ProfilePicture).Append("\n");
             sb.Append("  ProfileUrl: ").Append(ProfileUrl).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
+            sb.Append("  NeedsReconnection: ").Append(NeedsReconnection).Append("\n");
             sb.Append("  FollowersCount: ").Append(FollowersCount).Append("\n");
             sb.Append("  FollowersLastUpdated: ").Append(FollowersLastUpdated).Append("\n");
             sb.Append("  ParentAccountId: ").Append(ParentAccountId).Append("\n");

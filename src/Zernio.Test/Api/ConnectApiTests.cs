@@ -55,6 +55,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test AssignGoogleBusinessLocation
+        /// </summary>
+        [Fact]
+        public void AssignGoogleBusinessLocationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest = null;
+            //var response = instance.AssignGoogleBusinessLocation(accountId, assignGoogleBusinessLocationRequest);
+            //Assert.IsType<AssignGoogleBusinessLocation200Response>(response);
+        }
+
+        /// <summary>
         /// Test CompleteTelegramConnect
         /// </summary>
         [Fact]

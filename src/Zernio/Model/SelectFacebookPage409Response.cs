@@ -28,63 +28,46 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// PurchasePhoneNumber202Response
+    /// SelectFacebookPage409Response
     /// </summary>
-    [DataContract(Name = "purchasePhoneNumber_202_response")]
-    public partial class PurchasePhoneNumber202Response : IValidatableObject
+    [DataContract(Name = "selectFacebookPage_409_response")]
+    public partial class SelectFacebookPage409Response : IValidatableObject
     {
         /// <summary>
-        /// Defines Status
+        /// Defines Code
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public enum CodeEnum
         {
             /// <summary>
-            /// Enum KycRequired for value: kyc_required
+            /// Enum RECONNECTACCOUNTMISMATCH for value: RECONNECT_ACCOUNT_MISMATCH
             /// </summary>
-            [EnumMember(Value = "kyc_required")]
-            KycRequired = 1
+            [EnumMember(Value = "RECONNECT_ACCOUNT_MISMATCH")]
+            RECONNECTACCOUNTMISMATCH = 1
         }
 
 
         /// <summary>
-        /// Gets or Sets Status
+        /// Gets or Sets Code
         /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public StatusEnum? Status { get; set; }
+        [DataMember(Name = "code", EmitDefaultValue = false)]
+        public CodeEnum? Code { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PurchasePhoneNumber202Response" /> class.
+        /// Initializes a new instance of the <see cref="SelectFacebookPage409Response" /> class.
         /// </summary>
-        /// <param name="status">status.</param>
-        /// <param name="country">country.</param>
-        /// <param name="numberType">The type that will be ordered after KYC approval..</param>
-        /// <param name="kycUrl">kycUrl.</param>
-        public PurchasePhoneNumber202Response(StatusEnum? status = default, string country = default, string numberType = default, string kycUrl = default)
+        /// <param name="error">error.</param>
+        /// <param name="code">code.</param>
+        public SelectFacebookPage409Response(string error = default, CodeEnum? code = default)
         {
-            this.Status = status;
-            this.Country = country;
-            this.NumberType = numberType;
-            this.KycUrl = kycUrl;
+            this.Error = error;
+            this.Code = code;
         }
 
         /// <summary>
-        /// Gets or Sets Country
+        /// Gets or Sets Error
         /// </summary>
-        [DataMember(Name = "country", EmitDefaultValue = false)]
-        public string Country { get; set; }
-
-        /// <summary>
-        /// The type that will be ordered after KYC approval.
-        /// </summary>
-        /// <value>The type that will be ordered after KYC approval.</value>
-        [DataMember(Name = "numberType", EmitDefaultValue = false)]
-        public string NumberType { get; set; }
-
-        /// <summary>
-        /// Gets or Sets KycUrl
-        /// </summary>
-        [DataMember(Name = "kycUrl", EmitDefaultValue = false)]
-        public string KycUrl { get; set; }
+        [DataMember(Name = "error", EmitDefaultValue = false)]
+        public string Error { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,11 +76,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PurchasePhoneNumber202Response {\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Country: ").Append(Country).Append("\n");
-            sb.Append("  NumberType: ").Append(NumberType).Append("\n");
-            sb.Append("  KycUrl: ").Append(KycUrl).Append("\n");
+            sb.Append("class SelectFacebookPage409Response {\n");
+            sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

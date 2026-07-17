@@ -66,6 +66,9 @@ docs/AppealSmsRegistration200Response.md
 docs/AppealSmsRegistrationRequest.md
 docs/ApproveWhatsAppGroupJoinRequestsRequest.md
 docs/ArchiveLeadForm200Response.md
+docs/AssignGoogleBusinessLocation200Response.md
+docs/AssignGoogleBusinessLocation200ResponseAccount.md
+docs/AssignGoogleBusinessLocationRequest.md
 docs/BatchGetGoogleBusinessReviews200Response.md
 docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md
 docs/BatchGetGoogleBusinessReviewsRequest.md
@@ -825,6 +828,7 @@ docs/ListLogs200ResponseLogsInner.md
 docs/ListLogs200ResponsePagination.md
 docs/ListPhoneNumberCountries200Response.md
 docs/ListPhoneNumberCountries200ResponseCountriesInner.md
+docs/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.md
 docs/ListPhoneNumberPortIns200Response.md
 docs/ListPhoneNumberPortIns200ResponseOrdersInner.md
 docs/ListPhoneNumbers200Response.md
@@ -1013,6 +1017,7 @@ docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/SearchReddit200Response.md
 docs/SelectFacebookPage200Response.md
 docs/SelectFacebookPage200ResponseAccount.md
+docs/SelectFacebookPage409Response.md
 docs/SelectFacebookPageRequest.md
 docs/SelectFacebookPageRequestUserProfile.md
 docs/SelectGoogleBusinessLocation200Response.md
@@ -1566,6 +1571,9 @@ src/Zernio.Test/Model/AppealSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/AppealSmsRegistrationRequestTests.cs
 src/Zernio.Test/Model/ApproveWhatsAppGroupJoinRequestsRequestTests.cs
 src/Zernio.Test/Model/ArchiveLeadForm200ResponseTests.cs
+src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseAccountTests.cs
+src/Zernio.Test/Model/AssignGoogleBusinessLocation200ResponseTests.cs
+src/Zernio.Test/Model/AssignGoogleBusinessLocationRequestTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInnerTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviews200ResponseTests.cs
 src/Zernio.Test/Model/BatchGetGoogleBusinessReviewsRequestTests.cs
@@ -2304,6 +2312,7 @@ src/Zernio.Test/Model/ListLogs200ResponseLogsInnerTests.cs
 src/Zernio.Test/Model/ListLogs200ResponsePaginationTests.cs
 src/Zernio.Test/Model/ListLogs200ResponseTests.cs
 src/Zernio.Test/Model/ListPhoneNumberCountries200ResponseCountriesInnerTests.cs
+src/Zernio.Test/Model/ListPhoneNumberCountries200ResponseCountriesInnerTypesInnerTests.cs
 src/Zernio.Test/Model/ListPhoneNumberCountries200ResponseTests.cs
 src/Zernio.Test/Model/ListPhoneNumberPortIns200ResponseOrdersInnerTests.cs
 src/Zernio.Test/Model/ListPhoneNumberPortIns200ResponseTests.cs
@@ -2482,6 +2491,7 @@ src/Zernio.Test/Model/SearchInboxConversations200ResponseTests.cs
 src/Zernio.Test/Model/SearchReddit200ResponseTests.cs
 src/Zernio.Test/Model/SelectFacebookPage200ResponseAccountTests.cs
 src/Zernio.Test/Model/SelectFacebookPage200ResponseTests.cs
+src/Zernio.Test/Model/SelectFacebookPage409ResponseTests.cs
 src/Zernio.Test/Model/SelectFacebookPageRequestTests.cs
 src/Zernio.Test/Model/SelectFacebookPageRequestUserProfileTests.cs
 src/Zernio.Test/Model/SelectGoogleBusinessLocation200ResponseAccountTests.cs
@@ -3037,6 +3047,9 @@ src/Zernio/Model/AppealSmsRegistration200Response.cs
 src/Zernio/Model/AppealSmsRegistrationRequest.cs
 src/Zernio/Model/ApproveWhatsAppGroupJoinRequestsRequest.cs
 src/Zernio/Model/ArchiveLeadForm200Response.cs
+src/Zernio/Model/AssignGoogleBusinessLocation200Response.cs
+src/Zernio/Model/AssignGoogleBusinessLocation200ResponseAccount.cs
+src/Zernio/Model/AssignGoogleBusinessLocationRequest.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviews200Response.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.cs
 src/Zernio/Model/BatchGetGoogleBusinessReviewsRequest.cs
@@ -3776,6 +3789,7 @@ src/Zernio/Model/ListLogs200ResponseLogsInner.cs
 src/Zernio/Model/ListLogs200ResponsePagination.cs
 src/Zernio/Model/ListPhoneNumberCountries200Response.cs
 src/Zernio/Model/ListPhoneNumberCountries200ResponseCountriesInner.cs
+src/Zernio/Model/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.cs
 src/Zernio/Model/ListPhoneNumberPortIns200Response.cs
 src/Zernio/Model/ListPhoneNumberPortIns200ResponseOrdersInner.cs
 src/Zernio/Model/ListPhoneNumbers200Response.cs
@@ -3953,6 +3967,7 @@ src/Zernio/Model/SearchInboxConversations200ResponseMetaFailedAccountsInner.cs
 src/Zernio/Model/SearchReddit200Response.cs
 src/Zernio/Model/SelectFacebookPage200Response.cs
 src/Zernio/Model/SelectFacebookPage200ResponseAccount.cs
+src/Zernio/Model/SelectFacebookPage409Response.cs
 src/Zernio/Model/SelectFacebookPageRequest.cs
 src/Zernio/Model/SelectFacebookPageRequestUserProfile.cs
 src/Zernio/Model/SelectGoogleBusinessLocation200Response.cs

@@ -76,7 +76,9 @@ namespace Zernio.Model
         /// <param name="whatsappAvailable">WhatsApp can be enabled on numbers from this country..</param>
         /// <param name="smsAvailable">Whether this country&#39;s number type can do SMS. Use it to filter the picker when the buyer wants SMS (pair with &#x60;wantsSms&#x60; on purchase)..</param>
         /// <param name="outboundCallingAvailable">WhatsApp Business Calling (BIC) outbound availability, a Meta feature blocked in some countries. NOT the PSTN Calls feature (&#x60;callsAvailable&#x60;)..</param>
-        public ListPhoneNumberCountries200ResponseCountriesInner(string code = default, TierEnum? tier = default, int monthlyCents = default, bool needsKyc = default, bool callsAvailable = default, bool whatsappAvailable = default, bool smsAvailable = default, bool outboundCallingAvailable = default)
+        /// <param name="inStock">Live carrier-stock snapshot (refreshed every 6h + on availability checks): false when NO offered type currently has deliverable inventory, so a purchase would fail. Treat as advisory; the purchase itself re-checks..</param>
+        /// <param name="types">Every number type offered in this country (default first). Capabilities, KYC tier, monthly price, and stock are per type. The country-level fields above mirror the first (default) entry. Pass the chosen &#x60;numberType&#x60; to POST /v1/phone-numbers/purchase. .</param>
+        public ListPhoneNumberCountries200ResponseCountriesInner(string code = default, TierEnum? tier = default, int monthlyCents = default, bool needsKyc = default, bool callsAvailable = default, bool whatsappAvailable = default, bool smsAvailable = default, bool outboundCallingAvailable = default, bool inStock = default, List<ListPhoneNumberCountries200ResponseCountriesInnerTypesInner> types = default)
         {
             this.Code = code;
             this.Tier = tier;
@@ -86,6 +88,8 @@ namespace Zernio.Model
             this.WhatsappAvailable = whatsappAvailable;
             this.SmsAvailable = smsAvailable;
             this.OutboundCallingAvailable = outboundCallingAvailable;
+            this.InStock = inStock;
+            this.Types = types;
         }
 
         /// <summary>
@@ -136,6 +140,20 @@ namespace Zernio.Model
         public bool OutboundCallingAvailable { get; set; }
 
         /// <summary>
+        /// Live carrier-stock snapshot (refreshed every 6h + on availability checks): false when NO offered type currently has deliverable inventory, so a purchase would fail. Treat as advisory; the purchase itself re-checks.
+        /// </summary>
+        /// <value>Live carrier-stock snapshot (refreshed every 6h + on availability checks): false when NO offered type currently has deliverable inventory, so a purchase would fail. Treat as advisory; the purchase itself re-checks.</value>
+        [DataMember(Name = "inStock", EmitDefaultValue = true)]
+        public bool InStock { get; set; }
+
+        /// <summary>
+        /// Every number type offered in this country (default first). Capabilities, KYC tier, monthly price, and stock are per type. The country-level fields above mirror the first (default) entry. Pass the chosen &#x60;numberType&#x60; to POST /v1/phone-numbers/purchase. 
+        /// </summary>
+        /// <value>Every number type offered in this country (default first). Capabilities, KYC tier, monthly price, and stock are per type. The country-level fields above mirror the first (default) entry. Pass the chosen &#x60;numberType&#x60; to POST /v1/phone-numbers/purchase. </value>
+        [DataMember(Name = "types", EmitDefaultValue = false)]
+        public List<ListPhoneNumberCountries200ResponseCountriesInnerTypesInner> Types { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -151,6 +169,8 @@ namespace Zernio.Model
             sb.Append("  WhatsappAvailable: ").Append(WhatsappAvailable).Append("\n");
             sb.Append("  SmsAvailable: ").Append(SmsAvailable).Append("\n");
             sb.Append("  OutboundCallingAvailable: ").Append(OutboundCallingAvailable).Append("\n");
+            sb.Append("  InStock: ").Append(InStock).Append("\n");
+            sb.Append("  Types: ").Append(Types).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

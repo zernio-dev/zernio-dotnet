@@ -1,13 +1,11 @@
-# Zernio.Model.PurchasePhoneNumber202Response
+# Zernio.Model.AssignGoogleBusinessLocation200Response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | **string** |  | [optional] 
-**Country** | **string** |  | [optional] 
-**NumberType** | **string** | The type that will be ordered after KYC approval. | [optional] 
-**KycUrl** | **string** |  | [optional] 
+**Message** | **string** |  | [optional] 
+**Account** | [**AssignGoogleBusinessLocation200ResponseAccount**](AssignGoogleBusinessLocation200ResponseAccount.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

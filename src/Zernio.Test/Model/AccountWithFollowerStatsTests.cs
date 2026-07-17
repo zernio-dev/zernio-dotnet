@@ -128,6 +128,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'NeedsReconnection'
+        /// </summary>
+        [Fact]
+        public void NeedsReconnectionTest()
+        {
+            // TODO unit test for the property 'NeedsReconnection'
+        }
+
+        /// <summary>
         /// Test the property 'FollowersCount'
         /// </summary>
         [Fact]

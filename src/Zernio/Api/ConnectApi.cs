@@ -29,6 +29,29 @@ namespace Zernio.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Assign GBP location to another profile
+        /// </summary>
+        /// <remarks>
+        /// Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="assignGoogleBusinessLocationRequest"></param>
+        /// <returns>AssignGoogleBusinessLocation200Response</returns>
+        AssignGoogleBusinessLocation200Response AssignGoogleBusinessLocation(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest);
+
+        /// <summary>
+        /// Assign GBP location to another profile
+        /// </summary>
+        /// <remarks>
+        /// Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="assignGoogleBusinessLocationRequest"></param>
+        /// <returns>ApiResponse of AssignGoogleBusinessLocation200Response</returns>
+        ApiResponse<AssignGoogleBusinessLocation200Response> AssignGoogleBusinessLocationWithHttpInfo(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest);
+        /// <summary>
         /// Check Telegram status
         /// </summary>
         /// <remarks>
@@ -936,6 +959,31 @@ namespace Zernio.Api
     public interface IConnectApiAsync : IApiAccessor
     {
         #region Asynchronous Operations
+        /// <summary>
+        /// Assign GBP location to another profile
+        /// </summary>
+        /// <remarks>
+        /// Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="assignGoogleBusinessLocationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AssignGoogleBusinessLocation200Response</returns>
+        System.Threading.Tasks.Task<AssignGoogleBusinessLocation200Response> AssignGoogleBusinessLocationAsync(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Assign GBP location to another profile
+        /// </summary>
+        /// <remarks>
+        /// Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="assignGoogleBusinessLocationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AssignGoogleBusinessLocation200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<AssignGoogleBusinessLocation200Response>> AssignGoogleBusinessLocationWithHttpInfoAsync(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Check Telegram status
         /// </summary>
@@ -2124,6 +2172,149 @@ namespace Zernio.Api
                 return _exceptionFactory;
             }
             set { _exceptionFactory = value; }
+        }
+
+        /// <summary>
+        /// Assign GBP location to another profile Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="assignGoogleBusinessLocationRequest"></param>
+        /// <returns>AssignGoogleBusinessLocation200Response</returns>
+        public AssignGoogleBusinessLocation200Response AssignGoogleBusinessLocation(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest)
+        {
+            Zernio.Client.ApiResponse<AssignGoogleBusinessLocation200Response> localVarResponse = AssignGoogleBusinessLocationWithHttpInfo(accountId, assignGoogleBusinessLocationRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Assign GBP location to another profile Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="assignGoogleBusinessLocationRequest"></param>
+        /// <returns>ApiResponse of AssignGoogleBusinessLocation200Response</returns>
+        public Zernio.Client.ApiResponse<AssignGoogleBusinessLocation200Response> AssignGoogleBusinessLocationWithHttpInfo(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->AssignGoogleBusinessLocation");
+
+            // verify the required parameter 'assignGoogleBusinessLocationRequest' is set
+            if (assignGoogleBusinessLocationRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'assignGoogleBusinessLocationRequest' when calling ConnectApi->AssignGoogleBusinessLocation");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = assignGoogleBusinessLocationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<AssignGoogleBusinessLocation200Response>("/v1/accounts/{accountId}/gmb-locations/assign", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AssignGoogleBusinessLocation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Assign GBP location to another profile Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="assignGoogleBusinessLocationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of AssignGoogleBusinessLocation200Response</returns>
+        public async System.Threading.Tasks.Task<AssignGoogleBusinessLocation200Response> AssignGoogleBusinessLocationAsync(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<AssignGoogleBusinessLocation200Response> localVarResponse = await AssignGoogleBusinessLocationWithHttpInfoAsync(accountId, assignGoogleBusinessLocationRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Assign GBP location to another profile Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">A source connected GBP account whose OAuth grant is reused.</param>
+        /// <param name="assignGoogleBusinessLocationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (AssignGoogleBusinessLocation200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AssignGoogleBusinessLocation200Response>> AssignGoogleBusinessLocationWithHttpInfoAsync(string accountId, AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling ConnectApi->AssignGoogleBusinessLocation");
+
+            // verify the required parameter 'assignGoogleBusinessLocationRequest' is set
+            if (assignGoogleBusinessLocationRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'assignGoogleBusinessLocationRequest' when calling ConnectApi->AssignGoogleBusinessLocation");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = assignGoogleBusinessLocationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<AssignGoogleBusinessLocation200Response>("/v1/accounts/{accountId}/gmb-locations/assign", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("AssignGoogleBusinessLocation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
         }
 
         /// <summary>

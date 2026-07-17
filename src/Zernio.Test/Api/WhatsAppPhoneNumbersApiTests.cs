@@ -62,7 +62,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string country = null;
-            //var response = instance.CheckWhatsAppNumberAvailability(country);
+            //string? numberType = null;
+            //var response = instance.CheckWhatsAppNumberAvailability(country, numberType);
             //Assert.IsType<CheckPhoneNumberAvailability200Response>(response);
         }
 

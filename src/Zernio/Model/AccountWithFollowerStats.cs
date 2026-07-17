@@ -188,6 +188,7 @@ namespace Zernio.Model
         /// <param name="profilePicture">URL to the account&#39;s profile picture on the platform. May be null if the platform does not provide one..</param>
         /// <param name="profileUrl">Full profile URL for the connected account on its platform..</param>
         /// <param name="isActive">isActive (required).</param>
+        /// <param name="needsReconnection">The platform definitively reported the stored OAuth token as dead. While true, GET /v1/connect/{platform}/ads returns a fresh authUrl (implicit force&#x3D;true) instead of alreadyConnected, so re-running the connect flow recovers the account. Cleared automatically when the account is re-authorized. .</param>
         /// <param name="followersCount">Follower count (only included if user has analytics add-on).</param>
         /// <param name="followersLastUpdated">Last time follower count was updated (only included if user has analytics add-on).</param>
         /// <param name="parentAccountId">Reference to the parent posting SocialAccount. Set for ads accounts that share or derive from a posting account&#39;s OAuth token. null for standalone ads (Google Ads) and all posting accounts. .</param>
@@ -199,7 +200,7 @@ namespace Zernio.Model
         /// <param name="growthPercentage">Percentage growth.</param>
         /// <param name="dataPoints">Number of historical snapshots.</param>
         /// <param name="accountStats">accountStats.</param>
-        public AccountWithFollowerStats(string id = default, PlatformEnum platform = default, SocialAccountProfileId profileId = default, string username = default, string displayName = default, string profilePicture = default, string profileUrl = default, bool isActive = default, decimal followersCount = default, DateTime followersLastUpdated = default, string parentAccountId = default, bool enabled = default, Object metadata = default, decimal currentFollowers = default, DateTime lastUpdated = default, decimal growth = default, decimal growthPercentage = default, decimal dataPoints = default, AccountWithFollowerStatsAllOfAccountStats accountStats = default)
+        public AccountWithFollowerStats(string id = default, PlatformEnum platform = default, SocialAccountProfileId profileId = default, string username = default, string displayName = default, string profilePicture = default, string profileUrl = default, bool isActive = default, bool needsReconnection = default, decimal followersCount = default, DateTime followersLastUpdated = default, string parentAccountId = default, bool enabled = default, Object metadata = default, decimal currentFollowers = default, DateTime lastUpdated = default, decimal growth = default, decimal growthPercentage = default, decimal dataPoints = default, AccountWithFollowerStatsAllOfAccountStats accountStats = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -219,6 +220,7 @@ namespace Zernio.Model
             this.DisplayName = displayName;
             this.ProfilePicture = profilePicture;
             this.ProfileUrl = profileUrl;
+            this.NeedsReconnection = needsReconnection;
             this.FollowersCount = followersCount;
             this.FollowersLastUpdated = followersLastUpdated;
             this.ParentAccountId = parentAccountId;
@@ -275,6 +277,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "isActive", IsRequired = true, EmitDefaultValue = true)]
         public bool IsActive { get; set; }
+
+        /// <summary>
+        /// The platform definitively reported the stored OAuth token as dead. While true, GET /v1/connect/{platform}/ads returns a fresh authUrl (implicit force&#x3D;true) instead of alreadyConnected, so re-running the connect flow recovers the account. Cleared automatically when the account is re-authorized. 
+        /// </summary>
+        /// <value>The platform definitively reported the stored OAuth token as dead. While true, GET /v1/connect/{platform}/ads returns a fresh authUrl (implicit force&#x3D;true) instead of alreadyConnected, so re-running the connect flow recovers the account. Cleared automatically when the account is re-authorized. </value>
+        [DataMember(Name = "needsReconnection", EmitDefaultValue = true)]
+        public bool NeedsReconnection { get; set; }
 
         /// <summary>
         /// Follower count (only included if user has analytics add-on)
@@ -367,6 +376,7 @@ namespace Zernio.Model
             sb.Append("  ProfilePicture: ").Append(ProfilePicture).Append("\n");
             sb.Append("  ProfileUrl: ").Append(ProfileUrl).Append("\n");
             sb.Append("  IsActive: ").Append(IsActive).Append("\n");
+            sb.Append("  NeedsReconnection: ").Append(NeedsReconnection).Append("\n");
             sb.Append("  FollowersCount: ").Append(FollowersCount).Append("\n");
             sb.Append("  FollowersLastUpdated: ").Append(FollowersLastUpdated).Append("\n");
             sb.Append("  ParentAccountId: ").Append(ParentAccountId).Append("\n");

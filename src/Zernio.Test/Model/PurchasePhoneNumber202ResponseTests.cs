@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'NumberType'
+        /// </summary>
+        [Fact]
+        public void NumberTypeTest()
+        {
+            // TODO unit test for the property 'NumberType'
+        }
+
+        /// <summary>
         /// Test the property 'KycUrl'
         /// </summary>
         [Fact]
