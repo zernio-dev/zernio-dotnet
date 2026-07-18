@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** |  | [optional] 
+**Id** | **string** | Opaque conversation identifier. Pass it back verbatim to any /v1/inbox/conversations/{conversationId} route; do not assume a fixed format. | [optional] 
 **Platform** | **string** |  | [optional] 
 **AccountId** | **string** |  | [optional] 
 **AccountUsername** | **string** |  | [optional] 

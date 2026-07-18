@@ -100,7 +100,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListInboxConversations200ResponseDataInner" /> class.
         /// </summary>
-        /// <param name="id">id.</param>
+        /// <param name="id">Opaque conversation identifier. Pass it back verbatim to any /v1/inbox/conversations/{conversationId} route; do not assume a fixed format..</param>
         /// <param name="platform">platform.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="accountUsername">accountUsername.</param>
@@ -133,8 +133,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Opaque conversation identifier. Pass it back verbatim to any /v1/inbox/conversations/{conversationId} route; do not assume a fixed format.
         /// </summary>
+        /// <value>Opaque conversation identifier. Pass it back verbatim to any /v1/inbox/conversations/{conversationId} route; do not assume a fixed format.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
