@@ -467,9 +467,9 @@ namespace Zernio.Api
         /// <param name="accountId">The ID of the LinkedIn organization account</param>
         /// <param name="urn">The LinkedIn post URN</param>
         /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
-        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional, default to 0)</param>
         /// <returns>GetLinkedInPostReactions200Response</returns>
-        GetLinkedInPostReactions200Response GetLinkedInPostReactions(string accountId, string urn, int? limit = default, string? cursor = default);
+        GetLinkedInPostReactions200Response GetLinkedInPostReactions(string accountId, string urn, int? limit = default, int? cursor = default);
 
         /// <summary>
         /// Get LinkedIn post reactions
@@ -481,9 +481,9 @@ namespace Zernio.Api
         /// <param name="accountId">The ID of the LinkedIn organization account</param>
         /// <param name="urn">The LinkedIn post URN</param>
         /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
-        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional, default to 0)</param>
         /// <returns>ApiResponse of GetLinkedInPostReactions200Response</returns>
-        ApiResponse<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsWithHttpInfo(string accountId, string urn, int? limit = default, string? cursor = default);
+        ApiResponse<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsWithHttpInfo(string accountId, string urn, int? limit = default, int? cursor = default);
         /// <summary>
         /// Get post analytics timeline
         /// </summary>
@@ -1176,10 +1176,10 @@ namespace Zernio.Api
         /// <param name="accountId">The ID of the LinkedIn organization account</param>
         /// <param name="urn">The LinkedIn post URN</param>
         /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
-        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetLinkedInPostReactions200Response</returns>
-        System.Threading.Tasks.Task<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsAsync(string accountId, string urn, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsAsync(string accountId, string urn, int? limit = default, int? cursor = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get LinkedIn post reactions
@@ -1191,10 +1191,10 @@ namespace Zernio.Api
         /// <param name="accountId">The ID of the LinkedIn organization account</param>
         /// <param name="urn">The LinkedIn post URN</param>
         /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
-        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetLinkedInPostReactions200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetLinkedInPostReactions200Response>> GetLinkedInPostReactionsWithHttpInfoAsync(string accountId, string urn, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<GetLinkedInPostReactions200Response>> GetLinkedInPostReactionsWithHttpInfoAsync(string accountId, string urn, int? limit = default, int? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get post analytics timeline
         /// </summary>
@@ -4228,9 +4228,9 @@ namespace Zernio.Api
         /// <param name="accountId">The ID of the LinkedIn organization account</param>
         /// <param name="urn">The LinkedIn post URN</param>
         /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
-        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional, default to 0)</param>
         /// <returns>GetLinkedInPostReactions200Response</returns>
-        public GetLinkedInPostReactions200Response GetLinkedInPostReactions(string accountId, string urn, int? limit = default, string? cursor = default)
+        public GetLinkedInPostReactions200Response GetLinkedInPostReactions(string accountId, string urn, int? limit = default, int? cursor = default)
         {
             Zernio.Client.ApiResponse<GetLinkedInPostReactions200Response> localVarResponse = GetLinkedInPostReactionsWithHttpInfo(accountId, urn, limit, cursor);
             return localVarResponse.Data;
@@ -4243,9 +4243,9 @@ namespace Zernio.Api
         /// <param name="accountId">The ID of the LinkedIn organization account</param>
         /// <param name="urn">The LinkedIn post URN</param>
         /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
-        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional, default to 0)</param>
         /// <returns>ApiResponse of GetLinkedInPostReactions200Response</returns>
-        public Zernio.Client.ApiResponse<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsWithHttpInfo(string accountId, string urn, int? limit = default, string? cursor = default)
+        public Zernio.Client.ApiResponse<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsWithHttpInfo(string accountId, string urn, int? limit = default, int? cursor = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -4308,10 +4308,10 @@ namespace Zernio.Api
         /// <param name="accountId">The ID of the LinkedIn organization account</param>
         /// <param name="urn">The LinkedIn post URN</param>
         /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
-        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetLinkedInPostReactions200Response</returns>
-        public async System.Threading.Tasks.Task<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsAsync(string accountId, string urn, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<GetLinkedInPostReactions200Response> GetLinkedInPostReactionsAsync(string accountId, string urn, int? limit = default, int? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
             Zernio.Client.ApiResponse<GetLinkedInPostReactions200Response> localVarResponse = await GetLinkedInPostReactionsWithHttpInfoAsync(accountId, urn, limit, cursor, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -4324,10 +4324,10 @@ namespace Zernio.Api
         /// <param name="accountId">The ID of the LinkedIn organization account</param>
         /// <param name="urn">The LinkedIn post URN</param>
         /// <param name="limit">Maximum number of reactions to return per page (optional, default to 25)</param>
-        /// <param name="cursor">Offset-based pagination start index (optional)</param>
+        /// <param name="cursor">Offset-based pagination start index (optional, default to 0)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetLinkedInPostReactions200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetLinkedInPostReactions200Response>> GetLinkedInPostReactionsWithHttpInfoAsync(string accountId, string urn, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetLinkedInPostReactions200Response>> GetLinkedInPostReactionsWithHttpInfoAsync(string accountId, string urn, int? limit = default, int? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)

@@ -28,43 +28,35 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UpdateYoutubeDefaultPlaylistRequest
+    /// UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner
     /// </summary>
-    [DataContract(Name = "updateYoutubeDefaultPlaylist_request")]
-    public partial class UpdateYoutubeDefaultPlaylistRequest : IValidatableObject
+    [DataContract(Name = "updateGoogleBusinessAttributes_request_attributes_inner_uriValues_inner")]
+    public partial class UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateYoutubeDefaultPlaylistRequest" /> class.
+        /// Initializes a new instance of the <see cref="UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UpdateYoutubeDefaultPlaylistRequest() { }
+        protected UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateYoutubeDefaultPlaylistRequest" /> class.
+        /// Initializes a new instance of the <see cref="UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner" /> class.
         /// </summary>
-        /// <param name="defaultPlaylistId">defaultPlaylistId (required).</param>
-        /// <param name="defaultPlaylistName">defaultPlaylistName.</param>
-        public UpdateYoutubeDefaultPlaylistRequest(string defaultPlaylistId = default, string defaultPlaylistName = default)
+        /// <param name="uri">uri (required).</param>
+        public UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner(string uri = default)
         {
-            // to ensure "defaultPlaylistId" is required (not null)
-            if (defaultPlaylistId == null)
+            // to ensure "uri" is required (not null)
+            if (uri == null)
             {
-                throw new ArgumentNullException("defaultPlaylistId is a required property for UpdateYoutubeDefaultPlaylistRequest and cannot be null");
+                throw new ArgumentNullException("uri is a required property for UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner and cannot be null");
             }
-            this.DefaultPlaylistId = defaultPlaylistId;
-            this.DefaultPlaylistName = defaultPlaylistName;
+            this.Uri = uri;
         }
 
         /// <summary>
-        /// Gets or Sets DefaultPlaylistId
+        /// Gets or Sets Uri
         /// </summary>
-        [DataMember(Name = "defaultPlaylistId", IsRequired = true, EmitDefaultValue = true)]
-        public string DefaultPlaylistId { get; set; }
-
-        /// <summary>
-        /// Gets or Sets DefaultPlaylistName
-        /// </summary>
-        [DataMember(Name = "defaultPlaylistName", EmitDefaultValue = false)]
-        public string DefaultPlaylistName { get; set; }
+        [DataMember(Name = "uri", IsRequired = true, EmitDefaultValue = true)]
+        public string Uri { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -73,9 +65,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdateYoutubeDefaultPlaylistRequest {\n");
-            sb.Append("  DefaultPlaylistId: ").Append(DefaultPlaylistId).Append("\n");
-            sb.Append("  DefaultPlaylistName: ").Append(DefaultPlaylistName).Append("\n");
+            sb.Append("class UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner {\n");
+            sb.Append("  Uri: ").Append(Uri).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -96,12 +87,6 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // DefaultPlaylistId (string) minLength
-            if (this.DefaultPlaylistId != null && this.DefaultPlaylistId.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for DefaultPlaylistId, length must be greater than 1.", new [] { "DefaultPlaylistId" });
-            }
-
             yield break;
         }
     }

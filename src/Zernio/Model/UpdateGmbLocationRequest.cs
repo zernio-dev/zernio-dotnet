@@ -43,7 +43,8 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="selectedLocationId">selectedLocationId (required).</param>
         /// <param name="googleAccountId">Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. Named &#x60;googleAccountId&#x60; to disambiguate from the path &#x60;accountId&#x60; (the Zernio account). The legacy field name &#x60;accountId&#x60; is still accepted for backwards compatibility. .</param>
-        public UpdateGmbLocationRequest(string selectedLocationId = default, string googleAccountId = default)
+        /// <param name="accountId">Legacy alias for googleAccountId. Use googleAccountId for new integrations..</param>
+        public UpdateGmbLocationRequest(string selectedLocationId = default, string googleAccountId = default, string accountId = default)
         {
             // to ensure "selectedLocationId" is required (not null)
             if (selectedLocationId == null)
@@ -52,6 +53,7 @@ namespace Zernio.Model
             }
             this.SelectedLocationId = selectedLocationId;
             this.GoogleAccountId = googleAccountId;
+            this.AccountId = accountId;
         }
 
         /// <summary>
@@ -68,6 +70,14 @@ namespace Zernio.Model
         public string GoogleAccountId { get; set; }
 
         /// <summary>
+        /// Legacy alias for googleAccountId. Use googleAccountId for new integrations.
+        /// </summary>
+        /// <value>Legacy alias for googleAccountId. Use googleAccountId for new integrations.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        [Obsolete]
+        public string AccountId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -77,6 +87,7 @@ namespace Zernio.Model
             sb.Append("class UpdateGmbLocationRequest {\n");
             sb.Append("  SelectedLocationId: ").Append(SelectedLocationId).Append("\n");
             sb.Append("  GoogleAccountId: ").Append(GoogleAccountId).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -97,6 +108,24 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // SelectedLocationId (string) minLength
+            if (this.SelectedLocationId != null && this.SelectedLocationId.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for SelectedLocationId, length must be greater than 1.", new [] { "SelectedLocationId" });
+            }
+
+            // GoogleAccountId (string) minLength
+            if (this.GoogleAccountId != null && this.GoogleAccountId.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for GoogleAccountId, length must be greater than 1.", new [] { "GoogleAccountId" });
+            }
+
+            // AccountId (string) minLength
+            if (this.AccountId != null && this.AccountId.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for AccountId, length must be greater than 1.", new [] { "AccountId" });
+            }
+
             yield break;
         }
     }

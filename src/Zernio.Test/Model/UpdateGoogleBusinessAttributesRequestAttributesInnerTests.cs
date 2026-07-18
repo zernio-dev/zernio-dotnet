@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ValueType'
+        /// </summary>
+        [Fact]
+        public void ValueTypeTest()
+        {
+            // TODO unit test for the property 'ValueType'
+        }
+
+        /// <summary>
         /// Test the property 'Values'
         /// </summary>
         [Fact]
@@ -80,6 +89,15 @@ namespace Zernio.Test.Model
         public void RepeatedEnumValueTest()
         {
             // TODO unit test for the property 'RepeatedEnumValue'
+        }
+
+        /// <summary>
+        /// Test the property 'UriValues'
+        /// </summary>
+        [Fact]
+        public void UriValuesTest()
+        {
+            // TODO unit test for the property 'UriValues'
         }
     }
 }

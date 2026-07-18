@@ -114,6 +114,18 @@ namespace Zernio.Model
                 yield return new ValidationResult("Invalid value for PageSize, must be a value less than or equal to 50.", new [] { "PageSize" });
             }
 
+            // PageSize (int) minimum
+            if (this.PageSize < (int)1)
+            {
+                yield return new ValidationResult("Invalid value for PageSize, must be a value greater than or equal to 1.", new [] { "PageSize" });
+            }
+
+            // PageToken (string) minLength
+            if (this.PageToken != null && this.PageToken.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for PageToken, length must be greater than 1.", new [] { "PageToken" });
+            }
+
             yield break;
         }
     }

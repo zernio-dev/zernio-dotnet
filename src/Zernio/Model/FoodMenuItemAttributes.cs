@@ -34,6 +34,45 @@ namespace Zernio.Model
     public partial class FoodMenuItemAttributes : IValidatableObject
     {
         /// <summary>
+        /// Spiciness level (e.g. MILD, MEDIUM, HOT)
+        /// </summary>
+        /// <value>Spiciness level (e.g. MILD, MEDIUM, HOT)</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SpicinessEnum
+        {
+            /// <summary>
+            /// Enum SPICINESSUNSPECIFIED for value: SPICINESS_UNSPECIFIED
+            /// </summary>
+            [EnumMember(Value = "SPICINESS_UNSPECIFIED")]
+            SPICINESSUNSPECIFIED = 1,
+
+            /// <summary>
+            /// Enum MILD for value: MILD
+            /// </summary>
+            [EnumMember(Value = "MILD")]
+            MILD = 2,
+
+            /// <summary>
+            /// Enum MEDIUM for value: MEDIUM
+            /// </summary>
+            [EnumMember(Value = "MEDIUM")]
+            MEDIUM = 3,
+
+            /// <summary>
+            /// Enum HOT for value: HOT
+            /// </summary>
+            [EnumMember(Value = "HOT")]
+            HOT = 4
+        }
+
+
+        /// <summary>
+        /// Spiciness level (e.g. MILD, MEDIUM, HOT)
+        /// </summary>
+        /// <value>Spiciness level (e.g. MILD, MEDIUM, HOT)</value>
+        [DataMember(Name = "spiciness", EmitDefaultValue = false)]
+        public SpicinessEnum? Spiciness { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="FoodMenuItemAttributes" /> class.
         /// </summary>
         /// <param name="price">price.</param>
@@ -43,7 +82,7 @@ namespace Zernio.Model
         /// <param name="servesNumPeople">Number of people the item serves.</param>
         /// <param name="preparationMethods">Preparation methods (e.g. GRILLED, FRIED).</param>
         /// <param name="mediaKeys">Media references for item photos.</param>
-        public FoodMenuItemAttributes(Money price = default, string spiciness = default, List<string> allergen = default, List<string> dietaryRestriction = default, int servesNumPeople = default, List<string> preparationMethods = default, List<string> mediaKeys = default)
+        public FoodMenuItemAttributes(Money price = default, SpicinessEnum? spiciness = default, List<string> allergen = default, List<string> dietaryRestriction = default, int servesNumPeople = default, List<string> preparationMethods = default, List<string> mediaKeys = default)
         {
             this.Price = price;
             this.Spiciness = spiciness;
@@ -59,13 +98,6 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "price", EmitDefaultValue = false)]
         public Money Price { get; set; }
-
-        /// <summary>
-        /// Spiciness level (e.g. MILD, MEDIUM, HOT)
-        /// </summary>
-        /// <value>Spiciness level (e.g. MILD, MEDIUM, HOT)</value>
-        [DataMember(Name = "spiciness", EmitDefaultValue = false)]
-        public string Spiciness { get; set; }
 
         /// <summary>
         /// Allergens (e.g. DAIRY, GLUTEN, SHELLFISH)
@@ -137,6 +169,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // ServesNumPeople (int) minimum
+            if (this.ServesNumPeople < (int)1)
+            {
+                yield return new ValidationResult("Invalid value for ServesNumPeople, must be a value greater than or equal to 1.", new [] { "ServesNumPeople" });
+            }
+
             yield break;
         }
     }

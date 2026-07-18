@@ -28,41 +28,60 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UpdateGoogleBusinessServicesRequestServiceItemsInner
+    /// UpdateLinkedInOrganization200Response
     /// </summary>
-    [DataContract(Name = "updateGoogleBusinessServices_request_serviceItems_inner")]
-    public partial class UpdateGoogleBusinessServicesRequestServiceItemsInner : IValidatableObject
+    [DataContract(Name = "updateLinkedInOrganization_200_response")]
+    public partial class UpdateLinkedInOrganization200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpdateGoogleBusinessServicesRequestServiceItemsInner" /> class.
+        /// Defines AccountType
         /// </summary>
-        /// <param name="structuredServiceItem">structuredServiceItem.</param>
-        /// <param name="freeFormServiceItem">freeFormServiceItem.</param>
-        /// <param name="price">price.</param>
-        public UpdateGoogleBusinessServicesRequestServiceItemsInner(UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem structuredServiceItem = default, UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem freeFormServiceItem = default, UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice price = default)
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum AccountTypeEnum
         {
-            this.StructuredServiceItem = structuredServiceItem;
-            this.FreeFormServiceItem = freeFormServiceItem;
-            this.Price = price;
+            /// <summary>
+            /// Enum Personal for value: personal
+            /// </summary>
+            [EnumMember(Value = "personal")]
+            Personal = 1,
+
+            /// <summary>
+            /// Enum Organization for value: organization
+            /// </summary>
+            [EnumMember(Value = "organization")]
+            Organization = 2
+        }
+
+
+        /// <summary>
+        /// Gets or Sets AccountType
+        /// </summary>
+        [DataMember(Name = "accountType", EmitDefaultValue = false)]
+        public AccountTypeEnum? AccountType { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateLinkedInOrganization200Response" /> class.
+        /// </summary>
+        /// <param name="message">message.</param>
+        /// <param name="accountType">accountType.</param>
+        /// <param name="accountName">accountName.</param>
+        public UpdateLinkedInOrganization200Response(string message = default, AccountTypeEnum? accountType = default, string accountName = default)
+        {
+            this.Message = message;
+            this.AccountType = accountType;
+            this.AccountName = accountName;
         }
 
         /// <summary>
-        /// Gets or Sets StructuredServiceItem
+        /// Gets or Sets Message
         /// </summary>
-        [DataMember(Name = "structuredServiceItem", EmitDefaultValue = false)]
-        public UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem StructuredServiceItem { get; set; }
+        [DataMember(Name = "message", EmitDefaultValue = false)]
+        public string Message { get; set; }
 
         /// <summary>
-        /// Gets or Sets FreeFormServiceItem
+        /// Gets or Sets AccountName
         /// </summary>
-        [DataMember(Name = "freeFormServiceItem", EmitDefaultValue = false)]
-        public UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem FreeFormServiceItem { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Price
-        /// </summary>
-        [DataMember(Name = "price", EmitDefaultValue = false)]
-        public UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice Price { get; set; }
+        [DataMember(Name = "accountName", EmitDefaultValue = false)]
+        public string AccountName { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -71,10 +90,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpdateGoogleBusinessServicesRequestServiceItemsInner {\n");
-            sb.Append("  StructuredServiceItem: ").Append(StructuredServiceItem).Append("\n");
-            sb.Append("  FreeFormServiceItem: ").Append(FreeFormServiceItem).Append("\n");
-            sb.Append("  Price: ").Append(Price).Append("\n");
+            sb.Append("class UpdateLinkedInOrganization200Response {\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  AccountType: ").Append(AccountType).Append("\n");
+            sb.Append("  AccountName: ").Append(AccountName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -34,22 +34,79 @@ namespace Zernio.Model
     public partial class UpdateGoogleBusinessAttributesRequestAttributesInner : IValidatableObject
     {
         /// <summary>
+        /// Defines ValueType
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ValueTypeEnum
+        {
+            /// <summary>
+            /// Enum ATTRIBUTEVALUETYPEUNSPECIFIED for value: ATTRIBUTE_VALUE_TYPE_UNSPECIFIED
+            /// </summary>
+            [EnumMember(Value = "ATTRIBUTE_VALUE_TYPE_UNSPECIFIED")]
+            ATTRIBUTEVALUETYPEUNSPECIFIED = 1,
+
+            /// <summary>
+            /// Enum BOOL for value: BOOL
+            /// </summary>
+            [EnumMember(Value = "BOOL")]
+            BOOL = 2,
+
+            /// <summary>
+            /// Enum ENUM for value: ENUM
+            /// </summary>
+            [EnumMember(Value = "ENUM")]
+            ENUM = 3,
+
+            /// <summary>
+            /// Enum URL for value: URL
+            /// </summary>
+            [EnumMember(Value = "URL")]
+            URL = 4,
+
+            /// <summary>
+            /// Enum REPEATEDENUM for value: REPEATED_ENUM
+            /// </summary>
+            [EnumMember(Value = "REPEATED_ENUM")]
+            REPEATEDENUM = 5
+        }
+
+
+        /// <summary>
+        /// Gets or Sets ValueType
+        /// </summary>
+        [DataMember(Name = "valueType", EmitDefaultValue = false)]
+        public ValueTypeEnum? ValueType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="UpdateGoogleBusinessAttributesRequestAttributesInner" /> class.
         /// </summary>
-        /// <param name="name">name.</param>
+        [JsonConstructorAttribute]
+        protected UpdateGoogleBusinessAttributesRequestAttributesInner() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateGoogleBusinessAttributesRequestAttributesInner" /> class.
+        /// </summary>
+        /// <param name="name">name (required).</param>
+        /// <param name="valueType">valueType.</param>
         /// <param name="values">values.</param>
         /// <param name="repeatedEnumValue">repeatedEnumValue.</param>
-        public UpdateGoogleBusinessAttributesRequestAttributesInner(string name = default, List<Object> values = default, GetGoogleBusinessAttributes200ResponseAttributesInnerRepeatedEnumValue repeatedEnumValue = default)
+        /// <param name="uriValues">uriValues.</param>
+        public UpdateGoogleBusinessAttributesRequestAttributesInner(string name = default, ValueTypeEnum? valueType = default, List<Object> values = default, GetGoogleBusinessAttributes200ResponseAttributesInnerRepeatedEnumValue repeatedEnumValue = default, List<UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner> uriValues = default)
         {
+            // to ensure "name" is required (not null)
+            if (name == null)
+            {
+                throw new ArgumentNullException("name is a required property for UpdateGoogleBusinessAttributesRequestAttributesInner and cannot be null");
+            }
             this.Name = name;
+            this.ValueType = valueType;
             this.Values = values;
             this.RepeatedEnumValue = repeatedEnumValue;
+            this.UriValues = uriValues;
         }
 
         /// <summary>
         /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name = "name", EmitDefaultValue = false)]
+        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
 
         /// <summary>
@@ -65,6 +122,12 @@ namespace Zernio.Model
         public GetGoogleBusinessAttributes200ResponseAttributesInnerRepeatedEnumValue RepeatedEnumValue { get; set; }
 
         /// <summary>
+        /// Gets or Sets UriValues
+        /// </summary>
+        [DataMember(Name = "uriValues", EmitDefaultValue = false)]
+        public List<UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner> UriValues { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -73,8 +136,10 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdateGoogleBusinessAttributesRequestAttributesInner {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  ValueType: ").Append(ValueType).Append("\n");
             sb.Append("  Values: ").Append(Values).Append("\n");
             sb.Append("  RepeatedEnumValue: ").Append(RepeatedEnumValue).Append("\n");
+            sb.Append("  UriValues: ").Append(UriValues).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -95,6 +160,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Name (string) minLength
+            if (this.Name != null && this.Name.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Name, length must be greater than 1.", new [] { "Name" });
+            }
+
             yield break;
         }
     }

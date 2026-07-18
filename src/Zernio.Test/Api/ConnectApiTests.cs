@@ -519,7 +519,7 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest = null;
             //var response = instance.UpdateLinkedInOrganization(accountId, updateLinkedInOrganizationRequest);
-            //Assert.IsType<ConnectBlueskyCredentials200Response>(response);
+            //Assert.IsType<UpdateLinkedInOrganization200Response>(response);
         }
 
         /// <summary>

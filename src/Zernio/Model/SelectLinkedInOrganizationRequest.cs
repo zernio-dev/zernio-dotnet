@@ -72,7 +72,7 @@ namespace Zernio.Model
         /// <param name="accountType">accountType (required).</param>
         /// <param name="selectedOrganization">selectedOrganization.</param>
         /// <param name="redirectUrl">redirectUrl.</param>
-        public SelectLinkedInOrganizationRequest(string profileId = default, string tempToken = default, Object userProfile = default, AccountTypeEnum accountType = default, Object selectedOrganization = default, string redirectUrl = default)
+        public SelectLinkedInOrganizationRequest(string profileId = default, string tempToken = default, Object userProfile = default, AccountTypeEnum accountType = default, SelectLinkedInOrganizationRequestSelectedOrganization selectedOrganization = default, string redirectUrl = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -119,7 +119,7 @@ namespace Zernio.Model
         /// Gets or Sets SelectedOrganization
         /// </summary>
         [DataMember(Name = "selectedOrganization", EmitDefaultValue = false)]
-        public Object SelectedOrganization { get; set; }
+        public SelectLinkedInOrganizationRequestSelectedOrganization SelectedOrganization { get; set; }
 
         /// <summary>
         /// Gets or Sets RedirectUrl

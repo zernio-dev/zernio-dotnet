@@ -844,8 +844,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="updateLinkedInOrganizationRequest"></param>
-        /// <returns>ConnectBlueskyCredentials200Response</returns>
-        ConnectBlueskyCredentials200Response UpdateLinkedInOrganization(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest);
+        /// <returns>UpdateLinkedInOrganization200Response</returns>
+        UpdateLinkedInOrganization200Response UpdateLinkedInOrganization(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest);
 
         /// <summary>
         /// Switch LinkedIn account type
@@ -856,8 +856,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="updateLinkedInOrganizationRequest"></param>
-        /// <returns>ApiResponse of ConnectBlueskyCredentials200Response</returns>
-        ApiResponse<ConnectBlueskyCredentials200Response> UpdateLinkedInOrganizationWithHttpInfo(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest);
+        /// <returns>ApiResponse of UpdateLinkedInOrganization200Response</returns>
+        ApiResponse<UpdateLinkedInOrganization200Response> UpdateLinkedInOrganizationWithHttpInfo(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest);
         /// <summary>
         /// Set default Pinterest board
         /// </summary>
@@ -1846,8 +1846,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="updateLinkedInOrganizationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ConnectBlueskyCredentials200Response</returns>
-        System.Threading.Tasks.Task<ConnectBlueskyCredentials200Response> UpdateLinkedInOrganizationAsync(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of UpdateLinkedInOrganization200Response</returns>
+        System.Threading.Tasks.Task<UpdateLinkedInOrganization200Response> UpdateLinkedInOrganizationAsync(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Switch LinkedIn account type
@@ -1859,8 +1859,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="updateLinkedInOrganizationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ConnectBlueskyCredentials200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ConnectBlueskyCredentials200Response>> UpdateLinkedInOrganizationWithHttpInfoAsync(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (UpdateLinkedInOrganization200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateLinkedInOrganization200Response>> UpdateLinkedInOrganizationWithHttpInfoAsync(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Set default Pinterest board
         /// </summary>
@@ -7159,10 +7159,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="updateLinkedInOrganizationRequest"></param>
-        /// <returns>ConnectBlueskyCredentials200Response</returns>
-        public ConnectBlueskyCredentials200Response UpdateLinkedInOrganization(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest)
+        /// <returns>UpdateLinkedInOrganization200Response</returns>
+        public UpdateLinkedInOrganization200Response UpdateLinkedInOrganization(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest)
         {
-            Zernio.Client.ApiResponse<ConnectBlueskyCredentials200Response> localVarResponse = UpdateLinkedInOrganizationWithHttpInfo(accountId, updateLinkedInOrganizationRequest);
+            Zernio.Client.ApiResponse<UpdateLinkedInOrganization200Response> localVarResponse = UpdateLinkedInOrganizationWithHttpInfo(accountId, updateLinkedInOrganizationRequest);
             return localVarResponse.Data;
         }
 
@@ -7172,8 +7172,8 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="updateLinkedInOrganizationRequest"></param>
-        /// <returns>ApiResponse of ConnectBlueskyCredentials200Response</returns>
-        public Zernio.Client.ApiResponse<ConnectBlueskyCredentials200Response> UpdateLinkedInOrganizationWithHttpInfo(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest)
+        /// <returns>ApiResponse of UpdateLinkedInOrganization200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateLinkedInOrganization200Response> UpdateLinkedInOrganizationWithHttpInfo(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -7211,7 +7211,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<ConnectBlueskyCredentials200Response>("/v1/accounts/{accountId}/linkedin-organization", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Put<UpdateLinkedInOrganization200Response>("/v1/accounts/{accountId}/linkedin-organization", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -7229,10 +7229,10 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="updateLinkedInOrganizationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ConnectBlueskyCredentials200Response</returns>
-        public async System.Threading.Tasks.Task<ConnectBlueskyCredentials200Response> UpdateLinkedInOrganizationAsync(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of UpdateLinkedInOrganization200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateLinkedInOrganization200Response> UpdateLinkedInOrganizationAsync(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ConnectBlueskyCredentials200Response> localVarResponse = await UpdateLinkedInOrganizationWithHttpInfoAsync(accountId, updateLinkedInOrganizationRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<UpdateLinkedInOrganization200Response> localVarResponse = await UpdateLinkedInOrganizationWithHttpInfoAsync(accountId, updateLinkedInOrganizationRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -7243,8 +7243,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="updateLinkedInOrganizationRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (ConnectBlueskyCredentials200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ConnectBlueskyCredentials200Response>> UpdateLinkedInOrganizationWithHttpInfoAsync(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (UpdateLinkedInOrganization200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateLinkedInOrganization200Response>> UpdateLinkedInOrganizationWithHttpInfoAsync(string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -7285,7 +7285,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PutAsync<ConnectBlueskyCredentials200Response>("/v1/accounts/{accountId}/linkedin-organization", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateLinkedInOrganization200Response>("/v1/accounts/{accountId}/linkedin-organization", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

@@ -103,6 +103,39 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Command (string) maxLength
+            if (this.Command != null && this.Command.Length > 32)
+            {
+                yield return new ValidationResult("Invalid value for Command, length must be less than 32.", new [] { "Command" });
+            }
+
+            // Command (string) minLength
+            if (this.Command != null && this.Command.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Command, length must be greater than 1.", new [] { "Command" });
+            }
+
+            if (this.Command != null) {
+                // Command (string) pattern
+                Regex regexCommand = new Regex(@"^[a-z0-9_]+$", RegexOptions.CultureInvariant);
+                if (!regexCommand.Match(this.Command).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Command, must match a pattern of " + regexCommand, new [] { "Command" });
+                }
+            }
+
+            // Description (string) maxLength
+            if (this.Description != null && this.Description.Length > 256)
+            {
+                yield return new ValidationResult("Invalid value for Description, length must be less than 256.", new [] { "Description" });
+            }
+
+            // Description (string) minLength
+            if (this.Description != null && this.Description.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
+            }
+
             yield break;
         }
     }

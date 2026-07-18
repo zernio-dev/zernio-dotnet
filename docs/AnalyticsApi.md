@@ -1677,7 +1677,7 @@ catch (ApiException e)
 
 <a id="getlinkedinpostreactions"></a>
 # **GetLinkedInPostReactions**
-> GetLinkedInPostReactions200Response GetLinkedInPostReactions (string accountId, string urn, int? limit = null, string? cursor = null)
+> GetLinkedInPostReactions200Response GetLinkedInPostReactions (string accountId, string urn, int? limit = null, int? cursor = null)
 
 Get LinkedIn post reactions
 
@@ -1710,7 +1710,7 @@ namespace Example
             var accountId = "accountId_example";  // string | The ID of the LinkedIn organization account
             var urn = urn:li:share:7123456789012345678;  // string | The LinkedIn post URN
             var limit = 25;  // int? | Maximum number of reactions to return per page (optional)  (default to 25)
-            var cursor = "cursor_example";  // string? | Offset-based pagination start index (optional) 
+            var cursor = 0;  // int? | Offset-based pagination start index (optional)  (default to 0)
 
             try
             {
@@ -1756,7 +1756,7 @@ catch (ApiException e)
 | **accountId** | **string** | The ID of the LinkedIn organization account |  |
 | **urn** | **string** | The LinkedIn post URN |  |
 | **limit** | **int?** | Maximum number of reactions to return per page | [optional] [default to 25] |
-| **cursor** | **string?** | Offset-based pagination start index | [optional]  |
+| **cursor** | **int?** | Offset-based pagination start index | [optional] [default to 0] |
 
 ### Return type
 
@@ -1776,7 +1776,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reactions with reactor profiles |  -  |
-| **400** | Invalid request or platform limitation |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |

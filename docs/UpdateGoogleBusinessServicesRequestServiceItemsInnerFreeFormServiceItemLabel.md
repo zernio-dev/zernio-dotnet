@@ -1,11 +1,12 @@
-# Zernio.Model.FoodMenuItemOptionsInner
+# Zernio.Model.UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Labels** | [**List&lt;FoodMenuLabel&gt;**](FoodMenuLabel.md) |  | 
-**Attributes** | [**FoodMenuItemAttributes**](FoodMenuItemAttributes.md) |  | 
+**DisplayName** | **string** |  | 
+**Description** | **string** |  | [optional] 
+**LanguageCode** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

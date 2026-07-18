@@ -36,24 +36,39 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FoodMenuItemOptionsInner" /> class.
         /// </summary>
-        /// <param name="labels">labels.</param>
-        /// <param name="attributes">attributes.</param>
+        [JsonConstructorAttribute]
+        protected FoodMenuItemOptionsInner() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FoodMenuItemOptionsInner" /> class.
+        /// </summary>
+        /// <param name="labels">labels (required).</param>
+        /// <param name="attributes">attributes (required).</param>
         public FoodMenuItemOptionsInner(List<FoodMenuLabel> labels = default, FoodMenuItemAttributes attributes = default)
         {
+            // to ensure "labels" is required (not null)
+            if (labels == null)
+            {
+                throw new ArgumentNullException("labels is a required property for FoodMenuItemOptionsInner and cannot be null");
+            }
             this.Labels = labels;
+            // to ensure "attributes" is required (not null)
+            if (attributes == null)
+            {
+                throw new ArgumentNullException("attributes is a required property for FoodMenuItemOptionsInner and cannot be null");
+            }
             this.Attributes = attributes;
         }
 
         /// <summary>
         /// Gets or Sets Labels
         /// </summary>
-        [DataMember(Name = "labels", EmitDefaultValue = false)]
+        [DataMember(Name = "labels", IsRequired = true, EmitDefaultValue = true)]
         public List<FoodMenuLabel> Labels { get; set; }
 
         /// <summary>
         /// Gets or Sets Attributes
         /// </summary>
-        [DataMember(Name = "attributes", EmitDefaultValue = false)]
+        [DataMember(Name = "attributes", IsRequired = true, EmitDefaultValue = true)]
         public FoodMenuItemAttributes Attributes { get; set; }
 
         /// <summary>

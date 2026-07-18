@@ -66,64 +66,88 @@ namespace Zernio.Model
         public enum CategoryEnum
         {
             /// <summary>
+            /// Enum CATEGORYUNSPECIFIED for value: CATEGORY_UNSPECIFIED
+            /// </summary>
+            [EnumMember(Value = "CATEGORY_UNSPECIFIED")]
+            CATEGORYUNSPECIFIED = 1,
+
+            /// <summary>
             /// Enum COVER for value: COVER
             /// </summary>
             [EnumMember(Value = "COVER")]
-            COVER = 1,
+            COVER = 2,
 
             /// <summary>
             /// Enum PROFILE for value: PROFILE
             /// </summary>
             [EnumMember(Value = "PROFILE")]
-            PROFILE = 2,
+            PROFILE = 3,
 
             /// <summary>
             /// Enum LOGO for value: LOGO
             /// </summary>
             [EnumMember(Value = "LOGO")]
-            LOGO = 3,
+            LOGO = 4,
 
             /// <summary>
             /// Enum EXTERIOR for value: EXTERIOR
             /// </summary>
             [EnumMember(Value = "EXTERIOR")]
-            EXTERIOR = 4,
+            EXTERIOR = 5,
 
             /// <summary>
             /// Enum INTERIOR for value: INTERIOR
             /// </summary>
             [EnumMember(Value = "INTERIOR")]
-            INTERIOR = 5,
-
-            /// <summary>
-            /// Enum FOODANDDRINK for value: FOOD_AND_DRINK
-            /// </summary>
-            [EnumMember(Value = "FOOD_AND_DRINK")]
-            FOODANDDRINK = 6,
-
-            /// <summary>
-            /// Enum MENU for value: MENU
-            /// </summary>
-            [EnumMember(Value = "MENU")]
-            MENU = 7,
+            INTERIOR = 6,
 
             /// <summary>
             /// Enum PRODUCT for value: PRODUCT
             /// </summary>
             [EnumMember(Value = "PRODUCT")]
-            PRODUCT = 8,
+            PRODUCT = 7,
+
+            /// <summary>
+            /// Enum FOODANDDRINK for value: FOOD_AND_DRINK
+            /// </summary>
+            [EnumMember(Value = "FOOD_AND_DRINK")]
+            FOODANDDRINK = 8,
+
+            /// <summary>
+            /// Enum MENU for value: MENU
+            /// </summary>
+            [EnumMember(Value = "MENU")]
+            MENU = 9,
+
+            /// <summary>
+            /// Enum COMMONAREA for value: COMMON_AREA
+            /// </summary>
+            [EnumMember(Value = "COMMON_AREA")]
+            COMMONAREA = 10,
+
+            /// <summary>
+            /// Enum ROOMS for value: ROOMS
+            /// </summary>
+            [EnumMember(Value = "ROOMS")]
+            ROOMS = 11,
 
             /// <summary>
             /// Enum TEAMS for value: TEAMS
             /// </summary>
             [EnumMember(Value = "TEAMS")]
-            TEAMS = 9,
+            TEAMS = 12,
+
+            /// <summary>
+            /// Enum ATWORK for value: AT_WORK
+            /// </summary>
+            [EnumMember(Value = "AT_WORK")]
+            ATWORK = 13,
 
             /// <summary>
             /// Enum ADDITIONAL for value: ADDITIONAL
             /// </summary>
             [EnumMember(Value = "ADDITIONAL")]
-            ADDITIONAL = 10
+            ADDITIONAL = 14
         }
 
 
@@ -204,6 +228,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Description (string) minLength
+            if (this.Description != null && this.Description.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
+            }
+
             yield break;
         }
     }

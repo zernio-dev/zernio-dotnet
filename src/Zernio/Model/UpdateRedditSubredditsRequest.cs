@@ -87,6 +87,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // DefaultSubreddit (string) minLength
+            if (this.DefaultSubreddit != null && this.DefaultSubreddit.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for DefaultSubreddit, length must be greater than 1.", new [] { "DefaultSubreddit" });
+            }
+
             yield break;
         }
     }

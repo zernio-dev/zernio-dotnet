@@ -1,11 +1,12 @@
-# Zernio.Model.FoodMenuItemOptionsInner
+# Zernio.Model.UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Labels** | [**List&lt;FoodMenuLabel&gt;**](FoodMenuLabel.md) |  | 
-**Attributes** | [**FoodMenuItemAttributes**](FoodMenuItemAttributes.md) |  | 
+**CurrencyCode** | **string** |  | [optional] 
+**Units** | **string** |  | [optional] 
+**Nanos** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

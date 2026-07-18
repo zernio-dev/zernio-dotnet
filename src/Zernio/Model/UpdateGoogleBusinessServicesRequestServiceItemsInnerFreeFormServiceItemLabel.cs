@@ -28,27 +28,39 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetTelegramCommands200ResponseDataInner
+    /// UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel
     /// </summary>
-    [DataContract(Name = "getTelegramCommands_200_response_data_inner")]
-    public partial class GetTelegramCommands200ResponseDataInner : IValidatableObject
+    [DataContract(Name = "updateGoogleBusinessServices_request_serviceItems_inner_freeFormServiceItem_label")]
+    public partial class UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetTelegramCommands200ResponseDataInner" /> class.
+        /// Initializes a new instance of the <see cref="UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel" /> class.
         /// </summary>
-        /// <param name="command">command.</param>
+        [JsonConstructorAttribute]
+        protected UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel" /> class.
+        /// </summary>
+        /// <param name="displayName">displayName (required).</param>
         /// <param name="description">description.</param>
-        public GetTelegramCommands200ResponseDataInner(string command = default, string description = default)
+        /// <param name="languageCode">languageCode.</param>
+        public UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel(string displayName = default, string description = default, string languageCode = default)
         {
-            this.Command = command;
+            // to ensure "displayName" is required (not null)
+            if (displayName == null)
+            {
+                throw new ArgumentNullException("displayName is a required property for UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel and cannot be null");
+            }
+            this.DisplayName = displayName;
             this.Description = description;
+            this.LanguageCode = languageCode;
         }
 
         /// <summary>
-        /// Gets or Sets Command
+        /// Gets or Sets DisplayName
         /// </summary>
-        [DataMember(Name = "command", EmitDefaultValue = false)]
-        public string Command { get; set; }
+        [DataMember(Name = "displayName", IsRequired = true, EmitDefaultValue = true)]
+        public string DisplayName { get; set; }
 
         /// <summary>
         /// Gets or Sets Description
@@ -57,15 +69,22 @@ namespace Zernio.Model
         public string Description { get; set; }
 
         /// <summary>
+        /// Gets or Sets LanguageCode
+        /// </summary>
+        [DataMember(Name = "languageCode", EmitDefaultValue = false)]
+        public string LanguageCode { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetTelegramCommands200ResponseDataInner {\n");
-            sb.Append("  Command: ").Append(Command).Append("\n");
+            sb.Append("class UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel {\n");
+            sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  LanguageCode: ").Append(LanguageCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -86,37 +105,10 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Command (string) maxLength
-            if (this.Command != null && this.Command.Length > 32)
+            // DisplayName (string) minLength
+            if (this.DisplayName != null && this.DisplayName.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Command, length must be less than 32.", new [] { "Command" });
-            }
-
-            // Command (string) minLength
-            if (this.Command != null && this.Command.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Command, length must be greater than 1.", new [] { "Command" });
-            }
-
-            if (this.Command != null) {
-                // Command (string) pattern
-                Regex regexCommand = new Regex(@"^[a-z0-9_]+$", RegexOptions.CultureInvariant);
-                if (!regexCommand.Match(this.Command).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Command, must match a pattern of " + regexCommand, new [] { "Command" });
-                }
-            }
-
-            // Description (string) maxLength
-            if (this.Description != null && this.Description.Length > 256)
-            {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 256.", new [] { "Description" });
-            }
-
-            // Description (string) minLength
-            if (this.Description != null && this.Description.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
+                yield return new ValidationResult("Invalid value for DisplayName, length must be greater than 1.", new [] { "DisplayName" });
             }
 
             yield break;

@@ -3687,7 +3687,7 @@ catch (ApiException e)
 
 <a id="updatelinkedinorganization"></a>
 # **UpdateLinkedInOrganization**
-> ConnectBlueskyCredentials200Response UpdateLinkedInOrganization (string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest)
+> UpdateLinkedInOrganization200Response UpdateLinkedInOrganization (string accountId, UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest)
 
 Switch LinkedIn account type
 
@@ -3723,7 +3723,7 @@ namespace Example
             try
             {
                 // Switch LinkedIn account type
-                ConnectBlueskyCredentials200Response result = apiInstance.UpdateLinkedInOrganization(accountId, updateLinkedInOrganizationRequest);
+                UpdateLinkedInOrganization200Response result = apiInstance.UpdateLinkedInOrganization(accountId, updateLinkedInOrganizationRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -3744,7 +3744,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Switch LinkedIn account type
-    ApiResponse<ConnectBlueskyCredentials200Response> response = apiInstance.UpdateLinkedInOrganizationWithHttpInfo(accountId, updateLinkedInOrganizationRequest);
+    ApiResponse<UpdateLinkedInOrganization200Response> response = apiInstance.UpdateLinkedInOrganizationWithHttpInfo(accountId, updateLinkedInOrganizationRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -3766,7 +3766,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**ConnectBlueskyCredentials200Response**](ConnectBlueskyCredentials200Response.md)
+[**UpdateLinkedInOrganization200Response**](UpdateLinkedInOrganization200Response.md)
 
 ### Authorization
 

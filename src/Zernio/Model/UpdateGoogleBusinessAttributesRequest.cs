@@ -102,6 +102,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // AttributeMask (string) minLength
+            if (this.AttributeMask != null && this.AttributeMask.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for AttributeMask, length must be greater than 1.", new [] { "AttributeMask" });
+            }
+
             yield break;
         }
     }

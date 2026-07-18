@@ -88,6 +88,12 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Comment (string) minLength
+            if (this.Comment != null && this.Comment.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Comment, length must be greater than 1.", new [] { "Comment" });
+            }
+
             yield break;
         }
     }

@@ -28,64 +28,41 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetLinkedInPostReactions400Response
+    /// UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice
     /// </summary>
-    [DataContract(Name = "getLinkedInPostReactions_400_response")]
-    public partial class GetLinkedInPostReactions400Response : IValidatableObject
+    [DataContract(Name = "updateGoogleBusinessServices_request_serviceItems_inner_price")]
+    public partial class UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice : IValidatableObject
     {
         /// <summary>
-        /// Defines Code
+        /// Initializes a new instance of the <see cref="UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice" /> class.
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum CodeEnum
+        /// <param name="currencyCode">currencyCode.</param>
+        /// <param name="units">units.</param>
+        /// <param name="nanos">nanos.</param>
+        public UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice(string currencyCode = default, string units = default, int nanos = default)
         {
-            /// <summary>
-            /// Enum MissingUrn for value: missing_urn
-            /// </summary>
-            [EnumMember(Value = "missing_urn")]
-            MissingUrn = 1,
-
-            /// <summary>
-            /// Enum InvalidUrn for value: invalid_urn
-            /// </summary>
-            [EnumMember(Value = "invalid_urn")]
-            InvalidUrn = 2,
-
-            /// <summary>
-            /// Enum InvalidPlatform for value: invalid_platform
-            /// </summary>
-            [EnumMember(Value = "invalid_platform")]
-            InvalidPlatform = 3,
-
-            /// <summary>
-            /// Enum PLATFORMLIMITATION for value: PLATFORM_LIMITATION
-            /// </summary>
-            [EnumMember(Value = "PLATFORM_LIMITATION")]
-            PLATFORMLIMITATION = 4
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Code
-        /// </summary>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
-        public CodeEnum? Code { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GetLinkedInPostReactions400Response" /> class.
-        /// </summary>
-        /// <param name="error">error.</param>
-        /// <param name="code">code.</param>
-        public GetLinkedInPostReactions400Response(string error = default, CodeEnum? code = default)
-        {
-            this.Error = error;
-            this.Code = code;
+            this.CurrencyCode = currencyCode;
+            this.Units = units;
+            this.Nanos = nanos;
         }
 
         /// <summary>
-        /// Gets or Sets Error
+        /// Gets or Sets CurrencyCode
         /// </summary>
-        [DataMember(Name = "error", EmitDefaultValue = false)]
-        public string Error { get; set; }
+        [DataMember(Name = "currencyCode", EmitDefaultValue = false)]
+        public string CurrencyCode { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Units
+        /// </summary>
+        [DataMember(Name = "units", EmitDefaultValue = false)]
+        public string Units { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Nanos
+        /// </summary>
+        [DataMember(Name = "nanos", EmitDefaultValue = false)]
+        public int Nanos { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -94,9 +71,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetLinkedInPostReactions400Response {\n");
-            sb.Append("  Error: ").Append(Error).Append("\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("class UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice {\n");
+            sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
+            sb.Append("  Units: ").Append(Units).Append("\n");
+            sb.Append("  Nanos: ").Append(Nanos).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -117,6 +95,18 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // CurrencyCode (string) minLength
+            if (this.CurrencyCode != null && this.CurrencyCode.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for CurrencyCode, length must be greater than 1.", new [] { "CurrencyCode" });
+            }
+
+            // Units (string) minLength
+            if (this.Units != null && this.Units.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Units, length must be greater than 1.", new [] { "Units" });
+            }
+
             yield break;
         }
     }

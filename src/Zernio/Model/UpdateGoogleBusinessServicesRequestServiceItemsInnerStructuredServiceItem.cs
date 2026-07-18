@@ -28,27 +28,37 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// GetTelegramCommands200ResponseDataInner
+    /// UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem
     /// </summary>
-    [DataContract(Name = "getTelegramCommands_200_response_data_inner")]
-    public partial class GetTelegramCommands200ResponseDataInner : IValidatableObject
+    [DataContract(Name = "updateGoogleBusinessServices_request_serviceItems_inner_structuredServiceItem")]
+    public partial class UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetTelegramCommands200ResponseDataInner" /> class.
+        /// Initializes a new instance of the <see cref="UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem" /> class.
         /// </summary>
-        /// <param name="command">command.</param>
+        [JsonConstructorAttribute]
+        protected UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem" /> class.
+        /// </summary>
+        /// <param name="serviceTypeId">serviceTypeId (required).</param>
         /// <param name="description">description.</param>
-        public GetTelegramCommands200ResponseDataInner(string command = default, string description = default)
+        public UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem(string serviceTypeId = default, string description = default)
         {
-            this.Command = command;
+            // to ensure "serviceTypeId" is required (not null)
+            if (serviceTypeId == null)
+            {
+                throw new ArgumentNullException("serviceTypeId is a required property for UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem and cannot be null");
+            }
+            this.ServiceTypeId = serviceTypeId;
             this.Description = description;
         }
 
         /// <summary>
-        /// Gets or Sets Command
+        /// Gets or Sets ServiceTypeId
         /// </summary>
-        [DataMember(Name = "command", EmitDefaultValue = false)]
-        public string Command { get; set; }
+        [DataMember(Name = "serviceTypeId", IsRequired = true, EmitDefaultValue = true)]
+        public string ServiceTypeId { get; set; }
 
         /// <summary>
         /// Gets or Sets Description
@@ -63,8 +73,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GetTelegramCommands200ResponseDataInner {\n");
-            sb.Append("  Command: ").Append(Command).Append("\n");
+            sb.Append("class UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem {\n");
+            sb.Append("  ServiceTypeId: ").Append(ServiceTypeId).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -86,37 +96,10 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Command (string) maxLength
-            if (this.Command != null && this.Command.Length > 32)
+            // ServiceTypeId (string) minLength
+            if (this.ServiceTypeId != null && this.ServiceTypeId.Length < 1)
             {
-                yield return new ValidationResult("Invalid value for Command, length must be less than 32.", new [] { "Command" });
-            }
-
-            // Command (string) minLength
-            if (this.Command != null && this.Command.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Command, length must be greater than 1.", new [] { "Command" });
-            }
-
-            if (this.Command != null) {
-                // Command (string) pattern
-                Regex regexCommand = new Regex(@"^[a-z0-9_]+$", RegexOptions.CultureInvariant);
-                if (!regexCommand.Match(this.Command).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Command, must match a pattern of " + regexCommand, new [] { "Command" });
-                }
-            }
-
-            // Description (string) maxLength
-            if (this.Description != null && this.Description.Length > 256)
-            {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 256.", new [] { "Description" });
-            }
-
-            // Description (string) minLength
-            if (this.Description != null && this.Description.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Description, length must be greater than 1.", new [] { "Description" });
+                yield return new ValidationResult("Invalid value for ServiceTypeId, length must be greater than 1.", new [] { "ServiceTypeId" });
             }
 
             yield break;

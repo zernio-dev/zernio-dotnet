@@ -301,7 +301,7 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //string urn = null;
             //int? limit = null;
-            //string? cursor = null;
+            //int? cursor = null;
             //var response = instance.GetLinkedInPostReactions(accountId, urn, limit, cursor);
             //Assert.IsType<GetLinkedInPostReactions200Response>(response);
         }

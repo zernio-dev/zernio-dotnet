@@ -107,6 +107,18 @@ namespace Zernio.Model
                 yield return new ValidationResult("Invalid value for Question, length must be less than 80.", new [] { "Question" });
             }
 
+            // Question (string) minLength
+            if (this.Question != null && this.Question.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Question, length must be greater than 1.", new [] { "Question" });
+            }
+
+            // Payload (string) minLength
+            if (this.Payload != null && this.Payload.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Payload, length must be greater than 1.", new [] { "Payload" });
+            }
+
             yield break;
         }
     }

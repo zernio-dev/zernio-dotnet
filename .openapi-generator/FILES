@@ -564,7 +564,6 @@ docs/GetLinkedInPostReactions200Response.md
 docs/GetLinkedInPostReactions200ResponsePagination.md
 docs/GetLinkedInPostReactions200ResponseReactionsInner.md
 docs/GetLinkedInPostReactions200ResponseReactionsInnerFrom.md
-docs/GetLinkedInPostReactions400Response.md
 docs/GetLinkedInSupplyForecast200Response.md
 docs/GetLinkedInSupplyForecast200ResponseForecastInner.md
 docs/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInner.md
@@ -1035,6 +1034,7 @@ docs/SelectLinkedInOrganization200Response.md
 docs/SelectLinkedInOrganization200ResponseAccount.md
 docs/SelectLinkedInOrganization200ResponseBulkRefresh.md
 docs/SelectLinkedInOrganizationRequest.md
+docs/SelectLinkedInOrganizationRequestSelectedOrganization.md
 docs/SelectPinterestBoard200Response.md
 docs/SelectPinterestBoard200ResponseAccount.md
 docs/SelectPinterestBoardRequest.md
@@ -1241,6 +1241,7 @@ docs/UpdateGmbLocationRequest.md
 docs/UpdateGoogleBusinessAttributes200Response.md
 docs/UpdateGoogleBusinessAttributesRequest.md
 docs/UpdateGoogleBusinessAttributesRequestAttributesInner.md
+docs/UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner.md
 docs/UpdateGoogleBusinessFoodMenus200Response.md
 docs/UpdateGoogleBusinessFoodMenusRequest.md
 docs/UpdateGoogleBusinessLocationDetails200Response.md
@@ -1261,9 +1262,14 @@ docs/UpdateGoogleBusinessPlaceActionRequest.md
 docs/UpdateGoogleBusinessServices200Response.md
 docs/UpdateGoogleBusinessServicesRequest.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInner.md
+docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem.md
+docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel.md
+docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.md
+docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.md
 docs/UpdateInboxConversation200Response.md
 docs/UpdateInboxConversation200ResponseData.md
 docs/UpdateInboxConversationRequest.md
+docs/UpdateLinkedInOrganization200Response.md
 docs/UpdateLinkedInOrganizationRequest.md
 docs/UpdatePinterestBoardsRequest.md
 docs/UpdatePostMetadata200Response.md
@@ -2060,7 +2066,6 @@ src/Zernio.Test/Model/GetLinkedInPostReactions200ResponsePaginationTests.cs
 src/Zernio.Test/Model/GetLinkedInPostReactions200ResponseReactionsInnerFromTests.cs
 src/Zernio.Test/Model/GetLinkedInPostReactions200ResponseReactionsInnerTests.cs
 src/Zernio.Test/Model/GetLinkedInPostReactions200ResponseTests.cs
-src/Zernio.Test/Model/GetLinkedInPostReactions400ResponseTests.cs
 src/Zernio.Test/Model/GetLinkedInSupplyForecast200ResponseForecastInnerTests.cs
 src/Zernio.Test/Model/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRangeTests.cs
 src/Zernio.Test/Model/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerTests.cs
@@ -2515,6 +2520,7 @@ src/Zernio.Test/Model/SelectGoogleBusinessLocationRequestTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganization200ResponseAccountTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganization200ResponseBulkRefreshTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganization200ResponseTests.cs
+src/Zernio.Test/Model/SelectLinkedInOrganizationRequestSelectedOrganizationTests.cs
 src/Zernio.Test/Model/SelectLinkedInOrganizationRequestTests.cs
 src/Zernio.Test/Model/SelectPinterestBoard200ResponseAccountTests.cs
 src/Zernio.Test/Model/SelectPinterestBoard200ResponseTests.cs
@@ -2718,6 +2724,7 @@ src/Zernio.Test/Model/UpdateGmbLocation200ResponseTests.cs
 src/Zernio.Test/Model/UpdateGmbLocationRequestTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessAttributes200ResponseTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessAttributesRequestAttributesInnerTests.cs
+src/Zernio.Test/Model/UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInnerTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessAttributesRequestTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessFoodMenus200ResponseTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessFoodMenusRequestTests.cs
@@ -2737,11 +2744,16 @@ src/Zernio.Test/Model/UpdateGoogleBusinessLocationDetailsRequestTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessPlaceAction200ResponseTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessPlaceActionRequestTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessServices200ResponseTests.cs
+src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabelTests.cs
+src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemTests.cs
+src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerPriceTests.cs
+src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItemTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerTests.cs
 src/Zernio.Test/Model/UpdateGoogleBusinessServicesRequestTests.cs
 src/Zernio.Test/Model/UpdateInboxConversation200ResponseDataTests.cs
 src/Zernio.Test/Model/UpdateInboxConversation200ResponseTests.cs
 src/Zernio.Test/Model/UpdateInboxConversationRequestTests.cs
+src/Zernio.Test/Model/UpdateLinkedInOrganization200ResponseTests.cs
 src/Zernio.Test/Model/UpdateLinkedInOrganizationRequestTests.cs
 src/Zernio.Test/Model/UpdatePinterestBoardsRequestTests.cs
 src/Zernio.Test/Model/UpdatePostMetadata200ResponseTests.cs
@@ -3543,7 +3555,6 @@ src/Zernio/Model/GetLinkedInPostReactions200Response.cs
 src/Zernio/Model/GetLinkedInPostReactions200ResponsePagination.cs
 src/Zernio/Model/GetLinkedInPostReactions200ResponseReactionsInner.cs
 src/Zernio/Model/GetLinkedInPostReactions200ResponseReactionsInnerFrom.cs
-src/Zernio/Model/GetLinkedInPostReactions400Response.cs
 src/Zernio/Model/GetLinkedInSupplyForecast200Response.cs
 src/Zernio/Model/GetLinkedInSupplyForecast200ResponseForecastInner.cs
 src/Zernio/Model/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInner.cs
@@ -3999,6 +4010,7 @@ src/Zernio/Model/SelectLinkedInOrganization200Response.cs
 src/Zernio/Model/SelectLinkedInOrganization200ResponseAccount.cs
 src/Zernio/Model/SelectLinkedInOrganization200ResponseBulkRefresh.cs
 src/Zernio/Model/SelectLinkedInOrganizationRequest.cs
+src/Zernio/Model/SelectLinkedInOrganizationRequestSelectedOrganization.cs
 src/Zernio/Model/SelectPinterestBoard200Response.cs
 src/Zernio/Model/SelectPinterestBoard200ResponseAccount.cs
 src/Zernio/Model/SelectPinterestBoardRequest.cs
@@ -4202,6 +4214,7 @@ src/Zernio/Model/UpdateGmbLocationRequest.cs
 src/Zernio/Model/UpdateGoogleBusinessAttributes200Response.cs
 src/Zernio/Model/UpdateGoogleBusinessAttributesRequest.cs
 src/Zernio/Model/UpdateGoogleBusinessAttributesRequestAttributesInner.cs
+src/Zernio/Model/UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner.cs
 src/Zernio/Model/UpdateGoogleBusinessFoodMenus200Response.cs
 src/Zernio/Model/UpdateGoogleBusinessFoodMenusRequest.cs
 src/Zernio/Model/UpdateGoogleBusinessLocationDetails200Response.cs
@@ -4222,9 +4235,14 @@ src/Zernio/Model/UpdateGoogleBusinessPlaceActionRequest.cs
 src/Zernio/Model/UpdateGoogleBusinessServices200Response.cs
 src/Zernio/Model/UpdateGoogleBusinessServicesRequest.cs
 src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInner.cs
+src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem.cs
+src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel.cs
+src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.cs
+src/Zernio/Model/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.cs
 src/Zernio/Model/UpdateInboxConversation200Response.cs
 src/Zernio/Model/UpdateInboxConversation200ResponseData.cs
 src/Zernio/Model/UpdateInboxConversationRequest.cs
+src/Zernio/Model/UpdateLinkedInOrganization200Response.cs
 src/Zernio/Model/UpdateLinkedInOrganizationRequest.cs
 src/Zernio/Model/UpdatePinterestBoardsRequest.cs
 src/Zernio/Model/UpdatePostMetadata200Response.cs

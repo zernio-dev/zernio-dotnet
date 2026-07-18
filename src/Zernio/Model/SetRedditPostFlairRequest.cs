@@ -128,6 +128,24 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Subreddit (string) minLength
+            if (this.Subreddit != null && this.Subreddit.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for Subreddit, length must be greater than 1.", new [] { "Subreddit" });
+            }
+
+            // PostId (string) minLength
+            if (this.PostId != null && this.PostId.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for PostId, length must be greater than 1.", new [] { "PostId" });
+            }
+
+            // FlairTemplateId (string) minLength
+            if (this.FlairTemplateId != null && this.FlairTemplateId.Length < 1)
+            {
+                yield return new ValidationResult("Invalid value for FlairTemplateId, length must be greater than 1.", new [] { "FlairTemplateId" });
+            }
+
             yield break;
         }
     }
