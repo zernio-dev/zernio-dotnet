@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestRegionsInner" /> class.
         /// </summary>
-        /// <param name="key">Meta region ID, from /v1/ads/targeting/search results. (required).</param>
+        /// <param name="key">Platform region ID, from /v1/ads/targeting/search results. (required).</param>
         public CreateStandaloneAdRequestRegionsInner(string key = default)
         {
             // to ensure "key" is required (not null)
@@ -53,9 +53,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Meta region ID, from /v1/ads/targeting/search results.
+        /// Platform region ID, from /v1/ads/targeting/search results.
         /// </summary>
-        /// <value>Meta region ID, from /v1/ads/targeting/search results.</value>
+        /// <value>Platform region ID, from /v1/ads/targeting/search results.</value>
         [DataMember(Name = "key", IsRequired = true, EmitDefaultValue = true)]
         public string Key { get; set; }
 

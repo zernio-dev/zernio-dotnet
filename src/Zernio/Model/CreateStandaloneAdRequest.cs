@@ -136,9 +136,9 @@ namespace Zernio.Model
         [DataMember(Name = "budgetType", EmitDefaultValue = false)]
         public BudgetTypeEnum? BudgetType { get; set; }
         /// <summary>
-        /// Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend.
+        /// Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused.
         /// </summary>
-        /// <value>Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend.</value>
+        /// <value>Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -157,9 +157,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend.
+        /// Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused.
         /// </summary>
-        /// <value>Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend.</value>
+        /// <value>Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
@@ -520,7 +520,7 @@ namespace Zernio.Model
         /// <param name="billingEvent">Meta only. Explicit ad-set &#x60;billing_event&#x60;. Defaults to &#x60;IMPRESSIONS&#x60;. Forwarded verbatim to Meta, which validates compatibility with the optimization goal..</param>
         /// <param name="budgetAmount">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="budgetType">Required on legacy + multi-creative shapes. Inherited on attach..</param>
-        /// <param name="status">Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend..</param>
+        /// <param name="status">Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused..</param>
         /// <param name="budgetLevel">Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget.  (default to BudgetLevelEnum.Adset).</param>
         /// <param name="currency">currency.</param>
         /// <param name="headline">Required for Meta, Google, Pinterest, and LinkedIn on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100, LinkedIn&#x3D;400. On LinkedIn this is the ad&#39;s headline (the bold text on the creative); for traffic ads it&#39;s the link card title..</param>
@@ -542,13 +542,13 @@ namespace Zernio.Model
         /// <param name="organizationId">LinkedIn only. The Company Page that authors the Direct Sponsored Content (\&quot;dark\&quot;) post backing the ad — accepts a numeric organization ID or a full &#x60;urn:li:organization:N&#x60; URN. Required unless the resolved &#x60;accountId&#x60; is a connected LinkedIn Company-Page account (defaults to that page) or the LinkedIn ad account is org-owned (defaults to the account&#39;s owning organization). The authenticated member must be an ADMINISTRATOR or DIRECT_SPONSORED_CONTENT_POSTER of this page (and the page must be associated with the ad account), or LinkedIn returns 403. Ignored by every other platform..</param>
         /// <param name="targeting">Nested targeting object — the same TargetingSpec shape as &#x60;POST /v1/ads/boost&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences. Merged UNDER the flat inline targeting fields below: &#x60;savedTargetingId&#x60; &lt; &#x60;targeting&#x60; &lt; flat fields (a flat field present on the body replaces the nested value entirely). Both forms are equivalent; use whichever your integration already builds. .</param>
         /// <param name="countries">ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no other geo targeting (flat or nested &#x60;targeting&#x60;) is provided. (LinkedIn currently honours country-level targeting only.).</param>
-        /// <param name="cities">Meta-only. City-level geo targeting. Each city is targeted by Meta&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;city&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  Cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. .</param>
-        /// <param name="regions">Meta-only. Region-level (state/province) geo targeting. Each region is targeted by Meta&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;region&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. .</param>
+        /// <param name="cities">City-level geo targeting (Meta and TikTok). Each city is targeted by the platform&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; (Meta only) extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  On Meta, cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. On TikTok, keys are numeric location ids and can be sent without &#x60;countries&#x60;. .</param>
+        /// <param name="regions">Region-level (state/province) geo targeting (Meta and TikTok). Each region is targeted by the platform&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. .</param>
         /// <param name="ageMin">ageMin.</param>
         /// <param name="ageMax">ageMax.</param>
         /// <param name="interests">Interest objects from /v1/ads/interests. Each must include id and name..</param>
         /// <param name="zips">Postal/ZIP geo targeting. &#x60;key&#x60; is the platform&#39;s postal location ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;zip. Supported on Meta, Google, TikTok, Pinterest, X..</param>
-        /// <param name="metros">DMA / metro-area geo targeting. &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro..</param>
+        /// <param name="metros">DMA / metro-area geo targeting (Meta and TikTok). &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro (TikTok metros appear as type &#x60;metro&#x60;, e.g. the New York DMA)..</param>
         /// <param name="customLocations">Point-radius (lat/lng) geo targeting. Meta only (custom_locations). Rejected on platforms without radius support..</param>
         /// <param name="behaviors">Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id..</param>
         /// <param name="incomeTier">Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. .</param>
@@ -866,16 +866,16 @@ namespace Zernio.Model
         public List<string> Countries { get; set; }
 
         /// <summary>
-        /// Meta-only. City-level geo targeting. Each city is targeted by Meta&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;city&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  Cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. 
+        /// City-level geo targeting (Meta and TikTok). Each city is targeted by the platform&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; (Meta only) extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  On Meta, cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. On TikTok, keys are numeric location ids and can be sent without &#x60;countries&#x60;. 
         /// </summary>
-        /// <value>Meta-only. City-level geo targeting. Each city is targeted by Meta&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;city&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  Cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. </value>
+        /// <value>City-level geo targeting (Meta and TikTok). Each city is targeted by the platform&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; (Meta only) extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  On Meta, cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. On TikTok, keys are numeric location ids and can be sent without &#x60;countries&#x60;. </value>
         [DataMember(Name = "cities", EmitDefaultValue = false)]
         public List<CreateStandaloneAdRequestCitiesInner> Cities { get; set; }
 
         /// <summary>
-        /// Meta-only. Region-level (state/province) geo targeting. Each region is targeted by Meta&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;region&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. 
+        /// Region-level (state/province) geo targeting (Meta and TikTok). Each region is targeted by the platform&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. 
         /// </summary>
-        /// <value>Meta-only. Region-level (state/province) geo targeting. Each region is targeted by Meta&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;region&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. </value>
+        /// <value>Region-level (state/province) geo targeting (Meta and TikTok). Each region is targeted by the platform&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. </value>
         [DataMember(Name = "regions", EmitDefaultValue = false)]
         public List<CreateStandaloneAdRequestRegionsInner> Regions { get; set; }
 
@@ -906,9 +906,9 @@ namespace Zernio.Model
         public List<BoostPostRequestTargetingRegionsInner> Zips { get; set; }
 
         /// <summary>
-        /// DMA / metro-area geo targeting. &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro.
+        /// DMA / metro-area geo targeting (Meta and TikTok). &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro (TikTok metros appear as type &#x60;metro&#x60;, e.g. the New York DMA).
         /// </summary>
-        /// <value>DMA / metro-area geo targeting. &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro.</value>
+        /// <value>DMA / metro-area geo targeting (Meta and TikTok). &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro (TikTok metros appear as type &#x60;metro&#x60;, e.g. the New York DMA).</value>
         [DataMember(Name = "metros", EmitDefaultValue = false)]
         public List<BoostPostRequestTargetingRegionsInner> Metros { get; set; }
 
