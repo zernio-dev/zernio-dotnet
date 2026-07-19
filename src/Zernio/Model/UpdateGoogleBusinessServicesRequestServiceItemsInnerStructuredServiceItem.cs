@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem
+    /// Exactly one of structuredServiceItem or freeFormServiceItem is required per item (enforced server-side; not modeled as oneOf because required-only oneOf branches break SDK generators).
     /// </summary>
     [DataContract(Name = "updateGoogleBusinessServices_request_serviceItems_inner_structuredServiceItem")]
     public partial class UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem : IValidatableObject

@@ -99,7 +99,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="UpdateGoogleBusinessPlaceActionRequest" /> class.
         /// </summary>
         /// <param name="name">Resource name of the place action link (e.g. locations/123/placeActionLinks/456) (required).</param>
-        /// <param name="uri">New action URL.</param>
+        /// <param name="uri">New action URL. At least one of uri or placeActionType is required (enforced server-side; not modeled as anyOf because required-only anyOf branches break SDK generators)..</param>
         /// <param name="placeActionType">New action type.</param>
         public UpdateGoogleBusinessPlaceActionRequest(string name = default, string uri = default, PlaceActionTypeEnum? placeActionType = default)
         {
@@ -121,9 +121,9 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// New action URL
+        /// New action URL. At least one of uri or placeActionType is required (enforced server-side; not modeled as anyOf because required-only anyOf branches break SDK generators).
         /// </summary>
-        /// <value>New action URL</value>
+        /// <value>New action URL. At least one of uri or placeActionType is required (enforced server-side; not modeled as anyOf because required-only anyOf branches break SDK generators).</value>
         [DataMember(Name = "uri", EmitDefaultValue = false)]
         public string Uri { get; set; }
 

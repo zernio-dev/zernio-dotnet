@@ -1,4 +1,5 @@
 # Zernio.Model.UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem
+Exactly one of structuredServiceItem or freeFormServiceItem is required per item (enforced server-side; not modeled as oneOf because required-only oneOf branches break SDK generators).
 
 ## Properties
 
