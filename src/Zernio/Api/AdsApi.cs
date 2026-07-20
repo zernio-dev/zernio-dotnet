@@ -959,6 +959,10 @@ namespace Zernio.Api
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="actionBreakdowns">Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)</param>
+        /// <param name="actionAttributionWindows">Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)</param>
+        /// <param name="actionReportTime">When actions are counted: impression, conversion or mixed. (optional)</param>
+        /// <param name="useUnifiedAttributionSetting">Use the ad sets&#39; own attribution settings for action counting. (optional)</param>
         /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
         /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
         /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
@@ -967,7 +971,7 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>QueryAdInsights200Response</returns>
-        QueryAdInsights200Response QueryAdInsights(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
+        QueryAdInsights200Response QueryAdInsights(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
 
         /// <summary>
         /// Flexible live insights query (Meta)
@@ -981,6 +985,10 @@ namespace Zernio.Api
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="actionBreakdowns">Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)</param>
+        /// <param name="actionAttributionWindows">Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)</param>
+        /// <param name="actionReportTime">When actions are counted: impression, conversion or mixed. (optional)</param>
+        /// <param name="useUnifiedAttributionSetting">Use the ad sets&#39; own attribution settings for action counting. (optional)</param>
         /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
         /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
         /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
@@ -989,7 +997,7 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of QueryAdInsights200Response</returns>
-        ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
+        ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
         /// <summary>
         /// Remove associated campaigns
         /// </summary>
@@ -2249,6 +2257,10 @@ namespace Zernio.Api
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="actionBreakdowns">Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)</param>
+        /// <param name="actionAttributionWindows">Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)</param>
+        /// <param name="actionReportTime">When actions are counted: impression, conversion or mixed. (optional)</param>
+        /// <param name="useUnifiedAttributionSetting">Use the ad sets&#39; own attribution settings for action counting. (optional)</param>
         /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
         /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
         /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
@@ -2258,7 +2270,7 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of QueryAdInsights200Response</returns>
-        System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Flexible live insights query (Meta)
@@ -2272,6 +2284,10 @@ namespace Zernio.Api
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="actionBreakdowns">Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)</param>
+        /// <param name="actionAttributionWindows">Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)</param>
+        /// <param name="actionReportTime">When actions are counted: impression, conversion or mixed. (optional)</param>
+        /// <param name="useUnifiedAttributionSetting">Use the ad sets&#39; own attribution settings for action counting. (optional)</param>
         /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
         /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
         /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
@@ -2281,7 +2297,7 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (QueryAdInsights200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Remove associated campaigns
         /// </summary>
@@ -8394,6 +8410,10 @@ namespace Zernio.Api
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="actionBreakdowns">Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)</param>
+        /// <param name="actionAttributionWindows">Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)</param>
+        /// <param name="actionReportTime">When actions are counted: impression, conversion or mixed. (optional)</param>
+        /// <param name="useUnifiedAttributionSetting">Use the ad sets&#39; own attribution settings for action counting. (optional)</param>
         /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
         /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
         /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
@@ -8402,9 +8422,9 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>QueryAdInsights200Response</returns>
-        public QueryAdInsights200Response QueryAdInsights(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
+        public QueryAdInsights200Response QueryAdInsights(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
         {
-            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = QueryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = QueryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             return localVarResponse.Data;
         }
 
@@ -8417,6 +8437,10 @@ namespace Zernio.Api
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="actionBreakdowns">Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)</param>
+        /// <param name="actionAttributionWindows">Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)</param>
+        /// <param name="actionReportTime">When actions are counted: impression, conversion or mixed. (optional)</param>
+        /// <param name="useUnifiedAttributionSetting">Use the ad sets&#39; own attribution settings for action counting. (optional)</param>
         /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
         /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
         /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
@@ -8425,7 +8449,7 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of QueryAdInsights200Response</returns>
-        public Zernio.Client.ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
+        public Zernio.Client.ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -8464,6 +8488,22 @@ namespace Zernio.Api
             if (breakdowns != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "breakdowns", breakdowns));
+            }
+            if (actionBreakdowns != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "actionBreakdowns", actionBreakdowns));
+            }
+            if (actionAttributionWindows != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "actionAttributionWindows", actionAttributionWindows));
+            }
+            if (actionReportTime != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "actionReportTime", actionReportTime));
+            }
+            if (useUnifiedAttributionSetting != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "useUnifiedAttributionSetting", useUnifiedAttributionSetting));
             }
             if (filtering != null)
             {
@@ -8522,6 +8562,10 @@ namespace Zernio.Api
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="actionBreakdowns">Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)</param>
+        /// <param name="actionAttributionWindows">Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)</param>
+        /// <param name="actionReportTime">When actions are counted: impression, conversion or mixed. (optional)</param>
+        /// <param name="useUnifiedAttributionSetting">Use the ad sets&#39; own attribution settings for action counting. (optional)</param>
         /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
         /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
         /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
@@ -8531,9 +8575,9 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of QueryAdInsights200Response</returns>
-        public async System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = await QueryAdInsightsWithHttpInfoAsync(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = await QueryAdInsightsWithHttpInfoAsync(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -8546,6 +8590,10 @@ namespace Zernio.Api
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
+        /// <param name="actionBreakdowns">Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)</param>
+        /// <param name="actionAttributionWindows">Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)</param>
+        /// <param name="actionReportTime">When actions are counted: impression, conversion or mixed. (optional)</param>
+        /// <param name="useUnifiedAttributionSetting">Use the ad sets&#39; own attribution settings for action counting. (optional)</param>
         /// <param name="filtering">JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)</param>
         /// <param name="datePreset">Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)</param>
         /// <param name="fromDate">Start of range (YYYY-MM-DD); requires toDate. (optional)</param>
@@ -8555,7 +8603,7 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (QueryAdInsights200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -8596,6 +8644,22 @@ namespace Zernio.Api
             if (breakdowns != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "breakdowns", breakdowns));
+            }
+            if (actionBreakdowns != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "actionBreakdowns", actionBreakdowns));
+            }
+            if (actionAttributionWindows != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "actionAttributionWindows", actionAttributionWindows));
+            }
+            if (actionReportTime != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "actionReportTime", actionReportTime));
+            }
+            if (useUnifiedAttributionSetting != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "useUnifiedAttributionSetting", useUnifiedAttributionSetting));
             }
             if (filtering != null)
             {

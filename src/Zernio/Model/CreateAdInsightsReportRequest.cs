@@ -83,12 +83,16 @@ namespace Zernio.Model
         /// <param name="level">level.</param>
         /// <param name="fields">Comma-separated Graph insights fields..</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns..</param>
+        /// <param name="actionBreakdowns">Comma-separated Graph action breakdowns (e.g. action_type,action_destination)..</param>
+        /// <param name="actionAttributionWindows">Meta attribution windows (e.g. [\&quot;7d_click\&quot;, \&quot;1d_view\&quot;]). Action values are returned keyed per window..</param>
+        /// <param name="actionReportTime">When actions are counted: impression, conversion or mixed..</param>
+        /// <param name="useUnifiedAttributionSetting">Use the ad sets&#39; own attribution settings for action counting..</param>
         /// <param name="filtering">Meta filter objects, applied server-side..</param>
         /// <param name="datePreset">Mutually exclusive with fromDate/toDate..</param>
         /// <param name="fromDate">fromDate.</param>
         /// <param name="toDate">toDate.</param>
         /// <param name="timeIncrement">timeIncrement.</param>
-        public CreateAdInsightsReportRequest(string accountId = default, string objectId = default, LevelEnum? level = default, string fields = default, string breakdowns = default, List<CreateAdInsightsReportRequestFilteringInner> filtering = default, string datePreset = default, DateOnly fromDate = default, DateOnly toDate = default, CreateAdInsightsReportRequestTimeIncrement timeIncrement = default)
+        public CreateAdInsightsReportRequest(string accountId = default, string objectId = default, LevelEnum? level = default, string fields = default, string breakdowns = default, string actionBreakdowns = default, List<string> actionAttributionWindows = default, string actionReportTime = default, bool useUnifiedAttributionSetting = default, List<CreateAdInsightsReportRequestFilteringInner> filtering = default, string datePreset = default, DateOnly fromDate = default, DateOnly toDate = default, CreateAdInsightsReportRequestTimeIncrement timeIncrement = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -105,6 +109,10 @@ namespace Zernio.Model
             this.Level = level;
             this.Fields = fields;
             this.Breakdowns = breakdowns;
+            this.ActionBreakdowns = actionBreakdowns;
+            this.ActionAttributionWindows = actionAttributionWindows;
+            this.ActionReportTime = actionReportTime;
+            this.UseUnifiedAttributionSetting = useUnifiedAttributionSetting;
             this.Filtering = filtering;
             this.DatePreset = datePreset;
             this.FromDate = fromDate;
@@ -139,6 +147,34 @@ namespace Zernio.Model
         /// <value>Comma-separated Graph breakdowns.</value>
         [DataMember(Name = "breakdowns", EmitDefaultValue = false)]
         public string Breakdowns { get; set; }
+
+        /// <summary>
+        /// Comma-separated Graph action breakdowns (e.g. action_type,action_destination).
+        /// </summary>
+        /// <value>Comma-separated Graph action breakdowns (e.g. action_type,action_destination).</value>
+        [DataMember(Name = "actionBreakdowns", EmitDefaultValue = false)]
+        public string ActionBreakdowns { get; set; }
+
+        /// <summary>
+        /// Meta attribution windows (e.g. [\&quot;7d_click\&quot;, \&quot;1d_view\&quot;]). Action values are returned keyed per window.
+        /// </summary>
+        /// <value>Meta attribution windows (e.g. [\&quot;7d_click\&quot;, \&quot;1d_view\&quot;]). Action values are returned keyed per window.</value>
+        [DataMember(Name = "actionAttributionWindows", EmitDefaultValue = false)]
+        public List<string> ActionAttributionWindows { get; set; }
+
+        /// <summary>
+        /// When actions are counted: impression, conversion or mixed.
+        /// </summary>
+        /// <value>When actions are counted: impression, conversion or mixed.</value>
+        [DataMember(Name = "actionReportTime", EmitDefaultValue = false)]
+        public string ActionReportTime { get; set; }
+
+        /// <summary>
+        /// Use the ad sets&#39; own attribution settings for action counting.
+        /// </summary>
+        /// <value>Use the ad sets&#39; own attribution settings for action counting.</value>
+        [DataMember(Name = "useUnifiedAttributionSetting", EmitDefaultValue = true)]
+        public bool UseUnifiedAttributionSetting { get; set; }
 
         /// <summary>
         /// Meta filter objects, applied server-side.
@@ -185,6 +221,10 @@ namespace Zernio.Model
             sb.Append("  Level: ").Append(Level).Append("\n");
             sb.Append("  Fields: ").Append(Fields).Append("\n");
             sb.Append("  Breakdowns: ").Append(Breakdowns).Append("\n");
+            sb.Append("  ActionBreakdowns: ").Append(ActionBreakdowns).Append("\n");
+            sb.Append("  ActionAttributionWindows: ").Append(ActionAttributionWindows).Append("\n");
+            sb.Append("  ActionReportTime: ").Append(ActionReportTime).Append("\n");
+            sb.Append("  UseUnifiedAttributionSetting: ").Append(UseUnifiedAttributionSetting).Append("\n");
             sb.Append("  Filtering: ").Append(Filtering).Append("\n");
             sb.Append("  DatePreset: ").Append(DatePreset).Append("\n");
             sb.Append("  FromDate: ").Append(FromDate).Append("\n");

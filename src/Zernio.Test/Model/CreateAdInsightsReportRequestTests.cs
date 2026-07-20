@@ -101,6 +101,42 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ActionBreakdowns'
+        /// </summary>
+        [Fact]
+        public void ActionBreakdownsTest()
+        {
+            // TODO unit test for the property 'ActionBreakdowns'
+        }
+
+        /// <summary>
+        /// Test the property 'ActionAttributionWindows'
+        /// </summary>
+        [Fact]
+        public void ActionAttributionWindowsTest()
+        {
+            // TODO unit test for the property 'ActionAttributionWindows'
+        }
+
+        /// <summary>
+        /// Test the property 'ActionReportTime'
+        /// </summary>
+        [Fact]
+        public void ActionReportTimeTest()
+        {
+            // TODO unit test for the property 'ActionReportTime'
+        }
+
+        /// <summary>
+        /// Test the property 'UseUnifiedAttributionSetting'
+        /// </summary>
+        [Fact]
+        public void UseUnifiedAttributionSettingTest()
+        {
+            // TODO unit test for the property 'UseUnifiedAttributionSetting'
+        }
+
+        /// <summary>
         /// Test the property 'Filtering'
         /// </summary>
         [Fact]

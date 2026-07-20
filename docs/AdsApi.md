@@ -4033,7 +4033,7 @@ catch (ApiException e)
 
 <a id="queryadinsights"></a>
 # **QueryAdInsights**
-> QueryAdInsights200Response QueryAdInsights (string accountId, string objectId, string? level = null, string? fields = null, string? breakdowns = null, string? filtering = null, string? datePreset = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? timeIncrement = null, int? limit = null, string? after = null)
+> QueryAdInsights200Response QueryAdInsights (string accountId, string objectId, string? level = null, string? fields = null, string? breakdowns = null, string? actionBreakdowns = null, string? actionAttributionWindows = null, string? actionReportTime = null, bool? useUnifiedAttributionSetting = null, string? filtering = null, string? datePreset = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? timeIncrement = null, int? limit = null, string? after = null)
 
 Flexible live insights query (Meta)
 
@@ -4068,6 +4068,10 @@ namespace Example
             var level = "ad";  // string? | Row granularity (optional) 
             var fields = "fields_example";  // string? | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set. (optional) 
             var breakdowns = "breakdowns_example";  // string? | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional) 
+            var actionBreakdowns = "actionBreakdowns_example";  // string? | Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional) 
+            var actionAttributionWindows = "actionAttributionWindows_example";  // string? | Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional) 
+            var actionReportTime = "actionReportTime_example";  // string? | When actions are counted: impression, conversion or mixed. (optional) 
+            var useUnifiedAttributionSetting = true;  // bool? | Use the ad sets' own attribution settings for action counting. (optional) 
             var filtering = "filtering_example";  // string? | JSON array of Meta filter objects: [{\"field\", \"operator\", \"value\"}]. Applied server-side by Meta. (optional) 
             var datePreset = "datePreset_example";  // string? | Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional) 
             var fromDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of range (YYYY-MM-DD); requires toDate. (optional) 
@@ -4079,7 +4083,7 @@ namespace Example
             try
             {
                 // Flexible live insights query (Meta)
-                QueryAdInsights200Response result = apiInstance.QueryAdInsights(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+                QueryAdInsights200Response result = apiInstance.QueryAdInsights(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -4100,7 +4104,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Flexible live insights query (Meta)
-    ApiResponse<QueryAdInsights200Response> response = apiInstance.QueryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+    ApiResponse<QueryAdInsights200Response> response = apiInstance.QueryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -4122,6 +4126,10 @@ catch (ApiException e)
 | **level** | **string?** | Row granularity | [optional]  |
 | **fields** | **string?** | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional]  |
 | **breakdowns** | **string?** | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). | [optional]  |
+| **actionBreakdowns** | **string?** | Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. | [optional]  |
+| **actionAttributionWindows** | **string?** | Comma-separated Meta attribution windows. Action values are returned keyed per window. | [optional]  |
+| **actionReportTime** | **string?** | When actions are counted: impression, conversion or mixed. | [optional]  |
+| **useUnifiedAttributionSetting** | **bool?** | Use the ad sets&#39; own attribution settings for action counting. | [optional]  |
 | **filtering** | **string?** | JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. | [optional]  |
 | **datePreset** | **string?** | Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. | [optional]  |
 | **fromDate** | **DateOnly?** | Start of range (YYYY-MM-DD); requires toDate. | [optional]  |

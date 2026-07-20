@@ -583,6 +583,10 @@ namespace Zernio.Test.Api
             //string? level = null;
             //string? fields = null;
             //string? breakdowns = null;
+            //string? actionBreakdowns = null;
+            //string? actionAttributionWindows = null;
+            //string? actionReportTime = null;
+            //bool? useUnifiedAttributionSetting = null;
             //string? filtering = null;
             //string? datePreset = null;
             //DateOnly? fromDate = null;
@@ -590,7 +594,7 @@ namespace Zernio.Test.Api
             //string? timeIncrement = null;
             //int? limit = null;
             //string? after = null;
-            //var response = instance.QueryAdInsights(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            //var response = instance.QueryAdInsights(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             //Assert.IsType<QueryAdInsights200Response>(response);
         }
 
