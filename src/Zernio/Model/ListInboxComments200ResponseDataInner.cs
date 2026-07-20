@@ -67,12 +67,12 @@ namespace Zernio.Model
         /// <param name="platform">platform.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="accountUsername">accountUsername.</param>
-        /// <param name="content">content.</param>
-        /// <param name="picture">picture.</param>
-        /// <param name="permalink">permalink.</param>
+        /// <param name="content">The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption — the creative text isn&#39;t exposed here..</param>
+        /// <param name="picture">Post media thumbnail. On ad rows this is the ad creative thumbnail..</param>
+        /// <param name="permalink">Public URL of the post. On ad rows: the Facebook dark-post URL (facebook placement) or the IG media permalink (instagram placement); may be null when unknown..</param>
         /// <param name="createdTime">createdTime.</param>
         /// <param name="commentCount">commentCount.</param>
-        /// <param name="likeCount">likeCount.</param>
+        /// <param name="likeCount">Not fetched for ad rows (always 0 there)..</param>
         /// <param name="cid">Bluesky content identifier.</param>
         /// <param name="subreddit">Reddit subreddit name.</param>
         /// <param name="isAd">True when this row is an ad (boosted/dark post). &#x60;platform&#x60; is then the placement (facebook &#x3D; the Page dark post / instagram &#x3D; the IG media), &#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;, and the thread is at GET /v1/ads/{adId}/comments?placement&#x3D;{placement}..</param>
@@ -122,20 +122,23 @@ namespace Zernio.Model
         public string AccountUsername { get; set; }
 
         /// <summary>
-        /// Gets or Sets Content
+        /// The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption — the creative text isn&#39;t exposed here.
         /// </summary>
+        /// <value>The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption — the creative text isn&#39;t exposed here.</value>
         [DataMember(Name = "content", EmitDefaultValue = false)]
         public string Content { get; set; }
 
         /// <summary>
-        /// Gets or Sets Picture
+        /// Post media thumbnail. On ad rows this is the ad creative thumbnail.
         /// </summary>
+        /// <value>Post media thumbnail. On ad rows this is the ad creative thumbnail.</value>
         [DataMember(Name = "picture", EmitDefaultValue = true)]
         public string Picture { get; set; }
 
         /// <summary>
-        /// Gets or Sets Permalink
+        /// Public URL of the post. On ad rows: the Facebook dark-post URL (facebook placement) or the IG media permalink (instagram placement); may be null when unknown.
         /// </summary>
+        /// <value>Public URL of the post. On ad rows: the Facebook dark-post URL (facebook placement) or the IG media permalink (instagram placement); may be null when unknown.</value>
         [DataMember(Name = "permalink", EmitDefaultValue = true)]
         public string Permalink { get; set; }
 
@@ -152,8 +155,9 @@ namespace Zernio.Model
         public int CommentCount { get; set; }
 
         /// <summary>
-        /// Gets or Sets LikeCount
+        /// Not fetched for ad rows (always 0 there).
         /// </summary>
+        /// <value>Not fetched for ad rows (always 0 there).</value>
         [DataMember(Name = "likeCount", EmitDefaultValue = false)]
         public int LikeCount { get; set; }
 

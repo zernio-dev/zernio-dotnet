@@ -36,10 +36,12 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListInboxReviews200ResponseDataInner" /> class.
         /// </summary>
-        /// <param name="id">id.</param>
+        /// <param name="id">Review identifier. For Google Business this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location..</param>
         /// <param name="platform">platform.</param>
         /// <param name="accountId">accountId.</param>
         /// <param name="accountUsername">accountUsername.</param>
+        /// <param name="locationId">Bare GBP location id the review belongs to. Google Business only; absent for other platforms..</param>
+        /// <param name="locationName">Human-readable GBP location display name. Google Business only; absent for other platforms..</param>
         /// <param name="reviewer">reviewer.</param>
         /// <param name="rating">rating.</param>
         /// <param name="text">text.</param>
@@ -50,12 +52,14 @@ namespace Zernio.Model
         /// <param name="photos">Photos attached to the review. Google Business only; always an empty array for other platforms..</param>
         /// <param name="reply">reply.</param>
         /// <param name="reviewUrl">reviewUrl.</param>
-        public ListInboxReviews200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, ListInboxReviews200ResponseDataInnerReviewer reviewer = default, int rating = default, string text = default, DateTime created = default, bool hasReply = default, bool hasPhotos = default, int photoCount = default, List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> photos = default, ListInboxReviews200ResponseDataInnerReply reply = default, string reviewUrl = default)
+        public ListInboxReviews200ResponseDataInner(string id = default, string platform = default, string accountId = default, string accountUsername = default, string locationId = default, string locationName = default, ListInboxReviews200ResponseDataInnerReviewer reviewer = default, int rating = default, string text = default, DateTime created = default, bool hasReply = default, bool hasPhotos = default, int photoCount = default, List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> photos = default, ListInboxReviews200ResponseDataInnerReply reply = default, string reviewUrl = default)
         {
             this.Id = id;
             this.Platform = platform;
             this.AccountId = accountId;
             this.AccountUsername = accountUsername;
+            this.LocationId = locationId;
+            this.LocationName = locationName;
             this.Reviewer = reviewer;
             this.Rating = rating;
             this.Text = text;
@@ -69,8 +73,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Review identifier. For Google Business this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location.
         /// </summary>
+        /// <value>Review identifier. For Google Business this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
@@ -91,6 +96,20 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "accountUsername", EmitDefaultValue = false)]
         public string AccountUsername { get; set; }
+
+        /// <summary>
+        /// Bare GBP location id the review belongs to. Google Business only; absent for other platforms.
+        /// </summary>
+        /// <value>Bare GBP location id the review belongs to. Google Business only; absent for other platforms.</value>
+        [DataMember(Name = "locationId", EmitDefaultValue = false)]
+        public string LocationId { get; set; }
+
+        /// <summary>
+        /// Human-readable GBP location display name. Google Business only; absent for other platforms.
+        /// </summary>
+        /// <value>Human-readable GBP location display name. Google Business only; absent for other platforms.</value>
+        [DataMember(Name = "locationName", EmitDefaultValue = true)]
+        public string LocationName { get; set; }
 
         /// <summary>
         /// Gets or Sets Reviewer
@@ -167,6 +186,8 @@ namespace Zernio.Model
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  AccountUsername: ").Append(AccountUsername).Append("\n");
+            sb.Append("  LocationId: ").Append(LocationId).Append("\n");
+            sb.Append("  LocationName: ").Append(LocationName).Append("\n");
             sb.Append("  Reviewer: ").Append(Reviewer).Append("\n");
             sb.Append("  Rating: ").Append(Rating).Append("\n");
             sb.Append("  Text: ").Append(Text).Append("\n");

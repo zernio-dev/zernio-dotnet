@@ -36,8 +36,8 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner" /> class.
         /// </summary>
-        /// <param name="name">Full review resource name (accounts/_*_/locations/_*_/reviews/_*).</param>
-        /// <param name="review">The review object (reviewId, starRating, comment, reviewer, createTime, updateTime, reviewReply).</param>
+        /// <param name="name">LOCATION resource name the review belongs to (accounts/{accountId}/locations/{locationId}) - NOT the review resource name. Use it to attribute the review to a location; the review identity is review.reviewId (full review resource name at review.name)..</param>
+        /// <param name="review">The review object: reviewId (the review&#39;s identity), name (full review resource name, accounts/_*_/locations/_*_/reviews/_*), starRating, comment, reviewer, createTime, updateTime, reviewReply, and reviewMediaItems (review photos/videos; photo items carry thumbnailUrl, video items carry videoUrl).</param>
         public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner(string name = default, Object review = default)
         {
             this.Name = name;
@@ -45,16 +45,16 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Full review resource name (accounts/_*_/locations/_*_/reviews/_*)
+        /// LOCATION resource name the review belongs to (accounts/{accountId}/locations/{locationId}) - NOT the review resource name. Use it to attribute the review to a location; the review identity is review.reviewId (full review resource name at review.name).
         /// </summary>
-        /// <value>Full review resource name (accounts/_*_/locations/_*_/reviews/_*)</value>
+        /// <value>LOCATION resource name the review belongs to (accounts/{accountId}/locations/{locationId}) - NOT the review resource name. Use it to attribute the review to a location; the review identity is review.reviewId (full review resource name at review.name).</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
-        /// The review object (reviewId, starRating, comment, reviewer, createTime, updateTime, reviewReply)
+        /// The review object: reviewId (the review&#39;s identity), name (full review resource name, accounts/_*_/locations/_*_/reviews/_*), starRating, comment, reviewer, createTime, updateTime, reviewReply, and reviewMediaItems (review photos/videos; photo items carry thumbnailUrl, video items carry videoUrl)
         /// </summary>
-        /// <value>The review object (reviewId, starRating, comment, reviewer, createTime, updateTime, reviewReply)</value>
+        /// <value>The review object: reviewId (the review&#39;s identity), name (full review resource name, accounts/_*_/locations/_*_/reviews/_*), starRating, comment, reviewer, createTime, updateTime, reviewReply, and reviewMediaItems (review photos/videos; photo items carry thumbnailUrl, video items carry videoUrl)</value>
         [DataMember(Name = "review", EmitDefaultValue = false)]
         public Object Review { get; set; }
 

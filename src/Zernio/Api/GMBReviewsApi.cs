@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Batch get reviews
         /// </summary>
         /// <remarks>
-        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -44,7 +44,7 @@ namespace Zernio.Api
         /// Batch get reviews
         /// </summary>
         /// <remarks>
-        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -139,7 +139,7 @@ namespace Zernio.Api
         /// Batch get reviews
         /// </summary>
         /// <remarks>
-        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -152,7 +152,7 @@ namespace Zernio.Api
         /// Batch get reviews
         /// </summary>
         /// <remarks>
-        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+        /// Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -455,7 +455,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -468,7 +468,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -524,7 +524,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
@@ -538,7 +538,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+        /// Batch get reviews Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>

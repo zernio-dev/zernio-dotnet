@@ -34,6 +34,39 @@ namespace Zernio.Model
     public partial class BatchGetGoogleBusinessReviewsRequest : IValidatableObject
     {
         /// <summary>
+        /// Sort order requested from Google. Defaults to &#39;updateTime desc&#39; (newest first), which allows early-stopping pagination once results cross your date window.
+        /// </summary>
+        /// <value>Sort order requested from Google. Defaults to &#39;updateTime desc&#39; (newest first), which allows early-stopping pagination once results cross your date window.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum OrderByEnum
+        {
+            /// <summary>
+            /// Enum UpdateTimeDesc for value: updateTime desc
+            /// </summary>
+            [EnumMember(Value = "updateTime desc")]
+            UpdateTimeDesc = 1,
+
+            /// <summary>
+            /// Enum Rating for value: rating
+            /// </summary>
+            [EnumMember(Value = "rating")]
+            Rating = 2,
+
+            /// <summary>
+            /// Enum RatingDesc for value: rating desc
+            /// </summary>
+            [EnumMember(Value = "rating desc")]
+            RatingDesc = 3
+        }
+
+
+        /// <summary>
+        /// Sort order requested from Google. Defaults to &#39;updateTime desc&#39; (newest first), which allows early-stopping pagination once results cross your date window.
+        /// </summary>
+        /// <value>Sort order requested from Google. Defaults to &#39;updateTime desc&#39; (newest first), which allows early-stopping pagination once results cross your date window.</value>
+        [DataMember(Name = "orderBy", EmitDefaultValue = false)]
+        public OrderByEnum? OrderBy { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="BatchGetGoogleBusinessReviewsRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -41,10 +74,11 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BatchGetGoogleBusinessReviewsRequest" /> class.
         /// </summary>
-        /// <param name="locationNames">Array of full location resource names (e.g. [&#39;accounts/123/locations/456&#39;]) (required).</param>
+        /// <param name="locationNames">Array of full location resource names (e.g. [&#39;accounts/123/locations/456&#39;]). Max 50 per request (Google&#39;s batchGetReviews cap); chunk larger sets into multiple requests. (required).</param>
         /// <param name="pageSize">Number of reviews per page (max 50) (default to 50).</param>
         /// <param name="pageToken">Pagination token from previous response.</param>
-        public BatchGetGoogleBusinessReviewsRequest(List<string> locationNames = default, int pageSize = 50, string pageToken = default)
+        /// <param name="orderBy">Sort order requested from Google. Defaults to &#39;updateTime desc&#39; (newest first), which allows early-stopping pagination once results cross your date window. (default to OrderByEnum.UpdateTimeDesc).</param>
+        public BatchGetGoogleBusinessReviewsRequest(List<string> locationNames = default, int pageSize = 50, string pageToken = default, OrderByEnum? orderBy = OrderByEnum.UpdateTimeDesc)
         {
             // to ensure "locationNames" is required (not null)
             if (locationNames == null)
@@ -54,12 +88,13 @@ namespace Zernio.Model
             this.LocationNames = locationNames;
             this.PageSize = pageSize;
             this.PageToken = pageToken;
+            this.OrderBy = orderBy;
         }
 
         /// <summary>
-        /// Array of full location resource names (e.g. [&#39;accounts/123/locations/456&#39;])
+        /// Array of full location resource names (e.g. [&#39;accounts/123/locations/456&#39;]). Max 50 per request (Google&#39;s batchGetReviews cap); chunk larger sets into multiple requests.
         /// </summary>
-        /// <value>Array of full location resource names (e.g. [&#39;accounts/123/locations/456&#39;])</value>
+        /// <value>Array of full location resource names (e.g. [&#39;accounts/123/locations/456&#39;]). Max 50 per request (Google&#39;s batchGetReviews cap); chunk larger sets into multiple requests.</value>
         [DataMember(Name = "locationNames", IsRequired = true, EmitDefaultValue = true)]
         public List<string> LocationNames { get; set; }
 
@@ -88,6 +123,7 @@ namespace Zernio.Model
             sb.Append("  LocationNames: ").Append(LocationNames).Append("\n");
             sb.Append("  PageSize: ").Append(PageSize).Append("\n");
             sb.Append("  PageToken: ").Append(PageToken).Append("\n");
+            sb.Append("  OrderBy: ").Append(OrderBy).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
