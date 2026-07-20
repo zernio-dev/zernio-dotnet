@@ -14535,6 +14535,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/replyToInboxPost_200_response"
           description: Reply posted
+        "400":
+          description: "Invalid request (e.g. attachmentUrl on a platform other than\
+            \ Facebook, code PLATFORM_NOT_SUPPORTED)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -50437,6 +50440,12 @@ components:
         accountId:
           type: string
         message:
+          type: string
+        attachmentUrl:
+          description: "(Facebook only) URL of an image to attach, publishing a photo\
+            \ comment alongside the text. The URL must be publicly accessible so Meta\
+            \ can fetch it. Returns 400 for other platforms."
+          format: uri
           type: string
         commentId:
           description: Reply to specific comment (optional)

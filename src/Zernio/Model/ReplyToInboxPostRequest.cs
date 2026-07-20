@@ -43,11 +43,12 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="accountId">accountId (required).</param>
         /// <param name="message">message (required).</param>
+        /// <param name="attachmentUrl">(Facebook only) URL of an image to attach, publishing a photo comment alongside the text. The URL must be publicly accessible so Meta can fetch it. Returns 400 for other platforms..</param>
         /// <param name="commentId">Reply to specific comment (optional).</param>
         /// <param name="parentCid">(Bluesky only) Parent content identifier.</param>
         /// <param name="rootUri">(Bluesky only) Root post URI.</param>
         /// <param name="rootCid">(Bluesky only) Root post CID.</param>
-        public ReplyToInboxPostRequest(string accountId = default, string message = default, string commentId = default, string parentCid = default, string rootUri = default, string rootCid = default)
+        public ReplyToInboxPostRequest(string accountId = default, string message = default, string attachmentUrl = default, string commentId = default, string parentCid = default, string rootUri = default, string rootCid = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -61,6 +62,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("message is a required property for ReplyToInboxPostRequest and cannot be null");
             }
             this.Message = message;
+            this.AttachmentUrl = attachmentUrl;
             this.CommentId = commentId;
             this.ParentCid = parentCid;
             this.RootUri = rootUri;
@@ -78,6 +80,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "message", IsRequired = true, EmitDefaultValue = true)]
         public string Message { get; set; }
+
+        /// <summary>
+        /// (Facebook only) URL of an image to attach, publishing a photo comment alongside the text. The URL must be publicly accessible so Meta can fetch it. Returns 400 for other platforms.
+        /// </summary>
+        /// <value>(Facebook only) URL of an image to attach, publishing a photo comment alongside the text. The URL must be publicly accessible so Meta can fetch it. Returns 400 for other platforms.</value>
+        [DataMember(Name = "attachmentUrl", EmitDefaultValue = false)]
+        public string AttachmentUrl { get; set; }
 
         /// <summary>
         /// Reply to specific comment (optional)
@@ -117,6 +126,7 @@ namespace Zernio.Model
             sb.Append("class ReplyToInboxPostRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  AttachmentUrl: ").Append(AttachmentUrl).Append("\n");
             sb.Append("  CommentId: ").Append(CommentId).Append("\n");
             sb.Append("  ParentCid: ").Append(ParentCid).Append("\n");
             sb.Append("  RootUri: ").Append(RootUri).Append("\n");

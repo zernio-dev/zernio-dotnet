@@ -74,6 +74,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AttachmentUrl'
+        /// </summary>
+        [Fact]
+        public void AttachmentUrlTest()
+        {
+            // TODO unit test for the property 'AttachmentUrl'
+        }
+
+        /// <summary>
         /// Test the property 'CommentId'
         /// </summary>
         [Fact]
