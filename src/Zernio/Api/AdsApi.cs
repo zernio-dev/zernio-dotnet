@@ -140,6 +140,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateAdInsightsReport202Response</returns>
         ApiResponse<CreateAdInsightsReport202Response> CreateAdInsightsReportWithHttpInfo(CreateAdInsightsReportRequest createAdInsightsReportRequest);
         /// <summary>
+        /// Create Click-to-Call ad
+        /// </summary>
+        /// <remarks>
+        /// Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCallAdRequest"></param>
+        /// <returns></returns>
+        void CreateCallAd(CreateCallAdRequest createCallAdRequest);
+
+        /// <summary>
+        /// Create Click-to-Call ad
+        /// </summary>
+        /// <remarks>
+        /// Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCallAdRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> CreateCallAdWithHttpInfo(CreateCallAdRequest createCallAdRequest);
+        /// <summary>
         /// Create a conversion destination
         /// </summary>
         /// <remarks>
@@ -163,26 +184,28 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateConversionDestination201Response</returns>
         ApiResponse<CreateConversionDestination201Response> CreateConversionDestinationWithHttpInfo(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest);
         /// <summary>
-        /// Create Click-to-WhatsApp ad
+        /// Create Click-to-WhatsApp ad (deprecated)
         /// </summary>
         /// <remarks>
-        /// Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createCtwaAdRequest"></param>
+        /// <param name="ctwaAdRequestBody"></param>
         /// <returns>CreateCtwaAd201Response</returns>
-        CreateCtwaAd201Response CreateCtwaAd(CreateCtwaAdRequest createCtwaAdRequest);
+        [Obsolete]
+        CreateCtwaAd201Response CreateCtwaAd(CtwaAdRequestBody ctwaAdRequestBody);
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad
+        /// Create Click-to-WhatsApp ad (deprecated)
         /// </summary>
         /// <remarks>
-        /// Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createCtwaAdRequest"></param>
+        /// <param name="ctwaAdRequestBody"></param>
         /// <returns>ApiResponse of CreateCtwaAd201Response</returns>
-        ApiResponse<CreateCtwaAd201Response> CreateCtwaAdWithHttpInfo(CreateCtwaAdRequest createCtwaAdRequest);
+        [Obsolete]
+        ApiResponse<CreateCtwaAd201Response> CreateCtwaAdWithHttpInfo(CtwaAdRequestBody ctwaAdRequestBody);
         /// <summary>
         /// Create a lead form
         /// </summary>
@@ -204,6 +227,27 @@ namespace Zernio.Api
         /// <param name="createLeadFormRequest"></param>
         /// <returns>ApiResponse of CreateLeadForm200Response</returns>
         ApiResponse<CreateLeadForm200Response> CreateLeadFormWithHttpInfo(CreateLeadFormRequest createLeadFormRequest);
+        /// <summary>
+        /// Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+        /// </summary>
+        /// <remarks>
+        /// Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createMessagingAdRequest"></param>
+        /// <returns></returns>
+        void CreateMessagingAd(CreateMessagingAdRequest createMessagingAdRequest);
+
+        /// <summary>
+        /// Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+        /// </summary>
+        /// <remarks>
+        /// Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createMessagingAdRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> CreateMessagingAdWithHttpInfo(CreateMessagingAdRequest createMessagingAdRequest);
         /// <summary>
         /// Create standalone ad
         /// </summary>
@@ -318,6 +362,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of EstimateAdReach200Response</returns>
         ApiResponse<EstimateAdReach200Response> EstimateAdReachWithHttpInfo(EstimateAdReachRequest estimateAdReachRequest);
         /// <summary>
+        /// Render pre-create ad previews (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateAdPreviewsRequest"></param>
+        /// <returns>GenerateAdPreviews200Response</returns>
+        GenerateAdPreviews200Response GenerateAdPreviews(GenerateAdPreviewsRequest generateAdPreviewsRequest);
+
+        /// <summary>
+        /// Render pre-create ad previews (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateAdPreviewsRequest"></param>
+        /// <returns>ApiResponse of GenerateAdPreviews200Response</returns>
+        ApiResponse<GenerateAdPreviews200Response> GenerateAdPreviewsWithHttpInfo(GenerateAdPreviewsRequest generateAdPreviewsRequest);
+        /// <summary>
         /// Get ad details
         /// </summary>
         /// <remarks>
@@ -419,6 +484,29 @@ namespace Zernio.Api
         /// <param name="after"> (optional)</param>
         /// <returns>ApiResponse of GetAdInsightsReport200Response</returns>
         ApiResponse<GetAdInsightsReport200Response> GetAdInsightsReportWithHttpInfo(string reportRunId, string accountId, int? limit = default, string? after = default);
+        /// <summary>
+        /// Render previews of an existing ad (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex).</param>
+        /// <param name="formats">Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)</param>
+        /// <returns>GetAdPreviews200Response</returns>
+        GetAdPreviews200Response GetAdPreviews(string adId, string? formats = default);
+
+        /// <summary>
+        /// Render previews of an existing ad (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex).</param>
+        /// <param name="formats">Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)</param>
+        /// <returns>ApiResponse of GetAdPreviews200Response</returns>
+        ApiResponse<GetAdPreviews200Response> GetAdPreviewsWithHttpInfo(string adId, string? formats = default);
         /// <summary>
         /// Get ad tracking tags
         /// </summary>
@@ -1369,6 +1457,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateAdInsightsReport202Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateAdInsightsReport202Response>> CreateAdInsightsReportWithHttpInfoAsync(CreateAdInsightsReportRequest createAdInsightsReportRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Create Click-to-Call ad
+        /// </summary>
+        /// <remarks>
+        /// Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCallAdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task CreateCallAdAsync(CreateCallAdRequest createCallAdRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create Click-to-Call ad
+        /// </summary>
+        /// <remarks>
+        /// Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCallAdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> CreateCallAdWithHttpInfoAsync(CreateCallAdRequest createCallAdRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Create a conversion destination
         /// </summary>
         /// <remarks>
@@ -1394,28 +1505,30 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (CreateConversionDestination201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateConversionDestination201Response>> CreateConversionDestinationWithHttpInfoAsync(string accountId, CreateConversionDestinationRequest createConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create Click-to-WhatsApp ad
+        /// Create Click-to-WhatsApp ad (deprecated)
         /// </summary>
         /// <remarks>
-        /// Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createCtwaAdRequest"></param>
+        /// <param name="ctwaAdRequestBody"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateCtwaAd201Response</returns>
-        System.Threading.Tasks.Task<CreateCtwaAd201Response> CreateCtwaAdAsync(CreateCtwaAdRequest createCtwaAdRequest, System.Threading.CancellationToken cancellationToken = default);
+        [Obsolete]
+        System.Threading.Tasks.Task<CreateCtwaAd201Response> CreateCtwaAdAsync(CtwaAdRequestBody ctwaAdRequestBody, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad
+        /// Create Click-to-WhatsApp ad (deprecated)
         /// </summary>
         /// <remarks>
-        /// Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createCtwaAdRequest"></param>
+        /// <param name="ctwaAdRequestBody"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateCtwaAd201Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CreateCtwaAd201Response>> CreateCtwaAdWithHttpInfoAsync(CreateCtwaAdRequest createCtwaAdRequest, System.Threading.CancellationToken cancellationToken = default);
+        [Obsolete]
+        System.Threading.Tasks.Task<ApiResponse<CreateCtwaAd201Response>> CreateCtwaAdWithHttpInfoAsync(CtwaAdRequestBody ctwaAdRequestBody, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a lead form
         /// </summary>
@@ -1439,6 +1552,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateLeadForm200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateLeadForm200Response>> CreateLeadFormWithHttpInfoAsync(CreateLeadFormRequest createLeadFormRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+        /// </summary>
+        /// <remarks>
+        /// Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createMessagingAdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task CreateMessagingAdAsync(CreateMessagingAdRequest createMessagingAdRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+        /// </summary>
+        /// <remarks>
+        /// Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createMessagingAdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> CreateMessagingAdWithHttpInfoAsync(CreateMessagingAdRequest createMessagingAdRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create standalone ad
         /// </summary>
@@ -1563,6 +1699,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (EstimateAdReach200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<EstimateAdReach200Response>> EstimateAdReachWithHttpInfoAsync(EstimateAdReachRequest estimateAdReachRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Render pre-create ad previews (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateAdPreviewsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GenerateAdPreviews200Response</returns>
+        System.Threading.Tasks.Task<GenerateAdPreviews200Response> GenerateAdPreviewsAsync(GenerateAdPreviewsRequest generateAdPreviewsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Render pre-create ad previews (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateAdPreviewsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GenerateAdPreviews200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GenerateAdPreviews200Response>> GenerateAdPreviewsWithHttpInfoAsync(GenerateAdPreviewsRequest generateAdPreviewsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get ad details
         /// </summary>
         /// <remarks>
@@ -1672,6 +1831,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdInsightsReport200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdInsightsReport200Response>> GetAdInsightsReportWithHttpInfoAsync(string reportRunId, string accountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Render previews of an existing ad (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex).</param>
+        /// <param name="formats">Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdPreviews200Response</returns>
+        System.Threading.Tasks.Task<GetAdPreviews200Response> GetAdPreviewsAsync(string adId, string? formats = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Render previews of an existing ad (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex).</param>
+        /// <param name="formats">Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdPreviews200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdPreviews200Response>> GetAdPreviewsWithHttpInfoAsync(string adId, string? formats = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get ad tracking tags
         /// </summary>
@@ -3457,6 +3641,133 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Create Click-to-Call ad Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCallAdRequest"></param>
+        /// <returns></returns>
+        public void CreateCallAd(CreateCallAdRequest createCallAdRequest)
+        {
+            CreateCallAdWithHttpInfo(createCallAdRequest);
+        }
+
+        /// <summary>
+        /// Create Click-to-Call ad Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCallAdRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> CreateCallAdWithHttpInfo(CreateCallAdRequest createCallAdRequest)
+        {
+            // verify the required parameter 'createCallAdRequest' is set
+            if (createCallAdRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createCallAdRequest' when calling AdsApi->CreateCallAd");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createCallAdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/v1/ads/call", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateCallAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create Click-to-Call ad Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCallAdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task CreateCallAdAsync(CreateCallAdRequest createCallAdRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await CreateCallAdWithHttpInfoAsync(createCallAdRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create Click-to-Call ad Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createCallAdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> CreateCallAdWithHttpInfoAsync(CreateCallAdRequest createCallAdRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createCallAdRequest' is set
+            if (createCallAdRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createCallAdRequest' when calling AdsApi->CreateCallAd");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createCallAdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/ads/call", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateCallAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Create a conversion destination Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3600,28 +3911,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Create Click-to-WhatsApp ad (deprecated) Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createCtwaAdRequest"></param>
+        /// <param name="ctwaAdRequestBody"></param>
         /// <returns>CreateCtwaAd201Response</returns>
-        public CreateCtwaAd201Response CreateCtwaAd(CreateCtwaAdRequest createCtwaAdRequest)
+        [Obsolete]
+        public CreateCtwaAd201Response CreateCtwaAd(CtwaAdRequestBody ctwaAdRequestBody)
         {
-            Zernio.Client.ApiResponse<CreateCtwaAd201Response> localVarResponse = CreateCtwaAdWithHttpInfo(createCtwaAdRequest);
+            Zernio.Client.ApiResponse<CreateCtwaAd201Response> localVarResponse = CreateCtwaAdWithHttpInfo(ctwaAdRequestBody);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Create Click-to-WhatsApp ad (deprecated) Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createCtwaAdRequest"></param>
+        /// <param name="ctwaAdRequestBody"></param>
         /// <returns>ApiResponse of CreateCtwaAd201Response</returns>
-        public Zernio.Client.ApiResponse<CreateCtwaAd201Response> CreateCtwaAdWithHttpInfo(CreateCtwaAdRequest createCtwaAdRequest)
+        [Obsolete]
+        public Zernio.Client.ApiResponse<CreateCtwaAd201Response> CreateCtwaAdWithHttpInfo(CtwaAdRequestBody ctwaAdRequestBody)
         {
-            // verify the required parameter 'createCtwaAdRequest' is set
-            if (createCtwaAdRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createCtwaAdRequest' when calling AdsApi->CreateCtwaAd");
+            // verify the required parameter 'ctwaAdRequestBody' is set
+            if (ctwaAdRequestBody == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'ctwaAdRequestBody' when calling AdsApi->CreateCtwaAd");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -3640,7 +3953,7 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = createCtwaAdRequest;
+            localVarRequestOptions.Data = ctwaAdRequestBody;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -3662,30 +3975,32 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Create Click-to-WhatsApp ad (deprecated) Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createCtwaAdRequest"></param>
+        /// <param name="ctwaAdRequestBody"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateCtwaAd201Response</returns>
-        public async System.Threading.Tasks.Task<CreateCtwaAd201Response> CreateCtwaAdAsync(CreateCtwaAdRequest createCtwaAdRequest, System.Threading.CancellationToken cancellationToken = default)
+        [Obsolete]
+        public async System.Threading.Tasks.Task<CreateCtwaAd201Response> CreateCtwaAdAsync(CtwaAdRequestBody ctwaAdRequestBody, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<CreateCtwaAd201Response> localVarResponse = await CreateCtwaAdWithHttpInfoAsync(createCtwaAdRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<CreateCtwaAd201Response> localVarResponse = await CreateCtwaAdWithHttpInfoAsync(ctwaAdRequestBody, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create Click-to-WhatsApp ad Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+        /// Create Click-to-WhatsApp ad (deprecated) Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createCtwaAdRequest"></param>
+        /// <param name="ctwaAdRequestBody"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateCtwaAd201Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateCtwaAd201Response>> CreateCtwaAdWithHttpInfoAsync(CreateCtwaAdRequest createCtwaAdRequest, System.Threading.CancellationToken cancellationToken = default)
+        [Obsolete]
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateCtwaAd201Response>> CreateCtwaAdWithHttpInfoAsync(CtwaAdRequestBody ctwaAdRequestBody, System.Threading.CancellationToken cancellationToken = default)
         {
-            // verify the required parameter 'createCtwaAdRequest' is set
-            if (createCtwaAdRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createCtwaAdRequest' when calling AdsApi->CreateCtwaAd");
+            // verify the required parameter 'ctwaAdRequestBody' is set
+            if (ctwaAdRequestBody == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'ctwaAdRequestBody' when calling AdsApi->CreateCtwaAd");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -3706,7 +4021,7 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.Data = createCtwaAdRequest;
+            localVarRequestOptions.Data = ctwaAdRequestBody;
 
             // authentication (bearerAuth) required
             // bearer authentication required
@@ -3851,6 +4166,133 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateLeadForm", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create click-to-message ad (WhatsApp / Messenger / Instagram Direct) Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createMessagingAdRequest"></param>
+        /// <returns></returns>
+        public void CreateMessagingAd(CreateMessagingAdRequest createMessagingAdRequest)
+        {
+            CreateMessagingAdWithHttpInfo(createMessagingAdRequest);
+        }
+
+        /// <summary>
+        /// Create click-to-message ad (WhatsApp / Messenger / Instagram Direct) Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createMessagingAdRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> CreateMessagingAdWithHttpInfo(CreateMessagingAdRequest createMessagingAdRequest)
+        {
+            // verify the required parameter 'createMessagingAdRequest' is set
+            if (createMessagingAdRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createMessagingAdRequest' when calling AdsApi->CreateMessagingAd");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createMessagingAdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/v1/ads/messaging", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateMessagingAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create click-to-message ad (WhatsApp / Messenger / Instagram Direct) Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createMessagingAdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task CreateMessagingAdAsync(CreateMessagingAdRequest createMessagingAdRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await CreateMessagingAdWithHttpInfoAsync(createMessagingAdRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Create click-to-message ad (WhatsApp / Messenger / Instagram Direct) Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createMessagingAdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> CreateMessagingAdWithHttpInfoAsync(CreateMessagingAdRequest createMessagingAdRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createMessagingAdRequest' is set
+            if (createMessagingAdRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createMessagingAdRequest' when calling AdsApi->CreateMessagingAd");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createMessagingAdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/v1/ads/messaging", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateMessagingAd", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -4549,6 +4991,135 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Render pre-create ad previews (Meta) Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateAdPreviewsRequest"></param>
+        /// <returns>GenerateAdPreviews200Response</returns>
+        public GenerateAdPreviews200Response GenerateAdPreviews(GenerateAdPreviewsRequest generateAdPreviewsRequest)
+        {
+            Zernio.Client.ApiResponse<GenerateAdPreviews200Response> localVarResponse = GenerateAdPreviewsWithHttpInfo(generateAdPreviewsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Render pre-create ad previews (Meta) Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateAdPreviewsRequest"></param>
+        /// <returns>ApiResponse of GenerateAdPreviews200Response</returns>
+        public Zernio.Client.ApiResponse<GenerateAdPreviews200Response> GenerateAdPreviewsWithHttpInfo(GenerateAdPreviewsRequest generateAdPreviewsRequest)
+        {
+            // verify the required parameter 'generateAdPreviewsRequest' is set
+            if (generateAdPreviewsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'generateAdPreviewsRequest' when calling AdsApi->GenerateAdPreviews");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = generateAdPreviewsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<GenerateAdPreviews200Response>("/v1/ads/preview", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GenerateAdPreviews", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Render pre-create ad previews (Meta) Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateAdPreviewsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GenerateAdPreviews200Response</returns>
+        public async System.Threading.Tasks.Task<GenerateAdPreviews200Response> GenerateAdPreviewsAsync(GenerateAdPreviewsRequest generateAdPreviewsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GenerateAdPreviews200Response> localVarResponse = await GenerateAdPreviewsWithHttpInfoAsync(generateAdPreviewsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Render pre-create ad previews (Meta) Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateAdPreviewsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GenerateAdPreviews200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GenerateAdPreviews200Response>> GenerateAdPreviewsWithHttpInfoAsync(GenerateAdPreviewsRequest generateAdPreviewsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'generateAdPreviewsRequest' is set
+            if (generateAdPreviewsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'generateAdPreviewsRequest' when calling AdsApi->GenerateAdPreviews");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = generateAdPreviewsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<GenerateAdPreviews200Response>("/v1/ads/preview", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GenerateAdPreviews", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get ad details Returns an ad with its creative, targeting, status, and performance metrics.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5160,6 +5731,145 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAdInsightsReport", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Render previews of an existing ad (Meta) Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex).</param>
+        /// <param name="formats">Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)</param>
+        /// <returns>GetAdPreviews200Response</returns>
+        public GetAdPreviews200Response GetAdPreviews(string adId, string? formats = default)
+        {
+            Zernio.Client.ApiResponse<GetAdPreviews200Response> localVarResponse = GetAdPreviewsWithHttpInfo(adId, formats);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Render previews of an existing ad (Meta) Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex).</param>
+        /// <param name="formats">Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)</param>
+        /// <returns>ApiResponse of GetAdPreviews200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdPreviews200Response> GetAdPreviewsWithHttpInfo(string adId, string? formats = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdsApi->GetAdPreviews");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            if (formats != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "formats", formats));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdPreviews200Response>("/v1/ads/{adId}/preview", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdPreviews", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Render previews of an existing ad (Meta) Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex).</param>
+        /// <param name="formats">Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdPreviews200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdPreviews200Response> GetAdPreviewsAsync(string adId, string? formats = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdPreviews200Response> localVarResponse = await GetAdPreviewsWithHttpInfoAsync(adId, formats, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Render previews of an existing ad (Meta) Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad id (24-char hex).</param>
+        /// <param name="formats">Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdPreviews200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdPreviews200Response>> GetAdPreviewsWithHttpInfoAsync(string adId, string? formats = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdsApi->GetAdPreviews");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            if (formats != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "formats", formats));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdPreviews200Response>("/v1/ads/{adId}/preview", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdPreviews", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

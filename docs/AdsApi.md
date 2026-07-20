@@ -9,18 +9,22 @@ All URIs are relative to *https://zernio.com/api*
 | [**ArchiveLeadForm**](AdsApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form |
 | [**BoostPost**](AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad |
 | [**CreateAdInsightsReport**](AdsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta) |
+| [**CreateCallAd**](AdsApi.md#createcallad) | **POST** /v1/ads/call | Create Click-to-Call ad |
 | [**CreateConversionDestination**](AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
-| [**CreateCtwaAd**](AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad |
+| [**CreateCtwaAd**](AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated) |
 | [**CreateLeadForm**](AdsApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form |
+| [**CreateMessagingAd**](AdsApi.md#createmessagingad) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct) |
 | [**CreateStandaloneAd**](AdsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad |
 | [**CreateTestLead**](AdsApi.md#createtestlead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
 | [**DeleteAd**](AdsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad |
 | [**DeleteConversionDestination**](AdsApi.md#deleteconversiondestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
 | [**EstimateAdReach**](AdsApi.md#estimateadreach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach |
+| [**GenerateAdPreviews**](AdsApi.md#generateadpreviews) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta) |
 | [**GetAd**](AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details |
 | [**GetAdAnalytics**](AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**GetAdComments**](AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**GetAdInsightsReport**](AdsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta) |
+| [**GetAdPreviews**](AdsApi.md#getadpreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta) |
 | [**GetAdTrackingTags**](AdsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
 | [**GetCampaignAnalytics**](AdsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**GetConversionDestination**](AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
@@ -570,6 +574,104 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="createcallad"></a>
+# **CreateCallAd**
+> void CreateCallAd (CreateCallAdRequest createCallAdRequest)
+
+Create Click-to-Call ad
+
+Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing `phoneNumber` via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateCallAdExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var createCallAdRequest = new CreateCallAdRequest(); // CreateCallAdRequest | 
+
+            try
+            {
+                // Create Click-to-Call ad
+                apiInstance.CreateCallAd(createCallAdRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.CreateCallAd: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateCallAdWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create Click-to-Call ad
+    apiInstance.CreateCallAdWithHttpInfo(createCallAdRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.CreateCallAdWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createCallAdRequest** | [**CreateCallAdRequest**](CreateCallAdRequest.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Ad(s) created and submitted for review |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **422** | No Facebook Page resolved for the account |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="createconversiondestination"></a>
 # **CreateConversionDestination**
 > CreateConversionDestination201Response CreateConversionDestination (string accountId, CreateConversionDestinationRequest createConversionDestinationRequest)
@@ -679,11 +781,11 @@ catch (ApiException e)
 
 <a id="createctwaad"></a>
 # **CreateCtwaAd**
-> CreateCtwaAd201Response CreateCtwaAd (CreateCtwaAdRequest createCtwaAdRequest)
+> CreateCtwaAd201Response CreateCtwaAd (CtwaAdRequestBody ctwaAdRequestBody)
 
-Create Click-to-WhatsApp ad
+Create Click-to-WhatsApp ad (deprecated)
 
-Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level `headline`, `body`, and one of `imageUrl` / `video`. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a `creatives[]` array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+Deprecated: use POST /v1/ads/messaging with `destination: whatsapp`. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level `headline`, `body`, and one of `imageUrl` / `video`. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a `creatives[]` array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
 
 ### Example
 ```csharp
@@ -709,12 +811,12 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
-            var createCtwaAdRequest = new CreateCtwaAdRequest(); // CreateCtwaAdRequest | 
+            var ctwaAdRequestBody = new CtwaAdRequestBody(); // CtwaAdRequestBody | 
 
             try
             {
-                // Create Click-to-WhatsApp ad
-                CreateCtwaAd201Response result = apiInstance.CreateCtwaAd(createCtwaAdRequest);
+                // Create Click-to-WhatsApp ad (deprecated)
+                CreateCtwaAd201Response result = apiInstance.CreateCtwaAd(ctwaAdRequestBody);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -734,8 +836,8 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Create Click-to-WhatsApp ad
-    ApiResponse<CreateCtwaAd201Response> response = apiInstance.CreateCtwaAdWithHttpInfo(createCtwaAdRequest);
+    // Create Click-to-WhatsApp ad (deprecated)
+    ApiResponse<CreateCtwaAd201Response> response = apiInstance.CreateCtwaAdWithHttpInfo(ctwaAdRequestBody);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -752,7 +854,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **createCtwaAdRequest** | [**CreateCtwaAdRequest**](CreateCtwaAdRequest.md) |  |  |
+| **ctwaAdRequestBody** | [**CtwaAdRequestBody**](CtwaAdRequestBody.md) |  |  |
 
 ### Return type
 
@@ -878,6 +980,104 @@ catch (ApiException e)
 | **200** | Created form. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createmessagingad"></a>
+# **CreateMessagingAd**
+> void CreateMessagingAd (CreateMessagingAdRequest createMessagingAdRequest)
+
+Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+
+Creates a click-to-message ad; `destination` selects where the tapped ad opens a conversation: WhatsApp, the Page's Messenger inbox or the linked Instagram account's Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to `destination: whatsapp`).
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateMessagingAdExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var createMessagingAdRequest = new CreateMessagingAdRequest(); // CreateMessagingAdRequest | 
+
+            try
+            {
+                // Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+                apiInstance.CreateMessagingAd(createMessagingAdRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.CreateMessagingAd: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateMessagingAdWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+    apiInstance.CreateMessagingAdWithHttpInfo(createMessagingAdRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.CreateMessagingAdWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createMessagingAdRequest** | [**CreateMessagingAdRequest**](CreateMessagingAdRequest.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Ad(s) created and submitted for review |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **422** | No Facebook Page resolved for the account |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1392,6 +1592,108 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="generateadpreviews"></a>
+# **GenerateAdPreviews**
+> GenerateAdPreviews200Response GenerateAdPreviews (GenerateAdPreviewsRequest generateAdPreviewsRequest)
+
+Render pre-create ad previews (Meta)
+
+Renders how a creative would look per placement BEFORE any ad exists, via Meta's `/generatepreviews`. Provide exactly one creative source: `existingCreativeId` or `creativeSpec`. Each preview is an HTML `<iframe>` snippet embeddable directly. Unknown `formats` values return Meta's 400 verbatim. Meta only. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GenerateAdPreviewsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var generateAdPreviewsRequest = new GenerateAdPreviewsRequest(); // GenerateAdPreviewsRequest | 
+
+            try
+            {
+                // Render pre-create ad previews (Meta)
+                GenerateAdPreviews200Response result = apiInstance.GenerateAdPreviews(generateAdPreviewsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GenerateAdPreviews: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GenerateAdPreviewsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Render pre-create ad previews (Meta)
+    ApiResponse<GenerateAdPreviews200Response> response = apiInstance.GenerateAdPreviewsWithHttpInfo(generateAdPreviewsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GenerateAdPreviewsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **generateAdPreviewsRequest** | [**GenerateAdPreviewsRequest**](GenerateAdPreviewsRequest.md) |  |  |
+
+### Return type
+
+[**GenerateAdPreviews200Response**](GenerateAdPreviews200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Rendered previews |  -  |
+| **400** | Invalid input, or Meta rejected the creative spec / ad_format — message carries Meta&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Meta rate limit reached |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getad"></a>
 # **GetAd**
 > GetAd200Response GetAd (string adId)
@@ -1813,6 +2115,111 @@ catch (ApiException e)
 | **200** | Report run status (plus results when completed) |  -  |
 | **400** | Invalid input, or the report run is not readable with this account&#39;s token |  -  |
 | **401** | Unauthorized |  -  |
+| **429** | Meta rate limit reached |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadpreviews"></a>
+# **GetAdPreviews**
+> GetAdPreviews200Response GetAdPreviews (string adId, string? formats = null)
+
+Render previews of an existing ad (Meta)
+
+Renders an EXISTING ad per placement via Meta's `/{ad_id}/previews`. Each preview is an HTML `<iframe>` snippet embeddable directly. Unknown `formats` values return Meta's 400 verbatim. Meta only. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdPreviewsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var adId = "adId_example";  // string | Zernio ad id (24-char hex).
+            var formats = "formats_example";  // string? | Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional) 
+
+            try
+            {
+                // Render previews of an existing ad (Meta)
+                GetAdPreviews200Response result = apiInstance.GetAdPreviews(adId, formats);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetAdPreviews: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdPreviewsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Render previews of an existing ad (Meta)
+    ApiResponse<GetAdPreviews200Response> response = apiInstance.GetAdPreviewsWithHttpInfo(adId, formats);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetAdPreviewsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adId** | **string** | Zernio ad id (24-char hex). |  |
+| **formats** | **string?** | Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. | [optional]  |
+
+### Return type
+
+[**GetAdPreviews200Response**](GetAdPreviews200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Rendered previews |  -  |
+| **400** | Invalid input, or Meta rejected the ad_format — message carries Meta&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
 | **429** | Meta rate limit reached |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 

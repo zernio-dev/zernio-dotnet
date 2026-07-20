@@ -181,18 +181,22 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**ArchiveLeadForm**](docs/AdsApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
 *AdsApi* | [**BoostPost**](docs/AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad
 *AdsApi* | [**CreateAdInsightsReport**](docs/AdsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta)
+*AdsApi* | [**CreateCallAd**](docs/AdsApi.md#createcallad) | **POST** /v1/ads/call | Create Click-to-Call ad
 *AdsApi* | [**CreateConversionDestination**](docs/AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
-*AdsApi* | [**CreateCtwaAd**](docs/AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad
+*AdsApi* | [**CreateCtwaAd**](docs/AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated)
 *AdsApi* | [**CreateLeadForm**](docs/AdsApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form
+*AdsApi* | [**CreateMessagingAd**](docs/AdsApi.md#createmessagingad) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
 *AdsApi* | [**CreateStandaloneAd**](docs/AdsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad
 *AdsApi* | [**CreateTestLead**](docs/AdsApi.md#createtestlead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
 *AdsApi* | [**DeleteAd**](docs/AdsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad
 *AdsApi* | [**DeleteConversionDestination**](docs/AdsApi.md#deleteconversiondestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
 *AdsApi* | [**EstimateAdReach**](docs/AdsApi.md#estimateadreach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
+*AdsApi* | [**GenerateAdPreviews**](docs/AdsApi.md#generateadpreviews) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta)
 *AdsApi* | [**GetAd**](docs/AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details
 *AdsApi* | [**GetAdAnalytics**](docs/AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
 *AdsApi* | [**GetAdComments**](docs/AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdsApi* | [**GetAdInsightsReport**](docs/AdsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta)
+*AdsApi* | [**GetAdPreviews**](docs/AdsApi.md#getadpreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta)
 *AdsApi* | [**GetAdTrackingTags**](docs/AdsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
 *AdsApi* | [**GetCampaignAnalytics**](docs/AdsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
 *AdsApi* | [**GetConversionDestination**](docs/AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
@@ -769,6 +773,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateBroadcastRequestSegmentFilters](docs/CreateBroadcastRequestSegmentFilters.md)
  - [Model.CreateBroadcastRequestTemplate](docs/CreateBroadcastRequestTemplate.md)
  - [Model.CreateBroadcastRequestTemplateVariableMappingValue](docs/CreateBroadcastRequestTemplateVariableMappingValue.md)
+ - [Model.CreateCallAdRequest](docs/CreateCallAdRequest.md)
  - [Model.CreateCommentAutomation200Response](docs/CreateCommentAutomation200Response.md)
  - [Model.CreateCommentAutomation200ResponseAutomation](docs/CreateCommentAutomation200ResponseAutomation.md)
  - [Model.CreateCommentAutomation200ResponseAutomationStats](docs/CreateCommentAutomation200ResponseAutomationStats.md)
@@ -781,14 +786,6 @@ Class | Method | HTTP request | Description
  - [Model.CreateConversionDestinationRequest](docs/CreateConversionDestinationRequest.md)
  - [Model.CreateConversionDestinationRequestValue](docs/CreateConversionDestinationRequestValue.md)
  - [Model.CreateCtwaAd201Response](docs/CreateCtwaAd201Response.md)
- - [Model.CreateCtwaAdRequest](docs/CreateCtwaAdRequest.md)
- - [Model.CreateCtwaAdRequestCitiesInner](docs/CreateCtwaAdRequestCitiesInner.md)
- - [Model.CreateCtwaAdRequestCreativesInner](docs/CreateCtwaAdRequestCreativesInner.md)
- - [Model.CreateCtwaAdRequestCreativesInnerVideo](docs/CreateCtwaAdRequestCreativesInnerVideo.md)
- - [Model.CreateCtwaAdRequestPlacements](docs/CreateCtwaAdRequestPlacements.md)
- - [Model.CreateCtwaAdRequestRegionsInner](docs/CreateCtwaAdRequestRegionsInner.md)
- - [Model.CreateCtwaAdRequestVideo](docs/CreateCtwaAdRequestVideo.md)
- - [Model.CreateCtwaAdRequestZipsInner](docs/CreateCtwaAdRequestZipsInner.md)
  - [Model.CreateCustomField200Response](docs/CreateCustomField200Response.md)
  - [Model.CreateCustomFieldRequest](docs/CreateCustomFieldRequest.md)
  - [Model.CreateDiscordGuildRole201Response](docs/CreateDiscordGuildRole201Response.md)
@@ -818,6 +815,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateLeadFormRequest](docs/CreateLeadFormRequest.md)
  - [Model.CreateLeadFormRequestQuestionsInner](docs/CreateLeadFormRequestQuestionsInner.md)
  - [Model.CreateLeadFormRequestQuestionsInnerOptionsInner](docs/CreateLeadFormRequestQuestionsInnerOptionsInner.md)
+ - [Model.CreateMessagingAdRequest](docs/CreateMessagingAdRequest.md)
  - [Model.CreatePhoneNumberKycLink200Response](docs/CreatePhoneNumberKycLink200Response.md)
  - [Model.CreatePhoneNumberKycLinkRequest](docs/CreatePhoneNumberKycLinkRequest.md)
  - [Model.CreatePhoneNumberKycLinkRequestBranding](docs/CreatePhoneNumberKycLinkRequestBranding.md)
@@ -895,6 +893,14 @@ Class | Method | HTTP request | Description
  - [Model.CreateWorkflow200ResponseWorkflow](docs/CreateWorkflow200ResponseWorkflow.md)
  - [Model.CreateWorkflowRequest](docs/CreateWorkflowRequest.md)
  - [Model.CrosspostDiscordMessage200Response](docs/CrosspostDiscordMessage200Response.md)
+ - [Model.CtwaAdRequestBody](docs/CtwaAdRequestBody.md)
+ - [Model.CtwaAdRequestBodyCitiesInner](docs/CtwaAdRequestBodyCitiesInner.md)
+ - [Model.CtwaAdRequestBodyCreativesInner](docs/CtwaAdRequestBodyCreativesInner.md)
+ - [Model.CtwaAdRequestBodyCreativesInnerVideo](docs/CtwaAdRequestBodyCreativesInnerVideo.md)
+ - [Model.CtwaAdRequestBodyPlacements](docs/CtwaAdRequestBodyPlacements.md)
+ - [Model.CtwaAdRequestBodyRegionsInner](docs/CtwaAdRequestBodyRegionsInner.md)
+ - [Model.CtwaAdRequestBodyVideo](docs/CtwaAdRequestBodyVideo.md)
+ - [Model.CtwaAdRequestBodyZipsInner](docs/CtwaAdRequestBodyZipsInner.md)
  - [Model.CtwaMultiResponse](docs/CtwaMultiResponse.md)
  - [Model.CtwaSingleResponse](docs/CtwaSingleResponse.md)
  - [Model.DeactivateSmsRegistration200Response](docs/DeactivateSmsRegistration200Response.md)
@@ -979,6 +985,9 @@ Class | Method | HTTP request | Description
  - [Model.FoodMenuItemOptionsInner](docs/FoodMenuItemOptionsInner.md)
  - [Model.FoodMenuLabel](docs/FoodMenuLabel.md)
  - [Model.FoodMenuSection](docs/FoodMenuSection.md)
+ - [Model.GenerateAdPreviews200Response](docs/GenerateAdPreviews200Response.md)
+ - [Model.GenerateAdPreviews200ResponsePreviewsInner](docs/GenerateAdPreviews200ResponsePreviewsInner.md)
+ - [Model.GenerateAdPreviewsRequest](docs/GenerateAdPreviewsRequest.md)
  - [Model.GeoRestriction](docs/GeoRestriction.md)
  - [Model.GetAccountHealth200Response](docs/GetAccountHealth200Response.md)
  - [Model.GetAccountHealth200ResponsePermissions](docs/GetAccountHealth200ResponsePermissions.md)
@@ -993,6 +1002,7 @@ Class | Method | HTTP request | Description
  - [Model.GetAdComments200ResponsePagination](docs/GetAdComments200ResponsePagination.md)
  - [Model.GetAdInsightsReport200Response](docs/GetAdInsightsReport200Response.md)
  - [Model.GetAdInsightsReport200ResponsePaging](docs/GetAdInsightsReport200ResponsePaging.md)
+ - [Model.GetAdPreviews200Response](docs/GetAdPreviews200Response.md)
  - [Model.GetAdTrackingTags200Response](docs/GetAdTrackingTags200Response.md)
  - [Model.GetAdTree200Response](docs/GetAdTree200Response.md)
  - [Model.GetAdsTimeline200Response](docs/GetAdsTimeline200Response.md)

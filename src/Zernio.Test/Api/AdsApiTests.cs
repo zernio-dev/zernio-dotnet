@@ -118,6 +118,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateCallAd
+        /// </summary>
+        [Fact]
+        public void CreateCallAdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateCallAdRequest createCallAdRequest = null;
+            //instance.CreateCallAd(createCallAdRequest);
+        }
+
+        /// <summary>
         /// Test CreateConversionDestination
         /// </summary>
         [Fact]
@@ -137,8 +148,8 @@ namespace Zernio.Test.Api
         public void CreateCtwaAdTest()
         {
             // TODO uncomment below to test the method and replace null with proper value
-            //CreateCtwaAdRequest createCtwaAdRequest = null;
-            //var response = instance.CreateCtwaAd(createCtwaAdRequest);
+            //CtwaAdRequestBody ctwaAdRequestBody = null;
+            //var response = instance.CreateCtwaAd(ctwaAdRequestBody);
             //Assert.IsType<CreateCtwaAd201Response>(response);
         }
 
@@ -152,6 +163,17 @@ namespace Zernio.Test.Api
             //CreateLeadFormRequest createLeadFormRequest = null;
             //var response = instance.CreateLeadForm(createLeadFormRequest);
             //Assert.IsType<CreateLeadForm200Response>(response);
+        }
+
+        /// <summary>
+        /// Test CreateMessagingAd
+        /// </summary>
+        [Fact]
+        public void CreateMessagingAdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateMessagingAdRequest createMessagingAdRequest = null;
+            //instance.CreateMessagingAd(createMessagingAdRequest);
         }
 
         /// <summary>
@@ -218,6 +240,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GenerateAdPreviews
+        /// </summary>
+        [Fact]
+        public void GenerateAdPreviewsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //GenerateAdPreviewsRequest generateAdPreviewsRequest = null;
+            //var response = instance.GenerateAdPreviews(generateAdPreviewsRequest);
+            //Assert.IsType<GenerateAdPreviews200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetAd
         /// </summary>
         [Fact]
@@ -272,6 +306,19 @@ namespace Zernio.Test.Api
             //string? after = null;
             //var response = instance.GetAdInsightsReport(reportRunId, accountId, limit, after);
             //Assert.IsType<GetAdInsightsReport200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetAdPreviews
+        /// </summary>
+        [Fact]
+        public void GetAdPreviewsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //string? formats = null;
+            //var response = instance.GetAdPreviews(adId, formats);
+            //Assert.IsType<GetAdPreviews200Response>(response);
         }
 
         /// <summary>
