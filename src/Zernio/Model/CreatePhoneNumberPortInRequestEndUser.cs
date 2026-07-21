@@ -34,8 +34,9 @@ namespace Zernio.Model
     public partial class CreatePhoneNumberPortInRequestEndUser : IValidatableObject
     {
         /// <summary>
-        /// Defines CountryCode
+        /// Service-address country (a supported port-in country).
         /// </summary>
+        /// <value>Service-address country (a supported port-in country).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CountryCodeEnum
         {
@@ -49,13 +50,50 @@ namespace Zernio.Model
             /// Enum CA for value: CA
             /// </summary>
             [EnumMember(Value = "CA")]
-            CA = 2
+            CA = 2,
+
+            /// <summary>
+            /// Enum GB for value: GB
+            /// </summary>
+            [EnumMember(Value = "GB")]
+            GB = 3,
+
+            /// <summary>
+            /// Enum ES for value: ES
+            /// </summary>
+            [EnumMember(Value = "ES")]
+            ES = 4,
+
+            /// <summary>
+            /// Enum DE for value: DE
+            /// </summary>
+            [EnumMember(Value = "DE")]
+            DE = 5,
+
+            /// <summary>
+            /// Enum FR for value: FR
+            /// </summary>
+            [EnumMember(Value = "FR")]
+            FR = 6,
+
+            /// <summary>
+            /// Enum NL for value: NL
+            /// </summary>
+            [EnumMember(Value = "NL")]
+            NL = 7,
+
+            /// <summary>
+            /// Enum AU for value: AU
+            /// </summary>
+            [EnumMember(Value = "AU")]
+            AU = 8
         }
 
 
         /// <summary>
-        /// Gets or Sets CountryCode
+        /// Service-address country (a supported port-in country).
         /// </summary>
+        /// <value>Service-address country (a supported port-in country).</value>
         [DataMember(Name = "countryCode", IsRequired = true, EmitDefaultValue = true)]
         public CountryCodeEnum CountryCode { get; set; }
         /// <summary>
@@ -70,14 +108,16 @@ namespace Zernio.Model
         /// <param name="authPersonName">Full name (first + last) of the person authorizing the port — must match the LOA signature. (required).</param>
         /// <param name="billingPhoneNumber">Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders. Validated as a real phone number when present..</param>
         /// <param name="accountNumber">Account number with the losing carrier — required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself). (required).</param>
-        /// <param name="pinPasscode">Transfer PIN. Required for mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored..</param>
+        /// <param name="pinPasscode">Transfer PIN. Required for US/CA mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored. International porting codes (e.g. the UK PAC) go through &#x60;requirements&#x60; instead..</param>
+        /// <param name="taxIdentifier">Company tax id on the carrier account (EU ports, e.g. Spanish CIF)..</param>
+        /// <param name="businessIdentifier">Business registration id on the carrier account (EU ports)..</param>
         /// <param name="streetAddress">streetAddress (required).</param>
         /// <param name="extendedAddress">extendedAddress.</param>
         /// <param name="locality">locality (required).</param>
-        /// <param name="administrativeArea">2-letter US state / CA province code (full names are accepted and normalized). (required).</param>
-        /// <param name="postalCode">US ZIP (5 digits) or Canadian postal code, matching countryCode. (required).</param>
-        /// <param name="countryCode">countryCode (required).</param>
-        public CreatePhoneNumberPortInRequestEndUser(string entityName = default, string authPersonName = default, string billingPhoneNumber = default, string accountNumber = default, string pinPasscode = default, string streetAddress = default, string extendedAddress = default, string locality = default, string administrativeArea = default, string postalCode = default, CountryCodeEnum countryCode = default)
+        /// <param name="administrativeArea">Region. Required for US/CA as the 2-letter state/province code (full names are accepted and normalized); optional elsewhere..</param>
+        /// <param name="postalCode">Postal code. Validated as a US ZIP / Canadian postal code for US/CA; free-form elsewhere. (required).</param>
+        /// <param name="countryCode">Service-address country (a supported port-in country). (required).</param>
+        public CreatePhoneNumberPortInRequestEndUser(string entityName = default, string authPersonName = default, string billingPhoneNumber = default, string accountNumber = default, string pinPasscode = default, string taxIdentifier = default, string businessIdentifier = default, string streetAddress = default, string extendedAddress = default, string locality = default, string administrativeArea = default, string postalCode = default, CountryCodeEnum countryCode = default)
         {
             // to ensure "entityName" is required (not null)
             if (entityName == null)
@@ -109,12 +149,6 @@ namespace Zernio.Model
                 throw new ArgumentNullException("locality is a required property for CreatePhoneNumberPortInRequestEndUser and cannot be null");
             }
             this.Locality = locality;
-            // to ensure "administrativeArea" is required (not null)
-            if (administrativeArea == null)
-            {
-                throw new ArgumentNullException("administrativeArea is a required property for CreatePhoneNumberPortInRequestEndUser and cannot be null");
-            }
-            this.AdministrativeArea = administrativeArea;
             // to ensure "postalCode" is required (not null)
             if (postalCode == null)
             {
@@ -124,7 +158,10 @@ namespace Zernio.Model
             this.CountryCode = countryCode;
             this.BillingPhoneNumber = billingPhoneNumber;
             this.PinPasscode = pinPasscode;
+            this.TaxIdentifier = taxIdentifier;
+            this.BusinessIdentifier = businessIdentifier;
             this.ExtendedAddress = extendedAddress;
+            this.AdministrativeArea = administrativeArea;
         }
 
         /// <summary>
@@ -156,11 +193,25 @@ namespace Zernio.Model
         public string AccountNumber { get; set; }
 
         /// <summary>
-        /// Transfer PIN. Required for mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored.
+        /// Transfer PIN. Required for US/CA mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored. International porting codes (e.g. the UK PAC) go through &#x60;requirements&#x60; instead.
         /// </summary>
-        /// <value>Transfer PIN. Required for mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored.</value>
+        /// <value>Transfer PIN. Required for US/CA mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored. International porting codes (e.g. the UK PAC) go through &#x60;requirements&#x60; instead.</value>
         [DataMember(Name = "pinPasscode", EmitDefaultValue = false)]
         public string PinPasscode { get; set; }
+
+        /// <summary>
+        /// Company tax id on the carrier account (EU ports, e.g. Spanish CIF).
+        /// </summary>
+        /// <value>Company tax id on the carrier account (EU ports, e.g. Spanish CIF).</value>
+        [DataMember(Name = "taxIdentifier", EmitDefaultValue = false)]
+        public string TaxIdentifier { get; set; }
+
+        /// <summary>
+        /// Business registration id on the carrier account (EU ports).
+        /// </summary>
+        /// <value>Business registration id on the carrier account (EU ports).</value>
+        [DataMember(Name = "businessIdentifier", EmitDefaultValue = false)]
+        public string BusinessIdentifier { get; set; }
 
         /// <summary>
         /// Gets or Sets StreetAddress
@@ -181,16 +232,16 @@ namespace Zernio.Model
         public string Locality { get; set; }
 
         /// <summary>
-        /// 2-letter US state / CA province code (full names are accepted and normalized).
+        /// Region. Required for US/CA as the 2-letter state/province code (full names are accepted and normalized); optional elsewhere.
         /// </summary>
-        /// <value>2-letter US state / CA province code (full names are accepted and normalized).</value>
-        [DataMember(Name = "administrativeArea", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Region. Required for US/CA as the 2-letter state/province code (full names are accepted and normalized); optional elsewhere.</value>
+        [DataMember(Name = "administrativeArea", EmitDefaultValue = false)]
         public string AdministrativeArea { get; set; }
 
         /// <summary>
-        /// US ZIP (5 digits) or Canadian postal code, matching countryCode.
+        /// Postal code. Validated as a US ZIP / Canadian postal code for US/CA; free-form elsewhere.
         /// </summary>
-        /// <value>US ZIP (5 digits) or Canadian postal code, matching countryCode.</value>
+        /// <value>Postal code. Validated as a US ZIP / Canadian postal code for US/CA; free-form elsewhere.</value>
         [DataMember(Name = "postalCode", IsRequired = true, EmitDefaultValue = true)]
         public string PostalCode { get; set; }
 
@@ -207,6 +258,8 @@ namespace Zernio.Model
             sb.Append("  BillingPhoneNumber: ").Append(BillingPhoneNumber).Append("\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  PinPasscode: ").Append(PinPasscode).Append("\n");
+            sb.Append("  TaxIdentifier: ").Append(TaxIdentifier).Append("\n");
+            sb.Append("  BusinessIdentifier: ").Append(BusinessIdentifier).Append("\n");
             sb.Append("  StreetAddress: ").Append(StreetAddress).Append("\n");
             sb.Append("  ExtendedAddress: ").Append(ExtendedAddress).Append("\n");
             sb.Append("  Locality: ").Append(Locality).Append("\n");
@@ -233,6 +286,18 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // TaxIdentifier (string) maxLength
+            if (this.TaxIdentifier != null && this.TaxIdentifier.Length > 50)
+            {
+                yield return new ValidationResult("Invalid value for TaxIdentifier, length must be less than 50.", new [] { "TaxIdentifier" });
+            }
+
+            // BusinessIdentifier (string) maxLength
+            if (this.BusinessIdentifier != null && this.BusinessIdentifier.Length > 50)
+            {
+                yield return new ValidationResult("Invalid value for BusinessIdentifier, length must be less than 50.", new [] { "BusinessIdentifier" });
+            }
+
             yield break;
         }
     }

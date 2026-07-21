@@ -117,5 +117,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'PortType'
         }
+
+        /// <summary>
+        /// Test the property 'Requirements'
+        /// </summary>
+        [Fact]
+        public void RequirementsTest()
+        {
+            // TODO unit test for the property 'Requirements'
+        }
     }
 }

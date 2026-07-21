@@ -215,6 +215,7 @@ docs/CreatePhoneNumberPortIn201Response.md
 docs/CreatePhoneNumberPortIn201ResponseOrdersInner.md
 docs/CreatePhoneNumberPortInRequest.md
 docs/CreatePhoneNumberPortInRequestEndUser.md
+docs/CreatePhoneNumberPortInRequestRequirementsInner.md
 docs/CreatePinterestBoard201Response.md
 docs/CreatePinterestBoard201ResponseBoard.md
 docs/CreatePinterestBoardRequest.md
@@ -595,6 +596,10 @@ docs/GetPhoneNumberKycForm200ResponseFieldsInner.md
 docs/GetPhoneNumberKycForm200ResponseReusable.md
 docs/GetPhoneNumberKycForm200ResponseReusableDetailsInner.md
 docs/GetPhoneNumberKycForm200ResponseReusableOptionsInner.md
+docs/GetPhoneNumberPortInOrderRequirements200Response.md
+docs/GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner.md
+docs/GetPhoneNumberPortInRequirements200Response.md
+docs/GetPhoneNumberPortInRequirements200ResponseFieldsInner.md
 docs/GetPhoneNumberRemediation200Response.md
 docs/GetPinterestBoards200Response.md
 docs/GetPinterestBoards200ResponseBoardsInner.md
@@ -1746,6 +1751,7 @@ src/Zernio.Test/Model/CreatePhoneNumberKycLinkRequestTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortIn201ResponseOrdersInnerTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortIn201ResponseTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortInRequestEndUserTests.cs
+src/Zernio.Test/Model/CreatePhoneNumberPortInRequestRequirementsInnerTests.cs
 src/Zernio.Test/Model/CreatePhoneNumberPortInRequestTests.cs
 src/Zernio.Test/Model/CreatePinterestBoard201ResponseBoardTests.cs
 src/Zernio.Test/Model/CreatePinterestBoard201ResponseTests.cs
@@ -2117,6 +2123,10 @@ src/Zernio.Test/Model/GetPhoneNumberKycForm200ResponseReusableDetailsInnerTests.
 src/Zernio.Test/Model/GetPhoneNumberKycForm200ResponseReusableOptionsInnerTests.cs
 src/Zernio.Test/Model/GetPhoneNumberKycForm200ResponseReusableTests.cs
 src/Zernio.Test/Model/GetPhoneNumberKycForm200ResponseTests.cs
+src/Zernio.Test/Model/GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInnerTests.cs
+src/Zernio.Test/Model/GetPhoneNumberPortInOrderRequirements200ResponseTests.cs
+src/Zernio.Test/Model/GetPhoneNumberPortInRequirements200ResponseFieldsInnerTests.cs
+src/Zernio.Test/Model/GetPhoneNumberPortInRequirements200ResponseTests.cs
 src/Zernio.Test/Model/GetPhoneNumberRemediation200ResponseTests.cs
 src/Zernio.Test/Model/GetPinterestBoards200ResponseBoardsInnerTests.cs
 src/Zernio.Test/Model/GetPinterestBoards200ResponseTests.cs
@@ -3256,6 +3266,7 @@ src/Zernio/Model/CreatePhoneNumberPortIn201Response.cs
 src/Zernio/Model/CreatePhoneNumberPortIn201ResponseOrdersInner.cs
 src/Zernio/Model/CreatePhoneNumberPortInRequest.cs
 src/Zernio/Model/CreatePhoneNumberPortInRequestEndUser.cs
+src/Zernio/Model/CreatePhoneNumberPortInRequestRequirementsInner.cs
 src/Zernio/Model/CreatePinterestBoard201Response.cs
 src/Zernio/Model/CreatePinterestBoard201ResponseBoard.cs
 src/Zernio/Model/CreatePinterestBoardRequest.cs
@@ -3626,6 +3637,10 @@ src/Zernio/Model/GetPhoneNumberKycForm200ResponseFieldsInner.cs
 src/Zernio/Model/GetPhoneNumberKycForm200ResponseReusable.cs
 src/Zernio/Model/GetPhoneNumberKycForm200ResponseReusableDetailsInner.cs
 src/Zernio/Model/GetPhoneNumberKycForm200ResponseReusableOptionsInner.cs
+src/Zernio/Model/GetPhoneNumberPortInOrderRequirements200Response.cs
+src/Zernio/Model/GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner.cs
+src/Zernio/Model/GetPhoneNumberPortInRequirements200Response.cs
+src/Zernio/Model/GetPhoneNumberPortInRequirements200ResponseFieldsInner.cs
 src/Zernio/Model/GetPhoneNumberRemediation200Response.cs
 src/Zernio/Model/GetPinterestBoards200Response.cs
 src/Zernio/Model/GetPinterestBoards200ResponseBoardsInner.cs

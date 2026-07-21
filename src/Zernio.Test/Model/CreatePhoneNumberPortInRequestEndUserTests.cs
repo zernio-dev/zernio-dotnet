@@ -101,6 +101,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TaxIdentifier'
+        /// </summary>
+        [Fact]
+        public void TaxIdentifierTest()
+        {
+            // TODO unit test for the property 'TaxIdentifier'
+        }
+
+        /// <summary>
+        /// Test the property 'BusinessIdentifier'
+        /// </summary>
+        [Fact]
+        public void BusinessIdentifierTest()
+        {
+            // TODO unit test for the property 'BusinessIdentifier'
+        }
+
+        /// <summary>
         /// Test the property 'StreetAddress'
         /// </summary>
         [Fact]

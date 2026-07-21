@@ -9,13 +9,15 @@ Name | Type | Description | Notes
 **AuthPersonName** | **string** | Full name (first + last) of the person authorizing the port — must match the LOA signature. | 
 **BillingPhoneNumber** | **string** | Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders. Validated as a real phone number when present. | [optional] 
 **AccountNumber** | **string** | Account number with the losing carrier — required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself). | 
-**PinPasscode** | **string** | Transfer PIN. Required for mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored. | [optional] 
+**PinPasscode** | **string** | Transfer PIN. Required for US/CA mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored. International porting codes (e.g. the UK PAC) go through &#x60;requirements&#x60; instead. | [optional] 
+**TaxIdentifier** | **string** | Company tax id on the carrier account (EU ports, e.g. Spanish CIF). | [optional] 
+**BusinessIdentifier** | **string** | Business registration id on the carrier account (EU ports). | [optional] 
 **StreetAddress** | **string** |  | 
 **ExtendedAddress** | **string** |  | [optional] 
 **Locality** | **string** |  | 
-**AdministrativeArea** | **string** | 2-letter US state / CA province code (full names are accepted and normalized). | 
-**PostalCode** | **string** | US ZIP (5 digits) or Canadian postal code, matching countryCode. | 
-**CountryCode** | **string** |  | 
+**AdministrativeArea** | **string** | Region. Required for US/CA as the 2-letter state/province code (full names are accepted and normalized); optional elsewhere. | [optional] 
+**PostalCode** | **string** | Postal code. Validated as a US ZIP / Canadian postal code for US/CA; free-form elsewhere. | 
+**CountryCode** | **string** | Service-address country (a supported port-in country). | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -141,6 +141,31 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetPhoneNumberPortInOrderRequirements
+        /// </summary>
+        [Fact]
+        public void GetPhoneNumberPortInOrderRequirementsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //var response = instance.GetPhoneNumberPortInOrderRequirements(id);
+            //Assert.IsType<GetPhoneNumberPortInOrderRequirements200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetPhoneNumberPortInRequirements
+        /// </summary>
+        [Fact]
+        public void GetPhoneNumberPortInRequirementsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string country = null;
+            //string? numberType = null;
+            //var response = instance.GetPhoneNumberPortInRequirements(country, numberType);
+            //Assert.IsType<GetPhoneNumberPortInRequirements200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetPhoneNumberRemediation
         /// </summary>
         [Fact]

@@ -39,14 +39,18 @@ namespace Zernio.Model
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="portable">portable.</param>
         /// <param name="fastPortable">Qualifies for the carrier&#39;s accelerated FastPort lane..</param>
-        /// <param name="lineType">Line type when known (mobile, landline, voip…). A mobile number requires the transfer PIN at submit..</param>
+        /// <param name="lineType">Line type when known (mobile, landline, voip…). A US/CA mobile number requires the transfer PIN at submit..</param>
+        /// <param name="countryCode">ISO country of the number — pass it to GET /v1/phone-numbers/port-in/requirements for international numbers..</param>
+        /// <param name="phoneNumberType">Carrier number-type classification (local, mobile, national, toll_free…) — the numberType for the requirements endpoint..</param>
         /// <param name="notPortableReason">Carrier reason when not portable; null when portable..</param>
-        public CheckPhoneNumberPortability200ResponseResultsInner(string phoneNumber = default, bool portable = default, bool fastPortable = default, string lineType = default, string notPortableReason = default)
+        public CheckPhoneNumberPortability200ResponseResultsInner(string phoneNumber = default, bool portable = default, bool fastPortable = default, string lineType = default, string countryCode = default, string phoneNumberType = default, string notPortableReason = default)
         {
             this.PhoneNumber = phoneNumber;
             this.Portable = portable;
             this.FastPortable = fastPortable;
             this.LineType = lineType;
+            this.CountryCode = countryCode;
+            this.PhoneNumberType = phoneNumberType;
             this.NotPortableReason = notPortableReason;
         }
 
@@ -70,11 +74,25 @@ namespace Zernio.Model
         public bool FastPortable { get; set; }
 
         /// <summary>
-        /// Line type when known (mobile, landline, voip…). A mobile number requires the transfer PIN at submit.
+        /// Line type when known (mobile, landline, voip…). A US/CA mobile number requires the transfer PIN at submit.
         /// </summary>
-        /// <value>Line type when known (mobile, landline, voip…). A mobile number requires the transfer PIN at submit.</value>
+        /// <value>Line type when known (mobile, landline, voip…). A US/CA mobile number requires the transfer PIN at submit.</value>
         [DataMember(Name = "lineType", EmitDefaultValue = true)]
         public string LineType { get; set; }
+
+        /// <summary>
+        /// ISO country of the number — pass it to GET /v1/phone-numbers/port-in/requirements for international numbers.
+        /// </summary>
+        /// <value>ISO country of the number — pass it to GET /v1/phone-numbers/port-in/requirements for international numbers.</value>
+        [DataMember(Name = "countryCode", EmitDefaultValue = true)]
+        public string CountryCode { get; set; }
+
+        /// <summary>
+        /// Carrier number-type classification (local, mobile, national, toll_free…) — the numberType for the requirements endpoint.
+        /// </summary>
+        /// <value>Carrier number-type classification (local, mobile, national, toll_free…) — the numberType for the requirements endpoint.</value>
+        [DataMember(Name = "phoneNumberType", EmitDefaultValue = true)]
+        public string PhoneNumberType { get; set; }
 
         /// <summary>
         /// Carrier reason when not portable; null when portable.
@@ -95,6 +113,8 @@ namespace Zernio.Model
             sb.Append("  Portable: ").Append(Portable).Append("\n");
             sb.Append("  FastPortable: ").Append(FastPortable).Append("\n");
             sb.Append("  LineType: ").Append(LineType).Append("\n");
+            sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
+            sb.Append("  PhoneNumberType: ").Append(PhoneNumberType).Append("\n");
             sb.Append("  NotPortableReason: ").Append(NotPortableReason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

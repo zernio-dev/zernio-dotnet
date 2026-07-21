@@ -92,6 +92,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CountryCode'
+        /// </summary>
+        [Fact]
+        public void CountryCodeTest()
+        {
+            // TODO unit test for the property 'CountryCode'
+        }
+
+        /// <summary>
+        /// Test the property 'PhoneNumberType'
+        /// </summary>
+        [Fact]
+        public void PhoneNumberTypeTest()
+        {
+            // TODO unit test for the property 'PhoneNumberType'
+        }
+
+        /// <summary>
         /// Test the property 'NotPortableReason'
         /// </summary>
         [Fact]
