@@ -237,6 +237,8 @@ docs/CreateSequenceRequest.md
 docs/CreateSequenceRequestStepsInner.md
 docs/CreateSequenceRequestStepsInnerTemplate.md
 docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md
+docs/CreateSmsSenderId200Response.md
+docs/CreateSmsSenderIdRequest.md
 docs/CreateStandaloneAd201Response.md
 docs/CreateStandaloneAd201ResponseOneOf.md
 docs/CreateStandaloneAd201ResponseOneOf1.md
@@ -310,6 +312,7 @@ docs/DeleteGoogleBusinessReviewReply200Response.md
 docs/DeleteInboxComment200Response.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
+docs/DeleteSmsSenderId200Response.md
 docs/DeleteWhatsappBusinessUsernameRequest.md
 docs/DialVoiceWebCall200Response.md
 docs/DialVoiceWebCallRequest.md
@@ -873,6 +876,10 @@ docs/ListSmsOptOuts200ResponseOptOutsInner.md
 docs/ListSmsRegistrations200Response.md
 docs/ListSmsRegistrations200ResponseRegistrationsInner.md
 docs/ListSmsRegistrations200ResponseRegistrationsInnerThroughput.md
+docs/ListSmsSenderIds200Response.md
+docs/ListSmsSenderIds200ResponseBudget.md
+docs/ListSmsSenderIds200ResponseBudgetPendingRequest.md
+docs/ListSmsSenderIds200ResponseSenderIdsInner.md
 docs/ListSnapchatProfiles200Response.md
 docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md
 docs/ListTrackingTagSharedAccounts200Response.md
@@ -1007,6 +1014,8 @@ docs/ReplyToInboxReview200Response.md
 docs/ReplyToInboxReviewRequest.md
 docs/ReplyToMention200Response.md
 docs/ReplyToMentionRequest.md
+docs/RequestSmsSenderIdLimitIncrease200Response.md
+docs/RequestSmsSenderIdLimitIncreaseRequest.md
 docs/ResendSmsRegistrationOtp200Response.md
 docs/ReserveRfPrediction201Response.md
 docs/ReserveRfPredictionRequest.md
@@ -1774,6 +1783,8 @@ src/Zernio.Test/Model/CreateSequenceRequestStepsInnerTemplateTests.cs
 src/Zernio.Test/Model/CreateSequenceRequestStepsInnerTemplateVariableMappingValueTests.cs
 src/Zernio.Test/Model/CreateSequenceRequestStepsInnerTests.cs
 src/Zernio.Test/Model/CreateSequenceRequestTests.cs
+src/Zernio.Test/Model/CreateSmsSenderId200ResponseTests.cs
+src/Zernio.Test/Model/CreateSmsSenderIdRequestTests.cs
 src/Zernio.Test/Model/CreateStandaloneAd201ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/CreateStandaloneAd201ResponseOneOfTests.cs
 src/Zernio.Test/Model/CreateStandaloneAd201ResponseTests.cs
@@ -1846,6 +1857,7 @@ src/Zernio.Test/Model/DeleteGoogleBusinessReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxComment200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReply200ResponseTests.cs
 src/Zernio.Test/Model/DeleteInboxReviewReplyRequestTests.cs
+src/Zernio.Test/Model/DeleteSmsSenderId200ResponseTests.cs
 src/Zernio.Test/Model/DeleteWhatsappBusinessUsernameRequestTests.cs
 src/Zernio.Test/Model/DialVoiceWebCall200ResponseTests.cs
 src/Zernio.Test/Model/DialVoiceWebCallRequestTests.cs
@@ -2396,6 +2408,10 @@ src/Zernio.Test/Model/ListSmsOptOuts200ResponseTests.cs
 src/Zernio.Test/Model/ListSmsRegistrations200ResponseRegistrationsInnerTests.cs
 src/Zernio.Test/Model/ListSmsRegistrations200ResponseRegistrationsInnerThroughputTests.cs
 src/Zernio.Test/Model/ListSmsRegistrations200ResponseTests.cs
+src/Zernio.Test/Model/ListSmsSenderIds200ResponseBudgetPendingRequestTests.cs
+src/Zernio.Test/Model/ListSmsSenderIds200ResponseBudgetTests.cs
+src/Zernio.Test/Model/ListSmsSenderIds200ResponseSenderIdsInnerTests.cs
+src/Zernio.Test/Model/ListSmsSenderIds200ResponseTests.cs
 src/Zernio.Test/Model/ListSnapchatProfiles200ResponsePublicProfilesInnerTests.cs
 src/Zernio.Test/Model/ListSnapchatProfiles200ResponseTests.cs
 src/Zernio.Test/Model/ListTrackingTagSharedAccounts200ResponseTests.cs
@@ -2521,6 +2537,8 @@ src/Zernio.Test/Model/ReplyToInboxReview200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToInboxReviewRequestTests.cs
 src/Zernio.Test/Model/ReplyToMention200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToMentionRequestTests.cs
+src/Zernio.Test/Model/RequestSmsSenderIdLimitIncrease200ResponseTests.cs
+src/Zernio.Test/Model/RequestSmsSenderIdLimitIncreaseRequestTests.cs
 src/Zernio.Test/Model/ResendSmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/ReserveRfPrediction201ResponseTests.cs
 src/Zernio.Test/Model/ReserveRfPredictionRequestTests.cs
@@ -3288,6 +3306,8 @@ src/Zernio/Model/CreateSequenceRequest.cs
 src/Zernio/Model/CreateSequenceRequestStepsInner.cs
 src/Zernio/Model/CreateSequenceRequestStepsInnerTemplate.cs
 src/Zernio/Model/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.cs
+src/Zernio/Model/CreateSmsSenderId200Response.cs
+src/Zernio/Model/CreateSmsSenderIdRequest.cs
 src/Zernio/Model/CreateStandaloneAd201Response.cs
 src/Zernio/Model/CreateStandaloneAd201ResponseOneOf.cs
 src/Zernio/Model/CreateStandaloneAd201ResponseOneOf1.cs
@@ -3360,6 +3380,7 @@ src/Zernio/Model/DeleteGoogleBusinessReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxComment200Response.cs
 src/Zernio/Model/DeleteInboxReviewReply200Response.cs
 src/Zernio/Model/DeleteInboxReviewReplyRequest.cs
+src/Zernio/Model/DeleteSmsSenderId200Response.cs
 src/Zernio/Model/DeleteWhatsappBusinessUsernameRequest.cs
 src/Zernio/Model/DialVoiceWebCall200Response.cs
 src/Zernio/Model/DialVoiceWebCallRequest.cs
@@ -3910,6 +3931,10 @@ src/Zernio/Model/ListSmsOptOuts200ResponseOptOutsInner.cs
 src/Zernio/Model/ListSmsRegistrations200Response.cs
 src/Zernio/Model/ListSmsRegistrations200ResponseRegistrationsInner.cs
 src/Zernio/Model/ListSmsRegistrations200ResponseRegistrationsInnerThroughput.cs
+src/Zernio/Model/ListSmsSenderIds200Response.cs
+src/Zernio/Model/ListSmsSenderIds200ResponseBudget.cs
+src/Zernio/Model/ListSmsSenderIds200ResponseBudgetPendingRequest.cs
+src/Zernio/Model/ListSmsSenderIds200ResponseSenderIdsInner.cs
 src/Zernio/Model/ListSnapchatProfiles200Response.cs
 src/Zernio/Model/ListSnapchatProfiles200ResponsePublicProfilesInner.cs
 src/Zernio/Model/ListTrackingTagSharedAccounts200Response.cs
@@ -4035,6 +4060,8 @@ src/Zernio/Model/ReplyToInboxReview200Response.cs
 src/Zernio/Model/ReplyToInboxReviewRequest.cs
 src/Zernio/Model/ReplyToMention200Response.cs
 src/Zernio/Model/ReplyToMentionRequest.cs
+src/Zernio/Model/RequestSmsSenderIdLimitIncrease200Response.cs
+src/Zernio/Model/RequestSmsSenderIdLimitIncreaseRequest.cs
 src/Zernio/Model/ResendSmsRegistrationOtp200Response.cs
 src/Zernio/Model/ReserveRfPrediction201Response.cs
 src/Zernio/Model/ReserveRfPredictionRequest.cs
