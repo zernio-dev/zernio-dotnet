@@ -119,6 +119,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateAd200Response</returns>
         ApiResponse<UpdateAd200Response> BoostPostWithHttpInfo(BoostPostRequest boostPostRequest);
         /// <summary>
+        /// Cancel a Reach &amp; Frequency reservation (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns></returns>
+        void CancelRfReservation(string predictionId, string accountId, string adAccountId);
+
+        /// <summary>
+        /// Cancel a Reach &amp; Frequency reservation (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> CancelRfReservationWithHttpInfo(string predictionId, string accountId, string adAccountId);
+        /// <summary>
         /// Submit an async insights report run (Meta)
         /// </summary>
         /// <remarks>
@@ -248,6 +273,27 @@ namespace Zernio.Api
         /// <param name="createMessagingAdRequest"></param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> CreateMessagingAdWithHttpInfo(CreateMessagingAdRequest createMessagingAdRequest);
+        /// <summary>
+        /// Create a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createRfPredictionRequest"></param>
+        /// <returns>CreateRfPrediction201Response</returns>
+        CreateRfPrediction201Response CreateRfPrediction(CreateRfPredictionRequest createRfPredictionRequest);
+
+        /// <summary>
+        /// Create a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createRfPredictionRequest"></param>
+        /// <returns>ApiResponse of CreateRfPrediction201Response</returns>
+        ApiResponse<CreateRfPrediction201Response> CreateRfPredictionWithHttpInfo(CreateRfPredictionRequest createRfPredictionRequest);
         /// <summary>
         /// Create standalone ad
         /// </summary>
@@ -801,6 +847,28 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetLinkedInSupplyForecast200Response</returns>
         ApiResponse<GetLinkedInSupplyForecast200Response> GetLinkedInSupplyForecastWithHttpInfo(GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest);
         /// <summary>
+        /// Read a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns>CreateRfPrediction201Response</returns>
+        CreateRfPrediction201Response GetRfPrediction(string predictionId, string accountId, string adAccountId);
+
+        /// <summary>
+        /// Read a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns>ApiResponse of CreateRfPrediction201Response</returns>
+        ApiResponse<CreateRfPrediction201Response> GetRfPredictionWithHttpInfo(string predictionId, string accountId, string adAccountId);
+        /// <summary>
         /// List ad accounts
         /// </summary>
         /// <remarks>
@@ -1199,6 +1267,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of RemoveConversionAssociations200Response</returns>
         ApiResponse<RemoveConversionAssociations200Response> RemoveConversionAssociationsWithHttpInfo(string accountId, string destinationId, string adAccountId, string campaignIds);
         /// <summary>
+        /// Reserve a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="reserveRfPredictionRequest"></param>
+        /// <returns>ReserveRfPrediction201Response</returns>
+        ReserveRfPrediction201Response ReserveRfPrediction(string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest);
+
+        /// <summary>
+        /// Reserve a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="reserveRfPredictionRequest"></param>
+        /// <returns>ApiResponse of ReserveRfPrediction201Response</returns>
+        ApiResponse<ReserveRfPrediction201Response> ReserveRfPredictionWithHttpInfo(string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest);
+        /// <summary>
         /// Search targeting interests
         /// </summary>
         /// <remarks>
@@ -1540,6 +1631,33 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (UpdateAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAd200Response>> BoostPostWithHttpInfoAsync(BoostPostRequest boostPostRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Cancel a Reach &amp; Frequency reservation (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task CancelRfReservationAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Cancel a Reach &amp; Frequency reservation (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> CancelRfReservationWithHttpInfoAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Submit an async insights report run (Meta)
         /// </summary>
         /// <remarks>
@@ -1681,6 +1799,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> CreateMessagingAdWithHttpInfoAsync(CreateMessagingAdRequest createMessagingAdRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createRfPredictionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateRfPrediction201Response</returns>
+        System.Threading.Tasks.Task<CreateRfPrediction201Response> CreateRfPredictionAsync(CreateRfPredictionRequest createRfPredictionRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createRfPredictionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateRfPrediction201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateRfPrediction201Response>> CreateRfPredictionWithHttpInfoAsync(CreateRfPredictionRequest createRfPredictionRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create standalone ad
         /// </summary>
@@ -2283,6 +2424,33 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetLinkedInSupplyForecast200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetLinkedInSupplyForecast200Response>> GetLinkedInSupplyForecastWithHttpInfoAsync(GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Read a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateRfPrediction201Response</returns>
+        System.Threading.Tasks.Task<CreateRfPrediction201Response> GetRfPredictionAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Read a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateRfPrediction201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateRfPrediction201Response>> GetRfPredictionWithHttpInfoAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// List ad accounts
         /// </summary>
         /// <remarks>
@@ -2708,6 +2876,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RemoveConversionAssociations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RemoveConversionAssociations200Response>> RemoveConversionAssociationsWithHttpInfoAsync(string accountId, string destinationId, string adAccountId, string campaignIds, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Reserve a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="reserveRfPredictionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReserveRfPrediction201Response</returns>
+        System.Threading.Tasks.Task<ReserveRfPrediction201Response> ReserveRfPredictionAsync(string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Reserve a Reach &amp; Frequency prediction (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="reserveRfPredictionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReserveRfPrediction201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReserveRfPrediction201Response>> ReserveRfPredictionWithHttpInfoAsync(string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Search targeting interests
         /// </summary>
@@ -3732,6 +3925,159 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Cancel a Reach &amp; Frequency reservation (Meta) Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns></returns>
+        public void CancelRfReservation(string predictionId, string accountId, string adAccountId)
+        {
+            CancelRfReservationWithHttpInfo(predictionId, accountId, adAccountId);
+        }
+
+        /// <summary>
+        /// Cancel a Reach &amp; Frequency reservation (Meta) Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> CancelRfReservationWithHttpInfo(string predictionId, string accountId, string adAccountId)
+        {
+            // verify the required parameter 'predictionId' is set
+            if (predictionId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'predictionId' when calling AdsApi->CancelRfReservation");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->CancelRfReservation");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->CancelRfReservation");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("predictionId", Zernio.Client.ClientUtils.ParameterToString(predictionId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<Object>("/v1/ads/rf-predictions/{predictionId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CancelRfReservation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Cancel a Reach &amp; Frequency reservation (Meta) Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task CancelRfReservationAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await CancelRfReservationWithHttpInfoAsync(predictionId, accountId, adAccountId, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Cancel a Reach &amp; Frequency reservation (Meta) Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> CancelRfReservationWithHttpInfoAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'predictionId' is set
+            if (predictionId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'predictionId' when calling AdsApi->CancelRfReservation");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->CancelRfReservation");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->CancelRfReservation");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("predictionId", Zernio.Client.ClientUtils.ParameterToString(predictionId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<Object>("/v1/ads/rf-predictions/{predictionId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CancelRfReservation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Submit an async insights report run (Meta) Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -4513,6 +4859,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateMessagingAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Reach &amp; Frequency prediction (Meta) Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createRfPredictionRequest"></param>
+        /// <returns>CreateRfPrediction201Response</returns>
+        public CreateRfPrediction201Response CreateRfPrediction(CreateRfPredictionRequest createRfPredictionRequest)
+        {
+            Zernio.Client.ApiResponse<CreateRfPrediction201Response> localVarResponse = CreateRfPredictionWithHttpInfo(createRfPredictionRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Reach &amp; Frequency prediction (Meta) Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createRfPredictionRequest"></param>
+        /// <returns>ApiResponse of CreateRfPrediction201Response</returns>
+        public Zernio.Client.ApiResponse<CreateRfPrediction201Response> CreateRfPredictionWithHttpInfo(CreateRfPredictionRequest createRfPredictionRequest)
+        {
+            // verify the required parameter 'createRfPredictionRequest' is set
+            if (createRfPredictionRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createRfPredictionRequest' when calling AdsApi->CreateRfPrediction");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createRfPredictionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateRfPrediction201Response>("/v1/ads/rf-predictions", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateRfPrediction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a Reach &amp; Frequency prediction (Meta) Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createRfPredictionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateRfPrediction201Response</returns>
+        public async System.Threading.Tasks.Task<CreateRfPrediction201Response> CreateRfPredictionAsync(CreateRfPredictionRequest createRfPredictionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateRfPrediction201Response> localVarResponse = await CreateRfPredictionWithHttpInfoAsync(createRfPredictionRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a Reach &amp; Frequency prediction (Meta) Creates an R&amp;F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements, so omitted &#x60;placements&#x60; default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createRfPredictionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateRfPrediction201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateRfPrediction201Response>> CreateRfPredictionWithHttpInfoAsync(CreateRfPredictionRequest createRfPredictionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createRfPredictionRequest' is set
+            if (createRfPredictionRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createRfPredictionRequest' when calling AdsApi->CreateRfPrediction");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createRfPredictionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateRfPrediction201Response>("/v1/ads/rf-predictions", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateRfPrediction", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -7911,6 +8386,161 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Read a Reach &amp; Frequency prediction (Meta) 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns>CreateRfPrediction201Response</returns>
+        public CreateRfPrediction201Response GetRfPrediction(string predictionId, string accountId, string adAccountId)
+        {
+            Zernio.Client.ApiResponse<CreateRfPrediction201Response> localVarResponse = GetRfPredictionWithHttpInfo(predictionId, accountId, adAccountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read a Reach &amp; Frequency prediction (Meta) 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <returns>ApiResponse of CreateRfPrediction201Response</returns>
+        public Zernio.Client.ApiResponse<CreateRfPrediction201Response> GetRfPredictionWithHttpInfo(string predictionId, string accountId, string adAccountId)
+        {
+            // verify the required parameter 'predictionId' is set
+            if (predictionId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'predictionId' when calling AdsApi->GetRfPrediction");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetRfPrediction");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetRfPrediction");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("predictionId", Zernio.Client.ClientUtils.ParameterToString(predictionId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<CreateRfPrediction201Response>("/v1/ads/rf-predictions/{predictionId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetRfPrediction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Read a Reach &amp; Frequency prediction (Meta) 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateRfPrediction201Response</returns>
+        public async System.Threading.Tasks.Task<CreateRfPrediction201Response> GetRfPredictionAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateRfPrediction201Response> localVarResponse = await GetRfPredictionWithHttpInfoAsync(predictionId, accountId, adAccountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Read a Reach &amp; Frequency prediction (Meta) 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="adAccountId"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateRfPrediction201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateRfPrediction201Response>> GetRfPredictionWithHttpInfoAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'predictionId' is set
+            if (predictionId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'predictionId' when calling AdsApi->GetRfPrediction");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetRfPrediction");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetRfPrediction");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("predictionId", Zernio.Client.ClientUtils.ParameterToString(predictionId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<CreateRfPrediction201Response>("/v1/ads/rf-predictions/{predictionId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetRfPrediction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// List ad accounts Returns the platform ad accounts available for the given social account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -10322,6 +10952,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("RemoveConversionAssociations", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reserve a Reach &amp; Frequency prediction (Meta) Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="reserveRfPredictionRequest"></param>
+        /// <returns>ReserveRfPrediction201Response</returns>
+        public ReserveRfPrediction201Response ReserveRfPrediction(string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest)
+        {
+            Zernio.Client.ApiResponse<ReserveRfPrediction201Response> localVarResponse = ReserveRfPredictionWithHttpInfo(predictionId, reserveRfPredictionRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reserve a Reach &amp; Frequency prediction (Meta) Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="reserveRfPredictionRequest"></param>
+        /// <returns>ApiResponse of ReserveRfPrediction201Response</returns>
+        public Zernio.Client.ApiResponse<ReserveRfPrediction201Response> ReserveRfPredictionWithHttpInfo(string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest)
+        {
+            // verify the required parameter 'predictionId' is set
+            if (predictionId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'predictionId' when calling AdsApi->ReserveRfPrediction");
+
+            // verify the required parameter 'reserveRfPredictionRequest' is set
+            if (reserveRfPredictionRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'reserveRfPredictionRequest' when calling AdsApi->ReserveRfPrediction");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("predictionId", Zernio.Client.ClientUtils.ParameterToString(predictionId)); // path parameter
+            localVarRequestOptions.Data = reserveRfPredictionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ReserveRfPrediction201Response>("/v1/ads/rf-predictions/{predictionId}/reserve", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReserveRfPrediction", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reserve a Reach &amp; Frequency prediction (Meta) Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="reserveRfPredictionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReserveRfPrediction201Response</returns>
+        public async System.Threading.Tasks.Task<ReserveRfPrediction201Response> ReserveRfPredictionAsync(string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ReserveRfPrediction201Response> localVarResponse = await ReserveRfPredictionWithHttpInfoAsync(predictionId, reserveRfPredictionRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reserve a Reach &amp; Frequency prediction (Meta) Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id — pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="predictionId"></param>
+        /// <param name="reserveRfPredictionRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReserveRfPrediction201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReserveRfPrediction201Response>> ReserveRfPredictionWithHttpInfoAsync(string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'predictionId' is set
+            if (predictionId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'predictionId' when calling AdsApi->ReserveRfPrediction");
+
+            // verify the required parameter 'reserveRfPredictionRequest' is set
+            if (reserveRfPredictionRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'reserveRfPredictionRequest' when calling AdsApi->ReserveRfPrediction");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("predictionId", Zernio.Client.ClientUtils.ParameterToString(predictionId)); // path parameter
+            localVarRequestOptions.Data = reserveRfPredictionRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ReserveRfPrediction201Response>("/v1/ads/rf-predictions/{predictionId}/reserve", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReserveRfPrediction", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

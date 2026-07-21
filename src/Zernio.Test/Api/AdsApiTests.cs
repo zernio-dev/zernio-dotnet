@@ -106,6 +106,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CancelRfReservation
+        /// </summary>
+        [Fact]
+        public void CancelRfReservationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string predictionId = null;
+            //string accountId = null;
+            //string adAccountId = null;
+            //instance.CancelRfReservation(predictionId, accountId, adAccountId);
+        }
+
+        /// <summary>
         /// Test CreateAdInsightsReport
         /// </summary>
         [Fact]
@@ -174,6 +187,18 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //CreateMessagingAdRequest createMessagingAdRequest = null;
             //instance.CreateMessagingAd(createMessagingAdRequest);
+        }
+
+        /// <summary>
+        /// Test CreateRfPrediction
+        /// </summary>
+        [Fact]
+        public void CreateRfPredictionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateRfPredictionRequest createRfPredictionRequest = null;
+            //var response = instance.CreateRfPrediction(createRfPredictionRequest);
+            //Assert.IsType<CreateRfPrediction201Response>(response);
         }
 
         /// <summary>
@@ -488,6 +513,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetRfPrediction
+        /// </summary>
+        [Fact]
+        public void GetRfPredictionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string predictionId = null;
+            //string accountId = null;
+            //string adAccountId = null;
+            //var response = instance.GetRfPrediction(predictionId, accountId, adAccountId);
+            //Assert.IsType<CreateRfPrediction201Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdAccounts
         /// </summary>
         [Fact]
@@ -705,6 +744,19 @@ namespace Zernio.Test.Api
             //string campaignIds = null;
             //var response = instance.RemoveConversionAssociations(accountId, destinationId, adAccountId, campaignIds);
             //Assert.IsType<RemoveConversionAssociations200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ReserveRfPrediction
+        /// </summary>
+        [Fact]
+        public void ReserveRfPredictionTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string predictionId = null;
+            //ReserveRfPredictionRequest reserveRfPredictionRequest = null;
+            //var response = instance.ReserveRfPrediction(predictionId, reserveRfPredictionRequest);
+            //Assert.IsType<ReserveRfPrediction201Response>(response);
         }
 
         /// <summary>

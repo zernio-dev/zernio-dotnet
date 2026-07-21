@@ -146,6 +146,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'BuyingType'
+        /// </summary>
+        [Fact]
+        public void BuyingTypeTest()
+        {
+            // TODO unit test for the property 'BuyingType'
+        }
+
+        /// <summary>
+        /// Test the property 'RfPredictionId'
+        /// </summary>
+        [Fact]
+        public void RfPredictionIdTest()
+        {
+            // TODO unit test for the property 'RfPredictionId'
+        }
+
+        /// <summary>
         /// Test the property 'BudgetAmount'
         /// </summary>
         [Fact]

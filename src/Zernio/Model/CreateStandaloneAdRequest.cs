@@ -109,6 +109,33 @@ namespace Zernio.Model
         [DataMember(Name = "goal", EmitDefaultValue = false)]
         public GoalEnum? Goal { get; set; }
         /// <summary>
+        /// Meta only. RESERVED &#x3D; Reach &amp; Frequency: requires &#x60;rfPredictionId&#x60; (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget, schedule and pricing come from the reservation, so budgetAmount/budgetType are not required and bid fields are ignored. Only the plain single-ad shape (no creatives[], adSetId, existingCampaignId or dynamicCreative).
+        /// </summary>
+        /// <value>Meta only. RESERVED &#x3D; Reach &amp; Frequency: requires &#x60;rfPredictionId&#x60; (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget, schedule and pricing come from the reservation, so budgetAmount/budgetType are not required and bid fields are ignored. Only the plain single-ad shape (no creatives[], adSetId, existingCampaignId or dynamicCreative).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum BuyingTypeEnum
+        {
+            /// <summary>
+            /// Enum AUCTION for value: AUCTION
+            /// </summary>
+            [EnumMember(Value = "AUCTION")]
+            AUCTION = 1,
+
+            /// <summary>
+            /// Enum RESERVED for value: RESERVED
+            /// </summary>
+            [EnumMember(Value = "RESERVED")]
+            RESERVED = 2
+        }
+
+
+        /// <summary>
+        /// Meta only. RESERVED &#x3D; Reach &amp; Frequency: requires &#x60;rfPredictionId&#x60; (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget, schedule and pricing come from the reservation, so budgetAmount/budgetType are not required and bid fields are ignored. Only the plain single-ad shape (no creatives[], adSetId, existingCampaignId or dynamicCreative).
+        /// </summary>
+        /// <value>Meta only. RESERVED &#x3D; Reach &amp; Frequency: requires &#x60;rfPredictionId&#x60; (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget, schedule and pricing come from the reservation, so budgetAmount/budgetType are not required and bid fields are ignored. Only the plain single-ad shape (no creatives[], adSetId, existingCampaignId or dynamicCreative).</value>
+        [DataMember(Name = "buyingType", EmitDefaultValue = false)]
+        public BuyingTypeEnum? BuyingType { get; set; }
+        /// <summary>
         /// Required on legacy + multi-creative shapes. Inherited on attach.
         /// </summary>
         /// <value>Required on legacy + multi-creative shapes. Inherited on attach.</value>
@@ -626,6 +653,8 @@ namespace Zernio.Model
         /// <param name="goal">Required on legacy and multi-creative shapes; the attach shape inherits it from the ad set. Available goals vary by platform.  **Meta** - &#x60;conversions&#x60;: OUTCOME_SALES. Requires &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60; with a commerce event such as PURCHASE or START_TRIAL. - &#x60;lead_conversion&#x60;: OUTCOME_LEADS optimizing website pixel leads. Same pixel and event fields, but with a leads-class event such as LEAD, SUBMIT_APPLICATION, SCHEDULE or CONTACT. Meta gates conversion events by objective, so leads-class events are rejected under &#x60;conversions&#x60;. - &#x60;lead_generation&#x60;: OUTCOME_LEADS with instant forms. Requires &#x60;leadGenFormId&#x60;. &#x60;promotedObject.pageId&#x60; is optional and auto-filled from the connected Page. - &#x60;app_promotion&#x60;: requires &#x60;promotedObject.applicationId&#x60; and &#x60;promotedObject.objectStoreUrl&#x60;. - &#x60;catalog_sales&#x60;: Advantage+ catalog ads, for example vehicle inventory. Requires &#x60;promotedObject.productSetId&#x60;, &#x60;promotedObject.pixelId&#x60; and &#x60;promotedObject.customEventType&#x60;. Builds a catalog TEMPLATE creative from the copy fields, which may carry template tags like {{product.name}} or {{vehicle.make}}. No imageUrl or video is sent; Meta renders the visuals per catalog item. Discover catalogs via GET /v1/ads/catalogs and product sets via GET /v1/ads/catalogs/{catalogId}/product-sets. Single shape only, no creatives[], adSetId, dynamicCreative or placementAssets.  **TikTok** - &#x60;conversions&#x60;: website-conversion ad group. Requires &#x60;promotedObject.pixelId&#x60;, your TikTok Pixel ID. Accepts an optional &#x60;promotedObject.customEventType&#x60; with a TikTok optimization_event code your pixel tracks (newer pixels use e.g. SHOPPING for purchase events; legacy pixels use ON_WEB_ORDER, INITIATE_ORDER, ON_WEB_REGISTER or FORM). To inherit pixel and event from an existing ad group, pass &#x60;adSetId&#x60; instead.  **LinkedIn** - &#x60;engagement&#x60;, &#x60;traffic&#x60;, &#x60;awareness&#x60; and &#x60;video_views&#x60; create standalone Direct Sponsored Content ads. &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;; &#x60;video_views&#x60; requires &#x60;video&#x60;. - &#x60;job_applicants&#x60; requires a &#x60;platformSpecificData.jobs&#x60; creative. - For &#x60;lead_generation&#x60; or &#x60;conversions&#x60; on LinkedIn, or to promote an existing post, use POST /v1/ads/boost. .</param>
         /// <param name="optimizationGoal">Meta only. Explicit ad-set &#x60;optimization_goal&#x60; (e.g. &#x60;LANDING_PAGE_VIEWS&#x60;, &#x60;LINK_CLICKS&#x60;, &#x60;REACH&#x60;, &#x60;IMPRESSIONS&#x60;, &#x60;OFFSITE_CONVERSIONS&#x60;, &#x60;THRUPLAY&#x60;, &#x60;LEAD_GENERATION&#x60;). Overrides the default derived from &#x60;goal&#x60; (e.g. &#x60;traffic&#x60; defaults to &#x60;LINK_CLICKS&#x60;). Forwarded verbatim to Meta, which validates compatibility with the campaign objective and rejects incompatible combinations..</param>
         /// <param name="billingEvent">Meta only. Explicit ad-set &#x60;billing_event&#x60;. Defaults to &#x60;IMPRESSIONS&#x60;. Forwarded verbatim to Meta, which validates compatibility with the optimization goal..</param>
+        /// <param name="buyingType">Meta only. RESERVED &#x3D; Reach &amp; Frequency: requires &#x60;rfPredictionId&#x60; (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget, schedule and pricing come from the reservation, so budgetAmount/budgetType are not required and bid fields are ignored. Only the plain single-ad shape (no creatives[], adSetId, existingCampaignId or dynamicCreative)..</param>
+        /// <param name="rfPredictionId">Meta only. The RESERVED prediction id the R&amp;F ad set runs on (reserving mints a new id — pass that one). Requires buyingType RESERVED..</param>
         /// <param name="budgetAmount">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="budgetType">Required on legacy + multi-creative shapes. Inherited on attach..</param>
         /// <param name="status">Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused..</param>
@@ -688,7 +717,7 @@ namespace Zernio.Model
         /// <param name="brandIdentity">brandIdentity.</param>
         /// <param name="identityType">TikTok only. Forces the identity attribution on the ad:    - &#x60;TT_USER&#x60;: the posting account&#39;s open_id (real @username     branding). Requires a connected TikTok posting account     on the same profile.   - &#x60;CUSTOMIZED_USER&#x60;: synthetic Brand Identity (display     name + avatar). Requires a configured Brand Identity     (cached on the &#x60;tiktokads&#x60; SocialAccount via     &#x60;PATCH /v1/connect/tiktok-ads&#x60;) or an inline     &#x60;brandIdentity&#x60; to create one on the fly.  When omitted, defaults to &#x60;TT_USER&#x60; if a posting account is connected on this profile, else &#x60;CUSTOMIZED_USER&#x60;. Spark Ads (&#x60;POST /v1/ads/boost&#x60;) always use &#x60;TT_USER&#x60; regardless of this field — TikTok requires the original organic post&#39;s author identity for Spark. .</param>
         /// <param name="promotedObject">promotedObject.</param>
-        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, string campaignName = default, string adSetName = default, string adName = default, CreateStandaloneAdRequestTracking tracking = default, GoalEnum? goal = default, string optimizationGoal = default, string billingEvent = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, string description = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string existingCampaignId = default, string existingCreativeId = default, string businessName = default, string boardId = default, string organizationId = default, TargetingSpec targeting = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<BoostPostRequestTargetingRegionsInner> zips = default, List<BoostPostRequestTargetingRegionsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, Dictionary<string, Object> rawTargeting = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, List<CreateStandaloneAdRequestCarouselCardsInner> carouselCards = default, CreateStandaloneAdRequestPlacementAssets placementAssets = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, LinkedInAdsPlatformData platformSpecificData = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
+        public CreateStandaloneAdRequest(string accountId = default, string adAccountId = default, string name = default, string campaignName = default, string adSetName = default, string adName = default, CreateStandaloneAdRequestTracking tracking = default, GoalEnum? goal = default, string optimizationGoal = default, string billingEvent = default, BuyingTypeEnum? buyingType = default, string rfPredictionId = default, decimal budgetAmount = default, BudgetTypeEnum? budgetType = default, StatusEnum? status = default, BudgetLevelEnum? budgetLevel = BudgetLevelEnum.Adset, string currency = default, string headline = default, string longHeadline = default, string body = default, string description = default, CallToActionEnum? callToAction = default, string linkUrl = default, string leadGenFormId = default, string imageUrl = default, CreateStandaloneAdRequestImages images = default, CreateStandaloneAdRequestVideo video = default, List<CreateStandaloneAdRequestCreativesInner> creatives = default, string adSetId = default, string existingCampaignId = default, string existingCreativeId = default, string businessName = default, string boardId = default, string organizationId = default, TargetingSpec targeting = default, List<string> countries = default, List<CreateStandaloneAdRequestCitiesInner> cities = default, List<CreateStandaloneAdRequestRegionsInner> regions = default, int ageMin = default, int ageMax = default, List<UpdateAdRequestTargetingInterestsInner> interests = default, List<BoostPostRequestTargetingRegionsInner> zips = default, List<BoostPostRequestTargetingRegionsInner> metros = default, List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = default, List<CreateStandaloneAdRequestBehaviorsInner> behaviors = default, IncomeTierEnum? incomeTier = default, List<string> languages = default, CreateStandaloneAdRequestPlacements placements = default, string savedTargetingId = default, Dictionary<string, Object> rawTargeting = default, List<SpecialAdCategoriesEnum> specialAdCategories = default, DateTime endDate = default, DateTime startDate = default, string instagramAccountId = default, CreateStandaloneAdRequestDynamicCreative dynamicCreative = default, List<CreateStandaloneAdRequestCarouselCardsInner> carouselCards = default, CreateStandaloneAdRequestPlacementAssets placementAssets = default, string audienceId = default, CampaignTypeEnum? campaignType = CampaignTypeEnum.Display, List<string> keywords = default, List<string> additionalHeadlines = default, List<string> additionalDescriptions = default, AdvantageAudienceEnum? advantageAudience = default, List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = default, GenderEnum? gender = GenderEnum.All, BidStrategy? bidStrategy = default, decimal bidAmount = default, decimal roasAverageFloor = default, LinkedInAdsPlatformData platformSpecificData = default, string dsaBeneficiary = default, string dsaPayor = default, CreateStandaloneAdRequestBrandIdentity brandIdentity = default, IdentityTypeEnum? identityType = default, CreateStandaloneAdRequestPromotedObject promotedObject = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -715,6 +744,8 @@ namespace Zernio.Model
             this.Goal = goal;
             this.OptimizationGoal = optimizationGoal;
             this.BillingEvent = billingEvent;
+            this.BuyingType = buyingType;
+            this.RfPredictionId = rfPredictionId;
             this.BudgetAmount = budgetAmount;
             this.BudgetType = budgetType;
             this.Status = status;
@@ -837,6 +868,13 @@ namespace Zernio.Model
         /// <value>Meta only. Explicit ad-set &#x60;billing_event&#x60;. Defaults to &#x60;IMPRESSIONS&#x60;. Forwarded verbatim to Meta, which validates compatibility with the optimization goal.</value>
         [DataMember(Name = "billingEvent", EmitDefaultValue = false)]
         public string BillingEvent { get; set; }
+
+        /// <summary>
+        /// Meta only. The RESERVED prediction id the R&amp;F ad set runs on (reserving mints a new id — pass that one). Requires buyingType RESERVED.
+        /// </summary>
+        /// <value>Meta only. The RESERVED prediction id the R&amp;F ad set runs on (reserving mints a new id — pass that one). Requires buyingType RESERVED.</value>
+        [DataMember(Name = "rfPredictionId", EmitDefaultValue = false)]
+        public string RfPredictionId { get; set; }
 
         /// <summary>
         /// Required on legacy + multi-creative shapes. Inherited on attach.
@@ -1209,6 +1247,8 @@ namespace Zernio.Model
             sb.Append("  Goal: ").Append(Goal).Append("\n");
             sb.Append("  OptimizationGoal: ").Append(OptimizationGoal).Append("\n");
             sb.Append("  BillingEvent: ").Append(BillingEvent).Append("\n");
+            sb.Append("  BuyingType: ").Append(BuyingType).Append("\n");
+            sb.Append("  RfPredictionId: ").Append(RfPredictionId).Append("\n");
             sb.Append("  BudgetAmount: ").Append(BudgetAmount).Append("\n");
             sb.Append("  BudgetType: ").Append(BudgetType).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");

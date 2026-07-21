@@ -181,12 +181,14 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**AdjustConversions**](docs/AdsApi.md#adjustconversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
 *AdsApi* | [**ArchiveLeadForm**](docs/AdsApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
 *AdsApi* | [**BoostPost**](docs/AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad
+*AdsApi* | [**CancelRfReservation**](docs/AdsApi.md#cancelrfreservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach & Frequency reservation (Meta)
 *AdsApi* | [**CreateAdInsightsReport**](docs/AdsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta)
 *AdsApi* | [**CreateCallAd**](docs/AdsApi.md#createcallad) | **POST** /v1/ads/call | Create Click-to-Call ad
 *AdsApi* | [**CreateConversionDestination**](docs/AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
 *AdsApi* | [**CreateCtwaAd**](docs/AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated)
 *AdsApi* | [**CreateLeadForm**](docs/AdsApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form
 *AdsApi* | [**CreateMessagingAd**](docs/AdsApi.md#createmessagingad) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+*AdsApi* | [**CreateRfPrediction**](docs/AdsApi.md#createrfprediction) | **POST** /v1/ads/rf-predictions | Create a Reach & Frequency prediction (Meta)
 *AdsApi* | [**CreateStandaloneAd**](docs/AdsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad
 *AdsApi* | [**CreateTestLead**](docs/AdsApi.md#createtestlead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
 *AdsApi* | [**DeleteAd**](docs/AdsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad
@@ -210,6 +212,7 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**GetLeadForm**](docs/AdsApi.md#getleadform) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
 *AdsApi* | [**GetLinkedInBidPricing**](docs/AdsApi.md#getlinkedinbidpricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn)
 *AdsApi* | [**GetLinkedInSupplyForecast**](docs/AdsApi.md#getlinkedinsupplyforecast) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn)
+*AdsApi* | [**GetRfPrediction**](docs/AdsApi.md#getrfprediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach & Frequency prediction (Meta)
 *AdsApi* | [**ListAdAccounts**](docs/AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**ListAdCatalogProductSets**](docs/AdsApi.md#listadcatalogproductsets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog's product sets
 *AdsApi* | [**ListAdCatalogs**](docs/AdsApi.md#listadcatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs
@@ -224,6 +227,7 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**ListWhatsAppConversions**](docs/AdsApi.md#listwhatsappconversions) | **GET** /v1/whatsapp/conversions | List conversion events
 *AdsApi* | [**QueryAdInsights**](docs/AdsApi.md#queryadinsights) | **GET** /v1/ads/insights | Flexible live insights query (Meta)
 *AdsApi* | [**RemoveConversionAssociations**](docs/AdsApi.md#removeconversionassociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
+*AdsApi* | [**ReserveRfPrediction**](docs/AdsApi.md#reserverfprediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach & Frequency prediction (Meta)
 *AdsApi* | [**SearchAdInterests**](docs/AdsApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests
 *AdsApi* | [**SearchAdTargeting**](docs/AdsApi.md#searchadtargeting) | **GET** /v1/ads/targeting/search | Search targeting options
 *AdsApi* | [**SendConversions**](docs/AdsApi.md#sendconversions) | **POST** /v1/ads/conversions | Send conversion events
@@ -841,6 +845,8 @@ Class | Method | HTTP request | Description
  - [Model.CreateProfileRequest](docs/CreateProfileRequest.md)
  - [Model.CreateQueueSlot201Response](docs/CreateQueueSlot201Response.md)
  - [Model.CreateQueueSlotRequest](docs/CreateQueueSlotRequest.md)
+ - [Model.CreateRfPrediction201Response](docs/CreateRfPrediction201Response.md)
+ - [Model.CreateRfPredictionRequest](docs/CreateRfPredictionRequest.md)
  - [Model.CreateSequence200Response](docs/CreateSequence200Response.md)
  - [Model.CreateSequence200ResponseSequence](docs/CreateSequence200ResponseSequence.md)
  - [Model.CreateSequenceRequest](docs/CreateSequenceRequest.md)
@@ -1591,6 +1597,8 @@ Class | Method | HTTP request | Description
  - [Model.ReplyToMention200Response](docs/ReplyToMention200Response.md)
  - [Model.ReplyToMentionRequest](docs/ReplyToMentionRequest.md)
  - [Model.ResendSmsRegistrationOtp200Response](docs/ResendSmsRegistrationOtp200Response.md)
+ - [Model.ReserveRfPrediction201Response](docs/ReserveRfPrediction201Response.md)
+ - [Model.ReserveRfPredictionRequest](docs/ReserveRfPredictionRequest.md)
  - [Model.RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [Model.RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
  - [Model.RetweetPost200Response](docs/RetweetPost200Response.md)
@@ -1602,6 +1610,7 @@ Class | Method | HTTP request | Description
  - [Model.ReviewWebhookReview](docs/ReviewWebhookReview.md)
  - [Model.ReviewWebhookReviewReply](docs/ReviewWebhookReviewReply.md)
  - [Model.ReviewWebhookReviewReviewer](docs/ReviewWebhookReviewReviewer.md)
+ - [Model.RfPrediction](docs/RfPrediction.md)
  - [Model.SavedTargetingAudience](docs/SavedTargetingAudience.md)
  - [Model.ScheduleBroadcast200Response](docs/ScheduleBroadcast200Response.md)
  - [Model.ScheduleBroadcast200ResponseBroadcast](docs/ScheduleBroadcast200ResponseBroadcast.md)

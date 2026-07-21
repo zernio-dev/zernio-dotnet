@@ -8,12 +8,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**AdjustConversions**](AdsApi.md#adjustconversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions |
 | [**ArchiveLeadForm**](AdsApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form |
 | [**BoostPost**](AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad |
+| [**CancelRfReservation**](AdsApi.md#cancelrfreservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation (Meta) |
 | [**CreateAdInsightsReport**](AdsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta) |
 | [**CreateCallAd**](AdsApi.md#createcallad) | **POST** /v1/ads/call | Create Click-to-Call ad |
 | [**CreateConversionDestination**](AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
 | [**CreateCtwaAd**](AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated) |
 | [**CreateLeadForm**](AdsApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form |
 | [**CreateMessagingAd**](AdsApi.md#createmessagingad) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct) |
+| [**CreateRfPrediction**](AdsApi.md#createrfprediction) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction (Meta) |
 | [**CreateStandaloneAd**](AdsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad |
 | [**CreateTestLead**](AdsApi.md#createtestlead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
 | [**DeleteAd**](AdsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad |
@@ -37,6 +39,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetLeadForm**](AdsApi.md#getleadform) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form |
 | [**GetLinkedInBidPricing**](AdsApi.md#getlinkedinbidpricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn) |
 | [**GetLinkedInSupplyForecast**](AdsApi.md#getlinkedinsupplyforecast) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn) |
+| [**GetRfPrediction**](AdsApi.md#getrfprediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction (Meta) |
 | [**ListAdAccounts**](AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**ListAdCatalogProductSets**](AdsApi.md#listadcatalogproductsets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets |
 | [**ListAdCatalogs**](AdsApi.md#listadcatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs |
@@ -51,6 +54,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListWhatsAppConversions**](AdsApi.md#listwhatsappconversions) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**QueryAdInsights**](AdsApi.md#queryadinsights) | **GET** /v1/ads/insights | Flexible live insights query (Meta) |
 | [**RemoveConversionAssociations**](AdsApi.md#removeconversionassociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
+| [**ReserveRfPrediction**](AdsApi.md#reserverfprediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction (Meta) |
 | [**SearchAdInterests**](AdsApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests |
 | [**SearchAdTargeting**](AdsApi.md#searchadtargeting) | **GET** /v1/ads/targeting/search | Search targeting options |
 | [**SendConversions**](AdsApi.md#sendconversions) | **POST** /v1/ads/conversions | Send conversion events |
@@ -473,6 +477,107 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step.  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="cancelrfreservation"></a>
+# **CancelRfReservation**
+> void CancelRfReservation (string predictionId, string accountId, string adAccountId)
+
+Cancel a Reach & Frequency reservation (Meta)
+
+Releases a RESERVATION's locked price and inventory. Unreserved predictions expire on their own.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CancelRfReservationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var predictionId = "predictionId_example";  // string | 
+            var accountId = "accountId_example";  // string | 
+            var adAccountId = "adAccountId_example";  // string | 
+
+            try
+            {
+                // Cancel a Reach & Frequency reservation (Meta)
+                apiInstance.CancelRfReservation(predictionId, accountId, adAccountId);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.CancelRfReservation: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CancelRfReservationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Cancel a Reach & Frequency reservation (Meta)
+    apiInstance.CancelRfReservationWithHttpInfo(predictionId, accountId, adAccountId);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.CancelRfReservationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **predictionId** | **string** |  |  |
+| **accountId** | **string** |  |  |
+| **adAccountId** | **string** |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reservation cancelled |  -  |
+| **400** | Invalid input, or Meta rejected the cancel |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1082,6 +1187,108 @@ void (empty response body)
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 | **422** | No Facebook Page resolved for the account |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createrfprediction"></a>
+# **CreateRfPrediction**
+> CreateRfPrediction201Response CreateRfPrediction (CreateRfPredictionRequest createRfPredictionRequest)
+
+Create a Reach & Frequency prediction (Meta)
+
+Creates an R&F prediction — a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of `budgetAmount` (Meta predicts reach) or `reach` (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with `buyingType: \"RESERVED\"`.  Reservation campaigns reject automatic placements, so omitted `placements` default to Facebook feed (+ Instagram stream when a linked IG professional account resolves); Instagram placements require that IG account. Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateRfPredictionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var createRfPredictionRequest = new CreateRfPredictionRequest(); // CreateRfPredictionRequest | 
+
+            try
+            {
+                // Create a Reach & Frequency prediction (Meta)
+                CreateRfPrediction201Response result = apiInstance.CreateRfPrediction(createRfPredictionRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.CreateRfPrediction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateRfPredictionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a Reach & Frequency prediction (Meta)
+    ApiResponse<CreateRfPrediction201Response> response = apiInstance.CreateRfPredictionWithHttpInfo(createRfPredictionRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.CreateRfPredictionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createRfPredictionRequest** | [**CreateRfPredictionRequest**](CreateRfPredictionRequest.md) |  |  |
+
+### Return type
+
+[**CreateRfPrediction201Response**](CreateRfPrediction201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Prediction created (usually ready within seconds) |  -  |
+| **400** | Invalid input, or Meta rejected the prediction — message carries Meta&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **422** | No Facebook Page resolved for the account |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3490,6 +3697,109 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getrfprediction"></a>
+# **GetRfPrediction**
+> CreateRfPrediction201Response GetRfPrediction (string predictionId, string accountId, string adAccountId)
+
+Read a Reach & Frequency prediction (Meta)
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetRfPredictionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var predictionId = "predictionId_example";  // string | 
+            var accountId = "accountId_example";  // string | 
+            var adAccountId = "adAccountId_example";  // string | 
+
+            try
+            {
+                // Read a Reach & Frequency prediction (Meta)
+                CreateRfPrediction201Response result = apiInstance.GetRfPrediction(predictionId, accountId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetRfPrediction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetRfPredictionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Read a Reach & Frequency prediction (Meta)
+    ApiResponse<CreateRfPrediction201Response> response = apiInstance.GetRfPredictionWithHttpInfo(predictionId, accountId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetRfPredictionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **predictionId** | **string** |  |  |
+| **accountId** | **string** |  |  |
+| **adAccountId** | **string** |  |  |
+
+### Return type
+
+[**CreateRfPrediction201Response**](CreateRfPrediction201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Prediction status and estimates |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listadaccounts"></a>
 # **ListAdAccounts**
 > ListAdAccounts200Response ListAdAccounts (string accountId, string? adAccountId = null, int? limit = null)
@@ -5006,6 +5316,109 @@ catch (ApiException e)
 | **404** | Account or destination not found. |  -  |
 | **405** | Platform does not support associations. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="reserverfprediction"></a>
+# **ReserveRfPrediction**
+> ReserveRfPrediction201Response ReserveRfPrediction (string predictionId, ReserveRfPredictionRequest reserveRfPredictionRequest)
+
+Reserve a Reach & Frequency prediction (Meta)
+
+Locks the quoted price + inventory until the returned `expiresAt` and mints a NEW prediction id — pass that RESERVED id (not the original) as `rfPredictionId` on POST /v1/ads/create. Release an unused reservation via DELETE. Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ReserveRfPredictionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var predictionId = "predictionId_example";  // string | 
+            var reserveRfPredictionRequest = new ReserveRfPredictionRequest(); // ReserveRfPredictionRequest | 
+
+            try
+            {
+                // Reserve a Reach & Frequency prediction (Meta)
+                ReserveRfPrediction201Response result = apiInstance.ReserveRfPrediction(predictionId, reserveRfPredictionRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.ReserveRfPrediction: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ReserveRfPredictionWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Reserve a Reach & Frequency prediction (Meta)
+    ApiResponse<ReserveRfPrediction201Response> response = apiInstance.ReserveRfPredictionWithHttpInfo(predictionId, reserveRfPredictionRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.ReserveRfPredictionWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **predictionId** | **string** |  |  |
+| **reserveRfPredictionRequest** | [**ReserveRfPredictionRequest**](ReserveRfPredictionRequest.md) |  |  |
+
+### Return type
+
+[**ReserveRfPrediction201Response**](ReserveRfPrediction201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Reserved; &#x60;prediction.predictionId&#x60; is the new RESERVED id |  -  |
+| **400** | Invalid input, or Meta rejected the reserve |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

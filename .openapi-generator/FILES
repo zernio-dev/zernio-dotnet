@@ -228,6 +228,8 @@ docs/CreatePostRequestPlatformsInnerPlatformSpecificData.md
 docs/CreateProfileRequest.md
 docs/CreateQueueSlot201Response.md
 docs/CreateQueueSlotRequest.md
+docs/CreateRfPrediction201Response.md
+docs/CreateRfPredictionRequest.md
 docs/CreateSequence200Response.md
 docs/CreateSequence200ResponseSequence.md
 docs/CreateSequenceRequest.md
@@ -1001,6 +1003,8 @@ docs/ReplyToInboxReviewRequest.md
 docs/ReplyToMention200Response.md
 docs/ReplyToMentionRequest.md
 docs/ResendSmsRegistrationOtp200Response.md
+docs/ReserveRfPrediction201Response.md
+docs/ReserveRfPredictionRequest.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
 docs/RetweetPost200Response.md
@@ -1013,6 +1017,7 @@ docs/ReviewWebhookReview.md
 docs/ReviewWebhookReviewReply.md
 docs/ReviewWebhookReviewReviewer.md
 docs/ReviewsApi.md
+docs/RfPrediction.md
 docs/SMSApi.md
 docs/SavedTargetingAudience.md
 docs/ScheduleBroadcast200Response.md
@@ -1755,6 +1760,8 @@ src/Zernio.Test/Model/CreatePostRequestTests.cs
 src/Zernio.Test/Model/CreateProfileRequestTests.cs
 src/Zernio.Test/Model/CreateQueueSlot201ResponseTests.cs
 src/Zernio.Test/Model/CreateQueueSlotRequestTests.cs
+src/Zernio.Test/Model/CreateRfPrediction201ResponseTests.cs
+src/Zernio.Test/Model/CreateRfPredictionRequestTests.cs
 src/Zernio.Test/Model/CreateSequence200ResponseSequenceTests.cs
 src/Zernio.Test/Model/CreateSequence200ResponseTests.cs
 src/Zernio.Test/Model/CreateSequenceRequestStepsInnerTemplateTests.cs
@@ -2505,6 +2512,8 @@ src/Zernio.Test/Model/ReplyToInboxReviewRequestTests.cs
 src/Zernio.Test/Model/ReplyToMention200ResponseTests.cs
 src/Zernio.Test/Model/ReplyToMentionRequestTests.cs
 src/Zernio.Test/Model/ResendSmsRegistrationOtp200ResponseTests.cs
+src/Zernio.Test/Model/ReserveRfPrediction201ResponseTests.cs
+src/Zernio.Test/Model/ReserveRfPredictionRequestTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseWorkflowTests.cs
 src/Zernio.Test/Model/RetweetPost200ResponseTests.cs
@@ -2516,6 +2525,7 @@ src/Zernio.Test/Model/ReviewPhoneNumberKycPacketRequestTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewReplyTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewReviewerTests.cs
 src/Zernio.Test/Model/ReviewWebhookReviewTests.cs
+src/Zernio.Test/Model/RfPredictionTests.cs
 src/Zernio.Test/Model/SavedTargetingAudienceTests.cs
 src/Zernio.Test/Model/ScheduleBroadcast200ResponseBroadcastTests.cs
 src/Zernio.Test/Model/ScheduleBroadcast200ResponseTests.cs
@@ -3259,6 +3269,8 @@ src/Zernio/Model/CreatePostRequestPlatformsInnerPlatformSpecificData.cs
 src/Zernio/Model/CreateProfileRequest.cs
 src/Zernio/Model/CreateQueueSlot201Response.cs
 src/Zernio/Model/CreateQueueSlotRequest.cs
+src/Zernio/Model/CreateRfPrediction201Response.cs
+src/Zernio/Model/CreateRfPredictionRequest.cs
 src/Zernio/Model/CreateSequence200Response.cs
 src/Zernio/Model/CreateSequence200ResponseSequence.cs
 src/Zernio/Model/CreateSequenceRequest.cs
@@ -4009,6 +4021,8 @@ src/Zernio/Model/ReplyToInboxReviewRequest.cs
 src/Zernio/Model/ReplyToMention200Response.cs
 src/Zernio/Model/ReplyToMentionRequest.cs
 src/Zernio/Model/ResendSmsRegistrationOtp200Response.cs
+src/Zernio/Model/ReserveRfPrediction201Response.cs
+src/Zernio/Model/ReserveRfPredictionRequest.cs
 src/Zernio/Model/RestoreWorkflowVersion200Response.cs
 src/Zernio/Model/RestoreWorkflowVersion200ResponseWorkflow.cs
 src/Zernio/Model/RetweetPost200Response.cs
@@ -4020,6 +4034,7 @@ src/Zernio/Model/ReviewPhoneNumberKycPacketRequest.cs
 src/Zernio/Model/ReviewWebhookReview.cs
 src/Zernio/Model/ReviewWebhookReviewReply.cs
 src/Zernio/Model/ReviewWebhookReviewReviewer.cs
+src/Zernio/Model/RfPrediction.cs
 src/Zernio/Model/SavedTargetingAudience.cs
 src/Zernio/Model/ScheduleBroadcast200Response.cs
 src/Zernio/Model/ScheduleBroadcast200ResponseBroadcast.cs
