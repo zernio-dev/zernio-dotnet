@@ -169,6 +169,7 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**BulkUpdateAdCampaignStatus**](docs/AdCampaignsApi.md#bulkupdateadcampaignstatus) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns
 *AdCampaignsApi* | [**DeleteAdCampaign**](docs/AdCampaignsApi.md#deleteadcampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
 *AdCampaignsApi* | [**DuplicateAdCampaign**](docs/AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
+*AdCampaignsApi* | [**GetAdSetDetails**](docs/AdCampaignsApi.md#getadsetdetails) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase (Meta)
 *AdCampaignsApi* | [**GetAdTree**](docs/AdCampaignsApi.md#getadtree) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**GetAdsTimeline**](docs/AdCampaignsApi.md#getadstimeline) | **GET** /v1/ads/timeline | Get daily account metrics
 *AdCampaignsApi* | [**ListAdCampaigns**](docs/AdCampaignsApi.md#listadcampaigns) | **GET** /v1/ads/campaigns | List campaigns
@@ -193,11 +194,13 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**EstimateAdReach**](docs/AdsApi.md#estimateadreach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
 *AdsApi* | [**GenerateAdPreviews**](docs/AdsApi.md#generateadpreviews) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta)
 *AdsApi* | [**GetAd**](docs/AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details
+*AdsApi* | [**GetAdAccountFinance**](docs/AdsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances (Meta)
 *AdsApi* | [**GetAdAnalytics**](docs/AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
 *AdsApi* | [**GetAdComments**](docs/AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdsApi* | [**GetAdInsightsReport**](docs/AdsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta)
 *AdsApi* | [**GetAdPreviews**](docs/AdsApi.md#getadpreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta)
 *AdsApi* | [**GetAdTrackingTags**](docs/AdsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
+*AdsApi* | [**GetAdsActivityLog**](docs/AdsApi.md#getadsactivitylog) | **GET** /v1/ads/activity | Ad account change / audit log (Meta)
 *AdsApi* | [**GetCampaignAnalytics**](docs/AdsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
 *AdsApi* | [**GetConversionDestination**](docs/AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
 *AdsApi* | [**GetConversionMetrics**](docs/AdsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
@@ -210,6 +213,7 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**ListAdAccounts**](docs/AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**ListAdCatalogProductSets**](docs/AdsApi.md#listadcatalogproductsets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog's product sets
 *AdsApi* | [**ListAdCatalogs**](docs/AdsApi.md#listadcatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs
+*AdsApi* | [**ListAdStudies**](docs/AdsApi.md#listadstudies) | **GET** /v1/ads/studies | A/B tests and lift studies (Meta)
 *AdsApi* | [**ListAds**](docs/AdsApi.md#listads) | **GET** /v1/ads | List ads
 *AdsApi* | [**ListAdsBusinessCenters**](docs/AdsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
 *AdsApi* | [**ListConversionAssociations**](docs/AdsApi.md#listconversionassociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns
@@ -229,6 +233,7 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**UpdateAdStatus**](docs/AdsApi.md#updateadstatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
 *AdsApi* | [**UpdateAdTrackingTags**](docs/AdsApi.md#updateadtrackingtags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
 *AdsApi* | [**UpdateConversionDestination**](docs/AdsApi.md#updateconversiondestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
+*AdsApi* | [**UploadAdImage**](docs/AdsApi.md#uploadadimage) | **POST** /v1/ads/images | Upload an ad image from base64 (Meta)
 *AnalyticsApi* | [**GetAnalytics**](docs/AnalyticsApi.md#getanalytics) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**GetBestTimeToPost**](docs/AnalyticsApi.md#getbesttimetopost) | **GET** /v1/analytics/best-time | Get best times to post
 *AnalyticsApi* | [**GetContentDecay**](docs/AnalyticsApi.md#getcontentdecay) | **GET** /v1/analytics/content-decay | Get content performance decay
@@ -994,6 +999,8 @@ Class | Method | HTTP request | Description
  - [Model.GetAccountHealth200ResponsePermissionsPostingInner](docs/GetAccountHealth200ResponsePermissionsPostingInner.md)
  - [Model.GetAccountHealth200ResponseTokenStatus](docs/GetAccountHealth200ResponseTokenStatus.md)
  - [Model.GetAd200Response](docs/GetAd200Response.md)
+ - [Model.GetAdAccountFinance200Response](docs/GetAdAccountFinance200Response.md)
+ - [Model.GetAdAccountFinance200ResponseFundingSource](docs/GetAdAccountFinance200ResponseFundingSource.md)
  - [Model.GetAdAnalytics200Response](docs/GetAdAnalytics200Response.md)
  - [Model.GetAdAnalytics200ResponseAd](docs/GetAdAnalytics200ResponseAd.md)
  - [Model.GetAdAudience200Response](docs/GetAdAudience200Response.md)
@@ -1003,8 +1010,10 @@ Class | Method | HTTP request | Description
  - [Model.GetAdInsightsReport200Response](docs/GetAdInsightsReport200Response.md)
  - [Model.GetAdInsightsReport200ResponsePaging](docs/GetAdInsightsReport200ResponsePaging.md)
  - [Model.GetAdPreviews200Response](docs/GetAdPreviews200Response.md)
+ - [Model.GetAdSetDetails200Response](docs/GetAdSetDetails200Response.md)
  - [Model.GetAdTrackingTags200Response](docs/GetAdTrackingTags200Response.md)
  - [Model.GetAdTree200Response](docs/GetAdTree200Response.md)
+ - [Model.GetAdsActivityLog200Response](docs/GetAdsActivityLog200Response.md)
  - [Model.GetAdsTimeline200Response](docs/GetAdsTimeline200Response.md)
  - [Model.GetAdsTimeline200ResponseRowsInner](docs/GetAdsTimeline200ResponseRowsInner.md)
  - [Model.GetAllAccountsHealth200Response](docs/GetAllAccountsHealth200Response.md)
@@ -1360,6 +1369,7 @@ Class | Method | HTTP request | Description
  - [Model.ListAdCatalogProductSets200ResponseProductSetsInner](docs/ListAdCatalogProductSets200ResponseProductSetsInner.md)
  - [Model.ListAdCatalogs200Response](docs/ListAdCatalogs200Response.md)
  - [Model.ListAdCatalogs200ResponseCatalogsInner](docs/ListAdCatalogs200ResponseCatalogsInner.md)
+ - [Model.ListAdStudies200Response](docs/ListAdStudies200Response.md)
  - [Model.ListAds200Response](docs/ListAds200Response.md)
  - [Model.ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
  - [Model.ListApiKeys200Response](docs/ListApiKeys200Response.md)
@@ -1889,6 +1899,9 @@ Class | Method | HTTP request | Description
  - [Model.UpdateWorkflowRequest](docs/UpdateWorkflowRequest.md)
  - [Model.UpdateYoutubeDefaultPlaylist200Response](docs/UpdateYoutubeDefaultPlaylist200Response.md)
  - [Model.UpdateYoutubeDefaultPlaylistRequest](docs/UpdateYoutubeDefaultPlaylistRequest.md)
+ - [Model.UploadAdImage201Response](docs/UploadAdImage201Response.md)
+ - [Model.UploadAdImage201ResponseImage](docs/UploadAdImage201ResponseImage.md)
+ - [Model.UploadAdImageRequest](docs/UploadAdImageRequest.md)
  - [Model.UploadMediaDirect200Response](docs/UploadMediaDirect200Response.md)
  - [Model.UploadPhoneNumberKycDocument200Response](docs/UploadPhoneNumberKycDocument200Response.md)
  - [Model.UploadPhoneNumberPortInDocument200Response](docs/UploadPhoneNumberPortInDocument200Response.md)

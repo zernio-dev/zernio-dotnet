@@ -264,6 +264,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetAdAccountFinance
+        /// </summary>
+        [Fact]
+        public void GetAdAccountFinanceTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //var response = instance.GetAdAccountFinance(accountId, adAccountId);
+            //Assert.IsType<GetAdAccountFinance200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetAdAnalytics
         /// </summary>
         [Fact]
@@ -331,6 +344,24 @@ namespace Zernio.Test.Api
             //string adId = null;
             //var response = instance.GetAdTrackingTags(adId);
             //Assert.IsType<GetAdTrackingTags200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetAdsActivityLog
+        /// </summary>
+        [Fact]
+        public void GetAdsActivityLogTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //DateOnly? since = null;
+            //DateOnly? until = null;
+            //string? objectId = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.GetAdsActivityLog(accountId, adAccountId, since, until, objectId, limit, after);
+            //Assert.IsType<GetAdsActivityLog200Response>(response);
         }
 
         /// <summary>
@@ -494,6 +525,22 @@ namespace Zernio.Test.Api
             //string adAccountId = null;
             //var response = instance.ListAdCatalogs(accountId, adAccountId);
             //Assert.IsType<ListAdCatalogs200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListAdStudies
+        /// </summary>
+        [Fact]
+        public void ListAdStudiesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //string? fields = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.ListAdStudies(accountId, adAccountId, fields, limit, after);
+            //Assert.IsType<ListAdStudies200Response>(response);
         }
 
         /// <summary>
@@ -776,6 +823,18 @@ namespace Zernio.Test.Api
             //UpdateConversionDestinationRequest updateConversionDestinationRequest = null;
             //var response = instance.UpdateConversionDestination(accountId, destinationId, updateConversionDestinationRequest);
             //Assert.IsType<GetConversionDestination200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UploadAdImage
+        /// </summary>
+        [Fact]
+        public void UploadAdImageTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //UploadAdImageRequest uploadAdImageRequest = null;
+            //var response = instance.UploadAdImage(uploadAdImageRequest);
+            //Assert.IsType<UploadAdImage201Response>(response);
         }
     }
 }

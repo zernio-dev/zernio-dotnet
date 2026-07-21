@@ -96,6 +96,31 @@ namespace Zernio.Api
         /// <returns>ApiResponse of DuplicateAdCampaign200Response</returns>
         ApiResponse<DuplicateAdCampaign200Response> DuplicateAdCampaignWithHttpInfo(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest);
         /// <summary>
+        /// Live ad-set details incl. learning phase (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <returns>GetAdSetDetails200Response</returns>
+        GetAdSetDetails200Response GetAdSetDetails(string adSetId, string accountId, string? fields = default);
+
+        /// <summary>
+        /// Live ad-set details incl. learning phase (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <returns>ApiResponse of GetAdSetDetails200Response</returns>
+        ApiResponse<GetAdSetDetails200Response> GetAdSetDetailsWithHttpInfo(string adSetId, string accountId, string? fields = default);
+        /// <summary>
         /// Get campaign tree
         /// </summary>
         /// <remarks>
@@ -384,6 +409,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DuplicateAdCampaign200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DuplicateAdCampaign200Response>> DuplicateAdCampaignWithHttpInfoAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Live ad-set details incl. learning phase (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdSetDetails200Response</returns>
+        System.Threading.Tasks.Task<GetAdSetDetails200Response> GetAdSetDetailsAsync(string adSetId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Live ad-set details incl. learning phase (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdSetDetails200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdSetDetails200Response>> GetAdSetDetailsWithHttpInfoAsync(string adSetId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get campaign tree
         /// </summary>
@@ -1227,6 +1279,159 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DuplicateAdCampaign", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Live ad-set details incl. learning phase (Meta) Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <returns>GetAdSetDetails200Response</returns>
+        public GetAdSetDetails200Response GetAdSetDetails(string adSetId, string accountId, string? fields = default)
+        {
+            Zernio.Client.ApiResponse<GetAdSetDetails200Response> localVarResponse = GetAdSetDetailsWithHttpInfo(adSetId, accountId, fields);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Live ad-set details incl. learning phase (Meta) Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <returns>ApiResponse of GetAdSetDetails200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdSetDetails200Response> GetAdSetDetailsWithHttpInfo(string adSetId, string accountId, string? fields = default)
+        {
+            // verify the required parameter 'adSetId' is set
+            if (adSetId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adSetId' when calling AdCampaignsApi->GetAdSetDetails");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCampaignsApi->GetAdSetDetails");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adSetId", Zernio.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdSetDetails200Response>("/v1/ads/ad-sets/{adSetId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdSetDetails", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Live ad-set details incl. learning phase (Meta) Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdSetDetails200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdSetDetails200Response> GetAdSetDetailsAsync(string adSetId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdSetDetails200Response> localVarResponse = await GetAdSetDetailsWithHttpInfoAsync(adSetId, accountId, fields, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Live ad-set details incl. learning phase (Meta) Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adSetId">Meta ad set id (platformAdSetId).</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdSetDetails200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdSetDetails200Response>> GetAdSetDetailsWithHttpInfoAsync(string adSetId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adSetId' is set
+            if (adSetId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adSetId' when calling AdCampaignsApi->GetAdSetDetails");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdCampaignsApi->GetAdSetDetails");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adSetId", Zernio.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdSetDetails200Response>("/v1/ads/ad-sets/{adSetId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdSetDetails", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

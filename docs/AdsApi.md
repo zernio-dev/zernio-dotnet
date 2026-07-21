@@ -21,11 +21,13 @@ All URIs are relative to *https://zernio.com/api*
 | [**EstimateAdReach**](AdsApi.md#estimateadreach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach |
 | [**GenerateAdPreviews**](AdsApi.md#generateadpreviews) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta) |
 | [**GetAd**](AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details |
+| [**GetAdAccountFinance**](AdsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances (Meta) |
 | [**GetAdAnalytics**](AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**GetAdComments**](AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**GetAdInsightsReport**](AdsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta) |
 | [**GetAdPreviews**](AdsApi.md#getadpreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta) |
 | [**GetAdTrackingTags**](AdsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
+| [**GetAdsActivityLog**](AdsApi.md#getadsactivitylog) | **GET** /v1/ads/activity | Ad account change / audit log (Meta) |
 | [**GetCampaignAnalytics**](AdsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**GetConversionDestination**](AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
 | [**GetConversionMetrics**](AdsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
@@ -38,6 +40,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAdAccounts**](AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**ListAdCatalogProductSets**](AdsApi.md#listadcatalogproductsets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets |
 | [**ListAdCatalogs**](AdsApi.md#listadcatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs |
+| [**ListAdStudies**](AdsApi.md#listadstudies) | **GET** /v1/ads/studies | A/B tests and lift studies (Meta) |
 | [**ListAds**](AdsApi.md#listads) | **GET** /v1/ads | List ads |
 | [**ListAdsBusinessCenters**](AdsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
 | [**ListConversionAssociations**](AdsApi.md#listconversionassociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns |
@@ -57,6 +60,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**UpdateAdStatus**](AdsApi.md#updateadstatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
 | [**UpdateAdTrackingTags**](AdsApi.md#updateadtrackingtags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**UpdateConversionDestination**](AdsApi.md#updateconversiondestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
+| [**UploadAdImage**](AdsApi.md#uploadadimage) | **POST** /v1/ads/images | Upload an ad image from base64 (Meta) |
 
 <a id="addconversionassociations"></a>
 # **AddConversionAssociations**
@@ -1794,6 +1798,109 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getadaccountfinance"></a>
+# **GetAdAccountFinance**
+> GetAdAccountFinance200Response GetAdAccountFinance (string accountId, string adAccountId)
+
+Ad account finances (Meta)
+
+Finances of one Meta ad account: prepaid `balance`, lifetime `amountSpent`, account `spendCap` (null = no cap) and the `fundingSource`. Money values are converted from Meta's minor units to whole units of `currency`. Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdAccountFinanceExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>).
+
+            try
+            {
+                // Ad account finances (Meta)
+                GetAdAccountFinance200Response result = apiInstance.GetAdAccountFinance(accountId, adAccountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetAdAccountFinance: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdAccountFinanceWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Ad account finances (Meta)
+    ApiResponse<GetAdAccountFinance200Response> response = apiInstance.GetAdAccountFinanceWithHttpInfo(accountId, adAccountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetAdAccountFinanceWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). |  |
+
+### Return type
+
+[**GetAdAccountFinance200Response**](GetAdAccountFinance200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account finances |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getadanalytics"></a>
 # **GetAdAnalytics**
 > GetAdAnalytics200Response GetAdAnalytics (string adId, DateOnly? fromDate = null, DateOnly? toDate = null, string? breakdowns = null)
@@ -2323,6 +2430,119 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | Ad not found |  -  |
 | **405** | Platform has no click-URL tracking surface |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadsactivitylog"></a>
+# **GetAdsActivityLog**
+> GetAdsActivityLog200Response GetAdsActivityLog (string accountId, string adAccountId, DateOnly? since = null, DateOnly? until = null, string? objectId = null, int? limit = null, string? after = null)
+
+Ad account change / audit log (Meta)
+
+Account-level audit log from Meta's `/act_X/activities`: who changed what and when (creates, edits, status flips, budget changes...) with Meta's translated event names and the structured before/after in `extra_data`. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so `objectId` filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdsActivityLogExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>).
+            var since = DateOnly.Parse("2013-10-20");  // DateOnly? | Start of range (YYYY-MM-DD). (optional) 
+            var until = DateOnly.Parse("2013-10-20");  // DateOnly? | End of range (YYYY-MM-DD). (optional) 
+            var objectId = "objectId_example";  // string? | Client-side filter to one Meta object id (campaign, ad set or ad). (optional) 
+            var limit = 50;  // int? | Rows per page (optional)  (default to 50)
+            var after = "after_example";  // string? | Cursor from paging.after of the previous page. (optional) 
+
+            try
+            {
+                // Ad account change / audit log (Meta)
+                GetAdsActivityLog200Response result = apiInstance.GetAdsActivityLog(accountId, adAccountId, since, until, objectId, limit, after);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetAdsActivityLog: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdsActivityLogWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Ad account change / audit log (Meta)
+    ApiResponse<GetAdsActivityLog200Response> response = apiInstance.GetAdsActivityLogWithHttpInfo(accountId, adAccountId, since, until, objectId, limit, after);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetAdsActivityLogWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). |  |
+| **since** | **DateOnly?** | Start of range (YYYY-MM-DD). | [optional]  |
+| **until** | **DateOnly?** | End of range (YYYY-MM-DD). | [optional]  |
+| **objectId** | **string?** | Client-side filter to one Meta object id (campaign, ad set or ad). | [optional]  |
+| **limit** | **int?** | Rows per page | [optional] [default to 50] |
+| **after** | **string?** | Cursor from paging.after of the previous page. | [optional]  |
+
+### Return type
+
+[**GetAdsActivityLog200Response**](GetAdsActivityLog200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Activity rows (raw Meta shape) |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3575,6 +3795,115 @@ catch (ApiException e)
 | **200** | Catalogs |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listadstudies"></a>
+# **ListAdStudies**
+> ListAdStudies200Response ListAdStudies (string accountId, string adAccountId, string? fields = null, int? limit = null, string? after = null)
+
+A/B tests and lift studies (Meta)
+
+Lists the ad account's A/B tests and lift studies (Meta's `/act_X/ad_studies`), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; `fields` is a raw-passthrough override. Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdStudiesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>).
+            var fields = "fields_example";  // string? | Comma-separated Graph field override (supports nested {} projections). (optional) 
+            var limit = 25;  // int? | Rows per page (optional)  (default to 25)
+            var after = "after_example";  // string? | Cursor from paging.after of the previous page. (optional) 
+
+            try
+            {
+                // A/B tests and lift studies (Meta)
+                ListAdStudies200Response result = apiInstance.ListAdStudies(accountId, adAccountId, fields, limit, after);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.ListAdStudies: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdStudiesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // A/B tests and lift studies (Meta)
+    ApiResponse<ListAdStudies200Response> response = apiInstance.ListAdStudiesWithHttpInfo(accountId, adAccountId, fields, limit, after);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.ListAdStudiesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). |  |
+| **fields** | **string?** | Comma-separated Graph field override (supports nested {} projections). | [optional]  |
+| **limit** | **int?** | Rows per page | [optional] [default to 25] |
+| **after** | **string?** | Cursor from paging.after of the previous page. | [optional]  |
+
+### Return type
+
+[**ListAdStudies200Response**](ListAdStudies200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ad studies (raw Meta shape) |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -5612,6 +5941,107 @@ catch (ApiException e)
 | **404** | Account or destination not found. |  -  |
 | **405** | Platform does not support updating destinations. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="uploadadimage"></a>
+# **UploadAdImage**
+> UploadAdImage201Response UploadAdImage (UploadAdImageRequest uploadAdImageRequest)
+
+Upload an ad image from base64 (Meta)
+
+Uploads raw image bytes to the Meta ad account's image library — for callers whose creatives aren't hosted at a public URL. Returns the image `hash` (Meta's identifier for the asset) and the Meta-hosted `url`, which can be used directly as `imageUrl` on the create endpoints. Max 30 MB decoded. Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UploadAdImageExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var uploadAdImageRequest = new UploadAdImageRequest(); // UploadAdImageRequest | 
+
+            try
+            {
+                // Upload an ad image from base64 (Meta)
+                UploadAdImage201Response result = apiInstance.UploadAdImage(uploadAdImageRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.UploadAdImage: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UploadAdImageWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Upload an ad image from base64 (Meta)
+    ApiResponse<UploadAdImage201Response> response = apiInstance.UploadAdImageWithHttpInfo(uploadAdImageRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.UploadAdImageWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **uploadAdImageRequest** | [**UploadAdImageRequest**](UploadAdImageRequest.md) |  |  |
+
+### Return type
+
+[**UploadAdImage201Response**](UploadAdImage201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Image uploaded |  -  |
+| **400** | Invalid input, or Meta rejected the image |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

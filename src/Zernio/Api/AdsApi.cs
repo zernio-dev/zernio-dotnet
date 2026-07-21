@@ -404,6 +404,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetAd200Response</returns>
         ApiResponse<GetAd200Response> GetAdWithHttpInfo(string adId);
         /// <summary>
+        /// Ad account finances (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <returns>GetAdAccountFinance200Response</returns>
+        GetAdAccountFinance200Response GetAdAccountFinance(string accountId, string adAccountId);
+
+        /// <summary>
+        /// Ad account finances (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <returns>ApiResponse of GetAdAccountFinance200Response</returns>
+        ApiResponse<GetAdAccountFinance200Response> GetAdAccountFinanceWithHttpInfo(string accountId, string adAccountId);
+        /// <summary>
         /// Get ad analytics
         /// </summary>
         /// <remarks>
@@ -528,6 +551,39 @@ namespace Zernio.Api
         /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
         /// <returns>ApiResponse of GetAdTrackingTags200Response</returns>
         ApiResponse<GetAdTrackingTags200Response> GetAdTrackingTagsWithHttpInfo(string adId);
+        /// <summary>
+        /// Ad account change / audit log (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="since">Start of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="until">End of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="objectId">Client-side filter to one Meta object id (campaign, ad set or ad). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 50)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>GetAdsActivityLog200Response</returns>
+        GetAdsActivityLog200Response GetAdsActivityLog(string accountId, string adAccountId, DateOnly? since = default, DateOnly? until = default, string? objectId = default, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// Ad account change / audit log (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="since">Start of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="until">End of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="objectId">Client-side filter to one Meta object id (campaign, ad set or ad). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 50)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of GetAdsActivityLog200Response</returns>
+        ApiResponse<GetAdsActivityLog200Response> GetAdsActivityLogWithHttpInfo(string accountId, string adAccountId, DateOnly? since = default, DateOnly? until = default, string? objectId = default, int? limit = default, string? after = default);
         /// <summary>
         /// Get campaign analytics
         /// </summary>
@@ -815,6 +871,35 @@ namespace Zernio.Api
         /// <param name="adAccountId">Meta ad account ID (act_...)</param>
         /// <returns>ApiResponse of ListAdCatalogs200Response</returns>
         ApiResponse<ListAdCatalogs200Response> ListAdCatalogsWithHttpInfo(string accountId, string adAccountId);
+        /// <summary>
+        /// A/B tests and lift studies (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListAdStudies200Response</returns>
+        ListAdStudies200Response ListAdStudies(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// A/B tests and lift studies (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListAdStudies200Response</returns>
+        ApiResponse<ListAdStudies200Response> ListAdStudiesWithHttpInfo(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default);
         /// <summary>
         /// List ads
         /// </summary>
@@ -1326,6 +1411,27 @@ namespace Zernio.Api
         /// <param name="updateConversionDestinationRequest"></param>
         /// <returns>ApiResponse of GetConversionDestination200Response</returns>
         ApiResponse<GetConversionDestination200Response> UpdateConversionDestinationWithHttpInfo(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest);
+        /// <summary>
+        /// Upload an ad image from base64 (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uploadAdImageRequest"></param>
+        /// <returns>UploadAdImage201Response</returns>
+        UploadAdImage201Response UploadAdImage(UploadAdImageRequest uploadAdImageRequest);
+
+        /// <summary>
+        /// Upload an ad image from base64 (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uploadAdImageRequest"></param>
+        /// <returns>ApiResponse of UploadAdImage201Response</returns>
+        ApiResponse<UploadAdImage201Response> UploadAdImageWithHttpInfo(UploadAdImageRequest uploadAdImageRequest);
         #endregion Synchronous Operations
     }
 
@@ -1745,6 +1851,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (GetAd200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAd200Response>> GetAdWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Ad account finances (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdAccountFinance200Response</returns>
+        System.Threading.Tasks.Task<GetAdAccountFinance200Response> GetAdAccountFinanceAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Ad account finances (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdAccountFinance200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdAccountFinance200Response>> GetAdAccountFinanceWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get ad analytics
         /// </summary>
         /// <remarks>
@@ -1879,6 +2010,41 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdTrackingTags200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdTrackingTags200Response>> GetAdTrackingTagsWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Ad account change / audit log (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="since">Start of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="until">End of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="objectId">Client-side filter to one Meta object id (campaign, ad set or ad). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 50)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdsActivityLog200Response</returns>
+        System.Threading.Tasks.Task<GetAdsActivityLog200Response> GetAdsActivityLogAsync(string accountId, string adAccountId, DateOnly? since = default, DateOnly? until = default, string? objectId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Ad account change / audit log (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="since">Start of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="until">End of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="objectId">Client-side filter to one Meta object id (campaign, ad set or ad). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 50)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdsActivityLog200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdsActivityLog200Response>> GetAdsActivityLogWithHttpInfoAsync(string accountId, string adAccountId, DateOnly? since = default, DateOnly? until = default, string? objectId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get campaign analytics
         /// </summary>
@@ -2193,6 +2359,37 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdCatalogs200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdCatalogs200Response>> ListAdCatalogsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// A/B tests and lift studies (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdStudies200Response</returns>
+        System.Threading.Tasks.Task<ListAdStudies200Response> ListAdStudiesAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// A/B tests and lift studies (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdStudies200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAdStudies200Response>> ListAdStudiesWithHttpInfoAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List ads
         /// </summary>
@@ -2742,6 +2939,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetConversionDestination200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetConversionDestination200Response>> UpdateConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, UpdateConversionDestinationRequest updateConversionDestinationRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Upload an ad image from base64 (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uploadAdImageRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UploadAdImage201Response</returns>
+        System.Threading.Tasks.Task<UploadAdImage201Response> UploadAdImageAsync(UploadAdImageRequest uploadAdImageRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Upload an ad image from base64 (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uploadAdImageRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UploadAdImage201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UploadAdImage201Response>> UploadAdImageWithHttpInfoAsync(UploadAdImageRequest uploadAdImageRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -5247,6 +5467,147 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Ad account finances (Meta) Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <returns>GetAdAccountFinance200Response</returns>
+        public GetAdAccountFinance200Response GetAdAccountFinance(string accountId, string adAccountId)
+        {
+            Zernio.Client.ApiResponse<GetAdAccountFinance200Response> localVarResponse = GetAdAccountFinanceWithHttpInfo(accountId, adAccountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Ad account finances (Meta) Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <returns>ApiResponse of GetAdAccountFinance200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdAccountFinance200Response> GetAdAccountFinanceWithHttpInfo(string accountId, string adAccountId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetAdAccountFinance");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetAdAccountFinance");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdAccountFinance200Response>("/v1/ads/accounts/finance", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdAccountFinance", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Ad account finances (Meta) Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdAccountFinance200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdAccountFinance200Response> GetAdAccountFinanceAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdAccountFinance200Response> localVarResponse = await GetAdAccountFinanceWithHttpInfoAsync(accountId, adAccountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Ad account finances (Meta) Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdAccountFinance200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdAccountFinance200Response>> GetAdAccountFinanceWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetAdAccountFinance");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetAdAccountFinance");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdAccountFinance200Response>("/v1/ads/accounts/finance", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdAccountFinance", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Get ad analytics Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5997,6 +6358,207 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAdTrackingTags", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Ad account change / audit log (Meta) Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="since">Start of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="until">End of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="objectId">Client-side filter to one Meta object id (campaign, ad set or ad). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 50)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>GetAdsActivityLog200Response</returns>
+        public GetAdsActivityLog200Response GetAdsActivityLog(string accountId, string adAccountId, DateOnly? since = default, DateOnly? until = default, string? objectId = default, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<GetAdsActivityLog200Response> localVarResponse = GetAdsActivityLogWithHttpInfo(accountId, adAccountId, since, until, objectId, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Ad account change / audit log (Meta) Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="since">Start of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="until">End of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="objectId">Client-side filter to one Meta object id (campaign, ad set or ad). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 50)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of GetAdsActivityLog200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdsActivityLog200Response> GetAdsActivityLogWithHttpInfo(string accountId, string adAccountId, DateOnly? since = default, DateOnly? until = default, string? objectId = default, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetAdsActivityLog");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetAdsActivityLog");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (until != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
+            }
+            if (objectId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "objectId", objectId));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdsActivityLog200Response>("/v1/ads/activity", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdsActivityLog", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Ad account change / audit log (Meta) Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="since">Start of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="until">End of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="objectId">Client-side filter to one Meta object id (campaign, ad set or ad). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 50)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdsActivityLog200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdsActivityLog200Response> GetAdsActivityLogAsync(string accountId, string adAccountId, DateOnly? since = default, DateOnly? until = default, string? objectId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdsActivityLog200Response> localVarResponse = await GetAdsActivityLogWithHttpInfoAsync(accountId, adAccountId, since, until, objectId, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Ad account change / audit log (Meta) Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="since">Start of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="until">End of range (YYYY-MM-DD). (optional)</param>
+        /// <param name="objectId">Client-side filter to one Meta object id (campaign, ad set or ad). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 50)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdsActivityLog200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdsActivityLog200Response>> GetAdsActivityLogWithHttpInfoAsync(string accountId, string adAccountId, DateOnly? since = default, DateOnly? until = default, string? objectId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetAdsActivityLog");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->GetAdsActivityLog");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (since != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "since", since));
+            }
+            if (until != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "until", until));
+            }
+            if (objectId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "objectId", objectId));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdsActivityLog200Response>("/v1/ads/activity", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdsActivityLog", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -7775,6 +8337,183 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAdCatalogs", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// A/B tests and lift studies (Meta) Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListAdStudies200Response</returns>
+        public ListAdStudies200Response ListAdStudies(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<ListAdStudies200Response> localVarResponse = ListAdStudiesWithHttpInfo(accountId, adAccountId, fields, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// A/B tests and lift studies (Meta) Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListAdStudies200Response</returns>
+        public Zernio.Client.ApiResponse<ListAdStudies200Response> ListAdStudiesWithHttpInfo(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdStudies");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListAdStudies");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAdStudies200Response>("/v1/ads/studies", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdStudies", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// A/B tests and lift studies (Meta) Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdStudies200Response</returns>
+        public async System.Threading.Tasks.Task<ListAdStudies200Response> ListAdStudiesAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAdStudies200Response> localVarResponse = await ListAdStudiesWithHttpInfoAsync(accountId, adAccountId, fields, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// A/B tests and lift studies (Meta) Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdStudies200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdStudies200Response>> ListAdStudiesWithHttpInfoAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdStudies");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListAdStudies");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAdStudies200Response>("/v1/ads/studies", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdStudies", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -10888,6 +11627,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateConversionDestination", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Upload an ad image from base64 (Meta) Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uploadAdImageRequest"></param>
+        /// <returns>UploadAdImage201Response</returns>
+        public UploadAdImage201Response UploadAdImage(UploadAdImageRequest uploadAdImageRequest)
+        {
+            Zernio.Client.ApiResponse<UploadAdImage201Response> localVarResponse = UploadAdImageWithHttpInfo(uploadAdImageRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload an ad image from base64 (Meta) Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uploadAdImageRequest"></param>
+        /// <returns>ApiResponse of UploadAdImage201Response</returns>
+        public Zernio.Client.ApiResponse<UploadAdImage201Response> UploadAdImageWithHttpInfo(UploadAdImageRequest uploadAdImageRequest)
+        {
+            // verify the required parameter 'uploadAdImageRequest' is set
+            if (uploadAdImageRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'uploadAdImageRequest' when calling AdsApi->UploadAdImage");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = uploadAdImageRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<UploadAdImage201Response>("/v1/ads/images", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UploadAdImage", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Upload an ad image from base64 (Meta) Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uploadAdImageRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UploadAdImage201Response</returns>
+        public async System.Threading.Tasks.Task<UploadAdImage201Response> UploadAdImageAsync(UploadAdImageRequest uploadAdImageRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UploadAdImage201Response> localVarResponse = await UploadAdImageWithHttpInfoAsync(uploadAdImageRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Upload an ad image from base64 (Meta) Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="uploadAdImageRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UploadAdImage201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UploadAdImage201Response>> UploadAdImageWithHttpInfoAsync(UploadAdImageRequest uploadAdImageRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'uploadAdImageRequest' is set
+            if (uploadAdImageRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'uploadAdImageRequest' when calling AdsApi->UploadAdImage");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = uploadAdImageRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<UploadAdImage201Response>("/v1/ads/images", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UploadAdImage", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

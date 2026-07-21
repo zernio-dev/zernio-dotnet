@@ -122,10 +122,22 @@ namespace Zernio.Model
             CREDIT = 3,
 
             /// <summary>
+            /// Enum FINANCIALPRODUCTSSERVICES for value: FINANCIAL_PRODUCTS_SERVICES
+            /// </summary>
+            [EnumMember(Value = "FINANCIAL_PRODUCTS_SERVICES")]
+            FINANCIALPRODUCTSSERVICES = 4,
+
+            /// <summary>
             /// Enum ISSUESELECTIONSPOLITICS for value: ISSUES_ELECTIONS_POLITICS
             /// </summary>
             [EnumMember(Value = "ISSUES_ELECTIONS_POLITICS")]
-            ISSUESELECTIONSPOLITICS = 4
+            ISSUESELECTIONSPOLITICS = 5,
+
+            /// <summary>
+            /// Enum ONLINEGAMBLINGANDGAMING for value: ONLINE_GAMBLING_AND_GAMING
+            /// </summary>
+            [EnumMember(Value = "ONLINE_GAMBLING_AND_GAMING")]
+            ONLINEGAMBLINGANDGAMING = 6
         }
 
         /// <summary>

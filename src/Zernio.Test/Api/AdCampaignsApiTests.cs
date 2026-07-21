@@ -93,6 +93,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetAdSetDetails
+        /// </summary>
+        [Fact]
+        public void GetAdSetDetailsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adSetId = null;
+            //string accountId = null;
+            //string? fields = null;
+            //var response = instance.GetAdSetDetails(adSetId, accountId, fields);
+            //Assert.IsType<GetAdSetDetails200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetAdTree
         /// </summary>
         [Fact]

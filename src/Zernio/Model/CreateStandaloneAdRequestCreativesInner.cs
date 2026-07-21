@@ -97,7 +97,103 @@ namespace Zernio.Model
             /// Enum WATCHMORE for value: WATCH_MORE
             /// </summary>
             [EnumMember(Value = "WATCH_MORE")]
-            WATCHMORE = 10
+            WATCHMORE = 10,
+
+            /// <summary>
+            /// Enum ADDTOCART for value: ADD_TO_CART
+            /// </summary>
+            [EnumMember(Value = "ADD_TO_CART")]
+            ADDTOCART = 11,
+
+            /// <summary>
+            /// Enum APPLYNOW for value: APPLY_NOW
+            /// </summary>
+            [EnumMember(Value = "APPLY_NOW")]
+            APPLYNOW = 12,
+
+            /// <summary>
+            /// Enum BOOKNOW for value: BOOK_NOW
+            /// </summary>
+            [EnumMember(Value = "BOOK_NOW")]
+            BOOKNOW = 13,
+
+            /// <summary>
+            /// Enum BUYTICKETS for value: BUY_TICKETS
+            /// </summary>
+            [EnumMember(Value = "BUY_TICKETS")]
+            BUYTICKETS = 14,
+
+            /// <summary>
+            /// Enum DONATE for value: DONATE
+            /// </summary>
+            [EnumMember(Value = "DONATE")]
+            DONATE = 15,
+
+            /// <summary>
+            /// Enum DONATENOW for value: DONATE_NOW
+            /// </summary>
+            [EnumMember(Value = "DONATE_NOW")]
+            DONATENOW = 16,
+
+            /// <summary>
+            /// Enum GETDIRECTIONS for value: GET_DIRECTIONS
+            /// </summary>
+            [EnumMember(Value = "GET_DIRECTIONS")]
+            GETDIRECTIONS = 17,
+
+            /// <summary>
+            /// Enum GETSHOWTIMES for value: GET_SHOWTIMES
+            /// </summary>
+            [EnumMember(Value = "GET_SHOWTIMES")]
+            GETSHOWTIMES = 18,
+
+            /// <summary>
+            /// Enum LISTENNOW for value: LISTEN_NOW
+            /// </summary>
+            [EnumMember(Value = "LISTEN_NOW")]
+            LISTENNOW = 19,
+
+            /// <summary>
+            /// Enum ORDERNOW for value: ORDER_NOW
+            /// </summary>
+            [EnumMember(Value = "ORDER_NOW")]
+            ORDERNOW = 20,
+
+            /// <summary>
+            /// Enum PLAYGAME for value: PLAY_GAME
+            /// </summary>
+            [EnumMember(Value = "PLAY_GAME")]
+            PLAYGAME = 21,
+
+            /// <summary>
+            /// Enum REQUESTTIME for value: REQUEST_TIME
+            /// </summary>
+            [EnumMember(Value = "REQUEST_TIME")]
+            REQUESTTIME = 22,
+
+            /// <summary>
+            /// Enum SEEMENU for value: SEE_MENU
+            /// </summary>
+            [EnumMember(Value = "SEE_MENU")]
+            SEEMENU = 23,
+
+            /// <summary>
+            /// Enum STARTORDER for value: START_ORDER
+            /// </summary>
+            [EnumMember(Value = "START_ORDER")]
+            STARTORDER = 24,
+
+            /// <summary>
+            /// Enum INSTALLMOBILEAPP for value: INSTALL_MOBILE_APP
+            /// </summary>
+            [EnumMember(Value = "INSTALL_MOBILE_APP")]
+            INSTALLMOBILEAPP = 25,
+
+            /// <summary>
+            /// Enum USEAPP for value: USE_APP
+            /// </summary>
+            [EnumMember(Value = "USE_APP")]
+            USEAPP = 26
         }
 
 

@@ -396,6 +396,8 @@ docs/GetAccountHealth200ResponsePermissions.md
 docs/GetAccountHealth200ResponsePermissionsPostingInner.md
 docs/GetAccountHealth200ResponseTokenStatus.md
 docs/GetAd200Response.md
+docs/GetAdAccountFinance200Response.md
+docs/GetAdAccountFinance200ResponseFundingSource.md
 docs/GetAdAnalytics200Response.md
 docs/GetAdAnalytics200ResponseAd.md
 docs/GetAdAudience200Response.md
@@ -405,8 +407,10 @@ docs/GetAdComments200ResponsePagination.md
 docs/GetAdInsightsReport200Response.md
 docs/GetAdInsightsReport200ResponsePaging.md
 docs/GetAdPreviews200Response.md
+docs/GetAdSetDetails200Response.md
 docs/GetAdTrackingTags200Response.md
 docs/GetAdTree200Response.md
+docs/GetAdsActivityLog200Response.md
 docs/GetAdsTimeline200Response.md
 docs/GetAdsTimeline200ResponseRowsInner.md
 docs/GetAllAccountsHealth200Response.md
@@ -766,6 +770,7 @@ docs/ListAdCatalogProductSets200Response.md
 docs/ListAdCatalogProductSets200ResponseProductSetsInner.md
 docs/ListAdCatalogs200Response.md
 docs/ListAdCatalogs200ResponseCatalogsInner.md
+docs/ListAdStudies200Response.md
 docs/ListAds200Response.md
 docs/ListAdsBusinessCenters200Response.md
 docs/ListApiKeys200Response.md
@@ -1309,6 +1314,9 @@ docs/UpdateWorkflow200ResponseWorkflow.md
 docs/UpdateWorkflowRequest.md
 docs/UpdateYoutubeDefaultPlaylist200Response.md
 docs/UpdateYoutubeDefaultPlaylistRequest.md
+docs/UploadAdImage201Response.md
+docs/UploadAdImage201ResponseImage.md
+docs/UploadAdImageRequest.md
 docs/UploadMediaDirect200Response.md
 docs/UploadPhoneNumberKycDocument200Response.md
 docs/UploadPhoneNumberPortInDocument200Response.md
@@ -1905,6 +1913,8 @@ src/Zernio.Test/Model/GetAccountHealth200ResponsePermissionsTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponseTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponseTokenStatusTests.cs
 src/Zernio.Test/Model/GetAd200ResponseTests.cs
+src/Zernio.Test/Model/GetAdAccountFinance200ResponseFundingSourceTests.cs
+src/Zernio.Test/Model/GetAdAccountFinance200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAnalytics200ResponseAdTests.cs
 src/Zernio.Test/Model/GetAdAnalytics200ResponseTests.cs
 src/Zernio.Test/Model/GetAdAudience200ResponseTests.cs
@@ -1914,8 +1924,10 @@ src/Zernio.Test/Model/GetAdComments200ResponseTests.cs
 src/Zernio.Test/Model/GetAdInsightsReport200ResponsePagingTests.cs
 src/Zernio.Test/Model/GetAdInsightsReport200ResponseTests.cs
 src/Zernio.Test/Model/GetAdPreviews200ResponseTests.cs
+src/Zernio.Test/Model/GetAdSetDetails200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTree200ResponseTests.cs
+src/Zernio.Test/Model/GetAdsActivityLog200ResponseTests.cs
 src/Zernio.Test/Model/GetAdsTimeline200ResponseRowsInnerTests.cs
 src/Zernio.Test/Model/GetAdsTimeline200ResponseTests.cs
 src/Zernio.Test/Model/GetAllAccountsHealth200ResponseAccountsInnerTests.cs
@@ -2271,6 +2283,7 @@ src/Zernio.Test/Model/ListAdCatalogProductSets200ResponseProductSetsInnerTests.c
 src/Zernio.Test/Model/ListAdCatalogProductSets200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCatalogs200ResponseCatalogsInnerTests.cs
 src/Zernio.Test/Model/ListAdCatalogs200ResponseTests.cs
+src/Zernio.Test/Model/ListAdStudies200ResponseTests.cs
 src/Zernio.Test/Model/ListAds200ResponseTests.cs
 src/Zernio.Test/Model/ListAdsBusinessCenters200ResponseTests.cs
 src/Zernio.Test/Model/ListApiKeys200ResponseTests.cs
@@ -2800,6 +2813,9 @@ src/Zernio.Test/Model/UpdateWorkflow200ResponseWorkflowTests.cs
 src/Zernio.Test/Model/UpdateWorkflowRequestTests.cs
 src/Zernio.Test/Model/UpdateYoutubeDefaultPlaylist200ResponseTests.cs
 src/Zernio.Test/Model/UpdateYoutubeDefaultPlaylistRequestTests.cs
+src/Zernio.Test/Model/UploadAdImage201ResponseImageTests.cs
+src/Zernio.Test/Model/UploadAdImage201ResponseTests.cs
+src/Zernio.Test/Model/UploadAdImageRequestTests.cs
 src/Zernio.Test/Model/UploadMediaDirect200ResponseTests.cs
 src/Zernio.Test/Model/UploadPhoneNumberKycDocument200ResponseTests.cs
 src/Zernio.Test/Model/UploadPhoneNumberPortInDocument200ResponseTests.cs
@@ -3401,6 +3417,8 @@ src/Zernio/Model/GetAccountHealth200ResponsePermissions.cs
 src/Zernio/Model/GetAccountHealth200ResponsePermissionsPostingInner.cs
 src/Zernio/Model/GetAccountHealth200ResponseTokenStatus.cs
 src/Zernio/Model/GetAd200Response.cs
+src/Zernio/Model/GetAdAccountFinance200Response.cs
+src/Zernio/Model/GetAdAccountFinance200ResponseFundingSource.cs
 src/Zernio/Model/GetAdAnalytics200Response.cs
 src/Zernio/Model/GetAdAnalytics200ResponseAd.cs
 src/Zernio/Model/GetAdAudience200Response.cs
@@ -3410,8 +3428,10 @@ src/Zernio/Model/GetAdComments200ResponsePagination.cs
 src/Zernio/Model/GetAdInsightsReport200Response.cs
 src/Zernio/Model/GetAdInsightsReport200ResponsePaging.cs
 src/Zernio/Model/GetAdPreviews200Response.cs
+src/Zernio/Model/GetAdSetDetails200Response.cs
 src/Zernio/Model/GetAdTrackingTags200Response.cs
 src/Zernio/Model/GetAdTree200Response.cs
+src/Zernio/Model/GetAdsActivityLog200Response.cs
 src/Zernio/Model/GetAdsTimeline200Response.cs
 src/Zernio/Model/GetAdsTimeline200ResponseRowsInner.cs
 src/Zernio/Model/GetAllAccountsHealth200Response.cs
@@ -3767,6 +3787,7 @@ src/Zernio/Model/ListAdCatalogProductSets200Response.cs
 src/Zernio/Model/ListAdCatalogProductSets200ResponseProductSetsInner.cs
 src/Zernio/Model/ListAdCatalogs200Response.cs
 src/Zernio/Model/ListAdCatalogs200ResponseCatalogsInner.cs
+src/Zernio/Model/ListAdStudies200Response.cs
 src/Zernio/Model/ListAds200Response.cs
 src/Zernio/Model/ListAdsBusinessCenters200Response.cs
 src/Zernio/Model/ListApiKeys200Response.cs
@@ -4296,6 +4317,9 @@ src/Zernio/Model/UpdateWorkflow200ResponseWorkflow.cs
 src/Zernio/Model/UpdateWorkflowRequest.cs
 src/Zernio/Model/UpdateYoutubeDefaultPlaylist200Response.cs
 src/Zernio/Model/UpdateYoutubeDefaultPlaylistRequest.cs
+src/Zernio/Model/UploadAdImage201Response.cs
+src/Zernio/Model/UploadAdImage201ResponseImage.cs
+src/Zernio/Model/UploadAdImageRequest.cs
 src/Zernio/Model/UploadMediaDirect200Response.cs
 src/Zernio/Model/UploadPhoneNumberKycDocument200Response.cs
 src/Zernio/Model/UploadPhoneNumberPortInDocument200Response.cs
