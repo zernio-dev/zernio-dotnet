@@ -119,6 +119,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateAdCreative
+        /// </summary>
+        [Fact]
+        public void CreateAdCreativeTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateAdCreativeRequest createAdCreativeRequest = null;
+            //var response = instance.CreateAdCreative(createAdCreativeRequest);
+            //Assert.IsType<CreateAdCreative201Response>(response);
+        }
+
+        /// <summary>
         /// Test CreateAdInsightsReport
         /// </summary>
         [Fact]
@@ -240,6 +252,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test DeleteAdCreative
+        /// </summary>
+        [Fact]
+        public void DeleteAdCreativeTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string creativeId = null;
+            //string accountId = null;
+            //var response = instance.DeleteAdCreative(creativeId, accountId);
+            //Assert.IsType<DeleteAdCreative200Response>(response);
+        }
+
+        /// <summary>
         /// Test DeleteConversionDestination
         /// </summary>
         [Fact]
@@ -250,6 +275,19 @@ namespace Zernio.Test.Api
             //string destinationId = null;
             //string? adAccountId = null;
             //instance.DeleteConversionDestination(accountId, destinationId, adAccountId);
+        }
+
+        /// <summary>
+        /// Test DuplicateAd
+        /// </summary>
+        [Fact]
+        public void DuplicateAdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //DuplicateAdRequest? duplicateAdRequest = null;
+            //var response = instance.DuplicateAd(adId, duplicateAdRequest);
+            //Assert.IsType<DuplicateAd200Response>(response);
         }
 
         /// <summary>
@@ -329,6 +367,20 @@ namespace Zernio.Test.Api
             //string? cursor = null;
             //var response = instance.GetAdComments(adId, placement, limit, cursor);
             //Assert.IsType<GetAdComments200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetAdCreative
+        /// </summary>
+        [Fact]
+        public void GetAdCreativeTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string creativeId = null;
+            //string accountId = null;
+            //string? fields = null;
+            //var response = instance.GetAdCreative(creativeId, accountId, fields);
+            //Assert.IsType<GetAdCreative200Response>(response);
         }
 
         /// <summary>
@@ -567,6 +619,53 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListAdCreatives
+        /// </summary>
+        [Fact]
+        public void ListAdCreativesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //string? fields = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.ListAdCreatives(accountId, adAccountId, fields, limit, after);
+            //Assert.IsType<ListAdCreatives200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListAdImages
+        /// </summary>
+        [Fact]
+        public void ListAdImagesTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //string? fields = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.ListAdImages(accountId, adAccountId, fields, limit, after);
+            //Assert.IsType<ListAdImages200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListAdLabels
+        /// </summary>
+        [Fact]
+        public void ListAdLabelsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string adAccountId = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.ListAdLabels(accountId, adAccountId, limit, after);
+            //Assert.IsType<ListAdLabels200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAdStudies
         /// </summary>
         [Fact]
@@ -659,6 +758,22 @@ namespace Zernio.Test.Api
             //int? since = null;
             //var response = instance.ListFormLeads(formId, accountId, limit, cursor, since);
             //Assert.IsType<ListFormLeads200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ListHighDemandPeriods
+        /// </summary>
+        [Fact]
+        public void ListHighDemandPeriodsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string? campaignId = null;
+            //string? adSetId = null;
+            //int? limit = null;
+            //string? after = null;
+            //var response = instance.ListHighDemandPeriods(accountId, campaignId, adSetId, limit, after);
+            //Assert.IsType<ListHighDemandPeriods200Response>(response);
         }
 
         /// <summary>
@@ -836,6 +951,19 @@ namespace Zernio.Test.Api
             //UpdateAdAccountRequest updateAdAccountRequest = null;
             //var response = instance.UpdateAdAccount(updateAdAccountRequest);
             //Assert.IsType<UpdateAdAccount200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateAdCreative
+        /// </summary>
+        [Fact]
+        public void UpdateAdCreativeTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string creativeId = null;
+            //UpdateAdCreativeRequest updateAdCreativeRequest = null;
+            //var response = instance.UpdateAdCreative(creativeId, updateAdCreativeRequest);
+            //Assert.IsType<UpdateAdCreative200Response>(response);
         }
 
         /// <summary>

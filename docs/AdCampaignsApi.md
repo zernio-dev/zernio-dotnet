@@ -5,8 +5,10 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**BulkUpdateAdCampaignStatus**](AdCampaignsApi.md#bulkupdateadcampaignstatus) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns |
+| [**CreateAdCampaign**](AdCampaignsApi.md#createadcampaign) | **POST** /v1/ads/campaigns | Create a standalone campaign (Meta) |
 | [**DeleteAdCampaign**](AdCampaignsApi.md#deleteadcampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign |
 | [**DuplicateAdCampaign**](AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign |
+| [**DuplicateAdSet**](AdCampaignsApi.md#duplicateadset) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set (Meta) |
 | [**GetAdSetDetails**](AdCampaignsApi.md#getadsetdetails) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase (Meta) |
 | [**GetAdTree**](AdCampaignsApi.md#getadtree) | **GET** /v1/ads/tree | Get campaign tree |
 | [**GetAdsTimeline**](AdCampaignsApi.md#getadstimeline) | **GET** /v1/ads/timeline | Get daily account metrics |
@@ -113,6 +115,107 @@ catch (ApiException e)
 | **200** | Per-campaign results |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createadcampaign"></a>
+# **CreateAdCampaign**
+> CreateAdCampaign201Response CreateAdCampaign (CreateAdCampaignRequest createAdCampaignRequest)
+
+Create a standalone campaign (Meta)
+
+Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via `existingCampaignId` on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created `PAUSED` unless `status: ACTIVE`. The campaign materializes in `/v1/ads/tree` via the next sync discovery pass. Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateAdCampaignExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var createAdCampaignRequest = new CreateAdCampaignRequest(); // CreateAdCampaignRequest | 
+
+            try
+            {
+                // Create a standalone campaign (Meta)
+                CreateAdCampaign201Response result = apiInstance.CreateAdCampaign(createAdCampaignRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.CreateAdCampaign: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateAdCampaignWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a standalone campaign (Meta)
+    ApiResponse<CreateAdCampaign201Response> response = apiInstance.CreateAdCampaignWithHttpInfo(createAdCampaignRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.CreateAdCampaignWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createAdCampaignRequest** | [**CreateAdCampaignRequest**](CreateAdCampaignRequest.md) |  |  |
+
+### Return type
+
+[**CreateAdCampaign201Response**](CreateAdCampaign201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Campaign created |  -  |
+| **400** | Invalid input, or Meta rejected the create |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -320,6 +423,110 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | Source campaign not found |  -  |
 | **501** | Operation not supported on this platform |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="duplicateadset"></a>
+# **DuplicateAdSet**
+> DuplicateAdSet200Response DuplicateAdSet (string adSetId, DuplicateAdSetRequest duplicateAdSetRequest)
+
+Duplicate an ad set (Meta)
+
+Duplicates an ad set, including its ads and creatives by default (`deepCopy: true`), via Meta's native `POST /{adset-id}/copies`. The copy is created paused so callers can review before launching. `campaignId` retargets the copy into another campaign; omitted = the source's own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (`syncAfter: false` to skip). Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DuplicateAdSetExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var adSetId = "adSetId_example";  // string | Source platform ad set ID
+            var duplicateAdSetRequest = new DuplicateAdSetRequest(); // DuplicateAdSetRequest | 
+
+            try
+            {
+                // Duplicate an ad set (Meta)
+                DuplicateAdSet200Response result = apiInstance.DuplicateAdSet(adSetId, duplicateAdSetRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.DuplicateAdSet: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DuplicateAdSetWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Duplicate an ad set (Meta)
+    ApiResponse<DuplicateAdSet200Response> response = apiInstance.DuplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.DuplicateAdSetWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adSetId** | **string** | Source platform ad set ID |  |
+| **duplicateAdSetRequest** | [**DuplicateAdSetRequest**](DuplicateAdSetRequest.md) |  |  |
+
+### Return type
+
+[**DuplicateAdSet200Response**](DuplicateAdSet200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ad set duplicated |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Source ad set not found |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

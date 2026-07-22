@@ -67,6 +67,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateAdCampaign
+        /// </summary>
+        [Fact]
+        public void CreateAdCampaignTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateAdCampaignRequest createAdCampaignRequest = null;
+            //var response = instance.CreateAdCampaign(createAdCampaignRequest);
+            //Assert.IsType<CreateAdCampaign201Response>(response);
+        }
+
+        /// <summary>
         /// Test DeleteAdCampaign
         /// </summary>
         [Fact]
@@ -90,6 +102,19 @@ namespace Zernio.Test.Api
             //DuplicateAdCampaignRequest duplicateAdCampaignRequest = null;
             //var response = instance.DuplicateAdCampaign(campaignId, duplicateAdCampaignRequest);
             //Assert.IsType<DuplicateAdCampaign200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DuplicateAdSet
+        /// </summary>
+        [Fact]
+        public void DuplicateAdSetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adSetId = null;
+            //DuplicateAdSetRequest duplicateAdSetRequest = null;
+            //var response = instance.DuplicateAdSet(adSetId, duplicateAdSetRequest);
+            //Assert.IsType<DuplicateAdSet200Response>(response);
         }
 
         /// <summary>

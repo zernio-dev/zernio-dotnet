@@ -144,6 +144,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> CancelRfReservationWithHttpInfo(string predictionId, string accountId, string adAccountId);
         /// <summary>
+        /// Create a standalone creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdCreativeRequest"></param>
+        /// <returns>CreateAdCreative201Response</returns>
+        CreateAdCreative201Response CreateAdCreative(CreateAdCreativeRequest createAdCreativeRequest);
+
+        /// <summary>
+        /// Create a standalone creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdCreativeRequest"></param>
+        /// <returns>ApiResponse of CreateAdCreative201Response</returns>
+        ApiResponse<CreateAdCreative201Response> CreateAdCreativeWithHttpInfo(CreateAdCreativeRequest createAdCreativeRequest);
+        /// <summary>
         /// Submit an async insights report run (Meta)
         /// </summary>
         /// <remarks>
@@ -362,6 +383,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of DeleteAccountGroup200Response</returns>
         ApiResponse<DeleteAccountGroup200Response> DeleteAdWithHttpInfo(string adId);
         /// <summary>
+        /// Delete a creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Deletes a creative from the library. Meta only allows deleting creatives not referenced by any ad — otherwise its 400 surfaces verbatim.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>DeleteAdCreative200Response</returns>
+        DeleteAdCreative200Response DeleteAdCreative(string creativeId, string accountId);
+
+        /// <summary>
+        /// Delete a creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Deletes a creative from the library. Meta only allows deleting creatives not referenced by any ad — otherwise its 400 surfaces verbatim.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>ApiResponse of DeleteAdCreative200Response</returns>
+        ApiResponse<DeleteAdCreative200Response> DeleteAdCreativeWithHttpInfo(string creativeId, string accountId);
+        /// <summary>
         /// Delete a conversion destination
         /// </summary>
         /// <remarks>
@@ -386,6 +430,29 @@ namespace Zernio.Api
         /// <param name="adAccountId">Required as query OR in JSON body. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteConversionDestinationWithHttpInfo(string accountId, string destinationId, string? adAccountId = default);
+        /// <summary>
+        /// Duplicate an ad (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="duplicateAdRequest"> (optional)</param>
+        /// <returns>DuplicateAd200Response</returns>
+        DuplicateAd200Response DuplicateAd(string adId, DuplicateAdRequest? duplicateAdRequest = default);
+
+        /// <summary>
+        /// Duplicate an ad (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="duplicateAdRequest"> (optional)</param>
+        /// <returns>ApiResponse of DuplicateAd200Response</returns>
+        ApiResponse<DuplicateAd200Response> DuplicateAdWithHttpInfo(string adId, DuplicateAdRequest? duplicateAdRequest = default);
         /// <summary>
         /// Estimate audience reach
         /// </summary>
@@ -526,6 +593,31 @@ namespace Zernio.Api
         /// <param name="cursor">Pagination cursor from a previous response. (optional)</param>
         /// <returns>ApiResponse of GetAdComments200Response</returns>
         ApiResponse<GetAdComments200Response> GetAdCommentsWithHttpInfo(string adId, string? placement = default, int? limit = default, string? cursor = default);
+        /// <summary>
+        /// Creative details (Meta)
+        /// </summary>
+        /// <remarks>
+        /// One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <returns>GetAdCreative200Response</returns>
+        GetAdCreative200Response GetAdCreative(string creativeId, string accountId, string? fields = default);
+
+        /// <summary>
+        /// Creative details (Meta)
+        /// </summary>
+        /// <remarks>
+        /// One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <returns>ApiResponse of GetAdCreative200Response</returns>
+        ApiResponse<GetAdCreative200Response> GetAdCreativeWithHttpInfo(string creativeId, string accountId, string? fields = default);
         /// <summary>
         /// Poll an async insights report run (Meta)
         /// </summary>
@@ -940,6 +1032,91 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdCatalogs200Response</returns>
         ApiResponse<ListAdCatalogs200Response> ListAdCatalogsWithHttpInfo(string accountId, string adAccountId);
         /// <summary>
+        /// Creative library (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListAdCreatives200Response</returns>
+        ListAdCreatives200Response ListAdCreatives(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// Creative library (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListAdCreatives200Response</returns>
+        ApiResponse<ListAdCreatives200Response> ListAdCreativesWithHttpInfo(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default);
+        /// <summary>
+        /// Ad image library (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListAdImages200Response</returns>
+        ListAdImages200Response ListAdImages(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// Ad image library (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListAdImages200Response</returns>
+        ApiResponse<ListAdImages200Response> ListAdImagesWithHttpInfo(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default);
+        /// <summary>
+        /// Ad labels (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListAdLabels200Response</returns>
+        ListAdLabels200Response ListAdLabels(string accountId, string adAccountId, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// Ad labels (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListAdLabels200Response</returns>
+        ApiResponse<ListAdLabels200Response> ListAdLabelsWithHttpInfo(string accountId, string adAccountId, int? limit = default, string? after = default);
+        /// <summary>
         /// A/B tests and lift studies (Meta)
         /// </summary>
         /// <remarks>
@@ -1111,6 +1288,35 @@ namespace Zernio.Api
         /// <param name="since">Unix seconds. (optional)</param>
         /// <returns>ApiResponse of ListFormLeads200Response</returns>
         ApiResponse<ListFormLeads200Response> ListFormLeadsWithHttpInfo(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default);
+        /// <summary>
+        /// High demand periods / budget schedules (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="campaignId">Platform campaign id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="adSetId">Platform ad set id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListHighDemandPeriods200Response</returns>
+        ListHighDemandPeriods200Response ListHighDemandPeriods(string accountId, string? campaignId = default, string? adSetId = default, int? limit = default, string? after = default);
+
+        /// <summary>
+        /// High demand periods / budget schedules (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="campaignId">Platform campaign id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="adSetId">Platform ad set id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListHighDemandPeriods200Response</returns>
+        ApiResponse<ListHighDemandPeriods200Response> ListHighDemandPeriodsWithHttpInfo(string accountId, string? campaignId = default, string? adSetId = default, int? limit = default, string? after = default);
         /// <summary>
         /// List lead forms
         /// </summary>
@@ -1432,6 +1638,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of UpdateAdAccount200Response</returns>
         ApiResponse<UpdateAdAccount200Response> UpdateAdAccountWithHttpInfo(UpdateAdAccountRequest updateAdAccountRequest);
         /// <summary>
+        /// Rename a creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renames a creative. Creatives are immutable on Meta beyond &#x60;name&#x60; — for content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="updateAdCreativeRequest"></param>
+        /// <returns>UpdateAdCreative200Response</returns>
+        UpdateAdCreative200Response UpdateAdCreative(string creativeId, UpdateAdCreativeRequest updateAdCreativeRequest);
+
+        /// <summary>
+        /// Rename a creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renames a creative. Creatives are immutable on Meta beyond &#x60;name&#x60; — for content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="updateAdCreativeRequest"></param>
+        /// <returns>ApiResponse of UpdateAdCreative200Response</returns>
+        ApiResponse<UpdateAdCreative200Response> UpdateAdCreativeWithHttpInfo(string creativeId, UpdateAdCreativeRequest updateAdCreativeRequest);
+        /// <summary>
         /// Pause or resume a single ad
         /// </summary>
         /// <remarks>
@@ -1657,6 +1886,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> CancelRfReservationWithHttpInfoAsync(string predictionId, string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Create a standalone creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdCreativeRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateAdCreative201Response</returns>
+        System.Threading.Tasks.Task<CreateAdCreative201Response> CreateAdCreativeAsync(CreateAdCreativeRequest createAdCreativeRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create a standalone creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdCreativeRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateAdCreative201Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateAdCreative201Response>> CreateAdCreativeWithHttpInfoAsync(CreateAdCreativeRequest createAdCreativeRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Submit an async insights report run (Meta)
         /// </summary>
@@ -1896,6 +2148,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (DeleteAccountGroup200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeleteAccountGroup200Response>> DeleteAdWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Delete a creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Deletes a creative from the library. Meta only allows deleting creatives not referenced by any ad — otherwise its 400 surfaces verbatim.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteAdCreative200Response</returns>
+        System.Threading.Tasks.Task<DeleteAdCreative200Response> DeleteAdCreativeAsync(string creativeId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete a creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Deletes a creative from the library. Meta only allows deleting creatives not referenced by any ad — otherwise its 400 surfaces verbatim.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteAdCreative200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteAdCreative200Response>> DeleteAdCreativeWithHttpInfoAsync(string creativeId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Delete a conversion destination
         /// </summary>
         /// <remarks>
@@ -1922,6 +2199,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteConversionDestinationWithHttpInfoAsync(string accountId, string destinationId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Duplicate an ad (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="duplicateAdRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DuplicateAd200Response</returns>
+        System.Threading.Tasks.Task<DuplicateAd200Response> DuplicateAdAsync(string adId, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Duplicate an ad (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="duplicateAdRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DuplicateAd200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DuplicateAd200Response>> DuplicateAdWithHttpInfoAsync(string adId, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Estimate audience reach
         /// </summary>
@@ -2074,6 +2376,33 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetAdComments200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetAdComments200Response>> GetAdCommentsWithHttpInfoAsync(string adId, string? placement = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Creative details (Meta)
+        /// </summary>
+        /// <remarks>
+        /// One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdCreative200Response</returns>
+        System.Threading.Tasks.Task<GetAdCreative200Response> GetAdCreativeAsync(string creativeId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creative details (Meta)
+        /// </summary>
+        /// <remarks>
+        /// One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdCreative200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdCreative200Response>> GetAdCreativeWithHttpInfoAsync(string creativeId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Poll an async insights report run (Meta)
         /// </summary>
@@ -2528,6 +2857,97 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListAdCatalogs200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdCatalogs200Response>> ListAdCatalogsWithHttpInfoAsync(string accountId, string adAccountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Creative library (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdCreatives200Response</returns>
+        System.Threading.Tasks.Task<ListAdCreatives200Response> ListAdCreativesAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Creative library (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdCreatives200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAdCreatives200Response>> ListAdCreativesWithHttpInfoAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Ad image library (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdImages200Response</returns>
+        System.Threading.Tasks.Task<ListAdImages200Response> ListAdImagesAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Ad image library (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdImages200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAdImages200Response>> ListAdImagesWithHttpInfoAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Ad labels (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdLabels200Response</returns>
+        System.Threading.Tasks.Task<ListAdLabels200Response> ListAdLabelsAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Ad labels (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdLabels200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAdLabels200Response>> ListAdLabelsWithHttpInfoAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// A/B tests and lift studies (Meta)
         /// </summary>
         /// <remarks>
@@ -2711,6 +3131,37 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListFormLeads200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListFormLeads200Response>> ListFormLeadsWithHttpInfoAsync(string formId, string accountId, int? limit = default, string? cursor = default, int? since = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// High demand periods / budget schedules (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="campaignId">Platform campaign id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="adSetId">Platform ad set id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListHighDemandPeriods200Response</returns>
+        System.Threading.Tasks.Task<ListHighDemandPeriods200Response> ListHighDemandPeriodsAsync(string accountId, string? campaignId = default, string? adSetId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// High demand periods / budget schedules (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="campaignId">Platform campaign id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="adSetId">Platform ad set id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListHighDemandPeriods200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListHighDemandPeriods200Response>> ListHighDemandPeriodsWithHttpInfoAsync(string accountId, string? campaignId = default, string? adSetId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List lead forms
         /// </summary>
@@ -3055,6 +3506,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateAdAccount200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdateAdAccount200Response>> UpdateAdAccountWithHttpInfoAsync(UpdateAdAccountRequest updateAdAccountRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Rename a creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renames a creative. Creatives are immutable on Meta beyond &#x60;name&#x60; — for content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="updateAdCreativeRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdCreative200Response</returns>
+        System.Threading.Tasks.Task<UpdateAdCreative200Response> UpdateAdCreativeAsync(string creativeId, UpdateAdCreativeRequest updateAdCreativeRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Rename a creative (Meta)
+        /// </summary>
+        /// <remarks>
+        /// Renames a creative. Creatives are immutable on Meta beyond &#x60;name&#x60; — for content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;). Meta only.
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="updateAdCreativeRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdCreative200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UpdateAdCreative200Response>> UpdateAdCreativeWithHttpInfoAsync(string creativeId, UpdateAdCreativeRequest updateAdCreativeRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Pause or resume a single ad
         /// </summary>
@@ -4071,6 +4547,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CancelRfReservation", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a standalone creative (Meta) Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdCreativeRequest"></param>
+        /// <returns>CreateAdCreative201Response</returns>
+        public CreateAdCreative201Response CreateAdCreative(CreateAdCreativeRequest createAdCreativeRequest)
+        {
+            Zernio.Client.ApiResponse<CreateAdCreative201Response> localVarResponse = CreateAdCreativeWithHttpInfo(createAdCreativeRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a standalone creative (Meta) Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdCreativeRequest"></param>
+        /// <returns>ApiResponse of CreateAdCreative201Response</returns>
+        public Zernio.Client.ApiResponse<CreateAdCreative201Response> CreateAdCreativeWithHttpInfo(CreateAdCreativeRequest createAdCreativeRequest)
+        {
+            // verify the required parameter 'createAdCreativeRequest' is set
+            if (createAdCreativeRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createAdCreativeRequest' when calling AdsApi->CreateAdCreative");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createAdCreativeRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateAdCreative201Response>("/v1/ads/creatives", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateAdCreative", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create a standalone creative (Meta) Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdCreativeRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateAdCreative201Response</returns>
+        public async System.Threading.Tasks.Task<CreateAdCreative201Response> CreateAdCreativeAsync(CreateAdCreativeRequest createAdCreativeRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateAdCreative201Response> localVarResponse = await CreateAdCreativeWithHttpInfoAsync(createAdCreativeRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a standalone creative (Meta) Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createAdCreativeRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateAdCreative201Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateAdCreative201Response>> CreateAdCreativeWithHttpInfoAsync(CreateAdCreativeRequest createAdCreativeRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createAdCreativeRequest' is set
+            if (createAdCreativeRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createAdCreativeRequest' when calling AdsApi->CreateAdCreative");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createAdCreativeRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateAdCreative201Response>("/v1/ads/creatives", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateAdCreative", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -5406,6 +6011,147 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Delete a creative (Meta) Deletes a creative from the library. Meta only allows deleting creatives not referenced by any ad — otherwise its 400 surfaces verbatim.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>DeleteAdCreative200Response</returns>
+        public DeleteAdCreative200Response DeleteAdCreative(string creativeId, string accountId)
+        {
+            Zernio.Client.ApiResponse<DeleteAdCreative200Response> localVarResponse = DeleteAdCreativeWithHttpInfo(creativeId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a creative (Meta) Deletes a creative from the library. Meta only allows deleting creatives not referenced by any ad — otherwise its 400 surfaces verbatim.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <returns>ApiResponse of DeleteAdCreative200Response</returns>
+        public Zernio.Client.ApiResponse<DeleteAdCreative200Response> DeleteAdCreativeWithHttpInfo(string creativeId, string accountId)
+        {
+            // verify the required parameter 'creativeId' is set
+            if (creativeId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'creativeId' when calling AdsApi->DeleteAdCreative");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->DeleteAdCreative");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("creativeId", Zernio.Client.ClientUtils.ParameterToString(creativeId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeleteAdCreative200Response>("/v1/ads/creatives/{creativeId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteAdCreative", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete a creative (Meta) Deletes a creative from the library. Meta only allows deleting creatives not referenced by any ad — otherwise its 400 surfaces verbatim.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteAdCreative200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteAdCreative200Response> DeleteAdCreativeAsync(string creativeId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DeleteAdCreative200Response> localVarResponse = await DeleteAdCreativeWithHttpInfoAsync(creativeId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete a creative (Meta) Deletes a creative from the library. Meta only allows deleting creatives not referenced by any ad — otherwise its 400 surfaces verbatim.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteAdCreative200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteAdCreative200Response>> DeleteAdCreativeWithHttpInfoAsync(string creativeId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'creativeId' is set
+            if (creativeId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'creativeId' when calling AdsApi->DeleteAdCreative");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->DeleteAdCreative");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("creativeId", Zernio.Client.ClientUtils.ParameterToString(creativeId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteAdCreative200Response>("/v1/ads/creatives/{creativeId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteAdCreative", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Delete a conversion destination LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5550,6 +6296,141 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeleteConversionDestination", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Duplicate an ad (Meta) Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="duplicateAdRequest"> (optional)</param>
+        /// <returns>DuplicateAd200Response</returns>
+        public DuplicateAd200Response DuplicateAd(string adId, DuplicateAdRequest? duplicateAdRequest = default)
+        {
+            Zernio.Client.ApiResponse<DuplicateAd200Response> localVarResponse = DuplicateAdWithHttpInfo(adId, duplicateAdRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Duplicate an ad (Meta) Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="duplicateAdRequest"> (optional)</param>
+        /// <returns>ApiResponse of DuplicateAd200Response</returns>
+        public Zernio.Client.ApiResponse<DuplicateAd200Response> DuplicateAdWithHttpInfo(string adId, DuplicateAdRequest? duplicateAdRequest = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdsApi->DuplicateAd");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.Data = duplicateAdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<DuplicateAd200Response>("/v1/ads/{adId}/duplicate", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DuplicateAd", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Duplicate an ad (Meta) Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="duplicateAdRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DuplicateAd200Response</returns>
+        public async System.Threading.Tasks.Task<DuplicateAd200Response> DuplicateAdAsync(string adId, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DuplicateAd200Response> localVarResponse = await DuplicateAdWithHttpInfoAsync(adId, duplicateAdRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Duplicate an ad (Meta) Duplicates a single ad via Meta&#39;s native &#x60;POST /{ad-id}/copies&#x60;. The copy is created paused. &#x60;adSetId&#x60; retargets the copy into another ad set; omitted &#x3D; the source&#39;s own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Zernio ad ID or platform ad ID</param>
+        /// <param name="duplicateAdRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DuplicateAd200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DuplicateAd200Response>> DuplicateAdWithHttpInfoAsync(string adId, DuplicateAdRequest? duplicateAdRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling AdsApi->DuplicateAd");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.Data = duplicateAdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<DuplicateAd200Response>("/v1/ads/{adId}/duplicate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DuplicateAd", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -6402,6 +7283,159 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetAdComments", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Creative details (Meta) One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <returns>GetAdCreative200Response</returns>
+        public GetAdCreative200Response GetAdCreative(string creativeId, string accountId, string? fields = default)
+        {
+            Zernio.Client.ApiResponse<GetAdCreative200Response> localVarResponse = GetAdCreativeWithHttpInfo(creativeId, accountId, fields);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Creative details (Meta) One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <returns>ApiResponse of GetAdCreative200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdCreative200Response> GetAdCreativeWithHttpInfo(string creativeId, string accountId, string? fields = default)
+        {
+            // verify the required parameter 'creativeId' is set
+            if (creativeId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'creativeId' when calling AdsApi->GetAdCreative");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetAdCreative");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("creativeId", Zernio.Client.ClientUtils.ParameterToString(creativeId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdCreative200Response>("/v1/ads/creatives/{creativeId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdCreative", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Creative details (Meta) One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdCreative200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdCreative200Response> GetAdCreativeAsync(string creativeId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdCreative200Response> localVarResponse = await GetAdCreativeWithHttpInfoAsync(creativeId, accountId, fields, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Creative details (Meta) One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdCreative200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdCreative200Response>> GetAdCreativeWithHttpInfoAsync(string creativeId, string accountId, string? fields = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'creativeId' is set
+            if (creativeId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'creativeId' when calling AdsApi->GetAdCreative");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->GetAdCreative");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("creativeId", Zernio.Client.ClientUtils.ParameterToString(creativeId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdCreative200Response>("/v1/ads/creatives/{creativeId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdCreative", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -8974,6 +10008,525 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Creative library (Meta) Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListAdCreatives200Response</returns>
+        public ListAdCreatives200Response ListAdCreatives(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<ListAdCreatives200Response> localVarResponse = ListAdCreativesWithHttpInfo(accountId, adAccountId, fields, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Creative library (Meta) Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListAdCreatives200Response</returns>
+        public Zernio.Client.ApiResponse<ListAdCreatives200Response> ListAdCreativesWithHttpInfo(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdCreatives");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListAdCreatives");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAdCreatives200Response>("/v1/ads/creatives", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdCreatives", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Creative library (Meta) Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdCreatives200Response</returns>
+        public async System.Threading.Tasks.Task<ListAdCreatives200Response> ListAdCreativesAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAdCreatives200Response> localVarResponse = await ListAdCreativesWithHttpInfoAsync(accountId, adAccountId, fields, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Creative library (Meta) Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdCreatives200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdCreatives200Response>> ListAdCreativesWithHttpInfoAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdCreatives");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListAdCreatives");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAdCreatives200Response>("/v1/ads/creatives", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdCreatives", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Ad image library (Meta) Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListAdImages200Response</returns>
+        public ListAdImages200Response ListAdImages(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<ListAdImages200Response> localVarResponse = ListAdImagesWithHttpInfo(accountId, adAccountId, fields, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Ad image library (Meta) Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListAdImages200Response</returns>
+        public Zernio.Client.ApiResponse<ListAdImages200Response> ListAdImagesWithHttpInfo(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdImages");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListAdImages");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAdImages200Response>("/v1/ads/images", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdImages", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Ad image library (Meta) Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdImages200Response</returns>
+        public async System.Threading.Tasks.Task<ListAdImages200Response> ListAdImagesAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAdImages200Response> localVarResponse = await ListAdImagesWithHttpInfoAsync(accountId, adAccountId, fields, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Ad image library (Meta) Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="fields">Comma-separated Graph field override (supports nested {} projections). (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdImages200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdImages200Response>> ListAdImagesWithHttpInfoAsync(string accountId, string adAccountId, string? fields = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdImages");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListAdImages");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (fields != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "fields", fields));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAdImages200Response>("/v1/ads/images", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdImages", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Ad labels (Meta) Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListAdLabels200Response</returns>
+        public ListAdLabels200Response ListAdLabels(string accountId, string adAccountId, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<ListAdLabels200Response> localVarResponse = ListAdLabelsWithHttpInfo(accountId, adAccountId, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Ad labels (Meta) Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListAdLabels200Response</returns>
+        public Zernio.Client.ApiResponse<ListAdLabels200Response> ListAdLabelsWithHttpInfo(string accountId, string adAccountId, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdLabels");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListAdLabels");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAdLabels200Response>("/v1/ads/labels", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdLabels", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Ad labels (Meta) Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdLabels200Response</returns>
+        public async System.Threading.Tasks.Task<ListAdLabels200Response> ListAdLabelsAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAdLabels200Response> localVarResponse = await ListAdLabelsWithHttpInfoAsync(accountId, adAccountId, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Ad labels (Meta) Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="adAccountId">Meta ad account id (act_&lt;n&gt;).</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdLabels200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdLabels200Response>> ListAdLabelsWithHttpInfoAsync(string accountId, string adAccountId, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListAdLabels");
+
+            // verify the required parameter 'adAccountId' is set
+            if (adAccountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adAccountId' when calling AdsApi->ListAdLabels");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAdLabels200Response>("/v1/ads/labels", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdLabels", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// A/B tests and lift studies (Meta) Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -10011,6 +11564,181 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListFormLeads", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// High demand periods / budget schedules (Meta) Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="campaignId">Platform campaign id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="adSetId">Platform ad set id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ListHighDemandPeriods200Response</returns>
+        public ListHighDemandPeriods200Response ListHighDemandPeriods(string accountId, string? campaignId = default, string? adSetId = default, int? limit = default, string? after = default)
+        {
+            Zernio.Client.ApiResponse<ListHighDemandPeriods200Response> localVarResponse = ListHighDemandPeriodsWithHttpInfo(accountId, campaignId, adSetId, limit, after);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// High demand periods / budget schedules (Meta) Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="campaignId">Platform campaign id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="adSetId">Platform ad set id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <returns>ApiResponse of ListHighDemandPeriods200Response</returns>
+        public Zernio.Client.ApiResponse<ListHighDemandPeriods200Response> ListHighDemandPeriodsWithHttpInfo(string accountId, string? campaignId = default, string? adSetId = default, int? limit = default, string? after = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListHighDemandPeriods");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (adSetId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adSetId", adSetId));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListHighDemandPeriods200Response>("/v1/ads/high-demand-periods", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListHighDemandPeriods", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// High demand periods / budget schedules (Meta) Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="campaignId">Platform campaign id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="adSetId">Platform ad set id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListHighDemandPeriods200Response</returns>
+        public async System.Threading.Tasks.Task<ListHighDemandPeriods200Response> ListHighDemandPeriodsAsync(string accountId, string? campaignId = default, string? adSetId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListHighDemandPeriods200Response> localVarResponse = await ListHighDemandPeriodsWithHttpInfoAsync(accountId, campaignId, adSetId, limit, after, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// High demand periods / budget schedules (Meta) Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
+        /// <param name="campaignId">Platform campaign id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="adSetId">Platform ad set id. Exactly one of campaignId / adSetId. (optional)</param>
+        /// <param name="limit">Rows per page (optional, default to 25)</param>
+        /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListHighDemandPeriods200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListHighDemandPeriods200Response>> ListHighDemandPeriodsWithHttpInfoAsync(string accountId, string? campaignId = default, string? adSetId = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdsApi->ListHighDemandPeriods");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (adSetId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adSetId", adSetId));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (after != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "after", after));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListHighDemandPeriods200Response>("/v1/ads/high-demand-periods", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListHighDemandPeriods", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -11959,6 +13687,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateAdAccount", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Rename a creative (Meta) Renames a creative. Creatives are immutable on Meta beyond &#x60;name&#x60; — for content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="updateAdCreativeRequest"></param>
+        /// <returns>UpdateAdCreative200Response</returns>
+        public UpdateAdCreative200Response UpdateAdCreative(string creativeId, UpdateAdCreativeRequest updateAdCreativeRequest)
+        {
+            Zernio.Client.ApiResponse<UpdateAdCreative200Response> localVarResponse = UpdateAdCreativeWithHttpInfo(creativeId, updateAdCreativeRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Rename a creative (Meta) Renames a creative. Creatives are immutable on Meta beyond &#x60;name&#x60; — for content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="updateAdCreativeRequest"></param>
+        /// <returns>ApiResponse of UpdateAdCreative200Response</returns>
+        public Zernio.Client.ApiResponse<UpdateAdCreative200Response> UpdateAdCreativeWithHttpInfo(string creativeId, UpdateAdCreativeRequest updateAdCreativeRequest)
+        {
+            // verify the required parameter 'creativeId' is set
+            if (creativeId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'creativeId' when calling AdsApi->UpdateAdCreative");
+
+            // verify the required parameter 'updateAdCreativeRequest' is set
+            if (updateAdCreativeRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdCreativeRequest' when calling AdsApi->UpdateAdCreative");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("creativeId", Zernio.Client.ClientUtils.ParameterToString(creativeId)); // path parameter
+            localVarRequestOptions.Data = updateAdCreativeRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<UpdateAdCreative200Response>("/v1/ads/creatives/{creativeId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdCreative", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Rename a creative (Meta) Renames a creative. Creatives are immutable on Meta beyond &#x60;name&#x60; — for content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="updateAdCreativeRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of UpdateAdCreative200Response</returns>
+        public async System.Threading.Tasks.Task<UpdateAdCreative200Response> UpdateAdCreativeAsync(string creativeId, UpdateAdCreativeRequest updateAdCreativeRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<UpdateAdCreative200Response> localVarResponse = await UpdateAdCreativeWithHttpInfoAsync(creativeId, updateAdCreativeRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Rename a creative (Meta) Renames a creative. Creatives are immutable on Meta beyond &#x60;name&#x60; — for content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;). Meta only.
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="creativeId">Platform creative id</param>
+        /// <param name="updateAdCreativeRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (UpdateAdCreative200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<UpdateAdCreative200Response>> UpdateAdCreativeWithHttpInfoAsync(string creativeId, UpdateAdCreativeRequest updateAdCreativeRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'creativeId' is set
+            if (creativeId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'creativeId' when calling AdsApi->UpdateAdCreative");
+
+            // verify the required parameter 'updateAdCreativeRequest' is set
+            if (updateAdCreativeRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdCreativeRequest' when calling AdsApi->UpdateAdCreative");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("creativeId", Zernio.Client.ClientUtils.ParameterToString(creativeId)); // path parameter
+            localVarRequestOptions.Data = updateAdCreativeRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<UpdateAdCreative200Response>("/v1/ads/creatives/{creativeId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdCreative", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

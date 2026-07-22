@@ -9,6 +9,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ArchiveLeadForm**](AdsApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form |
 | [**BoostPost**](AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad |
 | [**CancelRfReservation**](AdsApi.md#cancelrfreservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation (Meta) |
+| [**CreateAdCreative**](AdsApi.md#createadcreative) | **POST** /v1/ads/creatives | Create a standalone creative (Meta) |
 | [**CreateAdInsightsReport**](AdsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta) |
 | [**CreateCallAd**](AdsApi.md#createcallad) | **POST** /v1/ads/call | Create Click-to-Call ad |
 | [**CreateConversionDestination**](AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
@@ -19,13 +20,16 @@ All URIs are relative to *https://zernio.com/api*
 | [**CreateStandaloneAd**](AdsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad |
 | [**CreateTestLead**](AdsApi.md#createtestlead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
 | [**DeleteAd**](AdsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad |
+| [**DeleteAdCreative**](AdsApi.md#deleteadcreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative (Meta) |
 | [**DeleteConversionDestination**](AdsApi.md#deleteconversiondestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
+| [**DuplicateAd**](AdsApi.md#duplicatead) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad (Meta) |
 | [**EstimateAdReach**](AdsApi.md#estimateadreach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach |
 | [**GenerateAdPreviews**](AdsApi.md#generateadpreviews) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta) |
 | [**GetAd**](AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details |
 | [**GetAdAccountFinance**](AdsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances (Meta) |
 | [**GetAdAnalytics**](AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**GetAdComments**](AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
+| [**GetAdCreative**](AdsApi.md#getadcreative) | **GET** /v1/ads/creatives/{creativeId} | Creative details (Meta) |
 | [**GetAdInsightsReport**](AdsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta) |
 | [**GetAdPreviews**](AdsApi.md#getadpreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta) |
 | [**GetAdTrackingTags**](AdsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
@@ -43,12 +47,16 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListAdAccounts**](AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**ListAdCatalogProductSets**](AdsApi.md#listadcatalogproductsets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets |
 | [**ListAdCatalogs**](AdsApi.md#listadcatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs |
+| [**ListAdCreatives**](AdsApi.md#listadcreatives) | **GET** /v1/ads/creatives | Creative library (Meta) |
+| [**ListAdImages**](AdsApi.md#listadimages) | **GET** /v1/ads/images | Ad image library (Meta) |
+| [**ListAdLabels**](AdsApi.md#listadlabels) | **GET** /v1/ads/labels | Ad labels (Meta) |
 | [**ListAdStudies**](AdsApi.md#listadstudies) | **GET** /v1/ads/studies | A/B tests and lift studies (Meta) |
 | [**ListAds**](AdsApi.md#listads) | **GET** /v1/ads | List ads |
 | [**ListAdsBusinessCenters**](AdsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
 | [**ListConversionAssociations**](AdsApi.md#listconversionassociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns |
 | [**ListConversionDestinations**](AdsApi.md#listconversiondestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations |
 | [**ListFormLeads**](AdsApi.md#listformleads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form |
+| [**ListHighDemandPeriods**](AdsApi.md#listhighdemandperiods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules (Meta) |
 | [**ListLeadForms**](AdsApi.md#listleadforms) | **GET** /v1/ads/lead-forms | List lead forms |
 | [**ListLeads**](AdsApi.md#listleads) | **GET** /v1/ads/leads | List submitted leads |
 | [**ListWhatsAppConversions**](AdsApi.md#listwhatsappconversions) | **GET** /v1/whatsapp/conversions | List conversion events |
@@ -61,6 +69,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**SendWhatsAppConversion**](AdsApi.md#sendwhatsappconversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
 | [**UpdateAd**](AdsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad |
 | [**UpdateAdAccount**](AdsApi.md#updateadaccount) | **PATCH** /v1/ads/accounts | Update ad account settings |
+| [**UpdateAdCreative**](AdsApi.md#updateadcreative) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative (Meta) |
 | [**UpdateAdStatus**](AdsApi.md#updateadstatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
 | [**UpdateAdTrackingTags**](AdsApi.md#updateadtrackingtags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**UpdateConversionDestination**](AdsApi.md#updateconversiondestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
@@ -577,6 +586,108 @@ void (empty response body)
 | **200** | Reservation cancelled |  -  |
 | **400** | Invalid input, or Meta rejected the cancel |  -  |
 | **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="createadcreative"></a>
+# **CreateAdCreative**
+> CreateAdCreative201Response CreateAdCreative (CreateAdCreativeRequest createAdCreativeRequest)
+
+Create a standalone creative (Meta)
+
+Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via `existingCreativeId`. Provide exactly one of `imageUrl` (uploaded server-side), `imageHash` (from POST /v1/ads/images or the library list), or `carouselCards` (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from `accountId` as the story actor. Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateAdCreativeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var createAdCreativeRequest = new CreateAdCreativeRequest(); // CreateAdCreativeRequest | 
+
+            try
+            {
+                // Create a standalone creative (Meta)
+                CreateAdCreative201Response result = apiInstance.CreateAdCreative(createAdCreativeRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.CreateAdCreative: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateAdCreativeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create a standalone creative (Meta)
+    ApiResponse<CreateAdCreative201Response> response = apiInstance.CreateAdCreativeWithHttpInfo(createAdCreativeRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.CreateAdCreativeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createAdCreativeRequest** | [**CreateAdCreativeRequest**](CreateAdCreativeRequest.md) |  |  |
+
+### Return type
+
+[**CreateAdCreative201Response**](CreateAdCreative201Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Creative created |  -  |
+| **400** | Invalid input, or Meta rejected the create |  -  |
+| **401** | Unauthorized |  -  |
+| **422** | No Facebook Page found to act as the story actor |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1597,6 +1708,109 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="deleteadcreative"></a>
+# **DeleteAdCreative**
+> DeleteAdCreative200Response DeleteAdCreative (string creativeId, string accountId)
+
+Delete a creative (Meta)
+
+Deletes a creative from the library. Meta only allows deleting creatives not referenced by any ad — otherwise its 400 surfaces verbatim.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteAdCreativeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var creativeId = "creativeId_example";  // string | Platform creative id
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+
+            try
+            {
+                // Delete a creative (Meta)
+                DeleteAdCreative200Response result = apiInstance.DeleteAdCreative(creativeId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.DeleteAdCreative: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteAdCreativeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete a creative (Meta)
+    ApiResponse<DeleteAdCreative200Response> response = apiInstance.DeleteAdCreativeWithHttpInfo(creativeId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.DeleteAdCreativeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **creativeId** | **string** | Platform creative id |  |
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+
+### Return type
+
+[**DeleteAdCreative200Response**](DeleteAdCreative200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Creative deleted |  -  |
+| **400** | Invalid input, the creative is in use, or Meta rejected the delete |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="deleteconversiondestination"></a>
 # **DeleteConversionDestination**
 > void DeleteConversionDestination (string accountId, string destinationId, string? adAccountId = null)
@@ -1698,6 +1912,110 @@ void (empty response body)
 | **404** | Account or destination not found. |  -  |
 | **405** | Platform does not support deleting destinations. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="duplicatead"></a>
+# **DuplicateAd**
+> DuplicateAd200Response DuplicateAd (string adId, DuplicateAdRequest? duplicateAdRequest = null)
+
+Duplicate an ad (Meta)
+
+Duplicates a single ad via Meta's native `POST /{ad-id}/copies`. The copy is created paused. `adSetId` retargets the copy into another ad set; omitted = the source's own ad set. Accepts the Zernio ad id or the platform ad id. Sync discovery is triggered automatically (`syncAfter: false` to skip). Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DuplicateAdExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var adId = "adId_example";  // string | Zernio ad ID or platform ad ID
+            var duplicateAdRequest = new DuplicateAdRequest?(); // DuplicateAdRequest? |  (optional) 
+
+            try
+            {
+                // Duplicate an ad (Meta)
+                DuplicateAd200Response result = apiInstance.DuplicateAd(adId, duplicateAdRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.DuplicateAd: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DuplicateAdWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Duplicate an ad (Meta)
+    ApiResponse<DuplicateAd200Response> response = apiInstance.DuplicateAdWithHttpInfo(adId, duplicateAdRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.DuplicateAdWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adId** | **string** | Zernio ad ID or platform ad ID |  |
+| **duplicateAdRequest** | [**DuplicateAdRequest?**](DuplicateAdRequest?.md) |  | [optional]  |
+
+### Return type
+
+[**DuplicateAd200Response**](DuplicateAd200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ad duplicated |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2323,6 +2641,111 @@ catch (ApiException e)
 | **403** | Ads access required (legacy plans need the Ads add-on; included by default on usage-based plans), or ad platform is not Meta (code feature_not_available). |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Ads account token unavailable, or (for Instagram-placed ads) no connected Instagram account on the profile can read the ad&#39;s media (code ads_connection_required).  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadcreative"></a>
+# **GetAdCreative**
+> GetAdCreative200Response GetAdCreative (string creativeId, string accountId, string? fields = null)
+
+Creative details (Meta)
+
+One creative's details, verbatim from Meta. `fields` is a raw-passthrough override of the default projection. Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdCreativeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var creativeId = "creativeId_example";  // string | Platform creative id
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var fields = "fields_example";  // string? | Comma-separated Graph field override (supports nested {} projections). (optional) 
+
+            try
+            {
+                // Creative details (Meta)
+                GetAdCreative200Response result = apiInstance.GetAdCreative(creativeId, accountId, fields);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.GetAdCreative: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdCreativeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Creative details (Meta)
+    ApiResponse<GetAdCreative200Response> response = apiInstance.GetAdCreativeWithHttpInfo(creativeId, accountId, fields);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.GetAdCreativeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **creativeId** | **string** | Platform creative id |  |
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **fields** | **string?** | Comma-separated Graph field override (supports nested {} projections). | [optional]  |
+
+### Return type
+
+[**GetAdCreative200Response**](GetAdCreative200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Creative details |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -4108,6 +4531,331 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listadcreatives"></a>
+# **ListAdCreatives**
+> ListAdCreatives200Response ListAdCreatives (string accountId, string adAccountId, string? fields = null, int? limit = null, string? after = null)
+
+Creative library (Meta)
+
+Lists the ad account's creative library (Meta's `/act_X/adcreatives`), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; `fields` is a raw-passthrough override. Any creative id here is reusable on the create endpoints via `existingCreativeId`. Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdCreativesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>).
+            var fields = "fields_example";  // string? | Comma-separated Graph field override (supports nested {} projections). (optional) 
+            var limit = 25;  // int? | Rows per page (optional)  (default to 25)
+            var after = "after_example";  // string? | Cursor from paging.after of the previous page. (optional) 
+
+            try
+            {
+                // Creative library (Meta)
+                ListAdCreatives200Response result = apiInstance.ListAdCreatives(accountId, adAccountId, fields, limit, after);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.ListAdCreatives: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdCreativesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Creative library (Meta)
+    ApiResponse<ListAdCreatives200Response> response = apiInstance.ListAdCreativesWithHttpInfo(accountId, adAccountId, fields, limit, after);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.ListAdCreativesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). |  |
+| **fields** | **string?** | Comma-separated Graph field override (supports nested {} projections). | [optional]  |
+| **limit** | **int?** | Rows per page | [optional] [default to 25] |
+| **after** | **string?** | Cursor from paging.after of the previous page. | [optional]  |
+
+### Return type
+
+[**ListAdCreatives200Response**](ListAdCreatives200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Creatives (raw Meta shape) |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listadimages"></a>
+# **ListAdImages**
+> ListAdImages200Response ListAdImages (string accountId, string adAccountId, string? fields = null, int? limit = null, string? after = null)
+
+Ad image library (Meta)
+
+Lists the ad account's image library (Meta's `/act_X/adimages`), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; `fields` is a raw-passthrough override. Any `hash` here is reusable wherever Meta accepts `image_hash` (e.g. `imageHash` on POST /v1/ads/creatives). Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdImagesExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>).
+            var fields = "fields_example";  // string? | Comma-separated Graph field override (supports nested {} projections). (optional) 
+            var limit = 25;  // int? | Rows per page (optional)  (default to 25)
+            var after = "after_example";  // string? | Cursor from paging.after of the previous page. (optional) 
+
+            try
+            {
+                // Ad image library (Meta)
+                ListAdImages200Response result = apiInstance.ListAdImages(accountId, adAccountId, fields, limit, after);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.ListAdImages: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdImagesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Ad image library (Meta)
+    ApiResponse<ListAdImages200Response> response = apiInstance.ListAdImagesWithHttpInfo(accountId, adAccountId, fields, limit, after);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.ListAdImagesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). |  |
+| **fields** | **string?** | Comma-separated Graph field override (supports nested {} projections). | [optional]  |
+| **limit** | **int?** | Rows per page | [optional] [default to 25] |
+| **after** | **string?** | Cursor from paging.after of the previous page. | [optional]  |
+
+### Return type
+
+[**ListAdImages200Response**](ListAdImages200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ad images (raw Meta shape) |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listadlabels"></a>
+# **ListAdLabels**
+> ListAdLabels200Response ListAdLabels (string accountId, string adAccountId, int? limit = null, string? after = null)
+
+Ad labels (Meta)
+
+Lists the ad account's organizational labels (Meta's `/act_X/adlabels`), rows returned verbatim (id, name, created/updated time). Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdLabelsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var adAccountId = "adAccountId_example";  // string | Meta ad account id (act_<n>).
+            var limit = 25;  // int? | Rows per page (optional)  (default to 25)
+            var after = "after_example";  // string? | Cursor from paging.after of the previous page. (optional) 
+
+            try
+            {
+                // Ad labels (Meta)
+                ListAdLabels200Response result = apiInstance.ListAdLabels(accountId, adAccountId, limit, after);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.ListAdLabels: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdLabelsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Ad labels (Meta)
+    ApiResponse<ListAdLabels200Response> response = apiInstance.ListAdLabelsWithHttpInfo(accountId, adAccountId, limit, after);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.ListAdLabelsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **adAccountId** | **string** | Meta ad account id (act_&lt;n&gt;). |  |
+| **limit** | **int?** | Rows per page | [optional] [default to 25] |
+| **after** | **string?** | Cursor from paging.after of the previous page. | [optional]  |
+
+### Return type
+
+[**ListAdLabels200Response**](ListAdLabels200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ad labels (raw Meta shape) |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="listadstudies"></a>
 # **ListAdStudies**
 > ListAdStudies200Response ListAdStudies (string accountId, string adAccountId, string? fields = null, int? limit = null, string? after = null)
@@ -4760,6 +5508,115 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Leads for the form. |  -  |
 | **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listhighdemandperiods"></a>
+# **ListHighDemandPeriods**
+> ListHighDemandPeriods200Response ListHighDemandPeriods (string accountId, string? campaignId = null, string? adSetId = null, int? limit = null, string? after = null)
+
+High demand periods / budget schedules (Meta)
+
+Scheduled budget increases (Meta's budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of `campaignId` / `adSetId` (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence). Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListHighDemandPeriodsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+            var campaignId = "campaignId_example";  // string? | Platform campaign id. Exactly one of campaignId / adSetId. (optional) 
+            var adSetId = "adSetId_example";  // string? | Platform ad set id. Exactly one of campaignId / adSetId. (optional) 
+            var limit = 25;  // int? | Rows per page (optional)  (default to 25)
+            var after = "after_example";  // string? | Cursor from paging.after of the previous page. (optional) 
+
+            try
+            {
+                // High demand periods / budget schedules (Meta)
+                ListHighDemandPeriods200Response result = apiInstance.ListHighDemandPeriods(accountId, campaignId, adSetId, limit, after);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.ListHighDemandPeriods: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListHighDemandPeriodsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // High demand periods / budget schedules (Meta)
+    ApiResponse<ListHighDemandPeriods200Response> response = apiInstance.ListHighDemandPeriodsWithHttpInfo(accountId, campaignId, adSetId, limit, after);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.ListHighDemandPeriodsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
+| **campaignId** | **string?** | Platform campaign id. Exactly one of campaignId / adSetId. | [optional]  |
+| **adSetId** | **string?** | Platform ad set id. Exactly one of campaignId / adSetId. | [optional]  |
+| **limit** | **int?** | Rows per page | [optional] [default to 25] |
+| **after** | **string?** | Cursor from paging.after of the previous page. | [optional]  |
+
+### Return type
+
+[**ListHighDemandPeriods200Response**](ListHighDemandPeriods200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Budget schedules (raw Meta shape) |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -6043,6 +6900,109 @@ catch (ApiException e)
 | **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Social account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updateadcreative"></a>
+# **UpdateAdCreative**
+> UpdateAdCreative200Response UpdateAdCreative (string creativeId, UpdateAdCreativeRequest updateAdCreativeRequest)
+
+Rename a creative (Meta)
+
+Renames a creative. Creatives are immutable on Meta beyond `name` — for content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with `creative`). Meta only.
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateAdCreativeExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdsApi(httpClient, config, httpClientHandler);
+            var creativeId = "creativeId_example";  // string | Platform creative id
+            var updateAdCreativeRequest = new UpdateAdCreativeRequest(); // UpdateAdCreativeRequest | 
+
+            try
+            {
+                // Rename a creative (Meta)
+                UpdateAdCreative200Response result = apiInstance.UpdateAdCreative(creativeId, updateAdCreativeRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdsApi.UpdateAdCreative: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateAdCreativeWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Rename a creative (Meta)
+    ApiResponse<UpdateAdCreative200Response> response = apiInstance.UpdateAdCreativeWithHttpInfo(creativeId, updateAdCreativeRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdsApi.UpdateAdCreativeWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **creativeId** | **string** | Platform creative id |  |
+| **updateAdCreativeRequest** | [**UpdateAdCreativeRequest**](UpdateAdCreativeRequest.md) |  |  |
+
+### Return type
+
+[**UpdateAdCreative200Response**](UpdateAdCreative200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Creative renamed |  -  |
+| **400** | Invalid input, or Meta rejected the update |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -142,10 +142,10 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdAudiences200Response</returns>
         ApiResponse<ListAdAudiences200Response> ListAdAudiencesWithHttpInfo(string accountId, string adAccountId, string? platform = default, string? type = default);
         /// <summary>
-        /// Update saved targeting audience
+        /// Update an audience
         /// </summary>
         /// <remarks>
-        /// Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// Update an audience. &#x60;saved_targeting&#x60; audiences accept &#x60;name&#x60;, &#x60;description&#x60;, and &#x60;spec&#x60; (full replacement, no merge, Zernio-only, no platform call). Platform audiences (uploaded/website/lookalike) accept &#x60;name&#x60; and &#x60;description&#x60; only, updated on the platform first and then mirrored locally; their rules are immutable, so &#x60;spec&#x60; returns 400 for them. Platform audience updates are Meta-only for now (other platforms return 501). Ads already created from a saved_targeting audience are unaffected, they snapshot the targeting at creation. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -154,10 +154,10 @@ namespace Zernio.Api
         CreateAdAudience201Response UpdateAdAudience(string audienceId, UpdateAdAudienceRequest updateAdAudienceRequest);
 
         /// <summary>
-        /// Update saved targeting audience
+        /// Update an audience
         /// </summary>
         /// <remarks>
-        /// Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// Update an audience. &#x60;saved_targeting&#x60; audiences accept &#x60;name&#x60;, &#x60;description&#x60;, and &#x60;spec&#x60; (full replacement, no merge, Zernio-only, no platform call). Platform audiences (uploaded/website/lookalike) accept &#x60;name&#x60; and &#x60;description&#x60; only, updated on the platform first and then mirrored locally; their rules are immutable, so &#x60;spec&#x60; returns 400 for them. Platform audience updates are Meta-only for now (other platforms return 501). Ads already created from a saved_targeting audience are unaffected, they snapshot the targeting at creation. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -297,10 +297,10 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListAdAudiences200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdAudiences200Response>> ListAdAudiencesWithHttpInfoAsync(string accountId, string adAccountId, string? platform = default, string? type = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Update saved targeting audience
+        /// Update an audience
         /// </summary>
         /// <remarks>
-        /// Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// Update an audience. &#x60;saved_targeting&#x60; audiences accept &#x60;name&#x60;, &#x60;description&#x60;, and &#x60;spec&#x60; (full replacement, no merge, Zernio-only, no platform call). Platform audiences (uploaded/website/lookalike) accept &#x60;name&#x60; and &#x60;description&#x60; only, updated on the platform first and then mirrored locally; their rules are immutable, so &#x60;spec&#x60; returns 400 for them. Platform audience updates are Meta-only for now (other platforms return 501). Ads already created from a saved_targeting audience are unaffected, they snapshot the targeting at creation. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -310,10 +310,10 @@ namespace Zernio.Api
         System.Threading.Tasks.Task<CreateAdAudience201Response> UpdateAdAudienceAsync(string audienceId, UpdateAdAudienceRequest updateAdAudienceRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Update saved targeting audience
+        /// Update an audience
         /// </summary>
         /// <remarks>
-        /// Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// Update an audience. &#x60;saved_targeting&#x60; audiences accept &#x60;name&#x60;, &#x60;description&#x60;, and &#x60;spec&#x60; (full replacement, no merge, Zernio-only, no platform call). Platform audiences (uploaded/website/lookalike) accept &#x60;name&#x60; and &#x60;description&#x60; only, updated on the platform first and then mirrored locally; their rules are immutable, so &#x60;spec&#x60; returns 400 for them. Platform audience updates are Meta-only for now (other platforms return 501). Ads already created from a saved_targeting audience are unaffected, they snapshot the targeting at creation. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -1226,7 +1226,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update saved targeting audience Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// Update an audience Update an audience. &#x60;saved_targeting&#x60; audiences accept &#x60;name&#x60;, &#x60;description&#x60;, and &#x60;spec&#x60; (full replacement, no merge, Zernio-only, no platform call). Platform audiences (uploaded/website/lookalike) accept &#x60;name&#x60; and &#x60;description&#x60; only, updated on the platform first and then mirrored locally; their rules are immutable, so &#x60;spec&#x60; returns 400 for them. Platform audience updates are Meta-only for now (other platforms return 501). Ads already created from a saved_targeting audience are unaffected, they snapshot the targeting at creation. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -1239,7 +1239,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update saved targeting audience Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// Update an audience Update an audience. &#x60;saved_targeting&#x60; audiences accept &#x60;name&#x60;, &#x60;description&#x60;, and &#x60;spec&#x60; (full replacement, no merge, Zernio-only, no platform call). Platform audiences (uploaded/website/lookalike) accept &#x60;name&#x60; and &#x60;description&#x60; only, updated on the platform first and then mirrored locally; their rules are immutable, so &#x60;spec&#x60; returns 400 for them. Platform audience updates are Meta-only for now (other platforms return 501). Ads already created from a saved_targeting audience are unaffected, they snapshot the targeting at creation. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -1295,7 +1295,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update saved targeting audience Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// Update an audience Update an audience. &#x60;saved_targeting&#x60; audiences accept &#x60;name&#x60;, &#x60;description&#x60;, and &#x60;spec&#x60; (full replacement, no merge, Zernio-only, no platform call). Platform audiences (uploaded/website/lookalike) accept &#x60;name&#x60; and &#x60;description&#x60; only, updated on the platform first and then mirrored locally; their rules are immutable, so &#x60;spec&#x60; returns 400 for them. Platform audience updates are Meta-only for now (other platforms return 501). Ads already created from a saved_targeting audience are unaffected, they snapshot the targeting at creation. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
@@ -1309,7 +1309,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Update saved targeting audience Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+        /// Update an audience Update an audience. &#x60;saved_targeting&#x60; audiences accept &#x60;name&#x60;, &#x60;description&#x60;, and &#x60;spec&#x60; (full replacement, no merge, Zernio-only, no platform call). Platform audiences (uploaded/website/lookalike) accept &#x60;name&#x60; and &#x60;description&#x60; only, updated on the platform first and then mirrored locally; their rules are immutable, so &#x60;spec&#x60; returns 400 for them. Platform audience updates are Meta-only for now (other platforms return 501). Ads already created from a saved_targeting audience are unaffected, they snapshot the targeting at creation. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="audienceId"></param>
