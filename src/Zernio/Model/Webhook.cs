@@ -295,7 +295,19 @@ namespace Zernio.Model
             /// Enum WhatsappNumberKycSubmitted for value: whatsapp.number.kyc_submitted
             /// </summary>
             [EnumMember(Value = "whatsapp.number.kyc_submitted")]
-            WhatsappNumberKycSubmitted = 43
+            WhatsappNumberKycSubmitted = 43,
+
+            /// <summary>
+            /// Enum VerificationApproved for value: verification.approved
+            /// </summary>
+            [EnumMember(Value = "verification.approved")]
+            VerificationApproved = 44,
+
+            /// <summary>
+            /// Enum VerificationFailed for value: verification.failed
+            /// </summary>
+            [EnumMember(Value = "verification.failed")]
+            VerificationFailed = 45
         }
 
         /// <summary>

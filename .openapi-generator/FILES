@@ -120,6 +120,8 @@ docs/CheckPhoneNumberAvailability200Response.md
 docs/CheckPhoneNumberPortability200Response.md
 docs/CheckPhoneNumberPortability200ResponseResultsInner.md
 docs/CheckPhoneNumberPortabilityRequest.md
+docs/CheckVerification200Response.md
+docs/CheckVerificationRequest.md
 docs/CommentAutomationsApi.md
 docs/CommentsApi.md
 docs/CompleteGoogleBusinessVerificationRequest.md
@@ -272,6 +274,7 @@ docs/CreateTestLeadRequest.md
 docs/CreateTestLeadRequestFieldDataInner.md
 docs/CreateTrackingTag201Response.md
 docs/CreateTrackingTagRequest.md
+docs/CreateVerificationRequest.md
 docs/CreateVoiceCall200Response.md
 docs/CreateVoiceCallRequest.md
 docs/CreateVoiceWebSession200Response.md
@@ -945,6 +948,10 @@ docs/Money.md
 docs/MoneyAmount.md
 docs/MoveAccountToProfile200Response.md
 docs/MoveAccountToProfileRequest.md
+docs/OnVerificationApprovedRequest.md
+docs/OnVerificationApprovedRequestVerification.md
+docs/OnVerificationFailedRequest.md
+docs/OnVerificationFailedRequestVerification.md
 docs/OnWhatsAppAutomaticEventRequest.md
 docs/OnWhatsAppAutomaticEventRequestCustomData.md
 docs/OnWhatsAppNumberActionRequiredRequest.md
@@ -1410,6 +1417,8 @@ docs/ValidateSubreddit200Response.md
 docs/ValidateSubreddit200ResponseOneOf.md
 docs/ValidateSubreddit200ResponseOneOf1.md
 docs/ValidateSubreddit200ResponseOneOfSubreddit.md
+docs/Verification.md
+docs/VerifyApi.md
 docs/VerifySmsRegistrationOtp200Response.md
 docs/VerifySmsRegistrationOtpRequest.md
 docs/VoiceApi.md
@@ -1570,6 +1579,7 @@ src/Zernio.Test/Api/TwitterEngagementApiTests.cs
 src/Zernio.Test/Api/UsageApiTests.cs
 src/Zernio.Test/Api/UsersApiTests.cs
 src/Zernio.Test/Api/ValidateApiTests.cs
+src/Zernio.Test/Api/VerifyApiTests.cs
 src/Zernio.Test/Api/VoiceApiTests.cs
 src/Zernio.Test/Api/WebhookEventsApiTests.cs
 src/Zernio.Test/Api/WebhooksApiTests.cs
@@ -1687,6 +1697,8 @@ src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberPortability200ResponseResultsInnerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberPortability200ResponseTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberPortabilityRequestTests.cs
+src/Zernio.Test/Model/CheckVerification200ResponseTests.cs
+src/Zernio.Test/Model/CheckVerificationRequestTests.cs
 src/Zernio.Test/Model/CompleteGoogleBusinessVerificationRequestTests.cs
 src/Zernio.Test/Model/CompleteTelegramConnect200ResponseTests.cs
 src/Zernio.Test/Model/CompleteWhatsAppPhoneSelection200ResponseAccountTests.cs
@@ -1835,6 +1847,7 @@ src/Zernio.Test/Model/CreateTestLeadRequestFieldDataInnerTests.cs
 src/Zernio.Test/Model/CreateTestLeadRequestTests.cs
 src/Zernio.Test/Model/CreateTrackingTag201ResponseTests.cs
 src/Zernio.Test/Model/CreateTrackingTagRequestTests.cs
+src/Zernio.Test/Model/CreateVerificationRequestTests.cs
 src/Zernio.Test/Model/CreateVoiceCall200ResponseTests.cs
 src/Zernio.Test/Model/CreateVoiceCallRequestTests.cs
 src/Zernio.Test/Model/CreateVoiceWebSession200ResponseTests.cs
@@ -2490,6 +2503,10 @@ src/Zernio.Test/Model/MoneyAmountTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
 src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
 src/Zernio.Test/Model/MoveAccountToProfileRequestTests.cs
+src/Zernio.Test/Model/OnVerificationApprovedRequestTests.cs
+src/Zernio.Test/Model/OnVerificationApprovedRequestVerificationTests.cs
+src/Zernio.Test/Model/OnVerificationFailedRequestTests.cs
+src/Zernio.Test/Model/OnVerificationFailedRequestVerificationTests.cs
 src/Zernio.Test/Model/OnWhatsAppAutomaticEventRequestCustomDataTests.cs
 src/Zernio.Test/Model/OnWhatsAppAutomaticEventRequestTests.cs
 src/Zernio.Test/Model/OnWhatsAppNumberActionRequiredRequestTests.cs
@@ -2942,6 +2959,7 @@ src/Zernio.Test/Model/ValidateSubreddit200ResponseOneOf1Tests.cs
 src/Zernio.Test/Model/ValidateSubreddit200ResponseOneOfSubredditTests.cs
 src/Zernio.Test/Model/ValidateSubreddit200ResponseOneOfTests.cs
 src/Zernio.Test/Model/ValidateSubreddit200ResponseTests.cs
+src/Zernio.Test/Model/VerificationTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtpRequestTests.cs
 src/Zernio.Test/Model/VoteRedditThingRequestTests.cs
@@ -3092,6 +3110,7 @@ src/Zernio/Api/TwitterEngagementApi.cs
 src/Zernio/Api/UsageApi.cs
 src/Zernio/Api/UsersApi.cs
 src/Zernio/Api/ValidateApi.cs
+src/Zernio/Api/VerifyApi.cs
 src/Zernio/Api/VoiceApi.cs
 src/Zernio/Api/WebhookEventsApi.cs
 src/Zernio/Api/WebhooksApi.cs
@@ -3227,6 +3246,8 @@ src/Zernio/Model/CheckPhoneNumberAvailability200Response.cs
 src/Zernio/Model/CheckPhoneNumberPortability200Response.cs
 src/Zernio/Model/CheckPhoneNumberPortability200ResponseResultsInner.cs
 src/Zernio/Model/CheckPhoneNumberPortabilityRequest.cs
+src/Zernio/Model/CheckVerification200Response.cs
+src/Zernio/Model/CheckVerificationRequest.cs
 src/Zernio/Model/CompleteGoogleBusinessVerificationRequest.cs
 src/Zernio/Model/CompleteTelegramConnect200Response.cs
 src/Zernio/Model/CompleteWhatsAppPhoneSelection200Response.cs
@@ -3375,6 +3396,7 @@ src/Zernio/Model/CreateTestLeadRequest.cs
 src/Zernio/Model/CreateTestLeadRequestFieldDataInner.cs
 src/Zernio/Model/CreateTrackingTag201Response.cs
 src/Zernio/Model/CreateTrackingTagRequest.cs
+src/Zernio/Model/CreateVerificationRequest.cs
 src/Zernio/Model/CreateVoiceCall200Response.cs
 src/Zernio/Model/CreateVoiceCallRequest.cs
 src/Zernio/Model/CreateVoiceWebSession200Response.cs
@@ -4030,6 +4052,10 @@ src/Zernio/Model/Money.cs
 src/Zernio/Model/MoneyAmount.cs
 src/Zernio/Model/MoveAccountToProfile200Response.cs
 src/Zernio/Model/MoveAccountToProfileRequest.cs
+src/Zernio/Model/OnVerificationApprovedRequest.cs
+src/Zernio/Model/OnVerificationApprovedRequestVerification.cs
+src/Zernio/Model/OnVerificationFailedRequest.cs
+src/Zernio/Model/OnVerificationFailedRequestVerification.cs
 src/Zernio/Model/OnWhatsAppAutomaticEventRequest.cs
 src/Zernio/Model/OnWhatsAppAutomaticEventRequestCustomData.cs
 src/Zernio/Model/OnWhatsAppNumberActionRequiredRequest.cs
@@ -4482,6 +4508,7 @@ src/Zernio/Model/ValidateSubreddit200Response.cs
 src/Zernio/Model/ValidateSubreddit200ResponseOneOf.cs
 src/Zernio/Model/ValidateSubreddit200ResponseOneOf1.cs
 src/Zernio/Model/ValidateSubreddit200ResponseOneOfSubreddit.cs
+src/Zernio/Model/Verification.cs
 src/Zernio/Model/VerifySmsRegistrationOtp200Response.cs
 src/Zernio/Model/VerifySmsRegistrationOtpRequest.cs
 src/Zernio/Model/VoteRedditThingRequest.cs

@@ -722,6 +722,48 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> OnReviewUpdatedWithHttpInfo(WebhookPayloadReviewUpdated webhookPayloadReviewUpdated);
         /// <summary>
+        /// Verification approved event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationApprovedRequest"></param>
+        /// <returns></returns>
+        void OnVerificationApproved(OnVerificationApprovedRequest onVerificationApprovedRequest);
+
+        /// <summary>
+        /// Verification approved event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationApprovedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnVerificationApprovedWithHttpInfo(OnVerificationApprovedRequest onVerificationApprovedRequest);
+        /// <summary>
+        /// Verification failed event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationFailedRequest"></param>
+        /// <returns></returns>
+        void OnVerificationFailed(OnVerificationFailedRequest onVerificationFailedRequest);
+
+        /// <summary>
+        /// Verification failed event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationFailedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnVerificationFailedWithHttpInfo(OnVerificationFailedRequest onVerificationFailedRequest);
+        /// <summary>
         /// Webhook test event
         /// </summary>
         /// <remarks>
@@ -1720,6 +1762,52 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> OnReviewUpdatedWithHttpInfoAsync(WebhookPayloadReviewUpdated webhookPayloadReviewUpdated, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Verification approved event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationApprovedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnVerificationApprovedAsync(OnVerificationApprovedRequest onVerificationApprovedRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Verification approved event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationApprovedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnVerificationApprovedWithHttpInfoAsync(OnVerificationApprovedRequest onVerificationApprovedRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Verification failed event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationFailedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnVerificationFailedAsync(OnVerificationFailedRequest onVerificationFailedRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Verification failed event
+        /// </summary>
+        /// <remarks>
+        /// Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationFailedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnVerificationFailedWithHttpInfoAsync(OnVerificationFailedRequest onVerificationFailedRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Webhook test event
         /// </summary>
@@ -6305,6 +6393,256 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("OnReviewUpdated", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Verification approved event Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationApprovedRequest"></param>
+        /// <returns></returns>
+        public void OnVerificationApproved(OnVerificationApprovedRequest onVerificationApprovedRequest)
+        {
+            OnVerificationApprovedWithHttpInfo(onVerificationApprovedRequest);
+        }
+
+        /// <summary>
+        /// Verification approved event Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationApprovedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnVerificationApprovedWithHttpInfo(OnVerificationApprovedRequest onVerificationApprovedRequest)
+        {
+            // verify the required parameter 'onVerificationApprovedRequest' is set
+            if (onVerificationApprovedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onVerificationApprovedRequest' when calling WebhookEventsApi->OnVerificationApproved");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onVerificationApprovedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/verification.approved", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnVerificationApproved", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Verification approved event Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationApprovedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnVerificationApprovedAsync(OnVerificationApprovedRequest onVerificationApprovedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnVerificationApprovedWithHttpInfoAsync(onVerificationApprovedRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Verification approved event Fired when a managed-OTP verification is approved (the user submitted the correct code to POST /v1/verify/verifications/{verificationId}/check). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationApprovedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnVerificationApprovedWithHttpInfoAsync(OnVerificationApprovedRequest onVerificationApprovedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'onVerificationApprovedRequest' is set
+            if (onVerificationApprovedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onVerificationApprovedRequest' when calling WebhookEventsApi->OnVerificationApproved");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onVerificationApprovedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/verification.approved", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnVerificationApproved", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Verification failed event Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationFailedRequest"></param>
+        /// <returns></returns>
+        public void OnVerificationFailed(OnVerificationFailedRequest onVerificationFailedRequest)
+        {
+            OnVerificationFailedWithHttpInfo(onVerificationFailedRequest);
+        }
+
+        /// <summary>
+        /// Verification failed event Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationFailedRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnVerificationFailedWithHttpInfo(OnVerificationFailedRequest onVerificationFailedRequest)
+        {
+            // verify the required parameter 'onVerificationFailedRequest' is set
+            if (onVerificationFailedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onVerificationFailedRequest' when calling WebhookEventsApi->OnVerificationFailed");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onVerificationFailedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/verification.failed", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnVerificationFailed", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Verification failed event Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationFailedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnVerificationFailedAsync(OnVerificationFailedRequest onVerificationFailedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnVerificationFailedWithHttpInfoAsync(onVerificationFailedRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Verification failed event Fired when a managed-OTP verification is exhausted (the maximum number of wrong code attempts was reached). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="onVerificationFailedRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnVerificationFailedWithHttpInfoAsync(OnVerificationFailedRequest onVerificationFailedRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'onVerificationFailedRequest' is set
+            if (onVerificationFailedRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'onVerificationFailedRequest' when calling WebhookEventsApi->OnVerificationFailed");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = onVerificationFailedRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/verification.failed", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnVerificationFailed", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

@@ -28,10 +28,10 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// OnWhatsAppNumberKycSubmittedRequest
+    /// OnVerificationFailedRequest
     /// </summary>
-    [DataContract(Name = "onWhatsAppNumberKycSubmitted_request")]
-    public partial class OnWhatsAppNumberKycSubmittedRequest : IValidatableObject
+    [DataContract(Name = "onVerificationFailed_request")]
+    public partial class OnVerificationFailedRequest : IValidatableObject
     {
         /// <summary>
         /// Defines Event
@@ -40,22 +40,10 @@ namespace Zernio.Model
         public enum EventEnum
         {
             /// <summary>
-            /// Enum WhatsappNumberKycSubmitted for value: whatsapp.number.kyc_submitted
-            /// </summary>
-            [EnumMember(Value = "whatsapp.number.kyc_submitted")]
-            WhatsappNumberKycSubmitted = 1,
-
-            /// <summary>
-            /// Enum VerificationApproved for value: verification.approved
-            /// </summary>
-            [EnumMember(Value = "verification.approved")]
-            VerificationApproved = 2,
-
-            /// <summary>
             /// Enum VerificationFailed for value: verification.failed
             /// </summary>
             [EnumMember(Value = "verification.failed")]
-            VerificationFailed = 3
+            VerificationFailed = 1
         }
 
 
@@ -65,18 +53,39 @@ namespace Zernio.Model
         [DataMember(Name = "event", EmitDefaultValue = false)]
         public EventEnum? Event { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="OnWhatsAppNumberKycSubmittedRequest" /> class.
+        /// Defines Reason
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ReasonEnum
+        {
+            /// <summary>
+            /// Enum MaxAttemptsReached for value: max_attempts_reached
+            /// </summary>
+            [EnumMember(Value = "max_attempts_reached")]
+            MaxAttemptsReached = 1
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Reason
+        /// </summary>
+        [DataMember(Name = "reason", EmitDefaultValue = false)]
+        public ReasonEnum? Reason { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OnVerificationFailedRequest" /> class.
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="varEvent">varEvent.</param>
         /// <param name="timestamp">timestamp.</param>
-        /// <param name="number">number.</param>
-        public OnWhatsAppNumberKycSubmittedRequest(string id = default, EventEnum? varEvent = default, DateTime timestamp = default, OnWhatsAppNumberDeclinedRequestNumber number = default)
+        /// <param name="verification">verification.</param>
+        /// <param name="reason">reason.</param>
+        public OnVerificationFailedRequest(string id = default, EventEnum? varEvent = default, DateTime timestamp = default, OnVerificationFailedRequestVerification verification = default, ReasonEnum? reason = default)
         {
             this.Id = id;
             this.Event = varEvent;
             this.Timestamp = timestamp;
-            this.Number = number;
+            this.Verification = verification;
+            this.Reason = reason;
         }
 
         /// <summary>
@@ -92,10 +101,10 @@ namespace Zernio.Model
         public DateTime Timestamp { get; set; }
 
         /// <summary>
-        /// Gets or Sets Number
+        /// Gets or Sets Verification
         /// </summary>
-        [DataMember(Name = "number", EmitDefaultValue = false)]
-        public OnWhatsAppNumberDeclinedRequestNumber Number { get; set; }
+        [DataMember(Name = "verification", EmitDefaultValue = false)]
+        public OnVerificationFailedRequestVerification Verification { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -104,11 +113,12 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class OnWhatsAppNumberKycSubmittedRequest {\n");
+            sb.Append("class OnVerificationFailedRequest {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Event: ").Append(Event).Append("\n");
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  Number: ").Append(Number).Append("\n");
+            sb.Append("  Verification: ").Append(Verification).Append("\n");
+            sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

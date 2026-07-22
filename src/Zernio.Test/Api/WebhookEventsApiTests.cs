@@ -418,6 +418,28 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnVerificationApproved
+        /// </summary>
+        [Fact]
+        public void OnVerificationApprovedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //OnVerificationApprovedRequest onVerificationApprovedRequest = null;
+            //instance.OnVerificationApproved(onVerificationApprovedRequest);
+        }
+
+        /// <summary>
+        /// Test OnVerificationFailed
+        /// </summary>
+        [Fact]
+        public void OnVerificationFailedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //OnVerificationFailedRequest onVerificationFailedRequest = null;
+            //instance.OnVerificationFailed(onVerificationFailedRequest);
+        }
+
+        /// <summary>
         /// Test OnWebhookTest
         /// </summary>
         [Fact]

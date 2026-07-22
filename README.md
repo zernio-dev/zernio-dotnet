@@ -536,6 +536,9 @@ Class | Method | HTTP request | Description
 *ValidateApi* | [**ValidatePost**](docs/ValidateApi.md#validatepost) | **POST** /v1/tools/validate/post | Validate post content
 *ValidateApi* | [**ValidatePostLength**](docs/ValidateApi.md#validatepostlength) | **POST** /v1/tools/validate/post-length | Validate character count
 *ValidateApi* | [**ValidateSubreddit**](docs/ValidateApi.md#validatesubreddit) | **GET** /v1/tools/validate/subreddit | Check subreddit existence
+*VerifyApi* | [**CheckVerification**](docs/VerifyApi.md#checkverification) | **POST** /v1/verify/verifications/{verificationId}/check | Check a verification code
+*VerifyApi* | [**CreateVerification**](docs/VerifyApi.md#createverification) | **POST** /v1/verify/verifications | Send a verification code
+*VerifyApi* | [**GetVerification**](docs/VerifyApi.md#getverification) | **GET** /v1/verify/verifications/{verificationId} | Get a verification
 *VoiceApi* | [**CreateVoiceCall**](docs/VoiceApi.md#createvoicecall) | **POST** /v1/voice/calls | Place an outbound phone call
 *VoiceApi* | [**CreateVoiceWebSession**](docs/VoiceApi.md#createvoicewebsession) | **POST** /v1/voice/calls/web | Mint a browser softphone session
 *VoiceApi* | [**DialVoiceWebCall**](docs/VoiceApi.md#dialvoicewebcall) | **POST** /v1/voice/calls/web/dial | Dial from the browser softphone
@@ -758,6 +761,8 @@ Class | Method | HTTP request | Description
  - [Model.CheckPhoneNumberPortability200Response](docs/CheckPhoneNumberPortability200Response.md)
  - [Model.CheckPhoneNumberPortability200ResponseResultsInner](docs/CheckPhoneNumberPortability200ResponseResultsInner.md)
  - [Model.CheckPhoneNumberPortabilityRequest](docs/CheckPhoneNumberPortabilityRequest.md)
+ - [Model.CheckVerification200Response](docs/CheckVerification200Response.md)
+ - [Model.CheckVerificationRequest](docs/CheckVerificationRequest.md)
  - [Model.CompleteGoogleBusinessVerificationRequest](docs/CompleteGoogleBusinessVerificationRequest.md)
  - [Model.CompleteTelegramConnect200Response](docs/CompleteTelegramConnect200Response.md)
  - [Model.CompleteWhatsAppPhoneSelection200Response](docs/CompleteWhatsAppPhoneSelection200Response.md)
@@ -906,6 +911,7 @@ Class | Method | HTTP request | Description
  - [Model.CreateTestLeadRequestFieldDataInner](docs/CreateTestLeadRequestFieldDataInner.md)
  - [Model.CreateTrackingTag201Response](docs/CreateTrackingTag201Response.md)
  - [Model.CreateTrackingTagRequest](docs/CreateTrackingTagRequest.md)
+ - [Model.CreateVerificationRequest](docs/CreateVerificationRequest.md)
  - [Model.CreateVoiceCall200Response](docs/CreateVoiceCall200Response.md)
  - [Model.CreateVoiceCallRequest](docs/CreateVoiceCallRequest.md)
  - [Model.CreateVoiceWebSession200Response](docs/CreateVoiceWebSession200Response.md)
@@ -1561,6 +1567,10 @@ Class | Method | HTTP request | Description
  - [Model.MoneyAmount](docs/MoneyAmount.md)
  - [Model.MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
  - [Model.MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
+ - [Model.OnVerificationApprovedRequest](docs/OnVerificationApprovedRequest.md)
+ - [Model.OnVerificationApprovedRequestVerification](docs/OnVerificationApprovedRequestVerification.md)
+ - [Model.OnVerificationFailedRequest](docs/OnVerificationFailedRequest.md)
+ - [Model.OnVerificationFailedRequestVerification](docs/OnVerificationFailedRequestVerification.md)
  - [Model.OnWhatsAppAutomaticEventRequest](docs/OnWhatsAppAutomaticEventRequest.md)
  - [Model.OnWhatsAppAutomaticEventRequestCustomData](docs/OnWhatsAppAutomaticEventRequestCustomData.md)
  - [Model.OnWhatsAppNumberActionRequiredRequest](docs/OnWhatsAppNumberActionRequiredRequest.md)
@@ -2013,6 +2023,7 @@ Class | Method | HTTP request | Description
  - [Model.ValidateSubreddit200ResponseOneOf](docs/ValidateSubreddit200ResponseOneOf.md)
  - [Model.ValidateSubreddit200ResponseOneOf1](docs/ValidateSubreddit200ResponseOneOf1.md)
  - [Model.ValidateSubreddit200ResponseOneOfSubreddit](docs/ValidateSubreddit200ResponseOneOfSubreddit.md)
+ - [Model.Verification](docs/Verification.md)
  - [Model.VerifySmsRegistrationOtp200Response](docs/VerifySmsRegistrationOtp200Response.md)
  - [Model.VerifySmsRegistrationOtpRequest](docs/VerifySmsRegistrationOtpRequest.md)
  - [Model.VoteRedditThingRequest](docs/VoteRedditThingRequest.md)
