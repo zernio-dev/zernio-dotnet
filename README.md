@@ -391,7 +391,6 @@ Class | Method | HTTP request | Description
 *GMBVerificationsApi* | [**FetchGoogleBusinessVerificationOptions**](docs/GMBVerificationsApi.md#fetchgooglebusinessverificationoptions) | **POST** /v1/accounts/{accountId}/gmb-verifications/options | Fetch verification options
 *GMBVerificationsApi* | [**GetGoogleBusinessVerifications**](docs/GMBVerificationsApi.md#getgooglebusinessverifications) | **GET** /v1/accounts/{accountId}/gmb-verifications | Get verification state
 *GMBVerificationsApi* | [**StartGoogleBusinessVerification**](docs/GMBVerificationsApi.md#startgooglebusinessverification) | **POST** /v1/accounts/{accountId}/gmb-verifications | Start a verification
-*InboxApi* | [**GetWhatsAppMedia**](docs/InboxApi.md#getwhatsappmedia) | **GET** /v1/whatsapp/media/{mediaId} | Download WhatsApp media
 *InboxAnalyticsApi* | [**GetInboxConversationAnalytics**](docs/InboxAnalyticsApi.md#getinboxconversationanalytics) | **GET** /v1/analytics/inbox/conversations/{conversationId} | Get conversation analytics
 *InboxAnalyticsApi* | [**GetInboxHeatmap**](docs/InboxAnalyticsApi.md#getinboxheatmap) | **GET** /v1/analytics/inbox/heatmap | Get day × hour heatmap
 *InboxAnalyticsApi* | [**GetInboxResponseTime**](docs/InboxAnalyticsApi.md#getinboxresponsetime) | **GET** /v1/analytics/inbox/response-time | Get inbox response-time stats
@@ -558,6 +557,7 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**GetWhatsAppDataset**](docs/WhatsAppApi.md#getwhatsappdataset) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset
 *WhatsAppApi* | [**GetWhatsAppDisplayName**](docs/WhatsAppApi.md#getwhatsappdisplayname) | **GET** /v1/whatsapp/business-profile/display-name | Get display name status
 *WhatsAppApi* | [**GetWhatsAppGroupChat**](docs/WhatsAppApi.md#getwhatsappgroupchat) | **GET** /v1/whatsapp/wa-groups/{groupId} | Get group info
+*WhatsAppApi* | [**GetWhatsAppMedia**](docs/WhatsAppApi.md#getwhatsappmedia) | **GET** /v1/whatsapp/media/{mediaId} | Download WhatsApp media
 *WhatsAppApi* | [**GetWhatsAppTemplate**](docs/WhatsAppApi.md#getwhatsapptemplate) | **GET** /v1/whatsapp/templates/{templateName} | Get template
 *WhatsAppApi* | [**GetWhatsAppTemplates**](docs/WhatsAppApi.md#getwhatsapptemplates) | **GET** /v1/whatsapp/templates | List templates
 *WhatsAppApi* | [**GetWhatsappBusinessUsername**](docs/WhatsAppApi.md#getwhatsappbusinessusername) | **GET** /v1/whatsapp/business-profile/username | Get business username

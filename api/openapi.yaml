@@ -13762,7 +13762,7 @@ paths:
       - bearerAuth: []
       summary: Download WhatsApp media
       tags:
-      - Inbox
+      - WhatsApp
   /v1/inbox/conversations/{conversationId}/messages/{messageId}:
     delete:
       description: |

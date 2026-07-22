@@ -714,7 +714,6 @@ docs/HandleOAuthCallbackRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
 docs/InboxAnalyticsApi.md
-docs/InboxApi.md
 docs/InboxMessageEditAttachment.md
 docs/InboxMessageEditHistoryEntry.md
 docs/InboxWebhookAccount.md
@@ -1536,7 +1535,6 @@ src/Zernio.Test/Api/GMBReviewsApiTests.cs
 src/Zernio.Test/Api/GMBServicesApiTests.cs
 src/Zernio.Test/Api/GMBVerificationsApiTests.cs
 src/Zernio.Test/Api/InboxAnalyticsApiTests.cs
-src/Zernio.Test/Api/InboxApiTests.cs
 src/Zernio.Test/Api/InstagramApiTests.cs
 src/Zernio.Test/Api/InvitesApiTests.cs
 src/Zernio.Test/Api/LinkedInMentionsApiTests.cs
@@ -3044,7 +3042,6 @@ src/Zernio/Api/GMBReviewsApi.cs
 src/Zernio/Api/GMBServicesApi.cs
 src/Zernio/Api/GMBVerificationsApi.cs
 src/Zernio/Api/InboxAnalyticsApi.cs
-src/Zernio/Api/InboxApi.cs
 src/Zernio/Api/InstagramApi.cs
 src/Zernio/Api/InvitesApi.cs
 src/Zernio/Api/LinkedInMentionsApi.cs

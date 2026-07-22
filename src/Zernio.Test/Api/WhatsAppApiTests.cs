@@ -258,6 +258,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetWhatsAppMedia
+        /// </summary>
+        [Fact]
+        public void GetWhatsAppMediaTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string mediaId = null;
+            //string accountId = null;
+            //var response = instance.GetWhatsAppMedia(mediaId, accountId);
+            //Assert.IsType<FileParameter>(response);
+        }
+
+        /// <summary>
         /// Test GetWhatsAppTemplate
         /// </summary>
         [Fact]

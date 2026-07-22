@@ -387,6 +387,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of GetWhatsAppGroupChat200Response</returns>
         ApiResponse<GetWhatsAppGroupChat200Response> GetWhatsAppGroupChatWithHttpInfo(string groupId, string accountId);
         /// <summary>
+        /// Download WhatsApp media
+        /// </summary>
+        /// <remarks>
+        /// Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="mediaId">The media id from &#x60;attachments[].payload.id&#x60;.</param>
+        /// <param name="accountId">The WhatsApp account that received the media.</param>
+        /// <returns>FileParameter</returns>
+        FileParameter GetWhatsAppMedia(string mediaId, string accountId);
+
+        /// <summary>
+        /// Download WhatsApp media
+        /// </summary>
+        /// <remarks>
+        /// Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="mediaId">The media id from &#x60;attachments[].payload.id&#x60;.</param>
+        /// <param name="accountId">The WhatsApp account that received the media.</param>
+        /// <returns>ApiResponse of FileParameter</returns>
+        ApiResponse<FileParameter> GetWhatsAppMediaWithHttpInfo(string mediaId, string accountId);
+        /// <summary>
         /// Get template
         /// </summary>
         /// <remarks>
@@ -1168,6 +1191,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWhatsAppGroupChat200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetWhatsAppGroupChat200Response>> GetWhatsAppGroupChatWithHttpInfoAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Download WhatsApp media
+        /// </summary>
+        /// <remarks>
+        /// Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="mediaId">The media id from &#x60;attachments[].payload.id&#x60;.</param>
+        /// <param name="accountId">The WhatsApp account that received the media.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileParameter</returns>
+        System.Threading.Tasks.Task<FileParameter> GetWhatsAppMediaAsync(string mediaId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Download WhatsApp media
+        /// </summary>
+        /// <remarks>
+        /// Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="mediaId">The media id from &#x60;attachments[].payload.id&#x60;.</param>
+        /// <param name="accountId">The WhatsApp account that received the media.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FileParameter>> GetWhatsAppMediaWithHttpInfoAsync(string mediaId, string accountId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get template
         /// </summary>
@@ -3988,6 +4036,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetWhatsAppGroupChat", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Download WhatsApp media Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="mediaId">The media id from &#x60;attachments[].payload.id&#x60;.</param>
+        /// <param name="accountId">The WhatsApp account that received the media.</param>
+        /// <returns>FileParameter</returns>
+        public FileParameter GetWhatsAppMedia(string mediaId, string accountId)
+        {
+            Zernio.Client.ApiResponse<FileParameter> localVarResponse = GetWhatsAppMediaWithHttpInfo(mediaId, accountId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Download WhatsApp media Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="mediaId">The media id from &#x60;attachments[].payload.id&#x60;.</param>
+        /// <param name="accountId">The WhatsApp account that received the media.</param>
+        /// <returns>ApiResponse of FileParameter</returns>
+        public Zernio.Client.ApiResponse<FileParameter> GetWhatsAppMediaWithHttpInfo(string mediaId, string accountId)
+        {
+            // verify the required parameter 'mediaId' is set
+            if (mediaId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'mediaId' when calling WhatsAppApi->GetWhatsAppMedia");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsAppMedia");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/octet-stream",
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("mediaId", Zernio.Client.ClientUtils.ParameterToString(mediaId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<FileParameter>("/v1/whatsapp/media/{mediaId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppMedia", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Download WhatsApp media Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="mediaId">The media id from &#x60;attachments[].payload.id&#x60;.</param>
+        /// <param name="accountId">The WhatsApp account that received the media.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileParameter</returns>
+        public async System.Threading.Tasks.Task<FileParameter> GetWhatsAppMediaAsync(string mediaId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<FileParameter> localVarResponse = await GetWhatsAppMediaWithHttpInfoAsync(mediaId, accountId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Download WhatsApp media Streams the binary for a WhatsApp attachment. This is the endpoint the &#x60;url&#x60; on a WhatsApp &#x60;attachments[]&#x60; entry points at, in both the &#x60;message.received&#x60; webhook and the List messages response.  **This is an authenticated endpoint, not a public link.** Send &#x60;Authorization: Bearer &lt;your API key&gt;&#x60; exactly as you would for any other call. Passing the URL straight to a browser, an LLM vision API, or a no-code \&quot;download file\&quot; step without the header returns &#x60;401&#x60;. This is the most common integration mistake on this endpoint, and it differs from Instagram, Facebook and Telegram, whose &#x60;attachments[].url&#x60; is a direct CDN link that needs no header.  **Fetch on receipt, not lazily.** WhatsApp media lives in Meta&#39;s media store, not ours, and it is removed after a limited retention window (currently 7 days, and Meta has been dropping some inbound media sooner). Once Meta drops it the media is unrecoverable and this endpoint answers &#x60;400&#x60; permanently, so retrying will never succeed. Download and store the bytes when the webhook arrives. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="mediaId">The media id from &#x60;attachments[].payload.id&#x60;.</param>
+        /// <param name="accountId">The WhatsApp account that received the media.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<FileParameter>> GetWhatsAppMediaWithHttpInfoAsync(string mediaId, string accountId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'mediaId' is set
+            if (mediaId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'mediaId' when calling WhatsAppApi->GetWhatsAppMedia");
+
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->GetWhatsAppMedia");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/octet-stream",
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("mediaId", Zernio.Client.ClientUtils.ParameterToString(mediaId)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileParameter>("/v1/whatsapp/media/{mediaId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWhatsAppMedia", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
