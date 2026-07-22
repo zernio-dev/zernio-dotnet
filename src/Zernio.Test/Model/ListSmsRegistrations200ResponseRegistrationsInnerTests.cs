@@ -137,6 +137,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TfActionRequiredAt'
+        /// </summary>
+        [Fact]
+        public void TfActionRequiredAtTest()
+        {
+            // TODO unit test for the property 'TfActionRequiredAt'
+        }
+
+        /// <summary>
         /// Test the property 'PhoneNumbers'
         /// </summary>
         [Fact]

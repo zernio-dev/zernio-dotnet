@@ -127,11 +127,12 @@ namespace Zernio.Model
         /// <param name="brandId">TCR brand id, useful when referencing the brand in carrier support threads..</param>
         /// <param name="campaignId">TCR campaign id..</param>
         /// <param name="declineReason">declineReason.</param>
+        /// <param name="tfActionRequiredAt">Toll-free only: when the carrier requested changes (\&quot;Waiting For Customer\&quot;). The request must be resubmitted within 7 days of this timestamp or it expires..</param>
         /// <param name="phoneNumbers">phoneNumbers.</param>
         /// <param name="awaitingOtp">Sole-prop 10DLC only; the OTP step is still pending..</param>
         /// <param name="trustScore">Carrier-assigned brand trust score; drives throughput..</param>
         /// <param name="throughput">throughput.</param>
-        public ListSmsRegistrations200ResponseRegistrationsInner(string id = default, RegistrationTypeEnum? registrationType = default, string displayName = default, StatusEnum? status = default, string brandStatus = default, string campaignStatus = default, string brandId = default, string campaignId = default, string declineReason = default, List<string> phoneNumbers = default, bool awaitingOtp = default, decimal? trustScore = default, ListSmsRegistrations200ResponseRegistrationsInnerThroughput throughput = default)
+        public ListSmsRegistrations200ResponseRegistrationsInner(string id = default, RegistrationTypeEnum? registrationType = default, string displayName = default, StatusEnum? status = default, string brandStatus = default, string campaignStatus = default, string brandId = default, string campaignId = default, string declineReason = default, DateTime? tfActionRequiredAt = default, List<string> phoneNumbers = default, bool awaitingOtp = default, decimal? trustScore = default, ListSmsRegistrations200ResponseRegistrationsInnerThroughput throughput = default)
         {
             this.Id = id;
             this.RegistrationType = registrationType;
@@ -142,6 +143,7 @@ namespace Zernio.Model
             this.BrandId = brandId;
             this.CampaignId = campaignId;
             this.DeclineReason = declineReason;
+            this.TfActionRequiredAt = tfActionRequiredAt;
             this.PhoneNumbers = phoneNumbers;
             this.AwaitingOtp = awaitingOtp;
             this.TrustScore = trustScore;
@@ -194,6 +196,13 @@ namespace Zernio.Model
         public string DeclineReason { get; set; }
 
         /// <summary>
+        /// Toll-free only: when the carrier requested changes (\&quot;Waiting For Customer\&quot;). The request must be resubmitted within 7 days of this timestamp or it expires.
+        /// </summary>
+        /// <value>Toll-free only: when the carrier requested changes (\&quot;Waiting For Customer\&quot;). The request must be resubmitted within 7 days of this timestamp or it expires.</value>
+        [DataMember(Name = "tfActionRequiredAt", EmitDefaultValue = true)]
+        public DateTime? TfActionRequiredAt { get; set; }
+
+        /// <summary>
         /// Gets or Sets PhoneNumbers
         /// </summary>
         [DataMember(Name = "phoneNumbers", EmitDefaultValue = false)]
@@ -236,6 +245,7 @@ namespace Zernio.Model
             sb.Append("  BrandId: ").Append(BrandId).Append("\n");
             sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
             sb.Append("  DeclineReason: ").Append(DeclineReason).Append("\n");
+            sb.Append("  TfActionRequiredAt: ").Append(TfActionRequiredAt).Append("\n");
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("  AwaitingOtp: ").Append(AwaitingOtp).Append("\n");
             sb.Append("  TrustScore: ").Append(TrustScore).Append("\n");
