@@ -28,34 +28,34 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// InboxWebhookMessageAttachmentsInner
+    /// WebhookPayloadMessageSentMessageAttachmentsInner
     /// </summary>
-    [DataContract(Name = "InboxWebhookMessage_attachments_inner")]
-    public partial class InboxWebhookMessageAttachmentsInner : IValidatableObject
+    [DataContract(Name = "WebhookPayloadMessageSent_message_attachments_inner")]
+    public partial class WebhookPayloadMessageSentMessageAttachmentsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InboxWebhookMessageAttachmentsInner" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadMessageSentMessageAttachmentsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected InboxWebhookMessageAttachmentsInner() { }
+        protected WebhookPayloadMessageSentMessageAttachmentsInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="InboxWebhookMessageAttachmentsInner" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadMessageSentMessageAttachmentsInner" /> class.
         /// </summary>
         /// <param name="type">Attachment type (image, video, file, sticker, audio) (required).</param>
-        /// <param name="url">Where to fetch the attachment. The contract depends on direction and platform: inbound WhatsApp media points at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60; and requires &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;, while outgoing media carries the URL originally supplied and Instagram / Facebook / Telegram carry direct platform CDN links that need no authentication.  (required).</param>
+        /// <param name="url">Where to fetch the attachment. For outgoing messages this is the media URL as sent, so for WhatsApp it is the URL you supplied when publishing (WhatsApp sends media by link), not a Zernio endpoint, and it needs no Zernio credentials. Contrast the inbound direction: &#x60;message.received&#x60; attachment URLs on WhatsApp point at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;.  (required).</param>
         /// <param name="payload">Additional attachment metadata.</param>
-        public InboxWebhookMessageAttachmentsInner(string type = default, string url = default, Object payload = default)
+        public WebhookPayloadMessageSentMessageAttachmentsInner(string type = default, string url = default, Object payload = default)
         {
             // to ensure "type" is required (not null)
             if (type == null)
             {
-                throw new ArgumentNullException("type is a required property for InboxWebhookMessageAttachmentsInner and cannot be null");
+                throw new ArgumentNullException("type is a required property for WebhookPayloadMessageSentMessageAttachmentsInner and cannot be null");
             }
             this.Type = type;
             // to ensure "url" is required (not null)
             if (url == null)
             {
-                throw new ArgumentNullException("url is a required property for InboxWebhookMessageAttachmentsInner and cannot be null");
+                throw new ArgumentNullException("url is a required property for WebhookPayloadMessageSentMessageAttachmentsInner and cannot be null");
             }
             this.Url = url;
             this.Payload = payload;
@@ -69,9 +69,9 @@ namespace Zernio.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Where to fetch the attachment. The contract depends on direction and platform: inbound WhatsApp media points at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60; and requires &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;, while outgoing media carries the URL originally supplied and Instagram / Facebook / Telegram carry direct platform CDN links that need no authentication. 
+        /// Where to fetch the attachment. For outgoing messages this is the media URL as sent, so for WhatsApp it is the URL you supplied when publishing (WhatsApp sends media by link), not a Zernio endpoint, and it needs no Zernio credentials. Contrast the inbound direction: &#x60;message.received&#x60; attachment URLs on WhatsApp point at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;. 
         /// </summary>
-        /// <value>Where to fetch the attachment. The contract depends on direction and platform: inbound WhatsApp media points at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60; and requires &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;, while outgoing media carries the URL originally supplied and Instagram / Facebook / Telegram carry direct platform CDN links that need no authentication. </value>
+        /// <value>Where to fetch the attachment. For outgoing messages this is the media URL as sent, so for WhatsApp it is the URL you supplied when publishing (WhatsApp sends media by link), not a Zernio endpoint, and it needs no Zernio credentials. Contrast the inbound direction: &#x60;message.received&#x60; attachment URLs on WhatsApp point at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;. </value>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
         public string Url { get; set; }
 
@@ -89,7 +89,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class InboxWebhookMessageAttachmentsInner {\n");
+            sb.Append("class WebhookPayloadMessageSentMessageAttachmentsInner {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Payload: ").Append(Payload).Append("\n");

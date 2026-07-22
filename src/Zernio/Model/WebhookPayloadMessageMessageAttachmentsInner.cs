@@ -28,34 +28,34 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// InboxWebhookMessageAttachmentsInner
+    /// WebhookPayloadMessageMessageAttachmentsInner
     /// </summary>
-    [DataContract(Name = "InboxWebhookMessage_attachments_inner")]
-    public partial class InboxWebhookMessageAttachmentsInner : IValidatableObject
+    [DataContract(Name = "WebhookPayloadMessage_message_attachments_inner")]
+    public partial class WebhookPayloadMessageMessageAttachmentsInner : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InboxWebhookMessageAttachmentsInner" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadMessageMessageAttachmentsInner" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected InboxWebhookMessageAttachmentsInner() { }
+        protected WebhookPayloadMessageMessageAttachmentsInner() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="InboxWebhookMessageAttachmentsInner" /> class.
+        /// Initializes a new instance of the <see cref="WebhookPayloadMessageMessageAttachmentsInner" /> class.
         /// </summary>
         /// <param name="type">Attachment type (image, video, file, sticker, audio) (required).</param>
-        /// <param name="url">Where to fetch the attachment. The contract depends on direction and platform: inbound WhatsApp media points at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60; and requires &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;, while outgoing media carries the URL originally supplied and Instagram / Facebook / Telegram carry direct platform CDN links that need no authentication.  (required).</param>
+        /// <param name="url">Where to fetch the attachment. **The contract differs by platform.**  - **WhatsApp**: points at &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;, an   authenticated Zernio endpoint. You MUST send   &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;; fetching it without that   header returns &#x60;401&#x60;. Download and store the bytes when this   webhook arrives: Meta drops inbound media after a limited   retention window, after which the endpoint answers &#x60;400&#x60;   permanently and the media is unrecoverable. - **Instagram / Facebook / Telegram**: a direct platform CDN link   that needs no authentication and expires on the platform&#39;s own   schedule.  (required).</param>
         /// <param name="payload">Additional attachment metadata.</param>
-        public InboxWebhookMessageAttachmentsInner(string type = default, string url = default, Object payload = default)
+        public WebhookPayloadMessageMessageAttachmentsInner(string type = default, string url = default, Object payload = default)
         {
             // to ensure "type" is required (not null)
             if (type == null)
             {
-                throw new ArgumentNullException("type is a required property for InboxWebhookMessageAttachmentsInner and cannot be null");
+                throw new ArgumentNullException("type is a required property for WebhookPayloadMessageMessageAttachmentsInner and cannot be null");
             }
             this.Type = type;
             // to ensure "url" is required (not null)
             if (url == null)
             {
-                throw new ArgumentNullException("url is a required property for InboxWebhookMessageAttachmentsInner and cannot be null");
+                throw new ArgumentNullException("url is a required property for WebhookPayloadMessageMessageAttachmentsInner and cannot be null");
             }
             this.Url = url;
             this.Payload = payload;
@@ -69,9 +69,9 @@ namespace Zernio.Model
         public string Type { get; set; }
 
         /// <summary>
-        /// Where to fetch the attachment. The contract depends on direction and platform: inbound WhatsApp media points at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60; and requires &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;, while outgoing media carries the URL originally supplied and Instagram / Facebook / Telegram carry direct platform CDN links that need no authentication. 
+        /// Where to fetch the attachment. **The contract differs by platform.**  - **WhatsApp**: points at &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;, an   authenticated Zernio endpoint. You MUST send   &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;; fetching it without that   header returns &#x60;401&#x60;. Download and store the bytes when this   webhook arrives: Meta drops inbound media after a limited   retention window, after which the endpoint answers &#x60;400&#x60;   permanently and the media is unrecoverable. - **Instagram / Facebook / Telegram**: a direct platform CDN link   that needs no authentication and expires on the platform&#39;s own   schedule. 
         /// </summary>
-        /// <value>Where to fetch the attachment. The contract depends on direction and platform: inbound WhatsApp media points at the authenticated &#x60;GET /v1/whatsapp/media/{mediaId}&#x60; and requires &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;, while outgoing media carries the URL originally supplied and Instagram / Facebook / Telegram carry direct platform CDN links that need no authentication. </value>
+        /// <value>Where to fetch the attachment. **The contract differs by platform.**  - **WhatsApp**: points at &#x60;GET /v1/whatsapp/media/{mediaId}&#x60;, an   authenticated Zernio endpoint. You MUST send   &#x60;Authorization: Bearer &lt;your API key&gt;&#x60;; fetching it without that   header returns &#x60;401&#x60;. Download and store the bytes when this   webhook arrives: Meta drops inbound media after a limited   retention window, after which the endpoint answers &#x60;400&#x60;   permanently and the media is unrecoverable. - **Instagram / Facebook / Telegram**: a direct platform CDN link   that needs no authentication and expires on the platform&#39;s own   schedule. </value>
         [DataMember(Name = "url", IsRequired = true, EmitDefaultValue = true)]
         public string Url { get; set; }
 
@@ -89,7 +89,7 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class InboxWebhookMessageAttachmentsInner {\n");
+            sb.Append("class WebhookPayloadMessageMessageAttachmentsInner {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Payload: ").Append(Payload).Append("\n");

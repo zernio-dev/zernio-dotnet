@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SendSmsRequest" /> class.
         /// </summary>
-        /// <param name="from">One of your SMS-enabled numbers (E.164; formatting is normalized), or an approved alphanumeric sender ID (3-11 letters/digits/spaces, created via &#x60;/v1/sms/sender-ids&#x60;). (required).</param>
+        /// <param name="from">One of your SMS-enabled numbers (E.164; formatting is normalized). (required).</param>
         /// <param name="to">Recipient number (E.164). (required).</param>
         /// <param name="text">Message body. Required unless &#x60;mediaUrls&#x60; is set. Max 10 SMS segments (1530 GSM-7 or 670 unicode characters)..</param>
         /// <param name="mediaUrls">Public media URLs to attach (sends as MMS). Max 10..</param>
@@ -66,9 +66,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// One of your SMS-enabled numbers (E.164; formatting is normalized), or an approved alphanumeric sender ID (3-11 letters/digits/spaces, created via &#x60;/v1/sms/sender-ids&#x60;).
+        /// One of your SMS-enabled numbers (E.164; formatting is normalized).
         /// </summary>
-        /// <value>One of your SMS-enabled numbers (E.164; formatting is normalized), or an approved alphanumeric sender ID (3-11 letters/digits/spaces, created via &#x60;/v1/sms/sender-ids&#x60;).</value>
+        /// <value>One of your SMS-enabled numbers (E.164; formatting is normalized).</value>
         [DataMember(Name = "from", IsRequired = true, EmitDefaultValue = true)]
         public string From { get; set; }
 

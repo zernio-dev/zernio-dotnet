@@ -50,27 +50,6 @@ namespace Zernio.Api
         /// <returns>ApiResponse of BulkUpdateAdCampaignStatus200Response</returns>
         ApiResponse<BulkUpdateAdCampaignStatus200Response> BulkUpdateAdCampaignStatusWithHttpInfo(BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest);
         /// <summary>
-        /// Create a standalone campaign (Meta)
-        /// </summary>
-        /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAdCampaignRequest"></param>
-        /// <returns>CreateAdCampaign201Response</returns>
-        CreateAdCampaign201Response CreateAdCampaign(CreateAdCampaignRequest createAdCampaignRequest);
-
-        /// <summary>
-        /// Create a standalone campaign (Meta)
-        /// </summary>
-        /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAdCampaignRequest"></param>
-        /// <returns>ApiResponse of CreateAdCampaign201Response</returns>
-        ApiResponse<CreateAdCampaign201Response> CreateAdCampaignWithHttpInfo(CreateAdCampaignRequest createAdCampaignRequest);
-        /// <summary>
         /// Delete a campaign
         /// </summary>
         /// <remarks>
@@ -116,29 +95,6 @@ namespace Zernio.Api
         /// <param name="duplicateAdCampaignRequest"></param>
         /// <returns>ApiResponse of DuplicateAdCampaign200Response</returns>
         ApiResponse<DuplicateAdCampaign200Response> DuplicateAdCampaignWithHttpInfo(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest);
-        /// <summary>
-        /// Duplicate an ad set (Meta)
-        /// </summary>
-        /// <remarks>
-        /// Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adSetId">Source platform ad set ID</param>
-        /// <param name="duplicateAdSetRequest"></param>
-        /// <returns>DuplicateAdSet200Response</returns>
-        DuplicateAdSet200Response DuplicateAdSet(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest);
-
-        /// <summary>
-        /// Duplicate an ad set (Meta)
-        /// </summary>
-        /// <remarks>
-        /// Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adSetId">Source platform ad set ID</param>
-        /// <param name="duplicateAdSetRequest"></param>
-        /// <returns>ApiResponse of DuplicateAdSet200Response</returns>
-        ApiResponse<DuplicateAdSet200Response> DuplicateAdSetWithHttpInfo(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest);
         /// <summary>
         /// Live ad-set details incl. learning phase (Meta)
         /// </summary>
@@ -404,29 +360,6 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (BulkUpdateAdCampaignStatus200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<BulkUpdateAdCampaignStatus200Response>> BulkUpdateAdCampaignStatusWithHttpInfoAsync(BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create a standalone campaign (Meta)
-        /// </summary>
-        /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAdCampaignRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateAdCampaign201Response</returns>
-        System.Threading.Tasks.Task<CreateAdCampaign201Response> CreateAdCampaignAsync(CreateAdCampaignRequest createAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Create a standalone campaign (Meta)
-        /// </summary>
-        /// <remarks>
-        /// Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAdCampaignRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateAdCampaign201Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CreateAdCampaign201Response>> CreateAdCampaignWithHttpInfoAsync(CreateAdCampaignRequest createAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
-        /// <summary>
         /// Delete a campaign
         /// </summary>
         /// <remarks>
@@ -476,31 +409,6 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DuplicateAdCampaign200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DuplicateAdCampaign200Response>> DuplicateAdCampaignWithHttpInfoAsync(string campaignId, DuplicateAdCampaignRequest duplicateAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Duplicate an ad set (Meta)
-        /// </summary>
-        /// <remarks>
-        /// Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adSetId">Source platform ad set ID</param>
-        /// <param name="duplicateAdSetRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of DuplicateAdSet200Response</returns>
-        System.Threading.Tasks.Task<DuplicateAdSet200Response> DuplicateAdSetAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, System.Threading.CancellationToken cancellationToken = default);
-
-        /// <summary>
-        /// Duplicate an ad set (Meta)
-        /// </summary>
-        /// <remarks>
-        /// Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-        /// </remarks>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adSetId">Source platform ad set ID</param>
-        /// <param name="duplicateAdSetRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (DuplicateAdSet200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DuplicateAdSet200Response>> DuplicateAdSetWithHttpInfoAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Live ad-set details incl. learning phase (Meta)
         /// </summary>
@@ -1092,135 +1000,6 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a standalone campaign (Meta) Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAdCampaignRequest"></param>
-        /// <returns>CreateAdCampaign201Response</returns>
-        public CreateAdCampaign201Response CreateAdCampaign(CreateAdCampaignRequest createAdCampaignRequest)
-        {
-            Zernio.Client.ApiResponse<CreateAdCampaign201Response> localVarResponse = CreateAdCampaignWithHttpInfo(createAdCampaignRequest);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Create a standalone campaign (Meta) Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAdCampaignRequest"></param>
-        /// <returns>ApiResponse of CreateAdCampaign201Response</returns>
-        public Zernio.Client.ApiResponse<CreateAdCampaign201Response> CreateAdCampaignWithHttpInfo(CreateAdCampaignRequest createAdCampaignRequest)
-        {
-            // verify the required parameter 'createAdCampaignRequest' is set
-            if (createAdCampaignRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createAdCampaignRequest' when calling AdCampaignsApi->CreateAdCampaign");
-
-            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.Data = createAdCampaignRequest;
-
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<CreateAdCampaign201Response>("/v1/ads/campaigns", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("CreateAdCampaign", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Create a standalone campaign (Meta) Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAdCampaignRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateAdCampaign201Response</returns>
-        public async System.Threading.Tasks.Task<CreateAdCampaign201Response> CreateAdCampaignAsync(CreateAdCampaignRequest createAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
-        {
-            Zernio.Client.ApiResponse<CreateAdCampaign201Response> localVarResponse = await CreateAdCampaignWithHttpInfoAsync(createAdCampaignRequest, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Create a standalone campaign (Meta) Creates a campaign WITHOUT its first ad set / ad (the ODAX shell only). Ad sets join it later via &#x60;existingCampaignId&#x60; on the create endpoints. A budget here is campaign-level (CBO) by definition; omit it for ABO (each ad set carries its own budget). Created &#x60;PAUSED&#x60; unless &#x60;status: ACTIVE&#x60;. The campaign materializes in &#x60;/v1/ads/tree&#x60; via the next sync discovery pass. Meta only.
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createAdCampaignRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateAdCampaign201Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateAdCampaign201Response>> CreateAdCampaignWithHttpInfoAsync(CreateAdCampaignRequest createAdCampaignRequest, System.Threading.CancellationToken cancellationToken = default)
-        {
-            // verify the required parameter 'createAdCampaignRequest' is set
-            if (createAdCampaignRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createAdCampaignRequest' when calling AdCampaignsApi->CreateAdCampaign");
-
-
-            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.Data = createAdCampaignRequest;
-
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-
-            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateAdCampaign201Response>("/v1/ads/campaigns", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("CreateAdCampaign", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
         /// Delete a campaign Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1500,149 +1279,6 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DuplicateAdCampaign", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Duplicate an ad set (Meta) Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adSetId">Source platform ad set ID</param>
-        /// <param name="duplicateAdSetRequest"></param>
-        /// <returns>DuplicateAdSet200Response</returns>
-        public DuplicateAdSet200Response DuplicateAdSet(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest)
-        {
-            Zernio.Client.ApiResponse<DuplicateAdSet200Response> localVarResponse = DuplicateAdSetWithHttpInfo(adSetId, duplicateAdSetRequest);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Duplicate an ad set (Meta) Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adSetId">Source platform ad set ID</param>
-        /// <param name="duplicateAdSetRequest"></param>
-        /// <returns>ApiResponse of DuplicateAdSet200Response</returns>
-        public Zernio.Client.ApiResponse<DuplicateAdSet200Response> DuplicateAdSetWithHttpInfo(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest)
-        {
-            // verify the required parameter 'adSetId' is set
-            if (adSetId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adSetId' when calling AdCampaignsApi->DuplicateAdSet");
-
-            // verify the required parameter 'duplicateAdSetRequest' is set
-            if (duplicateAdSetRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'duplicateAdSetRequest' when calling AdCampaignsApi->DuplicateAdSet");
-
-            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.PathParameters.Add("adSetId", Zernio.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
-            localVarRequestOptions.Data = duplicateAdSetRequest;
-
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-            var localVarResponse = this.Client.Post<DuplicateAdSet200Response>("/v1/ads/ad-sets/{adSetId}/duplicate", localVarRequestOptions, this.Configuration);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DuplicateAdSet", localVarResponse);
-                if (_exception != null) throw _exception;
-            }
-
-            return localVarResponse;
-        }
-
-        /// <summary>
-        /// Duplicate an ad set (Meta) Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adSetId">Source platform ad set ID</param>
-        /// <param name="duplicateAdSetRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of DuplicateAdSet200Response</returns>
-        public async System.Threading.Tasks.Task<DuplicateAdSet200Response> DuplicateAdSetAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, System.Threading.CancellationToken cancellationToken = default)
-        {
-            Zernio.Client.ApiResponse<DuplicateAdSet200Response> localVarResponse = await DuplicateAdSetWithHttpInfoAsync(adSetId, duplicateAdSetRequest, cancellationToken).ConfigureAwait(false);
-            return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Duplicate an ad set (Meta) Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously — sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip). Meta only.
-        /// </summary>
-        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="adSetId">Source platform ad set ID</param>
-        /// <param name="duplicateAdSetRequest"></param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (DuplicateAdSet200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DuplicateAdSet200Response>> DuplicateAdSetWithHttpInfoAsync(string adSetId, DuplicateAdSetRequest duplicateAdSetRequest, System.Threading.CancellationToken cancellationToken = default)
-        {
-            // verify the required parameter 'adSetId' is set
-            if (adSetId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adSetId' when calling AdCampaignsApi->DuplicateAdSet");
-
-            // verify the required parameter 'duplicateAdSetRequest' is set
-            if (duplicateAdSetRequest == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'duplicateAdSetRequest' when calling AdCampaignsApi->DuplicateAdSet");
-
-
-            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
-
-            string[] _contentTypes = new string[] {
-                "application/json"
-            };
-
-            // to determine the Accept header
-            string[] _accepts = new string[] {
-                "application/json"
-            };
-
-
-            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
-            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
-
-            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
-            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
-
-            localVarRequestOptions.PathParameters.Add("adSetId", Zernio.Client.ClientUtils.ParameterToString(adSetId)); // path parameter
-            localVarRequestOptions.Data = duplicateAdSetRequest;
-
-            // authentication (bearerAuth) required
-            // bearer authentication required
-            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
-            {
-                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
-            }
-
-            // make the HTTP request
-
-            var localVarResponse = await this.AsynchronousClient.PostAsync<DuplicateAdSet200Response>("/v1/ads/ad-sets/{adSetId}/duplicate", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
-
-            if (this.ExceptionFactory != null)
-            {
-                Exception _exception = this.ExceptionFactory("DuplicateAdSet", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

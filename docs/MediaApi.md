@@ -101,7 +101,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Presigned URL generated successfully |  -  |
-| **400** | Invalid request (missing filename, contentType, or unsupported content type) |  -  |
+| **400** | Invalid request (missing filename, unsupported contentType, or size out of range) |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
