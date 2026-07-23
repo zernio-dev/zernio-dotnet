@@ -394,6 +394,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ReplyToPhoneNumberReviewer200Response</returns>
         ApiResponse<ReplyToPhoneNumberReviewer200Response> ReplyToPhoneNumberReviewerWithHttpInfo(string id, ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest);
         /// <summary>
+        /// Respond to the regulatory reviewer (message + corrections)
+        /// </summary>
+        /// <remarks>
+        /// Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToPhoneNumberReviewerRequest"></param>
+        /// <returns>RespondToPhoneNumberReviewer200Response</returns>
+        RespondToPhoneNumberReviewer200Response RespondToPhoneNumberReviewer(string id, RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest);
+
+        /// <summary>
+        /// Respond to the regulatory reviewer (message + corrections)
+        /// </summary>
+        /// <remarks>
+        /// Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToPhoneNumberReviewerRequest"></param>
+        /// <returns>ApiResponse of RespondToPhoneNumberReviewer200Response</returns>
+        ApiResponse<RespondToPhoneNumberReviewer200Response> RespondToPhoneNumberReviewerWithHttpInfo(string id, RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest);
+        /// <summary>
         /// Pre-review a KYC packet
         /// </summary>
         /// <remarks>
@@ -964,6 +987,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ReplyToPhoneNumberReviewer200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ReplyToPhoneNumberReviewer200Response>> ReplyToPhoneNumberReviewerWithHttpInfoAsync(string id, ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Respond to the regulatory reviewer (message + corrections)
+        /// </summary>
+        /// <remarks>
+        /// Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToPhoneNumberReviewerRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RespondToPhoneNumberReviewer200Response</returns>
+        System.Threading.Tasks.Task<RespondToPhoneNumberReviewer200Response> RespondToPhoneNumberReviewerAsync(string id, RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Respond to the regulatory reviewer (message + corrections)
+        /// </summary>
+        /// <remarks>
+        /// Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToPhoneNumberReviewerRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RespondToPhoneNumberReviewer200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RespondToPhoneNumberReviewer200Response>> RespondToPhoneNumberReviewerWithHttpInfoAsync(string id, RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Pre-review a KYC packet
         /// </summary>
@@ -3565,6 +3613,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ReplyToPhoneNumberReviewer", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Respond to the regulatory reviewer (message + corrections) Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToPhoneNumberReviewerRequest"></param>
+        /// <returns>RespondToPhoneNumberReviewer200Response</returns>
+        public RespondToPhoneNumberReviewer200Response RespondToPhoneNumberReviewer(string id, RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest)
+        {
+            Zernio.Client.ApiResponse<RespondToPhoneNumberReviewer200Response> localVarResponse = RespondToPhoneNumberReviewerWithHttpInfo(id, respondToPhoneNumberReviewerRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Respond to the regulatory reviewer (message + corrections) Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToPhoneNumberReviewerRequest"></param>
+        /// <returns>ApiResponse of RespondToPhoneNumberReviewer200Response</returns>
+        public Zernio.Client.ApiResponse<RespondToPhoneNumberReviewer200Response> RespondToPhoneNumberReviewerWithHttpInfo(string id, RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling PhoneNumbersApi->RespondToPhoneNumberReviewer");
+
+            // verify the required parameter 'respondToPhoneNumberReviewerRequest' is set
+            if (respondToPhoneNumberReviewerRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'respondToPhoneNumberReviewerRequest' when calling PhoneNumbersApi->RespondToPhoneNumberReviewer");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = respondToPhoneNumberReviewerRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<RespondToPhoneNumberReviewer200Response>("/v1/phone-numbers/{id}/remediate/respond", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RespondToPhoneNumberReviewer", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Respond to the regulatory reviewer (message + corrections) Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToPhoneNumberReviewerRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RespondToPhoneNumberReviewer200Response</returns>
+        public async System.Threading.Tasks.Task<RespondToPhoneNumberReviewer200Response> RespondToPhoneNumberReviewerAsync(string id, RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RespondToPhoneNumberReviewer200Response> localVarResponse = await RespondToPhoneNumberReviewerWithHttpInfoAsync(id, respondToPhoneNumberReviewerRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Respond to the regulatory reviewer (message + corrections) Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \&quot;in review\&quot;); if a message or file attachments are present they are posted to the reviewer&#39;s comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. &#x60;documents&#x60; correct requirement slots; &#x60;attachments&#x60; are loose files (their links are added to your message). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToPhoneNumberReviewerRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RespondToPhoneNumberReviewer200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RespondToPhoneNumberReviewer200Response>> RespondToPhoneNumberReviewerWithHttpInfoAsync(string id, RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling PhoneNumbersApi->RespondToPhoneNumberReviewer");
+
+            // verify the required parameter 'respondToPhoneNumberReviewerRequest' is set
+            if (respondToPhoneNumberReviewerRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'respondToPhoneNumberReviewerRequest' when calling PhoneNumbersApi->RespondToPhoneNumberReviewer");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = respondToPhoneNumberReviewerRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RespondToPhoneNumberReviewer200Response>("/v1/phone-numbers/{id}/remediate/respond", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RespondToPhoneNumberReviewer", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

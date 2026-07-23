@@ -263,6 +263,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test RespondToPhoneNumberReviewer
+        /// </summary>
+        [Fact]
+        public void RespondToPhoneNumberReviewerTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest = null;
+            //var response = instance.RespondToPhoneNumberReviewer(id, respondToPhoneNumberReviewerRequest);
+            //Assert.IsType<RespondToPhoneNumberReviewer200Response>(response);
+        }
+
+        /// <summary>
         /// Test ReviewPhoneNumberKycPacket
         /// </summary>
         [Fact]

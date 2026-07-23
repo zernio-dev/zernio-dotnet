@@ -1059,6 +1059,9 @@ docs/RequestSmsSenderIdLimitIncreaseRequest.md
 docs/ResendSmsRegistrationOtp200Response.md
 docs/ReserveRfPrediction201Response.md
 docs/ReserveRfPredictionRequest.md
+docs/RespondToPhoneNumberReviewer200Response.md
+docs/RespondToPhoneNumberReviewerRequest.md
+docs/RespondToPhoneNumberReviewerRequestDocumentsInner.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
 docs/RetweetPost200Response.md
@@ -2635,6 +2638,9 @@ src/Zernio.Test/Model/RequestSmsSenderIdLimitIncreaseRequestTests.cs
 src/Zernio.Test/Model/ResendSmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/ReserveRfPrediction201ResponseTests.cs
 src/Zernio.Test/Model/ReserveRfPredictionRequestTests.cs
+src/Zernio.Test/Model/RespondToPhoneNumberReviewer200ResponseTests.cs
+src/Zernio.Test/Model/RespondToPhoneNumberReviewerRequestDocumentsInnerTests.cs
+src/Zernio.Test/Model/RespondToPhoneNumberReviewerRequestTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseTests.cs
 src/Zernio.Test/Model/RestoreWorkflowVersion200ResponseWorkflowTests.cs
 src/Zernio.Test/Model/RetweetPost200ResponseTests.cs
@@ -4210,6 +4216,9 @@ src/Zernio/Model/RequestSmsSenderIdLimitIncreaseRequest.cs
 src/Zernio/Model/ResendSmsRegistrationOtp200Response.cs
 src/Zernio/Model/ReserveRfPrediction201Response.cs
 src/Zernio/Model/ReserveRfPredictionRequest.cs
+src/Zernio/Model/RespondToPhoneNumberReviewer200Response.cs
+src/Zernio/Model/RespondToPhoneNumberReviewerRequest.cs
+src/Zernio/Model/RespondToPhoneNumberReviewerRequestDocumentsInner.cs
 src/Zernio/Model/RestoreWorkflowVersion200Response.cs
 src/Zernio/Model/RestoreWorkflowVersion200ResponseWorkflow.cs
 src/Zernio/Model/RetweetPost200Response.cs

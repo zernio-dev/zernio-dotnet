@@ -21,6 +21,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ReleasePhoneNumber**](PhoneNumbersApi.md#releasephonenumber) | **DELETE** /v1/phone-numbers/{id} | Release phone number |
 | [**RemediatePhoneNumber**](PhoneNumbersApi.md#remediatephonenumber) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number |
 | [**ReplyToPhoneNumberReviewer**](PhoneNumbersApi.md#replytophonenumberreviewer) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer |
+| [**RespondToPhoneNumberReviewer**](PhoneNumbersApi.md#respondtophonenumberreviewer) | **POST** /v1/phone-numbers/{id}/remediate/respond | Respond to the regulatory reviewer (message + corrections) |
 | [**ReviewPhoneNumberKycPacket**](PhoneNumbersApi.md#reviewphonenumberkycpacket) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet |
 | [**SearchAvailablePhoneNumbers**](PhoneNumbersApi.md#searchavailablephonenumbers) | **GET** /v1/phone-numbers/available | Search available numbers |
 | [**SubmitPhoneNumberKyc**](PhoneNumbersApi.md#submitphonenumberkyc) | **POST** /v1/phone-numbers/kyc | Submit KYC |
@@ -1739,6 +1740,111 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
 | **502** | Couldn&#39;t deliver the reply to the reviewer; retry. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="respondtophonenumberreviewer"></a>
+# **RespondToPhoneNumberReviewer**
+> RespondToPhoneNumberReviewer200Response RespondToPhoneNumberReviewer (string id, RespondToPhoneNumberReviewerRequest respondToPhoneNumberReviewerRequest)
+
+Respond to the regulatory reviewer (message + corrections)
+
+Send a single response to the reviewer on a number awaiting remediation: a free-text message and/or corrected requirement documents, in one call. If corrections are present they are PATCHed onto the requirement group and re-submitted (the number goes back to \"in review\"); if a message or file attachments are present they are posted to the reviewer's comment thread. When both are present, your message is the thread comment and the resubmit drives the state change. At least one of message, corrections, or attachments is required. `documents` correct requirement slots; `attachments` are loose files (their links are added to your message). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RespondToPhoneNumberReviewerExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PhoneNumbersApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+            var respondToPhoneNumberReviewerRequest = new RespondToPhoneNumberReviewerRequest(); // RespondToPhoneNumberReviewerRequest | 
+
+            try
+            {
+                // Respond to the regulatory reviewer (message + corrections)
+                RespondToPhoneNumberReviewer200Response result = apiInstance.RespondToPhoneNumberReviewer(id, respondToPhoneNumberReviewerRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PhoneNumbersApi.RespondToPhoneNumberReviewer: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RespondToPhoneNumberReviewerWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Respond to the regulatory reviewer (message + corrections)
+    ApiResponse<RespondToPhoneNumberReviewer200Response> response = apiInstance.RespondToPhoneNumberReviewerWithHttpInfo(id, respondToPhoneNumberReviewerRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PhoneNumbersApi.RespondToPhoneNumberReviewerWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+| **respondToPhoneNumberReviewerRequest** | [**RespondToPhoneNumberReviewerRequest**](RespondToPhoneNumberReviewerRequest.md) |  |  |
+
+### Return type
+
+[**RespondToPhoneNumberReviewer200Response**](RespondToPhoneNumberReviewer200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Response sent. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **409** | Number&#39;s registration is held under our own carrier registration; nothing for you to correct. |  -  |
+| **502** | Couldn&#39;t deliver your response to the reviewer; retry. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

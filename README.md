@@ -445,6 +445,7 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**ReleasePhoneNumber**](docs/PhoneNumbersApi.md#releasephonenumber) | **DELETE** /v1/phone-numbers/{id} | Release phone number
 *PhoneNumbersApi* | [**RemediatePhoneNumber**](docs/PhoneNumbersApi.md#remediatephonenumber) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number
 *PhoneNumbersApi* | [**ReplyToPhoneNumberReviewer**](docs/PhoneNumbersApi.md#replytophonenumberreviewer) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer
+*PhoneNumbersApi* | [**RespondToPhoneNumberReviewer**](docs/PhoneNumbersApi.md#respondtophonenumberreviewer) | **POST** /v1/phone-numbers/{id}/remediate/respond | Respond to the regulatory reviewer (message + corrections)
 *PhoneNumbersApi* | [**ReviewPhoneNumberKycPacket**](docs/PhoneNumbersApi.md#reviewphonenumberkycpacket) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet
 *PhoneNumbersApi* | [**SearchAvailablePhoneNumbers**](docs/PhoneNumbersApi.md#searchavailablephonenumbers) | **GET** /v1/phone-numbers/available | Search available numbers
 *PhoneNumbersApi* | [**SubmitPhoneNumberKyc**](docs/PhoneNumbersApi.md#submitphonenumberkyc) | **POST** /v1/phone-numbers/kyc | Submit KYC
@@ -1671,6 +1672,9 @@ Class | Method | HTTP request | Description
  - [Model.ResendSmsRegistrationOtp200Response](docs/ResendSmsRegistrationOtp200Response.md)
  - [Model.ReserveRfPrediction201Response](docs/ReserveRfPrediction201Response.md)
  - [Model.ReserveRfPredictionRequest](docs/ReserveRfPredictionRequest.md)
+ - [Model.RespondToPhoneNumberReviewer200Response](docs/RespondToPhoneNumberReviewer200Response.md)
+ - [Model.RespondToPhoneNumberReviewerRequest](docs/RespondToPhoneNumberReviewerRequest.md)
+ - [Model.RespondToPhoneNumberReviewerRequestDocumentsInner](docs/RespondToPhoneNumberReviewerRequestDocumentsInner.md)
  - [Model.RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [Model.RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
  - [Model.RetweetPost200Response](docs/RetweetPost200Response.md)
