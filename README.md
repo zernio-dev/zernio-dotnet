@@ -160,84 +160,66 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**ListAccounts**](docs/AccountsApi.md#listaccounts) | **GET** /v1/accounts | List accounts
 *AccountsApi* | [**MoveAccountToProfile**](docs/AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**UpdateAccount**](docs/AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account
+*AdAccountsApi* | [**GetAdAccountFinance**](docs/AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances
+*AdAccountsApi* | [**GetAdComments**](docs/AdAccountsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
+*AdAccountsApi* | [**GetAdsActivityLog**](docs/AdAccountsApi.md#getadsactivitylog) | **GET** /v1/ads/activity | Ad account change / audit log
+*AdAccountsApi* | [**GetDsaDefaults**](docs/AdAccountsApi.md#getdsadefaults) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults
+*AdAccountsApi* | [**GetDsaRecommendations**](docs/AdAccountsApi.md#getdsarecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
+*AdAccountsApi* | [**ListAdAccounts**](docs/AdAccountsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts
+*AdAccountsApi* | [**ListAdLabels**](docs/AdAccountsApi.md#listadlabels) | **GET** /v1/ads/labels | Ad labels
+*AdAccountsApi* | [**ListAdStudies**](docs/AdAccountsApi.md#listadstudies) | **GET** /v1/ads/studies | A/B tests and lift studies
+*AdAccountsApi* | [**ListAdsBusinessCenters**](docs/AdAccountsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
+*AdAccountsApi* | [**ListHighDemandPeriods**](docs/AdAccountsApi.md#listhighdemandperiods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules
+*AdAccountsApi* | [**ListMetaBusinesses**](docs/AdAccountsApi.md#listmetabusinesses) | **GET** /v1/ads/businesses | Businesses list
+*AdAccountsApi* | [**UpdateAdAccount**](docs/AdAccountsApi.md#updateadaccount) | **PATCH** /v1/ads/accounts | Update ad account settings
 *AdAudiencesApi* | [**AddUsersToAdAudience**](docs/AdAudiencesApi.md#adduserstoadaudience) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to audience
 *AdAudiencesApi* | [**CreateAdAudience**](docs/AdAudiencesApi.md#createadaudience) | **POST** /v1/ads/audiences | Create custom audience
 *AdAudiencesApi* | [**DeleteAdAudience**](docs/AdAudiencesApi.md#deleteadaudience) | **DELETE** /v1/ads/audiences/{audienceId} | Delete custom audience
 *AdAudiencesApi* | [**GetAdAudience**](docs/AdAudiencesApi.md#getadaudience) | **GET** /v1/ads/audiences/{audienceId} | Get audience details
 *AdAudiencesApi* | [**ListAdAudiences**](docs/AdAudiencesApi.md#listadaudiences) | **GET** /v1/ads/audiences | List custom audiences
-*AdAudiencesApi* | [**UpdateAdAudience**](docs/AdAudiencesApi.md#updateadaudience) | **PUT** /v1/ads/audiences/{audienceId} | Update saved targeting audience
+*AdAudiencesApi* | [**UpdateAdAudience**](docs/AdAudiencesApi.md#updateadaudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
+*AdCampaignsApi* | [**BoostPost**](docs/AdCampaignsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad
 *AdCampaignsApi* | [**BulkUpdateAdCampaignStatus**](docs/AdCampaignsApi.md#bulkupdateadcampaignstatus) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns
+*AdCampaignsApi* | [**CreateAdCampaign**](docs/AdCampaignsApi.md#createadcampaign) | **POST** /v1/ads/campaigns | Create a standalone campaign
+*AdCampaignsApi* | [**CreateStandaloneAd**](docs/AdCampaignsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad
+*AdCampaignsApi* | [**DeleteAd**](docs/AdCampaignsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad
 *AdCampaignsApi* | [**DeleteAdCampaign**](docs/AdCampaignsApi.md#deleteadcampaign) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
+*AdCampaignsApi* | [**DuplicateAd**](docs/AdCampaignsApi.md#duplicatead) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad
 *AdCampaignsApi* | [**DuplicateAdCampaign**](docs/AdCampaignsApi.md#duplicateadcampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
-*AdCampaignsApi* | [**GetAdSetDetails**](docs/AdCampaignsApi.md#getadsetdetails) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase (Meta)
+*AdCampaignsApi* | [**DuplicateAdSet**](docs/AdCampaignsApi.md#duplicateadset) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set
+*AdCampaignsApi* | [**GetAd**](docs/AdCampaignsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details
+*AdCampaignsApi* | [**GetAdSetDetails**](docs/AdCampaignsApi.md#getadsetdetails) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase
 *AdCampaignsApi* | [**GetAdTree**](docs/AdCampaignsApi.md#getadtree) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**GetAdsTimeline**](docs/AdCampaignsApi.md#getadstimeline) | **GET** /v1/ads/timeline | Get daily account metrics
 *AdCampaignsApi* | [**ListAdCampaigns**](docs/AdCampaignsApi.md#listadcampaigns) | **GET** /v1/ads/campaigns | List campaigns
+*AdCampaignsApi* | [**ListAds**](docs/AdCampaignsApi.md#listads) | **GET** /v1/ads | List ads
+*AdCampaignsApi* | [**UpdateAd**](docs/AdCampaignsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad
 *AdCampaignsApi* | [**UpdateAdCampaign**](docs/AdCampaignsApi.md#updateadcampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign
 *AdCampaignsApi* | [**UpdateAdCampaignStatus**](docs/AdCampaignsApi.md#updateadcampaignstatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign
 *AdCampaignsApi* | [**UpdateAdSet**](docs/AdCampaignsApi.md#updateadset) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set
 *AdCampaignsApi* | [**UpdateAdSetStatus**](docs/AdCampaignsApi.md#updateadsetstatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
-*AdsApi* | [**AddConversionAssociations**](docs/AdsApi.md#addconversionassociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
-*AdsApi* | [**AdjustConversions**](docs/AdsApi.md#adjustconversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
-*AdsApi* | [**ArchiveLeadForm**](docs/AdsApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
-*AdsApi* | [**BoostPost**](docs/AdsApi.md#boostpost) | **POST** /v1/ads/boost | Boost post as ad
-*AdsApi* | [**CancelRfReservation**](docs/AdsApi.md#cancelrfreservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach & Frequency reservation (Meta)
-*AdsApi* | [**CreateAdInsightsReport**](docs/AdsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta)
-*AdsApi* | [**CreateCallAd**](docs/AdsApi.md#createcallad) | **POST** /v1/ads/call | Create Click-to-Call ad
-*AdsApi* | [**CreateConversionDestination**](docs/AdsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
-*AdsApi* | [**CreateCtwaAd**](docs/AdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated)
-*AdsApi* | [**CreateLeadForm**](docs/AdsApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form
-*AdsApi* | [**CreateMessagingAd**](docs/AdsApi.md#createmessagingad) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
-*AdsApi* | [**CreateRfPrediction**](docs/AdsApi.md#createrfprediction) | **POST** /v1/ads/rf-predictions | Create a Reach & Frequency prediction (Meta)
-*AdsApi* | [**CreateStandaloneAd**](docs/AdsApi.md#createstandalonead) | **POST** /v1/ads/create | Create standalone ad
-*AdsApi* | [**CreateTestLead**](docs/AdsApi.md#createtestlead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
-*AdsApi* | [**DeleteAd**](docs/AdsApi.md#deletead) | **DELETE** /v1/ads/{adId} | Cancel an ad
-*AdsApi* | [**DeleteConversionDestination**](docs/AdsApi.md#deleteconversiondestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
-*AdsApi* | [**EstimateAdReach**](docs/AdsApi.md#estimateadreach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
-*AdsApi* | [**GenerateAdPreviews**](docs/AdsApi.md#generateadpreviews) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta)
-*AdsApi* | [**GetAd**](docs/AdsApi.md#getad) | **GET** /v1/ads/{adId} | Get ad details
-*AdsApi* | [**GetAdAccountFinance**](docs/AdsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances (Meta)
-*AdsApi* | [**GetAdAnalytics**](docs/AdsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
-*AdsApi* | [**GetAdComments**](docs/AdsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
-*AdsApi* | [**GetAdInsightsReport**](docs/AdsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta)
-*AdsApi* | [**GetAdPreviews**](docs/AdsApi.md#getadpreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta)
-*AdsApi* | [**GetAdTrackingTags**](docs/AdsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
-*AdsApi* | [**GetAdsActivityLog**](docs/AdsApi.md#getadsactivitylog) | **GET** /v1/ads/activity | Ad account change / audit log (Meta)
-*AdsApi* | [**GetCampaignAnalytics**](docs/AdsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
-*AdsApi* | [**GetConversionDestination**](docs/AdsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
-*AdsApi* | [**GetConversionMetrics**](docs/AdsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
-*AdsApi* | [**GetConversionsQuality**](docs/AdsApi.md#getconversionsquality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
-*AdsApi* | [**GetDsaDefaults**](docs/AdsApi.md#getdsadefaults) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults
-*AdsApi* | [**GetDsaRecommendations**](docs/AdsApi.md#getdsarecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
-*AdsApi* | [**GetLeadForm**](docs/AdsApi.md#getleadform) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
-*AdsApi* | [**GetLinkedInBidPricing**](docs/AdsApi.md#getlinkedinbidpricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn)
-*AdsApi* | [**GetLinkedInSupplyForecast**](docs/AdsApi.md#getlinkedinsupplyforecast) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn)
-*AdsApi* | [**GetRfPrediction**](docs/AdsApi.md#getrfprediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach & Frequency prediction (Meta)
-*AdsApi* | [**ListAdAccounts**](docs/AdsApi.md#listadaccounts) | **GET** /v1/ads/accounts | List ad accounts
-*AdsApi* | [**ListAdCatalogProductSets**](docs/AdsApi.md#listadcatalogproductsets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog's product sets
-*AdsApi* | [**ListAdCatalogs**](docs/AdsApi.md#listadcatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs
-*AdsApi* | [**ListAdStudies**](docs/AdsApi.md#listadstudies) | **GET** /v1/ads/studies | A/B tests and lift studies (Meta)
-*AdsApi* | [**ListAds**](docs/AdsApi.md#listads) | **GET** /v1/ads | List ads
-*AdsApi* | [**ListAdsBusinessCenters**](docs/AdsApi.md#listadsbusinesscenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
-*AdsApi* | [**ListConversionAssociations**](docs/AdsApi.md#listconversionassociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns
-*AdsApi* | [**ListConversionDestinations**](docs/AdsApi.md#listconversiondestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations
-*AdsApi* | [**ListFormLeads**](docs/AdsApi.md#listformleads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
-*AdsApi* | [**ListLeadForms**](docs/AdsApi.md#listleadforms) | **GET** /v1/ads/lead-forms | List lead forms
-*AdsApi* | [**ListLeads**](docs/AdsApi.md#listleads) | **GET** /v1/ads/leads | List submitted leads
-*AdsApi* | [**ListWhatsAppConversions**](docs/AdsApi.md#listwhatsappconversions) | **GET** /v1/whatsapp/conversions | List conversion events
-*AdsApi* | [**QueryAdInsights**](docs/AdsApi.md#queryadinsights) | **GET** /v1/ads/insights | Flexible live insights query (Meta)
-*AdsApi* | [**RemoveConversionAssociations**](docs/AdsApi.md#removeconversionassociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
-*AdsApi* | [**ReserveRfPrediction**](docs/AdsApi.md#reserverfprediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach & Frequency prediction (Meta)
-*AdsApi* | [**SearchAdInterests**](docs/AdsApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests
-*AdsApi* | [**SearchAdTargeting**](docs/AdsApi.md#searchadtargeting) | **GET** /v1/ads/targeting/search | Search targeting options
-*AdsApi* | [**SendConversions**](docs/AdsApi.md#sendconversions) | **POST** /v1/ads/conversions | Send conversion events
-*AdsApi* | [**SendWhatsAppConversion**](docs/AdsApi.md#sendwhatsappconversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
-*AdsApi* | [**UpdateAd**](docs/AdsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad
-*AdsApi* | [**UpdateAdAccount**](docs/AdsApi.md#updateadaccount) | **PATCH** /v1/ads/accounts | Update ad account settings
-*AdsApi* | [**UpdateAdStatus**](docs/AdsApi.md#updateadstatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
-*AdsApi* | [**UpdateAdTrackingTags**](docs/AdsApi.md#updateadtrackingtags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
-*AdsApi* | [**UpdateConversionDestination**](docs/AdsApi.md#updateconversiondestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
-*AdsApi* | [**UploadAdImage**](docs/AdsApi.md#uploadadimage) | **POST** /v1/ads/images | Upload an ad image from base64 (Meta)
+*AdCampaignsApi* | [**UpdateAdStatus**](docs/AdCampaignsApi.md#updateadstatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
+*AdCreativesApi* | [**CreateAdCreative**](docs/AdCreativesApi.md#createadcreative) | **POST** /v1/ads/creatives | Create a standalone creative
+*AdCreativesApi* | [**DeleteAdCreative**](docs/AdCreativesApi.md#deleteadcreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative
+*AdCreativesApi* | [**GenerateAdPreviews**](docs/AdCreativesApi.md#generateadpreviews) | **POST** /v1/ads/preview | Render pre-create ad previews
+*AdCreativesApi* | [**GetAdCreative**](docs/AdCreativesApi.md#getadcreative) | **GET** /v1/ads/creatives/{creativeId} | Creative details
+*AdCreativesApi* | [**GetAdPreviews**](docs/AdCreativesApi.md#getadpreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad
+*AdCreativesApi* | [**ListAdCatalogProductSets**](docs/AdCreativesApi.md#listadcatalogproductsets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog's product sets
+*AdCreativesApi* | [**ListAdCatalogs**](docs/AdCreativesApi.md#listadcatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs
+*AdCreativesApi* | [**ListAdCreatives**](docs/AdCreativesApi.md#listadcreatives) | **GET** /v1/ads/creatives | Creative library
+*AdCreativesApi* | [**ListAdImages**](docs/AdCreativesApi.md#listadimages) | **GET** /v1/ads/images | Ad image library
+*AdCreativesApi* | [**UpdateAdCreative**](docs/AdCreativesApi.md#updateadcreative) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative
+*AdCreativesApi* | [**UploadAdImage**](docs/AdCreativesApi.md#uploadadimage) | **POST** /v1/ads/images | Upload an ad image from base64
+*AdInsightsApi* | [**CreateAdInsightsReport**](docs/AdInsightsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run
+*AdInsightsApi* | [**GetAdAnalytics**](docs/AdInsightsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
+*AdInsightsApi* | [**GetAdInsightsReport**](docs/AdInsightsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run
+*AdInsightsApi* | [**GetCampaignAnalytics**](docs/AdInsightsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
+*AdInsightsApi* | [**QueryAdInsights**](docs/AdInsightsApi.md#queryadinsights) | **GET** /v1/ads/insights | Flexible live insights query
+*AdTargetingApi* | [**EstimateAdReach**](docs/AdTargetingApi.md#estimateadreach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
+*AdTargetingApi* | [**GetLinkedInBidPricing**](docs/AdTargetingApi.md#getlinkedinbidpricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds
+*AdTargetingApi* | [**GetLinkedInSupplyForecast**](docs/AdTargetingApi.md#getlinkedinsupplyforecast) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast
+*AdTargetingApi* | [**SearchAdInterests**](docs/AdTargetingApi.md#searchadinterests) | **GET** /v1/ads/interests | Search targeting interests
+*AdTargetingApi* | [**SearchAdTargeting**](docs/AdTargetingApi.md#searchadtargeting) | **GET** /v1/ads/targeting/search | Search targeting options
 *AnalyticsApi* | [**GetAnalytics**](docs/AnalyticsApi.md#getanalytics) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**GetBestTimeToPost**](docs/AnalyticsApi.md#getbesttimetopost) | **GET** /v1/analytics/best-time | Get best times to post
 *AnalyticsApi* | [**GetContentDecay**](docs/AnalyticsApi.md#getcontentdecay) | **GET** /v1/analytics/content-decay | Get content performance decay
@@ -298,6 +280,7 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**ConfigureTikTokAdsBrandIdentity**](docs/ConnectApi.md#configuretiktokadsbrandidentity) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity
 *ConnectApi* | [**ConnectAds**](docs/ConnectApi.md#connectads) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**ConnectBlueskyCredentials**](docs/ConnectApi.md#connectblueskycredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
+*ConnectApi* | [**ConnectOpenAIAdsCredentials**](docs/ConnectApi.md#connectopenaiadscredentials) | **POST** /v1/connect/openai-ads/credentials | Connect an OpenAI Ads account
 *ConnectApi* | [**ConnectWhatsAppCredentials**](docs/ConnectApi.md#connectwhatsappcredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**CreatePinterestBoard**](docs/ConnectApi.md#createpinterestboard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**GetConnectUrl**](docs/ConnectApi.md#getconnecturl) | **GET** /v1/connect/{platform} | Get OAuth connect URL
@@ -339,6 +322,18 @@ Class | Method | HTTP request | Description
 *ContactsApi* | [**GetContactChannels**](docs/ContactsApi.md#getcontactchannels) | **GET** /v1/contacts/{contactId}/channels | List channels for a contact
 *ContactsApi* | [**ListContacts**](docs/ContactsApi.md#listcontacts) | **GET** /v1/contacts | List contacts
 *ContactsApi* | [**UpdateContact**](docs/ContactsApi.md#updatecontact) | **PATCH** /v1/contacts/{contactId} | Update contact
+*ConversionsApi* | [**AddConversionAssociations**](docs/ConversionsApi.md#addconversionassociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
+*ConversionsApi* | [**AdjustConversions**](docs/ConversionsApi.md#adjustconversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
+*ConversionsApi* | [**CreateConversionDestination**](docs/ConversionsApi.md#createconversiondestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
+*ConversionsApi* | [**DeleteConversionDestination**](docs/ConversionsApi.md#deleteconversiondestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
+*ConversionsApi* | [**GetConversionDestination**](docs/ConversionsApi.md#getconversiondestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
+*ConversionsApi* | [**GetConversionMetrics**](docs/ConversionsApi.md#getconversionmetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
+*ConversionsApi* | [**GetConversionsQuality**](docs/ConversionsApi.md#getconversionsquality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
+*ConversionsApi* | [**ListConversionAssociations**](docs/ConversionsApi.md#listconversionassociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns
+*ConversionsApi* | [**ListConversionDestinations**](docs/ConversionsApi.md#listconversiondestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations
+*ConversionsApi* | [**RemoveConversionAssociations**](docs/ConversionsApi.md#removeconversionassociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
+*ConversionsApi* | [**SendConversions**](docs/ConversionsApi.md#sendconversions) | **POST** /v1/ads/conversions | Send conversion events
+*ConversionsApi* | [**UpdateConversionDestination**](docs/ConversionsApi.md#updateconversiondestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
 *CustomFieldsApi* | [**ClearContactFieldValue**](docs/CustomFieldsApi.md#clearcontactfieldvalue) | **DELETE** /v1/contacts/{contactId}/fields/{slug} | Clear custom field value
 *CustomFieldsApi* | [**CreateCustomField**](docs/CustomFieldsApi.md#createcustomfield) | **POST** /v1/custom-fields | Create custom field
 *CustomFieldsApi* | [**DeleteCustomField**](docs/CustomFieldsApi.md#deletecustomfield) | **DELETE** /v1/custom-fields/{fieldId} | Delete custom field
@@ -355,6 +350,7 @@ Class | Method | HTTP request | Description
 *DiscordApi* | [**DeleteDiscordScheduledEvent**](docs/DiscordApi.md#deletediscordscheduledevent) | **DELETE** /v1/discord/guilds/{guildId}/events/{eventId} | Delete a Discord scheduled event
 *DiscordApi* | [**EditDiscordGuildRole**](docs/DiscordApi.md#editdiscordguildrole) | **PATCH** /v1/discord/guilds/{guildId}/roles/{roleId} | Edit a Discord guild role
 *DiscordApi* | [**GetDiscordChannels**](docs/DiscordApi.md#getdiscordchannels) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels
+*DiscordApi* | [**GetDiscordGuildMember**](docs/DiscordApi.md#getdiscordguildmember) | **GET** /v1/discord/guilds/{guildId}/members/{userId} | Get a Discord guild member
 *DiscordApi* | [**GetDiscordScheduledEvent**](docs/DiscordApi.md#getdiscordscheduledevent) | **GET** /v1/discord/guilds/{guildId}/events/{eventId} | Get a Discord scheduled event
 *DiscordApi* | [**GetDiscordSettings**](docs/DiscordApi.md#getdiscordsettings) | **GET** /v1/accounts/{accountId}/discord-settings | Get Discord account settings
 *DiscordApi* | [**ListDiscordGuildMembers**](docs/DiscordApi.md#listdiscordguildmembers) | **GET** /v1/discord/guilds/{guildId}/members | List Discord guild members
@@ -363,6 +359,7 @@ Class | Method | HTTP request | Description
 *DiscordApi* | [**ListDiscordScheduledEvents**](docs/DiscordApi.md#listdiscordscheduledevents) | **GET** /v1/discord/guilds/{guildId}/events | List Discord scheduled events
 *DiscordApi* | [**PinDiscordMessage**](docs/DiscordApi.md#pindiscordmessage) | **PUT** /v1/discord/channels/{channelId}/pins/{messageId} | Pin a Discord message
 *DiscordApi* | [**RemoveDiscordMemberRole**](docs/DiscordApi.md#removediscordmemberrole) | **DELETE** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Remove a role from a guild member
+*DiscordApi* | [**SearchDiscordGuildMembers**](docs/DiscordApi.md#searchdiscordguildmembers) | **GET** /v1/discord/guilds/{guildId}/members/search | Search Discord guild members
 *DiscordApi* | [**SendDiscordDirectMessage**](docs/DiscordApi.md#senddiscorddirectmessage) | **POST** /v1/discord/dms | Send a Discord Direct Message
 *DiscordApi* | [**UnpinDiscordMessage**](docs/DiscordApi.md#unpindiscordmessage) | **DELETE** /v1/discord/channels/{channelId}/pins/{messageId} | Unpin a Discord message
 *DiscordApi* | [**UpdateDiscordScheduledEvent**](docs/DiscordApi.md#updatediscordscheduledevent) | **PATCH** /v1/discord/guilds/{guildId}/events/{eventId} | Update a Discord scheduled event
@@ -402,6 +399,13 @@ Class | Method | HTTP request | Description
 *InstagramApi* | [**GetInstagramStoryInsights**](docs/InstagramApi.md#getinstagramstoryinsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**ListInstagramStories**](docs/InstagramApi.md#listinstagramstories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
 *InvitesApi* | [**CreateInviteToken**](docs/InvitesApi.md#createinvitetoken) | **POST** /v1/invite/tokens | Create invite token
+*LeadGenApi* | [**ArchiveLeadForm**](docs/LeadGenApi.md#archiveleadform) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
+*LeadGenApi* | [**CreateLeadForm**](docs/LeadGenApi.md#createleadform) | **POST** /v1/ads/lead-forms | Create a lead form
+*LeadGenApi* | [**CreateTestLead**](docs/LeadGenApi.md#createtestlead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
+*LeadGenApi* | [**GetLeadForm**](docs/LeadGenApi.md#getleadform) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
+*LeadGenApi* | [**ListFormLeads**](docs/LeadGenApi.md#listformleads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
+*LeadGenApi* | [**ListLeadForms**](docs/LeadGenApi.md#listleadforms) | **GET** /v1/ads/lead-forms | List lead forms
+*LeadGenApi* | [**ListLeads**](docs/LeadGenApi.md#listleads) | **GET** /v1/ads/leads | List submitted leads
 *LinkedInMentionsApi* | [**GetLinkedInMentions**](docs/LinkedInMentionsApi.md#getlinkedinmentions) | **GET** /v1/accounts/{accountId}/linkedin-mentions | Resolve LinkedIn mention
 *LogsApi* | [**ListLogs**](docs/LogsApi.md#listlogs) | **GET** /v1/logs | List activity logs
 *MediaApi* | [**GetMediaPresignedUrl**](docs/MediaApi.md#getmediapresignedurl) | **POST** /v1/media/presign | Get upload URL
@@ -421,6 +425,9 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**SendTypingIndicator**](docs/MessagesApi.md#sendtypingindicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator
 *MessagesApi* | [**UpdateInboxConversation**](docs/MessagesApi.md#updateinboxconversation) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status
 *MessagesApi* | [**UploadMediaDirect**](docs/MessagesApi.md#uploadmediadirect) | **POST** /v1/media/upload-direct | Upload media file
+*MessagingAdsApi* | [**CreateCallAd**](docs/MessagingAdsApi.md#createcallad) | **POST** /v1/ads/call | Create Click-to-Call ad
+*MessagingAdsApi* | [**CreateCtwaAd**](docs/MessagingAdsApi.md#createctwaad) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated)
+*MessagingAdsApi* | [**CreateMessagingAd**](docs/MessagingAdsApi.md#createmessagingad) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
 *PhoneNumbersApi* | [**CancelPhoneNumberPortIn**](docs/PhoneNumbersApi.md#cancelphonenumberportin) | **DELETE** /v1/phone-numbers/port-in/{id} | Cancel a port-in
 *PhoneNumbersApi* | [**CheckPhoneNumberAvailability**](docs/PhoneNumbersApi.md#checkphonenumberavailability) | **GET** /v1/phone-numbers/availability | Check country availability
 *PhoneNumbersApi* | [**CheckPhoneNumberPortability**](docs/PhoneNumbersApi.md#checkphonenumberportability) | **POST** /v1/phone-numbers/port-in/check | Check portability
@@ -437,12 +444,14 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**PurchasePhoneNumber**](docs/PhoneNumbersApi.md#purchasephonenumber) | **POST** /v1/phone-numbers/purchase | Purchase phone number
 *PhoneNumbersApi* | [**ReleasePhoneNumber**](docs/PhoneNumbersApi.md#releasephonenumber) | **DELETE** /v1/phone-numbers/{id} | Release phone number
 *PhoneNumbersApi* | [**RemediatePhoneNumber**](docs/PhoneNumbersApi.md#remediatephonenumber) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number
+*PhoneNumbersApi* | [**ReplyToPhoneNumberReviewer**](docs/PhoneNumbersApi.md#replytophonenumberreviewer) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer
 *PhoneNumbersApi* | [**ReviewPhoneNumberKycPacket**](docs/PhoneNumbersApi.md#reviewphonenumberkycpacket) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet
 *PhoneNumbersApi* | [**SearchAvailablePhoneNumbers**](docs/PhoneNumbersApi.md#searchavailablephonenumbers) | **GET** /v1/phone-numbers/available | Search available numbers
 *PhoneNumbersApi* | [**SubmitPhoneNumberKyc**](docs/PhoneNumbersApi.md#submitphonenumberkyc) | **POST** /v1/phone-numbers/kyc | Submit KYC
 *PhoneNumbersApi* | [**UploadPhoneNumberKycDocument**](docs/PhoneNumbersApi.md#uploadphonenumberkycdocument) | **POST** /v1/phone-numbers/kyc/upload-document | Upload a KYC document
 *PhoneNumbersApi* | [**UploadPhoneNumberPortInDocument**](docs/PhoneNumbersApi.md#uploadphonenumberportindocument) | **POST** /v1/phone-numbers/port-in/documents | Upload a porting document
 *PhoneNumbersApi* | [**ValidatePhoneNumberKycAddress**](docs/PhoneNumbersApi.md#validatephonenumberkycaddress) | **POST** /v1/phone-numbers/kyc/validate-address | Pre-validate KYC address
+*PhoneNumbersApi* | [**ViewPhoneNumberKycDocument**](docs/PhoneNumbersApi.md#viewphonenumberkycdocument) | **GET** /v1/phone-numbers/kyc/document/{documentId} | View a KYC document on file
 *PostsApi* | [**BulkUploadPosts**](docs/PostsApi.md#bulkuploadposts) | **POST** /v1/posts/bulk-upload | Bulk upload from CSV
 *PostsApi* | [**CreatePost**](docs/PostsApi.md#createpost) | **POST** /v1/posts | Create post
 *PostsApi* | [**DeletePost**](docs/PostsApi.md#deletepost) | **DELETE** /v1/posts/{postId} | Delete post
@@ -464,19 +473,27 @@ Class | Method | HTTP request | Description
 *QueueApi* | [**ListQueueSlots**](docs/QueueApi.md#listqueueslots) | **GET** /v1/queue/slots | List schedules
 *QueueApi* | [**PreviewQueue**](docs/QueueApi.md#previewqueue) | **GET** /v1/queue/preview | Preview upcoming slots
 *QueueApi* | [**UpdateQueueSlot**](docs/QueueApi.md#updatequeueslot) | **PUT** /v1/queue/slots | Update schedule
+*ReachAndFrequencyApi* | [**CancelRfReservation**](docs/ReachAndFrequencyApi.md#cancelrfreservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach & Frequency reservation
+*ReachAndFrequencyApi* | [**CreateRfPrediction**](docs/ReachAndFrequencyApi.md#createrfprediction) | **POST** /v1/ads/rf-predictions | Create a Reach & Frequency prediction
+*ReachAndFrequencyApi* | [**GetRfPrediction**](docs/ReachAndFrequencyApi.md#getrfprediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach & Frequency prediction
+*ReachAndFrequencyApi* | [**ReserveRfPrediction**](docs/ReachAndFrequencyApi.md#reserverfprediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach & Frequency prediction
 *RedditSearchApi* | [**GetRedditFeed**](docs/RedditSearchApi.md#getredditfeed) | **GET** /v1/reddit/feed | Get subreddit feed
 *RedditSearchApi* | [**SearchReddit**](docs/RedditSearchApi.md#searchreddit) | **GET** /v1/reddit/search | Search posts
 *ReviewsApi* | [**DeleteInboxReviewReply**](docs/ReviewsApi.md#deleteinboxreviewreply) | **DELETE** /v1/inbox/reviews/{reviewId}/reply | Delete review reply
 *ReviewsApi* | [**ListInboxReviews**](docs/ReviewsApi.md#listinboxreviews) | **GET** /v1/inbox/reviews | List reviews
 *ReviewsApi* | [**ReplyToInboxReview**](docs/ReviewsApi.md#replytoinboxreview) | **POST** /v1/inbox/reviews/{reviewId}/reply | Reply to review
 *SMSApi* | [**AppealSmsRegistration**](docs/SMSApi.md#appealsmsregistration) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign
+*SMSApi* | [**CreateSmsSenderId**](docs/SMSApi.md#createsmssenderid) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID
 *SMSApi* | [**DeactivateSmsRegistration**](docs/SMSApi.md#deactivatesmsregistration) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration
+*SMSApi* | [**DeleteSmsSenderId**](docs/SMSApi.md#deletesmssenderid) | **DELETE** /v1/sms/sender-ids/{id} | Delete an alphanumeric sender ID
 *SMSApi* | [**DisableSmsOnNumber**](docs/SMSApi.md#disablesmsonnumber) | **DELETE** /v1/phone-numbers/{id}/sms | Disable SMS on a number
 *SMSApi* | [**EnableSmsOnNumber**](docs/SMSApi.md#enablesmsonnumber) | **POST** /v1/phone-numbers/{id}/sms | Enable SMS on a number
 *SMSApi* | [**GetSmsRegistration**](docs/SMSApi.md#getsmsregistration) | **GET** /v1/sms/registrations/{id} | Get a carrier registration
 *SMSApi* | [**ListSmsOptOuts**](docs/SMSApi.md#listsmsoptouts) | **GET** /v1/sms/opt-outs | List SMS opt-outs
 *SMSApi* | [**ListSmsRegistrations**](docs/SMSApi.md#listsmsregistrations) | **GET** /v1/sms/registrations | List carrier registrations
+*SMSApi* | [**ListSmsSenderIds**](docs/SMSApi.md#listsmssenderids) | **GET** /v1/sms/sender-ids | List alphanumeric sender IDs
 *SMSApi* | [**LookupSmsNumber**](docs/SMSApi.md#lookupsmsnumber) | **GET** /v1/sms/lookup | Look up carrier + line type
+*SMSApi* | [**RequestSmsSenderIdLimitIncrease**](docs/SMSApi.md#requestsmssenderidlimitincrease) | **POST** /v1/sms/sender-ids/limit-request | Request a higher sender ID daily limit
 *SMSApi* | [**ResendSmsRegistrationOtp**](docs/SMSApi.md#resendsmsregistrationotp) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP
 *SMSApi* | [**ReuseSmsRegistrationForNumber**](docs/SMSApi.md#reusesmsregistrationfornumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration
 *SMSApi* | [**SendSms**](docs/SMSApi.md#sendsms) | **POST** /v1/sms/messages | Send an SMS/MMS
@@ -497,11 +514,13 @@ Class | Method | HTTP request | Description
 *SequencesApi* | [**UpdateSequence**](docs/SequencesApi.md#updatesequence) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
 *TrackingTagsApi* | [**AddTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addtrackingtagsharedaccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
 *TrackingTagsApi* | [**CreateTrackingTag**](docs/TrackingTagsApi.md#createtrackingtag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag
+*TrackingTagsApi* | [**GetAdTrackingTags**](docs/TrackingTagsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
 *TrackingTagsApi* | [**GetTrackingTag**](docs/TrackingTagsApi.md#gettrackingtag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag
 *TrackingTagsApi* | [**GetTrackingTagStats**](docs/TrackingTagsApi.md#gettrackingtagstats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats
 *TrackingTagsApi* | [**ListTrackingTagSharedAccounts**](docs/TrackingTagsApi.md#listtrackingtagsharedaccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with
 *TrackingTagsApi* | [**ListTrackingTags**](docs/TrackingTagsApi.md#listtrackingtags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
 *TrackingTagsApi* | [**RemoveTrackingTagSharedAccount**](docs/TrackingTagsApi.md#removetrackingtagsharedaccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
+*TrackingTagsApi* | [**UpdateAdTrackingTags**](docs/TrackingTagsApi.md#updateadtrackingtags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
 *TrackingTagsApi* | [**UpdateTrackingTag**](docs/TrackingTagsApi.md#updatetrackingtag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag
 *TwitterEngagementApi* | [**BookmarkPost**](docs/TwitterEngagementApi.md#bookmarkpost) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**FollowUser**](docs/TwitterEngagementApi.md#followuser) | **POST** /v1/twitter/follow | Follow a user
@@ -725,6 +744,7 @@ Class | Method | HTTP request | Description
  - [Model.BoostPostRequestTargetingCustomLocationsInner](docs/BoostPostRequestTargetingCustomLocationsInner.md)
  - [Model.BoostPostRequestTargetingRegionsInner](docs/BoostPostRequestTargetingRegionsInner.md)
  - [Model.BoostPostRequestTracking](docs/BoostPostRequestTracking.md)
+ - [Model.BoostPostRequestTrackingUrlTagsInner](docs/BoostPostRequestTrackingUrlTagsInner.md)
  - [Model.BulkCreateContacts200Response](docs/BulkCreateContacts200Response.md)
  - [Model.BulkCreateContactsRequest](docs/BulkCreateContactsRequest.md)
  - [Model.BulkCreateContactsRequestContactsInner](docs/BulkCreateContactsRequestContactsInner.md)
@@ -761,6 +781,8 @@ Class | Method | HTTP request | Description
  - [Model.ConnectAds200ResponseOneOf1](docs/ConnectAds200ResponseOneOf1.md)
  - [Model.ConnectBlueskyCredentials200Response](docs/ConnectBlueskyCredentials200Response.md)
  - [Model.ConnectBlueskyCredentialsRequest](docs/ConnectBlueskyCredentialsRequest.md)
+ - [Model.ConnectOpenAIAdsCredentials200Response](docs/ConnectOpenAIAdsCredentials200Response.md)
+ - [Model.ConnectOpenAIAdsCredentialsRequest](docs/ConnectOpenAIAdsCredentialsRequest.md)
  - [Model.ConnectWhatsAppCredentials200Response](docs/ConnectWhatsAppCredentials200Response.md)
  - [Model.ConnectWhatsAppCredentials200ResponseAccount](docs/ConnectWhatsAppCredentials200ResponseAccount.md)
  - [Model.ConnectWhatsAppCredentialsRequest](docs/ConnectWhatsAppCredentialsRequest.md)
@@ -776,6 +798,11 @@ Class | Method | HTTP request | Description
  - [Model.CreateAccountGroupRequest](docs/CreateAccountGroupRequest.md)
  - [Model.CreateAdAudience201Response](docs/CreateAdAudience201Response.md)
  - [Model.CreateAdAudienceRequest](docs/CreateAdAudienceRequest.md)
+ - [Model.CreateAdCampaign201Response](docs/CreateAdCampaign201Response.md)
+ - [Model.CreateAdCampaignRequest](docs/CreateAdCampaignRequest.md)
+ - [Model.CreateAdCreative201Response](docs/CreateAdCreative201Response.md)
+ - [Model.CreateAdCreativeRequest](docs/CreateAdCreativeRequest.md)
+ - [Model.CreateAdCreativeRequestCarouselCardsInner](docs/CreateAdCreativeRequestCarouselCardsInner.md)
  - [Model.CreateAdInsightsReport202Response](docs/CreateAdInsightsReport202Response.md)
  - [Model.CreateAdInsightsReportRequest](docs/CreateAdInsightsReportRequest.md)
  - [Model.CreateAdInsightsReportRequestFilteringInner](docs/CreateAdInsightsReportRequestFilteringInner.md)
@@ -831,7 +858,6 @@ Class | Method | HTTP request | Description
  - [Model.CreateLeadForm200Response](docs/CreateLeadForm200Response.md)
  - [Model.CreateLeadFormRequest](docs/CreateLeadFormRequest.md)
  - [Model.CreateLeadFormRequestQuestionsInner](docs/CreateLeadFormRequestQuestionsInner.md)
- - [Model.CreateLeadFormRequestQuestionsInnerOptionsInner](docs/CreateLeadFormRequestQuestionsInnerOptionsInner.md)
  - [Model.CreateMessagingAdRequest](docs/CreateMessagingAdRequest.md)
  - [Model.CreatePhoneNumberKycLink200Response](docs/CreatePhoneNumberKycLink200Response.md)
  - [Model.CreatePhoneNumberKycLinkRequest](docs/CreatePhoneNumberKycLinkRequest.md)
@@ -862,6 +888,10 @@ Class | Method | HTTP request | Description
  - [Model.CreateSequenceRequestStepsInner](docs/CreateSequenceRequestStepsInner.md)
  - [Model.CreateSequenceRequestStepsInnerTemplate](docs/CreateSequenceRequestStepsInnerTemplate.md)
  - [Model.CreateSequenceRequestStepsInnerTemplateVariableMappingValue](docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md)
+ - [Model.CreateSmsSenderId200Response](docs/CreateSmsSenderId200Response.md)
+ - [Model.CreateSmsSenderIdRequest](docs/CreateSmsSenderIdRequest.md)
+ - [Model.CreateStandaloneAd200Response](docs/CreateStandaloneAd200Response.md)
+ - [Model.CreateStandaloneAd200ResponseResultsInner](docs/CreateStandaloneAd200ResponseResultsInner.md)
  - [Model.CreateStandaloneAd201Response](docs/CreateStandaloneAd201Response.md)
  - [Model.CreateStandaloneAd201ResponseOneOf](docs/CreateStandaloneAd201ResponseOneOf.md)
  - [Model.CreateStandaloneAd201ResponseOneOf1](docs/CreateStandaloneAd201ResponseOneOf1.md)
@@ -928,6 +958,7 @@ Class | Method | HTTP request | Description
  - [Model.DeleteAccountGroup200Response](docs/DeleteAccountGroup200Response.md)
  - [Model.DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
  - [Model.DeleteAdCampaignRequest](docs/DeleteAdCampaignRequest.md)
+ - [Model.DeleteAdCreative200Response](docs/DeleteAdCreative200Response.md)
  - [Model.DeleteDiscordScheduledEvent200Response](docs/DeleteDiscordScheduledEvent200Response.md)
  - [Model.DeleteGoogleBusinessMedia200Response](docs/DeleteGoogleBusinessMedia200Response.md)
  - [Model.DeleteGoogleBusinessPlaceAction200Response](docs/DeleteGoogleBusinessPlaceAction200Response.md)
@@ -935,11 +966,14 @@ Class | Method | HTTP request | Description
  - [Model.DeleteInboxComment200Response](docs/DeleteInboxComment200Response.md)
  - [Model.DeleteInboxReviewReply200Response](docs/DeleteInboxReviewReply200Response.md)
  - [Model.DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
+ - [Model.DeleteSmsSenderId200Response](docs/DeleteSmsSenderId200Response.md)
  - [Model.DeleteWhatsappBusinessUsernameRequest](docs/DeleteWhatsappBusinessUsernameRequest.md)
  - [Model.DialVoiceWebCall200Response](docs/DialVoiceWebCall200Response.md)
  - [Model.DialVoiceWebCallRequest](docs/DialVoiceWebCallRequest.md)
  - [Model.DisableSmsOnNumber200Response](docs/DisableSmsOnNumber200Response.md)
  - [Model.DisableVoiceOnNumber200Response](docs/DisableVoiceOnNumber200Response.md)
+ - [Model.DiscordGuildMember](docs/DiscordGuildMember.md)
+ - [Model.DiscordGuildMemberUser](docs/DiscordGuildMemberUser.md)
  - [Model.DiscordPlatformData](docs/DiscordPlatformData.md)
  - [Model.DiscordPlatformDataEmbedsInner](docs/DiscordPlatformDataEmbedsInner.md)
  - [Model.DiscordPlatformDataEmbedsInnerAuthor](docs/DiscordPlatformDataEmbedsInnerAuthor.md)
@@ -954,8 +988,12 @@ Class | Method | HTTP request | Description
  - [Model.DiscordScheduledEvent](docs/DiscordScheduledEvent.md)
  - [Model.DiscordScheduledEventEntityMetadata](docs/DiscordScheduledEventEntityMetadata.md)
  - [Model.DmButton](docs/DmButton.md)
+ - [Model.DuplicateAd200Response](docs/DuplicateAd200Response.md)
  - [Model.DuplicateAdCampaign200Response](docs/DuplicateAdCampaign200Response.md)
  - [Model.DuplicateAdCampaignRequest](docs/DuplicateAdCampaignRequest.md)
+ - [Model.DuplicateAdRequest](docs/DuplicateAdRequest.md)
+ - [Model.DuplicateAdSet200Response](docs/DuplicateAdSet200Response.md)
+ - [Model.DuplicateAdSetRequest](docs/DuplicateAdSetRequest.md)
  - [Model.DuplicateWorkflow201Response](docs/DuplicateWorkflow201Response.md)
  - [Model.DuplicateWorkflow201ResponseWorkflow](docs/DuplicateWorkflow201ResponseWorkflow.md)
  - [Model.EditDiscordGuildRoleRequest](docs/EditDiscordGuildRoleRequest.md)
@@ -1023,6 +1061,7 @@ Class | Method | HTTP request | Description
  - [Model.GetAdComments200Response](docs/GetAdComments200Response.md)
  - [Model.GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
  - [Model.GetAdComments200ResponsePagination](docs/GetAdComments200ResponsePagination.md)
+ - [Model.GetAdCreative200Response](docs/GetAdCreative200Response.md)
  - [Model.GetAdInsightsReport200Response](docs/GetAdInsightsReport200Response.md)
  - [Model.GetAdInsightsReport200ResponsePaging](docs/GetAdInsightsReport200ResponsePaging.md)
  - [Model.GetAdPreviews200Response](docs/GetAdPreviews200Response.md)
@@ -1077,6 +1116,7 @@ Class | Method | HTTP request | Description
  - [Model.GetDailyMetrics200ResponsePlatformBreakdownInner](docs/GetDailyMetrics200ResponsePlatformBreakdownInner.md)
  - [Model.GetDiscordChannels200Response](docs/GetDiscordChannels200Response.md)
  - [Model.GetDiscordChannels200ResponseChannelsInner](docs/GetDiscordChannels200ResponseChannelsInner.md)
+ - [Model.GetDiscordGuildMember200Response](docs/GetDiscordGuildMember200Response.md)
  - [Model.GetDiscordSettings200Response](docs/GetDiscordSettings200Response.md)
  - [Model.GetDiscordSettings200ResponseAccount](docs/GetDiscordSettings200ResponseAccount.md)
  - [Model.GetDsaRecommendations200Response](docs/GetDsaRecommendations200Response.md)
@@ -1212,6 +1252,7 @@ Class | Method | HTTP request | Description
  - [Model.GetPhoneNumberKycForm200ResponseReusable](docs/GetPhoneNumberKycForm200ResponseReusable.md)
  - [Model.GetPhoneNumberKycForm200ResponseReusableDetailsInner](docs/GetPhoneNumberKycForm200ResponseReusableDetailsInner.md)
  - [Model.GetPhoneNumberKycForm200ResponseReusableOptionsInner](docs/GetPhoneNumberKycForm200ResponseReusableOptionsInner.md)
+ - [Model.GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner](docs/GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner.md)
  - [Model.GetPhoneNumberPortInOrderRequirements200Response](docs/GetPhoneNumberPortInOrderRequirements200Response.md)
  - [Model.GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner](docs/GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner.md)
  - [Model.GetPhoneNumberPortInRequirements200Response](docs/GetPhoneNumberPortInRequirements200Response.md)
@@ -1249,6 +1290,7 @@ Class | Method | HTTP request | Description
  - [Model.GetTikTokCreatorInfo200ResponseCreator](docs/GetTikTokCreatorInfo200ResponseCreator.md)
  - [Model.GetTikTokCreatorInfo200ResponsePostingLimits](docs/GetTikTokCreatorInfo200ResponsePostingLimits.md)
  - [Model.GetTikTokCreatorInfo200ResponsePrivacyLevelsInner](docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md)
+ - [Model.GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
  - [Model.GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
  - [Model.GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)
  - [Model.GetUsage200Response](docs/GetUsage200Response.md)
@@ -1389,6 +1431,9 @@ Class | Method | HTTP request | Description
  - [Model.ListAdCatalogProductSets200ResponseProductSetsInner](docs/ListAdCatalogProductSets200ResponseProductSetsInner.md)
  - [Model.ListAdCatalogs200Response](docs/ListAdCatalogs200Response.md)
  - [Model.ListAdCatalogs200ResponseCatalogsInner](docs/ListAdCatalogs200ResponseCatalogsInner.md)
+ - [Model.ListAdCreatives200Response](docs/ListAdCreatives200Response.md)
+ - [Model.ListAdImages200Response](docs/ListAdImages200Response.md)
+ - [Model.ListAdLabels200Response](docs/ListAdLabels200Response.md)
  - [Model.ListAdStudies200Response](docs/ListAdStudies200Response.md)
  - [Model.ListAds200Response](docs/ListAds200Response.md)
  - [Model.ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
@@ -1414,8 +1459,6 @@ Class | Method | HTTP request | Description
  - [Model.ListCustomFields200Response](docs/ListCustomFields200Response.md)
  - [Model.ListCustomFields200ResponseFieldsInner](docs/ListCustomFields200ResponseFieldsInner.md)
  - [Model.ListDiscordGuildMembers200Response](docs/ListDiscordGuildMembers200Response.md)
- - [Model.ListDiscordGuildMembers200ResponseDataInner](docs/ListDiscordGuildMembers200ResponseDataInner.md)
- - [Model.ListDiscordGuildMembers200ResponseDataInnerUser](docs/ListDiscordGuildMembers200ResponseDataInnerUser.md)
  - [Model.ListDiscordGuildMembers200ResponsePagination](docs/ListDiscordGuildMembers200ResponsePagination.md)
  - [Model.ListDiscordGuildRoles200Response](docs/ListDiscordGuildRoles200Response.md)
  - [Model.ListDiscordGuildRoles200ResponseDataInner](docs/ListDiscordGuildRoles200ResponseDataInner.md)
@@ -1433,6 +1476,7 @@ Class | Method | HTTP request | Description
  - [Model.ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation](docs/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.md)
  - [Model.ListGoogleBusinessPlaceActions200Response](docs/ListGoogleBusinessPlaceActions200Response.md)
  - [Model.ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner](docs/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.md)
+ - [Model.ListHighDemandPeriods200Response](docs/ListHighDemandPeriods200Response.md)
  - [Model.ListInboxComments200Response](docs/ListInboxComments200Response.md)
  - [Model.ListInboxComments200ResponseDataInner](docs/ListInboxComments200ResponseDataInner.md)
  - [Model.ListInboxConversationAnalytics200Response](docs/ListInboxConversationAnalytics200Response.md)
@@ -1462,6 +1506,7 @@ Class | Method | HTTP request | Description
  - [Model.ListLogs200Response](docs/ListLogs200Response.md)
  - [Model.ListLogs200ResponseLogsInner](docs/ListLogs200ResponseLogsInner.md)
  - [Model.ListLogs200ResponsePagination](docs/ListLogs200ResponsePagination.md)
+ - [Model.ListMetaBusinesses200Response](docs/ListMetaBusinesses200Response.md)
  - [Model.ListPhoneNumberCountries200Response](docs/ListPhoneNumberCountries200Response.md)
  - [Model.ListPhoneNumberCountries200ResponseCountriesInner](docs/ListPhoneNumberCountries200ResponseCountriesInner.md)
  - [Model.ListPhoneNumberCountries200ResponseCountriesInnerTypesInner](docs/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.md)
@@ -1485,6 +1530,10 @@ Class | Method | HTTP request | Description
  - [Model.ListSmsRegistrations200Response](docs/ListSmsRegistrations200Response.md)
  - [Model.ListSmsRegistrations200ResponseRegistrationsInner](docs/ListSmsRegistrations200ResponseRegistrationsInner.md)
  - [Model.ListSmsRegistrations200ResponseRegistrationsInnerThroughput](docs/ListSmsRegistrations200ResponseRegistrationsInnerThroughput.md)
+ - [Model.ListSmsSenderIds200Response](docs/ListSmsSenderIds200Response.md)
+ - [Model.ListSmsSenderIds200ResponseBudget](docs/ListSmsSenderIds200ResponseBudget.md)
+ - [Model.ListSmsSenderIds200ResponseBudgetPendingRequest](docs/ListSmsSenderIds200ResponseBudgetPendingRequest.md)
+ - [Model.ListSmsSenderIds200ResponseSenderIdsInner](docs/ListSmsSenderIds200ResponseSenderIdsInner.md)
  - [Model.ListSnapchatProfiles200Response](docs/ListSnapchatProfiles200Response.md)
  - [Model.ListSnapchatProfiles200ResponsePublicProfilesInner](docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md)
  - [Model.ListTrackingTagSharedAccounts200Response](docs/ListTrackingTagSharedAccounts200Response.md)
@@ -1614,6 +1663,11 @@ Class | Method | HTTP request | Description
  - [Model.ReplyToInboxReviewRequest](docs/ReplyToInboxReviewRequest.md)
  - [Model.ReplyToMention200Response](docs/ReplyToMention200Response.md)
  - [Model.ReplyToMentionRequest](docs/ReplyToMentionRequest.md)
+ - [Model.ReplyToPhoneNumberReviewer200Response](docs/ReplyToPhoneNumberReviewer200Response.md)
+ - [Model.ReplyToPhoneNumberReviewerRequest](docs/ReplyToPhoneNumberReviewerRequest.md)
+ - [Model.ReplyToPhoneNumberReviewerRequestAttachmentsInner](docs/ReplyToPhoneNumberReviewerRequestAttachmentsInner.md)
+ - [Model.RequestSmsSenderIdLimitIncrease200Response](docs/RequestSmsSenderIdLimitIncrease200Response.md)
+ - [Model.RequestSmsSenderIdLimitIncreaseRequest](docs/RequestSmsSenderIdLimitIncreaseRequest.md)
  - [Model.ResendSmsRegistrationOtp200Response](docs/ResendSmsRegistrationOtp200Response.md)
  - [Model.ReserveRfPrediction201Response](docs/ReserveRfPrediction201Response.md)
  - [Model.ReserveRfPredictionRequest](docs/ReserveRfPredictionRequest.md)
@@ -1641,6 +1695,7 @@ Class | Method | HTTP request | Description
  - [Model.SearchAvailablePhoneNumbers200ResponseNumbersInner](docs/SearchAvailablePhoneNumbers200ResponseNumbersInner.md)
  - [Model.SearchAvailableWhatsAppNumbers200Response](docs/SearchAvailableWhatsAppNumbers200Response.md)
  - [Model.SearchAvailableWhatsAppNumbers200ResponseNumbersInner](docs/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.md)
+ - [Model.SearchDiscordGuildMembers200Response](docs/SearchDiscordGuildMembers200Response.md)
  - [Model.SearchInboxConversations200Response](docs/SearchInboxConversations200Response.md)
  - [Model.SearchInboxConversations200ResponseDataInner](docs/SearchInboxConversations200ResponseDataInner.md)
  - [Model.SearchInboxConversations200ResponseDataInnerConversation](docs/SearchInboxConversations200ResponseDataInnerConversation.md)
@@ -1820,6 +1875,8 @@ Class | Method | HTTP request | Description
  - [Model.UpdateAdCampaignRequestPlatformSpecificData](docs/UpdateAdCampaignRequestPlatformSpecificData.md)
  - [Model.UpdateAdCampaignStatus200Response](docs/UpdateAdCampaignStatus200Response.md)
  - [Model.UpdateAdCampaignStatusRequest](docs/UpdateAdCampaignStatusRequest.md)
+ - [Model.UpdateAdCreative200Response](docs/UpdateAdCreative200Response.md)
+ - [Model.UpdateAdCreativeRequest](docs/UpdateAdCreativeRequest.md)
  - [Model.UpdateAdRequest](docs/UpdateAdRequest.md)
  - [Model.UpdateAdRequestBudget](docs/UpdateAdRequestBudget.md)
  - [Model.UpdateAdRequestCreative](docs/UpdateAdRequestCreative.md)
@@ -2064,9 +2121,14 @@ Class | Method | HTTP request | Description
  - [Model.WhatsAppBodyComponent](docs/WhatsAppBodyComponent.md)
  - [Model.WhatsAppBodyComponentExample](docs/WhatsAppBodyComponentExample.md)
  - [Model.WhatsAppButtonsComponent](docs/WhatsAppButtonsComponent.md)
+ - [Model.WhatsAppCarouselCardComponent](docs/WhatsAppCarouselCardComponent.md)
+ - [Model.WhatsAppCarouselComponent](docs/WhatsAppCarouselComponent.md)
+ - [Model.WhatsAppCarouselComponentCardsInner](docs/WhatsAppCarouselComponentCardsInner.md)
  - [Model.WhatsAppFooterComponent](docs/WhatsAppFooterComponent.md)
  - [Model.WhatsAppHeaderComponent](docs/WhatsAppHeaderComponent.md)
  - [Model.WhatsAppHeaderComponentExample](docs/WhatsAppHeaderComponentExample.md)
+ - [Model.WhatsAppLimitedTimeOfferComponent](docs/WhatsAppLimitedTimeOfferComponent.md)
+ - [Model.WhatsAppLimitedTimeOfferComponentLimitedTimeOffer](docs/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.md)
  - [Model.WhatsAppSandboxSession](docs/WhatsAppSandboxSession.md)
  - [Model.WhatsAppTemplateButton](docs/WhatsAppTemplateButton.md)
  - [Model.WhatsAppTemplateComponent](docs/WhatsAppTemplateComponent.md)

@@ -117,5 +117,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Buttons'
         }
+
+        /// <summary>
+        /// Test the property 'Cards'
+        /// </summary>
+        [Fact]
+        public void CardsTest()
+        {
+            // TODO unit test for the property 'Cards'
+        }
+
+        /// <summary>
+        /// Test the property 'LimitedTimeOffer'
+        /// </summary>
+        [Fact]
+        public void LimitedTimeOfferTest()
+        {
+            // TODO unit test for the property 'LimitedTimeOffer'
+        }
     }
 }

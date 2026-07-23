@@ -209,6 +209,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'SpecialAdCategoryCountry'
+        /// </summary>
+        [Fact]
+        public void SpecialAdCategoryCountryTest()
+        {
+            // TODO unit test for the property 'SpecialAdCategoryCountry'
+        }
+
+        /// <summary>
         /// Test the property 'LinkUrl'
         /// </summary>
         [Fact]

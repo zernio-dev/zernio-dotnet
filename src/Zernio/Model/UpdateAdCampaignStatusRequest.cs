@@ -104,7 +104,13 @@ namespace Zernio.Model
             /// Enum Twitter for value: twitter
             /// </summary>
             [EnumMember(Value = "twitter")]
-            Twitter = 7
+            Twitter = 7,
+
+            /// <summary>
+            /// Enum Openai for value: openai
+            /// </summary>
+            [EnumMember(Value = "openai")]
+            Openai = 8
         }
 
 

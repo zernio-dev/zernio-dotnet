@@ -1,5 +1,5 @@
 # Zernio.Model.UpdateAdSetRequestPlatformSpecificDataPromotedObject
-Meta ad-set promoted_object, forwarded verbatim (same shape as /v1/ads/create).
+Meta ad-set promoted_object, forwarded verbatim (same shape as /v1/ads/create). Unknown keys are rejected with 400.
 
 ## Properties
 
@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **CustomConversionId** | **string** |  | [optional] 
 **ProductCatalogId** | **string** |  | [optional] 
 **ProductSetId** | **string** |  | [optional] 
+**OfflineConversionDataSetId** | **string** |  | [optional] 
+**WhatsappPhoneNumber** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

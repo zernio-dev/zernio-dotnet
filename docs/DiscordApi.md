@@ -14,6 +14,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**DeleteDiscordScheduledEvent**](DiscordApi.md#deletediscordscheduledevent) | **DELETE** /v1/discord/guilds/{guildId}/events/{eventId} | Delete a Discord scheduled event |
 | [**EditDiscordGuildRole**](DiscordApi.md#editdiscordguildrole) | **PATCH** /v1/discord/guilds/{guildId}/roles/{roleId} | Edit a Discord guild role |
 | [**GetDiscordChannels**](DiscordApi.md#getdiscordchannels) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels |
+| [**GetDiscordGuildMember**](DiscordApi.md#getdiscordguildmember) | **GET** /v1/discord/guilds/{guildId}/members/{userId} | Get a Discord guild member |
 | [**GetDiscordScheduledEvent**](DiscordApi.md#getdiscordscheduledevent) | **GET** /v1/discord/guilds/{guildId}/events/{eventId} | Get a Discord scheduled event |
 | [**GetDiscordSettings**](DiscordApi.md#getdiscordsettings) | **GET** /v1/accounts/{accountId}/discord-settings | Get Discord account settings |
 | [**ListDiscordGuildMembers**](DiscordApi.md#listdiscordguildmembers) | **GET** /v1/discord/guilds/{guildId}/members | List Discord guild members |
@@ -22,6 +23,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListDiscordScheduledEvents**](DiscordApi.md#listdiscordscheduledevents) | **GET** /v1/discord/guilds/{guildId}/events | List Discord scheduled events |
 | [**PinDiscordMessage**](DiscordApi.md#pindiscordmessage) | **PUT** /v1/discord/channels/{channelId}/pins/{messageId} | Pin a Discord message |
 | [**RemoveDiscordMemberRole**](DiscordApi.md#removediscordmemberrole) | **DELETE** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Remove a role from a guild member |
+| [**SearchDiscordGuildMembers**](DiscordApi.md#searchdiscordguildmembers) | **GET** /v1/discord/guilds/{guildId}/members/search | Search Discord guild members |
 | [**SendDiscordDirectMessage**](DiscordApi.md#senddiscorddirectmessage) | **POST** /v1/discord/dms | Send a Discord Direct Message |
 | [**UnpinDiscordMessage**](DiscordApi.md#unpindiscordmessage) | **DELETE** /v1/discord/channels/{channelId}/pins/{messageId} | Unpin a Discord message |
 | [**UpdateDiscordScheduledEvent**](DiscordApi.md#updatediscordscheduledevent) | **PATCH** /v1/discord/guilds/{guildId}/events/{eventId} | Update a Discord scheduled event |
@@ -1090,6 +1092,111 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="getdiscordguildmember"></a>
+# **GetDiscordGuildMember**
+> GetDiscordGuildMember200Response GetDiscordGuildMember (string guildId, string userId, string accountId)
+
+Get a Discord guild member
+
+Fetch a single guild member by Discord user id.  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetDiscordGuildMemberExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new DiscordApi(httpClient, config, httpClientHandler);
+            var guildId = "guildId_example";  // string | 
+            var userId = "userId_example";  // string | Discord user snowflake.
+            var accountId = "accountId_example";  // string | 
+
+            try
+            {
+                // Get a Discord guild member
+                GetDiscordGuildMember200Response result = apiInstance.GetDiscordGuildMember(guildId, userId, accountId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DiscordApi.GetDiscordGuildMember: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetDiscordGuildMemberWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get a Discord guild member
+    ApiResponse<GetDiscordGuildMember200Response> response = apiInstance.GetDiscordGuildMemberWithHttpInfo(guildId, userId, accountId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DiscordApi.GetDiscordGuildMemberWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **guildId** | **string** |  |  |
+| **userId** | **string** | Discord user snowflake. |  |
+| **accountId** | **string** |  |  |
+
+### Return type
+
+[**GetDiscordGuildMember200Response**](GetDiscordGuildMember200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The guild member. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, or the user is not a member of this guild. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="getdiscordscheduledevent"></a>
 # **GetDiscordScheduledEvent**
 > CreateDiscordScheduledEvent200Response GetDiscordScheduledEvent (string guildId, string eventId, string accountId)
@@ -1299,7 +1406,7 @@ catch (ApiException e)
 
 List Discord guild members
 
-Cursor-paginated list of guild members. Returns Discord's raw member objects so callers can build community-ops automation (e.g. \"add role to all members joined in the last 7 days\") on the actual platform shape.  **Important:** this endpoint requires the privileged \"Server Members Intent\" enabled on the Discord app (Developer Portal → Bot tab → toggle \"Server Members Intent\" ON, then Save). Without it, Discord returns an empty array with no error. Verify the intent is enabled before relying on this endpoint.  Pagination: pass `after` = the last `user.id` from the previous page. Omit on the first call. Response includes a `nextCursor` and `hasMore` flag so callers don't need to know Discord's pagination shape. 
+Cursor-paginated list of guild members. Returns Discord's raw member objects so callers can build community-ops automation (e.g. \"add role to all members joined in the last 7 days\") on the actual platform shape.  **Important:** this endpoint requires the privileged \"Server Members Intent\" on the Discord application. If the intent is not enabled, Discord rejects the call and this endpoint returns **403**. Single member lookup and prefix search (see the sibling endpoints) do not need the intent.  Pagination: pass `after` = the last `user.id` from the previous page. Omit on the first call. Response includes a `nextCursor` and `hasMore` flag so callers don't need to know Discord's pagination shape. 
 
 ### Example
 ```csharp
@@ -1396,6 +1503,7 @@ catch (ApiException e)
 | **200** | List of guild members. |  -  |
 | **400** | Invalid query params. |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | The Server Members Intent is not enabled on the Discord application. |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1927,6 +2035,113 @@ catch (ApiException e)
 | **404** | Discord account not found or not in this guild. |  -  |
 | **403** | Discord refused the request (permission or hierarchy issue). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="searchdiscordguildmembers"></a>
+# **SearchDiscordGuildMembers**
+> SearchDiscordGuildMembers200Response SearchDiscordGuildMembers (string guildId, string accountId, string query, int? limit = null)
+
+Search Discord guild members
+
+Search guild members whose username or nickname **starts with** the query (Discord matches prefixes only, not substrings).  Does not require the privileged Server Members Intent, so this works even where the full member listing returns 403. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SearchDiscordGuildMembersExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new DiscordApi(httpClient, config, httpClientHandler);
+            var guildId = "guildId_example";  // string | 
+            var accountId = "accountId_example";  // string | 
+            var query = "query_example";  // string | Username or nickname prefix to match.
+            var limit = 25;  // int? |  (optional)  (default to 25)
+
+            try
+            {
+                // Search Discord guild members
+                SearchDiscordGuildMembers200Response result = apiInstance.SearchDiscordGuildMembers(guildId, accountId, query, limit);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling DiscordApi.SearchDiscordGuildMembers: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SearchDiscordGuildMembersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Search Discord guild members
+    ApiResponse<SearchDiscordGuildMembers200Response> response = apiInstance.SearchDiscordGuildMembersWithHttpInfo(guildId, accountId, query, limit);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling DiscordApi.SearchDiscordGuildMembersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **guildId** | **string** |  |  |
+| **accountId** | **string** |  |  |
+| **query** | **string** | Username or nickname prefix to match. |  |
+| **limit** | **int?** |  | [optional] [default to 25] |
+
+### Return type
+
+[**SearchDiscordGuildMembers200Response**](SearchDiscordGuildMembers200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching guild members. |  -  |
+| **400** | Invalid query params. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found or not in this guild. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -43,7 +43,13 @@ namespace Zernio.Model
             /// Enum Metaads for value: metaads
             /// </summary>
             [EnumMember(Value = "metaads")]
-            Metaads = 1
+            Metaads = 1,
+
+            /// <summary>
+            /// Enum Openaiads for value: openaiads
+            /// </summary>
+            [EnumMember(Value = "openaiads")]
+            Openaiads = 2
         }
 
 

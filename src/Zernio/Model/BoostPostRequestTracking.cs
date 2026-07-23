@@ -37,8 +37,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="BoostPostRequestTracking" /> class.
         /// </summary>
         /// <param name="pixelId">pixelId.</param>
-        /// <param name="urlTags">urlTags.</param>
-        public BoostPostRequestTracking(string pixelId = default, string urlTags = default)
+        /// <param name="urlTags">URL parameters appended to the ad link, rendered as &#x60;key&#x3D;value&#x60; pairs joined with &#x60;&amp;&#x60;..</param>
+        public BoostPostRequestTracking(string pixelId = default, List<BoostPostRequestTrackingUrlTagsInner> urlTags = default)
         {
             this.PixelId = pixelId;
             this.UrlTags = urlTags;
@@ -51,10 +51,11 @@ namespace Zernio.Model
         public string PixelId { get; set; }
 
         /// <summary>
-        /// Gets or Sets UrlTags
+        /// URL parameters appended to the ad link, rendered as &#x60;key&#x3D;value&#x60; pairs joined with &#x60;&amp;&#x60;.
         /// </summary>
+        /// <value>URL parameters appended to the ad link, rendered as &#x60;key&#x3D;value&#x60; pairs joined with &#x60;&amp;&#x60;.</value>
         [DataMember(Name = "urlTags", EmitDefaultValue = false)]
-        public string UrlTags { get; set; }
+        public List<BoostPostRequestTrackingUrlTagsInner> UrlTags { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

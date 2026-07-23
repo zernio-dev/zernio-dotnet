@@ -85,9 +85,10 @@ namespace Zernio.Model
         /// <param name="numberType">Which of the country&#39;s offered number types to order (see &#x60;types[]&#x60; on GET /v1/phone-numbers/countries). Omitted &#x3D; the country&#39;s default type, which is always the WhatsApp-safe choice. Capabilities, price, and KYC requirements are per (country, type): toll_free can never connect WhatsApp (400 when combined with connectWhatsapp:true), and wantsSms:true requires an SMS-capable type. .</param>
         /// <param name="connectWhatsapp">A phone number is the unit; WhatsApp is one optional feature. Pass false to buy a STANDALONE number (Calls/SMS only): provisioning skips the Meta pre-verify/OTP steps and the number activates immediately. Omitted defaults to the WhatsApp provisioning path. WhatsApp can be connected to a standalone number later from the connect flow.  (default to true).</param>
         /// <param name="wantsSms">SMS capability is per-number, not per-country. Pass true to provision from the SMS-capable inventory pool so the number can actually text (see also GET /v1/phone-numbers/available with sms&#x3D;true, and smsAvailable on GET /v1/phone-numbers/countries).  (default to false).</param>
+        /// <param name="wantsWhatsapp">Declare WhatsApp intent on a STANDALONE purchase (connectWhatsapp:false). The number still activates and bills immediately, but if WhatsApp&#39;s buy-time check rejects the assigned number, it is automatically swapped for a WhatsApp-eligible one during the purchase instead of being delivered with WhatsApp unavailable. Ignored on the WhatsApp provisioning path (connectWhatsapp omitted or true), which always delivers a WhatsApp-verified number.  (default to false).</param>
         /// <param name="purchaseIntentId">Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. .</param>
         /// <param name="allowMultiple">Any second purchase within 10 minutes of a previous one is rejected with 409 code PURCHASE_VELOCITY as duplicate protection. Pass true to confirm the additional purchase is intentional (e.g. bulk provisioning).  (default to false).</param>
-        public PurchasePhoneNumberRequest(string profileId = default, string country = @"US", NumberTypeEnum? numberType = default, bool connectWhatsapp = true, bool wantsSms = false, string purchaseIntentId = default, bool allowMultiple = false)
+        public PurchasePhoneNumberRequest(string profileId = default, string country = @"US", NumberTypeEnum? numberType = default, bool connectWhatsapp = true, bool wantsSms = false, bool wantsWhatsapp = false, string purchaseIntentId = default, bool allowMultiple = false)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -100,6 +101,7 @@ namespace Zernio.Model
             this.NumberType = numberType;
             this.ConnectWhatsapp = connectWhatsapp;
             this.WantsSms = wantsSms;
+            this.WantsWhatsapp = wantsWhatsapp;
             this.PurchaseIntentId = purchaseIntentId;
             this.AllowMultiple = allowMultiple;
         }
@@ -133,6 +135,13 @@ namespace Zernio.Model
         public bool WantsSms { get; set; }
 
         /// <summary>
+        /// Declare WhatsApp intent on a STANDALONE purchase (connectWhatsapp:false). The number still activates and bills immediately, but if WhatsApp&#39;s buy-time check rejects the assigned number, it is automatically swapped for a WhatsApp-eligible one during the purchase instead of being delivered with WhatsApp unavailable. Ignored on the WhatsApp provisioning path (connectWhatsapp omitted or true), which always delivers a WhatsApp-verified number. 
+        /// </summary>
+        /// <value>Declare WhatsApp intent on a STANDALONE purchase (connectWhatsapp:false). The number still activates and bills immediately, but if WhatsApp&#39;s buy-time check rejects the assigned number, it is automatically swapped for a WhatsApp-eligible one during the purchase instead of being delivered with WhatsApp unavailable. Ignored on the WhatsApp provisioning path (connectWhatsapp omitted or true), which always delivers a WhatsApp-verified number. </value>
+        [DataMember(Name = "wantsWhatsapp", EmitDefaultValue = true)]
+        public bool WantsWhatsapp { get; set; }
+
+        /// <summary>
         /// Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. 
         /// </summary>
         /// <value>Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. </value>
@@ -159,6 +168,7 @@ namespace Zernio.Model
             sb.Append("  NumberType: ").Append(NumberType).Append("\n");
             sb.Append("  ConnectWhatsapp: ").Append(ConnectWhatsapp).Append("\n");
             sb.Append("  WantsSms: ").Append(WantsSms).Append("\n");
+            sb.Append("  WantsWhatsapp: ").Append(WantsWhatsapp).Append("\n");
             sb.Append("  PurchaseIntentId: ").Append(PurchaseIntentId).Append("\n");
             sb.Append("  AllowMultiple: ").Append(AllowMultiple).Append("\n");
             sb.Append("}\n");

@@ -34,8 +34,9 @@ namespace Zernio.Model
     public partial class UpdateAdRequestBudget : IValidatableObject
     {
         /// <summary>
-        /// Defines Type
+        /// OpenAI Ads accepts lifetime only; sending daily returns 422.
         /// </summary>
+        /// <value>OpenAI Ads accepts lifetime only; sending daily returns 422.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -54,15 +55,16 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Gets or Sets Type
+        /// OpenAI Ads accepts lifetime only; sending daily returns 422.
         /// </summary>
+        /// <value>OpenAI Ads accepts lifetime only; sending daily returns 422.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdRequestBudget" /> class.
         /// </summary>
         /// <param name="amount">Minimum varies by platform: TikTok&#x3D;$20, Pinterest&#x3D;$5, others&#x3D;$1.</param>
-        /// <param name="type">type.</param>
+        /// <param name="type">OpenAI Ads accepts lifetime only; sending daily returns 422..</param>
         public UpdateAdRequestBudget(decimal amount = default, TypeEnum? type = default)
         {
             this.Amount = amount;

@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Meta ad-set promoted_object, forwarded verbatim (same shape as /v1/ads/create).
+    /// Meta ad-set promoted_object, forwarded verbatim (same shape as /v1/ads/create). Unknown keys are rejected with 400.
     /// </summary>
     [DataContract(Name = "updateAdSet_request_platformSpecificData_promotedObject")]
     public partial class UpdateAdSetRequestPlatformSpecificDataPromotedObject : IValidatableObject
@@ -44,7 +44,9 @@ namespace Zernio.Model
         /// <param name="customConversionId">customConversionId.</param>
         /// <param name="productCatalogId">productCatalogId.</param>
         /// <param name="productSetId">productSetId.</param>
-        public UpdateAdSetRequestPlatformSpecificDataPromotedObject(string pixelId = default, string customEventType = default, string pageId = default, string applicationId = default, string objectStoreUrl = default, string customConversionId = default, string productCatalogId = default, string productSetId = default)
+        /// <param name="offlineConversionDataSetId">offlineConversionDataSetId.</param>
+        /// <param name="whatsappPhoneNumber">whatsappPhoneNumber.</param>
+        public UpdateAdSetRequestPlatformSpecificDataPromotedObject(string pixelId = default, string customEventType = default, string pageId = default, string applicationId = default, string objectStoreUrl = default, string customConversionId = default, string productCatalogId = default, string productSetId = default, string offlineConversionDataSetId = default, string whatsappPhoneNumber = default)
         {
             this.PixelId = pixelId;
             this.CustomEventType = customEventType;
@@ -54,6 +56,9 @@ namespace Zernio.Model
             this.CustomConversionId = customConversionId;
             this.ProductCatalogId = productCatalogId;
             this.ProductSetId = productSetId;
+            this.OfflineConversionDataSetId = offlineConversionDataSetId;
+            this.WhatsappPhoneNumber = whatsappPhoneNumber;
+            this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -105,6 +110,24 @@ namespace Zernio.Model
         public string ProductSetId { get; set; }
 
         /// <summary>
+        /// Gets or Sets OfflineConversionDataSetId
+        /// </summary>
+        [DataMember(Name = "offlineConversionDataSetId", EmitDefaultValue = false)]
+        public string OfflineConversionDataSetId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets WhatsappPhoneNumber
+        /// </summary>
+        [DataMember(Name = "whatsappPhoneNumber", EmitDefaultValue = false)]
+        public string WhatsappPhoneNumber { get; set; }
+
+        /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public IDictionary<string, object> AdditionalProperties { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -120,6 +143,9 @@ namespace Zernio.Model
             sb.Append("  CustomConversionId: ").Append(CustomConversionId).Append("\n");
             sb.Append("  ProductCatalogId: ").Append(ProductCatalogId).Append("\n");
             sb.Append("  ProductSetId: ").Append(ProductSetId).Append("\n");
+            sb.Append("  OfflineConversionDataSetId: ").Append(OfflineConversionDataSetId).Append("\n");
+            sb.Append("  WhatsappPhoneNumber: ").Append(WhatsappPhoneNumber).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

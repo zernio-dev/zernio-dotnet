@@ -36,25 +36,44 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GetPhoneNumberKycForm200ResponseReusableOptionsInner" /> class.
         /// </summary>
-        /// <param name="fromPhoneNumber">fromPhoneNumber.</param>
+        /// <param name="id">Opaque option id — pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications)..</param>
+        /// <param name="fromPhoneNumber">Display only — the number this verification was submitted for. Not a selection key..</param>
+        /// <param name="instant">true &#x3D; group-approved, a new order activates in minutes; false &#x3D; documents are reused but the order still queues for carrier review (1-3 days)..</param>
         /// <param name="details">details.</param>
-        public GetPhoneNumberKycForm200ResponseReusableOptionsInner(string fromPhoneNumber = default, List<GetPhoneNumberKycForm200ResponseReusableDetailsInner> details = default)
+        public GetPhoneNumberKycForm200ResponseReusableOptionsInner(string id = default, string fromPhoneNumber = default, bool instant = default, List<GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner> details = default)
         {
+            this.Id = id;
             this.FromPhoneNumber = fromPhoneNumber;
+            this.Instant = instant;
             this.Details = details;
         }
 
         /// <summary>
-        /// Gets or Sets FromPhoneNumber
+        /// Opaque option id — pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications).
         /// </summary>
+        /// <value>Opaque option id — pass as &#x60;reuseOptionId&#x60; on POST. Stable selection key (a phone number is not unique across verifications).</value>
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Display only — the number this verification was submitted for. Not a selection key.
+        /// </summary>
+        /// <value>Display only — the number this verification was submitted for. Not a selection key.</value>
         [DataMember(Name = "fromPhoneNumber", EmitDefaultValue = false)]
         public string FromPhoneNumber { get; set; }
+
+        /// <summary>
+        /// true &#x3D; group-approved, a new order activates in minutes; false &#x3D; documents are reused but the order still queues for carrier review (1-3 days).
+        /// </summary>
+        /// <value>true &#x3D; group-approved, a new order activates in minutes; false &#x3D; documents are reused but the order still queues for carrier review (1-3 days).</value>
+        [DataMember(Name = "instant", EmitDefaultValue = true)]
+        public bool Instant { get; set; }
 
         /// <summary>
         /// Gets or Sets Details
         /// </summary>
         [DataMember(Name = "details", EmitDefaultValue = false)]
-        public List<GetPhoneNumberKycForm200ResponseReusableDetailsInner> Details { get; set; }
+        public List<GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner> Details { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,7 +83,9 @@ namespace Zernio.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetPhoneNumberKycForm200ResponseReusableOptionsInner {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  FromPhoneNumber: ").Append(FromPhoneNumber).Append("\n");
+            sb.Append("  Instant: ").Append(Instant).Append("\n");
             sb.Append("  Details: ").Append(Details).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

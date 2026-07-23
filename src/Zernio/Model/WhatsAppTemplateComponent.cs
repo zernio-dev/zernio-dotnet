@@ -84,6 +84,30 @@ namespace Zernio.Model
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WhatsAppTemplateComponent" /> class
+        /// with the <see cref="WhatsAppCarouselComponent" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of WhatsAppCarouselComponent.</param>
+        public WhatsAppTemplateComponent(WhatsAppCarouselComponent actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WhatsAppTemplateComponent" /> class
+        /// with the <see cref="WhatsAppLimitedTimeOfferComponent" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of WhatsAppLimitedTimeOfferComponent.</param>
+        public WhatsAppTemplateComponent(WhatsAppLimitedTimeOfferComponent actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -106,6 +130,10 @@ namespace Zernio.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(WhatsAppCarouselComponent) || value is WhatsAppCarouselComponent)
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(WhatsAppFooterComponent) || value is WhatsAppFooterComponent)
                 {
                     this._actualInstance = value;
@@ -114,9 +142,13 @@ namespace Zernio.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(WhatsAppLimitedTimeOfferComponent) || value is WhatsAppLimitedTimeOfferComponent)
+                {
+                    this._actualInstance = value;
+                }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: WhatsAppBodyComponent, WhatsAppButtonsComponent, WhatsAppFooterComponent, WhatsAppHeaderComponent");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: WhatsAppBodyComponent, WhatsAppButtonsComponent, WhatsAppCarouselComponent, WhatsAppFooterComponent, WhatsAppHeaderComponent, WhatsAppLimitedTimeOfferComponent");
                 }
             }
         }
@@ -159,6 +191,26 @@ namespace Zernio.Model
         public WhatsAppButtonsComponent GetWhatsAppButtonsComponent()
         {
             return (WhatsAppButtonsComponent)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `WhatsAppCarouselComponent`. If the actual instance is not `WhatsAppCarouselComponent`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of WhatsAppCarouselComponent</returns>
+        public WhatsAppCarouselComponent GetWhatsAppCarouselComponent()
+        {
+            return (WhatsAppCarouselComponent)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `WhatsAppLimitedTimeOfferComponent`. If the actual instance is not `WhatsAppLimitedTimeOfferComponent`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of WhatsAppLimitedTimeOfferComponent</returns>
+        public WhatsAppLimitedTimeOfferComponent GetWhatsAppLimitedTimeOfferComponent()
+        {
+            return (WhatsAppLimitedTimeOfferComponent)this.ActualInstance;
         }
 
         /// <summary>
@@ -242,6 +294,26 @@ namespace Zernio.Model
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(WhatsAppCarouselComponent).GetProperty("AdditionalProperties") == null)
+                {
+                    newWhatsAppTemplateComponent = new WhatsAppTemplateComponent(JsonConvert.DeserializeObject<WhatsAppCarouselComponent>(jsonString, WhatsAppTemplateComponent.SerializerSettings));
+                }
+                else
+                {
+                    newWhatsAppTemplateComponent = new WhatsAppTemplateComponent(JsonConvert.DeserializeObject<WhatsAppCarouselComponent>(jsonString, WhatsAppTemplateComponent.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("WhatsAppCarouselComponent");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into WhatsAppCarouselComponent: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
                 if (typeof(WhatsAppFooterComponent).GetProperty("AdditionalProperties") == null)
                 {
                     newWhatsAppTemplateComponent = new WhatsAppTemplateComponent(JsonConvert.DeserializeObject<WhatsAppFooterComponent>(jsonString, WhatsAppTemplateComponent.SerializerSettings));
@@ -277,6 +349,26 @@ namespace Zernio.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into WhatsAppHeaderComponent: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(WhatsAppLimitedTimeOfferComponent).GetProperty("AdditionalProperties") == null)
+                {
+                    newWhatsAppTemplateComponent = new WhatsAppTemplateComponent(JsonConvert.DeserializeObject<WhatsAppLimitedTimeOfferComponent>(jsonString, WhatsAppTemplateComponent.SerializerSettings));
+                }
+                else
+                {
+                    newWhatsAppTemplateComponent = new WhatsAppTemplateComponent(JsonConvert.DeserializeObject<WhatsAppLimitedTimeOfferComponent>(jsonString, WhatsAppTemplateComponent.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("WhatsAppLimitedTimeOfferComponent");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into WhatsAppLimitedTimeOfferComponent: {1}", jsonString, exception.ToString()));
             }
 
             if (match == 0)

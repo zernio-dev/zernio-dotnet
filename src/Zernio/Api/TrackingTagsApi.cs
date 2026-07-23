@@ -57,10 +57,10 @@ namespace Zernio.Api
         /// Create a tracking tag
         /// </summary>
         /// <remarks>
-        /// Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
         /// <param name="createTrackingTagRequest"></param>
         /// <returns>CreateTrackingTag201Response</returns>
         CreateTrackingTag201Response CreateTrackingTag(string accountId, CreateTrackingTagRequest createTrackingTagRequest);
@@ -69,36 +69,57 @@ namespace Zernio.Api
         /// Create a tracking tag
         /// </summary>
         /// <remarks>
-        /// Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
         /// <param name="createTrackingTagRequest"></param>
         /// <returns>ApiResponse of CreateTrackingTag201Response</returns>
         ApiResponse<CreateTrackingTag201Response> CreateTrackingTagWithHttpInfo(string accountId, CreateTrackingTagRequest createTrackingTagRequest);
         /// <summary>
+        /// Get ad tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <returns>GetAdTrackingTags200Response</returns>
+        GetAdTrackingTags200Response GetAdTrackingTags(string adId);
+
+        /// <summary>
+        /// Get ad tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <returns>ApiResponse of GetAdTrackingTags200Response</returns>
+        ApiResponse<GetAdTrackingTags200Response> GetAdTrackingTagsWithHttpInfo(string adId);
+        /// <summary>
         /// Get a tracking tag
         /// </summary>
         /// <remarks>
-        /// Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="tagId">Pixel id.</param>
-        /// <returns>CreateTrackingTag201Response</returns>
-        CreateTrackingTag201Response GetTrackingTag(string accountId, string tagId);
+        /// <returns>GetTrackingTag200Response</returns>
+        GetTrackingTag200Response GetTrackingTag(string accountId, string tagId);
 
         /// <summary>
         /// Get a tracking tag
         /// </summary>
         /// <remarks>
-        /// Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="tagId">Pixel id.</param>
-        /// <returns>ApiResponse of CreateTrackingTag201Response</returns>
-        ApiResponse<CreateTrackingTag201Response> GetTrackingTagWithHttpInfo(string accountId, string tagId);
+        /// <returns>ApiResponse of GetTrackingTag200Response</returns>
+        ApiResponse<GetTrackingTag200Response> GetTrackingTagWithHttpInfo(string accountId, string tagId);
         /// <summary>
         /// Get aggregated event stats
         /// </summary>
@@ -155,11 +176,11 @@ namespace Zernio.Api
         /// List tracking tags
         /// </summary>
         /// <remarks>
-        /// Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
+        /// Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
-        /// <param name="adAccountId">Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
+        /// <param name="adAccountId">Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)</param>
         /// <returns>ListTrackingTags200Response</returns>
         ListTrackingTags200Response ListTrackingTags(string accountId, string? adAccountId = default);
 
@@ -167,11 +188,11 @@ namespace Zernio.Api
         /// List tracking tags
         /// </summary>
         /// <remarks>
-        /// Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
+        /// Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
-        /// <param name="adAccountId">Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
+        /// <param name="adAccountId">Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)</param>
         /// <returns>ApiResponse of ListTrackingTags200Response</returns>
         ApiResponse<ListTrackingTags200Response> ListTrackingTagsWithHttpInfo(string accountId, string? adAccountId = default);
         /// <summary>
@@ -200,6 +221,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> RemoveTrackingTagSharedAccountWithHttpInfo(string accountId, string tagId, string? adAccountId = default);
         /// <summary>
+        /// Set ad tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <returns></returns>
+        void UpdateAdTrackingTags(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest);
+
+        /// <summary>
+        /// Set ad tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> UpdateAdTrackingTagsWithHttpInfo(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest);
+        /// <summary>
         /// Update a tracking tag
         /// </summary>
         /// <remarks>
@@ -209,8 +253,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="tagId">Pixel id.</param>
         /// <param name="updateTrackingTagRequest"></param>
-        /// <returns>CreateTrackingTag201Response</returns>
-        CreateTrackingTag201Response UpdateTrackingTag(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest);
+        /// <returns>GetTrackingTag200Response</returns>
+        GetTrackingTag200Response UpdateTrackingTag(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest);
 
         /// <summary>
         /// Update a tracking tag
@@ -222,8 +266,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="tagId">Pixel id.</param>
         /// <param name="updateTrackingTagRequest"></param>
-        /// <returns>ApiResponse of CreateTrackingTag201Response</returns>
-        ApiResponse<CreateTrackingTag201Response> UpdateTrackingTagWithHttpInfo(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest);
+        /// <returns>ApiResponse of GetTrackingTag200Response</returns>
+        ApiResponse<GetTrackingTag200Response> UpdateTrackingTagWithHttpInfo(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest);
         #endregion Synchronous Operations
     }
 
@@ -264,10 +308,10 @@ namespace Zernio.Api
         /// Create a tracking tag
         /// </summary>
         /// <remarks>
-        /// Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
         /// <param name="createTrackingTagRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateTrackingTag201Response</returns>
@@ -277,39 +321,62 @@ namespace Zernio.Api
         /// Create a tracking tag
         /// </summary>
         /// <remarks>
-        /// Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
         /// <param name="createTrackingTagRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateTrackingTag201Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateTrackingTag201Response>> CreateTrackingTagWithHttpInfoAsync(string accountId, CreateTrackingTagRequest createTrackingTagRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Get ad tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdTrackingTags200Response</returns>
+        System.Threading.Tasks.Task<GetAdTrackingTags200Response> GetAdTrackingTagsAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get ad tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdTrackingTags200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetAdTrackingTags200Response>> GetAdTrackingTagsWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Get a tracking tag
         /// </summary>
         /// <remarks>
-        /// Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="tagId">Pixel id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateTrackingTag201Response</returns>
-        System.Threading.Tasks.Task<CreateTrackingTag201Response> GetTrackingTagAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of GetTrackingTag200Response</returns>
+        System.Threading.Tasks.Task<GetTrackingTag200Response> GetTrackingTagAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a tracking tag
         /// </summary>
         /// <remarks>
-        /// Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="tagId">Pixel id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateTrackingTag201Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CreateTrackingTag201Response>> GetTrackingTagWithHttpInfoAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (GetTrackingTag200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetTrackingTag200Response>> GetTrackingTagWithHttpInfoAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get aggregated event stats
         /// </summary>
@@ -370,11 +437,11 @@ namespace Zernio.Api
         /// List tracking tags
         /// </summary>
         /// <remarks>
-        /// Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
+        /// Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
-        /// <param name="adAccountId">Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
+        /// <param name="adAccountId">Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListTrackingTags200Response</returns>
         System.Threading.Tasks.Task<ListTrackingTags200Response> ListTrackingTagsAsync(string accountId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
@@ -383,11 +450,11 @@ namespace Zernio.Api
         /// List tracking tags
         /// </summary>
         /// <remarks>
-        /// Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
+        /// Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
-        /// <param name="adAccountId">Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
+        /// <param name="adAccountId">Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListTrackingTags200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListTrackingTags200Response>> ListTrackingTagsWithHttpInfoAsync(string accountId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
@@ -419,6 +486,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> RemoveTrackingTagSharedAccountWithHttpInfoAsync(string accountId, string tagId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Set ad tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task UpdateAdTrackingTagsAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Set ad tracking tags
+        /// </summary>
+        /// <remarks>
+        /// Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> UpdateAdTrackingTagsWithHttpInfoAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Update a tracking tag
         /// </summary>
         /// <remarks>
@@ -429,8 +521,8 @@ namespace Zernio.Api
         /// <param name="tagId">Pixel id.</param>
         /// <param name="updateTrackingTagRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateTrackingTag201Response</returns>
-        System.Threading.Tasks.Task<CreateTrackingTag201Response> UpdateTrackingTagAsync(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of GetTrackingTag200Response</returns>
+        System.Threading.Tasks.Task<GetTrackingTag200Response> UpdateTrackingTagAsync(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a tracking tag
@@ -443,8 +535,8 @@ namespace Zernio.Api
         /// <param name="tagId">Pixel id.</param>
         /// <param name="updateTrackingTagRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateTrackingTag201Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CreateTrackingTag201Response>> UpdateTrackingTagWithHttpInfoAsync(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <returns>Task of ApiResponse (GetTrackingTag200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetTrackingTag200Response>> UpdateTrackingTagWithHttpInfoAsync(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -816,10 +908,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a tracking tag Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Create a tracking tag Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
         /// <param name="createTrackingTagRequest"></param>
         /// <returns>CreateTrackingTag201Response</returns>
         public CreateTrackingTag201Response CreateTrackingTag(string accountId, CreateTrackingTagRequest createTrackingTagRequest)
@@ -829,10 +921,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a tracking tag Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Create a tracking tag Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
         /// <param name="createTrackingTagRequest"></param>
         /// <returns>ApiResponse of CreateTrackingTag201Response</returns>
         public Zernio.Client.ApiResponse<CreateTrackingTag201Response> CreateTrackingTagWithHttpInfo(string accountId, CreateTrackingTagRequest createTrackingTagRequest)
@@ -885,10 +977,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a tracking tag Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Create a tracking tag Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
         /// <param name="createTrackingTagRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateTrackingTag201Response</returns>
@@ -899,10 +991,10 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a tracking tag Creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Create a tracking tag Meta: creates a Meta Pixel on the given ad account (&#x60;POST /act_{id}/adspixels&#x60; — &#x60;name&#x60; is the only input). Returns the created tag including its install &#x60;code&#x60;. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with &#x60;ownerBusinessId: null&#x60; and can&#39;t be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned &#x60;code&#x60; snippet on the site, or send events server-side via &#x60;POST /v1/ads/conversions&#x60;. The check &#x60;installed&#x60; is derived from &#x60;lastFiredTime&#x60;.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (&#x60;adAccountId&#x60; is required by this endpoint but ignored — one API key maps to exactly one ad account, so there&#39;s nothing to select). Returns 422 (&#x60;FEATURE_NOT_AVAILABLE&#x60;) if the ad account isn&#39;t enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
         /// <param name="createTrackingTagRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateTrackingTag201Response)</returns>
@@ -959,26 +1051,153 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a tracking tag Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Get ad tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId"></param>
-        /// <param name="tagId">Pixel id.</param>
-        /// <returns>CreateTrackingTag201Response</returns>
-        public CreateTrackingTag201Response GetTrackingTag(string accountId, string tagId)
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <returns>GetAdTrackingTags200Response</returns>
+        public GetAdTrackingTags200Response GetAdTrackingTags(string adId)
         {
-            Zernio.Client.ApiResponse<CreateTrackingTag201Response> localVarResponse = GetTrackingTagWithHttpInfo(accountId, tagId);
+            Zernio.Client.ApiResponse<GetAdTrackingTags200Response> localVarResponse = GetAdTrackingTagsWithHttpInfo(adId);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get a tracking tag Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Get ad tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <returns>ApiResponse of GetAdTrackingTags200Response</returns>
+        public Zernio.Client.ApiResponse<GetAdTrackingTags200Response> GetAdTrackingTagsWithHttpInfo(string adId)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling TrackingTagsApi->GetAdTrackingTags");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetAdTrackingTags200Response>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdTrackingTags", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get ad tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetAdTrackingTags200Response</returns>
+        public async System.Threading.Tasks.Task<GetAdTrackingTags200Response> GetAdTrackingTagsAsync(string adId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GetAdTrackingTags200Response> localVarResponse = await GetAdTrackingTagsWithHttpInfoAsync(adId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get ad tracking tags Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId">Ad id (hex _id, platformAdId, or effective story/media id).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetAdTrackingTags200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetAdTrackingTags200Response>> GetAdTrackingTagsWithHttpInfoAsync(string adId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling TrackingTagsApi->GetAdTrackingTags");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetAdTrackingTags200Response>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetAdTrackingTags", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get a tracking tag Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="tagId">Pixel id.</param>
-        /// <returns>ApiResponse of CreateTrackingTag201Response</returns>
-        public Zernio.Client.ApiResponse<CreateTrackingTag201Response> GetTrackingTagWithHttpInfo(string accountId, string tagId)
+        /// <returns>GetTrackingTag200Response</returns>
+        public GetTrackingTag200Response GetTrackingTag(string accountId, string tagId)
+        {
+            Zernio.Client.ApiResponse<GetTrackingTag200Response> localVarResponse = GetTrackingTagWithHttpInfo(accountId, tagId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get a tracking tag Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId"></param>
+        /// <param name="tagId">Pixel id.</param>
+        /// <returns>ApiResponse of GetTrackingTag200Response</returns>
+        public Zernio.Client.ApiResponse<GetTrackingTag200Response> GetTrackingTagWithHttpInfo(string accountId, string tagId)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1015,7 +1234,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<CreateTrackingTag201Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<GetTrackingTag200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1027,28 +1246,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get a tracking tag Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Get a tracking tag Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="tagId">Pixel id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateTrackingTag201Response</returns>
-        public async System.Threading.Tasks.Task<CreateTrackingTag201Response> GetTrackingTagAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of GetTrackingTag200Response</returns>
+        public async System.Threading.Tasks.Task<GetTrackingTag200Response> GetTrackingTagAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<CreateTrackingTag201Response> localVarResponse = await GetTrackingTagWithHttpInfoAsync(accountId, tagId, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetTrackingTag200Response> localVarResponse = await GetTrackingTagWithHttpInfoAsync(accountId, tagId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get a tracking tag Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+        /// Get a tracking tag Returns the full tag record including the base-code &#x60;code&#x60; snippet, &#x60;lastFiredTime&#x60;, &#x60;ownerBusinessId&#x60;, &#x60;isUnavailable&#x60;, etc. Meta only (platform &#x60;metaads&#x60;); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use &#x60;GET /v1/accounts/{accountId}/tracking-tags&#x60; (list) instead. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="tagId">Pixel id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateTrackingTag201Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateTrackingTag201Response>> GetTrackingTagWithHttpInfoAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (GetTrackingTag200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetTrackingTag200Response>> GetTrackingTagWithHttpInfoAsync(string accountId, string tagId, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1088,7 +1307,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.GetAsync<CreateTrackingTag201Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetTrackingTag200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -1418,11 +1637,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List tracking tags Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
+        /// List tracking tags Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
-        /// <param name="adAccountId">Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
+        /// <param name="adAccountId">Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)</param>
         /// <returns>ListTrackingTags200Response</returns>
         public ListTrackingTags200Response ListTrackingTags(string accountId, string? adAccountId = default)
         {
@@ -1431,11 +1650,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List tracking tags Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
+        /// List tracking tags Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
-        /// <param name="adAccountId">Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
+        /// <param name="adAccountId">Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)</param>
         /// <returns>ApiResponse of ListTrackingTags200Response</returns>
         public Zernio.Client.ApiResponse<ListTrackingTags200Response> ListTrackingTagsWithHttpInfo(string accountId, string? adAccountId = default)
         {
@@ -1485,11 +1704,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List tracking tags Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
+        /// List tracking tags Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
-        /// <param name="adAccountId">Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
+        /// <param name="adAccountId">Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListTrackingTags200Response</returns>
         public async System.Threading.Tasks.Task<ListTrackingTags200Response> ListTrackingTagsAsync(string accountId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1499,11 +1718,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List tracking tags Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail.  Meta only today (platform &#x60;metaads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;. 
+        /// List tracking tags Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass &#x60;?adAccountId&#x3D;act_...&#x60; (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits &#x60;code&#x60; — call &#x60;getTrackingTag&#x60; for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform &#x60;metaads&#x60;) and OpenAI Ads (platform &#x60;openaiads&#x60;); other platforms return 405. The &#x60;accountId&#x60; must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta &#x60;act_...&#x60; ids from &#x60;GET /v1/ads/accounts&#x60;; &#x60;adAccountId&#x60; is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Meta ads SocialAccount id (platform &#x60;metaads&#x60;).</param>
-        /// <param name="adAccountId">Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. (optional)</param>
+        /// <param name="accountId">Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;).</param>
+        /// <param name="adAccountId">Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListTrackingTags200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListTrackingTags200Response>> ListTrackingTagsWithHttpInfoAsync(string accountId, string? adAccountId = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1708,16 +1927,157 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Set ad tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <returns></returns>
+        public void UpdateAdTrackingTags(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
+        {
+            UpdateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest);
+        }
+
+        /// <summary>
+        /// Set ad tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> UpdateAdTrackingTagsWithHttpInfo(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling TrackingTagsApi->UpdateAdTrackingTags");
+
+            // verify the required parameter 'updateAdTrackingTagsRequest' is set
+            if (updateAdTrackingTagsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdTrackingTagsRequest' when calling TrackingTagsApi->UpdateAdTrackingTags");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.Data = updateAdTrackingTagsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Patch<Object>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdTrackingTags", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Set ad tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task UpdateAdTrackingTagsAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await UpdateAdTrackingTagsWithHttpInfoAsync(adId, updateAdTrackingTagsRequest, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Set ad tracking tags Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send &#x60;urlTags&#x60;   ALONE — no need to read back headline/body/CTA. &#x60;creative&#x60; (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   &#x60;creative&#x60;). - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="adId"></param>
+        /// <param name="updateAdTrackingTagsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> UpdateAdTrackingTagsWithHttpInfoAsync(string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'adId' is set
+            if (adId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'adId' when calling TrackingTagsApi->UpdateAdTrackingTags");
+
+            // verify the required parameter 'updateAdTrackingTagsRequest' is set
+            if (updateAdTrackingTagsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'updateAdTrackingTagsRequest' when calling TrackingTagsApi->UpdateAdTrackingTags");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("adId", Zernio.Client.ClientUtils.ParameterToString(adId)); // path parameter
+            localVarRequestOptions.Data = updateAdTrackingTagsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<Object>("/v1/ads/{adId}/tracking-tags", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateAdTrackingTags", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Update a tracking tag Partial-update a pixel. Whitelisted fields: &#x60;name&#x60; (rename), &#x60;enableAutomaticMatching&#x60;, &#x60;automaticMatchingFields&#x60;, &#x60;firstPartyCookieStatus&#x60;, &#x60;dataUseSetting&#x60;. At least one is required. Returns the re-fetched canonical tag. Meta only (platform &#x60;metaads&#x60;); other platforms return 405.  There is no DELETE — Meta has no API to delete a pixel. To stop using one, unshare it from your ad accounts (&#x60;DELETE .../tracking-tags/{tagId}/shared-accounts&#x60;) or disable it in Events Manager. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountId"></param>
         /// <param name="tagId">Pixel id.</param>
         /// <param name="updateTrackingTagRequest"></param>
-        /// <returns>CreateTrackingTag201Response</returns>
-        public CreateTrackingTag201Response UpdateTrackingTag(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest)
+        /// <returns>GetTrackingTag200Response</returns>
+        public GetTrackingTag200Response UpdateTrackingTag(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest)
         {
-            Zernio.Client.ApiResponse<CreateTrackingTag201Response> localVarResponse = UpdateTrackingTagWithHttpInfo(accountId, tagId, updateTrackingTagRequest);
+            Zernio.Client.ApiResponse<GetTrackingTag200Response> localVarResponse = UpdateTrackingTagWithHttpInfo(accountId, tagId, updateTrackingTagRequest);
             return localVarResponse.Data;
         }
 
@@ -1728,8 +2088,8 @@ namespace Zernio.Api
         /// <param name="accountId"></param>
         /// <param name="tagId">Pixel id.</param>
         /// <param name="updateTrackingTagRequest"></param>
-        /// <returns>ApiResponse of CreateTrackingTag201Response</returns>
-        public Zernio.Client.ApiResponse<CreateTrackingTag201Response> UpdateTrackingTagWithHttpInfo(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest)
+        /// <returns>ApiResponse of GetTrackingTag200Response</returns>
+        public Zernio.Client.ApiResponse<GetTrackingTag200Response> UpdateTrackingTagWithHttpInfo(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1772,7 +2132,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<CreateTrackingTag201Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<GetTrackingTag200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1791,10 +2151,10 @@ namespace Zernio.Api
         /// <param name="tagId">Pixel id.</param>
         /// <param name="updateTrackingTagRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of CreateTrackingTag201Response</returns>
-        public async System.Threading.Tasks.Task<CreateTrackingTag201Response> UpdateTrackingTagAsync(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of GetTrackingTag200Response</returns>
+        public async System.Threading.Tasks.Task<GetTrackingTag200Response> UpdateTrackingTagAsync(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<CreateTrackingTag201Response> localVarResponse = await UpdateTrackingTagWithHttpInfoAsync(accountId, tagId, updateTrackingTagRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<GetTrackingTag200Response> localVarResponse = await UpdateTrackingTagWithHttpInfoAsync(accountId, tagId, updateTrackingTagRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1806,8 +2166,8 @@ namespace Zernio.Api
         /// <param name="tagId">Pixel id.</param>
         /// <param name="updateTrackingTagRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (CreateTrackingTag201Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateTrackingTag201Response>> UpdateTrackingTagWithHttpInfoAsync(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns>Task of ApiResponse (GetTrackingTag200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetTrackingTag200Response>> UpdateTrackingTagWithHttpInfoAsync(string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1853,7 +2213,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<CreateTrackingTag201Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<GetTrackingTag200Response>("/v1/accounts/{accountId}/tracking-tags/{tagId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

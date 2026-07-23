@@ -58,28 +58,34 @@ namespace Zernio.Model
             Engagement = 3,
 
             /// <summary>
+            /// Enum MetaEngagement for value: meta_engagement
+            /// </summary>
+            [EnumMember(Value = "meta_engagement")]
+            MetaEngagement = 4,
+
+            /// <summary>
             /// Enum Website for value: website
             /// </summary>
             [EnumMember(Value = "website")]
-            Website = 4,
+            Website = 5,
 
             /// <summary>
             /// Enum WebsiteRetargeting for value: website_retargeting
             /// </summary>
             [EnumMember(Value = "website_retargeting")]
-            WebsiteRetargeting = 5,
+            WebsiteRetargeting = 6,
 
             /// <summary>
             /// Enum Lookalike for value: lookalike
             /// </summary>
             [EnumMember(Value = "lookalike")]
-            Lookalike = 6,
+            Lookalike = 7,
 
             /// <summary>
             /// Enum SavedTargeting for value: saved_targeting
             /// </summary>
             [EnumMember(Value = "saved_targeting")]
-            SavedTargeting = 7
+            SavedTargeting = 8
         }
 
 

@@ -55,6 +55,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test BoostPost
+        /// </summary>
+        [Fact]
+        public void BoostPostTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //BoostPostRequest boostPostRequest = null;
+            //var response = instance.BoostPost(boostPostRequest);
+            //Assert.IsType<UpdateAd200Response>(response);
+        }
+
+        /// <summary>
         /// Test BulkUpdateAdCampaignStatus
         /// </summary>
         [Fact]
@@ -64,6 +76,43 @@ namespace Zernio.Test.Api
             //BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest = null;
             //var response = instance.BulkUpdateAdCampaignStatus(bulkUpdateAdCampaignStatusRequest);
             //Assert.IsType<BulkUpdateAdCampaignStatus200Response>(response);
+        }
+
+        /// <summary>
+        /// Test CreateAdCampaign
+        /// </summary>
+        [Fact]
+        public void CreateAdCampaignTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateAdCampaignRequest createAdCampaignRequest = null;
+            //var response = instance.CreateAdCampaign(createAdCampaignRequest);
+            //Assert.IsType<CreateAdCampaign201Response>(response);
+        }
+
+        /// <summary>
+        /// Test CreateStandaloneAd
+        /// </summary>
+        [Fact]
+        public void CreateStandaloneAdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateStandaloneAdRequest createStandaloneAdRequest = null;
+            //string? idempotencyKey = null;
+            //var response = instance.CreateStandaloneAd(createStandaloneAdRequest, idempotencyKey);
+            //Assert.IsType<CreateStandaloneAd200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteAd
+        /// </summary>
+        [Fact]
+        public void DeleteAdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //var response = instance.DeleteAd(adId);
+            //Assert.IsType<DeleteAccountGroup200Response>(response);
         }
 
         /// <summary>
@@ -80,6 +129,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test DuplicateAd
+        /// </summary>
+        [Fact]
+        public void DuplicateAdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //DuplicateAdRequest? duplicateAdRequest = null;
+            //var response = instance.DuplicateAd(adId, duplicateAdRequest);
+            //Assert.IsType<DuplicateAd200Response>(response);
+        }
+
+        /// <summary>
         /// Test DuplicateAdCampaign
         /// </summary>
         [Fact]
@@ -90,6 +152,31 @@ namespace Zernio.Test.Api
             //DuplicateAdCampaignRequest duplicateAdCampaignRequest = null;
             //var response = instance.DuplicateAdCampaign(campaignId, duplicateAdCampaignRequest);
             //Assert.IsType<DuplicateAdCampaign200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DuplicateAdSet
+        /// </summary>
+        [Fact]
+        public void DuplicateAdSetTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adSetId = null;
+            //DuplicateAdSetRequest duplicateAdSetRequest = null;
+            //var response = instance.DuplicateAdSet(adSetId, duplicateAdSetRequest);
+            //Assert.IsType<DuplicateAdSet200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GetAd
+        /// </summary>
+        [Fact]
+        public void GetAdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //var response = instance.GetAd(adId);
+            //Assert.IsType<GetAd200Response>(response);
         }
 
         /// <summary>
@@ -169,6 +256,44 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListAds
+        /// </summary>
+        [Fact]
+        public void ListAdsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? page = null;
+            //int? limit = null;
+            //string? source = null;
+            //AdStatus? status = null;
+            //string? platform = null;
+            //string? accountId = null;
+            //string? adAccountId = null;
+            //string? profileId = null;
+            //string? campaignId = null;
+            //string? platformAdId = null;
+            //string? effectiveObjectStoryId = null;
+            //string? effectiveInstagramMediaId = null;
+            //DateOnly? fromDate = null;
+            //DateOnly? toDate = null;
+            //var response = instance.ListAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
+            //Assert.IsType<ListAds200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateAd
+        /// </summary>
+        [Fact]
+        public void UpdateAdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //UpdateAdRequest updateAdRequest = null;
+            //var response = instance.UpdateAd(adId, updateAdRequest);
+            //Assert.IsType<UpdateAd200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateAdCampaign
         /// </summary>
         [Fact]
@@ -218,6 +343,19 @@ namespace Zernio.Test.Api
             //UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest = null;
             //var response = instance.UpdateAdSetStatus(adSetId, updateAdCampaignStatusRequest);
             //Assert.IsType<UpdateAdSetStatus200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateAdStatus
+        /// </summary>
+        [Fact]
+        public void UpdateAdStatusTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //UpdateAdStatusRequest updateAdStatusRequest = null;
+            //var response = instance.UpdateAdStatus(adId, updateAdStatusRequest);
+            //Assert.IsType<UpdateAdStatus200Response>(response);
         }
     }
 }

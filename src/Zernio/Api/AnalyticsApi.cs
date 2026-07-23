@@ -598,13 +598,13 @@ namespace Zernio.Api
         /// Get YouTube daily views
         /// </summary>
         /// <remarks>
-        /// Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+        /// Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)</param>
         /// <returns>YouTubeDailyViewsResponse</returns>
         YouTubeDailyViewsResponse GetYouTubeDailyViews(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default);
 
@@ -612,13 +612,13 @@ namespace Zernio.Api
         /// Get YouTube daily views
         /// </summary>
         /// <remarks>
-        /// Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+        /// Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)</param>
         /// <returns>ApiResponse of YouTubeDailyViewsResponse</returns>
         ApiResponse<YouTubeDailyViewsResponse> GetYouTubeDailyViewsWithHttpInfo(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default);
         /// <summary>
@@ -632,7 +632,7 @@ namespace Zernio.Api
         /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
         /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
-        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <returns>YouTubeDemographicsResponse</returns>
         YouTubeDemographicsResponse GetYouTubeDemographics(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default);
 
@@ -647,7 +647,7 @@ namespace Zernio.Api
         /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
         /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
-        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <returns>ApiResponse of YouTubeDemographicsResponse</returns>
         ApiResponse<YouTubeDemographicsResponse> GetYouTubeDemographicsWithHttpInfo(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default);
         /// <summary>
@@ -660,7 +660,7 @@ namespace Zernio.Api
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <returns>YouTubeVideoRetentionResponse</returns>
         YouTubeVideoRetentionResponse GetYouTubeVideoRetention(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default);
 
@@ -674,7 +674,7 @@ namespace Zernio.Api
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <returns>ApiResponse of YouTubeVideoRetentionResponse</returns>
         ApiResponse<YouTubeVideoRetentionResponse> GetYouTubeVideoRetentionWithHttpInfo(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default);
         /// <summary>
@@ -1317,13 +1317,13 @@ namespace Zernio.Api
         /// Get YouTube daily views
         /// </summary>
         /// <remarks>
-        /// Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+        /// Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of YouTubeDailyViewsResponse</returns>
         System.Threading.Tasks.Task<YouTubeDailyViewsResponse> GetYouTubeDailyViewsAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1332,13 +1332,13 @@ namespace Zernio.Api
         /// Get YouTube daily views
         /// </summary>
         /// <remarks>
-        /// Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+        /// Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (YouTubeDailyViewsResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<YouTubeDailyViewsResponse>> GetYouTubeDailyViewsWithHttpInfoAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1353,7 +1353,7 @@ namespace Zernio.Api
         /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
         /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
-        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of YouTubeDemographicsResponse</returns>
         System.Threading.Tasks.Task<YouTubeDemographicsResponse> GetYouTubeDemographicsAsync(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1369,7 +1369,7 @@ namespace Zernio.Api
         /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
         /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
-        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (YouTubeDemographicsResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<YouTubeDemographicsResponse>> GetYouTubeDemographicsWithHttpInfoAsync(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1383,7 +1383,7 @@ namespace Zernio.Api
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of YouTubeVideoRetentionResponse</returns>
         System.Threading.Tasks.Task<YouTubeVideoRetentionResponse> GetYouTubeVideoRetentionAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1398,7 +1398,7 @@ namespace Zernio.Api
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (YouTubeVideoRetentionResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<YouTubeVideoRetentionResponse>> GetYouTubeVideoRetentionWithHttpInfoAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default);
@@ -5049,13 +5049,13 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get YouTube daily views Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+        /// Get YouTube daily views Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)</param>
         /// <returns>YouTubeDailyViewsResponse</returns>
         public YouTubeDailyViewsResponse GetYouTubeDailyViews(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default)
         {
@@ -5064,13 +5064,13 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get YouTube daily views Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+        /// Get YouTube daily views Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)</param>
         /// <returns>ApiResponse of YouTubeDailyViewsResponse</returns>
         public Zernio.Client.ApiResponse<YouTubeDailyViewsResponse> GetYouTubeDailyViewsWithHttpInfo(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default)
         {
@@ -5129,13 +5129,13 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get YouTube daily views Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+        /// Get YouTube daily views Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of YouTubeDailyViewsResponse</returns>
         public async System.Threading.Tasks.Task<YouTubeDailyViewsResponse> GetYouTubeDailyViewsAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
@@ -5145,13 +5145,13 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Get YouTube daily views Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+        /// Get YouTube daily views Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (YouTubeDailyViewsResponse)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<YouTubeDailyViewsResponse>> GetYouTubeDailyViewsWithHttpInfoAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
@@ -5221,7 +5221,7 @@ namespace Zernio.Api
         /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
         /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
-        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <returns>YouTubeDemographicsResponse</returns>
         public YouTubeDemographicsResponse GetYouTubeDemographics(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default)
         {
@@ -5237,7 +5237,7 @@ namespace Zernio.Api
         /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
         /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
-        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <returns>ApiResponse of YouTubeDemographicsResponse</returns>
         public Zernio.Client.ApiResponse<YouTubeDemographicsResponse> GetYouTubeDemographicsWithHttpInfo(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default)
         {
@@ -5306,7 +5306,7 @@ namespace Zernio.Api
         /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
         /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
-        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of YouTubeDemographicsResponse</returns>
         public async System.Threading.Tasks.Task<YouTubeDemographicsResponse> GetYouTubeDemographicsAsync(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
@@ -5323,7 +5323,7 @@ namespace Zernio.Api
         /// <param name="videoId">YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional)</param>
         /// <param name="breakdown">Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional)</param>
         /// <param name="startDate">Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  (optional)</param>
-        /// <param name="endDate">End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (YouTubeDemographicsResponse)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<YouTubeDemographicsResponse>> GetYouTubeDemographicsWithHttpInfoAsync(string accountId, string? videoId = default, string? breakdown = default, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
@@ -5395,7 +5395,7 @@ namespace Zernio.Api
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <returns>YouTubeVideoRetentionResponse</returns>
         public YouTubeVideoRetentionResponse GetYouTubeVideoRetention(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default)
         {
@@ -5410,7 +5410,7 @@ namespace Zernio.Api
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <returns>ApiResponse of YouTubeVideoRetentionResponse</returns>
         public Zernio.Client.ApiResponse<YouTubeVideoRetentionResponse> GetYouTubeVideoRetentionWithHttpInfo(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default)
         {
@@ -5475,7 +5475,7 @@ namespace Zernio.Api
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of YouTubeVideoRetentionResponse</returns>
         public async System.Threading.Tasks.Task<YouTubeVideoRetentionResponse> GetYouTubeVideoRetentionAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)
@@ -5491,7 +5491,7 @@ namespace Zernio.Api
         /// <param name="videoId">The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;)</param>
         /// <param name="accountId">The Zernio account ID for the YouTube account</param>
         /// <param name="startDate">Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)</param>
-        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)</param>
+        /// <param name="endDate">End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (YouTubeVideoRetentionResponse)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<YouTubeVideoRetentionResponse>> GetYouTubeVideoRetentionWithHttpInfoAsync(string videoId, string accountId, DateOnly? startDate = default, DateOnly? endDate = default, System.Threading.CancellationToken cancellationToken = default)

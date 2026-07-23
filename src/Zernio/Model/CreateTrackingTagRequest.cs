@@ -41,7 +41,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateTrackingTagRequest" /> class.
         /// </summary>
-        /// <param name="adAccountId">Meta ad account id, e.g. &#x60;act_123456789&#x60;. (required).</param>
+        /// <param name="adAccountId">Meta ad account id, e.g. &#x60;act_123456789&#x60;. Required by this endpoint but ignored for OpenAI Ads. (required).</param>
         /// <param name="name">name (required).</param>
         public CreateTrackingTagRequest(string adAccountId = default, string name = default)
         {
@@ -60,9 +60,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Meta ad account id, e.g. &#x60;act_123456789&#x60;.
+        /// Meta ad account id, e.g. &#x60;act_123456789&#x60;. Required by this endpoint but ignored for OpenAI Ads.
         /// </summary>
-        /// <value>Meta ad account id, e.g. &#x60;act_123456789&#x60;.</value>
+        /// <value>Meta ad account id, e.g. &#x60;act_123456789&#x60;. Required by this endpoint but ignored for OpenAI Ads.</value>
         [DataMember(Name = "adAccountId", IsRequired = true, EmitDefaultValue = true)]
         public string AdAccountId { get; set; }
 

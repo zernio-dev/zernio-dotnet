@@ -43,10 +43,11 @@ namespace Zernio.Model
         /// <param name="publishedAt">When the video was published on YouTube.</param>
         /// <param name="durationSeconds">Video length in seconds (from YouTube contentDetails.duration).</param>
         /// <param name="dateRange">dateRange.</param>
+        /// <param name="provisionalSince">Present only when the range reaches into YouTube&#39;s ~3-day processing window: the first date whose numbers are provisional and may still be revised by YouTube..</param>
         /// <param name="retentionCurve">Up to 100 points covering the video timeline, aggregated over the date range. Empty for videos with very few views..</param>
         /// <param name="note">Present only when the curve is empty, explaining why.</param>
         /// <param name="scopeStatus">scopeStatus.</param>
-        public YouTubeVideoRetentionResponse(bool success = default, string accountId = default, string videoId = default, string title = default, DateTime? publishedAt = default, int? durationSeconds = default, YouTubeDailyViewsResponseDateRange dateRange = default, List<YouTubeVideoRetentionResponseRetentionCurveInner> retentionCurve = default, string note = default, YouTubeDailyViewsResponseScopeStatus scopeStatus = default)
+        public YouTubeVideoRetentionResponse(bool success = default, string accountId = default, string videoId = default, string title = default, DateTime? publishedAt = default, int? durationSeconds = default, YouTubeDailyViewsResponseDateRange dateRange = default, DateOnly provisionalSince = default, List<YouTubeVideoRetentionResponseRetentionCurveInner> retentionCurve = default, string note = default, YouTubeDailyViewsResponseScopeStatus scopeStatus = default)
         {
             this.Success = success;
             this.AccountId = accountId;
@@ -55,6 +56,7 @@ namespace Zernio.Model
             this.PublishedAt = publishedAt;
             this.DurationSeconds = durationSeconds;
             this.DateRange = dateRange;
+            this.ProvisionalSince = provisionalSince;
             this.RetentionCurve = retentionCurve;
             this.Note = note;
             this.ScopeStatus = scopeStatus;
@@ -111,6 +113,13 @@ namespace Zernio.Model
         public YouTubeDailyViewsResponseDateRange DateRange { get; set; }
 
         /// <summary>
+        /// Present only when the range reaches into YouTube&#39;s ~3-day processing window: the first date whose numbers are provisional and may still be revised by YouTube.
+        /// </summary>
+        /// <value>Present only when the range reaches into YouTube&#39;s ~3-day processing window: the first date whose numbers are provisional and may still be revised by YouTube.</value>
+        [DataMember(Name = "provisionalSince", EmitDefaultValue = false)]
+        public DateOnly ProvisionalSince { get; set; }
+
+        /// <summary>
         /// Up to 100 points covering the video timeline, aggregated over the date range. Empty for videos with very few views.
         /// </summary>
         /// <value>Up to 100 points covering the video timeline, aggregated over the date range. Empty for videos with very few views.</value>
@@ -145,6 +154,7 @@ namespace Zernio.Model
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
             sb.Append("  DurationSeconds: ").Append(DurationSeconds).Append("\n");
             sb.Append("  DateRange: ").Append(DateRange).Append("\n");
+            sb.Append("  ProvisionalSince: ").Append(ProvisionalSince).Append("\n");
             sb.Append("  RetentionCurve: ").Append(RetentionCurve).Append("\n");
             sb.Append("  Note: ").Append(Note).Append("\n");
             sb.Append("  ScopeStatus: ").Append(ScopeStatus).Append("\n");

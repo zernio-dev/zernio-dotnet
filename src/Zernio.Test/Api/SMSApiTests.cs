@@ -68,6 +68,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test CreateSmsSenderId
+        /// </summary>
+        [Fact]
+        public void CreateSmsSenderIdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //CreateSmsSenderIdRequest createSmsSenderIdRequest = null;
+            //var response = instance.CreateSmsSenderId(createSmsSenderIdRequest);
+            //Assert.IsType<CreateSmsSenderId200Response>(response);
+        }
+
+        /// <summary>
         /// Test DeactivateSmsRegistration
         /// </summary>
         [Fact]
@@ -77,6 +89,18 @@ namespace Zernio.Test.Api
             //string id = null;
             //var response = instance.DeactivateSmsRegistration(id);
             //Assert.IsType<DeactivateSmsRegistration200Response>(response);
+        }
+
+        /// <summary>
+        /// Test DeleteSmsSenderId
+        /// </summary>
+        [Fact]
+        public void DeleteSmsSenderIdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //var response = instance.DeleteSmsSenderId(id);
+            //Assert.IsType<DeleteSmsSenderId200Response>(response);
         }
 
         /// <summary>
@@ -141,6 +165,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListSmsSenderIds
+        /// </summary>
+        [Fact]
+        public void ListSmsSenderIdsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //var response = instance.ListSmsSenderIds();
+            //Assert.IsType<ListSmsSenderIds200Response>(response);
+        }
+
+        /// <summary>
         /// Test LookupSmsNumber
         /// </summary>
         [Fact]
@@ -150,6 +185,18 @@ namespace Zernio.Test.Api
             //string number = null;
             //var response = instance.LookupSmsNumber(number);
             //Assert.IsType<LookupSmsNumber200Response>(response);
+        }
+
+        /// <summary>
+        /// Test RequestSmsSenderIdLimitIncrease
+        /// </summary>
+        [Fact]
+        public void RequestSmsSenderIdLimitIncreaseTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest = null;
+            //var response = instance.RequestSmsSenderIdLimitIncrease(requestSmsSenderIdLimitIncreaseRequest);
+            //Assert.IsType<RequestSmsSenderIdLimitIncrease200Response>(response);
         }
 
         /// <summary>

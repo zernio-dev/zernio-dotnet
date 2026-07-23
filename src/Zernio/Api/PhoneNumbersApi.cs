@@ -371,6 +371,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of RemediatePhoneNumber200Response</returns>
         ApiResponse<RemediatePhoneNumber200Response> RemediatePhoneNumberWithHttpInfo(string id, RemediatePhoneNumberRequest remediatePhoneNumberRequest);
         /// <summary>
+        /// Reply to the regulatory reviewer
+        /// </summary>
+        /// <remarks>
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="replyToPhoneNumberReviewerRequest"></param>
+        /// <returns>ReplyToPhoneNumberReviewer200Response</returns>
+        ReplyToPhoneNumberReviewer200Response ReplyToPhoneNumberReviewer(string id, ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest);
+
+        /// <summary>
+        /// Reply to the regulatory reviewer
+        /// </summary>
+        /// <remarks>
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="replyToPhoneNumberReviewerRequest"></param>
+        /// <returns>ApiResponse of ReplyToPhoneNumberReviewer200Response</returns>
+        ApiResponse<ReplyToPhoneNumberReviewer200Response> ReplyToPhoneNumberReviewerWithHttpInfo(string id, ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest);
+        /// <summary>
         /// Pre-review a KYC packet
         /// </summary>
         /// <remarks>
@@ -512,6 +535,27 @@ namespace Zernio.Api
         /// <param name="validatePhoneNumberKycAddressRequest"></param>
         /// <returns>ApiResponse of ValidatePhoneNumberKycAddress200Response</returns>
         ApiResponse<ValidatePhoneNumberKycAddress200Response> ValidatePhoneNumberKycAddressWithHttpInfo(ValidatePhoneNumberKycAddressRequest validatePhoneNumberKycAddressRequest);
+        /// <summary>
+        /// View a KYC document on file
+        /// </summary>
+        /// <remarks>
+        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
+        /// <returns>FileParameter</returns>
+        FileParameter ViewPhoneNumberKycDocument(string documentId);
+
+        /// <summary>
+        /// View a KYC document on file
+        /// </summary>
+        /// <remarks>
+        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
+        /// <returns>ApiResponse of FileParameter</returns>
+        ApiResponse<FileParameter> ViewPhoneNumberKycDocumentWithHttpInfo(string documentId);
         #endregion Synchronous Operations
     }
 
@@ -896,6 +940,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (RemediatePhoneNumber200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RemediatePhoneNumber200Response>> RemediatePhoneNumberWithHttpInfoAsync(string id, RemediatePhoneNumberRequest remediatePhoneNumberRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Reply to the regulatory reviewer
+        /// </summary>
+        /// <remarks>
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="replyToPhoneNumberReviewerRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplyToPhoneNumberReviewer200Response</returns>
+        System.Threading.Tasks.Task<ReplyToPhoneNumberReviewer200Response> ReplyToPhoneNumberReviewerAsync(string id, ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Reply to the regulatory reviewer
+        /// </summary>
+        /// <remarks>
+        /// Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="replyToPhoneNumberReviewerRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplyToPhoneNumberReviewer200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ReplyToPhoneNumberReviewer200Response>> ReplyToPhoneNumberReviewerWithHttpInfoAsync(string id, ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Pre-review a KYC packet
         /// </summary>
         /// <remarks>
@@ -1049,6 +1118,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ValidatePhoneNumberKycAddress200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ValidatePhoneNumberKycAddress200Response>> ValidatePhoneNumberKycAddressWithHttpInfoAsync(ValidatePhoneNumberKycAddressRequest validatePhoneNumberKycAddressRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// View a KYC document on file
+        /// </summary>
+        /// <remarks>
+        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileParameter</returns>
+        System.Threading.Tasks.Task<FileParameter> ViewPhoneNumberKycDocumentAsync(string documentId, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// View a KYC document on file
+        /// </summary>
+        /// <remarks>
+        /// Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FileParameter>> ViewPhoneNumberKycDocumentWithHttpInfoAsync(string documentId, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -3337,6 +3429,149 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="replyToPhoneNumberReviewerRequest"></param>
+        /// <returns>ReplyToPhoneNumberReviewer200Response</returns>
+        public ReplyToPhoneNumberReviewer200Response ReplyToPhoneNumberReviewer(string id, ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest)
+        {
+            Zernio.Client.ApiResponse<ReplyToPhoneNumberReviewer200Response> localVarResponse = ReplyToPhoneNumberReviewerWithHttpInfo(id, replyToPhoneNumberReviewerRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="replyToPhoneNumberReviewerRequest"></param>
+        /// <returns>ApiResponse of ReplyToPhoneNumberReviewer200Response</returns>
+        public Zernio.Client.ApiResponse<ReplyToPhoneNumberReviewer200Response> ReplyToPhoneNumberReviewerWithHttpInfo(string id, ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling PhoneNumbersApi->ReplyToPhoneNumberReviewer");
+
+            // verify the required parameter 'replyToPhoneNumberReviewerRequest' is set
+            if (replyToPhoneNumberReviewerRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replyToPhoneNumberReviewerRequest' when calling PhoneNumbersApi->ReplyToPhoneNumberReviewer");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = replyToPhoneNumberReviewerRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ReplyToPhoneNumberReviewer200Response>("/v1/phone-numbers/{id}/remediate/reply", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplyToPhoneNumberReviewer", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="replyToPhoneNumberReviewerRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ReplyToPhoneNumberReviewer200Response</returns>
+        public async System.Threading.Tasks.Task<ReplyToPhoneNumberReviewer200Response> ReplyToPhoneNumberReviewerAsync(string id, ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ReplyToPhoneNumberReviewer200Response> localVarResponse = await ReplyToPhoneNumberReviewerWithHttpInfoAsync(id, replyToPhoneNumberReviewerRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reply to the regulatory reviewer Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can&#39;t express (e.g. \&quot;is this personal or business?\&quot;). Attachments are stored by us and their links are added to the reviewer&#39;s comment thread (the carrier&#39;s number order takes no loose files). A reply to a comment-style ask moves the number back to \&quot;in review\&quot;; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="replyToPhoneNumberReviewerRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ReplyToPhoneNumberReviewer200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ReplyToPhoneNumberReviewer200Response>> ReplyToPhoneNumberReviewerWithHttpInfoAsync(string id, ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling PhoneNumbersApi->ReplyToPhoneNumberReviewer");
+
+            // verify the required parameter 'replyToPhoneNumberReviewerRequest' is set
+            if (replyToPhoneNumberReviewerRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'replyToPhoneNumberReviewerRequest' when calling PhoneNumbersApi->ReplyToPhoneNumberReviewer");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = replyToPhoneNumberReviewerRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ReplyToPhoneNumberReviewer200Response>("/v1/phone-numbers/{id}/remediate/reply", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ReplyToPhoneNumberReviewer", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Pre-review a KYC packet Advisory dry-run of a regulated-KYC packet before submitting: reviews the exact documents the regulator will see (referenced by the ids from POST /v1/phone-numbers/kyc/upload-document) against the declared values and address, and returns plain-language advisories for likely decline reasons (wrong document type, mismatched address, one-sided ID scans). Non-blocking: advisories are warnings, submitting anyway is always allowed, and any review failure degrades to an empty list. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -4198,6 +4433,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ValidatePhoneNumberKycAddress", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
+        /// <returns>FileParameter</returns>
+        public FileParameter ViewPhoneNumberKycDocument(string documentId)
+        {
+            Zernio.Client.ApiResponse<FileParameter> localVarResponse = ViewPhoneNumberKycDocumentWithHttpInfo(documentId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
+        /// <returns>ApiResponse of FileParameter</returns>
+        public Zernio.Client.ApiResponse<FileParameter> ViewPhoneNumberKycDocumentWithHttpInfo(string documentId)
+        {
+            // verify the required parameter 'documentId' is set
+            if (documentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'documentId' when calling PhoneNumbersApi->ViewPhoneNumberKycDocument");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/pdf",
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("documentId", Zernio.Client.ClientUtils.ParameterToString(documentId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<FileParameter>("/v1/phone-numbers/kyc/document/{documentId}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ViewPhoneNumberKycDocument", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileParameter</returns>
+        public async System.Threading.Tasks.Task<FileParameter> ViewPhoneNumberKycDocumentAsync(string documentId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<FileParameter> localVarResponse = await ViewPhoneNumberKycDocumentWithHttpInfoAsync(documentId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// View a KYC document on file Stream a document backing a reusable verification (the &#x60;documentId&#x60; values from GET /v1/phone-numbers/kyc &#x60;reusable.options[].details[]&#x60;), so the account holder can see what&#39;s on file before reusing it. Returned inline as &#x60;application/pdf&#x60; (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller&#39;s own numbers — otherwise &#x60;404&#x60;. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="documentId">The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;).</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileParameter)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<FileParameter>> ViewPhoneNumberKycDocumentWithHttpInfoAsync(string documentId, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'documentId' is set
+            if (documentId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'documentId' when calling PhoneNumbersApi->ViewPhoneNumberKycDocument");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/pdf",
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("documentId", Zernio.Client.ClientUtils.ParameterToString(documentId)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileParameter>("/v1/phone-numbers/kyc/document/{documentId}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ViewPhoneNumberKycDocument", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

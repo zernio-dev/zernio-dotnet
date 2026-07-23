@@ -2225,7 +2225,7 @@ catch (ApiException e)
 
 Get YouTube daily views
 
-Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). Data has a 2-3 day delay. Max 90 days, defaults to last 30 days. 
+Returns daily view counts for a YouTube video including views, watch time, and subscriber changes. Requires yt-analytics.readonly scope (re-authorization may be needed). YouTube finalizes analytics with a ~3-day delay; by default only finalized days are returned, and an explicit endDate can reach into the delay window (see the endDate parameter). Max 90 days, defaults to last 30 days. 
 
 ### Example
 ```csharp
@@ -2254,7 +2254,7 @@ namespace Example
             var videoId = "videoId_example";  // string | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
             var accountId = "accountId_example";  // string | The Zernio account ID for the YouTube account
             var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional) 
-            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional) 
+            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  (optional) 
 
             try
             {
@@ -2300,7 +2300,7 @@ catch (ApiException e)
 | **videoId** | **string** | The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) |  |
 | **accountId** | **string** | The Zernio account ID for the YouTube account |  |
 | **startDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional]  |
-| **endDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). | [optional]  |
+| **endDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  | [optional]  |
 
 ### Return type
 
@@ -2365,7 +2365,7 @@ namespace Example
             var videoId = "videoId_example";  // string? | YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  (optional) 
             var breakdown = "breakdown_example";  // string? | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  (optional) 
             var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video's publish date (lifetime) when videoId is provided.  (optional) 
-            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  (optional) 
+            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional) 
 
             try
             {
@@ -2412,7 +2412,7 @@ catch (ApiException e)
 | **videoId** | **string?** | YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  | [optional]  |
 | **breakdown** | **string?** | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  | [optional]  |
 | **startDate** | **DateOnly?** | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  | [optional]  |
-| **endDate** | **DateOnly?** | End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  | [optional]  |
+| **endDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional]  |
 
 ### Return type
 
@@ -2476,7 +2476,7 @@ namespace Example
             var videoId = "videoId_example";  // string | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
             var accountId = "accountId_example";  // string | The Zernio account ID for the YouTube account
             var startDate = DateOnly.Parse("2013-10-20");  // DateOnly? | Start date (YYYY-MM-DD). Defaults to the video's publish date (lifetime curve). (optional) 
-            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional) 
+            var endDate = DateOnly.Parse("2013-10-20");  // DateOnly? | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  (optional) 
 
             try
             {
@@ -2522,7 +2522,7 @@ catch (ApiException e)
 | **videoId** | **string** | The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) |  |
 | **accountId** | **string** | The Zernio account ID for the YouTube account |  |
 | **startDate** | **DateOnly?** | Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). | [optional]  |
-| **endDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). | [optional]  |
+| **endDate** | **DateOnly?** | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional]  |
 
 ### Return type
 

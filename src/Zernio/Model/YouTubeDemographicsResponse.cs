@@ -44,8 +44,9 @@ namespace Zernio.Model
         /// <param name="publishedAt">Video publish date (video mode only).</param>
         /// <param name="demographics">Object keyed by breakdown dimension (age, gender, country).</param>
         /// <param name="dateRange">dateRange.</param>
+        /// <param name="provisionalSince">Present only when the range reaches into YouTube&#39;s ~3-day processing window: the first date whose numbers are provisional and may still be revised by YouTube..</param>
         /// <param name="note">note.</param>
-        public YouTubeDemographicsResponse(bool success = default, string accountId = default, string platform = default, string videoId = default, string title = default, DateTime? publishedAt = default, Dictionary<string, List<YouTubeDemographicsResponseDemographicsValueInner>> demographics = default, YouTubeDemographicsResponseDateRange dateRange = default, string note = default)
+        public YouTubeDemographicsResponse(bool success = default, string accountId = default, string platform = default, string videoId = default, string title = default, DateTime? publishedAt = default, Dictionary<string, List<YouTubeDemographicsResponseDemographicsValueInner>> demographics = default, YouTubeDemographicsResponseDateRange dateRange = default, DateOnly provisionalSince = default, string note = default)
         {
             this.Success = success;
             this.AccountId = accountId;
@@ -55,6 +56,7 @@ namespace Zernio.Model
             this.PublishedAt = publishedAt;
             this.Demographics = demographics;
             this.DateRange = dateRange;
+            this.ProvisionalSince = provisionalSince;
             this.Note = note;
         }
 
@@ -118,6 +120,13 @@ namespace Zernio.Model
         public YouTubeDemographicsResponseDateRange DateRange { get; set; }
 
         /// <summary>
+        /// Present only when the range reaches into YouTube&#39;s ~3-day processing window: the first date whose numbers are provisional and may still be revised by YouTube.
+        /// </summary>
+        /// <value>Present only when the range reaches into YouTube&#39;s ~3-day processing window: the first date whose numbers are provisional and may still be revised by YouTube.</value>
+        [DataMember(Name = "provisionalSince", EmitDefaultValue = false)]
+        public DateOnly ProvisionalSince { get; set; }
+
+        /// <summary>
         /// Gets or Sets Note
         /// </summary>
         /*
@@ -142,6 +151,7 @@ namespace Zernio.Model
             sb.Append("  PublishedAt: ").Append(PublishedAt).Append("\n");
             sb.Append("  Demographics: ").Append(Demographics).Append("\n");
             sb.Append("  DateRange: ").Append(DateRange).Append("\n");
+            sb.Append("  ProvisionalSince: ").Append(ProvisionalSince).Append("\n");
             sb.Append("  Note: ").Append(Note).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

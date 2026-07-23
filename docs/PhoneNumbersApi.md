@@ -20,12 +20,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**PurchasePhoneNumber**](PhoneNumbersApi.md#purchasephonenumber) | **POST** /v1/phone-numbers/purchase | Purchase phone number |
 | [**ReleasePhoneNumber**](PhoneNumbersApi.md#releasephonenumber) | **DELETE** /v1/phone-numbers/{id} | Release phone number |
 | [**RemediatePhoneNumber**](PhoneNumbersApi.md#remediatephonenumber) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number |
+| [**ReplyToPhoneNumberReviewer**](PhoneNumbersApi.md#replytophonenumberreviewer) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer |
 | [**ReviewPhoneNumberKycPacket**](PhoneNumbersApi.md#reviewphonenumberkycpacket) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet |
 | [**SearchAvailablePhoneNumbers**](PhoneNumbersApi.md#searchavailablephonenumbers) | **GET** /v1/phone-numbers/available | Search available numbers |
 | [**SubmitPhoneNumberKyc**](PhoneNumbersApi.md#submitphonenumberkyc) | **POST** /v1/phone-numbers/kyc | Submit KYC |
 | [**UploadPhoneNumberKycDocument**](PhoneNumbersApi.md#uploadphonenumberkycdocument) | **POST** /v1/phone-numbers/kyc/upload-document | Upload a KYC document |
 | [**UploadPhoneNumberPortInDocument**](PhoneNumbersApi.md#uploadphonenumberportindocument) | **POST** /v1/phone-numbers/port-in/documents | Upload a porting document |
 | [**ValidatePhoneNumberKycAddress**](PhoneNumbersApi.md#validatephonenumberkycaddress) | **POST** /v1/phone-numbers/kyc/validate-address | Pre-validate KYC address |
+| [**ViewPhoneNumberKycDocument**](PhoneNumbersApi.md#viewphonenumberkycdocument) | **GET** /v1/phone-numbers/kyc/document/{documentId} | View a KYC document on file |
 
 <a id="cancelphonenumberportin"></a>
 # **CancelPhoneNumberPortIn**
@@ -1636,6 +1638,110 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="replytophonenumberreviewer"></a>
+# **ReplyToPhoneNumberReviewer**
+> ReplyToPhoneNumberReviewer200Response ReplyToPhoneNumberReviewer (string id, ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest)
+
+Reply to the regulatory reviewer
+
+Post a free-text reply (with optional file attachments) to the reviewer on a number awaiting remediation — for asks the structured form can't express (e.g. \"is this personal or business?\"). Attachments are stored by us and their links are added to the reviewer's comment thread (the carrier's number order takes no loose files). A reply to a comment-style ask moves the number back to \"in review\"; a reply on a formal decline is supplementary and you must still resubmit the fix. Requires text or at least one attachment. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ReplyToPhoneNumberReviewerExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PhoneNumbersApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+            var replyToPhoneNumberReviewerRequest = new ReplyToPhoneNumberReviewerRequest(); // ReplyToPhoneNumberReviewerRequest | 
+
+            try
+            {
+                // Reply to the regulatory reviewer
+                ReplyToPhoneNumberReviewer200Response result = apiInstance.ReplyToPhoneNumberReviewer(id, replyToPhoneNumberReviewerRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PhoneNumbersApi.ReplyToPhoneNumberReviewer: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ReplyToPhoneNumberReviewerWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Reply to the regulatory reviewer
+    ApiResponse<ReplyToPhoneNumberReviewer200Response> response = apiInstance.ReplyToPhoneNumberReviewerWithHttpInfo(id, replyToPhoneNumberReviewerRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PhoneNumbersApi.ReplyToPhoneNumberReviewerWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+| **replyToPhoneNumberReviewerRequest** | [**ReplyToPhoneNumberReviewerRequest**](ReplyToPhoneNumberReviewerRequest.md) |  |  |
+
+### Return type
+
+[**ReplyToPhoneNumberReviewer200Response**](ReplyToPhoneNumberReviewer200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply posted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **502** | Couldn&#39;t deliver the reply to the reviewer; retry. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="reviewphonenumberkycpacket"></a>
 # **ReviewPhoneNumberKycPacket**
 > ReviewPhoneNumberKycPacket200Response ReviewPhoneNumberKycPacket (ReviewPhoneNumberKycPacketRequest reviewPhoneNumberKycPacketRequest)
@@ -2249,6 +2355,107 @@ catch (ApiException e)
 | **200** | Address is deliverable, or the pre-check was skipped (no region supplied). |  -  |
 | **400** | The country isn&#39;t offered, or the address could not be verified. When the provider returned usable corrections, &#x60;details.addressSuggestions&#x60; carries them per field for a one-click \&quot;apply suggestion\&quot; card. (Flat error envelope: &#x60;error&#x60; is the human message; &#x60;code&#x60;/&#x60;param&#x60;/&#x60;details&#x60; are top-level siblings.)  |  -  |
 | **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="viewphonenumberkycdocument"></a>
+# **ViewPhoneNumberKycDocument**
+> FileParameter ViewPhoneNumberKycDocument (string documentId)
+
+View a KYC document on file
+
+Stream a document backing a reusable verification (the `documentId` values from GET /v1/phone-numbers/kyc `reusable.options[].details[]`), so the account holder can see what's on file before reusing it. Returned inline as `application/pdf` (uploads are normalized to PDF). Auth-scoped: a document is viewable only when its id is referenced by one of the caller's own numbers — otherwise `404`. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ViewPhoneNumberKycDocumentExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new PhoneNumbersApi(httpClient, config, httpClientHandler);
+            var documentId = "documentId_example";  // string | The Telnyx document id (from `reusable.options[].details[].documentId`).
+
+            try
+            {
+                // View a KYC document on file
+                FileParameter result = apiInstance.ViewPhoneNumberKycDocument(documentId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling PhoneNumbersApi.ViewPhoneNumberKycDocument: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ViewPhoneNumberKycDocumentWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // View a KYC document on file
+    ApiResponse<FileParameter> response = apiInstance.ViewPhoneNumberKycDocumentWithHttpInfo(documentId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling PhoneNumbersApi.ViewPhoneNumberKycDocumentWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **documentId** | **string** | The Telnyx document id (from &#x60;reusable.options[].details[].documentId&#x60;). |  |
+
+### Return type
+
+[**FileParameter**](FileParameter.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/pdf, application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The document, streamed inline. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | No such document for this account. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

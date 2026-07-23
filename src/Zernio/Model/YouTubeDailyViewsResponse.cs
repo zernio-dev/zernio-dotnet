@@ -40,16 +40,18 @@ namespace Zernio.Model
         /// <param name="videoId">The YouTube video ID.</param>
         /// <param name="durationSeconds">Video length in seconds (from YouTube contentDetails.duration).</param>
         /// <param name="dateRange">dateRange.</param>
+        /// <param name="provisionalSince">Present only when the range reaches into YouTube&#39;s ~3-day processing window: the first date whose numbers are provisional and may still be revised by YouTube..</param>
         /// <param name="totalViews">Sum of views across all days in the range.</param>
         /// <param name="dailyViews">dailyViews.</param>
         /// <param name="lastSyncedAt">When the data was last synced from YouTube.</param>
         /// <param name="scopeStatus">scopeStatus.</param>
-        public YouTubeDailyViewsResponse(bool success = default, string videoId = default, int? durationSeconds = default, YouTubeDailyViewsResponseDateRange dateRange = default, int totalViews = default, List<YouTubeDailyViewsResponseDailyViewsInner> dailyViews = default, DateTime? lastSyncedAt = default, YouTubeDailyViewsResponseScopeStatus scopeStatus = default)
+        public YouTubeDailyViewsResponse(bool success = default, string videoId = default, int? durationSeconds = default, YouTubeDailyViewsResponseDateRange dateRange = default, DateOnly provisionalSince = default, int totalViews = default, List<YouTubeDailyViewsResponseDailyViewsInner> dailyViews = default, DateTime? lastSyncedAt = default, YouTubeDailyViewsResponseScopeStatus scopeStatus = default)
         {
             this.Success = success;
             this.VideoId = videoId;
             this.DurationSeconds = durationSeconds;
             this.DateRange = dateRange;
+            this.ProvisionalSince = provisionalSince;
             this.TotalViews = totalViews;
             this.DailyViews = dailyViews;
             this.LastSyncedAt = lastSyncedAt;
@@ -84,6 +86,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "dateRange", EmitDefaultValue = false)]
         public YouTubeDailyViewsResponseDateRange DateRange { get; set; }
+
+        /// <summary>
+        /// Present only when the range reaches into YouTube&#39;s ~3-day processing window: the first date whose numbers are provisional and may still be revised by YouTube.
+        /// </summary>
+        /// <value>Present only when the range reaches into YouTube&#39;s ~3-day processing window: the first date whose numbers are provisional and may still be revised by YouTube.</value>
+        [DataMember(Name = "provisionalSince", EmitDefaultValue = false)]
+        public DateOnly ProvisionalSince { get; set; }
 
         /// <summary>
         /// Sum of views across all days in the range
@@ -123,6 +132,7 @@ namespace Zernio.Model
             sb.Append("  VideoId: ").Append(VideoId).Append("\n");
             sb.Append("  DurationSeconds: ").Append(DurationSeconds).Append("\n");
             sb.Append("  DateRange: ").Append(DateRange).Append("\n");
+            sb.Append("  ProvisionalSince: ").Append(ProvisionalSince).Append("\n");
             sb.Append("  TotalViews: ").Append(TotalViews).Append("\n");
             sb.Append("  DailyViews: ").Append(DailyViews).Append("\n");
             sb.Append("  LastSyncedAt: ").Append(LastSyncedAt).Append("\n");

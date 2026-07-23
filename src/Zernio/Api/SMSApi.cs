@@ -52,6 +52,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of AppealSmsRegistration200Response</returns>
         ApiResponse<AppealSmsRegistration200Response> AppealSmsRegistrationWithHttpInfo(string id, AppealSmsRegistrationRequest appealSmsRegistrationRequest);
         /// <summary>
+        /// Create an alphanumeric sender ID
+        /// </summary>
+        /// <remarks>
+        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSmsSenderIdRequest"></param>
+        /// <returns>CreateSmsSenderId200Response</returns>
+        CreateSmsSenderId200Response CreateSmsSenderId(CreateSmsSenderIdRequest createSmsSenderIdRequest);
+
+        /// <summary>
+        /// Create an alphanumeric sender ID
+        /// </summary>
+        /// <remarks>
+        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSmsSenderIdRequest"></param>
+        /// <returns>ApiResponse of CreateSmsSenderId200Response</returns>
+        ApiResponse<CreateSmsSenderId200Response> CreateSmsSenderIdWithHttpInfo(CreateSmsSenderIdRequest createSmsSenderIdRequest);
+        /// <summary>
         /// Deactivate a brand/campaign registration
         /// </summary>
         /// <remarks>
@@ -72,6 +93,27 @@ namespace Zernio.Api
         /// <param name="id"></param>
         /// <returns>ApiResponse of DeactivateSmsRegistration200Response</returns>
         ApiResponse<DeactivateSmsRegistration200Response> DeactivateSmsRegistrationWithHttpInfo(string id);
+        /// <summary>
+        /// Delete an alphanumeric sender ID
+        /// </summary>
+        /// <remarks>
+        /// Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Sender ID resource id.</param>
+        /// <returns>DeleteSmsSenderId200Response</returns>
+        DeleteSmsSenderId200Response DeleteSmsSenderId(string id);
+
+        /// <summary>
+        /// Delete an alphanumeric sender ID
+        /// </summary>
+        /// <remarks>
+        /// Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Sender ID resource id.</param>
+        /// <returns>ApiResponse of DeleteSmsSenderId200Response</returns>
+        ApiResponse<DeleteSmsSenderId200Response> DeleteSmsSenderIdWithHttpInfo(string id);
         /// <summary>
         /// Disable SMS on a number
         /// </summary>
@@ -177,6 +219,22 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListSmsRegistrations200Response</returns>
         ApiResponse<ListSmsRegistrations200Response> ListSmsRegistrationsWithHttpInfo(bool? includeDeactivated = default);
         /// <summary>
+        /// List alphanumeric sender IDs
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ListSmsSenderIds200Response</returns>
+        ListSmsSenderIds200Response ListSmsSenderIds();
+
+        /// <summary>
+        /// List alphanumeric sender IDs
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ListSmsSenderIds200Response</returns>
+        ApiResponse<ListSmsSenderIds200Response> ListSmsSenderIdsWithHttpInfo();
+        /// <summary>
         /// Look up carrier + line type
         /// </summary>
         /// <remarks>
@@ -197,6 +255,27 @@ namespace Zernio.Api
         /// <param name="number">Number to look up (E.164; formatting is normalized).</param>
         /// <returns>ApiResponse of LookupSmsNumber200Response</returns>
         ApiResponse<LookupSmsNumber200Response> LookupSmsNumberWithHttpInfo(string number);
+        /// <summary>
+        /// Request a higher sender ID daily limit
+        /// </summary>
+        /// <remarks>
+        /// Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
+        /// <returns>RequestSmsSenderIdLimitIncrease200Response</returns>
+        RequestSmsSenderIdLimitIncrease200Response RequestSmsSenderIdLimitIncrease(RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest);
+
+        /// <summary>
+        /// Request a higher sender ID daily limit
+        /// </summary>
+        /// <remarks>
+        /// Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
+        /// <returns>ApiResponse of RequestSmsSenderIdLimitIncrease200Response</returns>
+        ApiResponse<RequestSmsSenderIdLimitIncrease200Response> RequestSmsSenderIdLimitIncreaseWithHttpInfo(RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest);
         /// <summary>
         /// Re-send the sole-prop OTP
         /// </summary>
@@ -406,6 +485,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (AppealSmsRegistration200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<AppealSmsRegistration200Response>> AppealSmsRegistrationWithHttpInfoAsync(string id, AppealSmsRegistrationRequest appealSmsRegistrationRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Create an alphanumeric sender ID
+        /// </summary>
+        /// <remarks>
+        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSmsSenderIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateSmsSenderId200Response</returns>
+        System.Threading.Tasks.Task<CreateSmsSenderId200Response> CreateSmsSenderIdAsync(CreateSmsSenderIdRequest createSmsSenderIdRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Create an alphanumeric sender ID
+        /// </summary>
+        /// <remarks>
+        /// Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSmsSenderIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateSmsSenderId200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CreateSmsSenderId200Response>> CreateSmsSenderIdWithHttpInfoAsync(CreateSmsSenderIdRequest createSmsSenderIdRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Deactivate a brand/campaign registration
         /// </summary>
         /// <remarks>
@@ -428,6 +530,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeactivateSmsRegistration200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<DeactivateSmsRegistration200Response>> DeactivateSmsRegistrationWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Delete an alphanumeric sender ID
+        /// </summary>
+        /// <remarks>
+        /// Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Sender ID resource id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteSmsSenderId200Response</returns>
+        System.Threading.Tasks.Task<DeleteSmsSenderId200Response> DeleteSmsSenderIdAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Delete an alphanumeric sender ID
+        /// </summary>
+        /// <remarks>
+        /// Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Sender ID resource id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteSmsSenderId200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeleteSmsSenderId200Response>> DeleteSmsSenderIdWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Disable SMS on a number
         /// </summary>
@@ -546,6 +671,27 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListSmsRegistrations200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListSmsRegistrations200Response>> ListSmsRegistrationsWithHttpInfoAsync(bool? includeDeactivated = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// List alphanumeric sender IDs
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListSmsSenderIds200Response</returns>
+        System.Threading.Tasks.Task<ListSmsSenderIds200Response> ListSmsSenderIdsAsync(System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List alphanumeric sender IDs
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListSmsSenderIds200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListSmsSenderIds200Response>> ListSmsSenderIdsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Look up carrier + line type
         /// </summary>
         /// <remarks>
@@ -568,6 +714,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (LookupSmsNumber200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<LookupSmsNumber200Response>> LookupSmsNumberWithHttpInfoAsync(string number, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Request a higher sender ID daily limit
+        /// </summary>
+        /// <remarks>
+        /// Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RequestSmsSenderIdLimitIncrease200Response</returns>
+        System.Threading.Tasks.Task<RequestSmsSenderIdLimitIncrease200Response> RequestSmsSenderIdLimitIncreaseAsync(RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Request a higher sender ID daily limit
+        /// </summary>
+        /// <remarks>
+        /// Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RequestSmsSenderIdLimitIncrease200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RequestSmsSenderIdLimitIncrease200Response>> RequestSmsSenderIdLimitIncreaseWithHttpInfoAsync(RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Re-send the sole-prop OTP
         /// </summary>
@@ -1115,6 +1284,135 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSmsSenderIdRequest"></param>
+        /// <returns>CreateSmsSenderId200Response</returns>
+        public CreateSmsSenderId200Response CreateSmsSenderId(CreateSmsSenderIdRequest createSmsSenderIdRequest)
+        {
+            Zernio.Client.ApiResponse<CreateSmsSenderId200Response> localVarResponse = CreateSmsSenderIdWithHttpInfo(createSmsSenderIdRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSmsSenderIdRequest"></param>
+        /// <returns>ApiResponse of CreateSmsSenderId200Response</returns>
+        public Zernio.Client.ApiResponse<CreateSmsSenderId200Response> CreateSmsSenderIdWithHttpInfo(CreateSmsSenderIdRequest createSmsSenderIdRequest)
+        {
+            // verify the required parameter 'createSmsSenderIdRequest' is set
+            if (createSmsSenderIdRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createSmsSenderIdRequest' when calling SMSApi->CreateSmsSenderId");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createSmsSenderIdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<CreateSmsSenderId200Response>("/v1/sms/sender-ids", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateSmsSenderId", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSmsSenderIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of CreateSmsSenderId200Response</returns>
+        public async System.Threading.Tasks.Task<CreateSmsSenderId200Response> CreateSmsSenderIdAsync(CreateSmsSenderIdRequest createSmsSenderIdRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<CreateSmsSenderId200Response> localVarResponse = await CreateSmsSenderIdWithHttpInfoAsync(createSmsSenderIdRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create an alphanumeric sender ID Registers an alphanumeric sender ID (e.g. &#x60;ZERNIO&#x60;) — a branded &#x60;from&#x60; for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as &#x60;from&#x60; on &#x60;POST /v1/sms/messages&#x60;.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="createSmsSenderIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (CreateSmsSenderId200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CreateSmsSenderId200Response>> CreateSmsSenderIdWithHttpInfoAsync(CreateSmsSenderIdRequest createSmsSenderIdRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'createSmsSenderIdRequest' is set
+            if (createSmsSenderIdRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'createSmsSenderIdRequest' when calling SMSApi->CreateSmsSenderId");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = createSmsSenderIdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<CreateSmsSenderId200Response>("/v1/sms/sender-ids", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("CreateSmsSenderId", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Deactivate a brand/campaign registration Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1235,6 +1533,133 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("DeactivateSmsRegistration", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete an alphanumeric sender ID Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Sender ID resource id.</param>
+        /// <returns>DeleteSmsSenderId200Response</returns>
+        public DeleteSmsSenderId200Response DeleteSmsSenderId(string id)
+        {
+            Zernio.Client.ApiResponse<DeleteSmsSenderId200Response> localVarResponse = DeleteSmsSenderIdWithHttpInfo(id);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete an alphanumeric sender ID Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Sender ID resource id.</param>
+        /// <returns>ApiResponse of DeleteSmsSenderId200Response</returns>
+        public Zernio.Client.ApiResponse<DeleteSmsSenderId200Response> DeleteSmsSenderIdWithHttpInfo(string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling SMSApi->DeleteSmsSenderId");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeleteSmsSenderId200Response>("/v1/sms/sender-ids/{id}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteSmsSenderId", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Delete an alphanumeric sender ID Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Sender ID resource id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeleteSmsSenderId200Response</returns>
+        public async System.Threading.Tasks.Task<DeleteSmsSenderId200Response> DeleteSmsSenderIdAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<DeleteSmsSenderId200Response> localVarResponse = await DeleteSmsSenderIdWithHttpInfoAsync(id, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Delete an alphanumeric sender ID Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via &#x60;POST /v1/sms/sender-ids&#x60; re-activates it. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Sender ID resource id.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeleteSmsSenderId200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<DeleteSmsSenderId200Response>> DeleteSmsSenderIdWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling SMSApi->DeleteSmsSenderId");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeleteSmsSenderId200Response>("/v1/sms/sender-ids/{id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteSmsSenderId", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1887,6 +2312,119 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// List alphanumeric sender IDs 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ListSmsSenderIds200Response</returns>
+        public ListSmsSenderIds200Response ListSmsSenderIds()
+        {
+            Zernio.Client.ApiResponse<ListSmsSenderIds200Response> localVarResponse = ListSmsSenderIdsWithHttpInfo();
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List alphanumeric sender IDs 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of ListSmsSenderIds200Response</returns>
+        public Zernio.Client.ApiResponse<ListSmsSenderIds200Response> ListSmsSenderIdsWithHttpInfo()
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListSmsSenderIds200Response>("/v1/sms/sender-ids", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListSmsSenderIds", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List alphanumeric sender IDs 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListSmsSenderIds200Response</returns>
+        public async System.Threading.Tasks.Task<ListSmsSenderIds200Response> ListSmsSenderIdsAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListSmsSenderIds200Response> localVarResponse = await ListSmsSenderIdsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List alphanumeric sender IDs 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListSmsSenderIds200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListSmsSenderIds200Response>> ListSmsSenderIdsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListSmsSenderIds200Response>("/v1/sms/sender-ids", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListSmsSenderIds", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Look up carrier + line type Carrier name and line type (mobile / landline / voip / toll-free) for a number, plus &#x60;smsReachable&#x60; (landlines can&#39;t receive SMS). Use it to validate recipients before sending. Each lookup is billed by the carrier-data provider, so call it explicitly (e.g. pre-validating an opt-in list), not on every send. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -2007,6 +2545,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("LookupSmsNumber", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Request a higher sender ID daily limit Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
+        /// <returns>RequestSmsSenderIdLimitIncrease200Response</returns>
+        public RequestSmsSenderIdLimitIncrease200Response RequestSmsSenderIdLimitIncrease(RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest)
+        {
+            Zernio.Client.ApiResponse<RequestSmsSenderIdLimitIncrease200Response> localVarResponse = RequestSmsSenderIdLimitIncreaseWithHttpInfo(requestSmsSenderIdLimitIncreaseRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Request a higher sender ID daily limit Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
+        /// <returns>ApiResponse of RequestSmsSenderIdLimitIncrease200Response</returns>
+        public Zernio.Client.ApiResponse<RequestSmsSenderIdLimitIncrease200Response> RequestSmsSenderIdLimitIncreaseWithHttpInfo(RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest)
+        {
+            // verify the required parameter 'requestSmsSenderIdLimitIncreaseRequest' is set
+            if (requestSmsSenderIdLimitIncreaseRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'requestSmsSenderIdLimitIncreaseRequest' when calling SMSApi->RequestSmsSenderIdLimitIncrease");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = requestSmsSenderIdLimitIncreaseRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<RequestSmsSenderIdLimitIncrease200Response>("/v1/sms/sender-ids/limit-request", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RequestSmsSenderIdLimitIncrease", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Request a higher sender ID daily limit Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RequestSmsSenderIdLimitIncrease200Response</returns>
+        public async System.Threading.Tasks.Task<RequestSmsSenderIdLimitIncrease200Response> RequestSmsSenderIdLimitIncreaseAsync(RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RequestSmsSenderIdLimitIncrease200Response> localVarResponse = await RequestSmsSenderIdLimitIncreaseWithHttpInfoAsync(requestSmsSenderIdLimitIncreaseRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Request a higher sender ID daily limit Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="requestSmsSenderIdLimitIncreaseRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RequestSmsSenderIdLimitIncrease200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RequestSmsSenderIdLimitIncrease200Response>> RequestSmsSenderIdLimitIncreaseWithHttpInfoAsync(RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'requestSmsSenderIdLimitIncreaseRequest' is set
+            if (requestSmsSenderIdLimitIncreaseRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'requestSmsSenderIdLimitIncreaseRequest' when calling SMSApi->RequestSmsSenderIdLimitIncrease");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = requestSmsSenderIdLimitIncreaseRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RequestSmsSenderIdLimitIncrease200Response>("/v1/sms/sender-ids/limit-request", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RequestSmsSenderIdLimitIncrease", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

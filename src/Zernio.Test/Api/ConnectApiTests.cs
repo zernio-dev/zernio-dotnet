@@ -136,6 +136,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ConnectOpenAIAdsCredentials
+        /// </summary>
+        [Fact]
+        public void ConnectOpenAIAdsCredentialsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest = null;
+            //var response = instance.ConnectOpenAIAdsCredentials(connectOpenAIAdsCredentialsRequest);
+            //Assert.IsType<ConnectOpenAIAdsCredentials200Response>(response);
+        }
+
+        /// <summary>
         /// Test ConnectWhatsAppCredentials
         /// </summary>
         [Fact]

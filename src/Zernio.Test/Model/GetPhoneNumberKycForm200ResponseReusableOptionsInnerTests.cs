@@ -56,12 +56,30 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'Id'
+        /// </summary>
+        [Fact]
+        public void IdTest()
+        {
+            // TODO unit test for the property 'Id'
+        }
+
+        /// <summary>
         /// Test the property 'FromPhoneNumber'
         /// </summary>
         [Fact]
         public void FromPhoneNumberTest()
         {
             // TODO unit test for the property 'FromPhoneNumber'
+        }
+
+        /// <summary>
+        /// Test the property 'Instant'
+        /// </summary>
+        [Fact]
+        public void InstantTest()
+        {
+            // TODO unit test for the property 'Instant'
         }
 
         /// <summary>

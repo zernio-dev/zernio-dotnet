@@ -173,6 +173,33 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'EngagementSource'
+        /// </summary>
+        [Fact]
+        public void EngagementSourceTest()
+        {
+            // TODO unit test for the property 'EngagementSource'
+        }
+
+        /// <summary>
+        /// Test the property 'SourceId'
+        /// </summary>
+        [Fact]
+        public void SourceIdTest()
+        {
+            // TODO unit test for the property 'SourceId'
+        }
+
+        /// <summary>
+        /// Test the property 'Event'
+        /// </summary>
+        [Fact]
+        public void EventTest()
+        {
+            // TODO unit test for the property 'Event'
+        }
+
+        /// <summary>
         /// Test the property 'SourceAudienceId'
         /// </summary>
         [Fact]

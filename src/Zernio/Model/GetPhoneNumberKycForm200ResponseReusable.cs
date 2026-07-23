@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Present when this account already has an approved verification for the country that can be reused (skip the form). &#x60;fromPhoneNumber&#x60;/&#x60;details&#x60; mirror the newest option; &#x60;options&#x60; lists ALL approved verifications (agencies hold one per end client) — pass the chosen option&#39;s &#x60;fromPhoneNumber&#x60; as &#x60;reuseFrom&#x60; on POST.
+    /// Present when this account already has a reusable verification for the country (skip the form). &#x60;fromPhoneNumber&#x60;/&#x60;details&#x60; mirror the first option; &#x60;options&#x60; lists ALL reusable verifications (agencies hold one per end client), approved-first. Pass the chosen option&#39;s &#x60;id&#x60; as &#x60;reuseOptionId&#x60; on POST. Each option&#39;s &#x60;instant&#x60; says whether it activates in minutes (group-approved) or still queues for carrier review (1-3 days).
     /// </summary>
     [DataContract(Name = "getPhoneNumberKycForm_200_response_reusable")]
     public partial class GetPhoneNumberKycForm200ResponseReusable : IValidatableObject

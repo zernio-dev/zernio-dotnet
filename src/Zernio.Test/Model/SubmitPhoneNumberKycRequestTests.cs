@@ -101,6 +101,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ReuseOptionId'
+        /// </summary>
+        [Fact]
+        public void ReuseOptionIdTest()
+        {
+            // TODO unit test for the property 'ReuseOptionId'
+        }
+
+        /// <summary>
         /// Test the property 'ReuseFrom'
         /// </summary>
         [Fact]

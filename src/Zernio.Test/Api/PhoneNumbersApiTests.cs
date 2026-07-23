@@ -250,6 +250,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ReplyToPhoneNumberReviewer
+        /// </summary>
+        [Fact]
+        public void ReplyToPhoneNumberReviewerTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //ReplyToPhoneNumberReviewerRequest replyToPhoneNumberReviewerRequest = null;
+            //var response = instance.ReplyToPhoneNumberReviewer(id, replyToPhoneNumberReviewerRequest);
+            //Assert.IsType<ReplyToPhoneNumberReviewer200Response>(response);
+        }
+
+        /// <summary>
         /// Test ReviewPhoneNumberKycPacket
         /// </summary>
         [Fact]
@@ -327,6 +340,18 @@ namespace Zernio.Test.Api
             //ValidatePhoneNumberKycAddressRequest validatePhoneNumberKycAddressRequest = null;
             //var response = instance.ValidatePhoneNumberKycAddress(validatePhoneNumberKycAddressRequest);
             //Assert.IsType<ValidatePhoneNumberKycAddress200Response>(response);
+        }
+
+        /// <summary>
+        /// Test ViewPhoneNumberKycDocument
+        /// </summary>
+        [Fact]
+        public void ViewPhoneNumberKycDocumentTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string documentId = null;
+            //var response = instance.ViewPhoneNumberKycDocument(documentId);
+            //Assert.IsType<FileParameter>(response);
         }
     }
 }

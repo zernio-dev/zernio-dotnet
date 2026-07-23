@@ -61,7 +61,13 @@ namespace Zernio.Model
             /// Enum Tiktokads for value: tiktokads
             /// </summary>
             [EnumMember(Value = "tiktokads")]
-            Tiktokads = 4
+            Tiktokads = 4,
+
+            /// <summary>
+            /// Enum Openaiads for value: openaiads
+            /// </summary>
+            [EnumMember(Value = "openaiads")]
+            Openaiads = 5
         }
 
 

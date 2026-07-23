@@ -194,6 +194,20 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetDiscordGuildMember
+        /// </summary>
+        [Fact]
+        public void GetDiscordGuildMemberTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string userId = null;
+            //string accountId = null;
+            //var response = instance.GetDiscordGuildMember(guildId, userId, accountId);
+            //Assert.IsType<GetDiscordGuildMember200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetDiscordScheduledEvent
         /// </summary>
         [Fact]
@@ -301,6 +315,21 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //var response = instance.RemoveDiscordMemberRole(guildId, userId, roleId, accountId);
             //Assert.IsType<RemoveDiscordMemberRole200Response>(response);
+        }
+
+        /// <summary>
+        /// Test SearchDiscordGuildMembers
+        /// </summary>
+        [Fact]
+        public void SearchDiscordGuildMembersTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string guildId = null;
+            //string accountId = null;
+            //string query = null;
+            //int? limit = null;
+            //var response = instance.SearchDiscordGuildMembers(guildId, accountId, query, limit);
+            //Assert.IsType<SearchDiscordGuildMembers200Response>(response);
         }
 
         /// <summary>

@@ -58,22 +58,28 @@ namespace Zernio.Model
             Engagement = 3,
 
             /// <summary>
+            /// Enum MetaEngagement for value: meta_engagement
+            /// </summary>
+            [EnumMember(Value = "meta_engagement")]
+            MetaEngagement = 4,
+
+            /// <summary>
             /// Enum Website for value: website
             /// </summary>
             [EnumMember(Value = "website")]
-            Website = 4,
+            Website = 5,
 
             /// <summary>
             /// Enum WebsiteRetargeting for value: website_retargeting
             /// </summary>
             [EnumMember(Value = "website_retargeting")]
-            WebsiteRetargeting = 5,
+            WebsiteRetargeting = 6,
 
             /// <summary>
             /// Enum Lookalike for value: lookalike
             /// </summary>
             [EnumMember(Value = "lookalike")]
-            Lookalike = 6
+            Lookalike = 7
         }
 
 
@@ -167,6 +173,39 @@ namespace Zernio.Model
         [DataMember(Name = "lookbackDays", EmitDefaultValue = false)]
         public LookbackDaysEnum? LookbackDays { get; set; }
         /// <summary>
+        /// Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. 
+        /// </summary>
+        /// <value>Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum EngagementSourceEnum
+        {
+            /// <summary>
+            /// Enum Page for value: page
+            /// </summary>
+            [EnumMember(Value = "page")]
+            Page = 1,
+
+            /// <summary>
+            /// Enum Instagram for value: instagram
+            /// </summary>
+            [EnumMember(Value = "instagram")]
+            Instagram = 2,
+
+            /// <summary>
+            /// Enum Video for value: video
+            /// </summary>
+            [EnumMember(Value = "video")]
+            Video = 3
+        }
+
+
+        /// <summary>
+        /// Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. 
+        /// </summary>
+        /// <value>Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. </value>
+        [DataMember(Name = "engagementSource", EmitDefaultValue = false)]
+        public EngagementSourceEnum? EngagementSource { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="UploadedOrDerivedAudience" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -186,13 +225,16 @@ namespace Zernio.Model
         /// <param name="engagementSources">Required for engagement audiences. Campaign URNs for the ad source types, organization URNs for pages and events. LinkedIn creates one rule per source, all sharing the same trigger and lookbackDays. .</param>
         /// <param name="companies">Required for company_list audiences (LinkedIn only): plain-text company rows for account targeting. Each row needs at least one identifier. LinkedIn recommends 1,000+ companies for a usable match rate and takes up to 48h to process the list. .</param>
         /// <param name="pixelId">Required for website audiences.</param>
-        /// <param name="retentionDays">Required for website audiences.</param>
+        /// <param name="retentionDays">Required for website (max 180) and meta_engagement (max 365) audiences..</param>
+        /// <param name="engagementSource">Required for meta_engagement audiences (Meta only): what people engaged with. &#x60;page&#x60; &#x3D; a Facebook Page, &#x60;instagram&#x60; &#x3D; an IG professional account, &#x60;video&#x60; &#x3D; a video. The source object must be eligible for engagement audiences or Meta rejects with subcode 1713151 (\&quot;Invalid Event Name\&quot;), surfaced verbatim. .</param>
+        /// <param name="sourceId">Required for meta_engagement: the Page / IG account / video id..</param>
+        /// <param name="varEvent">meta_engagement only. The engagement event; defaults per source (page → page_engaged, instagram → ig_business_profile_all, video → video_watched). Ignored when &#x60;rule&#x60; is provided. .</param>
         /// <param name="sourceAudienceId">Required for lookalike audiences.</param>
         /// <param name="country">2-letter code, required for lookalike audiences.</param>
         /// <param name="ratio">Required for lookalike audiences.</param>
-        /// <param name="rule">Pixel event rule for website audiences (optional).</param>
+        /// <param name="rule">Optional raw Meta rule, forwarded verbatim: pixel event rule for website audiences, or the engagement rule for meta_engagement (overrides the built rule, e.g. for event/canvas/lead-form sources)..</param>
         /// <param name="customerFileSource">Data source declaration for GDPR compliance (customer_list only).</param>
-        public UploadedOrDerivedAudience(string accountId = default, string adAccountId = default, string name = default, string description = default, TypeEnum type = default, List<UploadedOrDerivedAudienceMatchRulesInner> matchRules = default, SourceTypeEnum? sourceType = default, string trigger = default, LookbackDaysEnum? lookbackDays = default, List<string> engagementSources = default, List<UploadedOrDerivedAudienceCompaniesInner> companies = default, string pixelId = default, int retentionDays = default, string sourceAudienceId = default, string country = default, decimal ratio = default, Object rule = default, string customerFileSource = default)
+        public UploadedOrDerivedAudience(string accountId = default, string adAccountId = default, string name = default, string description = default, TypeEnum type = default, List<UploadedOrDerivedAudienceMatchRulesInner> matchRules = default, SourceTypeEnum? sourceType = default, string trigger = default, LookbackDaysEnum? lookbackDays = default, List<string> engagementSources = default, List<UploadedOrDerivedAudienceCompaniesInner> companies = default, string pixelId = default, int retentionDays = default, EngagementSourceEnum? engagementSource = default, string sourceId = default, string varEvent = default, string sourceAudienceId = default, string country = default, decimal ratio = default, Object rule = default, string customerFileSource = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -222,6 +264,9 @@ namespace Zernio.Model
             this.Companies = companies;
             this.PixelId = pixelId;
             this.RetentionDays = retentionDays;
+            this.EngagementSource = engagementSource;
+            this.SourceId = sourceId;
+            this.Event = varEvent;
             this.SourceAudienceId = sourceAudienceId;
             this.Country = country;
             this.Ratio = ratio;
@@ -290,11 +335,25 @@ namespace Zernio.Model
         public string PixelId { get; set; }
 
         /// <summary>
-        /// Required for website audiences
+        /// Required for website (max 180) and meta_engagement (max 365) audiences.
         /// </summary>
-        /// <value>Required for website audiences</value>
+        /// <value>Required for website (max 180) and meta_engagement (max 365) audiences.</value>
         [DataMember(Name = "retentionDays", EmitDefaultValue = false)]
         public int RetentionDays { get; set; }
+
+        /// <summary>
+        /// Required for meta_engagement: the Page / IG account / video id.
+        /// </summary>
+        /// <value>Required for meta_engagement: the Page / IG account / video id.</value>
+        [DataMember(Name = "sourceId", EmitDefaultValue = false)]
+        public string SourceId { get; set; }
+
+        /// <summary>
+        /// meta_engagement only. The engagement event; defaults per source (page → page_engaged, instagram → ig_business_profile_all, video → video_watched). Ignored when &#x60;rule&#x60; is provided. 
+        /// </summary>
+        /// <value>meta_engagement only. The engagement event; defaults per source (page → page_engaged, instagram → ig_business_profile_all, video → video_watched). Ignored when &#x60;rule&#x60; is provided. </value>
+        [DataMember(Name = "event", EmitDefaultValue = false)]
+        public string Event { get; set; }
 
         /// <summary>
         /// Required for lookalike audiences
@@ -318,9 +377,9 @@ namespace Zernio.Model
         public decimal Ratio { get; set; }
 
         /// <summary>
-        /// Pixel event rule for website audiences (optional)
+        /// Optional raw Meta rule, forwarded verbatim: pixel event rule for website audiences, or the engagement rule for meta_engagement (overrides the built rule, e.g. for event/canvas/lead-form sources).
         /// </summary>
-        /// <value>Pixel event rule for website audiences (optional)</value>
+        /// <value>Optional raw Meta rule, forwarded verbatim: pixel event rule for website audiences, or the engagement rule for meta_engagement (overrides the built rule, e.g. for event/canvas/lead-form sources).</value>
         [DataMember(Name = "rule", EmitDefaultValue = false)]
         public Object Rule { get; set; }
 
@@ -352,6 +411,9 @@ namespace Zernio.Model
             sb.Append("  Companies: ").Append(Companies).Append("\n");
             sb.Append("  PixelId: ").Append(PixelId).Append("\n");
             sb.Append("  RetentionDays: ").Append(RetentionDays).Append("\n");
+            sb.Append("  EngagementSource: ").Append(EngagementSource).Append("\n");
+            sb.Append("  SourceId: ").Append(SourceId).Append("\n");
+            sb.Append("  Event: ").Append(Event).Append("\n");
             sb.Append("  SourceAudienceId: ").Append(SourceAudienceId).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Ratio: ").Append(Ratio).Append("\n");
@@ -384,9 +446,9 @@ namespace Zernio.Model
             }
 
             // RetentionDays (int) maximum
-            if (this.RetentionDays > (int)180)
+            if (this.RetentionDays > (int)365)
             {
-                yield return new ValidationResult("Invalid value for RetentionDays, must be a value less than or equal to 180.", new [] { "RetentionDays" });
+                yield return new ValidationResult("Invalid value for RetentionDays, must be a value less than or equal to 365.", new [] { "RetentionDays" });
             }
 
             // RetentionDays (int) minimum

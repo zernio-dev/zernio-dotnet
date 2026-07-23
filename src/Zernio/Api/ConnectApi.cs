@@ -173,6 +173,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ConnectBlueskyCredentials200Response</returns>
         ApiResponse<ConnectBlueskyCredentials200Response> ConnectBlueskyCredentialsWithHttpInfo(ConnectBlueskyCredentialsRequest connectBlueskyCredentialsRequest);
         /// <summary>
+        /// Connect an OpenAI Ads account
+        /// </summary>
+        /// <remarks>
+        /// Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectOpenAIAdsCredentialsRequest"></param>
+        /// <returns>ConnectOpenAIAdsCredentials200Response</returns>
+        ConnectOpenAIAdsCredentials200Response ConnectOpenAIAdsCredentials(ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest);
+
+        /// <summary>
+        /// Connect an OpenAI Ads account
+        /// </summary>
+        /// <remarks>
+        /// Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectOpenAIAdsCredentialsRequest"></param>
+        /// <returns>ApiResponse of ConnectOpenAIAdsCredentials200Response</returns>
+        ApiResponse<ConnectOpenAIAdsCredentials200Response> ConnectOpenAIAdsCredentialsWithHttpInfo(ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest);
+        /// <summary>
         /// Connect WhatsApp via credentials
         /// </summary>
         /// <remarks>
@@ -1115,6 +1136,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConnectBlueskyCredentials200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ConnectBlueskyCredentials200Response>> ConnectBlueskyCredentialsWithHttpInfoAsync(ConnectBlueskyCredentialsRequest connectBlueskyCredentialsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Connect an OpenAI Ads account
+        /// </summary>
+        /// <remarks>
+        /// Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectOpenAIAdsCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ConnectOpenAIAdsCredentials200Response</returns>
+        System.Threading.Tasks.Task<ConnectOpenAIAdsCredentials200Response> ConnectOpenAIAdsCredentialsAsync(ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Connect an OpenAI Ads account
+        /// </summary>
+        /// <remarks>
+        /// Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectOpenAIAdsCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ConnectOpenAIAdsCredentials200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ConnectOpenAIAdsCredentials200Response>> ConnectOpenAIAdsCredentialsWithHttpInfoAsync(ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Connect WhatsApp via credentials
         /// </summary>
@@ -3050,6 +3094,135 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ConnectBlueskyCredentials", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Connect an OpenAI Ads account Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectOpenAIAdsCredentialsRequest"></param>
+        /// <returns>ConnectOpenAIAdsCredentials200Response</returns>
+        public ConnectOpenAIAdsCredentials200Response ConnectOpenAIAdsCredentials(ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest)
+        {
+            Zernio.Client.ApiResponse<ConnectOpenAIAdsCredentials200Response> localVarResponse = ConnectOpenAIAdsCredentialsWithHttpInfo(connectOpenAIAdsCredentialsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Connect an OpenAI Ads account Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectOpenAIAdsCredentialsRequest"></param>
+        /// <returns>ApiResponse of ConnectOpenAIAdsCredentials200Response</returns>
+        public Zernio.Client.ApiResponse<ConnectOpenAIAdsCredentials200Response> ConnectOpenAIAdsCredentialsWithHttpInfo(ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest)
+        {
+            // verify the required parameter 'connectOpenAIAdsCredentialsRequest' is set
+            if (connectOpenAIAdsCredentialsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'connectOpenAIAdsCredentialsRequest' when calling ConnectApi->ConnectOpenAIAdsCredentials");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectOpenAIAdsCredentialsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<ConnectOpenAIAdsCredentials200Response>("/v1/connect/openai-ads/credentials", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectOpenAIAdsCredentials", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Connect an OpenAI Ads account Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectOpenAIAdsCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ConnectOpenAIAdsCredentials200Response</returns>
+        public async System.Threading.Tasks.Task<ConnectOpenAIAdsCredentials200Response> ConnectOpenAIAdsCredentialsAsync(ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ConnectOpenAIAdsCredentials200Response> localVarResponse = await ConnectOpenAIAdsCredentialsWithHttpInfoAsync(connectOpenAIAdsCredentialsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Connect an OpenAI Ads account Connect an OpenAI Ads account using an API key from ChatGPT Ads Manager.  The key grants full campaign write access on OpenAI&#39;s side (OpenAI does not offer a read-only key scope). Zernio uses it to read ads and performance, and to create and manage campaigns you set up through Zernio (create, status, budget, and cancel). Campaigns created directly in ChatGPT Ads Manager can still be managed there. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connectOpenAIAdsCredentialsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ConnectOpenAIAdsCredentials200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ConnectOpenAIAdsCredentials200Response>> ConnectOpenAIAdsCredentialsWithHttpInfoAsync(ConnectOpenAIAdsCredentialsRequest connectOpenAIAdsCredentialsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'connectOpenAIAdsCredentialsRequest' is set
+            if (connectOpenAIAdsCredentialsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'connectOpenAIAdsCredentialsRequest' when calling ConnectApi->ConnectOpenAIAdsCredentials");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = connectOpenAIAdsCredentialsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<ConnectOpenAIAdsCredentials200Response>("/v1/connect/openai-ads/credentials", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ConnectOpenAIAdsCredentials", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

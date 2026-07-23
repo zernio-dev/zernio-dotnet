@@ -46,7 +46,7 @@ namespace Zernio.Model
         /// <param name="label">CUSTOM questions only..</param>
         /// <param name="options">options.</param>
         /// <param name="inlineContext">inlineContext.</param>
-        public CreateLeadFormRequestQuestionsInner(string type = default, string key = default, string label = default, List<CreateLeadFormRequestQuestionsInnerOptionsInner> options = default, string inlineContext = default)
+        public CreateLeadFormRequestQuestionsInner(string type = default, string key = default, string label = default, List<BoostPostRequestTrackingUrlTagsInner> options = default, string inlineContext = default)
         {
             // to ensure "type" is required (not null)
             if (type == null)
@@ -85,7 +85,7 @@ namespace Zernio.Model
         /// Gets or Sets Options
         /// </summary>
         [DataMember(Name = "options", EmitDefaultValue = false)]
-        public List<CreateLeadFormRequestQuestionsInnerOptionsInner> Options { get; set; }
+        public List<BoostPostRequestTrackingUrlTagsInner> Options { get; set; }
 
         /// <summary>
         /// Gets or Sets InlineContext

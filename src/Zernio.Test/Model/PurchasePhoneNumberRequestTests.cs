@@ -101,6 +101,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'WantsWhatsapp'
+        /// </summary>
+        [Fact]
+        public void WantsWhatsappTest()
+        {
+            // TODO unit test for the property 'WantsWhatsapp'
+        }
+
+        /// <summary>
         /// Test the property 'PurchaseIntentId'
         /// </summary>
         [Fact]

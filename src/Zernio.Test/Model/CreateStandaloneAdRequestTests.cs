@@ -164,6 +164,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'CreativeFeatures'
+        /// </summary>
+        [Fact]
+        public void CreativeFeaturesTest()
+        {
+            // TODO unit test for the property 'CreativeFeatures'
+        }
+
+        /// <summary>
+        /// Test the property 'ValidateOnly'
+        /// </summary>
+        [Fact]
+        public void ValidateOnlyTest()
+        {
+            // TODO unit test for the property 'ValidateOnly'
+        }
+
+        /// <summary>
         /// Test the property 'BudgetAmount'
         /// </summary>
         [Fact]
@@ -512,6 +530,15 @@ namespace Zernio.Test.Model
         public void SpecialAdCategoriesTest()
         {
             // TODO unit test for the property 'SpecialAdCategories'
+        }
+
+        /// <summary>
+        /// Test the property 'SpecialAdCategoryCountry'
+        /// </summary>
+        [Fact]
+        public void SpecialAdCategoryCountryTest()
+        {
+            // TODO unit test for the property 'SpecialAdCategoryCountry'
         }
 
         /// <summary>

@@ -38,7 +38,7 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="data">data.</param>
         /// <param name="pagination">pagination.</param>
-        public ListDiscordGuildMembers200Response(List<ListDiscordGuildMembers200ResponseDataInner> data = default, ListDiscordGuildMembers200ResponsePagination pagination = default)
+        public ListDiscordGuildMembers200Response(List<DiscordGuildMember> data = default, ListDiscordGuildMembers200ResponsePagination pagination = default)
         {
             this.Data = data;
             this.Pagination = pagination;
@@ -48,7 +48,7 @@ namespace Zernio.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name = "data", EmitDefaultValue = false)]
-        public List<ListDiscordGuildMembers200ResponseDataInner> Data { get; set; }
+        public List<DiscordGuildMember> Data { get; set; }
 
         /// <summary>
         /// Gets or Sets Pagination

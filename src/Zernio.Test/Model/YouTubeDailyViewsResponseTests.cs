@@ -92,6 +92,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ProvisionalSince'
+        /// </summary>
+        [Fact]
+        public void ProvisionalSinceTest()
+        {
+            // TODO unit test for the property 'ProvisionalSince'
+        }
+
+        /// <summary>
         /// Test the property 'TotalViews'
         /// </summary>
         [Fact]

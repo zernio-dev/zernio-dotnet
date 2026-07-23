@@ -44,7 +44,9 @@ namespace Zernio.Model
         /// <param name="customConversionId">Custom Conversion ID, when optimising against one instead of a standard event..</param>
         /// <param name="productCatalogId">Catalog ID for catalog/Advantage+ Shopping campaigns..</param>
         /// <param name="productSetId">Product Set ID inside the catalog..</param>
-        public CreateStandaloneAdRequestPromotedObject(string pixelId = default, string customEventType = default, string pageId = default, string applicationId = default, string objectStoreUrl = default, string customConversionId = default, string productCatalogId = default, string productSetId = default)
+        /// <param name="offlineConversionDataSetId">Meta only. Offline event set (dataset) to optimise toward. Post-merger these are datasets: the id is the dataset id (for pixel-backed datasets, the pixel id)..</param>
+        /// <param name="whatsappPhoneNumber">Meta only. WhatsApp number on messaging-destination ad sets..</param>
+        public CreateStandaloneAdRequestPromotedObject(string pixelId = default, string customEventType = default, string pageId = default, string applicationId = default, string objectStoreUrl = default, string customConversionId = default, string productCatalogId = default, string productSetId = default, string offlineConversionDataSetId = default, string whatsappPhoneNumber = default)
         {
             this.PixelId = pixelId;
             this.CustomEventType = customEventType;
@@ -54,6 +56,9 @@ namespace Zernio.Model
             this.CustomConversionId = customConversionId;
             this.ProductCatalogId = productCatalogId;
             this.ProductSetId = productSetId;
+            this.OfflineConversionDataSetId = offlineConversionDataSetId;
+            this.WhatsappPhoneNumber = whatsappPhoneNumber;
+            this.AdditionalProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -113,6 +118,26 @@ namespace Zernio.Model
         public string ProductSetId { get; set; }
 
         /// <summary>
+        /// Meta only. Offline event set (dataset) to optimise toward. Post-merger these are datasets: the id is the dataset id (for pixel-backed datasets, the pixel id).
+        /// </summary>
+        /// <value>Meta only. Offline event set (dataset) to optimise toward. Post-merger these are datasets: the id is the dataset id (for pixel-backed datasets, the pixel id).</value>
+        [DataMember(Name = "offlineConversionDataSetId", EmitDefaultValue = false)]
+        public string OfflineConversionDataSetId { get; set; }
+
+        /// <summary>
+        /// Meta only. WhatsApp number on messaging-destination ad sets.
+        /// </summary>
+        /// <value>Meta only. WhatsApp number on messaging-destination ad sets.</value>
+        [DataMember(Name = "whatsappPhoneNumber", EmitDefaultValue = false)]
+        public string WhatsappPhoneNumber { get; set; }
+
+        /// <summary>
+        /// Gets or Sets additional properties
+        /// </summary>
+        [JsonExtensionData]
+        public IDictionary<string, object> AdditionalProperties { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -128,6 +153,9 @@ namespace Zernio.Model
             sb.Append("  CustomConversionId: ").Append(CustomConversionId).Append("\n");
             sb.Append("  ProductCatalogId: ").Append(ProductCatalogId).Append("\n");
             sb.Append("  ProductSetId: ").Append(ProductSetId).Append("\n");
+            sb.Append("  OfflineConversionDataSetId: ").Append(OfflineConversionDataSetId).Append("\n");
+            sb.Append("  WhatsappPhoneNumber: ").Append(WhatsappPhoneNumber).Append("\n");
+            sb.Append("  AdditionalProperties: ").Append(AdditionalProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

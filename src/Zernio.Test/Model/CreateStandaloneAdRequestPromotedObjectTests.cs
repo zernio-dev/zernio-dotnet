@@ -126,5 +126,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'ProductSetId'
         }
+
+        /// <summary>
+        /// Test the property 'OfflineConversionDataSetId'
+        /// </summary>
+        [Fact]
+        public void OfflineConversionDataSetIdTest()
+        {
+            // TODO unit test for the property 'OfflineConversionDataSetId'
+        }
+
+        /// <summary>
+        /// Test the property 'WhatsappPhoneNumber'
+        /// </summary>
+        [Fact]
+        public void WhatsappPhoneNumberTest()
+        {
+            // TODO unit test for the property 'WhatsappPhoneNumber'
+        }
     }
 }

@@ -6,11 +6,13 @@ All URIs are relative to *https://zernio.com/api*
 |--------|--------------|-------------|
 | [**AddTrackingTagSharedAccount**](TrackingTagsApi.md#addtrackingtagsharedaccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account |
 | [**CreateTrackingTag**](TrackingTagsApi.md#createtrackingtag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag |
+| [**GetAdTrackingTags**](TrackingTagsApi.md#getadtrackingtags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
 | [**GetTrackingTag**](TrackingTagsApi.md#gettrackingtag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag |
 | [**GetTrackingTagStats**](TrackingTagsApi.md#gettrackingtagstats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats |
 | [**ListTrackingTagSharedAccounts**](TrackingTagsApi.md#listtrackingtagsharedaccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with |
 | [**ListTrackingTags**](TrackingTagsApi.md#listtrackingtags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags |
 | [**RemoveTrackingTagSharedAccount**](TrackingTagsApi.md#removetrackingtagsharedaccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account |
+| [**UpdateAdTrackingTags**](TrackingTagsApi.md#updateadtrackingtags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**UpdateTrackingTag**](TrackingTagsApi.md#updatetrackingtag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag |
 
 <a id="addtrackingtagsharedaccount"></a>
@@ -126,7 +128,7 @@ catch (ApiException e)
 
 Create a tracking tag
 
-Creates a Meta Pixel on the given ad account (`POST /act_{id}/adspixels` — `name` is the only input). Returns the created tag including its install `code`. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with `ownerBusinessId: null` and can't be shared with other ad accounts.  Creating a pixel does NOT install it — install the returned `code` snippet on the site, or send events server-side via `POST /v1/ads/conversions`. The check `installed` is derived from `lastFiredTime`.  NOT idempotent: each call creates a new pixel. Do not retry blindly on timeout. Meta only (platform `metaads`); other platforms return 405. 
+Meta: creates a Meta Pixel on the given ad account (`POST /act_{id}/adspixels` — `name` is the only input). Returns the created tag including its install `code`. The pixel is owned by the Business Manager that owns the ad account; a pixel created on a personal (non-BM) ad account ends up with `ownerBusinessId: null` and can't be shared with other ad accounts.  Creating a Meta pixel does NOT install it — install the returned `code` snippet on the site, or send events server-side via `POST /v1/ads/conversions`. The check `installed` is derived from `lastFiredTime`.  OpenAI Ads: creates an OpenAI pixel AND provisions a Conversions API key for it in the same call (`adAccountId` is required by this endpoint but ignored — one API key maps to exactly one ad account, so there's nothing to select). Returns 422 (`FEATURE_NOT_AVAILABLE`) if the ad account isn't enabled for pixel management; contact your OpenAI partner representative to enable it. There is no delete API for OpenAI pixels. If the pixel is created but the Conversions API key provisioning then fails, the pixel is left live on OpenAI (it cannot be cleaned up) and the error message names the surviving pixel id and warns against retrying, since a retry would create a second, orphaned pixel.  NOT idempotent on either platform: each call creates a new pixel (and, for OpenAI, a new Conversions API key). Do not retry blindly on timeout. Meta (platform `metaads`) and OpenAI Ads (platform `openaiads`); other platforms return 405. 
 
 ### Example
 ```csharp
@@ -152,7 +154,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Meta ads SocialAccount id (platform `metaads`).
+            var accountId = "accountId_example";  // string | Ads SocialAccount id (platform `metaads` or `openaiads`).
             var createTrackingTagRequest = new CreateTrackingTagRequest(); // CreateTrackingTagRequest | 
 
             try
@@ -196,7 +198,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Meta ads SocialAccount id (platform &#x60;metaads&#x60;). |  |
+| **accountId** | **string** | Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;). |  |
 | **createTrackingTagRequest** | [**CreateTrackingTagRequest**](CreateTrackingTagRequest.md) |  |  |
 
 ### Return type
@@ -222,16 +224,118 @@ catch (ApiException e)
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support creating tracking tags. |  -  |
+| **422** | OpenAI Ads only: the ad account is not enabled for pixel management. Contact your OpenAI partner representative. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="getadtrackingtags"></a>
+# **GetAdTrackingTags**
+> GetAdTrackingTags200Response GetAdTrackingTags (string adId)
+
+Get ad tracking tags
+
+Unified read of the platform's native click-URL tracking params. - Meta (facebook/instagram): the creative's `url_tags` (and template_url_spec). - Google (googleads): the campaign's `trackingUrlTemplate` + `finalUrlSuffix`.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign's Dynamic UTM `dynamicValueParameters` + `customValueParameters`. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GetAdTrackingTagsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
+            var adId = "adId_example";  // string | Ad id (hex _id, platformAdId, or effective story/media id).
+
+            try
+            {
+                // Get ad tracking tags
+                GetAdTrackingTags200Response result = apiInstance.GetAdTrackingTags(adId);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TrackingTagsApi.GetAdTrackingTags: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetAdTrackingTagsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get ad tracking tags
+    ApiResponse<GetAdTrackingTags200Response> response = apiInstance.GetAdTrackingTagsWithHttpInfo(adId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TrackingTagsApi.GetAdTrackingTagsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adId** | **string** | Ad id (hex _id, platformAdId, or effective story/media id). |  |
+
+### Return type
+
+[**GetAdTrackingTags200Response**](GetAdTrackingTags200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tracking tags for the ad&#39;s platform (shape varies by platform). |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
+| **405** | Platform has no click-URL tracking surface |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 <a id="gettrackingtag"></a>
 # **GetTrackingTag**
-> CreateTrackingTag201Response GetTrackingTag (string accountId, string tagId)
+> GetTrackingTag200Response GetTrackingTag (string accountId, string tagId)
 
 Get a tracking tag
 
-Returns the full tag record including the base-code `code` snippet, `lastFiredTime`, `ownerBusinessId`, `isUnavailable`, etc. Meta only (platform `metaads`); other platforms return 405. 
+Returns the full tag record including the base-code `code` snippet, `lastFiredTime`, `ownerBusinessId`, `isUnavailable`, etc. Meta only (platform `metaads`); other platforms return 405. OpenAI Ads has no get-by-id endpoint, so it 405s here too — use `GET /v1/accounts/{accountId}/tracking-tags` (list) instead. 
 
 ### Example
 ```csharp
@@ -263,7 +367,7 @@ namespace Example
             try
             {
                 // Get a tracking tag
-                CreateTrackingTag201Response result = apiInstance.GetTrackingTag(accountId, tagId);
+                GetTrackingTag200Response result = apiInstance.GetTrackingTag(accountId, tagId);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -284,7 +388,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get a tracking tag
-    ApiResponse<CreateTrackingTag201Response> response = apiInstance.GetTrackingTagWithHttpInfo(accountId, tagId);
+    ApiResponse<GetTrackingTag200Response> response = apiInstance.GetTrackingTagWithHttpInfo(accountId, tagId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -306,7 +410,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**CreateTrackingTag201Response**](CreateTrackingTag201Response.md)
+[**GetTrackingTag200Response**](GetTrackingTag200Response.md)
 
 ### Authorization
 
@@ -550,7 +654,7 @@ catch (ApiException e)
 
 List tracking tags
 
-Returns the tracking tags (Meta Pixels) the connected ads account can see. Pass `?adAccountId=act_...` to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits `code` — call `getTrackingTag` for the install snippet and full detail.  Meta only today (platform `metaads`); other platforms return 405. The `accountId` must be the Meta *ads* SocialAccount created by the Ads add-on connect flow, not a Facebook/Instagram posting account. Get your `act_...` ids from `GET /v1/ads/accounts`. 
+Returns the tracking tags (Meta Pixels, or OpenAI Ads pixels) the connected ads account can see. Pass `?adAccountId=act_...` (Meta only) to scope the list to a single ad account; omit it to list every pixel reachable by the token (the name is then suffixed with the ad account it was discovered on, for disambiguation). The list view omits `code` — call `getTrackingTag` for the install snippet and full detail (Meta only; OpenAI Ads has no get-by-id endpoint).  Meta (platform `metaads`) and OpenAI Ads (platform `openaiads`); other platforms return 405. The `accountId` must be the ads SocialAccount created by the Ads add-on connect flow (Meta) or the OpenAI Ads connect flow, not a Facebook/Instagram posting account. Get your Meta `act_...` ids from `GET /v1/ads/accounts`; `adAccountId` is ignored for OpenAI Ads (one API key maps to exactly one ad account). 
 
 ### Example
 ```csharp
@@ -576,8 +680,8 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Meta ads SocialAccount id (platform `metaads`).
-            var adAccountId = "adAccountId_example";  // string? | Optional. Scope to one ad account, e.g. `act_123456789`. (optional) 
+            var accountId = "accountId_example";  // string | Ads SocialAccount id (platform `metaads` or `openaiads`).
+            var adAccountId = "adAccountId_example";  // string? | Optional, Meta only. Scope to one ad account, e.g. `act_123456789`. Ignored for OpenAI Ads. (optional) 
 
             try
             {
@@ -620,8 +724,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Meta ads SocialAccount id (platform &#x60;metaads&#x60;). |  |
-| **adAccountId** | **string?** | Optional. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. | [optional]  |
+| **accountId** | **string** | Ads SocialAccount id (platform &#x60;metaads&#x60; or &#x60;openaiads&#x60;). |  |
+| **adAccountId** | **string?** | Optional, Meta only. Scope to one ad account, e.g. &#x60;act_123456789&#x60;. Ignored for OpenAI Ads. | [optional]  |
 
 ### Return type
 
@@ -752,9 +856,109 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="updateadtrackingtags"></a>
+# **UpdateAdTrackingTags**
+> void UpdateAdTrackingTags (string adId, UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest)
+
+Set ad tracking tags
+
+Unified update. Send only the fields for the ad's platform: - Meta: `urlTags` (array of {key,value}). Meta creatives are immutable, so this rebuilds the   creative and repoints the ad. By DEFAULT we PRESERVE the existing creative verbatim   (re-post its object_story_spec + the new url_tags, reusing the image), so you send `urlTags`   ALONE — no need to read back headline/body/CTA. `creative` (headline, body, callToAction,   linkUrl, imageUrl) is OPTIONAL and only needed to rebuild explicitly, or for SHARE / page-post   / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for   `creative`). - Google: `trackingUrlTemplate` and/or `finalUrlSuffix` (full template strings; account quota applies). - LinkedIn: `dynamicValueParameters` and/or `customValueParameters` (campaign-level Dynamic UTM). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class UpdateAdTrackingTagsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TrackingTagsApi(httpClient, config, httpClientHandler);
+            var adId = "adId_example";  // string | 
+            var updateAdTrackingTagsRequest = new UpdateAdTrackingTagsRequest(); // UpdateAdTrackingTagsRequest | 
+
+            try
+            {
+                // Set ad tracking tags
+                apiInstance.UpdateAdTrackingTags(adId, updateAdTrackingTagsRequest);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TrackingTagsApi.UpdateAdTrackingTags: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateAdTrackingTagsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Set ad tracking tags
+    apiInstance.UpdateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TrackingTagsApi.UpdateAdTrackingTagsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **adId** | **string** |  |  |
+| **updateAdTrackingTagsRequest** | [**UpdateAdTrackingTagsRequest**](UpdateAdTrackingTagsRequest.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
+| **405** | Platform has no click-URL tracking surface |  -  |
+| **422** | Meta creative cannot be rebuilt (e.g. placement-customized/asset-feed/dark creative) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="updatetrackingtag"></a>
 # **UpdateTrackingTag**
-> CreateTrackingTag201Response UpdateTrackingTag (string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest)
+> GetTrackingTag200Response UpdateTrackingTag (string accountId, string tagId, UpdateTrackingTagRequest updateTrackingTagRequest)
 
 Update a tracking tag
 
@@ -791,7 +995,7 @@ namespace Example
             try
             {
                 // Update a tracking tag
-                CreateTrackingTag201Response result = apiInstance.UpdateTrackingTag(accountId, tagId, updateTrackingTagRequest);
+                GetTrackingTag200Response result = apiInstance.UpdateTrackingTag(accountId, tagId, updateTrackingTagRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -812,7 +1016,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Update a tracking tag
-    ApiResponse<CreateTrackingTag201Response> response = apiInstance.UpdateTrackingTagWithHttpInfo(accountId, tagId, updateTrackingTagRequest);
+    ApiResponse<GetTrackingTag200Response> response = apiInstance.UpdateTrackingTagWithHttpInfo(accountId, tagId, updateTrackingTagRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -835,7 +1039,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**CreateTrackingTag201Response**](CreateTrackingTag201Response.md)
+[**GetTrackingTag200Response**](GetTrackingTag200Response.md)
 
 ### Authorization
 

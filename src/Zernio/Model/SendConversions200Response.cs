@@ -61,7 +61,13 @@ namespace Zernio.Model
             /// Enum Tiktokads for value: tiktokads
             /// </summary>
             [EnumMember(Value = "tiktokads")]
-            Tiktokads = 4
+            Tiktokads = 4,
+
+            /// <summary>
+            /// Enum Openaiads for value: openaiads
+            /// </summary>
+            [EnumMember(Value = "openaiads")]
+            Openaiads = 5
         }
 
 
@@ -77,7 +83,7 @@ namespace Zernio.Model
         /// <param name="eventsReceived">Events accepted by the platform..</param>
         /// <param name="eventsFailed">Events rejected (see failures)..</param>
         /// <param name="failures">failures.</param>
-        /// <param name="traceId">Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID). .</param>
+        /// <param name="traceId">Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID) and OpenAI Ads (no trace ID surfaced). .</param>
         public SendConversions200Response(PlatformEnum? platform = default, int eventsReceived = default, int eventsFailed = default, List<SendConversions200ResponseFailuresInner> failures = default, string traceId = default)
         {
             this.Platform = platform;
@@ -108,9 +114,9 @@ namespace Zernio.Model
         public List<SendConversions200ResponseFailuresInner> Failures { get; set; }
 
         /// <summary>
-        /// Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID). 
+        /// Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID) and OpenAI Ads (no trace ID surfaced). 
         /// </summary>
-        /// <value>Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID). </value>
+        /// <value>Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID) and OpenAI Ads (no trace ID surfaced). </value>
         [DataMember(Name = "traceId", EmitDefaultValue = false)]
         public string TraceId { get; set; }
 

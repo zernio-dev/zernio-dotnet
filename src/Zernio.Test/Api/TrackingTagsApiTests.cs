@@ -82,6 +82,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetAdTrackingTags
+        /// </summary>
+        [Fact]
+        public void GetAdTrackingTagsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //var response = instance.GetAdTrackingTags(adId);
+            //Assert.IsType<GetAdTrackingTags200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetTrackingTag
         /// </summary>
         [Fact]
@@ -91,7 +103,7 @@ namespace Zernio.Test.Api
             //string accountId = null;
             //string tagId = null;
             //var response = instance.GetTrackingTag(accountId, tagId);
-            //Assert.IsType<CreateTrackingTag201Response>(response);
+            //Assert.IsType<GetTrackingTag200Response>(response);
         }
 
         /// <summary>
@@ -150,6 +162,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test UpdateAdTrackingTags
+        /// </summary>
+        [Fact]
+        public void UpdateAdTrackingTagsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string adId = null;
+            //UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest = null;
+            //instance.UpdateAdTrackingTags(adId, updateAdTrackingTagsRequest);
+        }
+
+        /// <summary>
         /// Test UpdateTrackingTag
         /// </summary>
         [Fact]
@@ -160,7 +184,7 @@ namespace Zernio.Test.Api
             //string tagId = null;
             //UpdateTrackingTagRequest updateTrackingTagRequest = null;
             //var response = instance.UpdateTrackingTag(accountId, tagId, updateTrackingTagRequest);
-            //Assert.IsType<CreateTrackingTag201Response>(response);
+            //Assert.IsType<GetTrackingTag200Response>(response);
         }
     }
 }

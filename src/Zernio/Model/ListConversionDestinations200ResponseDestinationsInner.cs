@@ -61,7 +61,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListConversionDestinations200ResponseDestinationsInner" /> class.
         /// </summary>
-        /// <param name="id">Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. .</param>
+        /// <param name="id">Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. OpenAI Ads: pixel wire id. .</param>
         /// <param name="name">name.</param>
         /// <param name="type">Present when the platform locks event type to the destination (Google conversion actions, LinkedIn conversion rules). .</param>
         /// <param name="status">status.</param>
@@ -76,9 +76,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. 
+        /// Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. OpenAI Ads: pixel wire id. 
         /// </summary>
-        /// <value>Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. </value>
+        /// <value>Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. OpenAI Ads: pixel wire id. </value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 

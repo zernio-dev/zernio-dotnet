@@ -5,13 +5,17 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**AppealSmsRegistration**](SMSApi.md#appealsmsregistration) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign |
+| [**CreateSmsSenderId**](SMSApi.md#createsmssenderid) | **POST** /v1/sms/sender-ids | Create an alphanumeric sender ID |
 | [**DeactivateSmsRegistration**](SMSApi.md#deactivatesmsregistration) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration |
+| [**DeleteSmsSenderId**](SMSApi.md#deletesmssenderid) | **DELETE** /v1/sms/sender-ids/{id} | Delete an alphanumeric sender ID |
 | [**DisableSmsOnNumber**](SMSApi.md#disablesmsonnumber) | **DELETE** /v1/phone-numbers/{id}/sms | Disable SMS on a number |
 | [**EnableSmsOnNumber**](SMSApi.md#enablesmsonnumber) | **POST** /v1/phone-numbers/{id}/sms | Enable SMS on a number |
 | [**GetSmsRegistration**](SMSApi.md#getsmsregistration) | **GET** /v1/sms/registrations/{id} | Get a carrier registration |
 | [**ListSmsOptOuts**](SMSApi.md#listsmsoptouts) | **GET** /v1/sms/opt-outs | List SMS opt-outs |
 | [**ListSmsRegistrations**](SMSApi.md#listsmsregistrations) | **GET** /v1/sms/registrations | List carrier registrations |
+| [**ListSmsSenderIds**](SMSApi.md#listsmssenderids) | **GET** /v1/sms/sender-ids | List alphanumeric sender IDs |
 | [**LookupSmsNumber**](SMSApi.md#lookupsmsnumber) | **GET** /v1/sms/lookup | Look up carrier + line type |
+| [**RequestSmsSenderIdLimitIncrease**](SMSApi.md#requestsmssenderidlimitincrease) | **POST** /v1/sms/sender-ids/limit-request | Request a higher sender ID daily limit |
 | [**ResendSmsRegistrationOtp**](SMSApi.md#resendsmsregistrationotp) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP |
 | [**ReuseSmsRegistrationForNumber**](SMSApi.md#reusesmsregistrationfornumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration |
 | [**SendSms**](SMSApi.md#sendsms) | **POST** /v1/sms/messages | Send an SMS/MMS |
@@ -124,6 +128,109 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="createsmssenderid"></a>
+# **CreateSmsSenderId**
+> CreateSmsSenderId200Response CreateSmsSenderId (CreateSmsSenderIdRequest createSmsSenderIdRequest)
+
+Create an alphanumeric sender ID
+
+Registers an alphanumeric sender ID (e.g. `ZERNIO`) — a branded `from` for one-way international SMS. No phone number purchase or carrier registration is needed; once created, pass it as `from` on `POST /v1/sms/messages`.  Constraints: 3-11 characters (letters, digits, spaces; at least one letter). Sends cannot reach the US, Canada, or Puerto Rico, are text-only, and recipients cannot reply. Sender IDs that impersonate well-known brands or institutions are rejected, and an ID already registered by another workspace returns 409 (active sender IDs are globally unique, first-come-first-served). Creating the same sender ID again is a no-op (re-activates it after a delete). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class CreateSmsSenderIdExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
+            var createSmsSenderIdRequest = new CreateSmsSenderIdRequest(); // CreateSmsSenderIdRequest | 
+
+            try
+            {
+                // Create an alphanumeric sender ID
+                CreateSmsSenderId200Response result = apiInstance.CreateSmsSenderId(createSmsSenderIdRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SMSApi.CreateSmsSenderId: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the CreateSmsSenderIdWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Create an alphanumeric sender ID
+    ApiResponse<CreateSmsSenderId200Response> response = apiInstance.CreateSmsSenderIdWithHttpInfo(createSmsSenderIdRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SMSApi.CreateSmsSenderIdWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **createSmsSenderIdRequest** | [**CreateSmsSenderIdRequest**](CreateSmsSenderIdRequest.md) |  |  |
+
+### Return type
+
+[**CreateSmsSenderId200Response**](CreateSmsSenderId200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sender ID created (or re-activated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Workspace is not on usage-based billing, or already holds the maximum of 5 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
+| **409** | Sender ID already registered by another workspace (code &#x60;sender_id_taken&#x60;). |  -  |
+| **422** | Sender ID rejected: it appears to impersonate a protected brand or institution. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="deactivatesmsregistration"></a>
 # **DeactivateSmsRegistration**
 > DeactivateSmsRegistration200Response DeactivateSmsRegistration (string id)
@@ -221,6 +328,107 @@ catch (ApiException e)
 | **200** | Registration deactivated. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deletesmssenderid"></a>
+# **DeleteSmsSenderId**
+> DeleteSmsSenderId200Response DeleteSmsSenderId (string id)
+
+Delete an alphanumeric sender ID
+
+Deactivates the sender ID so it can no longer send. Re-creating the same sender ID via `POST /v1/sms/sender-ids` re-activates it. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class DeleteSmsSenderIdExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | Sender ID resource id.
+
+            try
+            {
+                // Delete an alphanumeric sender ID
+                DeleteSmsSenderId200Response result = apiInstance.DeleteSmsSenderId(id);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SMSApi.DeleteSmsSenderId: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteSmsSenderIdWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Delete an alphanumeric sender ID
+    ApiResponse<DeleteSmsSenderId200Response> response = apiInstance.DeleteSmsSenderIdWithHttpInfo(id);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SMSApi.DeleteSmsSenderIdWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | Sender ID resource id. |  |
+
+### Return type
+
+[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sender ID deactivated. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Sender ID not found. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -723,6 +931,98 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="listsmssenderids"></a>
+# **ListSmsSenderIds**
+> ListSmsSenderIds200Response ListSmsSenderIds ()
+
+List alphanumeric sender IDs
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListSmsSenderIdsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
+
+            try
+            {
+                // List alphanumeric sender IDs
+                ListSmsSenderIds200Response result = apiInstance.ListSmsSenderIds();
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SMSApi.ListSmsSenderIds: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListSmsSenderIdsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List alphanumeric sender IDs
+    ApiResponse<ListSmsSenderIds200Response> response = apiInstance.ListSmsSenderIdsWithHttpInfo();
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SMSApi.ListSmsSenderIdsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+### Return type
+
+[**ListSmsSenderIds200Response**](ListSmsSenderIds200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The workspace&#39;s sender IDs, newest first. |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="lookupsmsnumber"></a>
 # **LookupSmsNumber**
 > LookupSmsNumber200Response LookupSmsNumber (string number)
@@ -820,6 +1120,108 @@ catch (ApiException e)
 | **200** | Lookup result. An unknown/invalid number returns lineType &#x60;unknown&#x60; with &#x60;smsReachable&#x60; false rather than an error. |  -  |
 | **401** | Unauthorized |  -  |
 | **502** | Lookup provider failed |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="requestsmssenderidlimitincrease"></a>
+# **RequestSmsSenderIdLimitIncrease**
+> RequestSmsSenderIdLimitIncrease200Response RequestSmsSenderIdLimitIncrease (RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest)
+
+Request a higher sender ID daily limit
+
+Asks support to raise the workspace's daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RequestSmsSenderIdLimitIncreaseExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
+            var requestSmsSenderIdLimitIncreaseRequest = new RequestSmsSenderIdLimitIncreaseRequest(); // RequestSmsSenderIdLimitIncreaseRequest | 
+
+            try
+            {
+                // Request a higher sender ID daily limit
+                RequestSmsSenderIdLimitIncrease200Response result = apiInstance.RequestSmsSenderIdLimitIncrease(requestSmsSenderIdLimitIncreaseRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SMSApi.RequestSmsSenderIdLimitIncrease: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RequestSmsSenderIdLimitIncreaseWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Request a higher sender ID daily limit
+    ApiResponse<RequestSmsSenderIdLimitIncrease200Response> response = apiInstance.RequestSmsSenderIdLimitIncreaseWithHttpInfo(requestSmsSenderIdLimitIncreaseRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SMSApi.RequestSmsSenderIdLimitIncreaseWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **requestSmsSenderIdLimitIncreaseRequest** | [**RequestSmsSenderIdLimitIncreaseRequest**](RequestSmsSenderIdLimitIncreaseRequest.md) |  |  |
+
+### Return type
+
+[**RequestSmsSenderIdLimitIncrease200Response**](RequestSmsSenderIdLimitIncrease200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Request submitted for review. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **409** | A cap-raise request is already awaiting review (code &#x60;sender_id_raise_pending&#x60;); one at a time. |  -  |
+| **503** | Request could not be submitted; retry or contact support. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
