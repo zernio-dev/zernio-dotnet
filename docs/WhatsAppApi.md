@@ -1555,8 +1555,9 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Display name info retrieved |  -  |
+| **400** | accountId is required |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | WhatsApp account not found |  -  |
+| **404** | WhatsApp account not found or accountId is not a valid ObjectId |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
