@@ -62,7 +62,8 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //CreateProfileRequest createProfileRequest = null;
-            //var response = instance.CreateProfile(createProfileRequest);
+            //string? idempotencyKey = null;
+            //var response = instance.CreateProfile(createProfileRequest, idempotencyKey);
             //Assert.IsType<ProfileCreateResponse>(response);
         }
 
@@ -98,7 +99,10 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //bool? includeOverLimit = null;
-            //var response = instance.ListProfiles(includeOverLimit);
+            //string? name = null;
+            //int? limit = null;
+            //int? skip = null;
+            //var response = instance.ListProfiles(includeOverLimit, name, limit, skip);
             //Assert.IsType<ProfilesListResponse>(response);
         }
 

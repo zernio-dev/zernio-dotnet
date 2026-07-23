@@ -37,9 +37,15 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ProfilesListResponse" /> class.
         /// </summary>
         /// <param name="profiles">profiles.</param>
-        public ProfilesListResponse(List<Profile> profiles = default)
+        /// <param name="total">Total matching profiles across all pages. Present only when limit or skip was passed..</param>
+        /// <param name="skip">Offset applied. Present only when limit or skip was passed..</param>
+        /// <param name="limit">Echo of the limit query param. Present only when it was passed..</param>
+        public ProfilesListResponse(List<Profile> profiles = default, int total = default, int skip = default, int limit = default)
         {
             this.Profiles = profiles;
+            this.Total = total;
+            this.Skip = skip;
+            this.Limit = limit;
         }
 
         /// <summary>
@@ -47,6 +53,27 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "profiles", EmitDefaultValue = false)]
         public List<Profile> Profiles { get; set; }
+
+        /// <summary>
+        /// Total matching profiles across all pages. Present only when limit or skip was passed.
+        /// </summary>
+        /// <value>Total matching profiles across all pages. Present only when limit or skip was passed.</value>
+        [DataMember(Name = "total", EmitDefaultValue = false)]
+        public int Total { get; set; }
+
+        /// <summary>
+        /// Offset applied. Present only when limit or skip was passed.
+        /// </summary>
+        /// <value>Offset applied. Present only when limit or skip was passed.</value>
+        [DataMember(Name = "skip", EmitDefaultValue = false)]
+        public int Skip { get; set; }
+
+        /// <summary>
+        /// Echo of the limit query param. Present only when it was passed.
+        /// </summary>
+        /// <value>Echo of the limit query param. Present only when it was passed.</value>
+        [DataMember(Name = "limit", EmitDefaultValue = false)]
+        public int Limit { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -57,6 +84,9 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ProfilesListResponse {\n");
             sb.Append("  Profiles: ").Append(Profiles).Append("\n");
+            sb.Append("  Total: ").Append(Total).Append("\n");
+            sb.Append("  Skip: ").Append(Skip).Append("\n");
+            sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

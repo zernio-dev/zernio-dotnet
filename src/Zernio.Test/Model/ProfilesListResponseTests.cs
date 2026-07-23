@@ -63,5 +63,32 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Profiles'
         }
+
+        /// <summary>
+        /// Test the property 'Total'
+        /// </summary>
+        [Fact]
+        public void TotalTest()
+        {
+            // TODO unit test for the property 'Total'
+        }
+
+        /// <summary>
+        /// Test the property 'Skip'
+        /// </summary>
+        [Fact]
+        public void SkipTest()
+        {
+            // TODO unit test for the property 'Skip'
+        }
+
+        /// <summary>
+        /// Test the property 'Limit'
+        /// </summary>
+        [Fact]
+        public void LimitTest()
+        {
+            // TODO unit test for the property 'Limit'
+        }
     }
 }

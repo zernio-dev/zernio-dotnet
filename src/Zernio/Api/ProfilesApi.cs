@@ -32,23 +32,25 @@ namespace Zernio.Api
         /// Create profile
         /// </summary>
         /// <remarks>
-        /// Creates a new profile with a name, optional description, and color.
+        /// Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ProfileCreateResponse</returns>
-        ProfileCreateResponse CreateProfile(CreateProfileRequest createProfileRequest);
+        ProfileCreateResponse CreateProfile(CreateProfileRequest createProfileRequest, string? idempotencyKey = default);
 
         /// <summary>
         /// Create profile
         /// </summary>
         /// <remarks>
-        /// Creates a new profile with a name, optional description, and color.
+        /// Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of ProfileCreateResponse</returns>
-        ApiResponse<ProfileCreateResponse> CreateProfileWithHttpInfo(CreateProfileRequest createProfileRequest);
+        ApiResponse<ProfileCreateResponse> CreateProfileWithHttpInfo(CreateProfileRequest createProfileRequest, string? idempotencyKey = default);
         /// <summary>
         /// Delete profile
         /// </summary>
@@ -95,23 +97,29 @@ namespace Zernio.Api
         /// List profiles
         /// </summary>
         /// <remarks>
-        /// Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+        /// Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="includeOverLimit">When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)</param>
+        /// <param name="name">Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)</param>
+        /// <param name="limit">Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)</param>
+        /// <param name="skip">Number of profiles to skip, applied after sorting and filtering. (optional)</param>
         /// <returns>ProfilesListResponse</returns>
-        ProfilesListResponse ListProfiles(bool? includeOverLimit = default);
+        ProfilesListResponse ListProfiles(bool? includeOverLimit = default, string? name = default, int? limit = default, int? skip = default);
 
         /// <summary>
         /// List profiles
         /// </summary>
         /// <remarks>
-        /// Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+        /// Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="includeOverLimit">When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)</param>
+        /// <param name="name">Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)</param>
+        /// <param name="limit">Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)</param>
+        /// <param name="skip">Number of profiles to skip, applied after sorting and filtering. (optional)</param>
         /// <returns>ApiResponse of ProfilesListResponse</returns>
-        ApiResponse<ProfilesListResponse> ListProfilesWithHttpInfo(bool? includeOverLimit = default);
+        ApiResponse<ProfilesListResponse> ListProfilesWithHttpInfo(bool? includeOverLimit = default, string? name = default, int? limit = default, int? skip = default);
         /// <summary>
         /// Update profile
         /// </summary>
@@ -148,25 +156,27 @@ namespace Zernio.Api
         /// Create profile
         /// </summary>
         /// <remarks>
-        /// Creates a new profile with a name, optional description, and color.
+        /// Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileCreateResponse</returns>
-        System.Threading.Tasks.Task<ProfileCreateResponse> CreateProfileAsync(CreateProfileRequest createProfileRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ProfileCreateResponse> CreateProfileAsync(CreateProfileRequest createProfileRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create profile
         /// </summary>
         /// <remarks>
-        /// Creates a new profile with a name, optional description, and color.
+        /// Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileCreateResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProfileCreateResponse>> CreateProfileWithHttpInfoAsync(CreateProfileRequest createProfileRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ProfileCreateResponse>> CreateProfileWithHttpInfoAsync(CreateProfileRequest createProfileRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Delete profile
         /// </summary>
@@ -217,25 +227,31 @@ namespace Zernio.Api
         /// List profiles
         /// </summary>
         /// <remarks>
-        /// Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+        /// Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="includeOverLimit">When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)</param>
+        /// <param name="name">Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)</param>
+        /// <param name="limit">Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)</param>
+        /// <param name="skip">Number of profiles to skip, applied after sorting and filtering. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfilesListResponse</returns>
-        System.Threading.Tasks.Task<ProfilesListResponse> ListProfilesAsync(bool? includeOverLimit = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ProfilesListResponse> ListProfilesAsync(bool? includeOverLimit = default, string? name = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List profiles
         /// </summary>
         /// <remarks>
-        /// Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+        /// Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="includeOverLimit">When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)</param>
+        /// <param name="name">Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)</param>
+        /// <param name="limit">Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)</param>
+        /// <param name="skip">Number of profiles to skip, applied after sorting and filtering. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfilesListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProfilesListResponse>> ListProfilesWithHttpInfoAsync(bool? includeOverLimit = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ProfilesListResponse>> ListProfilesWithHttpInfoAsync(bool? includeOverLimit = default, string? name = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update profile
         /// </summary>
@@ -475,24 +491,26 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create profile Creates a new profile with a name, optional description, and color.
+        /// Create profile Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ProfileCreateResponse</returns>
-        public ProfileCreateResponse CreateProfile(CreateProfileRequest createProfileRequest)
+        public ProfileCreateResponse CreateProfile(CreateProfileRequest createProfileRequest, string? idempotencyKey = default)
         {
-            Zernio.Client.ApiResponse<ProfileCreateResponse> localVarResponse = CreateProfileWithHttpInfo(createProfileRequest);
+            Zernio.Client.ApiResponse<ProfileCreateResponse> localVarResponse = CreateProfileWithHttpInfo(createProfileRequest, idempotencyKey);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create profile Creates a new profile with a name, optional description, and color.
+        /// Create profile Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <returns>ApiResponse of ProfileCreateResponse</returns>
-        public Zernio.Client.ApiResponse<ProfileCreateResponse> CreateProfileWithHttpInfo(CreateProfileRequest createProfileRequest)
+        public Zernio.Client.ApiResponse<ProfileCreateResponse> CreateProfileWithHttpInfo(CreateProfileRequest createProfileRequest, string? idempotencyKey = default)
         {
             // verify the required parameter 'createProfileRequest' is set
             if (createProfileRequest == null)
@@ -515,6 +533,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = createProfileRequest;
 
             // authentication (bearerAuth) required
@@ -537,26 +559,28 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create profile Creates a new profile with a name, optional description, and color.
+        /// Create profile Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileCreateResponse</returns>
-        public async System.Threading.Tasks.Task<ProfileCreateResponse> CreateProfileAsync(CreateProfileRequest createProfileRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ProfileCreateResponse> CreateProfileAsync(CreateProfileRequest createProfileRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ProfileCreateResponse> localVarResponse = await CreateProfileWithHttpInfoAsync(createProfileRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ProfileCreateResponse> localVarResponse = await CreateProfileWithHttpInfoAsync(createProfileRequest, idempotencyKey, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Create profile Creates a new profile with a name, optional description, and color.
+        /// Create profile Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createProfileRequest"></param>
+        /// <param name="idempotencyKey">Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileCreateResponse)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ProfileCreateResponse>> CreateProfileWithHttpInfoAsync(CreateProfileRequest createProfileRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ProfileCreateResponse>> CreateProfileWithHttpInfoAsync(CreateProfileRequest createProfileRequest, string? idempotencyKey = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'createProfileRequest' is set
             if (createProfileRequest == null)
@@ -581,6 +605,10 @@ namespace Zernio.Api
             var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
+            if (idempotencyKey != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Idempotency-Key", Zernio.Client.ClientUtils.ParameterToString(idempotencyKey)); // header parameter
+            }
             localVarRequestOptions.Data = createProfileRequest;
 
             // authentication (bearerAuth) required
@@ -858,24 +886,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List profiles Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+        /// List profiles Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="includeOverLimit">When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)</param>
+        /// <param name="name">Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)</param>
+        /// <param name="limit">Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)</param>
+        /// <param name="skip">Number of profiles to skip, applied after sorting and filtering. (optional)</param>
         /// <returns>ProfilesListResponse</returns>
-        public ProfilesListResponse ListProfiles(bool? includeOverLimit = default)
+        public ProfilesListResponse ListProfiles(bool? includeOverLimit = default, string? name = default, int? limit = default, int? skip = default)
         {
-            Zernio.Client.ApiResponse<ProfilesListResponse> localVarResponse = ListProfilesWithHttpInfo(includeOverLimit);
+            Zernio.Client.ApiResponse<ProfilesListResponse> localVarResponse = ListProfilesWithHttpInfo(includeOverLimit, name, limit, skip);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List profiles Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+        /// List profiles Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="includeOverLimit">When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)</param>
+        /// <param name="name">Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)</param>
+        /// <param name="limit">Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)</param>
+        /// <param name="skip">Number of profiles to skip, applied after sorting and filtering. (optional)</param>
         /// <returns>ApiResponse of ProfilesListResponse</returns>
-        public Zernio.Client.ApiResponse<ProfilesListResponse> ListProfilesWithHttpInfo(bool? includeOverLimit = default)
+        public Zernio.Client.ApiResponse<ProfilesListResponse> ListProfilesWithHttpInfo(bool? includeOverLimit = default, string? name = default, int? limit = default, int? skip = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -896,6 +930,18 @@ namespace Zernio.Api
             if (includeOverLimit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "includeOverLimit", includeOverLimit));
+            }
+            if (name != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
 
             // authentication (bearerAuth) required
@@ -918,26 +964,32 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List profiles Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+        /// List profiles Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="includeOverLimit">When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)</param>
+        /// <param name="name">Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)</param>
+        /// <param name="limit">Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)</param>
+        /// <param name="skip">Number of profiles to skip, applied after sorting and filtering. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfilesListResponse</returns>
-        public async System.Threading.Tasks.Task<ProfilesListResponse> ListProfilesAsync(bool? includeOverLimit = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ProfilesListResponse> ListProfilesAsync(bool? includeOverLimit = default, string? name = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ProfilesListResponse> localVarResponse = await ListProfilesWithHttpInfoAsync(includeOverLimit, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ProfilesListResponse> localVarResponse = await ListProfilesWithHttpInfoAsync(includeOverLimit, name, limit, skip, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List profiles Returns profiles sorted by creation date. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
+        /// List profiles Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit&#x3D;true to include profiles that exceed the plan limit.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="includeOverLimit">When true, includes over-limit profiles (marked with isOverLimit: true). (optional, default to false)</param>
+        /// <param name="name">Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional)</param>
+        /// <param name="limit">Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional)</param>
+        /// <param name="skip">Number of profiles to skip, applied after sorting and filtering. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfilesListResponse)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ProfilesListResponse>> ListProfilesWithHttpInfoAsync(bool? includeOverLimit = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ProfilesListResponse>> ListProfilesWithHttpInfoAsync(bool? includeOverLimit = default, string? name = default, int? limit = default, int? skip = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -960,6 +1012,18 @@ namespace Zernio.Api
             if (includeOverLimit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "includeOverLimit", includeOverLimit));
+            }
+            if (name != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (skip != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "skip", skip));
             }
 
             // authentication (bearerAuth) required

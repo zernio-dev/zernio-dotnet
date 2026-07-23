@@ -5528,8 +5528,10 @@ paths:
       - Users
   /v1/profiles:
     get:
-      description: Returns profiles sorted by creation date. Use includeOverLimit=true
-        to include profiles that exceed the plan limit.
+      description: "Returns profiles sorted default-first, then by creation date.\
+        \ Filter with name (exact match) and paginate with limit/skip; without those\
+        \ params the full list is returned unchanged. Use includeOverLimit=true to\
+        \ include profiles that exceed the plan limit."
       operationId: listProfiles
       parameters:
       - description: "When true, includes over-limit profiles (marked with isOverLimit:\
@@ -5541,6 +5543,35 @@ paths:
         schema:
           default: false
           type: boolean
+        style: form
+      - description: Exact-match filter on the profile name. Useful to recover a profile
+          id after an ambiguous create (timeout followed by a 409 on retry).
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Page size. When limit or skip is present, the response includes\
+          \ total and skip (and echoes limit)."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      - description: "Number of profiles to skip, applied after sorting and filtering."
+        explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          minimum: 0
+          type: integer
         style: form
       responses:
         "200":
@@ -5557,14 +5588,32 @@ paths:
               schema:
                 $ref: "#/components/schemas/ProfilesListResponse"
           description: Profiles
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: List profiles
       tags:
       - Profiles
     post:
-      description: "Creates a new profile with a name, optional description, and color."
+      description: "Creates a new profile with a name, optional description, and color.\
+        \ Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId\
+        \ carries the id of the existing profile. Send an Idempotency-Key header to\
+        \ make retries safe: a retried create with the same key and body replays the\
+        \ original 201 (same _id) instead of conflicting."
       operationId: createProfile
+      parameters:
+      - description: Optional client-generated unique key (e.g. a UUID) that makes
+          create retries safe. Same key + same body replays the original response;
+          same key + different body → 422; key still processing → 409.
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -5601,7 +5650,11 @@ paths:
         "403":
           description: Profile limit exceeded
         "409":
-          description: "A profile with this name already exists (code: profile_name_conflict)."
+          description: "A profile with this name already exists (code: profile_name_conflict);\
+            \ details.existingProfileId carries the id of the existing profile. Also\
+            \ returned while a request with the same Idempotency-Key is still processing."
+        "422":
+          description: Idempotency-Key reused with a different body
       summary: Create profile
       tags:
       - Profiles
@@ -38097,6 +38150,7 @@ components:
           $ref: "#/components/schemas/Post"
     ProfilesListResponse:
       example:
+        total: 0
         profiles:
         - createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
@@ -38114,11 +38168,23 @@ components:
           _id: _id
           userId: userId
           isOverLimit: true
+        limit: 1
+        skip: 6
       properties:
         profiles:
           items:
             $ref: "#/components/schemas/Profile"
           type: array
+        total:
+          description: Total matching profiles across all pages. Present only when
+            limit or skip was passed.
+          type: integer
+        skip:
+          description: Offset applied. Present only when limit or skip was passed.
+          type: integer
+        limit:
+          description: Echo of the limit query param. Present only when it was passed.
+          type: integer
     ProfileCreateResponse:
       example:
         profile:

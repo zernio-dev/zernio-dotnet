@@ -12,11 +12,11 @@ All URIs are relative to *https://zernio.com/api*
 
 <a id="createprofile"></a>
 # **CreateProfile**
-> ProfileCreateResponse CreateProfile (CreateProfileRequest createProfileRequest)
+> ProfileCreateResponse CreateProfile (CreateProfileRequest createProfileRequest, string? idempotencyKey = null)
 
 Create profile
 
-Creates a new profile with a name, optional description, and color.
+Creates a new profile with a name, optional description, and color. Names are unique per workspace: a duplicate returns a 409 whose details.existingProfileId carries the id of the existing profile. Send an Idempotency-Key header to make retries safe: a retried create with the same key and body replays the original 201 (same _id) instead of conflicting.
 
 ### Example
 ```csharp
@@ -43,11 +43,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ProfilesApi(httpClient, config, httpClientHandler);
             var createProfileRequest = new CreateProfileRequest(); // CreateProfileRequest | 
+            var idempotencyKey = "idempotencyKey_example";  // string? | Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional) 
 
             try
             {
                 // Create profile
-                ProfileCreateResponse result = apiInstance.CreateProfile(createProfileRequest);
+                ProfileCreateResponse result = apiInstance.CreateProfile(createProfileRequest, idempotencyKey);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -68,7 +69,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Create profile
-    ApiResponse<ProfileCreateResponse> response = apiInstance.CreateProfileWithHttpInfo(createProfileRequest);
+    ApiResponse<ProfileCreateResponse> response = apiInstance.CreateProfileWithHttpInfo(createProfileRequest, idempotencyKey);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -86,6 +87,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **createProfileRequest** | [**CreateProfileRequest**](CreateProfileRequest.md) |  |  |
+| **idempotencyKey** | **string?** | Optional client-generated unique key (e.g. a UUID) that makes create retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional]  |
 
 ### Return type
 
@@ -109,7 +111,8 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X (Twitter) account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not just the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connection cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60;, redirect the end-user to &#x60;dashboard_url&#x60; to add a payment method via Zernio&#39;s hosted Stripe Setup Checkout. For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | Profile limit exceeded |  -  |
-| **409** | A profile with this name already exists (code: profile_name_conflict). |  -  |
+| **409** | A profile with this name already exists (code: profile_name_conflict); details.existingProfileId carries the id of the existing profile. Also returned while a request with the same Idempotency-Key is still processing. |  -  |
+| **422** | Idempotency-Key reused with a different body |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -317,11 +320,11 @@ catch (ApiException e)
 
 <a id="listprofiles"></a>
 # **ListProfiles**
-> ProfilesListResponse ListProfiles (bool? includeOverLimit = null)
+> ProfilesListResponse ListProfiles (bool? includeOverLimit = null, string? name = null, int? limit = null, int? skip = null)
 
 List profiles
 
-Returns profiles sorted by creation date. Use includeOverLimit=true to include profiles that exceed the plan limit.
+Returns profiles sorted default-first, then by creation date. Filter with name (exact match) and paginate with limit/skip; without those params the full list is returned unchanged. Use includeOverLimit=true to include profiles that exceed the plan limit.
 
 ### Example
 ```csharp
@@ -348,11 +351,14 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new ProfilesApi(httpClient, config, httpClientHandler);
             var includeOverLimit = false;  // bool? | When true, includes over-limit profiles (marked with isOverLimit: true). (optional)  (default to false)
+            var name = "name_example";  // string? | Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). (optional) 
+            var limit = 56;  // int? | Page size. When limit or skip is present, the response includes total and skip (and echoes limit). (optional) 
+            var skip = 56;  // int? | Number of profiles to skip, applied after sorting and filtering. (optional) 
 
             try
             {
                 // List profiles
-                ProfilesListResponse result = apiInstance.ListProfiles(includeOverLimit);
+                ProfilesListResponse result = apiInstance.ListProfiles(includeOverLimit, name, limit, skip);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -373,7 +379,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List profiles
-    ApiResponse<ProfilesListResponse> response = apiInstance.ListProfilesWithHttpInfo(includeOverLimit);
+    ApiResponse<ProfilesListResponse> response = apiInstance.ListProfilesWithHttpInfo(includeOverLimit, name, limit, skip);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -391,6 +397,9 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **includeOverLimit** | **bool?** | When true, includes over-limit profiles (marked with isOverLimit: true). | [optional] [default to false] |
+| **name** | **string?** | Exact-match filter on the profile name. Useful to recover a profile id after an ambiguous create (timeout followed by a 409 on retry). | [optional]  |
+| **limit** | **int?** | Page size. When limit or skip is present, the response includes total and skip (and echoes limit). | [optional]  |
+| **skip** | **int?** | Number of profiles to skip, applied after sorting and filtering. | [optional]  |
 
 ### Return type
 
@@ -410,6 +419,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Profiles |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
