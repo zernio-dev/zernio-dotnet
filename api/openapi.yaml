@@ -20649,6 +20649,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listWhatsAppGroupChats_200_response"
           description: List of active groups
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -20675,6 +20677,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/createWhatsAppGroupChat_201_response"
           description: Group created
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -20713,6 +20717,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/unpublishPost_200_response"
           description: Group deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20753,6 +20759,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getWhatsAppGroupChat_200_response"
           description: Group info
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20798,6 +20806,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/unpublishPost_200_response"
           description: Group updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20844,6 +20854,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/unpublishPost_200_response"
           description: Participants removed
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -20887,6 +20899,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/unpublishPost_200_response"
           description: Participants added
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -20925,6 +20939,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/createWhatsAppGroupInviteLink_200_response"
           description: Invite link created
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -20969,6 +20985,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/unpublishPost_200_response"
           description: Requests rejected
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -21006,6 +21024,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listWhatsAppGroupJoinRequests_200_response"
           description: Join requests
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -21049,6 +21069,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/unpublishPost_200_response"
           description: Requests approved
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
