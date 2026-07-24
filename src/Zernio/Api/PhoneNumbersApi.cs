@@ -58,8 +58,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
         /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
+        /// <param name="sms">Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)</param>
         /// <returns>CheckPhoneNumberAvailability200Response</returns>
-        CheckPhoneNumberAvailability200Response CheckPhoneNumberAvailability(string country, string? numberType = default);
+        CheckPhoneNumberAvailability200Response CheckPhoneNumberAvailability(string country, string? numberType = default, bool? sms = default);
 
         /// <summary>
         /// Check country availability
@@ -70,8 +71,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
         /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
+        /// <param name="sms">Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)</param>
         /// <returns>ApiResponse of CheckPhoneNumberAvailability200Response</returns>
-        ApiResponse<CheckPhoneNumberAvailability200Response> CheckPhoneNumberAvailabilityWithHttpInfo(string country, string? numberType = default);
+        ApiResponse<CheckPhoneNumberAvailability200Response> CheckPhoneNumberAvailabilityWithHttpInfo(string country, string? numberType = default, bool? sms = default);
         /// <summary>
         /// Check portability
         /// </summary>
@@ -620,9 +622,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
         /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
+        /// <param name="sms">Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CheckPhoneNumberAvailability200Response</returns>
-        System.Threading.Tasks.Task<CheckPhoneNumberAvailability200Response> CheckPhoneNumberAvailabilityAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<CheckPhoneNumberAvailability200Response> CheckPhoneNumberAvailabilityAsync(string country, string? numberType = default, bool? sms = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Check country availability
@@ -633,9 +636,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
         /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
+        /// <param name="sms">Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CheckPhoneNumberAvailability200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CheckPhoneNumberAvailability200Response>> CheckPhoneNumberAvailabilityWithHttpInfoAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<CheckPhoneNumberAvailability200Response>> CheckPhoneNumberAvailabilityWithHttpInfoAsync(string country, string? numberType = default, bool? sms = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Check portability
         /// </summary>
@@ -1535,10 +1539,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
         /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
+        /// <param name="sms">Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)</param>
         /// <returns>CheckPhoneNumberAvailability200Response</returns>
-        public CheckPhoneNumberAvailability200Response CheckPhoneNumberAvailability(string country, string? numberType = default)
+        public CheckPhoneNumberAvailability200Response CheckPhoneNumberAvailability(string country, string? numberType = default, bool? sms = default)
         {
-            Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> localVarResponse = CheckPhoneNumberAvailabilityWithHttpInfo(country, numberType);
+            Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> localVarResponse = CheckPhoneNumberAvailabilityWithHttpInfo(country, numberType, sms);
             return localVarResponse.Data;
         }
 
@@ -1548,8 +1553,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
         /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
+        /// <param name="sms">Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)</param>
         /// <returns>ApiResponse of CheckPhoneNumberAvailability200Response</returns>
-        public Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> CheckPhoneNumberAvailabilityWithHttpInfo(string country, string? numberType = default)
+        public Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> CheckPhoneNumberAvailabilityWithHttpInfo(string country, string? numberType = default, bool? sms = default)
         {
             // verify the required parameter 'country' is set
             if (country == null)
@@ -1575,6 +1581,10 @@ namespace Zernio.Api
             if (numberType != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "numberType", numberType));
+            }
+            if (sms != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "sms", sms));
             }
 
             // authentication (bearerAuth) required
@@ -1602,11 +1612,12 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
         /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
+        /// <param name="sms">Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CheckPhoneNumberAvailability200Response</returns>
-        public async System.Threading.Tasks.Task<CheckPhoneNumberAvailability200Response> CheckPhoneNumberAvailabilityAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<CheckPhoneNumberAvailability200Response> CheckPhoneNumberAvailabilityAsync(string country, string? numberType = default, bool? sms = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> localVarResponse = await CheckPhoneNumberAvailabilityWithHttpInfoAsync(country, numberType, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response> localVarResponse = await CheckPhoneNumberAvailabilityWithHttpInfoAsync(country, numberType, sms, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1616,9 +1627,10 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="country">ISO-2 country code.</param>
         /// <param name="numberType">Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)</param>
+        /// <param name="sms">Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CheckPhoneNumberAvailability200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response>> CheckPhoneNumberAvailabilityWithHttpInfoAsync(string country, string? numberType = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<CheckPhoneNumberAvailability200Response>> CheckPhoneNumberAvailabilityWithHttpInfoAsync(string country, string? numberType = default, bool? sms = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'country' is set
             if (country == null)
@@ -1646,6 +1658,10 @@ namespace Zernio.Api
             if (numberType != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "numberType", numberType));
+            }
+            if (sms != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "sms", sms));
             }
 
             // authentication (bearerAuth) required

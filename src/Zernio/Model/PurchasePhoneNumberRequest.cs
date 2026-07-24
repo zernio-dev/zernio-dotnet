@@ -83,12 +83,13 @@ namespace Zernio.Model
         /// <param name="profileId">Profile to associate the number with (required).</param>
         /// <param name="country">ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/phone-numbers/countries.  (default to &quot;US&quot;).</param>
         /// <param name="numberType">Which of the country&#39;s offered number types to order (see &#x60;types[]&#x60; on GET /v1/phone-numbers/countries). Omitted &#x3D; the country&#39;s default type, which is always the WhatsApp-safe choice. Capabilities, price, and KYC requirements are per (country, type): toll_free can never connect WhatsApp (400 when combined with connectWhatsapp:true), and wantsSms:true requires an SMS-capable type. .</param>
+        /// <param name="areaCode">Area code (national destination code, e.g. 11 for Sao Paulo) the number must be in. Hard constraint: when the area has no deliverable inventory the purchase fails with 409 code AREA_CODE_UNAVAILABLE instead of assigning a number from another area, and later replacements stay in this area too. Omit for any area. Get live options from GET /v1/phone-numbers/availability (areaOptions). .</param>
         /// <param name="connectWhatsapp">A phone number is the unit; WhatsApp is one optional feature. Pass false to buy a STANDALONE number (Calls/SMS only): provisioning skips the Meta pre-verify/OTP steps and the number activates immediately. Omitted defaults to the WhatsApp provisioning path. WhatsApp can be connected to a standalone number later from the connect flow.  (default to true).</param>
         /// <param name="wantsSms">SMS capability is per-number, not per-country. Pass true to provision from the SMS-capable inventory pool so the number can actually text (see also GET /v1/phone-numbers/available with sms&#x3D;true, and smsAvailable on GET /v1/phone-numbers/countries).  (default to false).</param>
         /// <param name="wantsWhatsapp">Declare WhatsApp intent on a STANDALONE purchase (connectWhatsapp:false). The number still activates and bills immediately, but if WhatsApp&#39;s buy-time check rejects the assigned number, it is automatically swapped for a WhatsApp-eligible one during the purchase instead of being delivered with WhatsApp unavailable. Ignored on the WhatsApp provisioning path (connectWhatsapp omitted or true), which always delivers a WhatsApp-verified number.  (default to false).</param>
         /// <param name="purchaseIntentId">Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. .</param>
         /// <param name="allowMultiple">Any second purchase within 10 minutes of a previous one is rejected with 409 code PURCHASE_VELOCITY as duplicate protection. Pass true to confirm the additional purchase is intentional (e.g. bulk provisioning).  (default to false).</param>
-        public PurchasePhoneNumberRequest(string profileId = default, string country = @"US", NumberTypeEnum? numberType = default, bool connectWhatsapp = true, bool wantsSms = false, bool wantsWhatsapp = false, string purchaseIntentId = default, bool allowMultiple = false)
+        public PurchasePhoneNumberRequest(string profileId = default, string country = @"US", NumberTypeEnum? numberType = default, string areaCode = default, bool connectWhatsapp = true, bool wantsSms = false, bool wantsWhatsapp = false, string purchaseIntentId = default, bool allowMultiple = false)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -99,6 +100,7 @@ namespace Zernio.Model
             // use default value if no "country" provided
             this.Country = country ?? @"US";
             this.NumberType = numberType;
+            this.AreaCode = areaCode;
             this.ConnectWhatsapp = connectWhatsapp;
             this.WantsSms = wantsSms;
             this.WantsWhatsapp = wantsWhatsapp;
@@ -119,6 +121,13 @@ namespace Zernio.Model
         /// <value>ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/phone-numbers/countries. </value>
         [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
+
+        /// <summary>
+        /// Area code (national destination code, e.g. 11 for Sao Paulo) the number must be in. Hard constraint: when the area has no deliverable inventory the purchase fails with 409 code AREA_CODE_UNAVAILABLE instead of assigning a number from another area, and later replacements stay in this area too. Omit for any area. Get live options from GET /v1/phone-numbers/availability (areaOptions). 
+        /// </summary>
+        /// <value>Area code (national destination code, e.g. 11 for Sao Paulo) the number must be in. Hard constraint: when the area has no deliverable inventory the purchase fails with 409 code AREA_CODE_UNAVAILABLE instead of assigning a number from another area, and later replacements stay in this area too. Omit for any area. Get live options from GET /v1/phone-numbers/availability (areaOptions). </value>
+        [DataMember(Name = "areaCode", EmitDefaultValue = false)]
+        public string AreaCode { get; set; }
 
         /// <summary>
         /// A phone number is the unit; WhatsApp is one optional feature. Pass false to buy a STANDALONE number (Calls/SMS only): provisioning skips the Meta pre-verify/OTP steps and the number activates immediately. Omitted defaults to the WhatsApp provisioning path. WhatsApp can be connected to a standalone number later from the connect flow. 
@@ -166,6 +175,7 @@ namespace Zernio.Model
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  NumberType: ").Append(NumberType).Append("\n");
+            sb.Append("  AreaCode: ").Append(AreaCode).Append("\n");
             sb.Append("  ConnectWhatsapp: ").Append(ConnectWhatsapp).Append("\n");
             sb.Append("  WantsSms: ").Append(WantsSms).Append("\n");
             sb.Append("  WantsWhatsapp: ").Append(WantsWhatsapp).Append("\n");
@@ -191,6 +201,15 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.AreaCode != null) {
+                // AreaCode (string) pattern
+                Regex regexAreaCode = new Regex(@"^\d{1,4}$", RegexOptions.CultureInvariant);
+                if (!regexAreaCode.Match(this.AreaCode).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AreaCode, must match a pattern of " + regexAreaCode, new [] { "AreaCode" });
+                }
+            }
+
             // PurchaseIntentId (string) maxLength
             if (this.PurchaseIntentId != null && this.PurchaseIntentId.Length > 100)
             {

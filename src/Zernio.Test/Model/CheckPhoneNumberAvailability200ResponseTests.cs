@@ -99,5 +99,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Areas'
         }
+
+        /// <summary>
+        /// Test the property 'AreaOptions'
+        /// </summary>
+        [Fact]
+        public void AreaOptionsTest()
+        {
+            // TODO unit test for the property 'AreaOptions'
+        }
     }
 }

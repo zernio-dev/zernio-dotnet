@@ -48,12 +48,13 @@ namespace Zernio.Model
         /// <param name="reuse">Reuse a prior approved verification for this country (skips document/field collection; places the order immediately)..</param>
         /// <param name="reuseOptionId">Which reusable verification to use (GET reusable.options[].id). The unambiguous selection key. Omitted &#x3D; the approved default. No match &#x3D; 409..</param>
         /// <param name="reuseFrom">Legacy fallback for &#x60;reuseOptionId&#x60;: the source phone number (GET reusable.options[].fromPhoneNumber). Ambiguous when a number labels two verifications — prefer &#x60;reuseOptionId&#x60;. Omitted &#x3D; the approved default. No match &#x3D; 409..</param>
+        /// <param name="areaCode">Area code (NDC) the number must be in. Hard constraint: an empty area pool fails with 409 code AREA_CODE_UNAVAILABLE instead of ordering from another area. Omit for any area. Options come from GET /v1/phone-numbers/availability (areaOptions); the purchase 202 kycUrl echoes the areaCode picked at purchase time so it can be passed here..</param>
         /// <param name="endUserFirstName">End user&#39;s legal first name. Required when the country has an action/ID-verification (Onfido) requirement..</param>
         /// <param name="endUserLastName">End user&#39;s legal last name. Same condition as endUserFirstName..</param>
         /// <param name="values">requirementId → textual value.</param>
         /// <param name="documents">One per document requirement. Each is EITHER inline base64 OR a &#x60;documentId&#x60; returned by POST /v1/whatsapp/phone-numbers/kyc/upload-document (use the upload endpoint for large files to stay under the request-size limit)..</param>
         /// <param name="address">address.</param>
-        public SubmitWhatsAppNumberKycRequest(string profileId = default, string country = default, string submissionId = default, int quantity = 1, bool reuse = default, string reuseOptionId = default, string reuseFrom = default, string endUserFirstName = default, string endUserLastName = default, Dictionary<string, string> values = default, List<SubmitWhatsAppNumberKycRequestDocumentsInner> documents = default, SubmitPhoneNumberKycRequestAddress address = default)
+        public SubmitWhatsAppNumberKycRequest(string profileId = default, string country = default, string submissionId = default, int quantity = 1, bool reuse = default, string reuseOptionId = default, string reuseFrom = default, string areaCode = default, string endUserFirstName = default, string endUserLastName = default, Dictionary<string, string> values = default, List<SubmitWhatsAppNumberKycRequestDocumentsInner> documents = default, SubmitPhoneNumberKycRequestAddress address = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -72,6 +73,7 @@ namespace Zernio.Model
             this.Reuse = reuse;
             this.ReuseOptionId = reuseOptionId;
             this.ReuseFrom = reuseFrom;
+            this.AreaCode = areaCode;
             this.EndUserFirstName = endUserFirstName;
             this.EndUserLastName = endUserLastName;
             this.Values = values;
@@ -127,6 +129,13 @@ namespace Zernio.Model
         public string ReuseFrom { get; set; }
 
         /// <summary>
+        /// Area code (NDC) the number must be in. Hard constraint: an empty area pool fails with 409 code AREA_CODE_UNAVAILABLE instead of ordering from another area. Omit for any area. Options come from GET /v1/phone-numbers/availability (areaOptions); the purchase 202 kycUrl echoes the areaCode picked at purchase time so it can be passed here.
+        /// </summary>
+        /// <value>Area code (NDC) the number must be in. Hard constraint: an empty area pool fails with 409 code AREA_CODE_UNAVAILABLE instead of ordering from another area. Omit for any area. Options come from GET /v1/phone-numbers/availability (areaOptions); the purchase 202 kycUrl echoes the areaCode picked at purchase time so it can be passed here.</value>
+        [DataMember(Name = "areaCode", EmitDefaultValue = false)]
+        public string AreaCode { get; set; }
+
+        /// <summary>
         /// End user&#39;s legal first name. Required when the country has an action/ID-verification (Onfido) requirement.
         /// </summary>
         /// <value>End user&#39;s legal first name. Required when the country has an action/ID-verification (Onfido) requirement.</value>
@@ -175,6 +184,7 @@ namespace Zernio.Model
             sb.Append("  Reuse: ").Append(Reuse).Append("\n");
             sb.Append("  ReuseOptionId: ").Append(ReuseOptionId).Append("\n");
             sb.Append("  ReuseFrom: ").Append(ReuseFrom).Append("\n");
+            sb.Append("  AreaCode: ").Append(AreaCode).Append("\n");
             sb.Append("  EndUserFirstName: ").Append(EndUserFirstName).Append("\n");
             sb.Append("  EndUserLastName: ").Append(EndUserLastName).Append("\n");
             sb.Append("  Values: ").Append(Values).Append("\n");
@@ -210,6 +220,15 @@ namespace Zernio.Model
             if (this.Quantity < (int)1)
             {
                 yield return new ValidationResult("Invalid value for Quantity, must be a value greater than or equal to 1.", new [] { "Quantity" });
+            }
+
+            if (this.AreaCode != null) {
+                // AreaCode (string) pattern
+                Regex regexAreaCode = new Regex(@"^\d{1,4}$", RegexOptions.CultureInvariant);
+                if (!regexAreaCode.Match(this.AreaCode).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AreaCode, must match a pattern of " + regexAreaCode, new [] { "AreaCode" });
+                }
             }
 
             yield break;

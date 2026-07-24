@@ -122,6 +122,7 @@ docs/CallsApi.md
 docs/CancelBroadcast200Response.md
 docs/CancelPhoneNumberPortIn200Response.md
 docs/CheckPhoneNumberAvailability200Response.md
+docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md
 docs/CheckPhoneNumberPortability200Response.md
 docs/CheckPhoneNumberPortability200ResponseResultsInner.md
 docs/CheckPhoneNumberPortabilityRequest.md
@@ -1732,6 +1733,7 @@ src/Zernio.Test/Model/CallRecordTests.cs
 src/Zernio.Test/Model/CallRecordTranscriptInnerTests.cs
 src/Zernio.Test/Model/CancelBroadcast200ResponseTests.cs
 src/Zernio.Test/Model/CancelPhoneNumberPortIn200ResponseTests.cs
+src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseAreaOptionsInnerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberAvailability200ResponseTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberPortability200ResponseResultsInnerTests.cs
 src/Zernio.Test/Model/CheckPhoneNumberPortability200ResponseTests.cs
@@ -3312,6 +3314,7 @@ src/Zernio/Model/CallRecordTranscriptInner.cs
 src/Zernio/Model/CancelBroadcast200Response.cs
 src/Zernio/Model/CancelPhoneNumberPortIn200Response.cs
 src/Zernio/Model/CheckPhoneNumberAvailability200Response.cs
+src/Zernio/Model/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.cs
 src/Zernio/Model/CheckPhoneNumberPortability200Response.cs
 src/Zernio/Model/CheckPhoneNumberPortability200ResponseResultsInner.cs
 src/Zernio/Model/CheckPhoneNumberPortabilityRequest.cs

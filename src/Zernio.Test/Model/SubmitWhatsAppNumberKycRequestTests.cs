@@ -119,6 +119,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'AreaCode'
+        /// </summary>
+        [Fact]
+        public void AreaCodeTest()
+        {
+            // TODO unit test for the property 'AreaCode'
+        }
+
+        /// <summary>
         /// Test the property 'EndUserFirstName'
         /// </summary>
         [Fact]

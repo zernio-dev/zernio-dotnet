@@ -43,9 +43,10 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="profileId">profileId (required).</param>
         /// <param name="country">ISO 3166-1 alpha-2 country code (must be a regulated/KYC country). (required).</param>
+        /// <param name="areaCode">Area code (NDC) the eventual number must be in. Hard constraint carried by the link; the end customer filling the form makes no area choice. Options come from GET /v1/phone-numbers/availability (areaOptions)..</param>
         /// <param name="branding">branding.</param>
         /// <param name="redirectUrl">Where to send the end customer&#39;s browser after a successful submit. On completion Zernio appends &#x60;kyc&#x3D;submitted&#x60; and &#x60;country&#x3D;&lt;ISO-2&gt;&#x60; as query params. When omitted, the hosted page shows a built-in confirmation screen instead. .</param>
-        public CreatePhoneNumberKycLinkRequest(string profileId = default, string country = default, CreatePhoneNumberKycLinkRequestBranding branding = default, string redirectUrl = default)
+        public CreatePhoneNumberKycLinkRequest(string profileId = default, string country = default, string areaCode = default, CreatePhoneNumberKycLinkRequestBranding branding = default, string redirectUrl = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -59,6 +60,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("country is a required property for CreatePhoneNumberKycLinkRequest and cannot be null");
             }
             this.Country = country;
+            this.AreaCode = areaCode;
             this.Branding = branding;
             this.RedirectUrl = redirectUrl;
         }
@@ -75,6 +77,13 @@ namespace Zernio.Model
         /// <value>ISO 3166-1 alpha-2 country code (must be a regulated/KYC country).</value>
         [DataMember(Name = "country", IsRequired = true, EmitDefaultValue = true)]
         public string Country { get; set; }
+
+        /// <summary>
+        /// Area code (NDC) the eventual number must be in. Hard constraint carried by the link; the end customer filling the form makes no area choice. Options come from GET /v1/phone-numbers/availability (areaOptions).
+        /// </summary>
+        /// <value>Area code (NDC) the eventual number must be in. Hard constraint carried by the link; the end customer filling the form makes no area choice. Options come from GET /v1/phone-numbers/availability (areaOptions).</value>
+        [DataMember(Name = "areaCode", EmitDefaultValue = false)]
+        public string AreaCode { get; set; }
 
         /// <summary>
         /// Gets or Sets Branding
@@ -99,6 +108,7 @@ namespace Zernio.Model
             sb.Append("class CreatePhoneNumberKycLinkRequest {\n");
             sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  AreaCode: ").Append(AreaCode).Append("\n");
             sb.Append("  Branding: ").Append(Branding).Append("\n");
             sb.Append("  RedirectUrl: ").Append(RedirectUrl).Append("\n");
             sb.Append("}\n");
@@ -131,6 +141,15 @@ namespace Zernio.Model
             if (this.Country != null && this.Country.Length < 2)
             {
                 yield return new ValidationResult("Invalid value for Country, length must be greater than 2.", new [] { "Country" });
+            }
+
+            if (this.AreaCode != null) {
+                // AreaCode (string) pattern
+                Regex regexAreaCode = new Regex(@"^\d{1,4}$", RegexOptions.CultureInvariant);
+                if (!regexAreaCode.Match(this.AreaCode).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AreaCode, must match a pattern of " + regexAreaCode, new [] { "AreaCode" });
+                }
             }
 
             yield break;

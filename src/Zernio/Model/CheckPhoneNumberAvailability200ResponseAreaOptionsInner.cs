@@ -28,52 +28,44 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// PurchasePhoneNumber409Response
+    /// CheckPhoneNumberAvailability200ResponseAreaOptionsInner
     /// </summary>
-    [DataContract(Name = "purchasePhoneNumber_409_response")]
-    public partial class PurchasePhoneNumber409Response : IValidatableObject
+    [DataContract(Name = "checkPhoneNumberAvailability_200_response_areaOptions_inner")]
+    public partial class CheckPhoneNumberAvailability200ResponseAreaOptionsInner : IValidatableObject
     {
         /// <summary>
-        /// Defines Code
+        /// Initializes a new instance of the <see cref="CheckPhoneNumberAvailability200ResponseAreaOptionsInner" /> class.
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum CodeEnum
+        /// <param name="ndc">Area code (national destination code), e.g. \&quot;11\&quot;..</param>
+        /// <param name="name">Human-readable area name, e.g. \&quot;Sao Paulo\&quot;..</param>
+        /// <param name="count">Deliverable numbers seen in this area on the latest inventory page..</param>
+        public CheckPhoneNumberAvailability200ResponseAreaOptionsInner(string ndc = default, string name = default, int count = default)
         {
-            /// <summary>
-            /// Enum PURCHASEVELOCITY for value: PURCHASE_VELOCITY
-            /// </summary>
-            [EnumMember(Value = "PURCHASE_VELOCITY")]
-            PURCHASEVELOCITY = 1,
-
-            /// <summary>
-            /// Enum AREACODEUNAVAILABLE for value: AREA_CODE_UNAVAILABLE
-            /// </summary>
-            [EnumMember(Value = "AREA_CODE_UNAVAILABLE")]
-            AREACODEUNAVAILABLE = 2
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Code
-        /// </summary>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
-        public CodeEnum? Code { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PurchasePhoneNumber409Response" /> class.
-        /// </summary>
-        /// <param name="error">error.</param>
-        /// <param name="code">code.</param>
-        public PurchasePhoneNumber409Response(string error = default, CodeEnum? code = default)
-        {
-            this.Error = error;
-            this.Code = code;
+            this.Ndc = ndc;
+            this.Name = name;
+            this.Count = count;
         }
 
         /// <summary>
-        /// Gets or Sets Error
+        /// Area code (national destination code), e.g. \&quot;11\&quot;.
         /// </summary>
-        [DataMember(Name = "error", EmitDefaultValue = false)]
-        public string Error { get; set; }
+        /// <value>Area code (national destination code), e.g. \&quot;11\&quot;.</value>
+        [DataMember(Name = "ndc", EmitDefaultValue = false)]
+        public string Ndc { get; set; }
+
+        /// <summary>
+        /// Human-readable area name, e.g. \&quot;Sao Paulo\&quot;.
+        /// </summary>
+        /// <value>Human-readable area name, e.g. \&quot;Sao Paulo\&quot;.</value>
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Deliverable numbers seen in this area on the latest inventory page.
+        /// </summary>
+        /// <value>Deliverable numbers seen in this area on the latest inventory page.</value>
+        [DataMember(Name = "count", EmitDefaultValue = false)]
+        public int Count { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -82,9 +74,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PurchasePhoneNumber409Response {\n");
-            sb.Append("  Error: ").Append(Error).Append("\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("class CheckPhoneNumberAvailability200ResponseAreaOptionsInner {\n");
+            sb.Append("  Ndc: ").Append(Ndc).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Count: ").Append(Count).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

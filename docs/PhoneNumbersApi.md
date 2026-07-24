@@ -133,7 +133,7 @@ catch (ApiException e)
 
 <a id="checkphonenumberavailability"></a>
 # **CheckPhoneNumberAvailability**
-> CheckPhoneNumberAvailability200Response CheckPhoneNumberAvailability (string country, string? numberType = null)
+> CheckPhoneNumberAvailability200Response CheckPhoneNumberAvailability (string country, string? numberType = null, bool? sms = null)
 
 Check country availability
 
@@ -165,11 +165,12 @@ namespace Example
             var apiInstance = new PhoneNumbersApi(httpClient, config, httpClientHandler);
             var country = "country_example";  // string | ISO-2 country code.
             var numberType = "local";  // string? | Check a specific offered type (stock and address constraints are per type). Omitted = the country's default type. (optional) 
+            var sms = true;  // bool? | Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional) 
 
             try
             {
                 // Check country availability
-                CheckPhoneNumberAvailability200Response result = apiInstance.CheckPhoneNumberAvailability(country, numberType);
+                CheckPhoneNumberAvailability200Response result = apiInstance.CheckPhoneNumberAvailability(country, numberType, sms);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -190,7 +191,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Check country availability
-    ApiResponse<CheckPhoneNumberAvailability200Response> response = apiInstance.CheckPhoneNumberAvailabilityWithHttpInfo(country, numberType);
+    ApiResponse<CheckPhoneNumberAvailability200Response> response = apiInstance.CheckPhoneNumberAvailabilityWithHttpInfo(country, numberType, sms);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -209,6 +210,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **country** | **string** | ISO-2 country code. |  |
 | **numberType** | **string?** | Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. | [optional]  |
+| **sms** | **bool?** | Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. | [optional]  |
 
 ### Return type
 
@@ -1428,7 +1430,7 @@ catch (ApiException e)
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
-| **409** | Duplicate-purchase protection: another number was purchased for this user within the last 10 minutes. Retry with allowMultiple: true to confirm the additional purchase is intentional.  |  -  |
+| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode).  |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (Metronome user with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |
@@ -2155,7 +2157,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
 | **400** | Validation error (e.g. address not in-country, file too large) |  -  |
-| **409** | reuse requested but no prior approved verification exists for this country |  -  |
+| **409** | Either reuse was requested but no prior approved verification exists for this country, or the requested areaCode has no deliverable inventory right now (code: area_code_unavailable; pick another area and resubmit). |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

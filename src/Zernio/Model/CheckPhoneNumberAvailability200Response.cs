@@ -72,13 +72,15 @@ namespace Zernio.Model
         /// <param name="available">Whether deliverable voice inventory exists right now..</param>
         /// <param name="addressConstraint">addressConstraint.</param>
         /// <param name="areas">For &#x60;geo&#x60; only — the area(s) the registered address must be in..</param>
-        public CheckPhoneNumberAvailability200Response(string country = default, string numberType = default, bool available = default, AddressConstraintEnum? addressConstraint = default, List<string> areas = default)
+        /// <param name="areaOptions">Live inventory grouped by area code, largest stock first. Empty when out of stock (or the area lookup failed). Pass a chosen &#x60;ndc&#x60; as &#x60;areaCode&#x60; on POST /v1/phone-numbers/purchase (or on the KYC submit for regulated countries) to require that area. .</param>
+        public CheckPhoneNumberAvailability200Response(string country = default, string numberType = default, bool available = default, AddressConstraintEnum? addressConstraint = default, List<string> areas = default, List<CheckPhoneNumberAvailability200ResponseAreaOptionsInner> areaOptions = default)
         {
             this.Country = country;
             this.NumberType = numberType;
             this.Available = available;
             this.AddressConstraint = addressConstraint;
             this.Areas = areas;
+            this.AreaOptions = areaOptions;
         }
 
         /// <summary>
@@ -108,6 +110,13 @@ namespace Zernio.Model
         public List<string> Areas { get; set; }
 
         /// <summary>
+        /// Live inventory grouped by area code, largest stock first. Empty when out of stock (or the area lookup failed). Pass a chosen &#x60;ndc&#x60; as &#x60;areaCode&#x60; on POST /v1/phone-numbers/purchase (or on the KYC submit for regulated countries) to require that area. 
+        /// </summary>
+        /// <value>Live inventory grouped by area code, largest stock first. Empty when out of stock (or the area lookup failed). Pass a chosen &#x60;ndc&#x60; as &#x60;areaCode&#x60; on POST /v1/phone-numbers/purchase (or on the KYC submit for regulated countries) to require that area. </value>
+        [DataMember(Name = "areaOptions", EmitDefaultValue = false)]
+        public List<CheckPhoneNumberAvailability200ResponseAreaOptionsInner> AreaOptions { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -120,6 +129,7 @@ namespace Zernio.Model
             sb.Append("  Available: ").Append(Available).Append("\n");
             sb.Append("  AddressConstraint: ").Append(AddressConstraint).Append("\n");
             sb.Append("  Areas: ").Append(Areas).Append("\n");
+            sb.Append("  AreaOptions: ").Append(AreaOptions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
