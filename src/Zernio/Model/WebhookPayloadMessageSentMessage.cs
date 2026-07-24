@@ -96,6 +96,33 @@ namespace Zernio.Model
         [DataMember(Name = "direction", IsRequired = true, EmitDefaultValue = true)]
         public DirectionEnum Direction { get; set; }
         /// <summary>
+        /// WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.
+        /// </summary>
+        /// <value>WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum SourceEnum
+        {
+            /// <summary>
+            /// Enum WhatsappBusinessApp for value: whatsapp_business_app
+            /// </summary>
+            [EnumMember(Value = "whatsapp_business_app")]
+            WhatsappBusinessApp = 1,
+
+            /// <summary>
+            /// Enum CloudApi for value: cloud_api
+            /// </summary>
+            [EnumMember(Value = "cloud_api")]
+            CloudApi = 2
+        }
+
+
+        /// <summary>
+        /// WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.
+        /// </summary>
+        /// <value>WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field.</value>
+        [DataMember(Name = "source", EmitDefaultValue = false)]
+        public SourceEnum? Source { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="WebhookPayloadMessageSentMessage" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -113,7 +140,8 @@ namespace Zernio.Model
         /// <param name="sender">sender (required).</param>
         /// <param name="sentAt">sentAt (required).</param>
         /// <param name="isRead">isRead (required).</param>
-        public WebhookPayloadMessageSentMessage(string id = default, string conversationId = default, PlatformEnum platform = default, string platformMessageId = default, DirectionEnum direction = default, string text = default, List<WebhookPayloadMessageSentMessageAttachmentsInner> attachments = default, WebhookPayloadMessageSentMessageSender sender = default, DateTime sentAt = default, bool isRead = default)
+        /// <param name="source">WhatsApp send origin. whatsapp_business_app when sent from the WhatsApp Business phone app on a Coexistence number; cloud_api when sent through Zernio (dashboard, API, or broadcasts). Absent on non-WhatsApp platforms. This is not the inbox metadata.source lineage field..</param>
+        public WebhookPayloadMessageSentMessage(string id = default, string conversationId = default, PlatformEnum platform = default, string platformMessageId = default, DirectionEnum direction = default, string text = default, List<WebhookPayloadMessageSentMessageAttachmentsInner> attachments = default, WebhookPayloadMessageSentMessageSender sender = default, DateTime sentAt = default, bool isRead = default, SourceEnum? source = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -155,6 +183,7 @@ namespace Zernio.Model
             this.Sender = sender;
             this.SentAt = sentAt;
             this.IsRead = isRead;
+            this.Source = source;
         }
 
         /// <summary>
@@ -227,6 +256,7 @@ namespace Zernio.Model
             sb.Append("  Sender: ").Append(Sender).Append("\n");
             sb.Append("  SentAt: ").Append(SentAt).Append("\n");
             sb.Append("  IsRead: ").Append(IsRead).Append("\n");
+            sb.Append("  Source: ").Append(Source).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -1655,7 +1655,7 @@ void (empty response body)
 
 Message sent event
 
-Fired when a message is sent via the API.
+Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
 
 ### Example
 ```csharp

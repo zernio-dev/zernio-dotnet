@@ -389,7 +389,7 @@ namespace Zernio.Api
         /// Message sent event
         /// </summary>
         /// <remarks>
-        /// Fired when a message is sent via the API.
+        /// Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadMessageSent"></param>
@@ -400,7 +400,7 @@ namespace Zernio.Api
         /// Message sent event
         /// </summary>
         /// <remarks>
-        /// Fired when a message is sent via the API.
+        /// Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadMessageSent"></param>
@@ -1398,7 +1398,7 @@ namespace Zernio.Api
         /// Message sent event
         /// </summary>
         /// <remarks>
-        /// Fired when a message is sent via the API.
+        /// Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadMessageSent"></param>
@@ -1410,7 +1410,7 @@ namespace Zernio.Api
         /// Message sent event
         /// </summary>
         /// <remarks>
-        /// Fired when a message is sent via the API.
+        /// Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadMessageSent"></param>
@@ -4400,7 +4400,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Message sent event Fired when a message is sent via the API.
+        /// Message sent event Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadMessageSent"></param>
@@ -4411,7 +4411,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Message sent event Fired when a message is sent via the API.
+        /// Message sent event Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadMessageSent"></param>
@@ -4460,7 +4460,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Message sent event Fired when a message is sent via the API.
+        /// Message sent event Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadMessageSent"></param>
@@ -4472,7 +4472,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Message sent event Fired when a message is sent via the API.
+        /// Message sent event Fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="webhookPayloadMessageSent"></param>

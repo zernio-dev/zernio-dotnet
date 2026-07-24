@@ -28,7 +28,7 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// Webhook payload for message sent events (fired when a message is sent via the API)
+    /// Webhook payload for message sent events (fired when a message is sent via the API, or from the WhatsApp Business app on Coexistence numbers)
     /// </summary>
     [DataContract(Name = "WebhookPayloadMessageSent")]
     public partial class WebhookPayloadMessageSent : IValidatableObject
