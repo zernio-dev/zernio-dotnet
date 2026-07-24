@@ -955,6 +955,7 @@ catch (ApiException e)
 | **400** | accountId or template name is required |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **502** | Meta rejected the delete or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1873,6 +1874,7 @@ catch (ApiException e)
 | **400** | accountId is required |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3403,6 +3405,7 @@ catch (ApiException e)
 | **400** | Validation error (missing fields) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+| **502** | Meta rejected the update or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

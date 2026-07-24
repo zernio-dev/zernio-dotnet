@@ -92,6 +92,24 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'ConfiguredStatus'
+        /// </summary>
+        [Fact]
+        public void ConfiguredStatusTest()
+        {
+            // TODO unit test for the property 'ConfiguredStatus'
+        }
+
+        /// <summary>
+        /// Test the property 'ReviewStatus'
+        /// </summary>
+        [Fact]
+        public void ReviewStatusTest()
+        {
+            // TODO unit test for the property 'ReviewStatus'
+        }
+
+        /// <summary>
         /// Test the property 'AdType'
         /// </summary>
         [Fact]

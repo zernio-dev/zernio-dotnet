@@ -96,10 +96,18 @@ namespace Zernio.Model
         public PlatformEnum? Platform { get; set; }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// Delivery status. Derived from the platform &#x60;effective_status&#x60;, so it inherits ancestor pauses (an ACTIVE ad under a PAUSED campaign reads &#x60;paused&#x60;). For the ad&#39;s own on/off toggle use &#x60;configuredStatus&#x60;; for the review state use &#x60;reviewStatus&#x60;.
         /// </summary>
+        /// <value>Delivery status. Derived from the platform &#x60;effective_status&#x60;, so it inherits ancestor pauses (an ACTIVE ad under a PAUSED campaign reads &#x60;paused&#x60;). For the ad&#39;s own on/off toggle use &#x60;configuredStatus&#x60;; for the review state use &#x60;reviewStatus&#x60;.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public AdStatus? Status { get; set; }
+
+        /// <summary>
+        /// Platform review state of this ad, independent of delivery &#x60;status&#x60; / &#x60;configuredStatus&#x60;. Absent when the platform reports no review signal.
+        /// </summary>
+        /// <value>Platform review state of this ad, independent of delivery &#x60;status&#x60; / &#x60;configuredStatus&#x60;. Absent when the platform reports no review signal.</value>
+        [DataMember(Name = "reviewStatus", EmitDefaultValue = false)]
+        public AdReviewStatus? ReviewStatus { get; set; }
         /// <summary>
         /// Defines AdType
         /// </summary>
@@ -212,7 +220,9 @@ namespace Zernio.Model
         /// <param name="id">id.</param>
         /// <param name="name">name.</param>
         /// <param name="platform">platform.</param>
-        /// <param name="status">status.</param>
+        /// <param name="status">Delivery status. Derived from the platform &#x60;effective_status&#x60;, so it inherits ancestor pauses (an ACTIVE ad under a PAUSED campaign reads &#x60;paused&#x60;). For the ad&#39;s own on/off toggle use &#x60;configuredStatus&#x60;; for the review state use &#x60;reviewStatus&#x60;..</param>
+        /// <param name="configuredStatus">The ad&#39;s own on/off toggle as configured on the platform (Meta &#x60;configured_status&#x60;: ACTIVE / PAUSED), unaffected by ancestor (ad set / campaign) pauses. Distinct from &#x60;status&#x60;, which is the ancestor-cascaded delivery status. Only present for Meta ads synced after this field was added..</param>
+        /// <param name="reviewStatus">Platform review state of this ad, independent of delivery &#x60;status&#x60; / &#x60;configuredStatus&#x60;. Absent when the platform reports no review signal..</param>
         /// <param name="adType">adType.</param>
         /// <param name="goal">Available goals vary by platform. Meta (Facebook/Instagram) supports all 9 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization and &#x60;catalog_sales&#x60; &#x3D; Advantage+ catalog ads). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views..</param>
         /// <param name="isExternal">True for ads synced from platform ad managers.</param>
@@ -238,12 +248,14 @@ namespace Zernio.Model
         /// <param name="rejectionReason">rejectionReason.</param>
         /// <param name="createdAt">createdAt.</param>
         /// <param name="updatedAt">updatedAt.</param>
-        public Ad(string id = default, string name = default, PlatformEnum? platform = default, AdStatus? status = default, AdTypeEnum? adType = default, GoalEnum? goal = default, bool isExternal = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdId = default, string platformAdAccountId = default, string platformCampaignId = default, string platformAdSetId = default, string campaignName = default, string adSetName = default, string platformObjective = default, string optimizationGoal = default, string platformAdAccountName = default, DateTime? platformCreatedAt = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdPromotedObject promotedObject = default, AdCreative creative = default, Object targeting = default, AdSchedule schedule = default, string rejectionReason = default, DateTime createdAt = default, DateTime updatedAt = default)
+        public Ad(string id = default, string name = default, PlatformEnum? platform = default, AdStatus? status = default, string configuredStatus = default, AdReviewStatus? reviewStatus = default, AdTypeEnum? adType = default, GoalEnum? goal = default, bool isExternal = default, AdBudget budget = default, AdMetrics metrics = default, string platformAdId = default, string platformAdAccountId = default, string platformCampaignId = default, string platformAdSetId = default, string campaignName = default, string adSetName = default, string platformObjective = default, string optimizationGoal = default, string platformAdAccountName = default, DateTime? platformCreatedAt = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdPromotedObject promotedObject = default, AdCreative creative = default, Object targeting = default, AdSchedule schedule = default, string rejectionReason = default, DateTime createdAt = default, DateTime updatedAt = default)
         {
             this.Id = id;
             this.Name = name;
             this.Platform = platform;
             this.Status = status;
+            this.ConfiguredStatus = configuredStatus;
+            this.ReviewStatus = reviewStatus;
             this.AdType = adType;
             this.Goal = goal;
             this.IsExternal = isExternal;
@@ -282,6 +294,16 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// The ad&#39;s own on/off toggle as configured on the platform (Meta &#x60;configured_status&#x60;: ACTIVE / PAUSED), unaffected by ancestor (ad set / campaign) pauses. Distinct from &#x60;status&#x60;, which is the ancestor-cascaded delivery status. Only present for Meta ads synced after this field was added.
+        /// </summary>
+        /// <value>The ad&#39;s own on/off toggle as configured on the platform (Meta &#x60;configured_status&#x60;: ACTIVE / PAUSED), unaffected by ancestor (ad set / campaign) pauses. Distinct from &#x60;status&#x60;, which is the ancestor-cascaded delivery status. Only present for Meta ads synced after this field was added.</value>
+        /*
+        <example>ACTIVE</example>
+        */
+        [DataMember(Name = "configuredStatus", EmitDefaultValue = true)]
+        public string ConfiguredStatus { get; set; }
 
         /// <summary>
         /// True for ads synced from platform ad managers
@@ -450,6 +472,8 @@ namespace Zernio.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  ConfiguredStatus: ").Append(ConfiguredStatus).Append("\n");
+            sb.Append("  ReviewStatus: ").Append(ReviewStatus).Append("\n");
             sb.Append("  AdType: ").Append(AdType).Append("\n");
             sb.Append("  Goal: ").Append(Goal).Append("\n");
             sb.Append("  IsExternal: ").Append(IsExternal).Append("\n");

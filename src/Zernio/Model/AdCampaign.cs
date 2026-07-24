@@ -101,45 +101,12 @@ namespace Zernio.Model
         /// <value>Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public AdStatus? Status { get; set; }
-        /// <summary>
-        /// Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description.
-        /// </summary>
-        /// <value>Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ReviewStatusEnum
-        {
-            /// <summary>
-            /// Enum InReview for value: in_review
-            /// </summary>
-            [EnumMember(Value = "in_review")]
-            InReview = 1,
-
-            /// <summary>
-            /// Enum Approved for value: approved
-            /// </summary>
-            [EnumMember(Value = "approved")]
-            Approved = 2,
-
-            /// <summary>
-            /// Enum Rejected for value: rejected
-            /// </summary>
-            [EnumMember(Value = "rejected")]
-            Rejected = 3,
-
-            /// <summary>
-            /// Enum WithIssues for value: with_issues
-            /// </summary>
-            [EnumMember(Value = "with_issues")]
-            WithIssues = 4
-        }
-
 
         /// <summary>
-        /// Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description.
+        /// Gets or Sets ReviewStatus
         /// </summary>
-        /// <value>Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description.</value>
         [DataMember(Name = "reviewStatus", EmitDefaultValue = true)]
-        public ReviewStatusEnum? ReviewStatus { get; set; }
+        public AdReviewStatus? ReviewStatus { get; set; }
         /// <summary>
         /// Canonical CBO/ABO indicator. See AdTreeCampaign.budgetLevel.
         /// </summary>
@@ -180,7 +147,7 @@ namespace Zernio.Model
         /// <param name="platform">platform.</param>
         /// <param name="campaignName">campaignName.</param>
         /// <param name="status">Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;..</param>
-        /// <param name="reviewStatus">Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus for the full description..</param>
+        /// <param name="reviewStatus">reviewStatus.</param>
         /// <param name="platformCampaignStatus">Raw platform-level campaign status (Meta &#x60;effective_status&#x60;)..</param>
         /// <param name="campaignIssuesInfo">Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;)..</param>
         /// <param name="adCount">adCount.</param>
@@ -203,7 +170,7 @@ namespace Zernio.Model
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="earliestAd">earliestAd.</param>
         /// <param name="latestAd">latestAd.</param>
-        public AdCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, ReviewStatusEnum? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, AdCampaignBudget budget = default, AdCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, DateTime earliestAd = default, DateTime latestAd = default)
+        public AdCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, AdReviewStatus? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, AdCampaignBudget budget = default, AdCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, DateTime earliestAd = default, DateTime latestAd = default)
         {
             this.PlatformCampaignId = platformCampaignId;
             this.Platform = platform;

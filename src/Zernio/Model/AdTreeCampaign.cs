@@ -101,45 +101,12 @@ namespace Zernio.Model
         /// <value>Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;, which reflects the platform-side review state.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public AdStatus? Status { get; set; }
-        /// <summary>
-        /// Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. 
-        /// </summary>
-        /// <value>Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ReviewStatusEnum
-        {
-            /// <summary>
-            /// Enum InReview for value: in_review
-            /// </summary>
-            [EnumMember(Value = "in_review")]
-            InReview = 1,
-
-            /// <summary>
-            /// Enum Approved for value: approved
-            /// </summary>
-            [EnumMember(Value = "approved")]
-            Approved = 2,
-
-            /// <summary>
-            /// Enum Rejected for value: rejected
-            /// </summary>
-            [EnumMember(Value = "rejected")]
-            Rejected = 3,
-
-            /// <summary>
-            /// Enum WithIssues for value: with_issues
-            /// </summary>
-            [EnumMember(Value = "with_issues")]
-            WithIssues = 4
-        }
-
 
         /// <summary>
-        /// Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. 
+        /// Gets or Sets ReviewStatus
         /// </summary>
-        /// <value>Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. </value>
         [DataMember(Name = "reviewStatus", EmitDefaultValue = true)]
-        public ReviewStatusEnum? ReviewStatus { get; set; }
+        public AdReviewStatus? ReviewStatus { get; set; }
         /// <summary>
         /// Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity.
         /// </summary>
@@ -180,7 +147,7 @@ namespace Zernio.Model
         /// <param name="platform">platform.</param>
         /// <param name="campaignName">campaignName.</param>
         /// <param name="status">Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;, which reflects the platform-side review state..</param>
-        /// <param name="reviewStatus">Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. .</param>
+        /// <param name="reviewStatus">reviewStatus.</param>
         /// <param name="platformCampaignStatus">Raw platform-level campaign status (Meta &#x60;effective_status&#x60;: ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct from per-ad &#x60;platformStatus&#x60;..</param>
         /// <param name="campaignIssuesInfo">Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). Populated only when the platform has delivery issues to report; contains the specific error codes and messages..</param>
         /// <param name="adCount">Total ads across all ad sets.</param>
@@ -204,7 +171,7 @@ namespace Zernio.Model
         /// <param name="promotedObject">promotedObject.</param>
         /// <param name="adSets">adSets.</param>
         /// <param name="daily">Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend — summing its additive fields reproduces the campaign &#x60;metrics&#x60; total..</param>
-        public AdTreeCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, ReviewStatusEnum? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, int adSetCount = default, AdTreeCampaignBudget budget = default, AdTreeCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, List<AdTreeAdSet> adSets = default, List<AdDailyMetrics> daily = default)
+        public AdTreeCampaign(string platformCampaignId = default, PlatformEnum? platform = default, string campaignName = default, AdStatus? status = default, AdReviewStatus? reviewStatus = default, string platformCampaignStatus = default, List<Object> campaignIssuesInfo = default, int adCount = default, int adSetCount = default, AdTreeCampaignBudget budget = default, AdTreeCampaignCampaignBudget campaignBudget = default, BudgetLevelEnum? budgetLevel = default, bool isBudgetScheduleEnabled = false, string currency = default, AdMetrics metrics = default, string platformAdAccountId = default, string platformAdAccountName = default, string accountId = default, string profileId = default, string advertisingChannelType = default, string platformObjective = default, string optimizationGoal = default, BidStrategy? bidStrategy = default, decimal? bidAmount = default, decimal? roasAverageFloor = default, AdTreeCampaignPromotedObject promotedObject = default, List<AdTreeAdSet> adSets = default, List<AdDailyMetrics> daily = default)
         {
             this.PlatformCampaignId = platformCampaignId;
             this.Platform = platform;

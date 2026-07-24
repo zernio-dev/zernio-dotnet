@@ -27,6 +27,7 @@ docs/AdDailyMetrics.md
 docs/AdInsightsApi.md
 docs/AdMetrics.md
 docs/AdPromotedObject.md
+docs/AdReviewStatus.md
 docs/AdSchedule.md
 docs/AdStatus.md
 docs/AdTargetingApi.md
@@ -1640,6 +1641,7 @@ src/Zernio.Test/Model/AdCreativeTests.cs
 src/Zernio.Test/Model/AdDailyMetricsTests.cs
 src/Zernio.Test/Model/AdMetricsTests.cs
 src/Zernio.Test/Model/AdPromotedObjectTests.cs
+src/Zernio.Test/Model/AdReviewStatusTests.cs
 src/Zernio.Test/Model/AdScheduleTests.cs
 src/Zernio.Test/Model/AdStatusTests.cs
 src/Zernio.Test/Model/AdTests.cs
@@ -3219,6 +3221,7 @@ src/Zernio/Model/AdCreative.cs
 src/Zernio/Model/AdDailyMetrics.cs
 src/Zernio/Model/AdMetrics.cs
 src/Zernio/Model/AdPromotedObject.cs
+src/Zernio/Model/AdReviewStatus.cs
 src/Zernio/Model/AdSchedule.cs
 src/Zernio/Model/AdStatus.cs
 src/Zernio/Model/AdTreeAdSet.cs

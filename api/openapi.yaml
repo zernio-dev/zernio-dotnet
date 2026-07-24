@@ -15979,6 +15979,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+        "502":
+          description: Meta rejected the delete or was unreachable. Meta 4xx statuses
+            are forwarded as-is.
       security:
       - bearerAuth: []
       summary: Delete template
@@ -16018,6 +16021,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+        "502":
+          description: Meta rejected the request or was unreachable. Meta 4xx statuses
+            are forwarded as-is.
       security:
       - bearerAuth: []
       summary: Get template
@@ -16069,6 +16075,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+        "502":
+          description: Meta rejected the update or was unreachable. Meta 4xx statuses
+            are forwarded as-is.
       security:
       - bearerAuth: []
       summary: Update template
@@ -38876,6 +38885,17 @@ components:
       - cancelled
       - error
       type: string
+    AdReviewStatus:
+      description: "Platform-side review state, independent of the delivery `status`\
+        \ and the `configuredStatus` on/off toggle. `in_review` means the platform\
+        \ is still reviewing. Absent when the platform reports no review signal (e.g.\
+        \ a paused ad whose review state is masked behind the pause)."
+      enum:
+      - in_review
+      - approved
+      - rejected
+      - with_issues
+      type: string
     BusinessCenter:
       description: |
         TikTok Business Center entity. Returned by `GET /v1/ads/business-centers`. BCs are
@@ -39091,6 +39111,7 @@ components:
           type: daily
         platformAdAccountName: Zernio - previously Late
         updatedAt: 2000-01-23T04:56:07.000+00:00
+        configuredStatus: ACTIVE
         goal: engagement
         isExternal: true
         bidAmount: 5
@@ -39122,12 +39143,13 @@ components:
         name: name
         platformObjective: OUTCOME_SALES
         platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+        reviewStatus: ""
         _id: _id
         metrics: ""
         rejectionReason: rejectionReason
         campaignName: campaignName
         platformAdAccountId: platformAdAccountId
-        status: active
+        status: ""
       properties:
         _id:
           type: string
@@ -39145,7 +39167,27 @@ components:
           - openai
           type: string
         status:
-          $ref: "#/components/schemas/AdStatus"
+          allOf:
+          - $ref: "#/components/schemas/AdStatus"
+          description: "Delivery status. Derived from the platform `effective_status`,\
+            \ so it inherits ancestor pauses (an ACTIVE ad under a PAUSED campaign\
+            \ reads `paused`). For the ad's own on/off toggle use `configuredStatus`;\
+            \ for the review state use `reviewStatus`."
+        configuredStatus:
+          description: "The ad's own on/off toggle as configured on the platform (Meta\
+            \ `configured_status`: ACTIVE / PAUSED), unaffected by ancestor (ad set\
+            \ / campaign) pauses. Distinct from `status`, which is the ancestor-cascaded\
+            \ delivery status. Only present for Meta ads synced after this field was\
+            \ added."
+          example: ACTIVE
+          nullable: true
+          type: string
+        reviewStatus:
+          allOf:
+          - $ref: "#/components/schemas/AdReviewStatus"
+          description: "Platform review state of this ad, independent of delivery\
+            \ `status` / `configuredStatus`. Absent when the platform reports no review\
+            \ signal."
         adType:
           enum:
           - boost
@@ -39313,6 +39355,7 @@ components:
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
+          configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
           bidAmount: 5
@@ -39344,12 +39387,13 @@ components:
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: ""
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
-          status: active
+          status: ""
         - bidStrategy: ""
           adSetName: adSetName
           platformCampaignId: platformCampaignId
@@ -39371,6 +39415,7 @@ components:
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
+          configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
           bidAmount: 5
@@ -39402,12 +39447,13 @@ components:
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: ""
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
-          status: active
+          status: ""
         adSetBudget:
           amount: 3.616076749251911
           type: daily
@@ -39652,7 +39698,7 @@ components:
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
         platformObjective: platformObjective
-        reviewStatus: in_review
+        reviewStatus: ""
         adSets:
         - bidStrategy: ""
           adSetName: adSetName
@@ -39686,6 +39732,7 @@ components:
               type: daily
             platformAdAccountName: Zernio - previously Late
             updatedAt: 2000-01-23T04:56:07.000+00:00
+            configuredStatus: ACTIVE
             goal: engagement
             isExternal: true
             bidAmount: 5
@@ -39717,12 +39764,13 @@ components:
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+            reviewStatus: ""
             _id: _id
             metrics: ""
             rejectionReason: rejectionReason
             campaignName: campaignName
             platformAdAccountId: platformAdAccountId
-            status: active
+            status: ""
           - bidStrategy: ""
             adSetName: adSetName
             platformCampaignId: platformCampaignId
@@ -39744,6 +39792,7 @@ components:
               type: daily
             platformAdAccountName: Zernio - previously Late
             updatedAt: 2000-01-23T04:56:07.000+00:00
+            configuredStatus: ACTIVE
             goal: engagement
             isExternal: true
             bidAmount: 5
@@ -39775,12 +39824,13 @@ components:
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+            reviewStatus: ""
             _id: _id
             metrics: ""
             rejectionReason: rejectionReason
             campaignName: campaignName
             platformAdAccountId: platformAdAccountId
-            status: active
+            status: ""
           adSetBudget:
             amount: 3.616076749251911
             type: daily
@@ -39912,6 +39962,7 @@ components:
               type: daily
             platformAdAccountName: Zernio - previously Late
             updatedAt: 2000-01-23T04:56:07.000+00:00
+            configuredStatus: ACTIVE
             goal: engagement
             isExternal: true
             bidAmount: 5
@@ -39943,12 +39994,13 @@ components:
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+            reviewStatus: ""
             _id: _id
             metrics: ""
             rejectionReason: rejectionReason
             campaignName: campaignName
             platformAdAccountId: platformAdAccountId
-            status: active
+            status: ""
           - bidStrategy: ""
             adSetName: adSetName
             platformCampaignId: platformCampaignId
@@ -39970,6 +40022,7 @@ components:
               type: daily
             platformAdAccountName: Zernio - previously Late
             updatedAt: 2000-01-23T04:56:07.000+00:00
+            configuredStatus: ACTIVE
             goal: engagement
             isExternal: true
             bidAmount: 5
@@ -40001,12 +40054,13 @@ components:
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+            reviewStatus: ""
             _id: _id
             metrics: ""
             rejectionReason: rejectionReason
             campaignName: campaignName
             platformAdAccountId: platformAdAccountId
-            status: active
+            status: ""
           adSetBudget:
             amount: 3.616076749251911
             type: daily
@@ -40164,20 +40218,9 @@ components:
           description: "Delivery status derived from child ad statuses. Distinct from\
             \ `reviewStatus`, which reflects the platform-side review state."
         reviewStatus:
-          description: |
-            Platform-side review state of the campaign. Independent of the
-            children-derived delivery `status`: a campaign can have ads
-            already active (status=active) while the campaign itself is
-            still being reviewed by the platform (reviewStatus=in_review).
-            For Meta, derived from `effective_status` + `issues_info` on
-            the Campaign, plus ad-level PENDING_REVIEW rollup.
-          enum:
-          - in_review
-          - approved
-          - rejected
-          - with_issues
+          allOf:
+          - $ref: "#/components/schemas/AdReviewStatus"
           nullable: true
-          type: string
         platformCampaignStatus:
           description: "Raw platform-level campaign status (Meta `effective_status`:\
             \ ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct\
@@ -40310,7 +40353,7 @@ components:
         profileId: profileId
         platformObjective: platformObjective
         latestAd: 2000-01-23T04:56:07.000+00:00
-        reviewStatus: in_review
+        reviewStatus: ""
         metrics:
           ctr: 9.301444243932576
           purchaseValue: 1.0246457001441578
@@ -40369,15 +40412,9 @@ components:
           description: Delivery status derived from child ad statuses. Distinct from
             `reviewStatus`.
         reviewStatus:
-          description: Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus
-            for the full description.
-          enum:
-          - in_review
-          - approved
-          - rejected
-          - with_issues
+          allOf:
+          - $ref: "#/components/schemas/AdReviewStatus"
           nullable: true
-          type: string
         platformCampaignStatus:
           description: Raw platform-level campaign status (Meta `effective_status`).
           nullable: true
@@ -64529,6 +64566,7 @@ components:
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
+          configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
           bidAmount: 5
@@ -64560,12 +64598,13 @@ components:
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: ""
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
-          status: active
+          status: ""
         - bidStrategy: ""
           adSetName: adSetName
           platformCampaignId: platformCampaignId
@@ -64587,6 +64626,7 @@ components:
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
+          configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
           bidAmount: 5
@@ -64618,12 +64658,13 @@ components:
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: ""
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
-          status: active
+          status: ""
         pagination:
           total: 3
           pages: 2
@@ -64679,7 +64720,7 @@ components:
           profileId: profileId
           platformObjective: platformObjective
           latestAd: 2000-01-23T04:56:07.000+00:00
-          reviewStatus: in_review
+          reviewStatus: ""
           metrics:
             ctr: 9.301444243932576
             purchaseValue: 1.0246457001441578
@@ -64744,7 +64785,7 @@ components:
           profileId: profileId
           platformObjective: platformObjective
           latestAd: 2000-01-23T04:56:07.000+00:00
-          reviewStatus: in_review
+          reviewStatus: ""
           metrics:
             ctr: 9.301444243932576
             purchaseValue: 1.0246457001441578
@@ -65519,7 +65560,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           platformObjective: platformObjective
-          reviewStatus: in_review
+          reviewStatus: ""
           adSets:
           - bidStrategy: ""
             adSetName: adSetName
@@ -65553,6 +65594,7 @@ components:
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
               bidAmount: 5
@@ -65584,12 +65626,13 @@ components:
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
-              status: active
+              status: ""
             - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
@@ -65611,6 +65654,7 @@ components:
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
               bidAmount: 5
@@ -65642,12 +65686,13 @@ components:
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
-              status: active
+              status: ""
             adSetBudget:
               amount: 3.616076749251911
               type: daily
@@ -65779,6 +65824,7 @@ components:
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
               bidAmount: 5
@@ -65810,12 +65856,13 @@ components:
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
-              status: active
+              status: ""
             - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
@@ -65837,6 +65884,7 @@ components:
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
               bidAmount: 5
@@ -65868,12 +65916,13 @@ components:
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
-              status: active
+              status: ""
             adSetBudget:
               amount: 3.616076749251911
               type: daily
@@ -66097,7 +66146,7 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           platformObjective: platformObjective
-          reviewStatus: in_review
+          reviewStatus: ""
           adSets:
           - bidStrategy: ""
             adSetName: adSetName
@@ -66131,6 +66180,7 @@ components:
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
               bidAmount: 5
@@ -66162,12 +66212,13 @@ components:
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
-              status: active
+              status: ""
             - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
@@ -66189,6 +66240,7 @@ components:
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
               bidAmount: 5
@@ -66220,12 +66272,13 @@ components:
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
-              status: active
+              status: ""
             adSetBudget:
               amount: 3.616076749251911
               type: daily
@@ -66357,6 +66410,7 @@ components:
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
               bidAmount: 5
@@ -66388,12 +66442,13 @@ components:
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
-              status: active
+              status: ""
             - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
@@ -66415,6 +66470,7 @@ components:
                 type: daily
               platformAdAccountName: Zernio - previously Late
               updatedAt: 2000-01-23T04:56:07.000+00:00
+              configuredStatus: ACTIVE
               goal: engagement
               isExternal: true
               bidAmount: 5
@@ -66446,12 +66502,13 @@ components:
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+              reviewStatus: ""
               _id: _id
               metrics: ""
               rejectionReason: rejectionReason
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
-              status: active
+              status: ""
             adSetBudget:
               amount: 3.616076749251911
               type: daily
@@ -66739,6 +66796,7 @@ components:
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
+          configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
           bidAmount: 5
@@ -66770,12 +66828,13 @@ components:
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: ""
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
-          status: active
+          status: ""
       properties:
         ad:
           $ref: "#/components/schemas/Ad"
@@ -66897,6 +66956,7 @@ components:
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
+          configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
           bidAmount: 5
@@ -66928,12 +66988,13 @@ components:
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: ""
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
-          status: active
+          status: ""
         message: message
       properties:
         ad:
@@ -70040,6 +70101,7 @@ components:
             type: daily
           platformAdAccountName: Zernio - previously Late
           updatedAt: 2000-01-23T04:56:07.000+00:00
+          configuredStatus: ACTIVE
           goal: engagement
           isExternal: true
           bidAmount: 5
@@ -70071,12 +70133,13 @@ components:
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: ""
           _id: _id
           metrics: ""
           rejectionReason: rejectionReason
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
-          status: active
+          status: ""
         message: message
       properties:
         ad:
