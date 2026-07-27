@@ -32,11 +32,11 @@ namespace Zernio.Api
         /// Archive a lead form
         /// </summary>
         /// <remarks>
-        /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <returns>ArchiveLeadForm200Response</returns>
         ArchiveLeadForm200Response ArchiveLeadForm(string formId, string accountId);
 
@@ -44,18 +44,18 @@ namespace Zernio.Api
         /// Archive a lead form
         /// </summary>
         /// <remarks>
-        /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <returns>ApiResponse of ArchiveLeadForm200Response</returns>
         ApiResponse<ArchiveLeadForm200Response> ArchiveLeadFormWithHttpInfo(string formId, string accountId);
         /// <summary>
         /// Create a lead form
         /// </summary>
         /// <remarks>
-        /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -66,7 +66,7 @@ namespace Zernio.Api
         /// Create a lead form
         /// </summary>
         /// <remarks>
-        /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -99,8 +99,8 @@ namespace Zernio.Api
         /// Get a lead form
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <returns>GetLeadForm200Response</returns>
         GetLeadForm200Response GetLeadForm(string formId, string accountId);
 
@@ -111,8 +111,8 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <returns>ApiResponse of GetLeadForm200Response</returns>
         ApiResponse<GetLeadForm200Response> GetLeadFormWithHttpInfo(string formId, string accountId);
         /// <summary>
@@ -148,56 +148,60 @@ namespace Zernio.Api
         /// List lead forms
         /// </summary>
         /// <remarks>
-        /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id.</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
         /// <returns>ListLeadForms200Response</returns>
-        ListLeadForms200Response ListLeadForms(string accountId, int? limit = default, string? cursor = default);
+        ListLeadForms200Response ListLeadForms(string accountId, string? adAccountId = default, int? limit = default, string? cursor = default);
 
         /// <summary>
         /// List lead forms
         /// </summary>
         /// <remarks>
-        /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id.</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
         /// <returns>ApiResponse of ListLeadForms200Response</returns>
-        ApiResponse<ListLeadForms200Response> ListLeadFormsWithHttpInfo(string accountId, int? limit = default, string? cursor = default);
+        ApiResponse<ListLeadForms200Response> ListLeadFormsWithHttpInfo(string accountId, string? adAccountId = default, int? limit = default, string? cursor = default);
         /// <summary>
         /// List submitted leads
         /// </summary>
         /// <remarks>
-        /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
-        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
-        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <returns>ListLeads200Response</returns>
-        ListLeads200Response ListLeads(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default);
+        ListLeads200Response ListLeads(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default);
 
         /// <summary>
         /// List submitted leads
         /// </summary>
         /// <remarks>
-        /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
-        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
-        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <returns>ApiResponse of ListLeads200Response</returns>
-        ApiResponse<ListLeads200Response> ListLeadsWithHttpInfo(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default);
+        ApiResponse<ListLeads200Response> ListLeadsWithHttpInfo(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default);
         #endregion Synchronous Operations
     }
 
@@ -211,11 +215,11 @@ namespace Zernio.Api
         /// Archive a lead form
         /// </summary>
         /// <remarks>
-        /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ArchiveLeadForm200Response</returns>
         System.Threading.Tasks.Task<ArchiveLeadForm200Response> ArchiveLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -224,11 +228,11 @@ namespace Zernio.Api
         /// Archive a lead form
         /// </summary>
         /// <remarks>
-        /// Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ArchiveLeadForm200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ArchiveLeadForm200Response>> ArchiveLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -236,7 +240,7 @@ namespace Zernio.Api
         /// Create a lead form
         /// </summary>
         /// <remarks>
-        /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -248,7 +252,7 @@ namespace Zernio.Api
         /// Create a lead form
         /// </summary>
         /// <remarks>
-        /// Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -287,8 +291,8 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetLeadForm200Response</returns>
         System.Threading.Tasks.Task<GetLeadForm200Response> GetLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -300,8 +304,8 @@ namespace Zernio.Api
         /// 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetLeadForm200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<GetLeadForm200Response>> GetLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default);
@@ -340,60 +344,64 @@ namespace Zernio.Api
         /// List lead forms
         /// </summary>
         /// <remarks>
-        /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id.</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLeadForms200Response</returns>
-        System.Threading.Tasks.Task<ListLeadForms200Response> ListLeadFormsAsync(string accountId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListLeadForms200Response> ListLeadFormsAsync(string accountId, string? adAccountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List lead forms
         /// </summary>
         /// <remarks>
-        /// Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id.</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLeadForms200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListLeadForms200Response>> ListLeadFormsWithHttpInfoAsync(string accountId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListLeadForms200Response>> ListLeadFormsWithHttpInfoAsync(string accountId, string? adAccountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List submitted leads
         /// </summary>
         /// <remarks>
-        /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
-        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
-        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLeads200Response</returns>
-        System.Threading.Tasks.Task<ListLeads200Response> ListLeadsAsync(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ListLeads200Response> ListLeadsAsync(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List submitted leads
         /// </summary>
         /// <remarks>
-        /// Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
-        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
-        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLeads200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListLeads200Response>> ListLeadsWithHttpInfoAsync(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<ListLeads200Response>> ListLeadsWithHttpInfoAsync(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -608,11 +616,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a lead form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <returns>ArchiveLeadForm200Response</returns>
         public ArchiveLeadForm200Response ArchiveLeadForm(string formId, string accountId)
         {
@@ -621,11 +629,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a lead form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <returns>ApiResponse of ArchiveLeadForm200Response</returns>
         public Zernio.Client.ApiResponse<ArchiveLeadForm200Response> ArchiveLeadFormWithHttpInfo(string formId, string accountId)
         {
@@ -676,11 +684,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a lead form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ArchiveLeadForm200Response</returns>
         public async System.Threading.Tasks.Task<ArchiveLeadForm200Response> ArchiveLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -690,11 +698,11 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Archive a lead form Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+        /// Archive a lead form Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE).
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ArchiveLeadForm200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ArchiveLeadForm200Response>> ArchiveLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -749,7 +757,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a lead form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -761,7 +769,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a lead form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -811,7 +819,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a lead form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -824,7 +832,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create a lead form Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+        /// Create a lead form Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createLeadFormRequest"></param>
@@ -1024,8 +1032,8 @@ namespace Zernio.Api
         /// Get a lead form 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <returns>GetLeadForm200Response</returns>
         public GetLeadForm200Response GetLeadForm(string formId, string accountId)
         {
@@ -1037,8 +1045,8 @@ namespace Zernio.Api
         /// Get a lead form 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <returns>ApiResponse of GetLeadForm200Response</returns>
         public Zernio.Client.ApiResponse<GetLeadForm200Response> GetLeadFormWithHttpInfo(string formId, string accountId)
         {
@@ -1092,8 +1100,8 @@ namespace Zernio.Api
         /// Get a lead form 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetLeadForm200Response</returns>
         public async System.Threading.Tasks.Task<GetLeadForm200Response> GetLeadFormAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -1106,8 +1114,8 @@ namespace Zernio.Api
         /// Get a lead form 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="formId"></param>
-        /// <param name="accountId"></param>
+        /// <param name="formId">Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id (selects the platform).</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetLeadForm200Response)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GetLeadForm200Response>> GetLeadFormWithHttpInfoAsync(string formId, string accountId, System.Threading.CancellationToken cancellationToken = default)
@@ -1339,28 +1347,30 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List lead forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id.</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
         /// <returns>ListLeadForms200Response</returns>
-        public ListLeadForms200Response ListLeadForms(string accountId, int? limit = default, string? cursor = default)
+        public ListLeadForms200Response ListLeadForms(string accountId, string? adAccountId = default, int? limit = default, string? cursor = default)
         {
-            Zernio.Client.ApiResponse<ListLeadForms200Response> localVarResponse = ListLeadFormsWithHttpInfo(accountId, limit, cursor);
+            Zernio.Client.ApiResponse<ListLeadForms200Response> localVarResponse = ListLeadFormsWithHttpInfo(accountId, adAccountId, limit, cursor);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List lead forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id.</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
         /// <returns>ApiResponse of ListLeadForms200Response</returns>
-        public Zernio.Client.ApiResponse<ListLeadForms200Response> ListLeadFormsWithHttpInfo(string accountId, int? limit = default, string? cursor = default)
+        public Zernio.Client.ApiResponse<ListLeadForms200Response> ListLeadFormsWithHttpInfo(string accountId, string? adAccountId = default, int? limit = default, string? cursor = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1383,6 +1393,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
@@ -1412,30 +1426,32 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List lead forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id.</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLeadForms200Response</returns>
-        public async System.Threading.Tasks.Task<ListLeadForms200Response> ListLeadFormsAsync(string accountId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListLeadForms200Response> ListLeadFormsAsync(string accountId, string? adAccountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListLeadForms200Response> localVarResponse = await ListLeadFormsWithHttpInfoAsync(accountId, limit, cursor, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListLeadForms200Response> localVarResponse = await ListLeadFormsWithHttpInfoAsync(accountId, adAccountId, limit, cursor, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List lead forms Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+        /// List lead forms Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page — pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Connected facebook account id.</param>
+        /// <param name="accountId">Connected facebook or linkedin ads account id.</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
         /// <param name="cursor"> (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLeadForms200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLeadForms200Response>> ListLeadFormsWithHttpInfoAsync(string accountId, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLeadForms200Response>> ListLeadFormsWithHttpInfoAsync(string accountId, string? adAccountId = default, int? limit = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
@@ -1460,6 +1476,10 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
             if (limit != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
@@ -1490,32 +1510,34 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List submitted leads Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// List submitted leads Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
-        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
-        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <returns>ListLeads200Response</returns>
-        public ListLeads200Response ListLeads(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default)
+        public ListLeads200Response ListLeads(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default)
         {
-            Zernio.Client.ApiResponse<ListLeads200Response> localVarResponse = ListLeadsWithHttpInfo(formId, accountId, limit, since, cursor);
+            Zernio.Client.ApiResponse<ListLeads200Response> localVarResponse = ListLeadsWithHttpInfo(formId, accountId, adAccountId, limit, since, cursor);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List submitted leads Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// List submitted leads Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
-        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
-        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <returns>ApiResponse of ListLeads200Response</returns>
-        public Zernio.Client.ApiResponse<ListLeads200Response> ListLeadsWithHttpInfo(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default)
+        public Zernio.Client.ApiResponse<ListLeads200Response> ListLeadsWithHttpInfo(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default)
         {
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1540,6 +1562,10 @@ namespace Zernio.Api
             if (accountId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
             }
             if (limit != null)
             {
@@ -1574,34 +1600,36 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List submitted leads Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// List submitted leads Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
-        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
-        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListLeads200Response</returns>
-        public async System.Threading.Tasks.Task<ListLeads200Response> ListLeadsAsync(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<ListLeads200Response> ListLeadsAsync(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<ListLeads200Response> localVarResponse = await ListLeadsWithHttpInfoAsync(formId, accountId, limit, since, cursor, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<ListLeads200Response> localVarResponse = await ListLeadsWithHttpInfoAsync(formId, accountId, adAccountId, limit, since, cursor, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// List submitted leads Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+        /// List submitted leads Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="formId">Filter to a single lead form. (optional)</param>
-        /// <param name="accountId">Filter to a single connected account. (optional)</param>
+        /// <param name="accountId">Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)</param>
+        /// <param name="adAccountId">LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)</param>
         /// <param name="limit"> (optional, default to 25)</param>
-        /// <param name="since">Unix seconds; only leads created at/after this Meta timestamp. (optional)</param>
-        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor. (optional)</param>
+        /// <param name="since">Unix seconds; only leads created at/after this timestamp. (optional)</param>
+        /// <param name="cursor">Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListLeads200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLeads200Response>> ListLeadsWithHttpInfoAsync(string? formId = default, string? accountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListLeads200Response>> ListLeadsWithHttpInfoAsync(string? formId = default, string? accountId = default, string? adAccountId = default, int? limit = default, int? since = default, string? cursor = default, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1628,6 +1656,10 @@ namespace Zernio.Api
             if (accountId != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
             }
             if (limit != null)
             {

@@ -129,9 +129,10 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
+            //string? adAccountId = null;
             //int? limit = null;
             //string? cursor = null;
-            //var response = instance.ListLeadForms(accountId, limit, cursor);
+            //var response = instance.ListLeadForms(accountId, adAccountId, limit, cursor);
             //Assert.IsType<ListLeadForms200Response>(response);
         }
 
@@ -144,10 +145,11 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //string? formId = null;
             //string? accountId = null;
+            //string? adAccountId = null;
             //int? limit = null;
             //int? since = null;
             //string? cursor = null;
-            //var response = instance.ListLeads(formId, accountId, limit, since, cursor);
+            //var response = instance.ListLeads(formId, accountId, adAccountId, limit, since, cursor);
             //Assert.IsType<ListLeads200Response>(response);
         }
     }

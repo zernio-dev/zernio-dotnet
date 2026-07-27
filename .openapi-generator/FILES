@@ -221,6 +221,7 @@ docs/CreateInviteToken201Response.md
 docs/CreateInviteTokenRequest.md
 docs/CreateLeadForm200Response.md
 docs/CreateLeadFormRequest.md
+docs/CreateLeadFormRequestPlatformSpecificData.md
 docs/CreateLeadFormRequestQuestionsInner.md
 docs/CreateMessagingAdRequest.md
 docs/CreatePhoneNumberKycLink200Response.md
@@ -797,6 +798,13 @@ docs/LinkedInAggregateAnalyticsDailyResponseAnalytics.md
 docs/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.md
 docs/LinkedInAggregateAnalyticsTotalResponse.md
 docs/LinkedInAggregateAnalyticsTotalResponseAnalytics.md
+docs/LinkedInLeadFormPlatformData.md
+docs/LinkedInLeadFormPlatformDataConsentsInner.md
+docs/LinkedInLeadFormPlatformDataLocale.md
+docs/LinkedInLeadFormPlatformDataQuestionsInner.md
+docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf.md
+docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.md
+docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.md
 docs/LinkedInMentionsApi.md
 docs/LinkedInPlatformData.md
 docs/ListAccountGroups200Response.md
@@ -962,6 +970,8 @@ docs/MediaUploadResponse.md
 docs/MentionsApi.md
 docs/MessagesApi.md
 docs/MessagingAdsApi.md
+docs/MetaLeadFormPlatformData.md
+docs/MetaLeadFormPlatformDataContextCard.md
 docs/Money.md
 docs/MoneyAmount.md
 docs/MoveAccountToProfile200Response.md
@@ -1829,6 +1839,7 @@ src/Zernio.Test/Model/CreateInboxConversationRequestTests.cs
 src/Zernio.Test/Model/CreateInviteToken201ResponseTests.cs
 src/Zernio.Test/Model/CreateInviteTokenRequestTests.cs
 src/Zernio.Test/Model/CreateLeadForm200ResponseTests.cs
+src/Zernio.Test/Model/CreateLeadFormRequestPlatformSpecificDataTests.cs
 src/Zernio.Test/Model/CreateLeadFormRequestQuestionsInnerTests.cs
 src/Zernio.Test/Model/CreateLeadFormRequestTests.cs
 src/Zernio.Test/Model/CreateMessagingAdRequestTests.cs
@@ -2392,6 +2403,13 @@ src/Zernio.Test/Model/LinkedInAggregateAnalyticsDailyResponseAnalyticsTests.cs
 src/Zernio.Test/Model/LinkedInAggregateAnalyticsDailyResponseTests.cs
 src/Zernio.Test/Model/LinkedInAggregateAnalyticsTotalResponseAnalyticsTests.cs
 src/Zernio.Test/Model/LinkedInAggregateAnalyticsTotalResponseTests.cs
+src/Zernio.Test/Model/LinkedInLeadFormPlatformDataConsentsInnerTests.cs
+src/Zernio.Test/Model/LinkedInLeadFormPlatformDataLocaleTests.cs
+src/Zernio.Test/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInnerTests.cs
+src/Zernio.Test/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1Tests.cs
+src/Zernio.Test/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOfTests.cs
+src/Zernio.Test/Model/LinkedInLeadFormPlatformDataQuestionsInnerTests.cs
+src/Zernio.Test/Model/LinkedInLeadFormPlatformDataTests.cs
 src/Zernio.Test/Model/LinkedInPlatformDataTests.cs
 src/Zernio.Test/Model/ListAccountGroups200ResponseGroupsInnerTests.cs
 src/Zernio.Test/Model/ListAccountGroups200ResponseTests.cs
@@ -2551,6 +2569,8 @@ src/Zernio.Test/Model/LookupSmsNumber200ResponseTests.cs
 src/Zernio.Test/Model/MarkConversationRead200ResponseTests.cs
 src/Zernio.Test/Model/MediaItemTests.cs
 src/Zernio.Test/Model/MediaUploadResponseTests.cs
+src/Zernio.Test/Model/MetaLeadFormPlatformDataContextCardTests.cs
+src/Zernio.Test/Model/MetaLeadFormPlatformDataTests.cs
 src/Zernio.Test/Model/MoneyAmountTests.cs
 src/Zernio.Test/Model/MoneyTests.cs
 src/Zernio.Test/Model/MoveAccountToProfile200ResponseTests.cs
@@ -3412,6 +3432,7 @@ src/Zernio/Model/CreateInviteToken201Response.cs
 src/Zernio/Model/CreateInviteTokenRequest.cs
 src/Zernio/Model/CreateLeadForm200Response.cs
 src/Zernio/Model/CreateLeadFormRequest.cs
+src/Zernio/Model/CreateLeadFormRequestPlatformSpecificData.cs
 src/Zernio/Model/CreateLeadFormRequestQuestionsInner.cs
 src/Zernio/Model/CreateMessagingAdRequest.cs
 src/Zernio/Model/CreatePhoneNumberKycLink200Response.cs
@@ -3974,6 +3995,13 @@ src/Zernio/Model/LinkedInAggregateAnalyticsDailyResponseAnalytics.cs
 src/Zernio/Model/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.cs
 src/Zernio/Model/LinkedInAggregateAnalyticsTotalResponse.cs
 src/Zernio/Model/LinkedInAggregateAnalyticsTotalResponseAnalytics.cs
+src/Zernio/Model/LinkedInLeadFormPlatformData.cs
+src/Zernio/Model/LinkedInLeadFormPlatformDataConsentsInner.cs
+src/Zernio/Model/LinkedInLeadFormPlatformDataLocale.cs
+src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInner.cs
+src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf.cs
+src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.cs
+src/Zernio/Model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.cs
 src/Zernio/Model/LinkedInPlatformData.cs
 src/Zernio/Model/ListAccountGroups200Response.cs
 src/Zernio/Model/ListAccountGroups200ResponseGroupsInner.cs
@@ -4133,6 +4161,8 @@ src/Zernio/Model/LookupSmsNumber200Response.cs
 src/Zernio/Model/MarkConversationRead200Response.cs
 src/Zernio/Model/MediaItem.cs
 src/Zernio/Model/MediaUploadResponse.cs
+src/Zernio/Model/MetaLeadFormPlatformData.cs
+src/Zernio/Model/MetaLeadFormPlatformDataContextCard.cs
 src/Zernio/Model/Money.cs
 src/Zernio/Model/MoneyAmount.cs
 src/Zernio/Model/MoveAccountToProfile200Response.cs

@@ -43,18 +43,19 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="accountId">accountId (required).</param>
         /// <param name="name">name (required).</param>
-        /// <param name="questions">questions (required).</param>
+        /// <param name="questions">Deprecated (Meta legacy shape): use platformSpecificData.questions..</param>
         /// <param name="privacyPolicyUrl">privacyPolicyUrl (required).</param>
-        /// <param name="privacyPolicyLinkText">privacyPolicyLinkText.</param>
-        /// <param name="followUpActionUrl">followUpActionUrl.</param>
-        /// <param name="locale">locale.</param>
-        /// <param name="thankYouTitle">thankYouTitle.</param>
-        /// <param name="thankYouBody">thankYouBody.</param>
-        /// <param name="thankYouButtonText">thankYouButtonText.</param>
-        /// <param name="thankYouButtonType">thankYouButtonType.</param>
-        /// <param name="thankYouWebsiteUrl">thankYouWebsiteUrl.</param>
-        /// <param name="isOptimizedForQuality">isOptimizedForQuality.</param>
-        public CreateLeadFormRequest(string accountId = default, string name = default, List<CreateLeadFormRequestQuestionsInner> questions = default, string privacyPolicyUrl = default, string privacyPolicyLinkText = default, string followUpActionUrl = default, string locale = default, string thankYouTitle = default, string thankYouBody = default, string thankYouButtonText = default, string thankYouButtonType = default, string thankYouWebsiteUrl = default, bool isOptimizedForQuality = default)
+        /// <param name="privacyPolicyLinkText">Deprecated: use platformSpecificData.privacyPolicyLinkText..</param>
+        /// <param name="followUpActionUrl">Deprecated: use platformSpecificData.followUpActionUrl..</param>
+        /// <param name="locale">Deprecated: use platformSpecificData.locale..</param>
+        /// <param name="thankYouTitle">Deprecated: use platformSpecificData.thankYouTitle..</param>
+        /// <param name="thankYouBody">Deprecated: use platformSpecificData.thankYouBody..</param>
+        /// <param name="thankYouButtonText">Deprecated: use platformSpecificData.thankYouButtonText..</param>
+        /// <param name="thankYouButtonType">Deprecated: use platformSpecificData.thankYouButtonType..</param>
+        /// <param name="thankYouWebsiteUrl">Deprecated: use platformSpecificData.thankYouWebsiteUrl..</param>
+        /// <param name="isOptimizedForQuality">Deprecated: use platformSpecificData.isOptimizedForQuality..</param>
+        /// <param name="platformSpecificData">platformSpecificData.</param>
+        public CreateLeadFormRequest(string accountId = default, string name = default, List<CreateLeadFormRequestQuestionsInner> questions = default, string privacyPolicyUrl = default, string privacyPolicyLinkText = default, string followUpActionUrl = default, string locale = default, string thankYouTitle = default, string thankYouBody = default, string thankYouButtonText = default, string thankYouButtonType = default, string thankYouWebsiteUrl = default, bool isOptimizedForQuality = default, CreateLeadFormRequestPlatformSpecificData platformSpecificData = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -68,18 +69,13 @@ namespace Zernio.Model
                 throw new ArgumentNullException("name is a required property for CreateLeadFormRequest and cannot be null");
             }
             this.Name = name;
-            // to ensure "questions" is required (not null)
-            if (questions == null)
-            {
-                throw new ArgumentNullException("questions is a required property for CreateLeadFormRequest and cannot be null");
-            }
-            this.Questions = questions;
             // to ensure "privacyPolicyUrl" is required (not null)
             if (privacyPolicyUrl == null)
             {
                 throw new ArgumentNullException("privacyPolicyUrl is a required property for CreateLeadFormRequest and cannot be null");
             }
             this.PrivacyPolicyUrl = privacyPolicyUrl;
+            this.Questions = questions;
             this.PrivacyPolicyLinkText = privacyPolicyLinkText;
             this.FollowUpActionUrl = followUpActionUrl;
             this.Locale = locale;
@@ -89,6 +85,7 @@ namespace Zernio.Model
             this.ThankYouButtonType = thankYouButtonType;
             this.ThankYouWebsiteUrl = thankYouWebsiteUrl;
             this.IsOptimizedForQuality = isOptimizedForQuality;
+            this.PlatformSpecificData = platformSpecificData;
         }
 
         /// <summary>
@@ -104,9 +101,10 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Questions
+        /// Deprecated (Meta legacy shape): use platformSpecificData.questions.
         /// </summary>
-        [DataMember(Name = "questions", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Deprecated (Meta legacy shape): use platformSpecificData.questions.</value>
+        [DataMember(Name = "questions", EmitDefaultValue = false)]
         public List<CreateLeadFormRequestQuestionsInner> Questions { get; set; }
 
         /// <summary>
@@ -116,64 +114,88 @@ namespace Zernio.Model
         public string PrivacyPolicyUrl { get; set; }
 
         /// <summary>
-        /// Gets or Sets PrivacyPolicyLinkText
+        /// Deprecated: use platformSpecificData.privacyPolicyLinkText.
         /// </summary>
+        /// <value>Deprecated: use platformSpecificData.privacyPolicyLinkText.</value>
         [DataMember(Name = "privacyPolicyLinkText", EmitDefaultValue = false)]
+        [Obsolete]
         public string PrivacyPolicyLinkText { get; set; }
 
         /// <summary>
-        /// Gets or Sets FollowUpActionUrl
+        /// Deprecated: use platformSpecificData.followUpActionUrl.
         /// </summary>
+        /// <value>Deprecated: use platformSpecificData.followUpActionUrl.</value>
         [DataMember(Name = "followUpActionUrl", EmitDefaultValue = false)]
+        [Obsolete]
         public string FollowUpActionUrl { get; set; }
 
         /// <summary>
-        /// Gets or Sets Locale
+        /// Deprecated: use platformSpecificData.locale.
         /// </summary>
+        /// <value>Deprecated: use platformSpecificData.locale.</value>
         /*
         <example>EN_US</example>
         */
         [DataMember(Name = "locale", EmitDefaultValue = false)]
+        [Obsolete]
         public string Locale { get; set; }
 
         /// <summary>
-        /// Gets or Sets ThankYouTitle
+        /// Deprecated: use platformSpecificData.thankYouTitle.
         /// </summary>
+        /// <value>Deprecated: use platformSpecificData.thankYouTitle.</value>
         [DataMember(Name = "thankYouTitle", EmitDefaultValue = false)]
+        [Obsolete]
         public string ThankYouTitle { get; set; }
 
         /// <summary>
-        /// Gets or Sets ThankYouBody
+        /// Deprecated: use platformSpecificData.thankYouBody.
         /// </summary>
+        /// <value>Deprecated: use platformSpecificData.thankYouBody.</value>
         [DataMember(Name = "thankYouBody", EmitDefaultValue = false)]
+        [Obsolete]
         public string ThankYouBody { get; set; }
 
         /// <summary>
-        /// Gets or Sets ThankYouButtonText
+        /// Deprecated: use platformSpecificData.thankYouButtonText.
         /// </summary>
+        /// <value>Deprecated: use platformSpecificData.thankYouButtonText.</value>
         [DataMember(Name = "thankYouButtonText", EmitDefaultValue = false)]
+        [Obsolete]
         public string ThankYouButtonText { get; set; }
 
         /// <summary>
-        /// Gets or Sets ThankYouButtonType
+        /// Deprecated: use platformSpecificData.thankYouButtonType.
         /// </summary>
+        /// <value>Deprecated: use platformSpecificData.thankYouButtonType.</value>
         /*
         <example>VIEW_WEBSITE</example>
         */
         [DataMember(Name = "thankYouButtonType", EmitDefaultValue = false)]
+        [Obsolete]
         public string ThankYouButtonType { get; set; }
 
         /// <summary>
-        /// Gets or Sets ThankYouWebsiteUrl
+        /// Deprecated: use platformSpecificData.thankYouWebsiteUrl.
         /// </summary>
+        /// <value>Deprecated: use platformSpecificData.thankYouWebsiteUrl.</value>
         [DataMember(Name = "thankYouWebsiteUrl", EmitDefaultValue = false)]
+        [Obsolete]
         public string ThankYouWebsiteUrl { get; set; }
 
         /// <summary>
-        /// Gets or Sets IsOptimizedForQuality
+        /// Deprecated: use platformSpecificData.isOptimizedForQuality.
         /// </summary>
+        /// <value>Deprecated: use platformSpecificData.isOptimizedForQuality.</value>
         [DataMember(Name = "isOptimizedForQuality", EmitDefaultValue = true)]
+        [Obsolete]
         public bool IsOptimizedForQuality { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PlatformSpecificData
+        /// </summary>
+        [DataMember(Name = "platformSpecificData", EmitDefaultValue = false)]
+        public CreateLeadFormRequestPlatformSpecificData PlatformSpecificData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -196,6 +218,7 @@ namespace Zernio.Model
             sb.Append("  ThankYouButtonType: ").Append(ThankYouButtonType).Append("\n");
             sb.Append("  ThankYouWebsiteUrl: ").Append(ThankYouWebsiteUrl).Append("\n");
             sb.Append("  IsOptimizedForQuality: ").Append(IsOptimizedForQuality).Append("\n");
+            sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -18,7 +18,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Archive a lead form
 
-Meta has no hard delete for forms; this archives the form (status=ARCHIVED).
+Neither platform hard-deletes a form; this archives it (Meta status=ARCHIVED; LinkedIn state=ARCHIVED via PARTIAL_UPDATE).
 
 ### Example
 ```csharp
@@ -44,8 +44,8 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
-            var formId = "formId_example";  // string | 
-            var accountId = "accountId_example";  // string | 
+            var formId = "formId_example";  // string | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
+            var accountId = "accountId_example";  // string | Connected facebook or linkedin ads account id (selects the platform).
 
             try
             {
@@ -88,8 +88,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **formId** | **string** |  |  |
-| **accountId** | **string** |  |  |
+| **formId** | **string** | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). |  |
+| **accountId** | **string** | Connected facebook or linkedin ads account id (selects the platform). |  |
 
 ### Return type
 
@@ -119,7 +119,7 @@ catch (ApiException e)
 
 Create a lead form
 
-Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+Creates a Lead Gen form. The form content goes inside `platformSpecificData` for both platforms (the shape is selected by the accountId's platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent — mixing both shapes is a 400. LinkedIn: created on the ad account's Company Page. NOT idempotent — a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
 
 ### Example
 ```csharp
@@ -344,8 +344,8 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
-            var formId = "formId_example";  // string | 
-            var accountId = "accountId_example";  // string | 
+            var formId = "formId_example";  // string | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id).
+            var accountId = "accountId_example";  // string | Connected facebook or linkedin ads account id (selects the platform).
 
             try
             {
@@ -388,8 +388,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **formId** | **string** |  |  |
-| **accountId** | **string** |  |  |
+| **formId** | **string** | Numeric form id (Meta leadgen_form id or LinkedIn leadForm id). |  |
+| **accountId** | **string** | Connected facebook or linkedin ads account id (selects the platform). |  |
 
 ### Return type
 
@@ -522,11 +522,11 @@ catch (ApiException e)
 
 <a id="listleadforms"></a>
 # **ListLeadForms**
-> ListLeadForms200Response ListLeadForms (string accountId, int? limit = null, string? cursor = null)
+> ListLeadForms200Response ListLeadForms (string accountId, string? adAccountId = null, int? limit = null, string? cursor = null)
 
 List lead forms
 
-Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account's Company Page — pass `adAccountId` (LinkedIn forms are org-owned). Requires the Ads add-on. 
 
 ### Example
 ```csharp
@@ -552,14 +552,15 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Connected facebook account id.
+            var accountId = "accountId_example";  // string | Connected facebook or linkedin ads account id.
+            var adAccountId = "adAccountId_example";  // string? | LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional) 
             var limit = 25;  // int? |  (optional)  (default to 25)
             var cursor = "cursor_example";  // string? |  (optional) 
 
             try
             {
                 // List lead forms
-                ListLeadForms200Response result = apiInstance.ListLeadForms(accountId, limit, cursor);
+                ListLeadForms200Response result = apiInstance.ListLeadForms(accountId, adAccountId, limit, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -580,7 +581,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List lead forms
-    ApiResponse<ListLeadForms200Response> response = apiInstance.ListLeadFormsWithHttpInfo(accountId, limit, cursor);
+    ApiResponse<ListLeadForms200Response> response = apiInstance.ListLeadFormsWithHttpInfo(accountId, adAccountId, limit, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -597,7 +598,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Connected facebook account id. |  |
+| **accountId** | **string** | Connected facebook or linkedin ads account id. |  |
+| **adAccountId** | **string?** | LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 25] |
 | **cursor** | **string?** |  | [optional]  |
 
@@ -626,11 +628,11 @@ catch (ApiException e)
 
 <a id="listleads"></a>
 # **ListLeads**
-> ListLeads200Response ListLeads (string? formId = null, string? accountId = null, int? limit = null, int? since = null, string? cursor = null)
+> ListLeads200Response ListLeads (string? formId = null, string? accountId = null, string? adAccountId = null, int? limit = null, int? since = null, string? cursor = null)
 
 List submitted leads
 
-Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on `cursor`. Leads are ingested in real time from the `leadgen` webhook. Requires the Ads add-on. 
+Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on `cursor`. For Meta (default) leads are served from the persisted cache, ingested in real time from the `leadgen` webhook. When `accountId` is a LinkedIn ads account, leads are fetched live from LinkedIn's `leadFormResponses` (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and `adAccountId` is required. Reading LinkedIn responses needs the `r_marketing_leadgen_automation` permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
 
 ### Example
 ```csharp
@@ -657,15 +659,16 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new LeadGenApi(httpClient, config, httpClientHandler);
             var formId = "formId_example";  // string? | Filter to a single lead form. (optional) 
-            var accountId = "accountId_example";  // string? | Filter to a single connected account. (optional) 
+            var accountId = "accountId_example";  // string? | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional) 
+            var adAccountId = "adAccountId_example";  // string? | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional) 
             var limit = 25;  // int? |  (optional)  (default to 25)
-            var since = 56;  // int? | Unix seconds; only leads created at/after this Meta timestamp. (optional) 
-            var cursor = "cursor_example";  // string? | Keyset cursor from a previous response's pagination.cursor. (optional) 
+            var since = 56;  // int? | Unix seconds; only leads created at/after this timestamp. (optional) 
+            var cursor = "cursor_example";  // string? | Keyset cursor from a previous response's pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional) 
 
             try
             {
                 // List submitted leads
-                ListLeads200Response result = apiInstance.ListLeads(formId, accountId, limit, since, cursor);
+                ListLeads200Response result = apiInstance.ListLeads(formId, accountId, adAccountId, limit, since, cursor);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -686,7 +689,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // List submitted leads
-    ApiResponse<ListLeads200Response> response = apiInstance.ListLeadsWithHttpInfo(formId, accountId, limit, since, cursor);
+    ApiResponse<ListLeads200Response> response = apiInstance.ListLeadsWithHttpInfo(formId, accountId, adAccountId, limit, since, cursor);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -704,10 +707,11 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **formId** | **string?** | Filter to a single lead form. | [optional]  |
-| **accountId** | **string?** | Filter to a single connected account. | [optional]  |
+| **accountId** | **string?** | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. | [optional]  |
+| **adAccountId** | **string?** | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional]  |
 | **limit** | **int?** |  | [optional] [default to 25] |
-| **since** | **int?** | Unix seconds; only leads created at/after this Meta timestamp. | [optional]  |
-| **cursor** | **string?** | Keyset cursor from a previous response&#39;s pagination.cursor. | [optional]  |
+| **since** | **int?** | Unix seconds; only leads created at/after this timestamp. | [optional]  |
+| **cursor** | **string?** | Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). | [optional]  |
 
 ### Return type
 
