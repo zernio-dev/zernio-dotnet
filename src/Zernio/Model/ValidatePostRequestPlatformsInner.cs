@@ -139,16 +139,25 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="ValidatePostRequestPlatformsInner" /> class.
         /// </summary>
         /// <param name="platform">platform (required).</param>
+        /// <param name="accountId">Account to validate against. For twitter, resolves X Premium status to apply the 25000 character limit instead of 280..</param>
         /// <param name="customContent">customContent.</param>
         /// <param name="platformSpecificData">platformSpecificData.</param>
         /// <param name="customMedia">customMedia.</param>
-        public ValidatePostRequestPlatformsInner(PlatformEnum platform = default, string customContent = default, Object platformSpecificData = default, List<MediaItem> customMedia = default)
+        public ValidatePostRequestPlatformsInner(PlatformEnum platform = default, string accountId = default, string customContent = default, Object platformSpecificData = default, List<MediaItem> customMedia = default)
         {
             this.Platform = platform;
+            this.AccountId = accountId;
             this.CustomContent = customContent;
             this.PlatformSpecificData = platformSpecificData;
             this.CustomMedia = customMedia;
         }
+
+        /// <summary>
+        /// Account to validate against. For twitter, resolves X Premium status to apply the 25000 character limit instead of 280.
+        /// </summary>
+        /// <value>Account to validate against. For twitter, resolves X Premium status to apply the 25000 character limit instead of 280.</value>
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
         /// Gets or Sets CustomContent
@@ -177,6 +186,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ValidatePostRequestPlatformsInner {\n");
             sb.Append("  Platform: ").Append(Platform).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  CustomContent: ").Append(CustomContent).Append("\n");
             sb.Append("  PlatformSpecificData: ").Append(PlatformSpecificData).Append("\n");
             sb.Append("  CustomMedia: ").Append(CustomMedia).Append("\n");
