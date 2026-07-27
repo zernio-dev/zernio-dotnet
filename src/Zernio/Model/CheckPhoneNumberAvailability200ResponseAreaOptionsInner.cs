@@ -37,8 +37,8 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CheckPhoneNumberAvailability200ResponseAreaOptionsInner" /> class.
         /// </summary>
         /// <param name="ndc">Area code (national destination code), e.g. \&quot;11\&quot;..</param>
-        /// <param name="name">Human-readable area name, e.g. \&quot;Sao Paulo\&quot;..</param>
-        /// <param name="count">Deliverable numbers seen in this area on the latest inventory page..</param>
+        /// <param name="name">Area name: state/province for US/CA (e.g. \&quot;Minnesota\&quot;), city otherwise (e.g. \&quot;Sao Paulo\&quot;)..</param>
+        /// <param name="count">Numbers available in this area: country-wide count for US/CA, numbers seen on the latest inventory page otherwise..</param>
         public CheckPhoneNumberAvailability200ResponseAreaOptionsInner(string ndc = default, string name = default, int count = default)
         {
             this.Ndc = ndc;
@@ -54,16 +54,16 @@ namespace Zernio.Model
         public string Ndc { get; set; }
 
         /// <summary>
-        /// Human-readable area name, e.g. \&quot;Sao Paulo\&quot;.
+        /// Area name: state/province for US/CA (e.g. \&quot;Minnesota\&quot;), city otherwise (e.g. \&quot;Sao Paulo\&quot;).
         /// </summary>
-        /// <value>Human-readable area name, e.g. \&quot;Sao Paulo\&quot;.</value>
+        /// <value>Area name: state/province for US/CA (e.g. \&quot;Minnesota\&quot;), city otherwise (e.g. \&quot;Sao Paulo\&quot;).</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Deliverable numbers seen in this area on the latest inventory page.
+        /// Numbers available in this area: country-wide count for US/CA, numbers seen on the latest inventory page otherwise.
         /// </summary>
-        /// <value>Deliverable numbers seen in this area on the latest inventory page.</value>
+        /// <value>Numbers available in this area: country-wide count for US/CA, numbers seen on the latest inventory page otherwise.</value>
         [DataMember(Name = "count", EmitDefaultValue = false)]
         public int Count { get; set; }
 
