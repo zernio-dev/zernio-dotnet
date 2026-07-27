@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CheckPhoneNumberAvailability200ResponseAreaOptionsInner" /> class.
         /// </summary>
         /// <param name="ndc">Area code (national destination code), e.g. \&quot;11\&quot;..</param>
-        /// <param name="name">Area name: state/province for US/CA (e.g. \&quot;Minnesota\&quot;), city otherwise (e.g. \&quot;Sao Paulo\&quot;)..</param>
+        /// <param name="name">Area name: \&quot;City, ST\&quot; for US/CA (e.g. \&quot;Miami, FL\&quot;), city otherwise (e.g. \&quot;Sao Paulo\&quot;)..</param>
         /// <param name="count">Numbers available in this area: country-wide count for US/CA, numbers seen on the latest inventory page otherwise..</param>
         public CheckPhoneNumberAvailability200ResponseAreaOptionsInner(string ndc = default, string name = default, int count = default)
         {
@@ -54,9 +54,9 @@ namespace Zernio.Model
         public string Ndc { get; set; }
 
         /// <summary>
-        /// Area name: state/province for US/CA (e.g. \&quot;Minnesota\&quot;), city otherwise (e.g. \&quot;Sao Paulo\&quot;).
+        /// Area name: \&quot;City, ST\&quot; for US/CA (e.g. \&quot;Miami, FL\&quot;), city otherwise (e.g. \&quot;Sao Paulo\&quot;).
         /// </summary>
-        /// <value>Area name: state/province for US/CA (e.g. \&quot;Minnesota\&quot;), city otherwise (e.g. \&quot;Sao Paulo\&quot;).</value>
+        /// <value>Area name: \&quot;City, ST\&quot; for US/CA (e.g. \&quot;Miami, FL\&quot;), city otherwise (e.g. \&quot;Sao Paulo\&quot;).</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 

@@ -686,7 +686,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reaction breakdown for the post |  -  |
-| **400** | Not a Facebook account or missing postId parameter |  -  |
+| **400** | Invalid accountId format, not a Facebook account, or missing postId parameter |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 | **502** | Facebook rejected the request |  -  |
