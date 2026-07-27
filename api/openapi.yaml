@@ -58531,9 +58531,11 @@ components:
           type: string
         quantity:
           default: 1
-          description: Provision several same-country numbers from one submission
-            (1-5). The single verification covers all of them; each number is billed
-            only when it activates. Numbers that fail to order are skipped (best-effort).
+          description: "Provision several same-country numbers from one submission\
+            \ (1-5). The single verification covers all of them; each number is billed\
+            \ only when it activates. Numbers that fail to order are skipped (best-effort).\
+            \ With `areaCode`, a quantity above that area's live stock is rejected\
+            \ with a 400."
           maximum: 5
           minimum: 1
           type: integer
@@ -59698,9 +59700,11 @@ components:
           type: string
         quantity:
           default: 1
-          description: Provision several same-country numbers from one submission
-            (1-5). The single verification covers all of them; each number is billed
-            only when it activates. Numbers that fail to order are skipped (best-effort).
+          description: "Provision several same-country numbers from one submission\
+            \ (1-5). The single verification covers all of them; each number is billed\
+            \ only when it activates. Numbers that fail to order are skipped (best-effort).\
+            \ With `areaCode`, a quantity above that area's live stock is rejected\
+            \ with a 400."
           maximum: 5
           minimum: 1
           type: integer

@@ -44,7 +44,7 @@ namespace Zernio.Model
         /// <param name="profileId">profileId (required).</param>
         /// <param name="country">country (required).</param>
         /// <param name="submissionId">Idempotency token for this submission attempt. A retry/double-submit with the same token returns the same number; omit and each call creates a new number..</param>
-        /// <param name="quantity">Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort). (default to 1).</param>
+        /// <param name="quantity">Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort). With &#x60;areaCode&#x60;, a quantity above that area&#39;s live stock is rejected with a 400. (default to 1).</param>
         /// <param name="reuse">Reuse a prior approved verification for this country (skips document/field collection; places the order immediately)..</param>
         /// <param name="reuseOptionId">Which reusable verification to use (GET reusable.options[].id). The unambiguous selection key. Omitted &#x3D; the approved default. No match &#x3D; 409..</param>
         /// <param name="reuseFrom">Legacy fallback for &#x60;reuseOptionId&#x60;: the source phone number (GET reusable.options[].fromPhoneNumber). Ambiguous when a number labels two verifications — prefer &#x60;reuseOptionId&#x60;. Omitted &#x3D; the approved default. No match &#x3D; 409..</param>
@@ -101,9 +101,9 @@ namespace Zernio.Model
         public string SubmissionId { get; set; }
 
         /// <summary>
-        /// Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort).
+        /// Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort). With &#x60;areaCode&#x60;, a quantity above that area&#39;s live stock is rejected with a 400.
         /// </summary>
-        /// <value>Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort).</value>
+        /// <value>Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort). With &#x60;areaCode&#x60;, a quantity above that area&#39;s live stock is rejected with a 400.</value>
         [DataMember(Name = "quantity", EmitDefaultValue = false)]
         public int Quantity { get; set; }
 
