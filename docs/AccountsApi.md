@@ -535,7 +535,7 @@ catch (ApiException e)
 
 List accounts
 
-Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
+Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
 
 ### Example
 ```csharp
@@ -561,12 +561,12 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AccountsApi(httpClient, config, httpClientHandler);
-            var profileId = "profileId_example";  // string? | Filter accounts by profile ID (optional) 
+            var profileId = "profileId_example";  // string? | Filter accounts by profile ID. Must be a valid ObjectId. (optional) 
             var platform = "platform_example";  // string? | Filter accounts by platform (e.g. \"instagram\", \"twitter\"). (optional) 
             var status = "connected";  // string? | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional) 
             var includeOverLimit = false;  // bool? | When true, includes accounts from over-limit profiles. (optional)  (default to false)
-            var page = 56;  // int? | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional) 
-            var limit = 56;  // int? | Page size. Required alongside page for pagination. (optional) 
+            var page = 56;  // int? | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional) 
+            var limit = 56;  // int? | Page size. Must be provided together with page; sending only one of the two returns 400.  (optional) 
 
             try
             {
@@ -609,12 +609,12 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **profileId** | **string?** | Filter accounts by profile ID | [optional]  |
+| **profileId** | **string?** | Filter accounts by profile ID. Must be a valid ObjectId. | [optional]  |
 | **platform** | **string?** | Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional]  |
 | **status** | **string?** | Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional]  |
 | **includeOverLimit** | **bool?** | When true, includes accounts from over-limit profiles. | [optional] [default to false] |
-| **page** | **int?** | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. | [optional]  |
-| **limit** | **int?** | Page size. Required alongside page for pagination. | [optional]  |
+| **page** | **int?** | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional]  |
+| **limit** | **int?** | Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional]  |
 
 ### Return type
 
@@ -634,6 +634,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Accounts (with optional pagination) |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

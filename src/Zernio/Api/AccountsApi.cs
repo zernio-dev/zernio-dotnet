@@ -151,15 +151,15 @@ namespace Zernio.Api
         /// List accounts
         /// </summary>
         /// <remarks>
-        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
+        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="profileId">Filter accounts by profile ID (optional)</param>
+        /// <param name="profileId">Filter accounts by profile ID. Must be a valid ObjectId. (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="status">Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
-        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
-        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
+        /// <param name="page">Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)</param>
+        /// <param name="limit">Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)</param>
         /// <returns>AccountsListResponse</returns>
         AccountsListResponse ListAccounts(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default);
 
@@ -167,15 +167,15 @@ namespace Zernio.Api
         /// List accounts
         /// </summary>
         /// <remarks>
-        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
+        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="profileId">Filter accounts by profile ID (optional)</param>
+        /// <param name="profileId">Filter accounts by profile ID. Must be a valid ObjectId. (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="status">Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
-        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
-        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
+        /// <param name="page">Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)</param>
+        /// <param name="limit">Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)</param>
         /// <returns>ApiResponse of AccountsListResponse</returns>
         ApiResponse<AccountsListResponse> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default);
         /// <summary>
@@ -366,15 +366,15 @@ namespace Zernio.Api
         /// List accounts
         /// </summary>
         /// <remarks>
-        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
+        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="profileId">Filter accounts by profile ID (optional)</param>
+        /// <param name="profileId">Filter accounts by profile ID. Must be a valid ObjectId. (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="status">Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
-        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
-        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
+        /// <param name="page">Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)</param>
+        /// <param name="limit">Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountsListResponse</returns>
         System.Threading.Tasks.Task<AccountsListResponse> ListAccountsAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
@@ -383,15 +383,15 @@ namespace Zernio.Api
         /// List accounts
         /// </summary>
         /// <remarks>
-        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
+        /// Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="profileId">Filter accounts by profile ID (optional)</param>
+        /// <param name="profileId">Filter accounts by profile ID. Must be a valid ObjectId. (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="status">Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
-        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
-        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
+        /// <param name="page">Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)</param>
+        /// <param name="limit">Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountsListResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<AccountsListResponse>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
@@ -1374,15 +1374,15 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
+        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="profileId">Filter accounts by profile ID (optional)</param>
+        /// <param name="profileId">Filter accounts by profile ID. Must be a valid ObjectId. (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="status">Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
-        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
-        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
+        /// <param name="page">Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)</param>
+        /// <param name="limit">Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)</param>
         /// <returns>AccountsListResponse</returns>
         public AccountsListResponse ListAccounts(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default)
         {
@@ -1391,15 +1391,15 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
+        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="profileId">Filter accounts by profile ID (optional)</param>
+        /// <param name="profileId">Filter accounts by profile ID. Must be a valid ObjectId. (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="status">Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
-        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
-        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
+        /// <param name="page">Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)</param>
+        /// <param name="limit">Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)</param>
         /// <returns>ApiResponse of AccountsListResponse</returns>
         public Zernio.Client.ApiResponse<AccountsListResponse> ListAccountsWithHttpInfo(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default)
         {
@@ -1464,15 +1464,15 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
+        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="profileId">Filter accounts by profile ID (optional)</param>
+        /// <param name="profileId">Filter accounts by profile ID. Must be a valid ObjectId. (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="status">Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
-        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
-        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
+        /// <param name="page">Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)</param>
+        /// <param name="limit">Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountsListResponse</returns>
         public async System.Threading.Tasks.Task<AccountsListResponse> ListAccountsAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
@@ -1482,15 +1482,15 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
+        /// List accounts Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="profileId">Filter accounts by profile ID (optional)</param>
+        /// <param name="profileId">Filter accounts by profile ID. Must be a valid ObjectId. (optional)</param>
         /// <param name="platform">Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)</param>
         /// <param name="status">Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  (optional)</param>
         /// <param name="includeOverLimit">When true, includes accounts from over-limit profiles. (optional, default to false)</param>
-        /// <param name="page">Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)</param>
-        /// <param name="limit">Page size. Required alongside page for pagination. (optional)</param>
+        /// <param name="page">Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  (optional)</param>
+        /// <param name="limit">Page size. Must be provided together with page; sending only one of the two returns 400.  (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountsListResponse)</returns>
         public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<AccountsListResponse>> ListAccountsWithHttpInfoAsync(string? profileId = default, string? platform = default, string? status = default, bool? includeOverLimit = default, int? page = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default)
