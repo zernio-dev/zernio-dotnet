@@ -122,7 +122,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Appeal submitted; the registration is pending again. |  -  |
-| **400** | Registration has no campaign to appeal; fix the brand and re-verify instead |  -  |
+| **400** | Malformed &#x60;id&#x60;, or the registration has no campaign to appeal (fix the brand and re-verify instead). |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 
@@ -326,6 +326,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registration deactivated. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 
@@ -728,6 +729,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registration |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 
@@ -927,6 +929,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registrations, newest first |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1320,7 +1323,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | A new code was sent |  -  |
-| **400** | The registration is not awaiting a verification code |  -  |
+| **400** | Malformed &#x60;id&#x60;, or the registration is not awaiting a verification code. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 | **429** | A code was just sent — wait a minute before requesting another |  -  |
@@ -1628,6 +1631,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Share link created. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
 
@@ -1728,6 +1732,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registration submitted. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
 
@@ -2033,6 +2038,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | OTP result |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 
