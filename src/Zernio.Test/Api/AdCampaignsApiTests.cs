@@ -256,6 +256,28 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test ListAdKeywords
+        /// </summary>
+        [Fact]
+        public void ListAdKeywordsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //int? page = null;
+            //int? limit = null;
+            //string? accountId = null;
+            //string? adAccountId = null;
+            //string? profileId = null;
+            //string? campaignId = null;
+            //string? adSetId = null;
+            //string? status = null;
+            //string? matchType = null;
+            //bool? negative = null;
+            //string? search = null;
+            //var response = instance.ListAdKeywords(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search);
+            //Assert.IsType<ListAdKeywords200Response>(response);
+        }
+
+        /// <summary>
         /// Test ListAds
         /// </summary>
         [Fact]

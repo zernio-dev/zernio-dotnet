@@ -389,6 +389,47 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListAdCampaigns200Response</returns>
         ApiResponse<ListAdCampaigns200Response> ListAdCampaignsWithHttpInfo(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default);
         /// <summary>
+        /// List Search keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">Page number (1-based) (optional, default to 1)</param>
+        /// <param name="limit"> (optional, default to 50)</param>
+        /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)</param>
+        /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="campaignId">Platform campaign ID (optional)</param>
+        /// <param name="adSetId">Platform ad group ID (Google ad group) (optional)</param>
+        /// <param name="status">Keyword criterion status (optional)</param>
+        /// <param name="matchType"> (optional)</param>
+        /// <param name="negative">true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the keyword text (optional)</param>
+        /// <returns>ListAdKeywords200Response</returns>
+        ListAdKeywords200Response ListAdKeywords(int? page = default, int? limit = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? status = default, string? matchType = default, bool? negative = default, string? search = default);
+
+        /// <summary>
+        /// List Search keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">Page number (1-based) (optional, default to 1)</param>
+        /// <param name="limit"> (optional, default to 50)</param>
+        /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)</param>
+        /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="campaignId">Platform campaign ID (optional)</param>
+        /// <param name="adSetId">Platform ad group ID (Google ad group) (optional)</param>
+        /// <param name="status">Keyword criterion status (optional)</param>
+        /// <param name="matchType"> (optional)</param>
+        /// <param name="negative">true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the keyword text (optional)</param>
+        /// <returns>ApiResponse of ListAdKeywords200Response</returns>
+        ApiResponse<ListAdKeywords200Response> ListAdKeywordsWithHttpInfo(int? page = default, int? limit = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? status = default, string? matchType = default, bool? negative = default, string? search = default);
+        /// <summary>
         /// List ads
         /// </summary>
         /// <remarks>
@@ -970,6 +1011,49 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListAdCampaigns200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListAdCampaigns200Response>> ListAdCampaignsWithHttpInfoAsync(int? page = default, int? limit = default, string? source = default, string? platform = default, AdStatus? status = default, string? adAccountId = default, string? accountId = default, string? profileId = default, DateOnly? fromDate = default, DateOnly? toDate = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// List Search keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">Page number (1-based) (optional, default to 1)</param>
+        /// <param name="limit"> (optional, default to 50)</param>
+        /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)</param>
+        /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="campaignId">Platform campaign ID (optional)</param>
+        /// <param name="adSetId">Platform ad group ID (Google ad group) (optional)</param>
+        /// <param name="status">Keyword criterion status (optional)</param>
+        /// <param name="matchType"> (optional)</param>
+        /// <param name="negative">true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the keyword text (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdKeywords200Response</returns>
+        System.Threading.Tasks.Task<ListAdKeywords200Response> ListAdKeywordsAsync(int? page = default, int? limit = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? status = default, string? matchType = default, bool? negative = default, string? search = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// List Search keywords
+        /// </summary>
+        /// <remarks>
+        /// Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">Page number (1-based) (optional, default to 1)</param>
+        /// <param name="limit"> (optional, default to 50)</param>
+        /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)</param>
+        /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="campaignId">Platform campaign ID (optional)</param>
+        /// <param name="adSetId">Platform ad group ID (Google ad group) (optional)</param>
+        /// <param name="status">Keyword criterion status (optional)</param>
+        /// <param name="matchType"> (optional)</param>
+        /// <param name="negative">true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the keyword text (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdKeywords200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListAdKeywords200Response>> ListAdKeywordsWithHttpInfoAsync(int? page = default, int? limit = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? status = default, string? matchType = default, bool? negative = default, string? search = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// List ads
         /// </summary>
@@ -3564,6 +3648,251 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListAdCampaigns", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Search keywords Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">Page number (1-based) (optional, default to 1)</param>
+        /// <param name="limit"> (optional, default to 50)</param>
+        /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)</param>
+        /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="campaignId">Platform campaign ID (optional)</param>
+        /// <param name="adSetId">Platform ad group ID (Google ad group) (optional)</param>
+        /// <param name="status">Keyword criterion status (optional)</param>
+        /// <param name="matchType"> (optional)</param>
+        /// <param name="negative">true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the keyword text (optional)</param>
+        /// <returns>ListAdKeywords200Response</returns>
+        public ListAdKeywords200Response ListAdKeywords(int? page = default, int? limit = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? status = default, string? matchType = default, bool? negative = default, string? search = default)
+        {
+            Zernio.Client.ApiResponse<ListAdKeywords200Response> localVarResponse = ListAdKeywordsWithHttpInfo(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Search keywords Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">Page number (1-based) (optional, default to 1)</param>
+        /// <param name="limit"> (optional, default to 50)</param>
+        /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)</param>
+        /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="campaignId">Platform campaign ID (optional)</param>
+        /// <param name="adSetId">Platform ad group ID (Google ad group) (optional)</param>
+        /// <param name="status">Keyword criterion status (optional)</param>
+        /// <param name="matchType"> (optional)</param>
+        /// <param name="negative">true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the keyword text (optional)</param>
+        /// <returns>ApiResponse of ListAdKeywords200Response</returns>
+        public Zernio.Client.ApiResponse<ListAdKeywords200Response> ListAdKeywordsWithHttpInfo(int? page = default, int? limit = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? status = default, string? matchType = default, bool? negative = default, string? search = default)
+        {
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (page != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (profileId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            }
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (adSetId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adSetId", adSetId));
+            }
+            if (status != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "status", status));
+            }
+            if (matchType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "matchType", matchType));
+            }
+            if (negative != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "negative", negative));
+            }
+            if (search != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "search", search));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ListAdKeywords200Response>("/v1/ads/keywords", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdKeywords", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Search keywords Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">Page number (1-based) (optional, default to 1)</param>
+        /// <param name="limit"> (optional, default to 50)</param>
+        /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)</param>
+        /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="campaignId">Platform campaign ID (optional)</param>
+        /// <param name="adSetId">Platform ad group ID (Google ad group) (optional)</param>
+        /// <param name="status">Keyword criterion status (optional)</param>
+        /// <param name="matchType"> (optional)</param>
+        /// <param name="negative">true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the keyword text (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ListAdKeywords200Response</returns>
+        public async System.Threading.Tasks.Task<ListAdKeywords200Response> ListAdKeywordsAsync(int? page = default, int? limit = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? status = default, string? matchType = default, bool? negative = default, string? search = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<ListAdKeywords200Response> localVarResponse = await ListAdKeywordsWithHttpInfoAsync(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Search keywords Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="page">Page number (1-based) (optional, default to 1)</param>
+        /// <param name="limit"> (optional, default to 50)</param>
+        /// <param name="accountId">Social account ID (optional)</param>
+        /// <param name="adAccountId">Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional)</param>
+        /// <param name="profileId">Profile ID (optional)</param>
+        /// <param name="campaignId">Platform campaign ID (optional)</param>
+        /// <param name="adSetId">Platform ad group ID (Google ad group) (optional)</param>
+        /// <param name="status">Keyword criterion status (optional)</param>
+        /// <param name="matchType"> (optional)</param>
+        /// <param name="negative">true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. (optional)</param>
+        /// <param name="search">Case-insensitive substring match on the keyword text (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ListAdKeywords200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<ListAdKeywords200Response>> ListAdKeywordsWithHttpInfoAsync(int? page = default, int? limit = default, string? accountId = default, string? adAccountId = default, string? profileId = default, string? campaignId = default, string? adSetId = default, string? status = default, string? matchType = default, bool? negative = default, string? search = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            if (page != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (accountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            }
+            if (adAccountId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adAccountId", adAccountId));
+            }
+            if (profileId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "profileId", profileId));
+            }
+            if (campaignId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "campaignId", campaignId));
+            }
+            if (adSetId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "adSetId", adSetId));
+            }
+            if (status != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "status", status));
+            }
+            if (matchType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "matchType", matchType));
+            }
+            if (negative != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "negative", negative));
+            }
+            if (search != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "search", search));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ListAdKeywords200Response>("/v1/ads/keywords", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("ListAdKeywords", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

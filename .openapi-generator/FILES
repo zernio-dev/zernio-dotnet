@@ -812,6 +812,8 @@ docs/ListAdCatalogs200Response.md
 docs/ListAdCatalogs200ResponseCatalogsInner.md
 docs/ListAdCreatives200Response.md
 docs/ListAdImages200Response.md
+docs/ListAdKeywords200Response.md
+docs/ListAdKeywords200ResponseKeywordsInner.md
 docs/ListAdLabels200Response.md
 docs/ListAdStudies200Response.md
 docs/ListAds200Response.md
@@ -2404,6 +2406,8 @@ src/Zernio.Test/Model/ListAdCatalogs200ResponseCatalogsInnerTests.cs
 src/Zernio.Test/Model/ListAdCatalogs200ResponseTests.cs
 src/Zernio.Test/Model/ListAdCreatives200ResponseTests.cs
 src/Zernio.Test/Model/ListAdImages200ResponseTests.cs
+src/Zernio.Test/Model/ListAdKeywords200ResponseKeywordsInnerTests.cs
+src/Zernio.Test/Model/ListAdKeywords200ResponseTests.cs
 src/Zernio.Test/Model/ListAdLabels200ResponseTests.cs
 src/Zernio.Test/Model/ListAdStudies200ResponseTests.cs
 src/Zernio.Test/Model/ListAds200ResponseTests.cs
@@ -3984,6 +3988,8 @@ src/Zernio/Model/ListAdCatalogs200Response.cs
 src/Zernio/Model/ListAdCatalogs200ResponseCatalogsInner.cs
 src/Zernio/Model/ListAdCreatives200Response.cs
 src/Zernio/Model/ListAdImages200Response.cs
+src/Zernio/Model/ListAdKeywords200Response.cs
+src/Zernio/Model/ListAdKeywords200ResponseKeywordsInner.cs
 src/Zernio/Model/ListAdLabels200Response.cs
 src/Zernio/Model/ListAdStudies200Response.cs
 src/Zernio/Model/ListAds200Response.cs

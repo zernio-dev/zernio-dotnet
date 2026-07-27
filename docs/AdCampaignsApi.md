@@ -18,6 +18,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetAdTree**](AdCampaignsApi.md#getadtree) | **GET** /v1/ads/tree | Get campaign tree |
 | [**GetAdsTimeline**](AdCampaignsApi.md#getadstimeline) | **GET** /v1/ads/timeline | Get daily account metrics |
 | [**ListAdCampaigns**](AdCampaignsApi.md#listadcampaigns) | **GET** /v1/ads/campaigns | List campaigns |
+| [**ListAdKeywords**](AdCampaignsApi.md#listadkeywords) | **GET** /v1/ads/keywords | List Search keywords |
 | [**ListAds**](AdCampaignsApi.md#listads) | **GET** /v1/ads | List ads |
 | [**UpdateAd**](AdCampaignsApi.md#updatead) | **PUT** /v1/ads/{adId} | Update ad |
 | [**UpdateAdCampaign**](AdCampaignsApi.md#updateadcampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign |
@@ -1504,6 +1505,127 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated campaigns |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="listadkeywords"></a>
+# **ListAdKeywords**
+> ListAdKeywords200Response ListAdKeywords (int? page = null, int? limit = null, string? accountId = null, string? adAccountId = null, string? profileId = null, string? campaignId = null, string? adSetId = null, string? status = null, string? matchType = null, bool? negative = null, string? search = null)
+
+List Search keywords
+
+Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Populated by the periodic ads discovery sweep (roughly every 3 hours per account), so keywords added on Google appear with that delay. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class ListAdKeywordsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdCampaignsApi(httpClient, config, httpClientHandler);
+            var page = 1;  // int? | Page number (1-based) (optional)  (default to 1)
+            var limit = 50;  // int? |  (optional)  (default to 50)
+            var accountId = "accountId_example";  // string? | Social account ID (optional) 
+            var adAccountId = "adAccountId_example";  // string? | Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. (optional) 
+            var profileId = "profileId_example";  // string? | Profile ID (optional) 
+            var campaignId = "campaignId_example";  // string? | Platform campaign ID (optional) 
+            var adSetId = "adSetId_example";  // string? | Platform ad group ID (Google ad group) (optional) 
+            var status = "active";  // string? | Keyword criterion status (optional) 
+            var matchType = "exact";  // string? |  (optional) 
+            var negative = true;  // bool? | true = negative keywords only, false = positive only. Omit for both. (optional) 
+            var search = "search_example";  // string? | Case-insensitive substring match on the keyword text (optional) 
+
+            try
+            {
+                // List Search keywords
+                ListAdKeywords200Response result = apiInstance.ListAdKeywords(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdCampaignsApi.ListAdKeywords: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the ListAdKeywordsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Search keywords
+    ApiResponse<ListAdKeywords200Response> response = apiInstance.ListAdKeywordsWithHttpInfo(page, limit, accountId, adAccountId, profileId, campaignId, adSetId, status, matchType, negative, search);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdCampaignsApi.ListAdKeywordsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **page** | **int?** | Page number (1-based) | [optional] [default to 1] |
+| **limit** | **int?** |  | [optional] [default to 50] |
+| **accountId** | **string?** | Social account ID | [optional]  |
+| **adAccountId** | **string?** | Platform ad account ID (Google customer ID). Mirrors the same filter on /v1/ads. | [optional]  |
+| **profileId** | **string?** | Profile ID | [optional]  |
+| **campaignId** | **string?** | Platform campaign ID | [optional]  |
+| **adSetId** | **string?** | Platform ad group ID (Google ad group) | [optional]  |
+| **status** | **string?** | Keyword criterion status | [optional]  |
+| **matchType** | **string?** |  | [optional]  |
+| **negative** | **bool?** | true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. | [optional]  |
+| **search** | **string?** | Case-insensitive substring match on the keyword text | [optional]  |
+
+### Return type
+
+[**ListAdKeywords200Response**](ListAdKeywords200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Paginated keywords |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
