@@ -188,6 +188,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test PreflightSmsRegistration
+        /// </summary>
+        [Fact]
+        public void PreflightSmsRegistrationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //PreflightSmsRegistrationRequest preflightSmsRegistrationRequest = null;
+            //var response = instance.PreflightSmsRegistration(preflightSmsRegistrationRequest);
+            //Assert.IsType<PreflightSmsRegistration200Response>(response);
+        }
+
+        /// <summary>
         /// Test RequestSmsSenderIdLimitIncrease
         /// </summary>
         [Fact]
@@ -209,6 +221,19 @@ namespace Zernio.Test.Api
             //string id = null;
             //var response = instance.ResendSmsRegistrationOtp(id);
             //Assert.IsType<ResendSmsRegistrationOtp200Response>(response);
+        }
+
+        /// <summary>
+        /// Test RespondToSmsRegistrationReview
+        /// </summary>
+        [Fact]
+        public void RespondToSmsRegistrationReviewTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest = null;
+            //var response = instance.RespondToSmsRegistrationReview(id, respondToSmsRegistrationReviewRequest);
+            //Assert.IsType<RespondToSmsRegistrationReview200Response>(response);
         }
 
         /// <summary>

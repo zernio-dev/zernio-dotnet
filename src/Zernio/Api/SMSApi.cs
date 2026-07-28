@@ -256,6 +256,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of LookupSmsNumber200Response</returns>
         ApiResponse<LookupSmsNumber200Response> LookupSmsNumberWithHttpInfo(string number);
         /// <summary>
+        /// Pre-check a carrier registration
+        /// </summary>
+        /// <remarks>
+        /// Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="preflightSmsRegistrationRequest"></param>
+        /// <returns>PreflightSmsRegistration200Response</returns>
+        PreflightSmsRegistration200Response PreflightSmsRegistration(PreflightSmsRegistrationRequest preflightSmsRegistrationRequest);
+
+        /// <summary>
+        /// Pre-check a carrier registration
+        /// </summary>
+        /// <remarks>
+        /// Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="preflightSmsRegistrationRequest"></param>
+        /// <returns>ApiResponse of PreflightSmsRegistration200Response</returns>
+        ApiResponse<PreflightSmsRegistration200Response> PreflightSmsRegistrationWithHttpInfo(PreflightSmsRegistrationRequest preflightSmsRegistrationRequest);
+        /// <summary>
         /// Request a higher sender ID daily limit
         /// </summary>
         /// <remarks>
@@ -297,6 +318,29 @@ namespace Zernio.Api
         /// <param name="id"></param>
         /// <returns>ApiResponse of ResendSmsRegistrationOtp200Response</returns>
         ApiResponse<ResendSmsRegistrationOtp200Response> ResendSmsRegistrationOtpWithHttpInfo(string id);
+        /// <summary>
+        /// Reply to a change request
+        /// </summary>
+        /// <remarks>
+        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToSmsRegistrationReviewRequest"></param>
+        /// <returns>RespondToSmsRegistrationReview200Response</returns>
+        RespondToSmsRegistrationReview200Response RespondToSmsRegistrationReview(string id, RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest);
+
+        /// <summary>
+        /// Reply to a change request
+        /// </summary>
+        /// <remarks>
+        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToSmsRegistrationReviewRequest"></param>
+        /// <returns>ApiResponse of RespondToSmsRegistrationReview200Response</returns>
+        ApiResponse<RespondToSmsRegistrationReview200Response> RespondToSmsRegistrationReviewWithHttpInfo(string id, RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest);
         /// <summary>
         /// Add number to SMS registration
         /// </summary>
@@ -715,6 +759,29 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (LookupSmsNumber200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<LookupSmsNumber200Response>> LookupSmsNumberWithHttpInfoAsync(string number, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Pre-check a carrier registration
+        /// </summary>
+        /// <remarks>
+        /// Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="preflightSmsRegistrationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PreflightSmsRegistration200Response</returns>
+        System.Threading.Tasks.Task<PreflightSmsRegistration200Response> PreflightSmsRegistrationAsync(PreflightSmsRegistrationRequest preflightSmsRegistrationRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Pre-check a carrier registration
+        /// </summary>
+        /// <remarks>
+        /// Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="preflightSmsRegistrationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PreflightSmsRegistration200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<PreflightSmsRegistration200Response>> PreflightSmsRegistrationWithHttpInfoAsync(PreflightSmsRegistrationRequest preflightSmsRegistrationRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Request a higher sender ID daily limit
         /// </summary>
         /// <remarks>
@@ -760,6 +827,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ResendSmsRegistrationOtp200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ResendSmsRegistrationOtp200Response>> ResendSmsRegistrationOtpWithHttpInfoAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Reply to a change request
+        /// </summary>
+        /// <remarks>
+        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToSmsRegistrationReviewRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RespondToSmsRegistrationReview200Response</returns>
+        System.Threading.Tasks.Task<RespondToSmsRegistrationReview200Response> RespondToSmsRegistrationReviewAsync(string id, RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Reply to a change request
+        /// </summary>
+        /// <remarks>
+        /// Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToSmsRegistrationReviewRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RespondToSmsRegistrationReview200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RespondToSmsRegistrationReview200Response>> RespondToSmsRegistrationReviewWithHttpInfoAsync(string id, RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Add number to SMS registration
         /// </summary>
@@ -2552,6 +2644,135 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Pre-check a carrier registration Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="preflightSmsRegistrationRequest"></param>
+        /// <returns>PreflightSmsRegistration200Response</returns>
+        public PreflightSmsRegistration200Response PreflightSmsRegistration(PreflightSmsRegistrationRequest preflightSmsRegistrationRequest)
+        {
+            Zernio.Client.ApiResponse<PreflightSmsRegistration200Response> localVarResponse = PreflightSmsRegistrationWithHttpInfo(preflightSmsRegistrationRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pre-check a carrier registration Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="preflightSmsRegistrationRequest"></param>
+        /// <returns>ApiResponse of PreflightSmsRegistration200Response</returns>
+        public Zernio.Client.ApiResponse<PreflightSmsRegistration200Response> PreflightSmsRegistrationWithHttpInfo(PreflightSmsRegistrationRequest preflightSmsRegistrationRequest)
+        {
+            // verify the required parameter 'preflightSmsRegistrationRequest' is set
+            if (preflightSmsRegistrationRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'preflightSmsRegistrationRequest' when calling SMSApi->PreflightSmsRegistration");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = preflightSmsRegistrationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<PreflightSmsRegistration200Response>("/v1/sms/registrations/preflight", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PreflightSmsRegistration", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Pre-check a carrier registration Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="preflightSmsRegistrationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of PreflightSmsRegistration200Response</returns>
+        public async System.Threading.Tasks.Task<PreflightSmsRegistration200Response> PreflightSmsRegistrationAsync(PreflightSmsRegistrationRequest preflightSmsRegistrationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<PreflightSmsRegistration200Response> localVarResponse = await PreflightSmsRegistrationWithHttpInfoAsync(preflightSmsRegistrationRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Pre-check a carrier registration Dry-run of &#x60;POST /v1/sms/registrations&#x60; for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; &#x60;block&#x60; severity findings indicate a near-certain carrier rejection. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="preflightSmsRegistrationRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (PreflightSmsRegistration200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PreflightSmsRegistration200Response>> PreflightSmsRegistrationWithHttpInfoAsync(PreflightSmsRegistrationRequest preflightSmsRegistrationRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'preflightSmsRegistrationRequest' is set
+            if (preflightSmsRegistrationRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'preflightSmsRegistrationRequest' when calling SMSApi->PreflightSmsRegistration");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = preflightSmsRegistrationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PreflightSmsRegistration200Response>("/v1/sms/registrations/preflight", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("PreflightSmsRegistration", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Request a higher sender ID daily limit Asks support to raise the workspace&#39;s daily sender-ID message cap. There is no self-serve raise: the request (desired cap + use case) is reviewed manually, usually within a business day. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -2801,6 +3022,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ResendSmsRegistrationOtp", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToSmsRegistrationReviewRequest"></param>
+        /// <returns>RespondToSmsRegistrationReview200Response</returns>
+        public RespondToSmsRegistrationReview200Response RespondToSmsRegistrationReview(string id, RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest)
+        {
+            Zernio.Client.ApiResponse<RespondToSmsRegistrationReview200Response> localVarResponse = RespondToSmsRegistrationReviewWithHttpInfo(id, respondToSmsRegistrationReviewRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToSmsRegistrationReviewRequest"></param>
+        /// <returns>ApiResponse of RespondToSmsRegistrationReview200Response</returns>
+        public Zernio.Client.ApiResponse<RespondToSmsRegistrationReview200Response> RespondToSmsRegistrationReviewWithHttpInfo(string id, RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling SMSApi->RespondToSmsRegistrationReview");
+
+            // verify the required parameter 'respondToSmsRegistrationReviewRequest' is set
+            if (respondToSmsRegistrationReviewRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'respondToSmsRegistrationReviewRequest' when calling SMSApi->RespondToSmsRegistrationReview");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = respondToSmsRegistrationReviewRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<RespondToSmsRegistrationReview200Response>("/v1/sms/registrations/{id}/respond", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RespondToSmsRegistrationReview", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToSmsRegistrationReviewRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RespondToSmsRegistrationReview200Response</returns>
+        public async System.Threading.Tasks.Task<RespondToSmsRegistrationReview200Response> RespondToSmsRegistrationReviewAsync(string id, RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RespondToSmsRegistrationReview200Response> localVarResponse = await RespondToSmsRegistrationReviewWithHttpInfoAsync(id, respondToSmsRegistrationReviewRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Reply to a change request Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. The registration returns to &#x60;requested&#x60; (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="respondToSmsRegistrationReviewRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RespondToSmsRegistrationReview200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RespondToSmsRegistrationReview200Response>> RespondToSmsRegistrationReviewWithHttpInfoAsync(string id, RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling SMSApi->RespondToSmsRegistrationReview");
+
+            // verify the required parameter 'respondToSmsRegistrationReviewRequest' is set
+            if (respondToSmsRegistrationReviewRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'respondToSmsRegistrationReviewRequest' when calling SMSApi->RespondToSmsRegistrationReview");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = respondToSmsRegistrationReviewRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RespondToSmsRegistrationReview200Response>("/v1/sms/registrations/{id}/respond", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RespondToSmsRegistrationReview", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

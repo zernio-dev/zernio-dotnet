@@ -15,8 +15,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListSmsRegistrations**](SMSApi.md#listsmsregistrations) | **GET** /v1/sms/registrations | List carrier registrations |
 | [**ListSmsSenderIds**](SMSApi.md#listsmssenderids) | **GET** /v1/sms/sender-ids | List alphanumeric sender IDs |
 | [**LookupSmsNumber**](SMSApi.md#lookupsmsnumber) | **GET** /v1/sms/lookup | Look up carrier + line type |
+| [**PreflightSmsRegistration**](SMSApi.md#preflightsmsregistration) | **POST** /v1/sms/registrations/preflight | Pre-check a carrier registration |
 | [**RequestSmsSenderIdLimitIncrease**](SMSApi.md#requestsmssenderidlimitincrease) | **POST** /v1/sms/sender-ids/limit-request | Request a higher sender ID daily limit |
 | [**ResendSmsRegistrationOtp**](SMSApi.md#resendsmsregistrationotp) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP |
+| [**RespondToSmsRegistrationReview**](SMSApi.md#respondtosmsregistrationreview) | **POST** /v1/sms/registrations/{id}/respond | Reply to a change request |
 | [**ReuseSmsRegistrationForNumber**](SMSApi.md#reusesmsregistrationfornumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration |
 | [**SendSms**](SMSApi.md#sendsms) | **POST** /v1/sms/messages | Send an SMS/MMS |
 | [**ShareSmsRegistration**](SMSApi.md#sharesmsregistration) | **POST** /v1/sms/registrations/share | Create a registration share link |
@@ -1126,6 +1128,106 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="preflightsmsregistration"></a>
+# **PreflightSmsRegistration**
+> PreflightSmsRegistration200Response PreflightSmsRegistration (PreflightSmsRegistrationRequest preflightSmsRegistrationRequest)
+
+Pre-check a carrier registration
+
+Dry-run of `POST /v1/sms/registrations` for 10DLC: validates and composes the exact brand/campaign payloads a submission would store (branding, disclosures, auto-replies), runs deterministic compliance lints plus an AI reviewer over them, and returns the findings WITHOUT creating anything. Use it to fix issues before submitting; `block` severity findings indicate a near-certain carrier rejection. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class PreflightSmsRegistrationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
+            var preflightSmsRegistrationRequest = new PreflightSmsRegistrationRequest(); // PreflightSmsRegistrationRequest | 
+
+            try
+            {
+                // Pre-check a carrier registration
+                PreflightSmsRegistration200Response result = apiInstance.PreflightSmsRegistration(preflightSmsRegistrationRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SMSApi.PreflightSmsRegistration: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the PreflightSmsRegistrationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Pre-check a carrier registration
+    ApiResponse<PreflightSmsRegistration200Response> response = apiInstance.PreflightSmsRegistrationWithHttpInfo(preflightSmsRegistrationRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SMSApi.PreflightSmsRegistrationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **preflightSmsRegistrationRequest** | [**PreflightSmsRegistrationRequest**](PreflightSmsRegistrationRequest.md) |  |  |
+
+### Return type
+
+[**PreflightSmsRegistration200Response**](PreflightSmsRegistration200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Composed payloads + findings. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="requestsmssenderidlimitincrease"></a>
 # **RequestSmsSenderIdLimitIncrease**
 > RequestSmsSenderIdLimitIncrease200Response RequestSmsSenderIdLimitIncrease (RequestSmsSenderIdLimitIncreaseRequest requestSmsSenderIdLimitIncreaseRequest)
@@ -1327,6 +1429,110 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **404** | Registration not found |  -  |
 | **429** | A code was just sent — wait a minute before requesting another |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="respondtosmsregistrationreview"></a>
+# **RespondToSmsRegistrationReview**
+> RespondToSmsRegistrationReview200Response RespondToSmsRegistrationReview (string id, RespondToSmsRegistrationReviewRequest respondToSmsRegistrationReviewRequest)
+
+Reply to a change request
+
+Replies to a reviewer change request on a registration in `changes_requested` state: a note, hosted document URLs (from `POST /v1/sms/opt-in-proof`), or both, sent together. The registration returns to `requested` (back in review) — no need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via `POST /v1/sms/registrations` with `resubmitRequestId` instead. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RespondToSmsRegistrationReviewExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new SMSApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | 
+            var respondToSmsRegistrationReviewRequest = new RespondToSmsRegistrationReviewRequest(); // RespondToSmsRegistrationReviewRequest | 
+
+            try
+            {
+                // Reply to a change request
+                RespondToSmsRegistrationReview200Response result = apiInstance.RespondToSmsRegistrationReview(id, respondToSmsRegistrationReviewRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling SMSApi.RespondToSmsRegistrationReview: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RespondToSmsRegistrationReviewWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Reply to a change request
+    ApiResponse<RespondToSmsRegistrationReview200Response> response = apiInstance.RespondToSmsRegistrationReviewWithHttpInfo(id, respondToSmsRegistrationReviewRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SMSApi.RespondToSmsRegistrationReviewWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** |  |  |
+| **respondToSmsRegistrationReviewRequest** | [**RespondToSmsRegistrationReviewRequest**](RespondToSmsRegistrationReviewRequest.md) |  |  |
+
+### Return type
+
+[**RespondToSmsRegistrationReview200Response**](RespondToSmsRegistrationReview200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply recorded; the registration is back in review. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Registration not found |  -  |
+| **409** | Registration is not waiting on changes |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

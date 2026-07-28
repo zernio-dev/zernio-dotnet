@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **PhoneNumbers** | **List&lt;string&gt;** | Your numbers this registration covers. | 
 **Brand** | [**StartSmsRegistrationRequestBrand**](StartSmsRegistrationRequestBrand.md) |  | [optional] 
 **Campaign** | [**StartSmsRegistrationRequestCampaign**](StartSmsRegistrationRequestCampaign.md) |  | [optional] 
+**MessagingBrandName** | **string** | DBA / trade name used to brand message content (samples and auto-replies) when it differs from the legal name, e.g. a sole proprietor texting under a business name. The legal &#x60;brand.displayName&#x60; is still what the carrier vets. | [optional] 
 **WizardValues** | **Dictionary&lt;string, string&gt;** | Raw dashboard-wizard answers, stored only to prefill edit-and-resubmit. API integrators can omit. | [optional] 
 **ResubmitRequestId** | **string** | Resubmit a registration that was returned for changes — updates it in place instead of creating a new one. | [optional] 
 **TollFree** | [**StartSmsRegistrationRequestTollFree**](StartSmsRegistrationRequestTollFree.md) |  | [optional] 

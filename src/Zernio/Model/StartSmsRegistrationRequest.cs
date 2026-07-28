@@ -76,10 +76,11 @@ namespace Zernio.Model
         /// <param name="phoneNumbers">Your numbers this registration covers. (required).</param>
         /// <param name="brand">brand.</param>
         /// <param name="campaign">campaign.</param>
+        /// <param name="messagingBrandName">DBA / trade name used to brand message content (samples and auto-replies) when it differs from the legal name, e.g. a sole proprietor texting under a business name. The legal &#x60;brand.displayName&#x60; is still what the carrier vets..</param>
         /// <param name="wizardValues">Raw dashboard-wizard answers, stored only to prefill edit-and-resubmit. API integrators can omit..</param>
         /// <param name="resubmitRequestId">Resubmit a registration that was returned for changes — updates it in place instead of creating a new one..</param>
         /// <param name="tollFree">tollFree.</param>
-        public StartSmsRegistrationRequest(RegistrationTypeEnum registrationType = default, List<string> phoneNumbers = default, StartSmsRegistrationRequestBrand brand = default, StartSmsRegistrationRequestCampaign campaign = default, Dictionary<string, string> wizardValues = default, string resubmitRequestId = default, StartSmsRegistrationRequestTollFree tollFree = default)
+        public StartSmsRegistrationRequest(RegistrationTypeEnum registrationType = default, List<string> phoneNumbers = default, StartSmsRegistrationRequestBrand brand = default, StartSmsRegistrationRequestCampaign campaign = default, string messagingBrandName = default, Dictionary<string, string> wizardValues = default, string resubmitRequestId = default, StartSmsRegistrationRequestTollFree tollFree = default)
         {
             this.RegistrationType = registrationType;
             // to ensure "phoneNumbers" is required (not null)
@@ -90,6 +91,7 @@ namespace Zernio.Model
             this.PhoneNumbers = phoneNumbers;
             this.Brand = brand;
             this.Campaign = campaign;
+            this.MessagingBrandName = messagingBrandName;
             this.WizardValues = wizardValues;
             this.ResubmitRequestId = resubmitRequestId;
             this.TollFree = tollFree;
@@ -113,6 +115,13 @@ namespace Zernio.Model
         /// </summary>
         [DataMember(Name = "campaign", EmitDefaultValue = false)]
         public StartSmsRegistrationRequestCampaign Campaign { get; set; }
+
+        /// <summary>
+        /// DBA / trade name used to brand message content (samples and auto-replies) when it differs from the legal name, e.g. a sole proprietor texting under a business name. The legal &#x60;brand.displayName&#x60; is still what the carrier vets.
+        /// </summary>
+        /// <value>DBA / trade name used to brand message content (samples and auto-replies) when it differs from the legal name, e.g. a sole proprietor texting under a business name. The legal &#x60;brand.displayName&#x60; is still what the carrier vets.</value>
+        [DataMember(Name = "messagingBrandName", EmitDefaultValue = false)]
+        public string MessagingBrandName { get; set; }
 
         /// <summary>
         /// Raw dashboard-wizard answers, stored only to prefill edit-and-resubmit. API integrators can omit.
@@ -146,6 +155,7 @@ namespace Zernio.Model
             sb.Append("  PhoneNumbers: ").Append(PhoneNumbers).Append("\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  Campaign: ").Append(Campaign).Append("\n");
+            sb.Append("  MessagingBrandName: ").Append(MessagingBrandName).Append("\n");
             sb.Append("  WizardValues: ").Append(WizardValues).Append("\n");
             sb.Append("  ResubmitRequestId: ").Append(ResubmitRequestId).Append("\n");
             sb.Append("  TollFree: ").Append(TollFree).Append("\n");
@@ -169,6 +179,18 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // MessagingBrandName (string) maxLength
+            if (this.MessagingBrandName != null && this.MessagingBrandName.Length > 60)
+            {
+                yield return new ValidationResult("Invalid value for MessagingBrandName, length must be less than 60.", new [] { "MessagingBrandName" });
+            }
+
+            // MessagingBrandName (string) minLength
+            if (this.MessagingBrandName != null && this.MessagingBrandName.Length < 2)
+            {
+                yield return new ValidationResult("Invalid value for MessagingBrandName, length must be greater than 2.", new [] { "MessagingBrandName" });
+            }
+
             yield break;
         }
     }
