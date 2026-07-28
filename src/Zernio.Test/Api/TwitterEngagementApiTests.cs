@@ -104,6 +104,26 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test SearchTweets
+        /// </summary>
+        [Fact]
+        public void SearchTweetsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //string query = null;
+            //int? limit = null;
+            //string? sinceId = null;
+            //string? untilId = null;
+            //DateTime? startTime = null;
+            //DateTime? endTime = null;
+            //string? cursor = null;
+            //string? sortOrder = null;
+            //var response = instance.SearchTweets(accountId, query, limit, sinceId, untilId, startTime, endTime, cursor, sortOrder);
+            //Assert.IsType<SearchTweets200Response>(response);
+        }
+
+        /// <summary>
         /// Test UndoRetweet
         /// </summary>
         [Fact]

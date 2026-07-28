@@ -8,6 +8,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**FollowUser**](TwitterEngagementApi.md#followuser) | **POST** /v1/twitter/follow | Follow a user |
 | [**RemoveBookmark**](TwitterEngagementApi.md#removebookmark) | **DELETE** /v1/twitter/bookmark | Remove bookmark |
 | [**RetweetPost**](TwitterEngagementApi.md#retweetpost) | **POST** /v1/twitter/retweet | Retweet a post |
+| [**SearchTweets**](TwitterEngagementApi.md#searchtweets) | **GET** /v1/twitter/search | Search recent tweets |
 | [**UndoRetweet**](TwitterEngagementApi.md#undoretweet) | **DELETE** /v1/twitter/retweet | Undo retweet |
 | [**UnfollowUser**](TwitterEngagementApi.md#unfollowuser) | **DELETE** /v1/twitter/follow | Unfollow a user |
 
@@ -414,6 +415,126 @@ catch (ApiException e)
 | **400** | Bad request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="searchtweets"></a>
+# **SearchTweets**
+> SearchTweets200Response SearchTweets (string accountId, string query, int? limit = null, string? sinceId = null, string? untilId = null, DateTime? startTime = null, DateTime? endTime = null, string? cursor = null, string? sortOrder = null)
+
+Search recent tweets
+
+Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X's search operators (`from:user`, `-is:retweet`, `is:reply`, `lang:en`, `\"exact phrase\"`, `conversation_id:123`, boolean `OR`, ...). Note that standalone operators like `is:` / `has:` / `lang:` must be combined with a keyword or `from:` clause.  To reply to a found tweet, pass its `id` as the twitter platform entry's `platformSpecificData.replyToTweetId` when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class SearchTweetsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TwitterEngagementApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The social account ID
+            var query = "query_example";  // string | X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.
+            var limit = 10;  // int? | Results per page. X requires a minimum of 10; values below 10 are rejected. (optional)  (default to 10)
+            var sinceId = "sinceId_example";  // string? | Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional) 
+            var untilId = "untilId_example";  // string? | Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional) 
+            var startTime = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional) 
+            var endTime = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTime? | Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional) 
+            var cursor = "cursor_example";  // string? | Pagination cursor from a previous response (optional) 
+            var sortOrder = "recency";  // string? |  (optional)  (default to recency)
+
+            try
+            {
+                // Search recent tweets
+                SearchTweets200Response result = apiInstance.SearchTweets(accountId, query, limit, sinceId, untilId, startTime, endTime, cursor, sortOrder);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TwitterEngagementApi.SearchTweets: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the SearchTweetsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Search recent tweets
+    ApiResponse<SearchTweets200Response> response = apiInstance.SearchTweetsWithHttpInfo(accountId, query, limit, sinceId, untilId, startTime, endTime, cursor, sortOrder);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TwitterEngagementApi.SearchTweetsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The social account ID |  |
+| **query** | **string** | X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400. |  |
+| **limit** | **int?** | Results per page. X requires a minimum of 10; values below 10 are rejected. | [optional] [default to 10] |
+| **sinceId** | **string?** | Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. | [optional]  |
+| **untilId** | **string?** | Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. | [optional]  |
+| **startTime** | **DateTime?** | Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days | [optional]  |
+| **endTime** | **DateTime?** | Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days | [optional]  |
+| **cursor** | **string?** | Pagination cursor from a previous response | [optional]  |
+| **sortOrder** | **string?** |  | [optional] [default to recency] |
+
+### Return type
+
+[**SearchTweets200Response**](SearchTweets200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching tweets |  -  |
+| **400** | Bad request (invalid params, or X rejected the query as malformed) |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | X API spend cap reached for this billing period |  -  |
+| **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED) |  -  |
+| **404** | Account not found |  -  |
+| **429** | X search rate limit exceeded (300 requests per 15 minutes) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

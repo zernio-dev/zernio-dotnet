@@ -1111,6 +1111,10 @@ docs/SearchInboxConversations200ResponseMeta.md
 docs/SearchInboxConversations200ResponseMetaAccountsSkippedInner.md
 docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/SearchReddit200Response.md
+docs/SearchTweets200Response.md
+docs/SearchTweets200ResponseMeta.md
+docs/SearchTweets200ResponseTweetsInner.md
+docs/SearchTweets200ResponseTweetsInnerAuthor.md
 docs/SelectFacebookPage200Response.md
 docs/SelectFacebookPage200ResponseAccount.md
 docs/SelectFacebookPage409Response.md
@@ -2702,6 +2706,10 @@ src/Zernio.Test/Model/SearchInboxConversations200ResponseMetaFailedAccountsInner
 src/Zernio.Test/Model/SearchInboxConversations200ResponseMetaTests.cs
 src/Zernio.Test/Model/SearchInboxConversations200ResponseTests.cs
 src/Zernio.Test/Model/SearchReddit200ResponseTests.cs
+src/Zernio.Test/Model/SearchTweets200ResponseMetaTests.cs
+src/Zernio.Test/Model/SearchTweets200ResponseTests.cs
+src/Zernio.Test/Model/SearchTweets200ResponseTweetsInnerAuthorTests.cs
+src/Zernio.Test/Model/SearchTweets200ResponseTweetsInnerTests.cs
 src/Zernio.Test/Model/SelectFacebookPage200ResponseAccountTests.cs
 src/Zernio.Test/Model/SelectFacebookPage200ResponseTests.cs
 src/Zernio.Test/Model/SelectFacebookPage409ResponseTests.cs
@@ -4294,6 +4302,10 @@ src/Zernio/Model/SearchInboxConversations200ResponseMeta.cs
 src/Zernio/Model/SearchInboxConversations200ResponseMetaAccountsSkippedInner.cs
 src/Zernio/Model/SearchInboxConversations200ResponseMetaFailedAccountsInner.cs
 src/Zernio/Model/SearchReddit200Response.cs
+src/Zernio/Model/SearchTweets200Response.cs
+src/Zernio/Model/SearchTweets200ResponseMeta.cs
+src/Zernio/Model/SearchTweets200ResponseTweetsInner.cs
+src/Zernio/Model/SearchTweets200ResponseTweetsInnerAuthor.cs
 src/Zernio/Model/SelectFacebookPage200Response.cs
 src/Zernio/Model/SelectFacebookPage200ResponseAccount.cs
 src/Zernio/Model/SelectFacebookPage409Response.cs

@@ -115,6 +115,43 @@ namespace Zernio.Api
         /// <returns>ApiResponse of RetweetPost200Response</returns>
         ApiResponse<RetweetPost200Response> RetweetPostWithHttpInfo(RetweetPostRequest retweetPostRequest);
         /// <summary>
+        /// Search recent tweets
+        /// </summary>
+        /// <remarks>
+        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID</param>
+        /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
+        /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
+        /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="untilId">Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="startTime">Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)</param>
+        /// <param name="endTime">Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)</param>
+        /// <param name="cursor">Pagination cursor from a previous response (optional)</param>
+        /// <param name="sortOrder"> (optional, default to recency)</param>
+        /// <returns>SearchTweets200Response</returns>
+        SearchTweets200Response SearchTweets(string accountId, string query, int? limit = default, string? sinceId = default, string? untilId = default, DateTime? startTime = default, DateTime? endTime = default, string? cursor = default, string? sortOrder = default);
+
+        /// <summary>
+        /// Search recent tweets
+        /// </summary>
+        /// <remarks>
+        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID</param>
+        /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
+        /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
+        /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="untilId">Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="startTime">Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)</param>
+        /// <param name="endTime">Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)</param>
+        /// <param name="cursor">Pagination cursor from a previous response (optional)</param>
+        /// <param name="sortOrder"> (optional, default to recency)</param>
+        /// <returns>ApiResponse of SearchTweets200Response</returns>
+        ApiResponse<SearchTweets200Response> SearchTweetsWithHttpInfo(string accountId, string query, int? limit = default, string? sinceId = default, string? untilId = default, DateTime? startTime = default, DateTime? endTime = default, string? cursor = default, string? sortOrder = default);
+        /// <summary>
         /// Undo retweet
         /// </summary>
         /// <remarks>
@@ -263,6 +300,45 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RetweetPost200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<RetweetPost200Response>> RetweetPostWithHttpInfoAsync(RetweetPostRequest retweetPostRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Search recent tweets
+        /// </summary>
+        /// <remarks>
+        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID</param>
+        /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
+        /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
+        /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="untilId">Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="startTime">Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)</param>
+        /// <param name="endTime">Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)</param>
+        /// <param name="cursor">Pagination cursor from a previous response (optional)</param>
+        /// <param name="sortOrder"> (optional, default to recency)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SearchTweets200Response</returns>
+        System.Threading.Tasks.Task<SearchTweets200Response> SearchTweetsAsync(string accountId, string query, int? limit = default, string? sinceId = default, string? untilId = default, DateTime? startTime = default, DateTime? endTime = default, string? cursor = default, string? sortOrder = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Search recent tweets
+        /// </summary>
+        /// <remarks>
+        /// Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID</param>
+        /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
+        /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
+        /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="untilId">Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="startTime">Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)</param>
+        /// <param name="endTime">Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)</param>
+        /// <param name="cursor">Pagination cursor from a previous response (optional)</param>
+        /// <param name="sortOrder"> (optional, default to recency)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SearchTweets200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<SearchTweets200Response>> SearchTweetsWithHttpInfoAsync(string accountId, string query, int? limit = default, string? sinceId = default, string? untilId = default, DateTime? startTime = default, DateTime? endTime = default, string? cursor = default, string? sortOrder = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Undo retweet
         /// </summary>
@@ -1048,6 +1124,231 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("RetweetPost", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID</param>
+        /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
+        /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
+        /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="untilId">Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="startTime">Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)</param>
+        /// <param name="endTime">Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)</param>
+        /// <param name="cursor">Pagination cursor from a previous response (optional)</param>
+        /// <param name="sortOrder"> (optional, default to recency)</param>
+        /// <returns>SearchTweets200Response</returns>
+        public SearchTweets200Response SearchTweets(string accountId, string query, int? limit = default, string? sinceId = default, string? untilId = default, DateTime? startTime = default, DateTime? endTime = default, string? cursor = default, string? sortOrder = default)
+        {
+            Zernio.Client.ApiResponse<SearchTweets200Response> localVarResponse = SearchTweetsWithHttpInfo(accountId, query, limit, sinceId, untilId, startTime, endTime, cursor, sortOrder);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID</param>
+        /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
+        /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
+        /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="untilId">Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="startTime">Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)</param>
+        /// <param name="endTime">Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)</param>
+        /// <param name="cursor">Pagination cursor from a previous response (optional)</param>
+        /// <param name="sortOrder"> (optional, default to recency)</param>
+        /// <returns>ApiResponse of SearchTweets200Response</returns>
+        public Zernio.Client.ApiResponse<SearchTweets200Response> SearchTweetsWithHttpInfo(string accountId, string query, int? limit = default, string? sinceId = default, string? untilId = default, DateTime? startTime = default, DateTime? endTime = default, string? cursor = default, string? sortOrder = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TwitterEngagementApi->SearchTweets");
+
+            // verify the required parameter 'query' is set
+            if (query == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'query' when calling TwitterEngagementApi->SearchTweets");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (sinceId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "sinceId", sinceId));
+            }
+            if (untilId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "untilId", untilId));
+            }
+            if (startTime != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "startTime", startTime));
+            }
+            if (endTime != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "endTime", endTime));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+            if (sortOrder != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "sortOrder", sortOrder));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<SearchTweets200Response>("/v1/twitter/search", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchTweets", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID</param>
+        /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
+        /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
+        /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="untilId">Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="startTime">Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)</param>
+        /// <param name="endTime">Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)</param>
+        /// <param name="cursor">Pagination cursor from a previous response (optional)</param>
+        /// <param name="sortOrder"> (optional, default to recency)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of SearchTweets200Response</returns>
+        public async System.Threading.Tasks.Task<SearchTweets200Response> SearchTweetsAsync(string accountId, string query, int? limit = default, string? sinceId = default, string? untilId = default, DateTime? startTime = default, DateTime? endTime = default, string? cursor = default, string? sortOrder = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<SearchTweets200Response> localVarResponse = await SearchTweetsWithHttpInfoAsync(accountId, query, limit, sinceId, untilId, startTime, endTime, cursor, sortOrder, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Search recent tweets Search public tweets from the last 7 days matching an X search query, e.g. to discover tweets to reply to. The query string is passed through to X unchanged and supports X&#39;s search operators (&#x60;from:user&#x60;, &#x60;-is:retweet&#x60;, &#x60;is:reply&#x60;, &#x60;lang:en&#x60;, &#x60;\&quot;exact phrase\&quot;&#x60;, &#x60;conversation_id:123&#x60;, boolean &#x60;OR&#x60;, ...). Note that standalone operators like &#x60;is:&#x60; / &#x60;has:&#x60; / &#x60;lang:&#x60; must be combined with a keyword or &#x60;from:&#x60; clause.  To reply to a found tweet, pass its &#x60;id&#x60; as the twitter platform entry&#39;s &#x60;platformSpecificData.replyToTweetId&#x60; when creating a post.  Rate limit: 300 requests per 15-min window per connected account. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The social account ID</param>
+        /// <param name="query">X search query, max 512 characters. Operators are passed through unchanged; X rejects malformed queries with a 400.</param>
+        /// <param name="limit">Results per page. X requires a minimum of 10; values below 10 are rejected. (optional, default to 10)</param>
+        /// <param name="sinceId">Only return tweets with an ID greater than (more recent than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="untilId">Only return tweets with an ID less than (older than) this numeric tweet ID. Non-numeric values are rejected with 400. (optional)</param>
+        /// <param name="startTime">Oldest UTC timestamp (ISO 8601, inclusive), within the last 7 days (optional)</param>
+        /// <param name="endTime">Newest UTC timestamp (ISO 8601, exclusive), within the last 7 days (optional)</param>
+        /// <param name="cursor">Pagination cursor from a previous response (optional)</param>
+        /// <param name="sortOrder"> (optional, default to recency)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (SearchTweets200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<SearchTweets200Response>> SearchTweetsWithHttpInfoAsync(string accountId, string query, int? limit = default, string? sinceId = default, string? untilId = default, DateTime? startTime = default, DateTime? endTime = default, string? cursor = default, string? sortOrder = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling TwitterEngagementApi->SearchTweets");
+
+            // verify the required parameter 'query' is set
+            if (query == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'query' when calling TwitterEngagementApi->SearchTweets");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
+            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+            if (limit != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
+            }
+            if (sinceId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "sinceId", sinceId));
+            }
+            if (untilId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "untilId", untilId));
+            }
+            if (startTime != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "startTime", startTime));
+            }
+            if (endTime != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "endTime", endTime));
+            }
+            if (cursor != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "cursor", cursor));
+            }
+            if (sortOrder != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "sortOrder", sortOrder));
+            }
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<SearchTweets200Response>("/v1/twitter/search", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SearchTweets", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
