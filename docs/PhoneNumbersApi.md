@@ -230,8 +230,9 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Availability + address constraint. |  -  |
-| **400** | Country not offerable |  -  |
+| **400** | Country not offerable, or the inventory provider rejected the lookup (its 4xx status is forwarded as-is). |  -  |
 | **401** | Unauthorized |  -  |
+| **502** | The inventory provider was unreachable or returned an unclassified error. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
