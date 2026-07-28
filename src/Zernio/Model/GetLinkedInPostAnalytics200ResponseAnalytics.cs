@@ -44,7 +44,7 @@ namespace Zernio.Model
         /// <param name="saves">Times the post was saved (personal accounts only; 0 for organization accounts).</param>
         /// <param name="sends">Times the post was sent via LinkedIn messaging (personal accounts only; 0 for organization accounts).</param>
         /// <param name="clicks">Clicks on the post (organization accounts only).</param>
-        /// <param name="views">Video views (video posts only).</param>
+        /// <param name="views">Video views (video posts only). Organization accounts require the connected LinkedIn user to be an ADMINISTRATOR of the page; CONTENT_ADMINISTRATOR returns 0..</param>
         /// <param name="engagementRate">Engagement rate as percentage.</param>
         public GetLinkedInPostAnalytics200ResponseAnalytics(int impressions = default, int reach = default, int likes = default, int comments = default, int shares = default, int saves = default, int sends = default, int clicks = default, int views = default, decimal engagementRate = default)
         {
@@ -117,9 +117,9 @@ namespace Zernio.Model
         public int Clicks { get; set; }
 
         /// <summary>
-        /// Video views (video posts only)
+        /// Video views (video posts only). Organization accounts require the connected LinkedIn user to be an ADMINISTRATOR of the page; CONTENT_ADMINISTRATOR returns 0.
         /// </summary>
-        /// <value>Video views (video posts only)</value>
+        /// <value>Video views (video posts only). Organization accounts require the connected LinkedIn user to be an ADMINISTRATOR of the page; CONTENT_ADMINISTRATOR returns 0.</value>
         [DataMember(Name = "views", EmitDefaultValue = false)]
         public int Views { get; set; }
 
