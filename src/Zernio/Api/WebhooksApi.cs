@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Create webhook
         /// </summary>
         /// <remarks>
-        /// Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+        /// Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWebhookSettingsRequest"></param>
@@ -43,7 +43,7 @@ namespace Zernio.Api
         /// Create webhook
         /// </summary>
         /// <remarks>
-        /// Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+        /// Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWebhookSettingsRequest"></param>
@@ -105,7 +105,7 @@ namespace Zernio.Api
         /// List webhooks
         /// </summary>
         /// <remarks>
-        /// Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+        /// Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>GetWebhookSettings200Response</returns>
@@ -115,7 +115,7 @@ namespace Zernio.Api
         /// List webhooks
         /// </summary>
         /// <remarks>
-        /// Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+        /// Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of GetWebhookSettings200Response</returns>
@@ -175,7 +175,7 @@ namespace Zernio.Api
         /// Create webhook
         /// </summary>
         /// <remarks>
-        /// Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+        /// Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWebhookSettingsRequest"></param>
@@ -187,7 +187,7 @@ namespace Zernio.Api
         /// Create webhook
         /// </summary>
         /// <remarks>
-        /// Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+        /// Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWebhookSettingsRequest"></param>
@@ -254,7 +254,7 @@ namespace Zernio.Api
         /// List webhooks
         /// </summary>
         /// <remarks>
-        /// Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+        /// Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -265,7 +265,7 @@ namespace Zernio.Api
         /// List webhooks
         /// </summary>
         /// <remarks>
-        /// Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+        /// Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -531,7 +531,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create webhook Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+        /// Create webhook Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWebhookSettingsRequest"></param>
@@ -543,7 +543,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create webhook Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+        /// Create webhook Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWebhookSettingsRequest"></param>
@@ -593,7 +593,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create webhook Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+        /// Create webhook Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWebhookSettingsRequest"></param>
@@ -606,7 +606,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Create webhook Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+        /// Create webhook Create a new webhook configuration. Maximum 50 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createWebhookSettingsRequest"></param>
@@ -972,7 +972,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List webhooks Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+        /// List webhooks Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>GetWebhookSettings200Response</returns>
@@ -983,7 +983,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List webhooks Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+        /// List webhooks Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of GetWebhookSettings200Response</returns>
@@ -1026,7 +1026,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List webhooks Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+        /// List webhooks Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1038,7 +1038,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// List webhooks Retrieve all configured webhooks for the authenticated user. Supports up to 10 webhooks per user.
+        /// List webhooks Retrieve all configured webhooks for the authenticated user. Supports up to 50 webhooks per user.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
