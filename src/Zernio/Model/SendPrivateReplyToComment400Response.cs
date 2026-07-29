@@ -28,15 +28,14 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// SendInboxMessage400Response
+    /// SendPrivateReplyToComment400Response
     /// </summary>
-    [DataContract(Name = "sendInboxMessage_400_response")]
-    public partial class SendInboxMessage400Response : IValidatableObject
+    [DataContract(Name = "sendPrivateReplyToComment_400_response")]
+    public partial class SendPrivateReplyToComment400Response : IValidatableObject
     {
         /// <summary>
-        /// Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.
+        /// Defines Code
         /// </summary>
-        /// <value>Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CodeEnum
         {
@@ -44,33 +43,24 @@ namespace Zernio.Model
             /// Enum PLATFORMLIMITATION for value: PLATFORM_LIMITATION
             /// </summary>
             [EnumMember(Value = "PLATFORM_LIMITATION")]
-            PLATFORMLIMITATION = 1,
-
-            /// <summary>
-            /// Enum MISSINGPARTICIPANT for value: MISSING_PARTICIPANT
-            /// </summary>
-            [EnumMember(Value = "MISSING_PARTICIPANT")]
-            MISSINGPARTICIPANT = 2
+            PLATFORMLIMITATION = 1
         }
 
 
         /// <summary>
-        /// Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.
+        /// Gets or Sets Code
         /// </summary>
-        /// <value>Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to.</value>
         [DataMember(Name = "code", EmitDefaultValue = false)]
         public CodeEnum? Code { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SendInboxMessage400Response" /> class.
+        /// Initializes a new instance of the <see cref="SendPrivateReplyToComment400Response" /> class.
         /// </summary>
         /// <param name="error">error.</param>
-        /// <param name="code">Stable machine-readable reason. PLATFORM_LIMITATION covers a capability the platform does not offer (e.g. Bluesky and Reddit DMs reject media); MISSING_PARTICIPANT means the stored conversation has no recipient to send to..</param>
-        /// <param name="platformError">platformError.</param>
-        public SendInboxMessage400Response(string error = default, CodeEnum? code = default, SendInboxMessage400ResponsePlatformError platformError = default)
+        /// <param name="code">code.</param>
+        public SendPrivateReplyToComment400Response(string error = default, CodeEnum? code = default)
         {
             this.Error = error;
             this.Code = code;
-            this.PlatformError = platformError;
         }
 
         /// <summary>
@@ -80,22 +70,15 @@ namespace Zernio.Model
         public string Error { get; set; }
 
         /// <summary>
-        /// Gets or Sets PlatformError
-        /// </summary>
-        [DataMember(Name = "platformError", EmitDefaultValue = false)]
-        public SendInboxMessage400ResponsePlatformError PlatformError { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SendInboxMessage400Response {\n");
+            sb.Append("class SendPrivateReplyToComment400Response {\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
-            sb.Append("  PlatformError: ").Append(PlatformError).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

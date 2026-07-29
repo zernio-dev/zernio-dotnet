@@ -1161,6 +1161,7 @@ docs/SendDiscordDirectMessageRequestAttachmentsInner.md
 docs/SendInboxMessage200Response.md
 docs/SendInboxMessage200ResponseData.md
 docs/SendInboxMessage400Response.md
+docs/SendInboxMessage400ResponsePlatformError.md
 docs/SendInboxMessageRequest.md
 docs/SendInboxMessageRequestButtonsInner.md
 docs/SendInboxMessageRequestContactsInner.md
@@ -1200,6 +1201,7 @@ docs/SendInboxMessageRequestTemplate.md
 docs/SendInboxMessageRequestTemplateElementsInner.md
 docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md
 docs/SendPrivateReplyToComment200Response.md
+docs/SendPrivateReplyToComment400Response.md
 docs/SendPrivateReplyToCommentRequest.md
 docs/SendPrivateReplyToCommentRequestButtonsInner.md
 docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf.md
@@ -2768,6 +2770,7 @@ src/Zernio.Test/Model/SendDiscordDirectMessageRequestAttachmentsInnerTests.cs
 src/Zernio.Test/Model/SendDiscordDirectMessageRequestTests.cs
 src/Zernio.Test/Model/SendInboxMessage200ResponseDataTests.cs
 src/Zernio.Test/Model/SendInboxMessage200ResponseTests.cs
+src/Zernio.Test/Model/SendInboxMessage400ResponsePlatformErrorTests.cs
 src/Zernio.Test/Model/SendInboxMessage400ResponseTests.cs
 src/Zernio.Test/Model/SendInboxMessageRequestButtonsInnerTests.cs
 src/Zernio.Test/Model/SendInboxMessageRequestContactsInnerEmailsInnerTests.cs
@@ -2808,6 +2811,7 @@ src/Zernio.Test/Model/SendInboxMessageRequestTemplateElementsInnerTests.cs
 src/Zernio.Test/Model/SendInboxMessageRequestTemplateTests.cs
 src/Zernio.Test/Model/SendInboxMessageRequestTests.cs
 src/Zernio.Test/Model/SendPrivateReplyToComment200ResponseTests.cs
+src/Zernio.Test/Model/SendPrivateReplyToComment400ResponseTests.cs
 src/Zernio.Test/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOf1Tests.cs
 src/Zernio.Test/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOf2Tests.cs
 src/Zernio.Test/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOfTests.cs
@@ -4378,6 +4382,7 @@ src/Zernio/Model/SendDiscordDirectMessageRequestAttachmentsInner.cs
 src/Zernio/Model/SendInboxMessage200Response.cs
 src/Zernio/Model/SendInboxMessage200ResponseData.cs
 src/Zernio/Model/SendInboxMessage400Response.cs
+src/Zernio/Model/SendInboxMessage400ResponsePlatformError.cs
 src/Zernio/Model/SendInboxMessageRequest.cs
 src/Zernio/Model/SendInboxMessageRequestButtonsInner.cs
 src/Zernio/Model/SendInboxMessageRequestContactsInner.cs
@@ -4417,6 +4422,7 @@ src/Zernio/Model/SendInboxMessageRequestTemplate.cs
 src/Zernio/Model/SendInboxMessageRequestTemplateElementsInner.cs
 src/Zernio/Model/SendInboxMessageRequestTemplateElementsInnerButtonsInner.cs
 src/Zernio/Model/SendPrivateReplyToComment200Response.cs
+src/Zernio/Model/SendPrivateReplyToComment400Response.cs
 src/Zernio/Model/SendPrivateReplyToCommentRequest.cs
 src/Zernio/Model/SendPrivateReplyToCommentRequestButtonsInner.cs
 src/Zernio/Model/SendPrivateReplyToCommentRequestButtonsInnerOneOf.cs
