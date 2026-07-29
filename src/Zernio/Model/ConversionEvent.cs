@@ -34,9 +34,9 @@ namespace Zernio.Model
     public partial class ConversionEvent : IValidatableObject
     {
         /// <summary>
-        /// Where the conversion happened. Used by Meta; Google ignores.
+        /// Where the conversion happened. Used by Meta. Google also requires an event source internally; omitting this field sends OTHER to Google. Send an explicit value for accurate origin reporting.
         /// </summary>
-        /// <value>Where the conversion happened. Used by Meta; Google ignores.</value>
+        /// <value>Where the conversion happened. Used by Meta. Google also requires an event source internally; omitting this field sends OTHER to Google. Send an explicit value for accurate origin reporting.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ActionSourceEnum
         {
@@ -79,9 +79,9 @@ namespace Zernio.Model
 
 
         /// <summary>
-        /// Where the conversion happened. Used by Meta; Google ignores.
+        /// Where the conversion happened. Used by Meta. Google also requires an event source internally; omitting this field sends OTHER to Google. Send an explicit value for accurate origin reporting.
         /// </summary>
-        /// <value>Where the conversion happened. Used by Meta; Google ignores.</value>
+        /// <value>Where the conversion happened. Used by Meta. Google also requires an event source internally; omitting this field sends OTHER to Google. Send an explicit value for accurate origin reporting.</value>
         [DataMember(Name = "actionSource", EmitDefaultValue = false)]
         public ActionSourceEnum? ActionSource { get; set; }
         /// <summary>
@@ -100,7 +100,7 @@ namespace Zernio.Model
         /// <param name="user">user (required).</param>
         /// <param name="items">Item-level detail for ecommerce events..</param>
         /// <param name="sourceUrl">URL where the conversion originated (used by Meta)..</param>
-        /// <param name="actionSource">Where the conversion happened. Used by Meta; Google ignores..</param>
+        /// <param name="actionSource">Where the conversion happened. Used by Meta. Google also requires an event source internally; omitting this field sends OTHER to Google. Send an explicit value for accurate origin reporting..</param>
         /// <param name="platformData">Escape hatch for platform-specific fields we haven&#39;t normalized. Forwarded as-is..</param>
         public ConversionEvent(string eventName = default, int eventTime = default, string eventId = default, decimal value = default, string currency = default, ConversionEventUser user = default, List<ConversionEventItemsInner> items = default, string sourceUrl = default, ActionSourceEnum? actionSource = default, Dictionary<string, Object> platformData = default)
         {

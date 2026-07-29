@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **User** | [**ConversionEventUser**](ConversionEventUser.md) |  | 
 **Items** | [**List&lt;ConversionEventItemsInner&gt;**](ConversionEventItemsInner.md) | Item-level detail for ecommerce events. | [optional] 
 **SourceUrl** | **string** | URL where the conversion originated (used by Meta). | [optional] 
-**ActionSource** | **string** | Where the conversion happened. Used by Meta; Google ignores. | [optional] 
+**ActionSource** | **string** | Where the conversion happened. Used by Meta. Google also requires an event source internally; omitting this field sends OTHER to Google. Send an explicit value for accurate origin reporting. | [optional] 
 **PlatformData** | **Dictionary&lt;string, Object&gt;** | Escape hatch for platform-specific fields we haven&#39;t normalized. Forwarded as-is. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
