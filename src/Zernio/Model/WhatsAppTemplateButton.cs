@@ -136,7 +136,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="WhatsAppTemplateButton" /> class.
         /// </summary>
         /// <param name="type">type (required).</param>
-        /// <param name="text">Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp)..</param>
+        /// <param name="text">Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp) and otp (omit it and WhatsApp supplies its own label, localized to the template language; an English label on a non-English template is rejected)..</param>
         /// <param name="url">Required when type is URL.</param>
         /// <param name="example">example.</param>
         /// <param name="phoneNumber">Required when type is phone_number.</param>
@@ -168,9 +168,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp).
+        /// Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp) and otp (omit it and WhatsApp supplies its own label, localized to the template language; an English label on a non-English template is rejected).
         /// </summary>
-        /// <value>Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp).</value>
+        /// <value>Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp) and otp (omit it and WhatsApp supplies its own label, localized to the template language; an English label on a non-English template is rejected).</value>
         [DataMember(Name = "text", EmitDefaultValue = false)]
         public string Text { get; set; }
 
