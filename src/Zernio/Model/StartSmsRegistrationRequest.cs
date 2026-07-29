@@ -73,7 +73,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="StartSmsRegistrationRequest" /> class.
         /// </summary>
         /// <param name="registrationType">registrationType (required).</param>
-        /// <param name="phoneNumbers">Your numbers this registration covers. (required).</param>
+        /// <param name="phoneNumbers">Your numbers this registration covers. When omitted or empty on a 10DLC registration, defaults to your active SMS-enabled US local numbers not already covered by another registration..</param>
         /// <param name="brand">brand.</param>
         /// <param name="campaign">campaign.</param>
         /// <param name="messagingBrandName">DBA / trade name used to brand message content (samples and auto-replies) when it differs from the legal name, e.g. a sole proprietor texting under a business name. The legal &#x60;brand.displayName&#x60; is still what the carrier vets..</param>
@@ -83,11 +83,6 @@ namespace Zernio.Model
         public StartSmsRegistrationRequest(RegistrationTypeEnum registrationType = default, List<string> phoneNumbers = default, StartSmsRegistrationRequestBrand brand = default, StartSmsRegistrationRequestCampaign campaign = default, string messagingBrandName = default, Dictionary<string, string> wizardValues = default, string resubmitRequestId = default, StartSmsRegistrationRequestTollFree tollFree = default)
         {
             this.RegistrationType = registrationType;
-            // to ensure "phoneNumbers" is required (not null)
-            if (phoneNumbers == null)
-            {
-                throw new ArgumentNullException("phoneNumbers is a required property for StartSmsRegistrationRequest and cannot be null");
-            }
             this.PhoneNumbers = phoneNumbers;
             this.Brand = brand;
             this.Campaign = campaign;
@@ -98,10 +93,10 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Your numbers this registration covers.
+        /// Your numbers this registration covers. When omitted or empty on a 10DLC registration, defaults to your active SMS-enabled US local numbers not already covered by another registration.
         /// </summary>
-        /// <value>Your numbers this registration covers.</value>
-        [DataMember(Name = "phoneNumbers", IsRequired = true, EmitDefaultValue = true)]
+        /// <value>Your numbers this registration covers. When omitted or empty on a 10DLC registration, defaults to your active SMS-enabled US local numbers not already covered by another registration.</value>
+        [DataMember(Name = "phoneNumbers", EmitDefaultValue = false)]
         public List<string> PhoneNumbers { get; set; }
 
         /// <summary>
