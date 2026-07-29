@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="GetInboxPostComments200ResponsePagination" /> class.
         /// </summary>
         /// <param name="hasMore">hasMore.</param>
-        /// <param name="cursor">cursor.</param>
+        /// <param name="cursor">Only present when hasMore is true. Absent on the last page, so treat its absence as the end of the thread..</param>
         public GetInboxPostComments200ResponsePagination(bool hasMore = default, string cursor = default)
         {
             this.HasMore = hasMore;
@@ -51,8 +51,9 @@ namespace Zernio.Model
         public bool HasMore { get; set; }
 
         /// <summary>
-        /// Gets or Sets Cursor
+        /// Only present when hasMore is true. Absent on the last page, so treat its absence as the end of the thread.
         /// </summary>
+        /// <value>Only present when hasMore is true. Absent on the last page, so treat its absence as the end of the thread.</value>
         [DataMember(Name = "cursor", EmitDefaultValue = true)]
         public string Cursor { get; set; }
 

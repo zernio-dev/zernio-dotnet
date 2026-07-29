@@ -28,44 +28,33 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListFormLeads200Response
+    /// SearchTweets200ResponsePagination
     /// </summary>
-    [DataContract(Name = "listFormLeads_200_response")]
-    public partial class ListFormLeads200Response : IValidatableObject
+    [DataContract(Name = "searchTweets_200_response_pagination")]
+    public partial class SearchTweets200ResponsePagination : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListFormLeads200Response" /> class.
+        /// Initializes a new instance of the <see cref="SearchTweets200ResponsePagination" /> class.
         /// </summary>
-        /// <param name="status">status.</param>
-        /// <param name="leads">leads.</param>
-        /// <param name="pagination">pagination.</param>
-        public ListFormLeads200Response(string status = default, List<ListFormLeads200ResponseLeadsInner> leads = default, SearchTweets200ResponsePagination pagination = default)
+        /// <param name="hasMore">hasMore.</param>
+        /// <param name="cursor">cursor.</param>
+        public SearchTweets200ResponsePagination(bool hasMore = default, string cursor = default)
         {
-            this.Status = status;
-            this.Leads = leads;
-            this.Pagination = pagination;
+            this.HasMore = hasMore;
+            this.Cursor = cursor;
         }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// Gets or Sets HasMore
         /// </summary>
-        /*
-        <example>success</example>
-        */
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public string Status { get; set; }
+        [DataMember(Name = "hasMore", EmitDefaultValue = true)]
+        public bool HasMore { get; set; }
 
         /// <summary>
-        /// Gets or Sets Leads
+        /// Gets or Sets Cursor
         /// </summary>
-        [DataMember(Name = "leads", EmitDefaultValue = false)]
-        public List<ListFormLeads200ResponseLeadsInner> Leads { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Pagination
-        /// </summary>
-        [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public SearchTweets200ResponsePagination Pagination { get; set; }
+        [DataMember(Name = "cursor", EmitDefaultValue = true)]
+        public string Cursor { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -74,10 +63,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListFormLeads200Response {\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Leads: ").Append(Leads).Append("\n");
-            sb.Append("  Pagination: ").Append(Pagination).Append("\n");
+            sb.Append("class SearchTweets200ResponsePagination {\n");
+            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
+            sb.Append("  Cursor: ").Append(Cursor).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

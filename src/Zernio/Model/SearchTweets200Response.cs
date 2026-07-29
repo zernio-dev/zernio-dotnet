@@ -40,7 +40,7 @@ namespace Zernio.Model
         /// <param name="tweets">tweets.</param>
         /// <param name="pagination">pagination.</param>
         /// <param name="meta">meta.</param>
-        public SearchTweets200Response(string status = default, List<SearchTweets200ResponseTweetsInner> tweets = default, GetInboxPostComments200ResponsePagination pagination = default, SearchTweets200ResponseMeta meta = default)
+        public SearchTweets200Response(string status = default, List<SearchTweets200ResponseTweetsInner> tweets = default, SearchTweets200ResponsePagination pagination = default, SearchTweets200ResponseMeta meta = default)
         {
             this.Status = status;
             this.Tweets = tweets;
@@ -67,7 +67,7 @@ namespace Zernio.Model
         /// Gets or Sets Pagination
         /// </summary>
         [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public GetInboxPostComments200ResponsePagination Pagination { get; set; }
+        public SearchTweets200ResponsePagination Pagination { get; set; }
 
         /// <summary>
         /// Gets or Sets Meta

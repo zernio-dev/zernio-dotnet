@@ -39,7 +39,7 @@ namespace Zernio.Model
         /// <param name="status">status.</param>
         /// <param name="forms">forms.</param>
         /// <param name="pagination">pagination.</param>
-        public ListLeadForms200Response(string status = default, List<Object> forms = default, GetInboxPostComments200ResponsePagination pagination = default)
+        public ListLeadForms200Response(string status = default, List<Object> forms = default, SearchTweets200ResponsePagination pagination = default)
         {
             this.Status = status;
             this.Forms = forms;
@@ -65,7 +65,7 @@ namespace Zernio.Model
         /// Gets or Sets Pagination
         /// </summary>
         [DataMember(Name = "pagination", EmitDefaultValue = false)]
-        public GetInboxPostComments200ResponsePagination Pagination { get; set; }
+        public SearchTweets200ResponsePagination Pagination { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

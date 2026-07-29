@@ -1,11 +1,11 @@
-# Zernio.Model.GetInboxPostComments200ResponsePagination
+# Zernio.Model.SearchTweets200ResponsePagination
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | **bool** |  | [optional] 
-**Cursor** | **string** | Only present when hasMore is true. Absent on the last page, so treat its absence as the end of the thread. | [optional] 
+**Cursor** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
