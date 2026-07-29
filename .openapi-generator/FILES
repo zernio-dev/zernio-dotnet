@@ -1039,6 +1039,10 @@ docs/PurchasePhoneNumber200ResponseOneOf2.md
 docs/PurchasePhoneNumber202Response.md
 docs/PurchasePhoneNumber409Response.md
 docs/PurchasePhoneNumberRequest.md
+docs/PurchaseWhatsAppPhoneNumber200Response.md
+docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf.md
+docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.md
+docs/PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber.md
 docs/PurchaseWhatsAppPhoneNumberRequest.md
 docs/QueryAdInsights200Response.md
 docs/QueryAdInsights200ResponsePaging.md
@@ -2658,6 +2662,10 @@ src/Zernio.Test/Model/PurchasePhoneNumber200ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumber202ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumber409ResponseTests.cs
 src/Zernio.Test/Model/PurchasePhoneNumberRequestTests.cs
+src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1Tests.cs
+src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumberTests.cs
+src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOfTests.cs
+src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumber200ResponseTests.cs
 src/Zernio.Test/Model/PurchaseWhatsAppPhoneNumberRequestTests.cs
 src/Zernio.Test/Model/QueryAdInsights200ResponsePagingTests.cs
 src/Zernio.Test/Model/QueryAdInsights200ResponseTests.cs
@@ -4273,6 +4281,10 @@ src/Zernio/Model/PurchasePhoneNumber200ResponseOneOf2.cs
 src/Zernio/Model/PurchasePhoneNumber202Response.cs
 src/Zernio/Model/PurchasePhoneNumber409Response.cs
 src/Zernio/Model/PurchasePhoneNumberRequest.cs
+src/Zernio/Model/PurchaseWhatsAppPhoneNumber200Response.cs
+src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf.cs
+src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.cs
+src/Zernio/Model/PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber.cs
 src/Zernio/Model/PurchaseWhatsAppPhoneNumberRequest.cs
 src/Zernio/Model/QueryAdInsights200Response.cs
 src/Zernio/Model/QueryAdInsights200ResponsePaging.cs

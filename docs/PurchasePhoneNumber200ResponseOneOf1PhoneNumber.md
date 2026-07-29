@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **ProvisionedAt** | **DateTime** |  | [optional] 
 **MetaPreverifiedId** | **string** |  | [optional] 
 **MetaVerificationStatus** | **string** |  | [optional] 
+**ProfileId** | **string** | The profile the number was actually assigned to. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -30,8 +30,8 @@ namespace Zernio.Model
     /// <summary>
     /// A number was already purchased under the supplied purchaseIntentId; no new number was provisioned. 
     /// </summary>
-    [DataContract(Name = "purchasePhoneNumber_200_response_oneOf_2")]
-    public partial class PurchasePhoneNumber200ResponseOneOf2 : IValidatableObject
+    [DataContract(Name = "purchaseWhatsAppPhoneNumber_200_response_oneOf_1")]
+    public partial class PurchaseWhatsAppPhoneNumber200ResponseOneOf1 : IValidatableObject
     {
         /// <summary>
         /// Defines Status
@@ -53,18 +53,16 @@ namespace Zernio.Model
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PurchasePhoneNumber200ResponseOneOf2" /> class.
+        /// Initializes a new instance of the <see cref="PurchaseWhatsAppPhoneNumber200ResponseOneOf1" /> class.
         /// </summary>
         /// <param name="status">status.</param>
         /// <param name="numberId">numberId.</param>
         /// <param name="phoneNumber">phoneNumber.</param>
-        /// <param name="profileId">The profile the number was actually assigned to..</param>
-        public PurchasePhoneNumber200ResponseOneOf2(StatusEnum? status = default, string numberId = default, string phoneNumber = default, string profileId = default)
+        public PurchaseWhatsAppPhoneNumber200ResponseOneOf1(StatusEnum? status = default, string numberId = default, string phoneNumber = default)
         {
             this.Status = status;
             this.NumberId = numberId;
             this.PhoneNumber = phoneNumber;
-            this.ProfileId = profileId;
         }
 
         /// <summary>
@@ -80,24 +78,16 @@ namespace Zernio.Model
         public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// The profile the number was actually assigned to.
-        /// </summary>
-        /// <value>The profile the number was actually assigned to.</value>
-        [DataMember(Name = "profileId", EmitDefaultValue = false)]
-        public string ProfileId { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PurchasePhoneNumber200ResponseOneOf2 {\n");
+            sb.Append("class PurchaseWhatsAppPhoneNumber200ResponseOneOf1 {\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  NumberId: ").Append(NumberId).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

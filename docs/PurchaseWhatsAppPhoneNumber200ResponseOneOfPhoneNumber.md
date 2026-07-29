@@ -1,15 +1,16 @@
-# Zernio.Model.PurchasePhoneNumber200Response
+# Zernio.Model.PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | **string** |  | [optional] 
-**CheckoutUrl** | **string** |  | [optional] 
+**Id** | **string** |  | [optional] 
 **PhoneNumber** | **string** |  | [optional] 
 **Status** | **string** |  | [optional] 
-**NumberId** | **string** |  | [optional] 
-**ProfileId** | **string** | The profile the number was actually assigned to. | [optional] 
+**Country** | **string** |  | [optional] 
+**ProvisionedAt** | **DateTime** |  | [optional] 
+**MetaPreverifiedId** | **string** |  | [optional] 
+**MetaVerificationStatus** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

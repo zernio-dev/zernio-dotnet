@@ -28,13 +28,13 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// PurchasePhoneNumber200ResponseOneOf1PhoneNumber
+    /// PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber
     /// </summary>
-    [DataContract(Name = "purchasePhoneNumber_200_response_oneOf_1_phoneNumber")]
-    public partial class PurchasePhoneNumber200ResponseOneOf1PhoneNumber : IValidatableObject
+    [DataContract(Name = "purchaseWhatsAppPhoneNumber_200_response_oneOf_phoneNumber")]
+    public partial class PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PurchasePhoneNumber200ResponseOneOf1PhoneNumber" /> class.
+        /// Initializes a new instance of the <see cref="PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber" /> class.
         /// </summary>
         /// <param name="id">id.</param>
         /// <param name="phoneNumber">phoneNumber.</param>
@@ -43,8 +43,7 @@ namespace Zernio.Model
         /// <param name="provisionedAt">provisionedAt.</param>
         /// <param name="metaPreverifiedId">metaPreverifiedId.</param>
         /// <param name="metaVerificationStatus">metaVerificationStatus.</param>
-        /// <param name="profileId">The profile the number was actually assigned to..</param>
-        public PurchasePhoneNumber200ResponseOneOf1PhoneNumber(string id = default, string phoneNumber = default, string status = default, string country = default, DateTime provisionedAt = default, string metaPreverifiedId = default, string metaVerificationStatus = default, string profileId = default)
+        public PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber(string id = default, string phoneNumber = default, string status = default, string country = default, DateTime provisionedAt = default, string metaPreverifiedId = default, string metaVerificationStatus = default)
         {
             this.Id = id;
             this.PhoneNumber = phoneNumber;
@@ -53,7 +52,6 @@ namespace Zernio.Model
             this.ProvisionedAt = provisionedAt;
             this.MetaPreverifiedId = metaPreverifiedId;
             this.MetaVerificationStatus = metaVerificationStatus;
-            this.ProfileId = profileId;
         }
 
         /// <summary>
@@ -99,20 +97,13 @@ namespace Zernio.Model
         public string MetaVerificationStatus { get; set; }
 
         /// <summary>
-        /// The profile the number was actually assigned to.
-        /// </summary>
-        /// <value>The profile the number was actually assigned to.</value>
-        [DataMember(Name = "profileId", EmitDefaultValue = false)]
-        public string ProfileId { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PurchasePhoneNumber200ResponseOneOf1PhoneNumber {\n");
+            sb.Append("class PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
@@ -120,7 +111,6 @@ namespace Zernio.Model
             sb.Append("  ProvisionedAt: ").Append(ProvisionedAt).Append("\n");
             sb.Append("  MetaPreverifiedId: ").Append(MetaPreverifiedId).Append("\n");
             sb.Append("  MetaVerificationStatus: ").Append(MetaVerificationStatus).Append("\n");
-            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

@@ -827,7 +827,7 @@ This endpoint does not need any parameter.
 
 <a id="purchasewhatsappphonenumber"></a>
 # **PurchaseWhatsAppPhoneNumber**
-> PurchasePhoneNumber200Response PurchaseWhatsAppPhoneNumber (PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest)
+> PurchaseWhatsAppPhoneNumber200Response PurchaseWhatsAppPhoneNumber (PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest)
 
 Purchase phone number
 
@@ -862,7 +862,7 @@ namespace Example
             try
             {
                 // Purchase phone number
-                PurchasePhoneNumber200Response result = apiInstance.PurchaseWhatsAppPhoneNumber(purchaseWhatsAppPhoneNumberRequest);
+                PurchaseWhatsAppPhoneNumber200Response result = apiInstance.PurchaseWhatsAppPhoneNumber(purchaseWhatsAppPhoneNumberRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -883,7 +883,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Purchase phone number
-    ApiResponse<PurchasePhoneNumber200Response> response = apiInstance.PurchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest);
+    ApiResponse<PurchaseWhatsAppPhoneNumber200Response> response = apiInstance.PurchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -904,7 +904,7 @@ catch (ApiException e)
 
 ### Return type
 
-[**PurchasePhoneNumber200Response**](PurchasePhoneNumber200Response.md)
+[**PurchaseWhatsAppPhoneNumber200Response**](PurchaseWhatsAppPhoneNumber200Response.md)
 
 ### Authorization
 

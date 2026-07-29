@@ -28,63 +28,33 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// A number was already purchased under the supplied purchaseIntentId; no new number was provisioned. 
+    /// Phone number provisioned inline (subsequent numbers)
     /// </summary>
-    [DataContract(Name = "purchasePhoneNumber_200_response_oneOf_2")]
-    public partial class PurchasePhoneNumber200ResponseOneOf2 : IValidatableObject
+    [DataContract(Name = "purchaseWhatsAppPhoneNumber_200_response_oneOf")]
+    public partial class PurchaseWhatsAppPhoneNumber200ResponseOneOf : IValidatableObject
     {
         /// <summary>
-        /// Defines Status
+        /// Initializes a new instance of the <see cref="PurchaseWhatsAppPhoneNumber200ResponseOneOf" /> class.
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
-        {
-            /// <summary>
-            /// Enum AlreadyPurchased for value: already_purchased
-            /// </summary>
-            [EnumMember(Value = "already_purchased")]
-            AlreadyPurchased = 1
-        }
-
-
-        /// <summary>
-        /// Gets or Sets Status
-        /// </summary>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public StatusEnum? Status { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PurchasePhoneNumber200ResponseOneOf2" /> class.
-        /// </summary>
-        /// <param name="status">status.</param>
-        /// <param name="numberId">numberId.</param>
+        /// <param name="message">message.</param>
         /// <param name="phoneNumber">phoneNumber.</param>
-        /// <param name="profileId">The profile the number was actually assigned to..</param>
-        public PurchasePhoneNumber200ResponseOneOf2(StatusEnum? status = default, string numberId = default, string phoneNumber = default, string profileId = default)
+        public PurchaseWhatsAppPhoneNumber200ResponseOneOf(string message = default, PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber phoneNumber = default)
         {
-            this.Status = status;
-            this.NumberId = numberId;
+            this.Message = message;
             this.PhoneNumber = phoneNumber;
-            this.ProfileId = profileId;
         }
 
         /// <summary>
-        /// Gets or Sets NumberId
+        /// Gets or Sets Message
         /// </summary>
-        [DataMember(Name = "numberId", EmitDefaultValue = false)]
-        public string NumberId { get; set; }
+        [DataMember(Name = "message", EmitDefaultValue = false)]
+        public string Message { get; set; }
 
         /// <summary>
         /// Gets or Sets PhoneNumber
         /// </summary>
         [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
-        public string PhoneNumber { get; set; }
-
-        /// <summary>
-        /// The profile the number was actually assigned to.
-        /// </summary>
-        /// <value>The profile the number was actually assigned to.</value>
-        [DataMember(Name = "profileId", EmitDefaultValue = false)]
-        public string ProfileId { get; set; }
+        public PurchaseWhatsAppPhoneNumber200ResponseOneOfPhoneNumber PhoneNumber { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -93,11 +63,9 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PurchasePhoneNumber200ResponseOneOf2 {\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  NumberId: ").Append(NumberId).Append("\n");
+            sb.Append("class PurchaseWhatsAppPhoneNumber200ResponseOneOf {\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

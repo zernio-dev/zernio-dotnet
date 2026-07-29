@@ -224,9 +224,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseWhatsAppPhoneNumberRequest"></param>
-        /// <returns>PurchasePhoneNumber200Response</returns>
+        /// <returns>PurchaseWhatsAppPhoneNumber200Response</returns>
         [Obsolete]
-        PurchasePhoneNumber200Response PurchaseWhatsAppPhoneNumber(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest);
+        PurchaseWhatsAppPhoneNumber200Response PurchaseWhatsAppPhoneNumber(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest);
 
         /// <summary>
         /// Purchase phone number
@@ -236,9 +236,9 @@ namespace Zernio.Api
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseWhatsAppPhoneNumberRequest"></param>
-        /// <returns>ApiResponse of PurchasePhoneNumber200Response</returns>
+        /// <returns>ApiResponse of PurchaseWhatsAppPhoneNumber200Response</returns>
         [Obsolete]
-        ApiResponse<PurchasePhoneNumber200Response> PurchaseWhatsAppPhoneNumberWithHttpInfo(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest);
+        ApiResponse<PurchaseWhatsAppPhoneNumber200Response> PurchaseWhatsAppPhoneNumberWithHttpInfo(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest);
         /// <summary>
         /// Release phone number
         /// </summary>
@@ -613,9 +613,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseWhatsAppPhoneNumberRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PurchasePhoneNumber200Response</returns>
+        /// <returns>Task of PurchaseWhatsAppPhoneNumber200Response</returns>
         [Obsolete]
-        System.Threading.Tasks.Task<PurchasePhoneNumber200Response> PurchaseWhatsAppPhoneNumberAsync(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<PurchaseWhatsAppPhoneNumber200Response> PurchaseWhatsAppPhoneNumberAsync(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Purchase phone number
@@ -626,9 +626,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseWhatsAppPhoneNumberRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PurchasePhoneNumber200Response)</returns>
+        /// <returns>Task of ApiResponse (PurchaseWhatsAppPhoneNumber200Response)</returns>
         [Obsolete]
-        System.Threading.Tasks.Task<ApiResponse<PurchasePhoneNumber200Response>> PurchaseWhatsAppPhoneNumberWithHttpInfoAsync(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<PurchaseWhatsAppPhoneNumber200Response>> PurchaseWhatsAppPhoneNumberWithHttpInfoAsync(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Release phone number
         /// </summary>
@@ -2091,11 +2091,11 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseWhatsAppPhoneNumberRequest"></param>
-        /// <returns>PurchasePhoneNumber200Response</returns>
+        /// <returns>PurchaseWhatsAppPhoneNumber200Response</returns>
         [Obsolete]
-        public PurchasePhoneNumber200Response PurchaseWhatsAppPhoneNumber(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest)
+        public PurchaseWhatsAppPhoneNumber200Response PurchaseWhatsAppPhoneNumber(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest)
         {
-            Zernio.Client.ApiResponse<PurchasePhoneNumber200Response> localVarResponse = PurchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest);
+            Zernio.Client.ApiResponse<PurchaseWhatsAppPhoneNumber200Response> localVarResponse = PurchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest);
             return localVarResponse.Data;
         }
 
@@ -2104,9 +2104,9 @@ namespace Zernio.Api
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseWhatsAppPhoneNumberRequest"></param>
-        /// <returns>ApiResponse of PurchasePhoneNumber200Response</returns>
+        /// <returns>ApiResponse of PurchaseWhatsAppPhoneNumber200Response</returns>
         [Obsolete]
-        public Zernio.Client.ApiResponse<PurchasePhoneNumber200Response> PurchaseWhatsAppPhoneNumberWithHttpInfo(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest)
+        public Zernio.Client.ApiResponse<PurchaseWhatsAppPhoneNumber200Response> PurchaseWhatsAppPhoneNumberWithHttpInfo(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest)
         {
             // verify the required parameter 'purchaseWhatsAppPhoneNumberRequest' is set
             if (purchaseWhatsAppPhoneNumberRequest == null)
@@ -2139,7 +2139,7 @@ namespace Zernio.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Post<PurchasePhoneNumber200Response>("/v1/whatsapp/phone-numbers/purchase", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Post<PurchaseWhatsAppPhoneNumber200Response>("/v1/whatsapp/phone-numbers/purchase", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2156,11 +2156,11 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseWhatsAppPhoneNumberRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of PurchasePhoneNumber200Response</returns>
+        /// <returns>Task of PurchaseWhatsAppPhoneNumber200Response</returns>
         [Obsolete]
-        public async System.Threading.Tasks.Task<PurchasePhoneNumber200Response> PurchaseWhatsAppPhoneNumberAsync(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<PurchaseWhatsAppPhoneNumber200Response> PurchaseWhatsAppPhoneNumberAsync(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<PurchasePhoneNumber200Response> localVarResponse = await PurchaseWhatsAppPhoneNumberWithHttpInfoAsync(purchaseWhatsAppPhoneNumberRequest, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<PurchaseWhatsAppPhoneNumber200Response> localVarResponse = await PurchaseWhatsAppPhoneNumberWithHttpInfoAsync(purchaseWhatsAppPhoneNumberRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -2170,9 +2170,9 @@ namespace Zernio.Api
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="purchaseWhatsAppPhoneNumberRequest"></param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (PurchasePhoneNumber200Response)</returns>
+        /// <returns>Task of ApiResponse (PurchaseWhatsAppPhoneNumber200Response)</returns>
         [Obsolete]
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PurchasePhoneNumber200Response>> PurchaseWhatsAppPhoneNumberWithHttpInfoAsync(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<PurchaseWhatsAppPhoneNumber200Response>> PurchaseWhatsAppPhoneNumberWithHttpInfoAsync(PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'purchaseWhatsAppPhoneNumberRequest' is set
             if (purchaseWhatsAppPhoneNumberRequest == null)
@@ -2208,7 +2208,7 @@ namespace Zernio.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PostAsync<PurchasePhoneNumber200Response>("/v1/whatsapp/phone-numbers/purchase", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PostAsync<PurchaseWhatsAppPhoneNumber200Response>("/v1/whatsapp/phone-numbers/purchase", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

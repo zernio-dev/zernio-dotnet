@@ -162,7 +162,7 @@ namespace Zernio.Test.Api
             // TODO uncomment below to test the method and replace null with proper value
             //PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest = null;
             //var response = instance.PurchaseWhatsAppPhoneNumber(purchaseWhatsAppPhoneNumberRequest);
-            //Assert.IsType<PurchasePhoneNumber200Response>(response);
+            //Assert.IsType<PurchaseWhatsAppPhoneNumber200Response>(response);
         }
 
         /// <summary>

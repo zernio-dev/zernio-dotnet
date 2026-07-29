@@ -1,4 +1,4 @@
-# Zernio.Model.PurchasePhoneNumber200ResponseOneOf2
+# Zernio.Model.PurchaseWhatsAppPhoneNumber200ResponseOneOf1
 A number was already purchased under the supplied purchaseIntentId; no new number was provisioned. 
 
 ## Properties
@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **Status** | **string** |  | [optional] 
 **NumberId** | **string** |  | [optional] 
 **PhoneNumber** | **string** |  | [optional] 
-**ProfileId** | **string** | The profile the number was actually assigned to. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
