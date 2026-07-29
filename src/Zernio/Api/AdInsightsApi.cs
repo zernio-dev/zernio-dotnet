@@ -50,6 +50,48 @@ namespace Zernio.Api
         /// <returns>ApiResponse of CreateAdInsightsReport202Response</returns>
         ApiResponse<CreateAdInsightsReport202Response> CreateAdInsightsReportWithHttpInfo(CreateAdInsightsReportRequest createAdInsightsReportRequest);
         /// <summary>
+        /// Historical keyword metrics (Google Keyword Planner)
+        /// </summary>
+        /// <remarks>
+        /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordHistoricalMetricsRequest"></param>
+        /// <returns>GenerateKeywordHistoricalMetrics200Response</returns>
+        GenerateKeywordHistoricalMetrics200Response GenerateKeywordHistoricalMetrics(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest);
+
+        /// <summary>
+        /// Historical keyword metrics (Google Keyword Planner)
+        /// </summary>
+        /// <remarks>
+        /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordHistoricalMetricsRequest"></param>
+        /// <returns>ApiResponse of GenerateKeywordHistoricalMetrics200Response</returns>
+        ApiResponse<GenerateKeywordHistoricalMetrics200Response> GenerateKeywordHistoricalMetricsWithHttpInfo(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest);
+        /// <summary>
+        /// Generate keyword ideas (Google Keyword Planner)
+        /// </summary>
+        /// <remarks>
+        /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordIdeasRequest"></param>
+        /// <returns>GenerateKeywordIdeas200Response</returns>
+        GenerateKeywordIdeas200Response GenerateKeywordIdeas(GenerateKeywordIdeasRequest generateKeywordIdeasRequest);
+
+        /// <summary>
+        /// Generate keyword ideas (Google Keyword Planner)
+        /// </summary>
+        /// <remarks>
+        /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordIdeasRequest"></param>
+        /// <returns>ApiResponse of GenerateKeywordIdeas200Response</returns>
+        ApiResponse<GenerateKeywordIdeas200Response> GenerateKeywordIdeasWithHttpInfo(GenerateKeywordIdeasRequest generateKeywordIdeasRequest);
+        /// <summary>
         /// Get ad analytics
         /// </summary>
         /// <remarks>
@@ -136,11 +178,14 @@ namespace Zernio.Api
         /// Flexible live insights query
         /// </summary>
         /// <remarks>
-        /// Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
+        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
+        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
+        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
@@ -156,17 +201,20 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>QueryAdInsights200Response</returns>
-        QueryAdInsights200Response QueryAdInsights(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
+        QueryAdInsights200Response QueryAdInsights(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
 
         /// <summary>
         /// Flexible live insights query
         /// </summary>
         /// <remarks>
-        /// Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
+        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
+        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
+        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
@@ -182,7 +230,7 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of QueryAdInsights200Response</returns>
-        ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
+        ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default);
         #endregion Synchronous Operations
     }
 
@@ -215,6 +263,52 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateAdInsightsReport202Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<CreateAdInsightsReport202Response>> CreateAdInsightsReportWithHttpInfoAsync(CreateAdInsightsReportRequest createAdInsightsReportRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Historical keyword metrics (Google Keyword Planner)
+        /// </summary>
+        /// <remarks>
+        /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordHistoricalMetricsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GenerateKeywordHistoricalMetrics200Response</returns>
+        System.Threading.Tasks.Task<GenerateKeywordHistoricalMetrics200Response> GenerateKeywordHistoricalMetricsAsync(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Historical keyword metrics (Google Keyword Planner)
+        /// </summary>
+        /// <remarks>
+        /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordHistoricalMetricsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GenerateKeywordHistoricalMetrics200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GenerateKeywordHistoricalMetrics200Response>> GenerateKeywordHistoricalMetricsWithHttpInfoAsync(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Generate keyword ideas (Google Keyword Planner)
+        /// </summary>
+        /// <remarks>
+        /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordIdeasRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GenerateKeywordIdeas200Response</returns>
+        System.Threading.Tasks.Task<GenerateKeywordIdeas200Response> GenerateKeywordIdeasAsync(GenerateKeywordIdeasRequest generateKeywordIdeasRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Generate keyword ideas (Google Keyword Planner)
+        /// </summary>
+        /// <remarks>
+        /// Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordIdeasRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GenerateKeywordIdeas200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GenerateKeywordIdeas200Response>> GenerateKeywordIdeasWithHttpInfoAsync(GenerateKeywordIdeasRequest generateKeywordIdeasRequest, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Get ad analytics
         /// </summary>
@@ -308,11 +402,14 @@ namespace Zernio.Api
         /// Flexible live insights query
         /// </summary>
         /// <remarks>
-        /// Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
+        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
+        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
+        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
@@ -329,17 +426,20 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of QueryAdInsights200Response</returns>
-        System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Flexible live insights query
         /// </summary>
         /// <remarks>
-        /// Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
+        /// Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
+        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
+        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
@@ -356,7 +456,7 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (QueryAdInsights200Response)</returns>
-        System.Threading.Tasks.Task<ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
+        System.Threading.Tasks.Task<ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -693,6 +793,264 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateAdInsightsReport", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Historical keyword metrics (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordHistoricalMetricsRequest"></param>
+        /// <returns>GenerateKeywordHistoricalMetrics200Response</returns>
+        public GenerateKeywordHistoricalMetrics200Response GenerateKeywordHistoricalMetrics(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest)
+        {
+            Zernio.Client.ApiResponse<GenerateKeywordHistoricalMetrics200Response> localVarResponse = GenerateKeywordHistoricalMetricsWithHttpInfo(generateKeywordHistoricalMetricsRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Historical keyword metrics (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordHistoricalMetricsRequest"></param>
+        /// <returns>ApiResponse of GenerateKeywordHistoricalMetrics200Response</returns>
+        public Zernio.Client.ApiResponse<GenerateKeywordHistoricalMetrics200Response> GenerateKeywordHistoricalMetricsWithHttpInfo(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest)
+        {
+            // verify the required parameter 'generateKeywordHistoricalMetricsRequest' is set
+            if (generateKeywordHistoricalMetricsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'generateKeywordHistoricalMetricsRequest' when calling AdInsightsApi->GenerateKeywordHistoricalMetrics");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = generateKeywordHistoricalMetricsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<GenerateKeywordHistoricalMetrics200Response>("/v1/ads/keywords/historical-metrics", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GenerateKeywordHistoricalMetrics", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Historical keyword metrics (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordHistoricalMetricsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GenerateKeywordHistoricalMetrics200Response</returns>
+        public async System.Threading.Tasks.Task<GenerateKeywordHistoricalMetrics200Response> GenerateKeywordHistoricalMetricsAsync(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GenerateKeywordHistoricalMetrics200Response> localVarResponse = await GenerateKeywordHistoricalMetricsWithHttpInfoAsync(generateKeywordHistoricalMetricsRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Historical keyword metrics (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordHistoricalMetricsRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GenerateKeywordHistoricalMetrics200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GenerateKeywordHistoricalMetrics200Response>> GenerateKeywordHistoricalMetricsWithHttpInfoAsync(GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'generateKeywordHistoricalMetricsRequest' is set
+            if (generateKeywordHistoricalMetricsRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'generateKeywordHistoricalMetricsRequest' when calling AdInsightsApi->GenerateKeywordHistoricalMetrics");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = generateKeywordHistoricalMetricsRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<GenerateKeywordHistoricalMetrics200Response>("/v1/ads/keywords/historical-metrics", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GenerateKeywordHistoricalMetrics", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Generate keyword ideas (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordIdeasRequest"></param>
+        /// <returns>GenerateKeywordIdeas200Response</returns>
+        public GenerateKeywordIdeas200Response GenerateKeywordIdeas(GenerateKeywordIdeasRequest generateKeywordIdeasRequest)
+        {
+            Zernio.Client.ApiResponse<GenerateKeywordIdeas200Response> localVarResponse = GenerateKeywordIdeasWithHttpInfo(generateKeywordIdeasRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Generate keyword ideas (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordIdeasRequest"></param>
+        /// <returns>ApiResponse of GenerateKeywordIdeas200Response</returns>
+        public Zernio.Client.ApiResponse<GenerateKeywordIdeas200Response> GenerateKeywordIdeasWithHttpInfo(GenerateKeywordIdeasRequest generateKeywordIdeasRequest)
+        {
+            // verify the required parameter 'generateKeywordIdeasRequest' is set
+            if (generateKeywordIdeasRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'generateKeywordIdeasRequest' when calling AdInsightsApi->GenerateKeywordIdeas");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = generateKeywordIdeasRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<GenerateKeywordIdeas200Response>("/v1/ads/keywords/ideas", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GenerateKeywordIdeas", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Generate keyword ideas (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordIdeasRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GenerateKeywordIdeas200Response</returns>
+        public async System.Threading.Tasks.Task<GenerateKeywordIdeas200Response> GenerateKeywordIdeasAsync(GenerateKeywordIdeasRequest generateKeywordIdeasRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<GenerateKeywordIdeas200Response> localVarResponse = await GenerateKeywordIdeasWithHttpInfoAsync(generateKeywordIdeasRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Generate keyword ideas (Google Keyword Planner) Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="generateKeywordIdeasRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GenerateKeywordIdeas200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<GenerateKeywordIdeas200Response>> GenerateKeywordIdeasWithHttpInfoAsync(GenerateKeywordIdeasRequest generateKeywordIdeasRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'generateKeywordIdeasRequest' is set
+            if (generateKeywordIdeasRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'generateKeywordIdeasRequest' when calling AdInsightsApi->GenerateKeywordIdeas");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = generateKeywordIdeasRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<GenerateKeywordIdeas200Response>("/v1/ads/keywords/ideas", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GenerateKeywordIdeas", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1203,11 +1561,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Flexible live insights query Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
+        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
+        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
+        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
@@ -1223,18 +1584,21 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>QueryAdInsights200Response</returns>
-        public QueryAdInsights200Response QueryAdInsights(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
+        public QueryAdInsights200Response QueryAdInsights(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
         {
-            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = QueryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = QueryAdInsightsWithHttpInfo(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Flexible live insights query Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
+        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
+        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
+        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
@@ -1250,15 +1614,11 @@ namespace Zernio.Api
         /// <param name="limit">Rows per page (optional, default to 25)</param>
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <returns>ApiResponse of QueryAdInsights200Response</returns>
-        public Zernio.Client.ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
+        public Zernio.Client.ApiResponse<QueryAdInsights200Response> QueryAdInsightsWithHttpInfo(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdInsightsApi->QueryAdInsights");
-
-            // verify the required parameter 'objectId' is set
-            if (objectId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'objectId' when calling AdInsightsApi->QueryAdInsights");
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
 
@@ -1277,7 +1637,22 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
-            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "objectId", objectId));
+            if (objectId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "objectId", objectId));
+            }
+            if (query != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+            }
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
             if (level != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "level", level));
@@ -1355,11 +1730,14 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Flexible live insights query Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
+        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
+        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
+        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
@@ -1376,18 +1754,21 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of QueryAdInsights200Response</returns>
-        public async System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<QueryAdInsights200Response> QueryAdInsightsAsync(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
         {
-            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = await QueryAdInsightsWithHttpInfoAsync(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, cancellationToken).ConfigureAwait(false);
+            Zernio.Client.ApiResponse<QueryAdInsights200Response> localVarResponse = await QueryAdInsightsWithHttpInfoAsync(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Flexible live insights query Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
+        /// Flexible live insights query Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.</param>
-        /// <param name="objectId">Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id.</param>
+        /// <param name="accountId">Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.</param>
+        /// <param name="objectId">Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. (optional)</param>
+        /// <param name="query">Google only (required there): the GAQL SELECT statement to run. (optional)</param>
+        /// <param name="customerId">Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional)</param>
+        /// <param name="pageToken">Google only: cursor from paging.nextPageToken of the previous page. (optional)</param>
         /// <param name="level">Row granularity (optional)</param>
         /// <param name="fields">Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)</param>
         /// <param name="breakdowns">Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)</param>
@@ -1404,15 +1785,11 @@ namespace Zernio.Api
         /// <param name="after">Cursor from paging.after of the previous page. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (QueryAdInsights200Response)</returns>
-        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string objectId, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<QueryAdInsights200Response>> QueryAdInsightsWithHttpInfoAsync(string accountId, string? objectId = default, string? query = default, string? customerId = default, string? pageToken = default, string? level = default, string? fields = default, string? breakdowns = default, string? actionBreakdowns = default, string? actionAttributionWindows = default, string? actionReportTime = default, bool? useUnifiedAttributionSetting = default, string? filtering = default, string? datePreset = default, DateOnly? fromDate = default, DateOnly? toDate = default, string? timeIncrement = default, int? limit = default, string? after = default, System.Threading.CancellationToken cancellationToken = default)
         {
             // verify the required parameter 'accountId' is set
             if (accountId == null)
                 throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling AdInsightsApi->QueryAdInsights");
-
-            // verify the required parameter 'objectId' is set
-            if (objectId == null)
-                throw new Zernio.Client.ApiException(400, "Missing required parameter 'objectId' when calling AdInsightsApi->QueryAdInsights");
 
 
             Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
@@ -1433,7 +1810,22 @@ namespace Zernio.Api
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "accountId", accountId));
-            localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "objectId", objectId));
+            if (objectId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "objectId", objectId));
+            }
+            if (query != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "query", query));
+            }
+            if (customerId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "customerId", customerId));
+            }
+            if (pageToken != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "pageToken", pageToken));
+            }
             if (level != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Zernio.Client.ClientUtils.ParameterToMultiMap("", "level", level));

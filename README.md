@@ -212,6 +212,8 @@ Class | Method | HTTP request | Description
 *AdCreativesApi* | [**UpdateAdCreative**](docs/AdCreativesApi.md#updateadcreative) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative
 *AdCreativesApi* | [**UploadAdImage**](docs/AdCreativesApi.md#uploadadimage) | **POST** /v1/ads/images | Upload an ad image from base64
 *AdInsightsApi* | [**CreateAdInsightsReport**](docs/AdInsightsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run
+*AdInsightsApi* | [**GenerateKeywordHistoricalMetrics**](docs/AdInsightsApi.md#generatekeywordhistoricalmetrics) | **POST** /v1/ads/keywords/historical-metrics | Historical keyword metrics (Google Keyword Planner)
+*AdInsightsApi* | [**GenerateKeywordIdeas**](docs/AdInsightsApi.md#generatekeywordideas) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas (Google Keyword Planner)
 *AdInsightsApi* | [**GetAdAnalytics**](docs/AdInsightsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
 *AdInsightsApi* | [**GetAdInsightsReport**](docs/AdInsightsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run
 *AdInsightsApi* | [**GetCampaignAnalytics**](docs/AdInsightsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
@@ -1055,6 +1057,11 @@ Class | Method | HTTP request | Description
  - [Model.GenerateAdPreviews200Response](docs/GenerateAdPreviews200Response.md)
  - [Model.GenerateAdPreviews200ResponsePreviewsInner](docs/GenerateAdPreviews200ResponsePreviewsInner.md)
  - [Model.GenerateAdPreviewsRequest](docs/GenerateAdPreviewsRequest.md)
+ - [Model.GenerateKeywordHistoricalMetrics200Response](docs/GenerateKeywordHistoricalMetrics200Response.md)
+ - [Model.GenerateKeywordHistoricalMetricsRequest](docs/GenerateKeywordHistoricalMetricsRequest.md)
+ - [Model.GenerateKeywordIdeas200Response](docs/GenerateKeywordIdeas200Response.md)
+ - [Model.GenerateKeywordIdeas200ResponsePaging](docs/GenerateKeywordIdeas200ResponsePaging.md)
+ - [Model.GenerateKeywordIdeasRequest](docs/GenerateKeywordIdeasRequest.md)
  - [Model.GeoRestriction](docs/GeoRestriction.md)
  - [Model.GetAccountHealth200Response](docs/GetAccountHealth200Response.md)
  - [Model.GetAccountHealth200ResponsePermissions](docs/GetAccountHealth200ResponsePermissions.md)
@@ -1077,6 +1084,7 @@ Class | Method | HTTP request | Description
  - [Model.GetAdTrackingTags200Response](docs/GetAdTrackingTags200Response.md)
  - [Model.GetAdTree200Response](docs/GetAdTree200Response.md)
  - [Model.GetAdsActivityLog200Response](docs/GetAdsActivityLog200Response.md)
+ - [Model.GetAdsActivityLog200ResponsePaging](docs/GetAdsActivityLog200ResponsePaging.md)
  - [Model.GetAdsTimeline200Response](docs/GetAdsTimeline200Response.md)
  - [Model.GetAdsTimeline200ResponseRowsInner](docs/GetAdsTimeline200ResponseRowsInner.md)
  - [Model.GetAllAccountsHealth200Response](docs/GetAllAccountsHealth200Response.md)

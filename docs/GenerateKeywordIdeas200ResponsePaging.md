@@ -1,12 +1,10 @@
-# Zernio.Model.ListAdLabels200Response
+# Zernio.Model.GenerateKeywordIdeas200ResponsePaging
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdAccountId** | **string** |  | [optional] 
-**Data** | **List&lt;Object&gt;** |  | [optional] 
-**Paging** | [**GetAdsActivityLog200ResponsePaging**](GetAdsActivityLog200ResponsePaging.md) |  | [optional] 
+**NextPageToken** | **string** | Cursor for the next page; null when exhausted. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

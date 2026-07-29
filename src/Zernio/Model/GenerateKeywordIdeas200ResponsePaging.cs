@@ -28,42 +28,26 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListHighDemandPeriods200Response
+    /// GenerateKeywordIdeas200ResponsePaging
     /// </summary>
-    [DataContract(Name = "listHighDemandPeriods_200_response")]
-    public partial class ListHighDemandPeriods200Response : IValidatableObject
+    [DataContract(Name = "generateKeywordIdeas_200_response_paging")]
+    public partial class GenerateKeywordIdeas200ResponsePaging : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListHighDemandPeriods200Response" /> class.
+        /// Initializes a new instance of the <see cref="GenerateKeywordIdeas200ResponsePaging" /> class.
         /// </summary>
-        /// <param name="objectId">The campaign / ad set id the schedules belong to..</param>
-        /// <param name="data">data.</param>
-        /// <param name="paging">paging.</param>
-        public ListHighDemandPeriods200Response(string objectId = default, List<Object> data = default, GetAdsActivityLog200ResponsePaging paging = default)
+        /// <param name="nextPageToken">Cursor for the next page; null when exhausted..</param>
+        public GenerateKeywordIdeas200ResponsePaging(string nextPageToken = default)
         {
-            this.ObjectId = objectId;
-            this.Data = data;
-            this.Paging = paging;
+            this.NextPageToken = nextPageToken;
         }
 
         /// <summary>
-        /// The campaign / ad set id the schedules belong to.
+        /// Cursor for the next page; null when exhausted.
         /// </summary>
-        /// <value>The campaign / ad set id the schedules belong to.</value>
-        [DataMember(Name = "objectId", EmitDefaultValue = false)]
-        public string ObjectId { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Data
-        /// </summary>
-        [DataMember(Name = "data", EmitDefaultValue = false)]
-        public List<Object> Data { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Paging
-        /// </summary>
-        [DataMember(Name = "paging", EmitDefaultValue = false)]
-        public GetAdsActivityLog200ResponsePaging Paging { get; set; }
+        /// <value>Cursor for the next page; null when exhausted.</value>
+        [DataMember(Name = "nextPageToken", EmitDefaultValue = true)]
+        public string NextPageToken { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -72,10 +56,8 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListHighDemandPeriods200Response {\n");
-            sb.Append("  ObjectId: ").Append(ObjectId).Append("\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  Paging: ").Append(Paging).Append("\n");
+            sb.Append("class GenerateKeywordIdeas200ResponsePaging {\n");
+            sb.Append("  NextPageToken: ").Append(NextPageToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

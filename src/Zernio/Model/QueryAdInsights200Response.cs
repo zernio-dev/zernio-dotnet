@@ -36,21 +36,40 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryAdInsights200Response" /> class.
         /// </summary>
-        /// <param name="objectId">objectId.</param>
+        /// <param name="objectId">Meta responses only..</param>
+        /// <param name="customerId">Google responses only: the customer the query ran against..</param>
+        /// <param name="fieldMask">Google responses only: the selected fields echoed by Google..</param>
         /// <param name="data">data.</param>
         /// <param name="paging">paging.</param>
-        public QueryAdInsights200Response(string objectId = default, List<Object> data = default, QueryAdInsights200ResponsePaging paging = default)
+        public QueryAdInsights200Response(string objectId = default, string customerId = default, string fieldMask = default, List<Object> data = default, QueryAdInsights200ResponsePaging paging = default)
         {
             this.ObjectId = objectId;
+            this.CustomerId = customerId;
+            this.FieldMask = fieldMask;
             this.Data = data;
             this.Paging = paging;
         }
 
         /// <summary>
-        /// Gets or Sets ObjectId
+        /// Meta responses only.
         /// </summary>
+        /// <value>Meta responses only.</value>
         [DataMember(Name = "objectId", EmitDefaultValue = false)]
         public string ObjectId { get; set; }
+
+        /// <summary>
+        /// Google responses only: the customer the query ran against.
+        /// </summary>
+        /// <value>Google responses only: the customer the query ran against.</value>
+        [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        public string CustomerId { get; set; }
+
+        /// <summary>
+        /// Google responses only: the selected fields echoed by Google.
+        /// </summary>
+        /// <value>Google responses only: the selected fields echoed by Google.</value>
+        [DataMember(Name = "fieldMask", EmitDefaultValue = true)]
+        public string FieldMask { get; set; }
 
         /// <summary>
         /// Gets or Sets Data
@@ -73,6 +92,8 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class QueryAdInsights200Response {\n");
             sb.Append("  ObjectId: ").Append(ObjectId).Append("\n");
+            sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
+            sb.Append("  FieldMask: ").Append(FieldMask).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Paging: ").Append(Paging).Append("\n");
             sb.Append("}\n");

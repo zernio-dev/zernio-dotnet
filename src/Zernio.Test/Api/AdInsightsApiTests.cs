@@ -67,6 +67,30 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GenerateKeywordHistoricalMetrics
+        /// </summary>
+        [Fact]
+        public void GenerateKeywordHistoricalMetricsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest = null;
+            //var response = instance.GenerateKeywordHistoricalMetrics(generateKeywordHistoricalMetricsRequest);
+            //Assert.IsType<GenerateKeywordHistoricalMetrics200Response>(response);
+        }
+
+        /// <summary>
+        /// Test GenerateKeywordIdeas
+        /// </summary>
+        [Fact]
+        public void GenerateKeywordIdeasTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //GenerateKeywordIdeasRequest generateKeywordIdeasRequest = null;
+            //var response = instance.GenerateKeywordIdeas(generateKeywordIdeasRequest);
+            //Assert.IsType<GenerateKeywordIdeas200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetAdAnalytics
         /// </summary>
         [Fact]
@@ -120,7 +144,10 @@ namespace Zernio.Test.Api
         {
             // TODO uncomment below to test the method and replace null with proper value
             //string accountId = null;
-            //string objectId = null;
+            //string? objectId = null;
+            //string? query = null;
+            //string? customerId = null;
+            //string? pageToken = null;
             //string? level = null;
             //string? fields = null;
             //string? breakdowns = null;
@@ -135,7 +162,7 @@ namespace Zernio.Test.Api
             //string? timeIncrement = null;
             //int? limit = null;
             //string? after = null;
-            //var response = instance.QueryAdInsights(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            //var response = instance.QueryAdInsights(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             //Assert.IsType<QueryAdInsights200Response>(response);
         }
     }

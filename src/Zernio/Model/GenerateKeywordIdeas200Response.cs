@@ -28,30 +28,32 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ListHighDemandPeriods200Response
+    /// GenerateKeywordIdeas200Response
     /// </summary>
-    [DataContract(Name = "listHighDemandPeriods_200_response")]
-    public partial class ListHighDemandPeriods200Response : IValidatableObject
+    [DataContract(Name = "generateKeywordIdeas_200_response")]
+    public partial class GenerateKeywordIdeas200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListHighDemandPeriods200Response" /> class.
+        /// Initializes a new instance of the <see cref="GenerateKeywordIdeas200Response" /> class.
         /// </summary>
-        /// <param name="objectId">The campaign / ad set id the schedules belong to..</param>
+        /// <param name="customerId">The customer the request ran against..</param>
         /// <param name="data">data.</param>
+        /// <param name="aggregateMetricResults">aggregateMetricResults.</param>
         /// <param name="paging">paging.</param>
-        public ListHighDemandPeriods200Response(string objectId = default, List<Object> data = default, GetAdsActivityLog200ResponsePaging paging = default)
+        public GenerateKeywordIdeas200Response(string customerId = default, List<Object> data = default, Object aggregateMetricResults = default, GenerateKeywordIdeas200ResponsePaging paging = default)
         {
-            this.ObjectId = objectId;
+            this.CustomerId = customerId;
             this.Data = data;
+            this.AggregateMetricResults = aggregateMetricResults;
             this.Paging = paging;
         }
 
         /// <summary>
-        /// The campaign / ad set id the schedules belong to.
+        /// The customer the request ran against.
         /// </summary>
-        /// <value>The campaign / ad set id the schedules belong to.</value>
-        [DataMember(Name = "objectId", EmitDefaultValue = false)]
-        public string ObjectId { get; set; }
+        /// <value>The customer the request ran against.</value>
+        [DataMember(Name = "customerId", EmitDefaultValue = false)]
+        public string CustomerId { get; set; }
 
         /// <summary>
         /// Gets or Sets Data
@@ -60,10 +62,16 @@ namespace Zernio.Model
         public List<Object> Data { get; set; }
 
         /// <summary>
+        /// Gets or Sets AggregateMetricResults
+        /// </summary>
+        [DataMember(Name = "aggregateMetricResults", EmitDefaultValue = true)]
+        public Object AggregateMetricResults { get; set; }
+
+        /// <summary>
         /// Gets or Sets Paging
         /// </summary>
         [DataMember(Name = "paging", EmitDefaultValue = false)]
-        public GetAdsActivityLog200ResponsePaging Paging { get; set; }
+        public GenerateKeywordIdeas200ResponsePaging Paging { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -72,9 +80,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ListHighDemandPeriods200Response {\n");
-            sb.Append("  ObjectId: ").Append(ObjectId).Append("\n");
+            sb.Append("class GenerateKeywordIdeas200Response {\n");
+            sb.Append("  CustomerId: ").Append(CustomerId).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  AggregateMetricResults: ").Append(AggregateMetricResults).Append("\n");
             sb.Append("  Paging: ").Append(Paging).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

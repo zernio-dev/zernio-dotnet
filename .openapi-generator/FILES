@@ -422,6 +422,11 @@ docs/GMBVerificationsApi.md
 docs/GenerateAdPreviews200Response.md
 docs/GenerateAdPreviews200ResponsePreviewsInner.md
 docs/GenerateAdPreviewsRequest.md
+docs/GenerateKeywordHistoricalMetrics200Response.md
+docs/GenerateKeywordHistoricalMetricsRequest.md
+docs/GenerateKeywordIdeas200Response.md
+docs/GenerateKeywordIdeas200ResponsePaging.md
+docs/GenerateKeywordIdeasRequest.md
 docs/GeoRestriction.md
 docs/GetAccountHealth200Response.md
 docs/GetAccountHealth200ResponsePermissions.md
@@ -444,6 +449,7 @@ docs/GetAdSetDetails200Response.md
 docs/GetAdTrackingTags200Response.md
 docs/GetAdTree200Response.md
 docs/GetAdsActivityLog200Response.md
+docs/GetAdsActivityLog200ResponsePaging.md
 docs/GetAdsTimeline200Response.md
 docs/GetAdsTimeline200ResponseRowsInner.md
 docs/GetAllAccountsHealth200Response.md
@@ -2041,6 +2047,11 @@ src/Zernio.Test/Model/FoodMenuTests.cs
 src/Zernio.Test/Model/GenerateAdPreviews200ResponsePreviewsInnerTests.cs
 src/Zernio.Test/Model/GenerateAdPreviews200ResponseTests.cs
 src/Zernio.Test/Model/GenerateAdPreviewsRequestTests.cs
+src/Zernio.Test/Model/GenerateKeywordHistoricalMetrics200ResponseTests.cs
+src/Zernio.Test/Model/GenerateKeywordHistoricalMetricsRequestTests.cs
+src/Zernio.Test/Model/GenerateKeywordIdeas200ResponsePagingTests.cs
+src/Zernio.Test/Model/GenerateKeywordIdeas200ResponseTests.cs
+src/Zernio.Test/Model/GenerateKeywordIdeasRequestTests.cs
 src/Zernio.Test/Model/GeoRestrictionTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponsePermissionsPostingInnerTests.cs
 src/Zernio.Test/Model/GetAccountHealth200ResponsePermissionsTests.cs
@@ -2062,6 +2073,7 @@ src/Zernio.Test/Model/GetAdPreviews200ResponseTests.cs
 src/Zernio.Test/Model/GetAdSetDetails200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTrackingTags200ResponseTests.cs
 src/Zernio.Test/Model/GetAdTree200ResponseTests.cs
+src/Zernio.Test/Model/GetAdsActivityLog200ResponsePagingTests.cs
 src/Zernio.Test/Model/GetAdsActivityLog200ResponseTests.cs
 src/Zernio.Test/Model/GetAdsTimeline200ResponseRowsInnerTests.cs
 src/Zernio.Test/Model/GetAdsTimeline200ResponseTests.cs
@@ -3643,6 +3655,11 @@ src/Zernio/Model/FoodMenuSection.cs
 src/Zernio/Model/GenerateAdPreviews200Response.cs
 src/Zernio/Model/GenerateAdPreviews200ResponsePreviewsInner.cs
 src/Zernio/Model/GenerateAdPreviewsRequest.cs
+src/Zernio/Model/GenerateKeywordHistoricalMetrics200Response.cs
+src/Zernio/Model/GenerateKeywordHistoricalMetricsRequest.cs
+src/Zernio/Model/GenerateKeywordIdeas200Response.cs
+src/Zernio/Model/GenerateKeywordIdeas200ResponsePaging.cs
+src/Zernio/Model/GenerateKeywordIdeasRequest.cs
 src/Zernio/Model/GeoRestriction.cs
 src/Zernio/Model/GetAccountHealth200Response.cs
 src/Zernio/Model/GetAccountHealth200ResponsePermissions.cs
@@ -3665,6 +3682,7 @@ src/Zernio/Model/GetAdSetDetails200Response.cs
 src/Zernio/Model/GetAdTrackingTags200Response.cs
 src/Zernio/Model/GetAdTree200Response.cs
 src/Zernio/Model/GetAdsActivityLog200Response.cs
+src/Zernio/Model/GetAdsActivityLog200ResponsePaging.cs
 src/Zernio/Model/GetAdsTimeline200Response.cs
 src/Zernio/Model/GetAdsTimeline200ResponseRowsInner.cs
 src/Zernio/Model/GetAllAccountsHealth200Response.cs

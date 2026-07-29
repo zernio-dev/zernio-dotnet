@@ -39,7 +39,7 @@ namespace Zernio.Model
         /// <param name="adAccountId">adAccountId.</param>
         /// <param name="data">data.</param>
         /// <param name="paging">paging.</param>
-        public ListAdCreatives200Response(string adAccountId = default, List<Object> data = default, QueryAdInsights200ResponsePaging paging = default)
+        public ListAdCreatives200Response(string adAccountId = default, List<Object> data = default, GetAdsActivityLog200ResponsePaging paging = default)
         {
             this.AdAccountId = adAccountId;
             this.Data = data;
@@ -62,7 +62,7 @@ namespace Zernio.Model
         /// Gets or Sets Paging
         /// </summary>
         [DataMember(Name = "paging", EmitDefaultValue = false)]
-        public QueryAdInsights200ResponsePaging Paging { get; set; }
+        public GetAdsActivityLog200ResponsePaging Paging { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

@@ -5,6 +5,8 @@ All URIs are relative to *https://zernio.com/api*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**CreateAdInsightsReport**](AdInsightsApi.md#createadinsightsreport) | **POST** /v1/ads/insights/reports | Submit an async insights report run |
+| [**GenerateKeywordHistoricalMetrics**](AdInsightsApi.md#generatekeywordhistoricalmetrics) | **POST** /v1/ads/keywords/historical-metrics | Historical keyword metrics (Google Keyword Planner) |
+| [**GenerateKeywordIdeas**](AdInsightsApi.md#generatekeywordideas) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas (Google Keyword Planner) |
 | [**GetAdAnalytics**](AdInsightsApi.md#getadanalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**GetAdInsightsReport**](AdInsightsApi.md#getadinsightsreport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run |
 | [**GetCampaignAnalytics**](AdInsightsApi.md#getcampaignanalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
@@ -109,6 +111,210 @@ catch (ApiException e)
 | **401** | Unauthorized |  -  |
 | **429** | Meta rate limit reached |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="generatekeywordhistoricalmetrics"></a>
+# **GenerateKeywordHistoricalMetrics**
+> GenerateKeywordHistoricalMetrics200Response GenerateKeywordHistoricalMetrics (GenerateKeywordHistoricalMetricsRequest generateKeywordHistoricalMetricsRequest)
+
+Historical keyword metrics (Google Keyword Planner)
+
+Google Ads only. Runs Keyword Planner's generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GenerateKeywordHistoricalMetricsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdInsightsApi(httpClient, config, httpClientHandler);
+            var generateKeywordHistoricalMetricsRequest = new GenerateKeywordHistoricalMetricsRequest(); // GenerateKeywordHistoricalMetricsRequest | 
+
+            try
+            {
+                // Historical keyword metrics (Google Keyword Planner)
+                GenerateKeywordHistoricalMetrics200Response result = apiInstance.GenerateKeywordHistoricalMetrics(generateKeywordHistoricalMetricsRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdInsightsApi.GenerateKeywordHistoricalMetrics: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GenerateKeywordHistoricalMetricsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Historical keyword metrics (Google Keyword Planner)
+    ApiResponse<GenerateKeywordHistoricalMetrics200Response> response = apiInstance.GenerateKeywordHistoricalMetricsWithHttpInfo(generateKeywordHistoricalMetricsRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdInsightsApi.GenerateKeywordHistoricalMetricsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **generateKeywordHistoricalMetricsRequest** | [**GenerateKeywordHistoricalMetricsRequest**](GenerateKeywordHistoricalMetricsRequest.md) |  |  |
+
+### Return type
+
+[**GenerateKeywordHistoricalMetrics200Response**](GenerateKeywordHistoricalMetrics200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
+| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **501** | Only supported on Google Ads |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="generatekeywordideas"></a>
+# **GenerateKeywordIdeas**
+> GenerateKeywordIdeas200Response GenerateKeywordIdeas (GenerateKeywordIdeasRequest generateKeywordIdeasRequest)
+
+Generate keyword ideas (Google Keyword Planner)
+
+Google Ads only. Runs Keyword Planner's generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting `countries` targets worldwide. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class GenerateKeywordIdeasExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new AdInsightsApi(httpClient, config, httpClientHandler);
+            var generateKeywordIdeasRequest = new GenerateKeywordIdeasRequest(); // GenerateKeywordIdeasRequest | 
+
+            try
+            {
+                // Generate keyword ideas (Google Keyword Planner)
+                GenerateKeywordIdeas200Response result = apiInstance.GenerateKeywordIdeas(generateKeywordIdeasRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling AdInsightsApi.GenerateKeywordIdeas: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GenerateKeywordIdeasWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Generate keyword ideas (Google Keyword Planner)
+    ApiResponse<GenerateKeywordIdeas200Response> response = apiInstance.GenerateKeywordIdeasWithHttpInfo(generateKeywordIdeasRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling AdInsightsApi.GenerateKeywordIdeasWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **generateKeywordIdeasRequest** | [**GenerateKeywordIdeasRequest**](GenerateKeywordIdeasRequest.md) |  |  |
+
+### Return type
+
+[**GenerateKeywordIdeas200Response**](GenerateKeywordIdeas200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
+| **400** | Invalid input, or Google rejected the request — message carries Google&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **501** | Only supported on Google Ads |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -442,11 +648,11 @@ catch (ApiException e)
 
 <a id="queryadinsights"></a>
 # **QueryAdInsights**
-> QueryAdInsights200Response QueryAdInsights (string accountId, string objectId, string? level = null, string? fields = null, string? breakdowns = null, string? actionBreakdowns = null, string? actionAttributionWindows = null, string? actionReportTime = null, bool? useUnifiedAttributionSetting = null, string? filtering = null, string? datePreset = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? timeIncrement = null, int? limit = null, string? after = null)
+> QueryAdInsights200Response QueryAdInsights (string accountId, string? objectId = null, string? query = null, string? customerId = null, string? pageToken = null, string? level = null, string? fields = null, string? breakdowns = null, string? actionBreakdowns = null, string? actionAttributionWindows = null, string? actionReportTime = null, bool? useUnifiedAttributionSetting = null, string? filtering = null, string? datePreset = null, DateOnly? fromDate = null, DateOnly? toDate = null, string? timeIncrement = null, int? limit = null, string? after = null)
 
 Flexible live insights query
 
-Live, flexible insights query against Meta's Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen `fields`, `breakdowns` and `filtering` to any Meta insights node and returns Meta's rows verbatim.  `objectId` selects the node: an ad account, campaign, ad set or ad platform id. `level` sets row granularity independently of the node.  Semantic validation is Meta's: an unknown field or invalid breakdown combination returns a 400 carrying Meta's message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). 
+Live, flexible insights query. The account's platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen `fields`, `breakdowns` and `filtering` to any Meta insights node and returns Meta's rows verbatim. `objectId` (required) selects the node; `level` sets row granularity. Semantic validation is Meta's: an unknown field or invalid breakdown combination returns a 400 carrying Meta's message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via `query` (campaign/keyword/search-term/geo/demographic/asset/shopping resources, `change_event`, any `segments.*`) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow `paging.nextPageToken` with `pageToken`. `customerId` is only needed when the connection has several Google Ads accounts. Semantic validation is Google's: an invalid query returns a 400 carrying Google's message (note: selecting `segments.date` requires a finite date filter). 
 
 ### Example
 ```csharp
@@ -472,8 +678,11 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new AdInsightsApi(httpClient, config, httpClientHandler);
-            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-            var objectId = "objectId_example";  // string | Meta insights node: act_<n>, campaign id, ad set id or ad id.
+            var accountId = "accountId_example";  // string | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.
+            var objectId = "objectId_example";  // string? | Meta only (required there): insights node — act_<n>, campaign id, ad set id or ad id. (optional) 
+            var query = "query_example";  // string? | Google only (required there): the GAQL SELECT statement to run. (optional) 
+            var customerId = "customerId_example";  // string? | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. (optional) 
+            var pageToken = "pageToken_example";  // string? | Google only: cursor from paging.nextPageToken of the previous page. (optional) 
             var level = "ad";  // string? | Row granularity (optional) 
             var fields = "fields_example";  // string? | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set. (optional) 
             var breakdowns = "breakdowns_example";  // string? | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional) 
@@ -492,7 +701,7 @@ namespace Example
             try
             {
                 // Flexible live insights query
-                QueryAdInsights200Response result = apiInstance.QueryAdInsights(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+                QueryAdInsights200Response result = apiInstance.QueryAdInsights(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -513,7 +722,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Flexible live insights query
-    ApiResponse<QueryAdInsights200Response> response = apiInstance.QueryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+    ApiResponse<QueryAdInsights200Response> response = apiInstance.QueryAdInsightsWithHttpInfo(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -530,8 +739,11 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. |  |
-| **objectId** | **string** | Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. |  |
+| **accountId** | **string** | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. |  |
+| **objectId** | **string?** | Meta only (required there): insights node — act_&lt;n&gt;, campaign id, ad set id or ad id. | [optional]  |
+| **query** | **string?** | Google only (required there): the GAQL SELECT statement to run. | [optional]  |
+| **customerId** | **string?** | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. | [optional]  |
+| **pageToken** | **string?** | Google only: cursor from paging.nextPageToken of the previous page. | [optional]  |
 | **level** | **string?** | Row granularity | [optional]  |
 | **fields** | **string?** | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional]  |
 | **breakdowns** | **string?** | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). | [optional]  |
@@ -564,11 +776,11 @@ catch (ApiException e)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Insight rows (raw Meta shape) |  -  |
-| **400** | Invalid input, or Meta rejected the query (unknown field, invalid breakdown combo) — message carries Meta&#39;s error |  -  |
+| **200** | Insight rows (raw platform shape) |  -  |
+| **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL) — message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
-| **429** | Meta rate limit reached |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **429** | Platform rate limit reached. For Google this is the per-user operations budget or the shared quota; the message says which and when it resets. |  -  |
+| **501** | Only supported on Meta (facebook/instagram) and Google Ads |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

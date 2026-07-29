@@ -36,18 +36,27 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryAdInsights200ResponsePaging" /> class.
         /// </summary>
-        /// <param name="after">Cursor for the next page; null when exhausted..</param>
-        public QueryAdInsights200ResponsePaging(string after = default)
+        /// <param name="after">Meta cursor for the next page; null when exhausted..</param>
+        /// <param name="nextPageToken">Google cursor for the next page; null when exhausted..</param>
+        public QueryAdInsights200ResponsePaging(string after = default, string nextPageToken = default)
         {
             this.After = after;
+            this.NextPageToken = nextPageToken;
         }
 
         /// <summary>
-        /// Cursor for the next page; null when exhausted.
+        /// Meta cursor for the next page; null when exhausted.
         /// </summary>
-        /// <value>Cursor for the next page; null when exhausted.</value>
+        /// <value>Meta cursor for the next page; null when exhausted.</value>
         [DataMember(Name = "after", EmitDefaultValue = true)]
         public string After { get; set; }
+
+        /// <summary>
+        /// Google cursor for the next page; null when exhausted.
+        /// </summary>
+        /// <value>Google cursor for the next page; null when exhausted.</value>
+        [DataMember(Name = "nextPageToken", EmitDefaultValue = true)]
+        public string NextPageToken { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -58,6 +67,7 @@ namespace Zernio.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class QueryAdInsights200ResponsePaging {\n");
             sb.Append("  After: ").Append(After).Append("\n");
+            sb.Append("  NextPageToken: ").Append(NextPageToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

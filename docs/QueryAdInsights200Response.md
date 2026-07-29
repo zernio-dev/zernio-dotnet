@@ -4,7 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ObjectId** | **string** |  | [optional] 
+**ObjectId** | **string** | Meta responses only. | [optional] 
+**CustomerId** | **string** | Google responses only: the customer the query ran against. | [optional] 
+**FieldMask** | **string** | Google responses only: the selected fields echoed by Google. | [optional] 
 **Data** | **List&lt;Object&gt;** |  | [optional] 
 **Paging** | [**QueryAdInsights200ResponsePaging**](QueryAdInsights200ResponsePaging.md) |  | [optional] 
 
