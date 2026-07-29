@@ -109,6 +109,18 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test GetSlackSettings
+        /// </summary>
+        [Fact]
+        public void GetSlackSettingsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //var response = instance.GetSlackSettings(accountId);
+            //Assert.IsType<GetSlackSettings200Response>(response);
+        }
+
+        /// <summary>
         /// Test GetTikTokCreatorInfo
         /// </summary>
         [Fact]
@@ -162,6 +174,18 @@ namespace Zernio.Test.Api
             //UpdateAccountRequest updateAccountRequest = null;
             //var response = instance.UpdateAccount(accountId, updateAccountRequest);
             //Assert.IsType<UpdateAccount200Response>(response);
+        }
+
+        /// <summary>
+        /// Test UpdateSlackSettings
+        /// </summary>
+        [Fact]
+        public void UpdateSlackSettingsTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //UpdateSlackSettingsRequest updateSlackSettingsRequest = null;
+            //instance.UpdateSlackSettings(accountId, updateSlackSettingsRequest);
         }
     }
 }

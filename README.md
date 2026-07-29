@@ -156,10 +156,12 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**GetAccountHealth**](docs/AccountsApi.md#getaccounthealth) | **GET** /v1/accounts/{accountId}/health | Check account health
 *AccountsApi* | [**GetAllAccountsHealth**](docs/AccountsApi.md#getallaccountshealth) | **GET** /v1/accounts/health | Check accounts health
 *AccountsApi* | [**GetFollowerStats**](docs/AccountsApi.md#getfollowerstats) | **GET** /v1/accounts/follower-stats | Get follower stats
+*AccountsApi* | [**GetSlackSettings**](docs/AccountsApi.md#getslacksettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
 *AccountsApi* | [**GetTikTokCreatorInfo**](docs/AccountsApi.md#gettiktokcreatorinfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**ListAccounts**](docs/AccountsApi.md#listaccounts) | **GET** /v1/accounts | List accounts
 *AccountsApi* | [**MoveAccountToProfile**](docs/AccountsApi.md#moveaccounttoprofile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**UpdateAccount**](docs/AccountsApi.md#updateaccount) | **PUT** /v1/accounts/{accountId} | Update account
+*AccountsApi* | [**UpdateSlackSettings**](docs/AccountsApi.md#updateslacksettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AdAccountsApi* | [**GetAdAccountFinance**](docs/AdAccountsApi.md#getadaccountfinance) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**GetAdComments**](docs/AdAccountsApi.md#getadcomments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdAccountsApi* | [**GetAdsActivityLog**](docs/AdAccountsApi.md#getadsactivitylog) | **GET** /v1/ads/activity | Ad account change / audit log
@@ -1291,6 +1293,8 @@ Class | Method | HTTP request | Description
  - [Model.GetSequence200ResponseSequence](docs/GetSequence200ResponseSequence.md)
  - [Model.GetSequence200ResponseSequenceStepsInner](docs/GetSequence200ResponseSequenceStepsInner.md)
  - [Model.GetSequence200ResponseSequenceStepsInnerTemplate](docs/GetSequence200ResponseSequenceStepsInnerTemplate.md)
+ - [Model.GetSlackSettings200Response](docs/GetSlackSettings200Response.md)
+ - [Model.GetSlackSettings200ResponseAccount](docs/GetSlackSettings200ResponseAccount.md)
  - [Model.GetSmsRegistration200Response](docs/GetSmsRegistration200Response.md)
  - [Model.GetSmsRegistration200ResponseCampaignContent](docs/GetSmsRegistration200ResponseCampaignContent.md)
  - [Model.GetSmsUsage200Response](docs/GetSmsUsage200Response.md)
@@ -2008,6 +2012,7 @@ Class | Method | HTTP request | Description
  - [Model.UpdateSequenceRequest](docs/UpdateSequenceRequest.md)
  - [Model.UpdateSequenceRequestStepsInner](docs/UpdateSequenceRequestStepsInner.md)
  - [Model.UpdateSequenceRequestStepsInnerTemplate](docs/UpdateSequenceRequestStepsInnerTemplate.md)
+ - [Model.UpdateSlackSettingsRequest](docs/UpdateSlackSettingsRequest.md)
  - [Model.UpdateTrackingTagRequest](docs/UpdateTrackingTagRequest.md)
  - [Model.UpdateWebhookSettings200Response](docs/UpdateWebhookSettings200Response.md)
  - [Model.UpdateWebhookSettingsRequest](docs/UpdateWebhookSettingsRequest.md)

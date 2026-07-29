@@ -656,6 +656,8 @@ docs/GetSequence200Response.md
 docs/GetSequence200ResponseSequence.md
 docs/GetSequence200ResponseSequenceStepsInner.md
 docs/GetSequence200ResponseSequenceStepsInnerTemplate.md
+docs/GetSlackSettings200Response.md
+docs/GetSlackSettings200ResponseAccount.md
 docs/GetSmsRegistration200Response.md
 docs/GetSmsRegistration200ResponseCampaignContent.md
 docs/GetSmsUsage200Response.md
@@ -1394,6 +1396,7 @@ docs/UpdateSequence200ResponseSequence.md
 docs/UpdateSequenceRequest.md
 docs/UpdateSequenceRequestStepsInner.md
 docs/UpdateSequenceRequestStepsInnerTemplate.md
+docs/UpdateSlackSettingsRequest.md
 docs/UpdateTrackingTagRequest.md
 docs/UpdateWebhookSettings200Response.md
 docs/UpdateWebhookSettingsRequest.md
@@ -2284,6 +2287,8 @@ src/Zernio.Test/Model/GetSequence200ResponseSequenceStepsInnerTemplateTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceStepsInnerTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseSequenceTests.cs
 src/Zernio.Test/Model/GetSequence200ResponseTests.cs
+src/Zernio.Test/Model/GetSlackSettings200ResponseAccountTests.cs
+src/Zernio.Test/Model/GetSlackSettings200ResponseTests.cs
 src/Zernio.Test/Model/GetSmsRegistration200ResponseCampaignContentTests.cs
 src/Zernio.Test/Model/GetSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/GetSmsUsage200ResponseGroupsInnerTests.cs
@@ -3001,6 +3006,7 @@ src/Zernio.Test/Model/UpdateSequence200ResponseTests.cs
 src/Zernio.Test/Model/UpdateSequenceRequestStepsInnerTemplateTests.cs
 src/Zernio.Test/Model/UpdateSequenceRequestStepsInnerTests.cs
 src/Zernio.Test/Model/UpdateSequenceRequestTests.cs
+src/Zernio.Test/Model/UpdateSlackSettingsRequestTests.cs
 src/Zernio.Test/Model/UpdateTrackingTagRequestTests.cs
 src/Zernio.Test/Model/UpdateWebhookSettings200ResponseTests.cs
 src/Zernio.Test/Model/UpdateWebhookSettingsRequestTests.cs
@@ -3895,6 +3901,8 @@ src/Zernio/Model/GetSequence200Response.cs
 src/Zernio/Model/GetSequence200ResponseSequence.cs
 src/Zernio/Model/GetSequence200ResponseSequenceStepsInner.cs
 src/Zernio/Model/GetSequence200ResponseSequenceStepsInnerTemplate.cs
+src/Zernio/Model/GetSlackSettings200Response.cs
+src/Zernio/Model/GetSlackSettings200ResponseAccount.cs
 src/Zernio/Model/GetSmsRegistration200Response.cs
 src/Zernio/Model/GetSmsRegistration200ResponseCampaignContent.cs
 src/Zernio/Model/GetSmsUsage200Response.cs
@@ -4612,6 +4620,7 @@ src/Zernio/Model/UpdateSequence200ResponseSequence.cs
 src/Zernio/Model/UpdateSequenceRequest.cs
 src/Zernio/Model/UpdateSequenceRequestStepsInner.cs
 src/Zernio/Model/UpdateSequenceRequestStepsInnerTemplate.cs
+src/Zernio/Model/UpdateSlackSettingsRequest.cs
 src/Zernio/Model/UpdateTrackingTagRequest.cs
 src/Zernio/Model/UpdateWebhookSettings200Response.cs
 src/Zernio/Model/UpdateWebhookSettingsRequest.cs
