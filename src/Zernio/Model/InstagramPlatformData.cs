@@ -62,7 +62,7 @@ namespace Zernio.Model
         /// <param name="collaborators">Up to 3 Instagram usernames to invite as collaborators (feed/Reels only).</param>
         /// <param name="firstComment">Optional first comment to add after the post is created (not applied to Stories).</param>
         /// <param name="trialParams">trialParams.</param>
-        /// <param name="userTags">Tag Instagram users in photos by username and position. Not supported for stories or videos. For carousels, use mediaIndex to target specific slides (defaults to 0). Tags on video items are silently skipped..</param>
+        /// <param name="userTags">Tag Instagram users by username. The tag shape depends on the media: photos require x/y coordinates, Reels and videos take username only (coordinates are ignored), stories accept optional coordinates. For carousels, use mediaIndex to target specific slides (defaults to 0); video slides take username-only tags. Photo tags without valid coordinates are skipped..</param>
         /// <param name="audioName">Custom name for original audio in Reels. Replaces the default \&quot;Original Audio\&quot; label. Can only be set once..</param>
         /// <param name="thumbOffset">Millisecond offset from video start for the Reel cover frame. Ignored when instagramThumbnail or reelCover is provided. Defaults to 0..</param>
         /// <param name="instagramThumbnail">Custom cover image URL for Instagram Reels (JPG or PNG, publicly accessible). Overrides thumbOffset when provided. Also accepted as reelCover (alias)..</param>
@@ -111,9 +111,9 @@ namespace Zernio.Model
         public InstagramPlatformDataTrialParams TrialParams { get; set; }
 
         /// <summary>
-        /// Tag Instagram users in photos by username and position. Not supported for stories or videos. For carousels, use mediaIndex to target specific slides (defaults to 0). Tags on video items are silently skipped.
+        /// Tag Instagram users by username. The tag shape depends on the media: photos require x/y coordinates, Reels and videos take username only (coordinates are ignored), stories accept optional coordinates. For carousels, use mediaIndex to target specific slides (defaults to 0); video slides take username-only tags. Photo tags without valid coordinates are skipped.
         /// </summary>
-        /// <value>Tag Instagram users in photos by username and position. Not supported for stories or videos. For carousels, use mediaIndex to target specific slides (defaults to 0). Tags on video items are silently skipped.</value>
+        /// <value>Tag Instagram users by username. The tag shape depends on the media: photos require x/y coordinates, Reels and videos take username only (coordinates are ignored), stories accept optional coordinates. For carousels, use mediaIndex to target specific slides (defaults to 0); video slides take username-only tags. Photo tags without valid coordinates are skipped.</value>
         [DataMember(Name = "userTags", EmitDefaultValue = false)]
         public List<InstagramPlatformDataUserTagsInner> UserTags { get; set; }
 

@@ -42,9 +42,9 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="InstagramPlatformDataUserTagsInner" /> class.
         /// </summary>
         /// <param name="username">Instagram username (@ symbol is optional and will be removed automatically) (required).</param>
-        /// <param name="x">X coordinate position from left edge (0.0 &#x3D; left, 0.5 &#x3D; center, 1.0 &#x3D; right) (required).</param>
-        /// <param name="y">Y coordinate position from top edge (0.0 &#x3D; top, 0.5 &#x3D; center, 1.0 &#x3D; bottom) (required).</param>
-        /// <param name="mediaIndex">Zero-based index of the carousel item to tag. Defaults to 0. Tags on video items or out-of-range indices are ignored..</param>
+        /// <param name="x">X coordinate position from left edge (0.0 &#x3D; left, 0.5 &#x3D; center, 1.0 &#x3D; right). Required for photos, ignored for Reels/videos, optional for stories..</param>
+        /// <param name="y">Y coordinate position from top edge (0.0 &#x3D; top, 0.5 &#x3D; center, 1.0 &#x3D; bottom). Required for photos, ignored for Reels/videos, optional for stories..</param>
+        /// <param name="mediaIndex">Zero-based index of the carousel item to tag. Defaults to 0. Tags on out-of-range indices are ignored..</param>
         public InstagramPlatformDataUserTagsInner(string username = default, decimal x = default, decimal y = default, int mediaIndex = default)
         {
             // to ensure "username" is required (not null)
@@ -69,29 +69,29 @@ namespace Zernio.Model
         public string Username { get; set; }
 
         /// <summary>
-        /// X coordinate position from left edge (0.0 &#x3D; left, 0.5 &#x3D; center, 1.0 &#x3D; right)
+        /// X coordinate position from left edge (0.0 &#x3D; left, 0.5 &#x3D; center, 1.0 &#x3D; right). Required for photos, ignored for Reels/videos, optional for stories.
         /// </summary>
-        /// <value>X coordinate position from left edge (0.0 &#x3D; left, 0.5 &#x3D; center, 1.0 &#x3D; right)</value>
+        /// <value>X coordinate position from left edge (0.0 &#x3D; left, 0.5 &#x3D; center, 1.0 &#x3D; right). Required for photos, ignored for Reels/videos, optional for stories.</value>
         /*
         <example>0.5</example>
         */
-        [DataMember(Name = "x", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "x", EmitDefaultValue = false)]
         public decimal X { get; set; }
 
         /// <summary>
-        /// Y coordinate position from top edge (0.0 &#x3D; top, 0.5 &#x3D; center, 1.0 &#x3D; bottom)
+        /// Y coordinate position from top edge (0.0 &#x3D; top, 0.5 &#x3D; center, 1.0 &#x3D; bottom). Required for photos, ignored for Reels/videos, optional for stories.
         /// </summary>
-        /// <value>Y coordinate position from top edge (0.0 &#x3D; top, 0.5 &#x3D; center, 1.0 &#x3D; bottom)</value>
+        /// <value>Y coordinate position from top edge (0.0 &#x3D; top, 0.5 &#x3D; center, 1.0 &#x3D; bottom). Required for photos, ignored for Reels/videos, optional for stories.</value>
         /*
         <example>0.5</example>
         */
-        [DataMember(Name = "y", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "y", EmitDefaultValue = false)]
         public decimal Y { get; set; }
 
         /// <summary>
-        /// Zero-based index of the carousel item to tag. Defaults to 0. Tags on video items or out-of-range indices are ignored.
+        /// Zero-based index of the carousel item to tag. Defaults to 0. Tags on out-of-range indices are ignored.
         /// </summary>
-        /// <value>Zero-based index of the carousel item to tag. Defaults to 0. Tags on video items or out-of-range indices are ignored.</value>
+        /// <value>Zero-based index of the carousel item to tag. Defaults to 0. Tags on out-of-range indices are ignored.</value>
         /*
         <example>0</example>
         */
