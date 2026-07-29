@@ -28,6 +28,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**OnPostExternalUpdated**](WebhookEventsApi.md#onpostexternalupdated) | **POST** /post.external.updated | External post updated event |
 | [**OnPostFailed**](WebhookEventsApi.md#onpostfailed) | **POST** /post.failed | Post failed event |
 | [**OnPostPartial**](WebhookEventsApi.md#onpostpartial) | **POST** /post.partial | Post partial event |
+| [**OnPostPlatformDeleted**](WebhookEventsApi.md#onpostplatformdeleted) | **POST** /post.platform.deleted | Post platform deleted event |
 | [**OnPostPlatformFailed**](WebhookEventsApi.md#onpostplatformfailed) | **POST** /post.platform.failed | Post platform failed event |
 | [**OnPostPlatformPublished**](WebhookEventsApi.md#onpostplatformpublished) | **POST** /post.platform.published | Post platform published event |
 | [**OnPostPublished**](WebhookEventsApi.md#onpostpublished) | **POST** /post.published | Post published event |
@@ -2285,6 +2286,100 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **webhookPayloadPost** | [**WebhookPayloadPost**](WebhookPayloadPost.md) |  |  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="onpostplatformdeleted"></a>
+# **OnPostPlatformDeleted**
+> void OnPostPlatformDeleted (WebhookPayloadPostPlatform webhookPayloadPostPlatform)
+
+Post platform deleted event
+
+Fired when Zernio's background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. `platform.deletedAt` carries the detection time. Detection is listing-based: a false positive self-heals in Zernio's data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class OnPostPlatformDeletedExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WebhookEventsApi(httpClient, config, httpClientHandler);
+            var webhookPayloadPostPlatform = new WebhookPayloadPostPlatform(); // WebhookPayloadPostPlatform | 
+
+            try
+            {
+                // Post platform deleted event
+                apiInstance.OnPostPlatformDeleted(webhookPayloadPostPlatform);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WebhookEventsApi.OnPostPlatformDeleted: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the OnPostPlatformDeletedWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Post platform deleted event
+    apiInstance.OnPostPlatformDeletedWithHttpInfo(webhookPayloadPostPlatform);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WebhookEventsApi.OnPostPlatformDeletedWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **webhookPayloadPostPlatform** | [**WebhookPayloadPostPlatform**](WebhookPayloadPostPlatform.md) |  |  |
 
 ### Return type
 

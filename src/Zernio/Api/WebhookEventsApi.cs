@@ -533,6 +533,27 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> OnPostPartialWithHttpInfo(WebhookPayloadPost webhookPayloadPost);
         /// <summary>
+        /// Post platform deleted event
+        /// </summary>
+        /// <remarks>
+        /// Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadPostPlatform"></param>
+        /// <returns></returns>
+        void OnPostPlatformDeleted(WebhookPayloadPostPlatform webhookPayloadPostPlatform);
+
+        /// <summary>
+        /// Post platform deleted event
+        /// </summary>
+        /// <remarks>
+        /// Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadPostPlatform"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> OnPostPlatformDeletedWithHttpInfo(WebhookPayloadPostPlatform webhookPayloadPostPlatform);
+        /// <summary>
         /// Post platform failed event
         /// </summary>
         /// <remarks>
@@ -1555,6 +1576,29 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> OnPostPartialWithHttpInfoAsync(WebhookPayloadPost webhookPayloadPost, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Post platform deleted event
+        /// </summary>
+        /// <remarks>
+        /// Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadPostPlatform"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task OnPostPlatformDeletedAsync(WebhookPayloadPostPlatform webhookPayloadPostPlatform, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Post platform deleted event
+        /// </summary>
+        /// <remarks>
+        /// Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadPostPlatform"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> OnPostPlatformDeletedWithHttpInfoAsync(WebhookPayloadPostPlatform webhookPayloadPostPlatform, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Post platform failed event
         /// </summary>
@@ -5268,6 +5312,131 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("OnPostPartial", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Post platform deleted event Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadPostPlatform"></param>
+        /// <returns></returns>
+        public void OnPostPlatformDeleted(WebhookPayloadPostPlatform webhookPayloadPostPlatform)
+        {
+            OnPostPlatformDeletedWithHttpInfo(webhookPayloadPostPlatform);
+        }
+
+        /// <summary>
+        /// Post platform deleted event Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadPostPlatform"></param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public Zernio.Client.ApiResponse<Object> OnPostPlatformDeletedWithHttpInfo(WebhookPayloadPostPlatform webhookPayloadPostPlatform)
+        {
+            // verify the required parameter 'webhookPayloadPostPlatform' is set
+            if (webhookPayloadPostPlatform == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadPostPlatform' when calling WebhookEventsApi->OnPostPlatformDeleted");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadPostPlatform;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<Object>("/post.platform.deleted", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnPostPlatformDeleted", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Post platform deleted event Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadPostPlatform"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task OnPostPlatformDeletedAsync(WebhookPayloadPostPlatform webhookPayloadPostPlatform, System.Threading.CancellationToken cancellationToken = default)
+        {
+            await OnPostPlatformDeletedWithHttpInfoAsync(webhookPayloadPostPlatform, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Post platform deleted event Fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform (e.g. the user deleted the Instagram post natively). Detection is poll-driven (~hourly), not real-time, and fires once per platform target. &#x60;platform.deletedAt&#x60; carries the detection time. Detection is listing-based: a false positive self-heals in Zernio&#39;s data when the post reappears, but the event is not retracted. Coverage is bounded to the posts the platform listing returns. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="webhookPayloadPostPlatform"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<Object>> OnPostPlatformDeletedWithHttpInfoAsync(WebhookPayloadPostPlatform webhookPayloadPostPlatform, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'webhookPayloadPostPlatform' is set
+            if (webhookPayloadPostPlatform == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'webhookPayloadPostPlatform' when calling WebhookEventsApi->OnPostPlatformDeleted");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.Data = webhookPayloadPostPlatform;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<Object>("/post.platform.deleted", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("OnPostPlatformDeleted", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

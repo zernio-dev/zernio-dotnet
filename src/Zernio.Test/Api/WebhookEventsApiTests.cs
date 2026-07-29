@@ -319,6 +319,17 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test OnPostPlatformDeleted
+        /// </summary>
+        [Fact]
+        public void OnPostPlatformDeletedTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //WebhookPayloadPostPlatform webhookPayloadPostPlatform = null;
+            //instance.OnPostPlatformDeleted(webhookPayloadPostPlatform);
+        }
+
+        /// <summary>
         /// Test OnPostPlatformFailed
         /// </summary>
         [Fact]

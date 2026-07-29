@@ -99,5 +99,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'Error'
         }
+
+        /// <summary>
+        /// Test the property 'DeletedAt'
+        /// </summary>
+        [Fact]
+        public void DeletedAtTest()
+        {
+            // TODO unit test for the property 'DeletedAt'
+        }
     }
 }

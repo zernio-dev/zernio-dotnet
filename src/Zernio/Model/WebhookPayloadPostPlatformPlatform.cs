@@ -50,7 +50,13 @@ namespace Zernio.Model
             /// Enum Failed for value: failed
             /// </summary>
             [EnumMember(Value = "failed")]
-            Failed = 2
+            Failed = 2,
+
+            /// <summary>
+            /// Enum Deleted for value: deleted
+            /// </summary>
+            [EnumMember(Value = "deleted")]
+            Deleted = 3
         }
 
 
@@ -70,10 +76,11 @@ namespace Zernio.Model
         /// </summary>
         /// <param name="name">Platform name (e.g. &#x60;twitter&#x60;, &#x60;tiktok&#x60;, &#x60;instagram&#x60;). (required).</param>
         /// <param name="status">Terminal status this event fires on. Matches the event suffix. (required).</param>
-        /// <param name="platformPostId">Platform-native post id. Present on &#x60;published&#x60;, absent on &#x60;failed&#x60;..</param>
-        /// <param name="publishedUrl">Public URL to the platform-side post. Present on &#x60;published&#x60; (when the platform exposes one and it is not a draft)..</param>
-        /// <param name="error">Error message from the platform. Present on &#x60;failed&#x60;, absent on &#x60;published&#x60;..</param>
-        public WebhookPayloadPostPlatformPlatform(string name = default, StatusEnum status = default, string platformPostId = default, string publishedUrl = default, string error = default)
+        /// <param name="platformPostId">Platform-native post id. Present on &#x60;published&#x60; and &#x60;deleted&#x60;, absent on &#x60;failed&#x60;..</param>
+        /// <param name="publishedUrl">Public URL to the platform-side post. Present on &#x60;published&#x60; (when the platform exposes one and it is not a draft) and on &#x60;deleted&#x60; (when one was recorded at publish time)..</param>
+        /// <param name="error">Error message from the platform. Present on &#x60;failed&#x60; only..</param>
+        /// <param name="deletedAt">When the platform-side deletion was detected by Zernio sync (ISO 8601). Present only on &#x60;post.platform.deleted&#x60;..</param>
+        public WebhookPayloadPostPlatformPlatform(string name = default, StatusEnum status = default, string platformPostId = default, string publishedUrl = default, string error = default, DateTime deletedAt = default)
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -85,6 +92,7 @@ namespace Zernio.Model
             this.PlatformPostId = platformPostId;
             this.PublishedUrl = publishedUrl;
             this.Error = error;
+            this.DeletedAt = deletedAt;
         }
 
         /// <summary>
@@ -95,25 +103,32 @@ namespace Zernio.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Platform-native post id. Present on &#x60;published&#x60;, absent on &#x60;failed&#x60;.
+        /// Platform-native post id. Present on &#x60;published&#x60; and &#x60;deleted&#x60;, absent on &#x60;failed&#x60;.
         /// </summary>
-        /// <value>Platform-native post id. Present on &#x60;published&#x60;, absent on &#x60;failed&#x60;.</value>
+        /// <value>Platform-native post id. Present on &#x60;published&#x60; and &#x60;deleted&#x60;, absent on &#x60;failed&#x60;.</value>
         [DataMember(Name = "platformPostId", EmitDefaultValue = false)]
         public string PlatformPostId { get; set; }
 
         /// <summary>
-        /// Public URL to the platform-side post. Present on &#x60;published&#x60; (when the platform exposes one and it is not a draft).
+        /// Public URL to the platform-side post. Present on &#x60;published&#x60; (when the platform exposes one and it is not a draft) and on &#x60;deleted&#x60; (when one was recorded at publish time).
         /// </summary>
-        /// <value>Public URL to the platform-side post. Present on &#x60;published&#x60; (when the platform exposes one and it is not a draft).</value>
+        /// <value>Public URL to the platform-side post. Present on &#x60;published&#x60; (when the platform exposes one and it is not a draft) and on &#x60;deleted&#x60; (when one was recorded at publish time).</value>
         [DataMember(Name = "publishedUrl", EmitDefaultValue = false)]
         public string PublishedUrl { get; set; }
 
         /// <summary>
-        /// Error message from the platform. Present on &#x60;failed&#x60;, absent on &#x60;published&#x60;.
+        /// Error message from the platform. Present on &#x60;failed&#x60; only.
         /// </summary>
-        /// <value>Error message from the platform. Present on &#x60;failed&#x60;, absent on &#x60;published&#x60;.</value>
+        /// <value>Error message from the platform. Present on &#x60;failed&#x60; only.</value>
         [DataMember(Name = "error", EmitDefaultValue = false)]
         public string Error { get; set; }
+
+        /// <summary>
+        /// When the platform-side deletion was detected by Zernio sync (ISO 8601). Present only on &#x60;post.platform.deleted&#x60;.
+        /// </summary>
+        /// <value>When the platform-side deletion was detected by Zernio sync (ISO 8601). Present only on &#x60;post.platform.deleted&#x60;.</value>
+        [DataMember(Name = "deletedAt", EmitDefaultValue = false)]
+        public DateTime DeletedAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -128,6 +143,7 @@ namespace Zernio.Model
             sb.Append("  PlatformPostId: ").Append(PlatformPostId).Append("\n");
             sb.Append("  PublishedUrl: ").Append(PublishedUrl).Append("\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
+            sb.Append("  DeletedAt: ").Append(DeletedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
