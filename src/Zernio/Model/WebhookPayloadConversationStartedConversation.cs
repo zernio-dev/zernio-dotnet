@@ -85,7 +85,13 @@ namespace Zernio.Model
             /// Enum Sms for value: sms
             /// </summary>
             [EnumMember(Value = "sms")]
-            Sms = 8
+            Sms = 8,
+
+            /// <summary>
+            /// Enum Slack for value: slack
+            /// </summary>
+            [EnumMember(Value = "slack")]
+            Slack = 9
         }
 
 
