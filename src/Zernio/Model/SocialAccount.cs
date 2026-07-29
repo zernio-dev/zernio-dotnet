@@ -124,52 +124,58 @@ namespace Zernio.Model
             Discord = 14,
 
             /// <summary>
+            /// Enum Slack for value: slack
+            /// </summary>
+            [EnumMember(Value = "slack")]
+            Slack = 15,
+
+            /// <summary>
             /// Enum Whatsapp for value: whatsapp
             /// </summary>
             [EnumMember(Value = "whatsapp")]
-            Whatsapp = 15,
+            Whatsapp = 16,
 
             /// <summary>
             /// Enum Linkedinads for value: linkedinads
             /// </summary>
             [EnumMember(Value = "linkedinads")]
-            Linkedinads = 16,
+            Linkedinads = 17,
 
             /// <summary>
             /// Enum Metaads for value: metaads
             /// </summary>
             [EnumMember(Value = "metaads")]
-            Metaads = 17,
+            Metaads = 18,
 
             /// <summary>
             /// Enum Pinterestads for value: pinterestads
             /// </summary>
             [EnumMember(Value = "pinterestads")]
-            Pinterestads = 18,
+            Pinterestads = 19,
 
             /// <summary>
             /// Enum Tiktokads for value: tiktokads
             /// </summary>
             [EnumMember(Value = "tiktokads")]
-            Tiktokads = 19,
+            Tiktokads = 20,
 
             /// <summary>
             /// Enum Xads for value: xads
             /// </summary>
             [EnumMember(Value = "xads")]
-            Xads = 20,
+            Xads = 21,
 
             /// <summary>
             /// Enum Googleads for value: googleads
             /// </summary>
             [EnumMember(Value = "googleads")]
-            Googleads = 21,
+            Googleads = 22,
 
             /// <summary>
             /// Enum Openaiads for value: openaiads
             /// </summary>
             [EnumMember(Value = "openaiads")]
-            Openaiads = 22
+            Openaiads = 23
         }
 
 

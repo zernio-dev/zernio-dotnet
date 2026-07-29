@@ -203,6 +203,18 @@ namespace Zernio.Model
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreatePostRequestPlatformsInnerPlatformSpecificData" /> class
+        /// with the <see cref="SlackPlatformData" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of SlackPlatformData.</param>
+        public CreatePostRequestPlatformsInnerPlatformSpecificData(SlackPlatformData actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -249,6 +261,10 @@ namespace Zernio.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(SlackPlatformData) || value is SlackPlatformData)
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(SnapchatPlatformData) || value is SnapchatPlatformData)
                 {
                     this._actualInstance = value;
@@ -275,7 +291,7 @@ namespace Zernio.Model
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SlackPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData");
                 }
             }
         }
@@ -418,6 +434,16 @@ namespace Zernio.Model
         public DiscordPlatformData GetDiscordPlatformData()
         {
             return (DiscordPlatformData)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `SlackPlatformData`. If the actual instance is not `SlackPlatformData`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of SlackPlatformData</returns>
+        public SlackPlatformData GetSlackPlatformData()
+        {
+            return (SlackPlatformData)this.ActualInstance;
         }
 
         /// <summary>
@@ -616,6 +642,26 @@ namespace Zernio.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into RedditPlatformData: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(SlackPlatformData).GetProperty("AdditionalProperties") == null)
+                {
+                    newCreatePostRequestPlatformsInnerPlatformSpecificData = new CreatePostRequestPlatformsInnerPlatformSpecificData(JsonConvert.DeserializeObject<SlackPlatformData>(jsonString, CreatePostRequestPlatformsInnerPlatformSpecificData.SerializerSettings));
+                }
+                else
+                {
+                    newCreatePostRequestPlatformsInnerPlatformSpecificData = new CreatePostRequestPlatformsInnerPlatformSpecificData(JsonConvert.DeserializeObject<SlackPlatformData>(jsonString, CreatePostRequestPlatformsInnerPlatformSpecificData.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("SlackPlatformData");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SlackPlatformData: {1}", jsonString, exception.ToString()));
             }
 
             try

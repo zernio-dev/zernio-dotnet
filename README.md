@@ -1845,6 +1845,7 @@ Class | Method | HTTP request | Description
  - [Model.ShareSmsRegistration200Response](docs/ShareSmsRegistration200Response.md)
  - [Model.ShareSmsRegistrationRequest](docs/ShareSmsRegistrationRequest.md)
  - [Model.SharedAdAccount](docs/SharedAdAccount.md)
+ - [Model.SlackPlatformData](docs/SlackPlatformData.md)
  - [Model.SnapchatPlatformData](docs/SnapchatPlatformData.md)
  - [Model.SocialAccount](docs/SocialAccount.md)
  - [Model.SocialAccountProfileId](docs/SocialAccountProfileId.md)

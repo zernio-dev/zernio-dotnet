@@ -1229,6 +1229,7 @@ docs/SetWhatsappBusinessUsernameRequest.md
 docs/ShareSmsRegistration200Response.md
 docs/ShareSmsRegistrationRequest.md
 docs/SharedAdAccount.md
+docs/SlackPlatformData.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
 docs/SocialAccountProfileId.md
@@ -2835,6 +2836,7 @@ src/Zernio.Test/Model/SetWhatsappBusinessUsernameRequestTests.cs
 src/Zernio.Test/Model/ShareSmsRegistration200ResponseTests.cs
 src/Zernio.Test/Model/ShareSmsRegistrationRequestTests.cs
 src/Zernio.Test/Model/SharedAdAccountTests.cs
+src/Zernio.Test/Model/SlackPlatformDataTests.cs
 src/Zernio.Test/Model/SnapchatPlatformDataTests.cs
 src/Zernio.Test/Model/SocialAccountProfileIdTests.cs
 src/Zernio.Test/Model/SocialAccountTests.cs
@@ -4443,6 +4445,7 @@ src/Zernio/Model/SetWhatsappBusinessUsernameRequest.cs
 src/Zernio/Model/ShareSmsRegistration200Response.cs
 src/Zernio/Model/ShareSmsRegistrationRequest.cs
 src/Zernio/Model/SharedAdAccount.cs
+src/Zernio/Model/SlackPlatformData.cs
 src/Zernio/Model/SnapchatPlatformData.cs
 src/Zernio/Model/SocialAccount.cs
 src/Zernio/Model/SocialAccountProfileId.cs

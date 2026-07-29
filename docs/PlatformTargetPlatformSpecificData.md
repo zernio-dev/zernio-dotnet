@@ -91,6 +91,11 @@ Name | Type | Description | Notes
 **Tts** | **bool** | Send as text-to-speech message. Discord reads the message aloud in the channel. | [optional] 
 **WebhookUsername** | **string** | Override the webhook display name for this post only (1-80 chars). Falls back to the account-level default set via PATCH /v1/connect/discord. | [optional] 
 **WebhookAvatarUrl** | **string** | Override the webhook avatar URL for this post only. Falls back to the account-level default. | [optional] 
+**ThreadTs** | **string** | Parent message ts to post this message as a thread reply (e.g. \&quot;1503435956.000247\&quot;). | [optional] 
+**UnfurlLinks** | **bool** | Expand links in the message into preview cards. Default true. | [optional] 
+**UnfurlMedia** | **bool** | Expand media links into inline previews. Default true. | [optional] 
+**Username** | **string** | Override the bot display name for this message only (requires no setup; shown with an APP badge). Does not change the app identity in the sidebar. | [optional] 
+**IconUrl** | **string** | Override the bot avatar image URL for this message only. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

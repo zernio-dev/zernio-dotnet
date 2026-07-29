@@ -828,5 +828,50 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'WebhookAvatarUrl'
         }
+
+        /// <summary>
+        /// Test the property 'ThreadTs'
+        /// </summary>
+        [Fact]
+        public void ThreadTsTest()
+        {
+            // TODO unit test for the property 'ThreadTs'
+        }
+
+        /// <summary>
+        /// Test the property 'UnfurlLinks'
+        /// </summary>
+        [Fact]
+        public void UnfurlLinksTest()
+        {
+            // TODO unit test for the property 'UnfurlLinks'
+        }
+
+        /// <summary>
+        /// Test the property 'UnfurlMedia'
+        /// </summary>
+        [Fact]
+        public void UnfurlMediaTest()
+        {
+            // TODO unit test for the property 'UnfurlMedia'
+        }
+
+        /// <summary>
+        /// Test the property 'Username'
+        /// </summary>
+        [Fact]
+        public void UsernameTest()
+        {
+            // TODO unit test for the property 'Username'
+        }
+
+        /// <summary>
+        /// Test the property 'IconUrl'
+        /// </summary>
+        [Fact]
+        public void IconUrlTest()
+        {
+            // TODO unit test for the property 'IconUrl'
+        }
     }
 }
