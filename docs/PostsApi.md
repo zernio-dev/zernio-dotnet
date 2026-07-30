@@ -115,6 +115,8 @@ catch (ApiException e)
 | **207** | Partial success: some rows were created and some failed. Body is identical in shape to the &#x60;200&#x60; response. Inspect each entry in &#x60;results&#x60; (&#x60;ok&#x60; plus &#x60;errors&#x60;) to see which rows failed and why.  |  -  |
 | **400** | Invalid CSV or validation errors |  -  |
 | **401** | Unauthorized |  -  |
+| **402** | Payment required: the account owner has a failed payment. Not returned on dry-run. |  -  |
+| **404** | Authenticated user not found |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (one or more accounts for platforms specified in the CSV are temporarily rate-limited).  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -526,6 +528,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Post |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
@@ -565,12 +568,12 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new PostsApi(httpClient, config, httpClientHandler);
             var page = 1;  // int? | Page number (1-based) (optional)  (default to 1)
-            var limit = 10;  // int? | Page size (optional)  (default to 10)
+            var limit = 10;  // int? | Page size. Values above the maximum return 400 rather than being clamped. (optional)  (default to 10)
             var source = "zernio";  // string? | Which collection to read. `zernio` (default) returns posts authored through Zernio. `external` returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with `accountId` and paginate via `page`/`limit` to walk the full synced history (we keep up to the last ~12 months per account). (optional)  (default to zernio)
             var status = "draft";  // string? |  (optional) 
             var platform = twitter;  // string? |  (optional) 
             var profileId = "profileId_example";  // string? |  (optional) 
-            var createdBy = "createdBy_example";  // string? |  (optional) 
+            var createdBy = "createdBy_example";  // string? | Filter posts to those created by a specific team user (24-char hex ObjectId). (optional) 
             var dateFrom = DateOnly.Parse("2013-10-20");  // DateOnly? |  (optional) 
             var dateTo = DateOnly.Parse("2013-10-20");  // DateOnly? |  (optional) 
             var includeHidden = false;  // bool? |  (optional)  (default to false)
@@ -620,12 +623,12 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **page** | **int?** | Page number (1-based) | [optional] [default to 1] |
-| **limit** | **int?** | Page size | [optional] [default to 10] |
+| **limit** | **int?** | Page size. Values above the maximum return 400 rather than being clamped. | [optional] [default to 10] |
 | **source** | **string?** | Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] |
 | **status** | **string?** |  | [optional]  |
 | **platform** | **string?** |  | [optional]  |
 | **profileId** | **string?** |  | [optional]  |
-| **createdBy** | **string?** |  | [optional]  |
+| **createdBy** | **string?** | Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional]  |
 | **dateFrom** | **DateOnly?** |  | [optional]  |
 | **dateTo** | **DateOnly?** |  | [optional]  |
 | **includeHidden** | **bool?** |  | [optional] [default to false] |
@@ -651,6 +654,7 @@ catch (ApiException e)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated posts |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -753,6 +757,7 @@ catch (ApiException e)
 | **207** | Partial success |  -  |
 | **400** | Invalid state |  -  |
 | **401** | Unauthorized |  -  |
+| **402** | Payment required: the account owner has a failed payment. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | Post is currently publishing |  -  |
