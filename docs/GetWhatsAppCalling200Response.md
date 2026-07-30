@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **OutboundDisabled** | **bool** | True when the number&#39;s country blocks business-initiated (outbound) WhatsApp calling; inbound still works. | [optional] 
 **CallerIdMode** | **string** | Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (used when the number was brought by the customer and its caller ID is not verified for PSTN origination). | [optional] 
 **CallerIdVerified** | **bool** | True once the number completed caller-ID verification, making tel: forwards display the business number itself. | [optional] 
+**MaxCallDurationSeconds** | **int?** | Hard cap (seconds) on forwarded calls; null &#x3D; no cap. | [optional] 
+**ForwardCallerId** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

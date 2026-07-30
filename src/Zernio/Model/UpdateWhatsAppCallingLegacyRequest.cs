@@ -34,6 +34,33 @@ namespace Zernio.Model
     public partial class UpdateWhatsAppCallingLegacyRequest : IValidatableObject
     {
         /// <summary>
+        /// caller &#x3D; present the WhatsApp user&#39;s number to the forward destination (sip: only).
+        /// </summary>
+        /// <value>caller &#x3D; present the WhatsApp user&#39;s number to the forward destination (sip: only).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ForwardCallerIdEnum
+        {
+            /// <summary>
+            /// Enum Business for value: business
+            /// </summary>
+            [EnumMember(Value = "business")]
+            Business = 1,
+
+            /// <summary>
+            /// Enum Caller for value: caller
+            /// </summary>
+            [EnumMember(Value = "caller")]
+            Caller = 2
+        }
+
+
+        /// <summary>
+        /// caller &#x3D; present the WhatsApp user&#39;s number to the forward destination (sip: only).
+        /// </summary>
+        /// <value>caller &#x3D; present the WhatsApp user&#39;s number to the forward destination (sip: only).</value>
+        [DataMember(Name = "forwardCallerId", EmitDefaultValue = false)]
+        public ForwardCallerIdEnum? ForwardCallerId { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="UpdateWhatsAppCallingLegacyRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -47,7 +74,9 @@ namespace Zernio.Model
         /// <param name="sipAuthPassword">sipAuthPassword.</param>
         /// <param name="recordingEnabled">recordingEnabled.</param>
         /// <param name="callIconCountries">callIconCountries.</param>
-        public UpdateWhatsAppCallingLegacyRequest(string accountId = default, string forwardTo = default, string sipAuthUsername = default, string sipAuthPassword = default, bool recordingEnabled = default, List<string> callIconCountries = default)
+        /// <param name="maxCallDurationSeconds">Hard cap (seconds) on forwarded calls; null clears the cap..</param>
+        /// <param name="forwardCallerId">caller &#x3D; present the WhatsApp user&#39;s number to the forward destination (sip: only)..</param>
+        public UpdateWhatsAppCallingLegacyRequest(string accountId = default, string forwardTo = default, string sipAuthUsername = default, string sipAuthPassword = default, bool recordingEnabled = default, List<string> callIconCountries = default, int? maxCallDurationSeconds = default, ForwardCallerIdEnum? forwardCallerId = default)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -60,6 +89,8 @@ namespace Zernio.Model
             this.SipAuthPassword = sipAuthPassword;
             this.RecordingEnabled = recordingEnabled;
             this.CallIconCountries = callIconCountries;
+            this.MaxCallDurationSeconds = maxCallDurationSeconds;
+            this.ForwardCallerId = forwardCallerId;
         }
 
         /// <summary>
@@ -99,6 +130,13 @@ namespace Zernio.Model
         public List<string> CallIconCountries { get; set; }
 
         /// <summary>
+        /// Hard cap (seconds) on forwarded calls; null clears the cap.
+        /// </summary>
+        /// <value>Hard cap (seconds) on forwarded calls; null clears the cap.</value>
+        [DataMember(Name = "maxCallDurationSeconds", EmitDefaultValue = true)]
+        public int? MaxCallDurationSeconds { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -112,6 +150,8 @@ namespace Zernio.Model
             sb.Append("  SipAuthPassword: ").Append(SipAuthPassword).Append("\n");
             sb.Append("  RecordingEnabled: ").Append(RecordingEnabled).Append("\n");
             sb.Append("  CallIconCountries: ").Append(CallIconCountries).Append("\n");
+            sb.Append("  MaxCallDurationSeconds: ").Append(MaxCallDurationSeconds).Append("\n");
+            sb.Append("  ForwardCallerId: ").Append(ForwardCallerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -132,6 +172,18 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // MaxCallDurationSeconds (int?) maximum
+            if (this.MaxCallDurationSeconds > (int?)14400)
+            {
+                yield return new ValidationResult("Invalid value for MaxCallDurationSeconds, must be a value less than or equal to 14400.", new [] { "MaxCallDurationSeconds" });
+            }
+
+            // MaxCallDurationSeconds (int?) minimum
+            if (this.MaxCallDurationSeconds < (int?)30)
+            {
+                yield return new ValidationResult("Invalid value for MaxCallDurationSeconds, must be a value greater than or equal to 30.", new [] { "MaxCallDurationSeconds" });
+            }
+
             yield break;
         }
     }

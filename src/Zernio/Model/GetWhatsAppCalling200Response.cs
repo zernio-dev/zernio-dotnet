@@ -61,6 +61,31 @@ namespace Zernio.Model
         [DataMember(Name = "callerIdMode", EmitDefaultValue = false)]
         public CallerIdModeEnum? CallerIdMode { get; set; }
         /// <summary>
+        /// Defines ForwardCallerId
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ForwardCallerIdEnum
+        {
+            /// <summary>
+            /// Enum Business for value: business
+            /// </summary>
+            [EnumMember(Value = "business")]
+            Business = 1,
+
+            /// <summary>
+            /// Enum Caller for value: caller
+            /// </summary>
+            [EnumMember(Value = "caller")]
+            Caller = 2
+        }
+
+
+        /// <summary>
+        /// Gets or Sets ForwardCallerId
+        /// </summary>
+        [DataMember(Name = "forwardCallerId", EmitDefaultValue = false)]
+        public ForwardCallerIdEnum? ForwardCallerId { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="GetWhatsAppCalling200Response" /> class.
         /// </summary>
         /// <param name="phoneNumber">phoneNumber.</param>
@@ -74,7 +99,9 @@ namespace Zernio.Model
         /// <param name="outboundDisabled">True when the number&#39;s country blocks business-initiated (outbound) WhatsApp calling; inbound still works..</param>
         /// <param name="callerIdMode">Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (used when the number was brought by the customer and its caller ID is not verified for PSTN origination)..</param>
         /// <param name="callerIdVerified">True once the number completed caller-ID verification, making tel: forwards display the business number itself..</param>
-        public GetWhatsAppCalling200Response(string phoneNumber = default, bool callingEnabled = default, string callDeepLink = default, string forwardTo = default, bool recordingEnabled = default, string sipAuthUsername = default, bool sipAuthPasswordConfigured = default, List<string> callIconCountries = default, bool outboundDisabled = default, CallerIdModeEnum? callerIdMode = default, bool callerIdVerified = default)
+        /// <param name="maxCallDurationSeconds">Hard cap (seconds) on forwarded calls; null &#x3D; no cap..</param>
+        /// <param name="forwardCallerId">forwardCallerId.</param>
+        public GetWhatsAppCalling200Response(string phoneNumber = default, bool callingEnabled = default, string callDeepLink = default, string forwardTo = default, bool recordingEnabled = default, string sipAuthUsername = default, bool sipAuthPasswordConfigured = default, List<string> callIconCountries = default, bool outboundDisabled = default, CallerIdModeEnum? callerIdMode = default, bool callerIdVerified = default, int? maxCallDurationSeconds = default, ForwardCallerIdEnum? forwardCallerId = default)
         {
             this.PhoneNumber = phoneNumber;
             this.CallingEnabled = callingEnabled;
@@ -87,6 +114,8 @@ namespace Zernio.Model
             this.OutboundDisabled = outboundDisabled;
             this.CallerIdMode = callerIdMode;
             this.CallerIdVerified = callerIdVerified;
+            this.MaxCallDurationSeconds = maxCallDurationSeconds;
+            this.ForwardCallerId = forwardCallerId;
         }
 
         /// <summary>
@@ -155,6 +184,13 @@ namespace Zernio.Model
         public bool CallerIdVerified { get; set; }
 
         /// <summary>
+        /// Hard cap (seconds) on forwarded calls; null &#x3D; no cap.
+        /// </summary>
+        /// <value>Hard cap (seconds) on forwarded calls; null &#x3D; no cap.</value>
+        [DataMember(Name = "maxCallDurationSeconds", EmitDefaultValue = true)]
+        public int? MaxCallDurationSeconds { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -173,6 +209,8 @@ namespace Zernio.Model
             sb.Append("  OutboundDisabled: ").Append(OutboundDisabled).Append("\n");
             sb.Append("  CallerIdMode: ").Append(CallerIdMode).Append("\n");
             sb.Append("  CallerIdVerified: ").Append(CallerIdVerified).Append("\n");
+            sb.Append("  MaxCallDurationSeconds: ").Append(MaxCallDurationSeconds).Append("\n");
+            sb.Append("  ForwardCallerId: ").Append(ForwardCallerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

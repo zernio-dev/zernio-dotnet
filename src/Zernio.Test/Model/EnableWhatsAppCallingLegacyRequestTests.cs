@@ -108,5 +108,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'CallIconCountries'
         }
+
+        /// <summary>
+        /// Test the property 'MaxCallDurationSeconds'
+        /// </summary>
+        [Fact]
+        public void MaxCallDurationSecondsTest()
+        {
+            // TODO unit test for the property 'MaxCallDurationSeconds'
+        }
+
+        /// <summary>
+        /// Test the property 'ForwardCallerId'
+        /// </summary>
+        [Fact]
+        public void ForwardCallerIdTest()
+        {
+            // TODO unit test for the property 'ForwardCallerId'
+        }
     }
 }

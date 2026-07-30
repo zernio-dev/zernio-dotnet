@@ -34,6 +34,33 @@ namespace Zernio.Model
     public partial class EnableWhatsAppCallingLegacyRequest : IValidatableObject
     {
         /// <summary>
+        /// Caller ID presented to the forward destination. caller &#x3D; the WhatsApp user&#39;s number (sip: destinations only; ignored on tel: forwards). Fixes AI-agent trunks that reject seeing the business number call itself.
+        /// </summary>
+        /// <value>Caller ID presented to the forward destination. caller &#x3D; the WhatsApp user&#39;s number (sip: destinations only; ignored on tel: forwards). Fixes AI-agent trunks that reject seeing the business number call itself.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ForwardCallerIdEnum
+        {
+            /// <summary>
+            /// Enum Business for value: business
+            /// </summary>
+            [EnumMember(Value = "business")]
+            Business = 1,
+
+            /// <summary>
+            /// Enum Caller for value: caller
+            /// </summary>
+            [EnumMember(Value = "caller")]
+            Caller = 2
+        }
+
+
+        /// <summary>
+        /// Caller ID presented to the forward destination. caller &#x3D; the WhatsApp user&#39;s number (sip: destinations only; ignored on tel: forwards). Fixes AI-agent trunks that reject seeing the business number call itself.
+        /// </summary>
+        /// <value>Caller ID presented to the forward destination. caller &#x3D; the WhatsApp user&#39;s number (sip: destinations only; ignored on tel: forwards). Fixes AI-agent trunks that reject seeing the business number call itself.</value>
+        [DataMember(Name = "forwardCallerId", EmitDefaultValue = false)]
+        public ForwardCallerIdEnum? ForwardCallerId { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="EnableWhatsAppCallingLegacyRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -47,7 +74,9 @@ namespace Zernio.Model
         /// <param name="sipAuthPassword">Stored encrypted, never returned by any endpoint..</param>
         /// <param name="recordingEnabled">recordingEnabled (default to false).</param>
         /// <param name="callIconCountries">callIconCountries.</param>
-        public EnableWhatsAppCallingLegacyRequest(string accountId = default, string forwardTo = default, string sipAuthUsername = default, string sipAuthPassword = default, bool recordingEnabled = false, List<string> callIconCountries = default)
+        /// <param name="maxCallDurationSeconds">Hard cap (seconds) on a forwarded call; the carrier hangs up both legs when it fires. Safety valve against dead-air billing when a destination hangs up but the signal is lost..</param>
+        /// <param name="forwardCallerId">Caller ID presented to the forward destination. caller &#x3D; the WhatsApp user&#39;s number (sip: destinations only; ignored on tel: forwards). Fixes AI-agent trunks that reject seeing the business number call itself. (default to ForwardCallerIdEnum.Business).</param>
+        public EnableWhatsAppCallingLegacyRequest(string accountId = default, string forwardTo = default, string sipAuthUsername = default, string sipAuthPassword = default, bool recordingEnabled = false, List<string> callIconCountries = default, int maxCallDurationSeconds = default, ForwardCallerIdEnum? forwardCallerId = ForwardCallerIdEnum.Business)
         {
             // to ensure "accountId" is required (not null)
             if (accountId == null)
@@ -65,6 +94,8 @@ namespace Zernio.Model
             this.SipAuthPassword = sipAuthPassword;
             this.RecordingEnabled = recordingEnabled;
             this.CallIconCountries = callIconCountries;
+            this.MaxCallDurationSeconds = maxCallDurationSeconds;
+            this.ForwardCallerId = forwardCallerId;
         }
 
         /// <summary>
@@ -106,6 +137,13 @@ namespace Zernio.Model
         public List<string> CallIconCountries { get; set; }
 
         /// <summary>
+        /// Hard cap (seconds) on a forwarded call; the carrier hangs up both legs when it fires. Safety valve against dead-air billing when a destination hangs up but the signal is lost.
+        /// </summary>
+        /// <value>Hard cap (seconds) on a forwarded call; the carrier hangs up both legs when it fires. Safety valve against dead-air billing when a destination hangs up but the signal is lost.</value>
+        [DataMember(Name = "maxCallDurationSeconds", EmitDefaultValue = false)]
+        public int MaxCallDurationSeconds { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -119,6 +157,8 @@ namespace Zernio.Model
             sb.Append("  SipAuthPassword: ").Append(SipAuthPassword).Append("\n");
             sb.Append("  RecordingEnabled: ").Append(RecordingEnabled).Append("\n");
             sb.Append("  CallIconCountries: ").Append(CallIconCountries).Append("\n");
+            sb.Append("  MaxCallDurationSeconds: ").Append(MaxCallDurationSeconds).Append("\n");
+            sb.Append("  ForwardCallerId: ").Append(ForwardCallerId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -139,6 +179,18 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // MaxCallDurationSeconds (int) maximum
+            if (this.MaxCallDurationSeconds > (int)14400)
+            {
+                yield return new ValidationResult("Invalid value for MaxCallDurationSeconds, must be a value less than or equal to 14400.", new [] { "MaxCallDurationSeconds" });
+            }
+
+            // MaxCallDurationSeconds (int) minimum
+            if (this.MaxCallDurationSeconds < (int)30)
+            {
+                yield return new ValidationResult("Invalid value for MaxCallDurationSeconds, must be a value greater than or equal to 30.", new [] { "MaxCallDurationSeconds" });
+            }
+
             yield break;
         }
     }
