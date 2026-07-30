@@ -34,6 +34,33 @@ namespace Zernio.Model
     public partial class GetWhatsAppCallingConfig200Response : IValidatableObject
     {
         /// <summary>
+        /// Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID; verify via /v1/phone-numbers/{id}/whatsapp/caller-id-verification).
+        /// </summary>
+        /// <value>Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID; verify via /v1/phone-numbers/{id}/whatsapp/caller-id-verification).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CallerIdModeEnum
+        {
+            /// <summary>
+            /// Enum Business for value: business
+            /// </summary>
+            [EnumMember(Value = "business")]
+            Business = 1,
+
+            /// <summary>
+            /// Enum Platform for value: platform
+            /// </summary>
+            [EnumMember(Value = "platform")]
+            Platform = 2
+        }
+
+
+        /// <summary>
+        /// Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID; verify via /v1/phone-numbers/{id}/whatsapp/caller-id-verification).
+        /// </summary>
+        /// <value>Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID; verify via /v1/phone-numbers/{id}/whatsapp/caller-id-verification).</value>
+        [DataMember(Name = "callerIdMode", EmitDefaultValue = false)]
+        public CallerIdModeEnum? CallerIdMode { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="GetWhatsAppCallingConfig200Response" /> class.
         /// </summary>
         /// <param name="phoneNumberDocId">Phone number record ID (use on /v1/phone-numbers/{id}/whatsapp/calling).</param>
@@ -45,7 +72,9 @@ namespace Zernio.Model
         /// <param name="sipAuthUsername">sipAuthUsername.</param>
         /// <param name="sipAuthPasswordConfigured">True when a SIP digest password is stored. The plaintext is never returned..</param>
         /// <param name="callIconCountries">callIconCountries.</param>
-        public GetWhatsAppCallingConfig200Response(string phoneNumberDocId = default, string phoneNumber = default, bool callingEnabled = default, string callDeepLink = default, string forwardTo = default, bool recordingEnabled = default, string sipAuthUsername = default, bool sipAuthPasswordConfigured = default, List<string> callIconCountries = default)
+        /// <param name="callerIdMode">Caller ID the forward-leg callee sees on tel: forwards. business &#x3D; this WhatsApp number; platform &#x3D; a Zernio number (customer-brought number without verified caller ID; verify via /v1/phone-numbers/{id}/whatsapp/caller-id-verification)..</param>
+        /// <param name="callerIdVerified">True once the number completed caller-ID verification..</param>
+        public GetWhatsAppCallingConfig200Response(string phoneNumberDocId = default, string phoneNumber = default, bool callingEnabled = default, string callDeepLink = default, string forwardTo = default, bool recordingEnabled = default, string sipAuthUsername = default, bool sipAuthPasswordConfigured = default, List<string> callIconCountries = default, CallerIdModeEnum? callerIdMode = default, bool callerIdVerified = default)
         {
             this.PhoneNumberDocId = phoneNumberDocId;
             this.PhoneNumber = phoneNumber;
@@ -56,6 +85,8 @@ namespace Zernio.Model
             this.SipAuthUsername = sipAuthUsername;
             this.SipAuthPasswordConfigured = sipAuthPasswordConfigured;
             this.CallIconCountries = callIconCountries;
+            this.CallerIdMode = callerIdMode;
+            this.CallerIdVerified = callerIdVerified;
         }
 
         /// <summary>
@@ -117,6 +148,13 @@ namespace Zernio.Model
         public List<string> CallIconCountries { get; set; }
 
         /// <summary>
+        /// True once the number completed caller-ID verification.
+        /// </summary>
+        /// <value>True once the number completed caller-ID verification.</value>
+        [DataMember(Name = "callerIdVerified", EmitDefaultValue = true)]
+        public bool CallerIdVerified { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -133,6 +171,8 @@ namespace Zernio.Model
             sb.Append("  SipAuthUsername: ").Append(SipAuthUsername).Append("\n");
             sb.Append("  SipAuthPasswordConfigured: ").Append(SipAuthPasswordConfigured).Append("\n");
             sb.Append("  CallIconCountries: ").Append(CallIconCountries).Append("\n");
+            sb.Append("  CallerIdMode: ").Append(CallerIdMode).Append("\n");
+            sb.Append("  CallerIdVerified: ").Append(CallerIdVerified).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

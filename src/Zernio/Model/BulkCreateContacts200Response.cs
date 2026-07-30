@@ -39,9 +39,9 @@ namespace Zernio.Model
         /// <param name="success">success.</param>
         /// <param name="created">created.</param>
         /// <param name="skipped">skipped.</param>
-        /// <param name="errors">errors.</param>
+        /// <param name="errors">Per-contact failures, e.g. an identifier that is not a valid phone number.</param>
         /// <param name="total">total.</param>
-        public BulkCreateContacts200Response(bool success = default, int created = default, int skipped = default, List<Object> errors = default, int total = default)
+        public BulkCreateContacts200Response(bool success = default, int created = default, int skipped = default, List<string> errors = default, int total = default)
         {
             this.Success = success;
             this.Created = created;
@@ -69,10 +69,11 @@ namespace Zernio.Model
         public int Skipped { get; set; }
 
         /// <summary>
-        /// Gets or Sets Errors
+        /// Per-contact failures, e.g. an identifier that is not a valid phone number
         /// </summary>
+        /// <value>Per-contact failures, e.g. an identifier that is not a valid phone number</value>
         [DataMember(Name = "errors", EmitDefaultValue = false)]
-        public List<Object> Errors { get; set; }
+        public List<string> Errors { get; set; }
 
         /// <summary>
         /// Gets or Sets Total

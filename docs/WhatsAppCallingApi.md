@@ -16,8 +16,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**GetWhatsAppCallingConfig**](WhatsAppCallingApi.md#getwhatsappcallingconfig) | **GET** /v1/whatsapp/calling | Get calling config for an account |
 | [**InitiateWhatsAppCall**](WhatsAppCallingApi.md#initiatewhatsappcall) | **POST** /v1/whatsapp/calls | Initiate outbound call |
 | [**ListWhatsAppCalls**](WhatsAppCallingApi.md#listwhatsappcalls) | **GET** /v1/whatsapp/calls | List call history for an account |
+| [**StartWhatsAppCallerIdVerification**](WhatsAppCallingApi.md#startwhatsappcalleridverification) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification | Start caller-ID verification for a customer-brought number |
 | [**UpdateWhatsAppCalling**](WhatsAppCallingApi.md#updatewhatsappcalling) | **PATCH** /v1/phone-numbers/{id}/whatsapp/calling | Update calling config |
 | [**UpdateWhatsAppCallingLegacy**](WhatsAppCallingApi.md#updatewhatsappcallinglegacy) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config |
+| [**VerifyWhatsAppCallerId**](WhatsAppCallingApi.md#verifywhatsappcallerid) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification/verify | Confirm the caller-ID verification code |
 
 <a id="disablewhatsappcalling"></a>
 # **DisableWhatsAppCalling**
@@ -1254,6 +1256,110 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a id="startwhatsappcalleridverification"></a>
+# **StartWhatsAppCallerIdVerification**
+> StartWhatsAppCallerIdVerification200Response StartWhatsAppCallerIdVerification (string id, StartWhatsAppCallerIdVerificationRequest? startWhatsAppCallerIdVerificationRequest = null)
+
+Start caller-ID verification for a customer-brought number
+
+Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on `tel:` call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (`callerIdMode: platform` on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class StartWhatsAppCallerIdVerificationExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | Phone number record ID (from GET /v1/phone-numbers).
+            var startWhatsAppCallerIdVerificationRequest = new StartWhatsAppCallerIdVerificationRequest?(); // StartWhatsAppCallerIdVerificationRequest? |  (optional) 
+
+            try
+            {
+                // Start caller-ID verification for a customer-brought number
+                StartWhatsAppCallerIdVerification200Response result = apiInstance.StartWhatsAppCallerIdVerification(id, startWhatsAppCallerIdVerificationRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppCallingApi.StartWhatsAppCallerIdVerification: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the StartWhatsAppCallerIdVerificationWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Start caller-ID verification for a customer-brought number
+    ApiResponse<StartWhatsAppCallerIdVerification200Response> response = apiInstance.StartWhatsAppCallerIdVerificationWithHttpInfo(id, startWhatsAppCallerIdVerificationRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppCallingApi.StartWhatsAppCallerIdVerificationWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | Phone number record ID (from GET /v1/phone-numbers). |  |
+| **startWhatsAppCallerIdVerificationRequest** | [**StartWhatsAppCallerIdVerificationRequest?**](StartWhatsAppCallerIdVerificationRequest?.md) |  | [optional]  |
+
+### Return type
+
+[**StartWhatsAppCallerIdVerification200Response**](StartWhatsAppCallerIdVerification200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Code sent (or the number was already verified) |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **429** | Too many verification attempts for this number; wait before retrying |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a id="updatewhatsappcalling"></a>
 # **UpdateWhatsAppCalling**
 > void UpdateWhatsAppCalling (string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest)
@@ -1451,6 +1557,110 @@ void (empty response body)
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp phone number not found |  -  |
 | **422** | Calling must be enabled before settings can be updated |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="verifywhatsappcallerid"></a>
+# **VerifyWhatsAppCallerId**
+> VerifySmsRegistrationOtp200Response VerifyWhatsAppCallerId (string id, VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest)
+
+Confirm the caller-ID verification code
+
+Submits the one-time code the number received. On success, `tel:` call forwards present the business number itself as caller ID (`callerIdMode: business`). 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class VerifyWhatsAppCallerIdExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppCallingApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | Phone number record ID (from GET /v1/phone-numbers).
+            var verifyWhatsAppCallerIdRequest = new VerifyWhatsAppCallerIdRequest(); // VerifyWhatsAppCallerIdRequest | 
+
+            try
+            {
+                // Confirm the caller-ID verification code
+                VerifySmsRegistrationOtp200Response result = apiInstance.VerifyWhatsAppCallerId(id, verifyWhatsAppCallerIdRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppCallingApi.VerifyWhatsAppCallerId: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the VerifyWhatsAppCallerIdWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Confirm the caller-ID verification code
+    ApiResponse<VerifySmsRegistrationOtp200Response> response = apiInstance.VerifyWhatsAppCallerIdWithHttpInfo(id, verifyWhatsAppCallerIdRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppCallingApi.VerifyWhatsAppCallerIdWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | Phone number record ID (from GET /v1/phone-numbers). |  |
+| **verifyWhatsAppCallerIdRequest** | [**VerifyWhatsAppCallerIdRequest**](VerifyWhatsAppCallerIdRequest.md) |  |  |
+
+### Return type
+
+[**VerifySmsRegistrationOtp200Response**](VerifySmsRegistrationOtp200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Verified |  -  |
+| **400** | Invalid or expired code, or malformed request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+| **429** | Attempt lockout from the carrier; wait a few minutes, then request a fresh code |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1254,6 +1254,8 @@ docs/StartSmsRegistrationRequest.md
 docs/StartSmsRegistrationRequestBrand.md
 docs/StartSmsRegistrationRequestCampaign.md
 docs/StartSmsRegistrationRequestTollFree.md
+docs/StartWhatsAppCallerIdVerification200Response.md
+docs/StartWhatsAppCallerIdVerificationRequest.md
 docs/SubmitPhoneNumberKyc200Response.md
 docs/SubmitPhoneNumberKyc200ResponseNumbersInner.md
 docs/SubmitPhoneNumberKyc200ResponsePhoneNumber.md
@@ -1488,6 +1490,7 @@ docs/Verification.md
 docs/VerifyApi.md
 docs/VerifySmsRegistrationOtp200Response.md
 docs/VerifySmsRegistrationOtpRequest.md
+docs/VerifyWhatsAppCallerIdRequest.md
 docs/VoiceApi.md
 docs/VoteRedditThingRequest.md
 docs/Webhook.md
@@ -2875,6 +2878,8 @@ src/Zernio.Test/Model/StartSmsRegistrationRequestBrandTests.cs
 src/Zernio.Test/Model/StartSmsRegistrationRequestCampaignTests.cs
 src/Zernio.Test/Model/StartSmsRegistrationRequestTests.cs
 src/Zernio.Test/Model/StartSmsRegistrationRequestTollFreeTests.cs
+src/Zernio.Test/Model/StartWhatsAppCallerIdVerification200ResponseTests.cs
+src/Zernio.Test/Model/StartWhatsAppCallerIdVerificationRequestTests.cs
 src/Zernio.Test/Model/SubmitPhoneNumberKyc200ResponseNumbersInnerTests.cs
 src/Zernio.Test/Model/SubmitPhoneNumberKyc200ResponsePhoneNumberTests.cs
 src/Zernio.Test/Model/SubmitPhoneNumberKyc200ResponseTests.cs
@@ -3103,6 +3108,7 @@ src/Zernio.Test/Model/ValidateSubreddit200ResponseTests.cs
 src/Zernio.Test/Model/VerificationTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtp200ResponseTests.cs
 src/Zernio.Test/Model/VerifySmsRegistrationOtpRequestTests.cs
+src/Zernio.Test/Model/VerifyWhatsAppCallerIdRequestTests.cs
 src/Zernio.Test/Model/VoteRedditThingRequestTests.cs
 src/Zernio.Test/Model/WebhookLogTests.cs
 src/Zernio.Test/Model/WebhookPayloadAccountAdsInitialSyncCompletedAccountTests.cs
@@ -4498,6 +4504,8 @@ src/Zernio/Model/StartSmsRegistrationRequest.cs
 src/Zernio/Model/StartSmsRegistrationRequestBrand.cs
 src/Zernio/Model/StartSmsRegistrationRequestCampaign.cs
 src/Zernio/Model/StartSmsRegistrationRequestTollFree.cs
+src/Zernio/Model/StartWhatsAppCallerIdVerification200Response.cs
+src/Zernio/Model/StartWhatsAppCallerIdVerificationRequest.cs
 src/Zernio/Model/SubmitPhoneNumberKyc200Response.cs
 src/Zernio/Model/SubmitPhoneNumberKyc200ResponseNumbersInner.cs
 src/Zernio/Model/SubmitPhoneNumberKyc200ResponsePhoneNumber.cs
@@ -4726,6 +4734,7 @@ src/Zernio/Model/ValidateSubreddit200ResponseOneOfSubreddit.cs
 src/Zernio/Model/Verification.cs
 src/Zernio/Model/VerifySmsRegistrationOtp200Response.cs
 src/Zernio/Model/VerifySmsRegistrationOtpRequest.cs
+src/Zernio/Model/VerifyWhatsAppCallerIdRequest.cs
 src/Zernio/Model/VoteRedditThingRequest.cs
 src/Zernio/Model/Webhook.cs
 src/Zernio/Model/WebhookLog.cs

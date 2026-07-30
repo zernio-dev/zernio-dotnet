@@ -318,6 +318,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListWhatsAppCalls200Response</returns>
         ApiResponse<ListWhatsAppCalls200Response> ListWhatsAppCallsWithHttpInfo(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, DateTime? before = default, int? limit = default);
         /// <summary>
+        /// Start caller-ID verification for a customer-brought number
+        /// </summary>
+        /// <remarks>
+        /// Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="startWhatsAppCallerIdVerificationRequest"> (optional)</param>
+        /// <returns>StartWhatsAppCallerIdVerification200Response</returns>
+        StartWhatsAppCallerIdVerification200Response StartWhatsAppCallerIdVerification(string id, StartWhatsAppCallerIdVerificationRequest? startWhatsAppCallerIdVerificationRequest = default);
+
+        /// <summary>
+        /// Start caller-ID verification for a customer-brought number
+        /// </summary>
+        /// <remarks>
+        /// Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="startWhatsAppCallerIdVerificationRequest"> (optional)</param>
+        /// <returns>ApiResponse of StartWhatsAppCallerIdVerification200Response</returns>
+        ApiResponse<StartWhatsAppCallerIdVerification200Response> StartWhatsAppCallerIdVerificationWithHttpInfo(string id, StartWhatsAppCallerIdVerificationRequest? startWhatsAppCallerIdVerificationRequest = default);
+        /// <summary>
         /// Update calling config
         /// </summary>
         /// <remarks>
@@ -365,6 +388,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of Object(void)</returns>
         [Obsolete]
         ApiResponse<Object> UpdateWhatsAppCallingLegacyWithHttpInfo(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest);
+        /// <summary>
+        /// Confirm the caller-ID verification code
+        /// </summary>
+        /// <remarks>
+        /// Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="verifyWhatsAppCallerIdRequest"></param>
+        /// <returns>VerifySmsRegistrationOtp200Response</returns>
+        VerifySmsRegistrationOtp200Response VerifyWhatsAppCallerId(string id, VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest);
+
+        /// <summary>
+        /// Confirm the caller-ID verification code
+        /// </summary>
+        /// <remarks>
+        /// Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="verifyWhatsAppCallerIdRequest"></param>
+        /// <returns>ApiResponse of VerifySmsRegistrationOtp200Response</returns>
+        ApiResponse<VerifySmsRegistrationOtp200Response> VerifyWhatsAppCallerIdWithHttpInfo(string id, VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest);
         #endregion Synchronous Operations
     }
 
@@ -691,6 +737,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse (ListWhatsAppCalls200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListWhatsAppCalls200Response>> ListWhatsAppCallsWithHttpInfoAsync(string accountId, string? status = default, string? direction = default, DateTime? since = default, DateTime? until = default, DateTime? before = default, int? limit = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
+        /// Start caller-ID verification for a customer-brought number
+        /// </summary>
+        /// <remarks>
+        /// Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="startWhatsAppCallerIdVerificationRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of StartWhatsAppCallerIdVerification200Response</returns>
+        System.Threading.Tasks.Task<StartWhatsAppCallerIdVerification200Response> StartWhatsAppCallerIdVerificationAsync(string id, StartWhatsAppCallerIdVerificationRequest? startWhatsAppCallerIdVerificationRequest = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Start caller-ID verification for a customer-brought number
+        /// </summary>
+        /// <remarks>
+        /// Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="startWhatsAppCallerIdVerificationRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (StartWhatsAppCallerIdVerification200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<StartWhatsAppCallerIdVerification200Response>> StartWhatsAppCallerIdVerificationWithHttpInfoAsync(string id, StartWhatsAppCallerIdVerificationRequest? startWhatsAppCallerIdVerificationRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
         /// Update calling config
         /// </summary>
         /// <remarks>
@@ -742,6 +813,31 @@ namespace Zernio.Api
         /// <returns>Task of ApiResponse</returns>
         [Obsolete]
         System.Threading.Tasks.Task<ApiResponse<Object>> UpdateWhatsAppCallingLegacyWithHttpInfoAsync(string id, UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Confirm the caller-ID verification code
+        /// </summary>
+        /// <remarks>
+        /// Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="verifyWhatsAppCallerIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of VerifySmsRegistrationOtp200Response</returns>
+        System.Threading.Tasks.Task<VerifySmsRegistrationOtp200Response> VerifyWhatsAppCallerIdAsync(string id, VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Confirm the caller-ID verification code
+        /// </summary>
+        /// <remarks>
+        /// Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="verifyWhatsAppCallerIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (VerifySmsRegistrationOtp200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<VerifySmsRegistrationOtp200Response>> VerifyWhatsAppCallerIdWithHttpInfoAsync(string id, VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -2722,6 +2818,141 @@ namespace Zernio.Api
         }
 
         /// <summary>
+        /// Start caller-ID verification for a customer-brought number Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="startWhatsAppCallerIdVerificationRequest"> (optional)</param>
+        /// <returns>StartWhatsAppCallerIdVerification200Response</returns>
+        public StartWhatsAppCallerIdVerification200Response StartWhatsAppCallerIdVerification(string id, StartWhatsAppCallerIdVerificationRequest? startWhatsAppCallerIdVerificationRequest = default)
+        {
+            Zernio.Client.ApiResponse<StartWhatsAppCallerIdVerification200Response> localVarResponse = StartWhatsAppCallerIdVerificationWithHttpInfo(id, startWhatsAppCallerIdVerificationRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Start caller-ID verification for a customer-brought number Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="startWhatsAppCallerIdVerificationRequest"> (optional)</param>
+        /// <returns>ApiResponse of StartWhatsAppCallerIdVerification200Response</returns>
+        public Zernio.Client.ApiResponse<StartWhatsAppCallerIdVerification200Response> StartWhatsAppCallerIdVerificationWithHttpInfo(string id, StartWhatsAppCallerIdVerificationRequest? startWhatsAppCallerIdVerificationRequest = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->StartWhatsAppCallerIdVerification");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = startWhatsAppCallerIdVerificationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<StartWhatsAppCallerIdVerification200Response>("/v1/phone-numbers/{id}/whatsapp/caller-id-verification", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("StartWhatsAppCallerIdVerification", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Start caller-ID verification for a customer-brought number Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="startWhatsAppCallerIdVerificationRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of StartWhatsAppCallerIdVerification200Response</returns>
+        public async System.Threading.Tasks.Task<StartWhatsAppCallerIdVerification200Response> StartWhatsAppCallerIdVerificationAsync(string id, StartWhatsAppCallerIdVerificationRequest? startWhatsAppCallerIdVerificationRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<StartWhatsAppCallerIdVerification200Response> localVarResponse = await StartWhatsAppCallerIdVerificationWithHttpInfoAsync(id, startWhatsAppCallerIdVerificationRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Start caller-ID verification for a customer-brought number Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="startWhatsAppCallerIdVerificationRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (StartWhatsAppCallerIdVerification200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<StartWhatsAppCallerIdVerification200Response>> StartWhatsAppCallerIdVerificationWithHttpInfoAsync(string id, StartWhatsAppCallerIdVerificationRequest? startWhatsAppCallerIdVerificationRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->StartWhatsAppCallerIdVerification");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = startWhatsAppCallerIdVerificationRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<StartWhatsAppCallerIdVerification200Response>("/v1/phone-numbers/{id}/whatsapp/caller-id-verification", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("StartWhatsAppCallerIdVerification", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Update calling config Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
@@ -3001,6 +3232,149 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("UpdateWhatsAppCallingLegacy", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Confirm the caller-ID verification code Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="verifyWhatsAppCallerIdRequest"></param>
+        /// <returns>VerifySmsRegistrationOtp200Response</returns>
+        public VerifySmsRegistrationOtp200Response VerifyWhatsAppCallerId(string id, VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest)
+        {
+            Zernio.Client.ApiResponse<VerifySmsRegistrationOtp200Response> localVarResponse = VerifyWhatsAppCallerIdWithHttpInfo(id, verifyWhatsAppCallerIdRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Confirm the caller-ID verification code Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="verifyWhatsAppCallerIdRequest"></param>
+        /// <returns>ApiResponse of VerifySmsRegistrationOtp200Response</returns>
+        public Zernio.Client.ApiResponse<VerifySmsRegistrationOtp200Response> VerifyWhatsAppCallerIdWithHttpInfo(string id, VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->VerifyWhatsAppCallerId");
+
+            // verify the required parameter 'verifyWhatsAppCallerIdRequest' is set
+            if (verifyWhatsAppCallerIdRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'verifyWhatsAppCallerIdRequest' when calling WhatsAppCallingApi->VerifyWhatsAppCallerId");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = verifyWhatsAppCallerIdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<VerifySmsRegistrationOtp200Response>("/v1/phone-numbers/{id}/whatsapp/caller-id-verification/verify", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("VerifyWhatsAppCallerId", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Confirm the caller-ID verification code Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="verifyWhatsAppCallerIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of VerifySmsRegistrationOtp200Response</returns>
+        public async System.Threading.Tasks.Task<VerifySmsRegistrationOtp200Response> VerifyWhatsAppCallerIdAsync(string id, VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<VerifySmsRegistrationOtp200Response> localVarResponse = await VerifyWhatsAppCallerIdWithHttpInfoAsync(id, verifyWhatsAppCallerIdRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Confirm the caller-ID verification code Submits the one-time code the number received. On success, &#x60;tel:&#x60; call forwards present the business number itself as caller ID (&#x60;callerIdMode: business&#x60;). 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Phone number record ID (from GET /v1/phone-numbers).</param>
+        /// <param name="verifyWhatsAppCallerIdRequest"></param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (VerifySmsRegistrationOtp200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<VerifySmsRegistrationOtp200Response>> VerifyWhatsAppCallerIdWithHttpInfoAsync(string id, VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'id' when calling WhatsAppCallingApi->VerifyWhatsAppCallerId");
+
+            // verify the required parameter 'verifyWhatsAppCallerIdRequest' is set
+            if (verifyWhatsAppCallerIdRequest == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'verifyWhatsAppCallerIdRequest' when calling WhatsAppCallingApi->VerifyWhatsAppCallerId");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Zernio.Client.ClientUtils.ParameterToString(id)); // path parameter
+            localVarRequestOptions.Data = verifyWhatsAppCallerIdRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<VerifySmsRegistrationOtp200Response>("/v1/phone-numbers/{id}/whatsapp/caller-id-verification/verify", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("VerifyWhatsAppCallerId", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

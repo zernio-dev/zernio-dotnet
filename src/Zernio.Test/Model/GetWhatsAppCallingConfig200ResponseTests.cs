@@ -135,5 +135,23 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'CallIconCountries'
         }
+
+        /// <summary>
+        /// Test the property 'CallerIdMode'
+        /// </summary>
+        [Fact]
+        public void CallerIdModeTest()
+        {
+            // TODO unit test for the property 'CallerIdMode'
+        }
+
+        /// <summary>
+        /// Test the property 'CallerIdVerified'
+        /// </summary>
+        [Fact]
+        public void CallerIdVerifiedTest()
+        {
+            // TODO unit test for the property 'CallerIdVerified'
+        }
     }
 }

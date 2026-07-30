@@ -616,8 +616,10 @@ Class | Method | HTTP request | Description
 *WhatsAppCallingApi* | [**GetWhatsAppCallingConfig**](docs/WhatsAppCallingApi.md#getwhatsappcallingconfig) | **GET** /v1/whatsapp/calling | Get calling config for an account
 *WhatsAppCallingApi* | [**InitiateWhatsAppCall**](docs/WhatsAppCallingApi.md#initiatewhatsappcall) | **POST** /v1/whatsapp/calls | Initiate outbound call
 *WhatsAppCallingApi* | [**ListWhatsAppCalls**](docs/WhatsAppCallingApi.md#listwhatsappcalls) | **GET** /v1/whatsapp/calls | List call history for an account
+*WhatsAppCallingApi* | [**StartWhatsAppCallerIdVerification**](docs/WhatsAppCallingApi.md#startwhatsappcalleridverification) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification | Start caller-ID verification for a customer-brought number
 *WhatsAppCallingApi* | [**UpdateWhatsAppCalling**](docs/WhatsAppCallingApi.md#updatewhatsappcalling) | **PATCH** /v1/phone-numbers/{id}/whatsapp/calling | Update calling config
 *WhatsAppCallingApi* | [**UpdateWhatsAppCallingLegacy**](docs/WhatsAppCallingApi.md#updatewhatsappcallinglegacy) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config
+*WhatsAppCallingApi* | [**VerifyWhatsAppCallerId**](docs/WhatsAppCallingApi.md#verifywhatsappcallerid) | **POST** /v1/phone-numbers/{id}/whatsapp/caller-id-verification/verify | Confirm the caller-ID verification code
 *WhatsAppFlowsApi* | [**CreateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#createwhatsappflow) | **POST** /v1/whatsapp/flows | Create flow
 *WhatsAppFlowsApi* | [**DeleteWhatsAppFlow**](docs/WhatsAppFlowsApi.md#deletewhatsappflow) | **DELETE** /v1/whatsapp/flows/{flowId} | Delete flow
 *WhatsAppFlowsApi* | [**DeprecateWhatsAppFlow**](docs/WhatsAppFlowsApi.md#deprecatewhatsappflow) | **POST** /v1/whatsapp/flows/{flowId}/deprecate | Deprecate flow
@@ -1873,6 +1875,8 @@ Class | Method | HTTP request | Description
  - [Model.StartSmsRegistrationRequestBrand](docs/StartSmsRegistrationRequestBrand.md)
  - [Model.StartSmsRegistrationRequestCampaign](docs/StartSmsRegistrationRequestCampaign.md)
  - [Model.StartSmsRegistrationRequestTollFree](docs/StartSmsRegistrationRequestTollFree.md)
+ - [Model.StartWhatsAppCallerIdVerification200Response](docs/StartWhatsAppCallerIdVerification200Response.md)
+ - [Model.StartWhatsAppCallerIdVerificationRequest](docs/StartWhatsAppCallerIdVerificationRequest.md)
  - [Model.SubmitPhoneNumberKyc200Response](docs/SubmitPhoneNumberKyc200Response.md)
  - [Model.SubmitPhoneNumberKyc200ResponseNumbersInner](docs/SubmitPhoneNumberKyc200ResponseNumbersInner.md)
  - [Model.SubmitPhoneNumberKyc200ResponsePhoneNumber](docs/SubmitPhoneNumberKyc200ResponsePhoneNumber.md)
@@ -2101,6 +2105,7 @@ Class | Method | HTTP request | Description
  - [Model.Verification](docs/Verification.md)
  - [Model.VerifySmsRegistrationOtp200Response](docs/VerifySmsRegistrationOtp200Response.md)
  - [Model.VerifySmsRegistrationOtpRequest](docs/VerifySmsRegistrationOtpRequest.md)
+ - [Model.VerifyWhatsAppCallerIdRequest](docs/VerifyWhatsAppCallerIdRequest.md)
  - [Model.VoteRedditThingRequest](docs/VoteRedditThingRequest.md)
  - [Model.Webhook](docs/Webhook.md)
  - [Model.WebhookLog](docs/WebhookLog.md)

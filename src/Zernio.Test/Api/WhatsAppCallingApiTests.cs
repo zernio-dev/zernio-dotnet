@@ -215,6 +215,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test StartWhatsAppCallerIdVerification
+        /// </summary>
+        [Fact]
+        public void StartWhatsAppCallerIdVerificationTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //StartWhatsAppCallerIdVerificationRequest? startWhatsAppCallerIdVerificationRequest = null;
+            //var response = instance.StartWhatsAppCallerIdVerification(id, startWhatsAppCallerIdVerificationRequest);
+            //Assert.IsType<StartWhatsAppCallerIdVerification200Response>(response);
+        }
+
+        /// <summary>
         /// Test UpdateWhatsAppCalling
         /// </summary>
         [Fact]
@@ -236,6 +249,19 @@ namespace Zernio.Test.Api
             //string id = null;
             //UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest = null;
             //instance.UpdateWhatsAppCallingLegacy(id, updateWhatsAppCallingLegacyRequest);
+        }
+
+        /// <summary>
+        /// Test VerifyWhatsAppCallerId
+        /// </summary>
+        [Fact]
+        public void VerifyWhatsAppCallerIdTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string id = null;
+            //VerifyWhatsAppCallerIdRequest verifyWhatsAppCallerIdRequest = null;
+            //var response = instance.VerifyWhatsAppCallerId(id, verifyWhatsAppCallerIdRequest);
+            //Assert.IsType<VerifySmsRegistrationOtp200Response>(response);
         }
     }
 }

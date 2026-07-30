@@ -32,7 +32,7 @@ namespace Zernio.Api
         /// Bulk create contacts
         /// </summary>
         /// <remarks>
-        /// Import up to 1000 contacts at a time. Skips duplicates.
+        /// Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkCreateContactsRequest"></param>
@@ -43,7 +43,7 @@ namespace Zernio.Api
         /// Bulk create contacts
         /// </summary>
         /// <remarks>
-        /// Import up to 1000 contacts at a time. Skips duplicates.
+        /// Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkCreateContactsRequest"></param>
@@ -202,7 +202,7 @@ namespace Zernio.Api
         /// Bulk create contacts
         /// </summary>
         /// <remarks>
-        /// Import up to 1000 contacts at a time. Skips duplicates.
+        /// Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkCreateContactsRequest"></param>
@@ -214,7 +214,7 @@ namespace Zernio.Api
         /// Bulk create contacts
         /// </summary>
         /// <remarks>
-        /// Import up to 1000 contacts at a time. Skips duplicates.
+        /// Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
         /// </remarks>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkCreateContactsRequest"></param>
@@ -587,7 +587,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Bulk create contacts Import up to 1000 contacts at a time. Skips duplicates.
+        /// Bulk create contacts Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkCreateContactsRequest"></param>
@@ -599,7 +599,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Bulk create contacts Import up to 1000 contacts at a time. Skips duplicates.
+        /// Bulk create contacts Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkCreateContactsRequest"></param>
@@ -649,7 +649,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Bulk create contacts Import up to 1000 contacts at a time. Skips duplicates.
+        /// Bulk create contacts Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkCreateContactsRequest"></param>
@@ -662,7 +662,7 @@ namespace Zernio.Api
         }
 
         /// <summary>
-        /// Bulk create contacts Import up to 1000 contacts at a time. Skips duplicates.
+        /// Bulk create contacts Import up to 1000 contacts at a time. Skips duplicates. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
         /// </summary>
         /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="bulkCreateContactsRequest"></param>
