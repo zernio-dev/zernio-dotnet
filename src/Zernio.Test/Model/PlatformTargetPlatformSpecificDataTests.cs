@@ -218,6 +218,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'TextFormatPresetId'
+        /// </summary>
+        [Fact]
+        public void TextFormatPresetIdTest()
+        {
+            // TODO unit test for the property 'TextFormatPresetId'
+        }
+
+        /// <summary>
         /// Test the property 'ShareToFeed'
         /// </summary>
         [Fact]

@@ -126,5 +126,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'CarouselLink'
         }
+
+        /// <summary>
+        /// Test the property 'TextFormatPresetId'
+        /// </summary>
+        [Fact]
+        public void TextFormatPresetIdTest()
+        {
+            // TODO unit test for the property 'TextFormatPresetId'
+        }
     }
 }

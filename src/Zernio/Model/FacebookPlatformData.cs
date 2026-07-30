@@ -71,7 +71,8 @@ namespace Zernio.Model
         /// <param name="geoRestriction">geoRestriction.</param>
         /// <param name="carouselCards">Renders the post as a multi-link carousel (organic Page post). When set, mediaItems must be provided with the same length and all items must be images (no videos). Each cards[i] adds the click-through link and headline for the image at mediaItems[i]. Mutually exclusive with contentType&#x3D;story|reel. Facebook display truncates name at ~35 chars and description at ~30 chars; longer strings are accepted but get truncated on render. .</param>
         /// <param name="carouselLink">Optional top-level \&quot;See more\&quot; destination shown on the carousel end card. Defaults to the first card&#39;s link when omitted. Only used together with carouselCards. .</param>
-        public FacebookPlatformData(bool draft = false, ContentTypeEnum? contentType = default, string title = default, string firstComment = default, string pageId = default, GeoRestriction geoRestriction = default, List<FacebookPlatformDataCarouselCardsInner> carouselCards = default, string carouselLink = default)
+        /// <param name="textFormatPresetId">Facebook-defined preset ID that renders the post as large text on a colored background (Graph &#x60;text_format_preset_id&#x60;). Supply the raw numeric ID from Meta; we do not publish a catalog of presets and Facebook may change the available set. Pages only (ignored on personal profiles and groups) and text-only feed posts only: the request is rejected with 400 when mediaItems or carouselCards are present, when contentType is story or reel, when content is empty, or when content exceeds 130 characters. Those are Facebook limits, and above them Facebook silently drops the background and publishes a plain text post instead of returning an error, so we reject up front rather than let the background disappear. A URL detected in the content is NOT attached as a link preview while a preset is set, because a link attachment also makes Facebook drop the background. .</param>
+        public FacebookPlatformData(bool draft = false, ContentTypeEnum? contentType = default, string title = default, string firstComment = default, string pageId = default, GeoRestriction geoRestriction = default, List<FacebookPlatformDataCarouselCardsInner> carouselCards = default, string carouselLink = default, string textFormatPresetId = default)
         {
             this.Draft = draft;
             this.ContentType = contentType;
@@ -81,6 +82,7 @@ namespace Zernio.Model
             this.GeoRestriction = geoRestriction;
             this.CarouselCards = carouselCards;
             this.CarouselLink = carouselLink;
+            this.TextFormatPresetId = textFormatPresetId;
         }
 
         /// <summary>
@@ -132,6 +134,13 @@ namespace Zernio.Model
         public string CarouselLink { get; set; }
 
         /// <summary>
+        /// Facebook-defined preset ID that renders the post as large text on a colored background (Graph &#x60;text_format_preset_id&#x60;). Supply the raw numeric ID from Meta; we do not publish a catalog of presets and Facebook may change the available set. Pages only (ignored on personal profiles and groups) and text-only feed posts only: the request is rejected with 400 when mediaItems or carouselCards are present, when contentType is story or reel, when content is empty, or when content exceeds 130 characters. Those are Facebook limits, and above them Facebook silently drops the background and publishes a plain text post instead of returning an error, so we reject up front rather than let the background disappear. A URL detected in the content is NOT attached as a link preview while a preset is set, because a link attachment also makes Facebook drop the background. 
+        /// </summary>
+        /// <value>Facebook-defined preset ID that renders the post as large text on a colored background (Graph &#x60;text_format_preset_id&#x60;). Supply the raw numeric ID from Meta; we do not publish a catalog of presets and Facebook may change the available set. Pages only (ignored on personal profiles and groups) and text-only feed posts only: the request is rejected with 400 when mediaItems or carouselCards are present, when contentType is story or reel, when content is empty, or when content exceeds 130 characters. Those are Facebook limits, and above them Facebook silently drops the background and publishes a plain text post instead of returning an error, so we reject up front rather than let the background disappear. A URL detected in the content is NOT attached as a link preview while a preset is set, because a link attachment also makes Facebook drop the background. </value>
+        [DataMember(Name = "textFormatPresetId", EmitDefaultValue = false)]
+        public string TextFormatPresetId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -147,6 +156,7 @@ namespace Zernio.Model
             sb.Append("  GeoRestriction: ").Append(GeoRestriction).Append("\n");
             sb.Append("  CarouselCards: ").Append(CarouselCards).Append("\n");
             sb.Append("  CarouselLink: ").Append(CarouselLink).Append("\n");
+            sb.Append("  TextFormatPresetId: ").Append(TextFormatPresetId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -167,6 +177,15 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.TextFormatPresetId != null) {
+                // TextFormatPresetId (string) pattern
+                Regex regexTextFormatPresetId = new Regex(@"^\d+$", RegexOptions.CultureInvariant);
+                if (!regexTextFormatPresetId.Match(this.TextFormatPresetId).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TextFormatPresetId, must match a pattern of " + regexTextFormatPresetId, new [] { "TextFormatPresetId" });
+                }
+            }
+
             yield break;
         }
     }
