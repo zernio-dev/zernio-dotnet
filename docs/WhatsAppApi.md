@@ -28,6 +28,7 @@ All URIs are relative to *https://zernio.com/api*
 | [**ListWhatsAppConversions**](WhatsAppApi.md#listwhatsappconversions) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**ListWhatsAppGroupChats**](WhatsAppApi.md#listwhatsappgroupchats) | **GET** /v1/whatsapp/wa-groups | List active groups |
 | [**ListWhatsAppGroupJoinRequests**](WhatsAppApi.md#listwhatsappgroupjoinrequests) | **GET** /v1/whatsapp/wa-groups/{groupId}/join-requests | List join requests |
+| [**RegisterWhatsAppNumber**](WhatsAppApi.md#registerwhatsappnumber) | **POST** /v1/accounts/{accountId}/whatsapp/register | Register a connected WhatsApp number on the Cloud API |
 | [**RejectWhatsAppGroupJoinRequests**](WhatsAppApi.md#rejectwhatsappgroupjoinrequests) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/join-requests | Reject join requests |
 | [**RemoveWhatsAppGroupParticipants**](WhatsAppApi.md#removewhatsappgroupparticipants) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants |
 | [**SendWhatsAppConversion**](WhatsAppApi.md#sendwhatsappconversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
@@ -2484,6 +2485,110 @@ catch (ApiException e)
 | **200** | Join requests |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="registerwhatsappnumber"></a>
+# **RegisterWhatsAppNumber**
+> RegisterWhatsAppNumber200Response RegisterWhatsAppNumber (string accountId, RegisterWhatsAppNumberRequest? registerWhatsAppNumberRequest = null)
+
+Register a connected WhatsApp number on the Cloud API
+
+Re-runs Meta's Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading '(#200) You do not have the necessary permission to send messages' while the account still shows as connected. The PIN is used for this call only and is not stored. 
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Zernio.Api;
+using Zernio.Client;
+using Zernio.Model;
+
+namespace Example
+{
+    public class RegisterWhatsAppNumberExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://zernio.com/api";
+            // Configure Bearer token for authorization: bearerAuth
+            config.AccessToken = "YOUR_BEARER_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WhatsAppApi(httpClient, config, httpClientHandler);
+            var accountId = "accountId_example";  // string | The WhatsApp account ID
+            var registerWhatsAppNumberRequest = new RegisterWhatsAppNumberRequest?(); // RegisterWhatsAppNumberRequest? |  (optional) 
+
+            try
+            {
+                // Register a connected WhatsApp number on the Cloud API
+                RegisterWhatsAppNumber200Response result = apiInstance.RegisterWhatsAppNumber(accountId, registerWhatsAppNumberRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WhatsAppApi.RegisterWhatsAppNumber: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the RegisterWhatsAppNumberWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Register a connected WhatsApp number on the Cloud API
+    ApiResponse<RegisterWhatsAppNumber200Response> response = apiInstance.RegisterWhatsAppNumberWithHttpInfo(accountId, registerWhatsAppNumberRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WhatsAppApi.RegisterWhatsAppNumberWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **accountId** | **string** | The WhatsApp account ID |  |
+| **registerWhatsAppNumberRequest** | [**RegisterWhatsAppNumberRequest?**](RegisterWhatsAppNumberRequest?.md) |  | [optional]  |
+
+### Return type
+
+[**RegisterWhatsAppNumber200Response**](RegisterWhatsAppNumber200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number registered on the WhatsApp Cloud API |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Invalid or expired credentials |  -  |
+| **404** | WhatsApp account not found |  -  |
+| **422** | Meta rejected the registration (e.g. PIN mismatch), or the number cannot be registered through the API. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -567,6 +567,29 @@ namespace Zernio.Api
         /// <returns>ApiResponse of ListWhatsAppGroupJoinRequests200Response</returns>
         ApiResponse<ListWhatsAppGroupJoinRequests200Response> ListWhatsAppGroupJoinRequestsWithHttpInfo(string groupId, string accountId);
         /// <summary>
+        /// Register a connected WhatsApp number on the Cloud API
+        /// </summary>
+        /// <remarks>
+        /// Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="registerWhatsAppNumberRequest"> (optional)</param>
+        /// <returns>RegisterWhatsAppNumber200Response</returns>
+        RegisterWhatsAppNumber200Response RegisterWhatsAppNumber(string accountId, RegisterWhatsAppNumberRequest? registerWhatsAppNumberRequest = default);
+
+        /// <summary>
+        /// Register a connected WhatsApp number on the Cloud API
+        /// </summary>
+        /// <remarks>
+        /// Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="registerWhatsAppNumberRequest"> (optional)</param>
+        /// <returns>ApiResponse of RegisterWhatsAppNumber200Response</returns>
+        ApiResponse<RegisterWhatsAppNumber200Response> RegisterWhatsAppNumberWithHttpInfo(string accountId, RegisterWhatsAppNumberRequest? registerWhatsAppNumberRequest = default);
+        /// <summary>
         /// Reject join requests
         /// </summary>
         /// <remarks>
@@ -1387,6 +1410,31 @@ namespace Zernio.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListWhatsAppGroupJoinRequests200Response)</returns>
         System.Threading.Tasks.Task<ApiResponse<ListWhatsAppGroupJoinRequests200Response>> ListWhatsAppGroupJoinRequestsWithHttpInfoAsync(string groupId, string accountId, System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Register a connected WhatsApp number on the Cloud API
+        /// </summary>
+        /// <remarks>
+        /// Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="registerWhatsAppNumberRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RegisterWhatsAppNumber200Response</returns>
+        System.Threading.Tasks.Task<RegisterWhatsAppNumber200Response> RegisterWhatsAppNumberAsync(string accountId, RegisterWhatsAppNumberRequest? registerWhatsAppNumberRequest = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Register a connected WhatsApp number on the Cloud API
+        /// </summary>
+        /// <remarks>
+        /// Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+        /// </remarks>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="registerWhatsAppNumberRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RegisterWhatsAppNumber200Response)</returns>
+        System.Threading.Tasks.Task<ApiResponse<RegisterWhatsAppNumber200Response>> RegisterWhatsAppNumberWithHttpInfoAsync(string accountId, RegisterWhatsAppNumberRequest? registerWhatsAppNumberRequest = default, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Reject join requests
         /// </summary>
@@ -5132,6 +5180,141 @@ namespace Zernio.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("ListWhatsAppGroupJoinRequests", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Register a connected WhatsApp number on the Cloud API Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="registerWhatsAppNumberRequest"> (optional)</param>
+        /// <returns>RegisterWhatsAppNumber200Response</returns>
+        public RegisterWhatsAppNumber200Response RegisterWhatsAppNumber(string accountId, RegisterWhatsAppNumberRequest? registerWhatsAppNumberRequest = default)
+        {
+            Zernio.Client.ApiResponse<RegisterWhatsAppNumber200Response> localVarResponse = RegisterWhatsAppNumberWithHttpInfo(accountId, registerWhatsAppNumberRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Register a connected WhatsApp number on the Cloud API Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="registerWhatsAppNumberRequest"> (optional)</param>
+        /// <returns>ApiResponse of RegisterWhatsAppNumber200Response</returns>
+        public Zernio.Client.ApiResponse<RegisterWhatsAppNumber200Response> RegisterWhatsAppNumberWithHttpInfo(string accountId, RegisterWhatsAppNumberRequest? registerWhatsAppNumberRequest = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->RegisterWhatsAppNumber");
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = registerWhatsAppNumberRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Post<RegisterWhatsAppNumber200Response>("/v1/accounts/{accountId}/whatsapp/register", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RegisterWhatsAppNumber", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Register a connected WhatsApp number on the Cloud API Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="registerWhatsAppNumberRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of RegisterWhatsAppNumber200Response</returns>
+        public async System.Threading.Tasks.Task<RegisterWhatsAppNumber200Response> RegisterWhatsAppNumberAsync(string accountId, RegisterWhatsAppNumberRequest? registerWhatsAppNumberRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            Zernio.Client.ApiResponse<RegisterWhatsAppNumber200Response> localVarResponse = await RegisterWhatsAppNumberWithHttpInfoAsync(accountId, registerWhatsAppNumberRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Register a connected WhatsApp number on the Cloud API Re-runs Meta&#39;s Cloud API registration for a WhatsApp account that is already connected. Use it when the number has its own two-step verification PIN: the connect flows register with a default PIN, Meta rejects that with error 133005, and the number then fails every send with the misleading &#39;(#200) You do not have the necessary permission to send messages&#39; while the account still shows as connected. The PIN is used for this call only and is not stored. 
+        /// </summary>
+        /// <exception cref="Zernio.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">The WhatsApp account ID</param>
+        /// <param name="registerWhatsAppNumberRequest"> (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (RegisterWhatsAppNumber200Response)</returns>
+        public async System.Threading.Tasks.Task<Zernio.Client.ApiResponse<RegisterWhatsAppNumber200Response>> RegisterWhatsAppNumberWithHttpInfoAsync(string accountId, RegisterWhatsAppNumberRequest? registerWhatsAppNumberRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new Zernio.Client.ApiException(400, "Missing required parameter 'accountId' when calling WhatsAppApi->RegisterWhatsAppNumber");
+
+
+            Zernio.Client.RequestOptions localVarRequestOptions = new Zernio.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Zernio.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Zernio.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("accountId", Zernio.Client.ClientUtils.ParameterToString(accountId)); // path parameter
+            localVarRequestOptions.Data = registerWhatsAppNumberRequest;
+
+            // authentication (bearerAuth) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PostAsync<RegisterWhatsAppNumber200Response>("/v1/accounts/{accountId}/whatsapp/register", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("RegisterWhatsAppNumber", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

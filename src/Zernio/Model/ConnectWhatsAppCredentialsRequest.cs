@@ -45,7 +45,8 @@ namespace Zernio.Model
         /// <param name="accessToken">Permanent System User access token from Meta Business Suite (required).</param>
         /// <param name="wabaId">WhatsApp Business Account ID from Meta (required).</param>
         /// <param name="phoneNumberId">Phone Number ID from Meta WhatsApp Manager (required).</param>
-        public ConnectWhatsAppCredentialsRequest(string profileId = default, string accessToken = default, string wabaId = default, string phoneNumberId = default)
+        /// <param name="pin">The 6-digit two-step verification PIN set on the number. Required if you enabled two-step verification for it, otherwise Meta rejects the Cloud API registration with error 133005 and the number cannot send messages..</param>
+        public ConnectWhatsAppCredentialsRequest(string profileId = default, string accessToken = default, string wabaId = default, string phoneNumberId = default, string pin = default)
         {
             // to ensure "profileId" is required (not null)
             if (profileId == null)
@@ -71,6 +72,7 @@ namespace Zernio.Model
                 throw new ArgumentNullException("phoneNumberId is a required property for ConnectWhatsAppCredentialsRequest and cannot be null");
             }
             this.PhoneNumberId = phoneNumberId;
+            this.Pin = pin;
         }
 
         /// <summary>
@@ -102,6 +104,13 @@ namespace Zernio.Model
         public string PhoneNumberId { get; set; }
 
         /// <summary>
+        /// The 6-digit two-step verification PIN set on the number. Required if you enabled two-step verification for it, otherwise Meta rejects the Cloud API registration with error 133005 and the number cannot send messages.
+        /// </summary>
+        /// <value>The 6-digit two-step verification PIN set on the number. Required if you enabled two-step verification for it, otherwise Meta rejects the Cloud API registration with error 133005 and the number cannot send messages.</value>
+        [DataMember(Name = "pin", EmitDefaultValue = false)]
+        public string Pin { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -113,6 +122,7 @@ namespace Zernio.Model
             sb.Append("  AccessToken: ").Append(AccessToken).Append("\n");
             sb.Append("  WabaId: ").Append(WabaId).Append("\n");
             sb.Append("  PhoneNumberId: ").Append(PhoneNumberId).Append("\n");
+            sb.Append("  Pin: ").Append(Pin).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -133,6 +143,15 @@ namespace Zernio.Model
         /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            if (this.Pin != null) {
+                // Pin (string) pattern
+                Regex regexPin = new Regex(@"^\d{6}$", RegexOptions.CultureInvariant);
+                if (!regexPin.Match(this.Pin).Success)
+                {
+                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Pin, must match a pattern of " + regexPin, new [] { "Pin" });
+                }
+            }
+
             yield break;
         }
     }

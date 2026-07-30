@@ -28,42 +28,41 @@ using OpenAPIDateConverter = Zernio.Client.OpenAPIDateConverter;
 namespace Zernio.Model
 {
     /// <summary>
-    /// ConnectWhatsAppCredentials200Response
+    /// RegisterWhatsAppNumber200Response
     /// </summary>
-    [DataContract(Name = "connectWhatsAppCredentials_200_response")]
-    public partial class ConnectWhatsAppCredentials200Response : IValidatableObject
+    [DataContract(Name = "registerWhatsAppNumber_200_response")]
+    public partial class RegisterWhatsAppNumber200Response : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectWhatsAppCredentials200Response" /> class.
+        /// Initializes a new instance of the <see cref="RegisterWhatsAppNumber200Response" /> class.
         /// </summary>
-        /// <param name="message">message.</param>
-        /// <param name="registrationWarning">Present when the account was created but Meta rejected the Cloud API registration. The number cannot send messages until this is resolved..</param>
-        /// <param name="account">account.</param>
-        public ConnectWhatsAppCredentials200Response(string message = default, string registrationWarning = default, ConnectWhatsAppCredentials200ResponseAccount account = default)
+        /// <param name="registered">registered.</param>
+        /// <param name="accountId">accountId.</param>
+        /// <param name="phoneNumberId">phoneNumberId.</param>
+        public RegisterWhatsAppNumber200Response(bool registered = default, string accountId = default, string phoneNumberId = default)
         {
-            this.Message = message;
-            this.RegistrationWarning = registrationWarning;
-            this.Account = account;
+            this.Registered = registered;
+            this.AccountId = accountId;
+            this.PhoneNumberId = phoneNumberId;
         }
 
         /// <summary>
-        /// Gets or Sets Message
+        /// Gets or Sets Registered
         /// </summary>
-        [DataMember(Name = "message", EmitDefaultValue = false)]
-        public string Message { get; set; }
+        [DataMember(Name = "registered", EmitDefaultValue = true)]
+        public bool Registered { get; set; }
 
         /// <summary>
-        /// Present when the account was created but Meta rejected the Cloud API registration. The number cannot send messages until this is resolved.
+        /// Gets or Sets AccountId
         /// </summary>
-        /// <value>Present when the account was created but Meta rejected the Cloud API registration. The number cannot send messages until this is resolved.</value>
-        [DataMember(Name = "registrationWarning", EmitDefaultValue = false)]
-        public string RegistrationWarning { get; set; }
+        [DataMember(Name = "accountId", EmitDefaultValue = false)]
+        public string AccountId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Account
+        /// Gets or Sets PhoneNumberId
         /// </summary>
-        [DataMember(Name = "account", EmitDefaultValue = false)]
-        public ConnectWhatsAppCredentials200ResponseAccount Account { get; set; }
+        [DataMember(Name = "phoneNumberId", EmitDefaultValue = false)]
+        public string PhoneNumberId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -72,10 +71,10 @@ namespace Zernio.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ConnectWhatsAppCredentials200Response {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
-            sb.Append("  RegistrationWarning: ").Append(RegistrationWarning).Append("\n");
-            sb.Append("  Account: ").Append(Account).Append("\n");
+            sb.Append("class RegisterWhatsAppNumber200Response {\n");
+            sb.Append("  Registered: ").Append(Registered).Append("\n");
+            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
+            sb.Append("  PhoneNumberId: ").Append(PhoneNumberId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

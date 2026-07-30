@@ -360,6 +360,19 @@ namespace Zernio.Test.Api
         }
 
         /// <summary>
+        /// Test RegisterWhatsAppNumber
+        /// </summary>
+        [Fact]
+        public void RegisterWhatsAppNumberTest()
+        {
+            // TODO uncomment below to test the method and replace null with proper value
+            //string accountId = null;
+            //RegisterWhatsAppNumberRequest? registerWhatsAppNumberRequest = null;
+            //var response = instance.RegisterWhatsAppNumber(accountId, registerWhatsAppNumberRequest);
+            //Assert.IsType<RegisterWhatsAppNumber200Response>(response);
+        }
+
+        /// <summary>
         /// Test RejectWhatsAppGroupJoinRequests
         /// </summary>
         [Fact]

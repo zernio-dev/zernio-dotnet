@@ -65,6 +65,15 @@ namespace Zernio.Test.Model
         }
 
         /// <summary>
+        /// Test the property 'RegistrationWarning'
+        /// </summary>
+        [Fact]
+        public void RegistrationWarningTest()
+        {
+            // TODO unit test for the property 'RegistrationWarning'
+        }
+
+        /// <summary>
         /// Test the property 'Account'
         /// </summary>
         [Fact]

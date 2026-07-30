@@ -90,5 +90,14 @@ namespace Zernio.Test.Model
         {
             // TODO unit test for the property 'PhoneNumberId'
         }
+
+        /// <summary>
+        /// Test the property 'Pin'
+        /// </summary>
+        [Fact]
+        public void PinTest()
+        {
+            // TODO unit test for the property 'Pin'
+        }
     }
 }
