@@ -116,7 +116,49 @@ namespace Zernio.Model
             /// Enum ApplicationPdf for value: application/pdf
             /// </summary>
             [EnumMember(Value = "application/pdf")]
-            ApplicationPdf = 13
+            ApplicationPdf = 13,
+
+            /// <summary>
+            /// Enum AudioMpeg for value: audio/mpeg
+            /// </summary>
+            [EnumMember(Value = "audio/mpeg")]
+            AudioMpeg = 14,
+
+            /// <summary>
+            /// Enum AudioMp4 for value: audio/mp4
+            /// </summary>
+            [EnumMember(Value = "audio/mp4")]
+            AudioMp4 = 15,
+
+            /// <summary>
+            /// Enum AudioAac for value: audio/aac
+            /// </summary>
+            [EnumMember(Value = "audio/aac")]
+            AudioAac = 16,
+
+            /// <summary>
+            /// Enum AudioOgg for value: audio/ogg
+            /// </summary>
+            [EnumMember(Value = "audio/ogg")]
+            AudioOgg = 17,
+
+            /// <summary>
+            /// Enum AudioWav for value: audio/wav
+            /// </summary>
+            [EnumMember(Value = "audio/wav")]
+            AudioWav = 18,
+
+            /// <summary>
+            /// Enum AudioWebm for value: audio/webm
+            /// </summary>
+            [EnumMember(Value = "audio/webm")]
+            AudioWebm = 19,
+
+            /// <summary>
+            /// Enum AudioXM4a for value: audio/x-m4a
+            /// </summary>
+            [EnumMember(Value = "audio/x-m4a")]
+            AudioXM4a = 20
         }
 
 
