@@ -36,7 +36,7 @@ namespace Zernio.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateAdTrackingTagsRequest" /> class.
         /// </summary>
-        /// <param name="urlTags">Meta only. Click-URL params appended to a freshly-rebuilt creative..</param>
+        /// <param name="urlTags">Meta only. Click-URL params appended to a freshly-rebuilt creative. Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded..</param>
         /// <param name="creative">creative.</param>
         /// <param name="trackingUrlTemplate">Google only. Full tracking template (must contain {lpurl})..</param>
         /// <param name="finalUrlSuffix">Google only. Parse-only key&#x3D;value params..</param>
@@ -53,9 +53,9 @@ namespace Zernio.Model
         }
 
         /// <summary>
-        /// Meta only. Click-URL params appended to a freshly-rebuilt creative.
+        /// Meta only. Click-URL params appended to a freshly-rebuilt creative. Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded.
         /// </summary>
-        /// <value>Meta only. Click-URL params appended to a freshly-rebuilt creative.</value>
+        /// <value>Meta only. Click-URL params appended to a freshly-rebuilt creative. Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded.</value>
         [DataMember(Name = "urlTags", EmitDefaultValue = false)]
         public List<UpdateAdTrackingTagsRequestUrlTagsInner> UrlTags { get; set; }
 

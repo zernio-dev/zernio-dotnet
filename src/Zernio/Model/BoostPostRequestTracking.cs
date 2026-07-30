@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="BoostPostRequestTracking" /> class.
         /// </summary>
         /// <param name="pixelId">pixelId.</param>
-        /// <param name="urlTags">URL parameters appended to the ad link, rendered as &#x60;key&#x3D;value&#x60; pairs joined with &#x60;&amp;&#x60;..</param>
+        /// <param name="urlTags">URL parameters appended to the ad link, rendered as &#x60;key&#x3D;value&#x60; pairs joined with &#x60;&amp;&#x60;. Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded..</param>
         public BoostPostRequestTracking(string pixelId = default, List<BoostPostRequestTrackingUrlTagsInner> urlTags = default)
         {
             this.PixelId = pixelId;
@@ -51,9 +51,9 @@ namespace Zernio.Model
         public string PixelId { get; set; }
 
         /// <summary>
-        /// URL parameters appended to the ad link, rendered as &#x60;key&#x3D;value&#x60; pairs joined with &#x60;&amp;&#x60;.
+        /// URL parameters appended to the ad link, rendered as &#x60;key&#x3D;value&#x60; pairs joined with &#x60;&amp;&#x60;. Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded.
         /// </summary>
-        /// <value>URL parameters appended to the ad link, rendered as &#x60;key&#x3D;value&#x60; pairs joined with &#x60;&amp;&#x60;.</value>
+        /// <value>URL parameters appended to the ad link, rendered as &#x60;key&#x3D;value&#x60; pairs joined with &#x60;&amp;&#x60;. Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded.</value>
         [DataMember(Name = "urlTags", EmitDefaultValue = false)]
         public List<BoostPostRequestTrackingUrlTagsInner> UrlTags { get; set; }
 

@@ -37,7 +37,7 @@ namespace Zernio.Model
         /// Initializes a new instance of the <see cref="CreateStandaloneAdRequestTracking" /> class.
         /// </summary>
         /// <param name="pixelId">Meta Pixel ID to attach for offsite-conversion measurement..</param>
-        /// <param name="urlTags">Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source)..</param>
+        /// <param name="urlTags">Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source). Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded..</param>
         public CreateStandaloneAdRequestTracking(string pixelId = default, List<UpdateAdTrackingTagsRequestUrlTagsInner> urlTags = default)
         {
             this.PixelId = pixelId;
@@ -52,9 +52,9 @@ namespace Zernio.Model
         public string PixelId { get; set; }
 
         /// <summary>
-        /// Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source).
+        /// Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source). Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded.
         /// </summary>
-        /// <value>Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source).</value>
+        /// <value>Click-URL params appended to the ad&#39;s destination as &#x60;url_tags&#x60; (e.g. utm_source). Meta dynamic macros ({{ad.id}}, {{campaign.id}}, {{placement}}, ...) are sent through unescaped so Meta expands them; every other character is percent-encoded.</value>
         [DataMember(Name = "urlTags", EmitDefaultValue = false)]
         public List<UpdateAdTrackingTagsRequestUrlTagsInner> UrlTags { get; set; }
 
